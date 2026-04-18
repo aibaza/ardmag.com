@@ -24,7 +24,7 @@ export default function ProductRow({ product }: ProductRowProps) {
 
   return (
     <div
-      className="bg-[var(--surface)] hover:bg-stone-50 border border-b-0 border-stone-200 transition-colors duration-150"
+      className="bg-[var(--surface)] hover:bg-[var(--stone-50)] border border-b-0 border-[var(--rule)] transition-colors duration-150"
       style={{
         display: "grid",
         gridTemplateColumns: "88px 1fr auto",
