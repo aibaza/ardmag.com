@@ -1,6 +1,5 @@
 /* Ardmag Design System — Variant B tokens */
-@layer base {
-  :root {
+:root {
     /* Brand — Ignition Orange, hue 42 */
     --brand-50:  oklch(97% 0.020 42);
     --brand-100: oklch(93% 0.048 42);
@@ -70,4 +69,3 @@
     /* Focus ring */
     --focus-ring: 0 0 0 3px oklch(64% 0.202 42 / 0.35);
   }
-}
