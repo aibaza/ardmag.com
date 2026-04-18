@@ -11,6 +11,11 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
 
   return (
     <section style={{ background: "var(--stone-50)", padding: "48px 0" }}>
+      <style>{`
+        .category-grid { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 860px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px) { .category-grid { grid-template-columns: 1fr; } }
+      `}</style>
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex items-baseline justify-between mb-6">
           <h2 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.015em", margin: 0, color: "var(--fg)" }}>
@@ -24,9 +29,9 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
           </LocalizedClientLink>
         </div>
         <div
+          className="category-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
             gap: "16px",
           }}
         >

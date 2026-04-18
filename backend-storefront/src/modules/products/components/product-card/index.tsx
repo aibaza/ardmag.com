@@ -1,6 +1,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { getStemFromThumbnail } from "@lib/images"
 import { getProductPrice } from "@lib/util/get-product-price"
+import { isProductOutOfStock, getProductSpecsPreview } from "@lib/util/product"
 import ProductImage from "@modules/products/components/product-image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Badge } from "@components/ui/badge"
@@ -9,26 +10,13 @@ interface ProductCardProps {
   product: HttpTypes.StoreProduct
 }
 
-function isOutOfStock(product: HttpTypes.StoreProduct): boolean {
-  if (!product.variants?.length) return false
-  return product.variants.every(
-    (v: any) => v.manage_inventory && (v.inventory_quantity ?? 0) <= 0
-  )
-}
-
 export default function ProductCard({ product }: ProductCardProps) {
   const stem = getStemFromThumbnail(product.thumbnail)
   const { cheapestPrice } = getProductPrice({ product })
-  const outOfStock = isOutOfStock(product)
+  const outOfStock = isProductOutOfStock(product)
 
   // First 3 option specs: "TIP PIATRA: ANDEZIT · DIAMETRU: 115"
-  const specsPreview = product.options
-    ?.slice(0, 3)
-    .map((opt) => {
-      const val = opt.values?.[0]?.value ?? ""
-      return `${opt.title.toUpperCase()}: ${val}`
-    })
-    .join(" · ")
+  const specsPreview = getProductSpecsPreview(product, 3).join(" · ")
 
   const isSale =
     cheapestPrice?.price_type === "sale" ||

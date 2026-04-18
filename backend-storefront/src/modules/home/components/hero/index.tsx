@@ -3,11 +3,14 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 export default function Hero() {
   return (
     <section style={{ background: "var(--stone-900)", color: "white" }}>
+      <style>{`
+        .hero-grid { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+      `}</style>
       <div
-        className="max-w-[1400px] mx-auto"
+        className="hero-grid max-w-[1400px] mx-auto"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           minHeight: "520px",
         }}
       >
@@ -155,7 +158,7 @@ export default function Hero() {
                 {desc}
               </p>
               <span style={{ marginTop: "auto", paddingTop: "16px", fontFamily: "var(--f-mono)", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--brand-700)" }}>
-                Vede produsele &rarr;
+                Vezi produsele &rarr;
               </span>
             </LocalizedClientLink>
           ))}

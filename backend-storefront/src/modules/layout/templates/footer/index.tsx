@@ -36,6 +36,9 @@ export default async function Footer() {
           font-weight: 500;
           margin-bottom: 14px;
         }
+        .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+        @media (max-width: 1060px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
+        @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
       `}</style>
 
       {/* Footer top */}
@@ -47,14 +50,14 @@ export default async function Footer() {
         }}
       >
         <div
+          className="footer-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1.5fr 1fr 1fr 1fr 1.3fr",
             gap: "48px",
           }}
         >
           {/* Col 1 — Brand */}
-          <div>
+          <div className="footer-brand">
             {/* Logo */}
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
               <span
@@ -100,7 +103,7 @@ export default async function Footer() {
                     marginTop: "2px",
                   }}
                 >
-                  PRECIZIE SOLIDA
+                  PRECIZIE SOLIDĂ
                 </span>
               </span>
             </div>
@@ -252,7 +255,7 @@ export default async function Footer() {
               color: "var(--stone-500)",
             }}
           >
-            &copy; 2025 Arcrom Diamonds SRL. Toate drepturile rezervate.
+            &copy; 2026 Arcrom Diamonds SRL. Toate drepturile rezervate.
           </span>
           <div className="ml-auto flex gap-5">
             {["GDPR", "Termeni si conditii", "Politica de confidentialitate"].map(

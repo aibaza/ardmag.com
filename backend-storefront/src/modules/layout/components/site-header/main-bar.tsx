@@ -1,8 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { useParams } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MobileDrawer from "@modules/layout/components/mobile-drawer"
 import { CATEGORIES } from "@constants/categories"
@@ -154,7 +153,7 @@ export default function MainBar({ cartButton }: MainBarProps) {
                 marginTop: "2px",
               }}
             >
-              PRECIZIE SOLIDA
+              PRECIZIE SOLIDĂ
             </span>
           </span>
         </LocalizedClientLink>

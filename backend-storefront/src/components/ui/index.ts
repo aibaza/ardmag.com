@@ -9,12 +9,13 @@ export {
   InputShell,
   TextInput,
   SelectInput,
-  Stepper,
 } from "./input"
 export type {
   FieldProps,
   InputShellProps,
   TextInputProps,
   SelectInputProps,
-  StepperProps,
 } from "./input"
+
+export { Stepper } from "./stepper"
+export type { StepperProps } from "./stepper"
