@@ -25,7 +25,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article
-      className="relative flex flex-col bg-white rounded-[var(--r-sm)] border border-stone-200 hover:border-stone-400 hover:shadow-[var(--sh-sm)] transition-[border-color,box-shadow] duration-150"
+      className="relative flex flex-col bg-[var(--surface)] rounded-[var(--r-sm)] border border-stone-200 hover:border-stone-400 hover:shadow-[var(--sh-sm)] transition-[border-color,box-shadow] duration-150"
       style={{ minHeight: 0 }}
     >
       {/* Image area */}
@@ -95,7 +95,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Foot */}
-      <div className="px-4 py-3 mt-auto border-t border-stone-200 bg-stone-50 flex items-center justify-between gap-2 rounded-b-[var(--r-sm)]">
+      <div className="px-4 py-3 mt-auto border-t border-stone-200 bg-[var(--stone-50)] flex items-center justify-between gap-2 rounded-b-[var(--r-sm)]">
         <div className="flex flex-col">
           {cheapestPrice ? (
             <>
@@ -117,7 +117,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <LocalizedClientLink
           href={`/products/${product.handle}`}
-          className="inline-flex items-center h-8 px-3 text-[13px] font-medium rounded-[var(--r-sm)] text-white bg-brand-500 border border-brand-600 hover:bg-brand-600 transition-colors duration-150 whitespace-nowrap"
+          className="inline-flex items-center h-8 px-3 text-[13px] font-medium rounded-[var(--r-sm)] text-[var(--stone-50)] bg-brand-500 border border-brand-600 hover:bg-brand-600 transition-colors duration-150 whitespace-nowrap"
         >
           {outOfStock ? "Detalii" : "Adauga"}
         </LocalizedClientLink>

@@ -75,7 +75,7 @@ export function InputShell({
   return (
     <div
       className={[
-        "flex items-stretch bg-white",
+        "flex items-stretch bg-[var(--surface)]",
         "border rounded-[var(--r-sm)]",
         "transition-[border-color,box-shadow] duration-[80ms]",
         shellHeightMap[size],
@@ -93,13 +93,13 @@ export function InputShell({
       ].join(" ")}
     >
       {adornLeft && (
-        <div className="flex items-center px-[10px] border-r border-[var(--rule)] bg-stone-50 font-[family-name:var(--f-mono)] text-[12px] text-[var(--fg-muted)] shrink-0">
+        <div className="flex items-center px-[10px] border-r border-[var(--rule)] bg-[var(--stone-50)] font-[family-name:var(--f-mono)] text-[12px] text-[var(--fg-muted)] shrink-0">
           {adornLeft}
         </div>
       )}
       {children}
       {adornRight && (
-        <div className="flex items-center px-[10px] border-l border-[var(--rule)] bg-stone-50 font-[family-name:var(--f-mono)] text-[12px] text-[var(--fg-muted)] shrink-0">
+        <div className="flex items-center px-[10px] border-l border-[var(--rule)] bg-[var(--stone-50)] font-[family-name:var(--f-mono)] text-[12px] text-[var(--fg-muted)] shrink-0">
           {adornRight}
         </div>
       )}

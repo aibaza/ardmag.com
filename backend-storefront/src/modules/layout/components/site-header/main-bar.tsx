@@ -48,7 +48,7 @@ export default function MainBar({ cartButton }: MainBarProps) {
           gap: 8px;
           font-weight: 500;
           font-size: 14px;
-          color: #ffffff;
+          color: var(--stone-50);
           border: none;
           cursor: pointer;
           border-radius: 0 var(--r-sm) var(--r-sm) 0;

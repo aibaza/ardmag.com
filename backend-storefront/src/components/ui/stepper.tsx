@@ -52,7 +52,7 @@ export function Stepper({
   return (
     <div
       className={[
-        "inline-flex items-stretch bg-white",
+        "inline-flex items-stretch bg-[var(--surface)]",
         "border border-[var(--rule-strong)] rounded-[var(--r-sm)]",
         height,
         disabled ? "opacity-75 pointer-events-none" : "",
@@ -66,7 +66,7 @@ export function Stepper({
         aria-label="Decrease"
         className={[
           "flex items-center justify-center shrink-0 border-r border-[var(--rule-strong)]",
-          "bg-stone-50 text-stone-700 font-[family-name:var(--f-mono)]",
+          "bg-[var(--stone-50)] text-stone-700 font-[family-name:var(--f-mono)]",
           "hover:bg-stone-100 hover:text-stone-900",
           "disabled:opacity-45 disabled:pointer-events-none",
           "transition-colors duration-[80ms]",
@@ -99,7 +99,7 @@ export function Stepper({
         aria-label="Increase"
         className={[
           "flex items-center justify-center shrink-0 border-l border-[var(--rule-strong)]",
-          "bg-stone-50 text-stone-700 font-[family-name:var(--f-mono)]",
+          "bg-[var(--stone-50)] text-stone-700 font-[family-name:var(--f-mono)]",
           "hover:bg-stone-100 hover:text-stone-900",
           "disabled:opacity-45 disabled:pointer-events-none",
           "transition-colors duration-[80ms]",

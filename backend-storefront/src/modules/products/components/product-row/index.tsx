@@ -24,7 +24,7 @@ export default function ProductRow({ product }: ProductRowProps) {
 
   return (
     <div
-      className="bg-white hover:bg-stone-50 border border-b-0 border-stone-200 transition-colors duration-150"
+      className="bg-[var(--surface)] hover:bg-stone-50 border border-b-0 border-stone-200 transition-colors duration-150"
       style={{
         display: "grid",
         gridTemplateColumns: "88px 1fr auto",
@@ -123,7 +123,7 @@ export default function ProductRow({ product }: ProductRowProps) {
         </Badge>
         <LocalizedClientLink
           href={`/products/${product.handle}`}
-          className="ml-auto inline-flex items-center h-8 px-3 text-[13px] font-medium rounded-[var(--r-sm)] text-white bg-brand-500 border border-brand-600 hover:bg-brand-600 transition-colors duration-150 whitespace-nowrap"
+          className="ml-auto inline-flex items-center h-8 px-3 text-[13px] font-medium rounded-[var(--r-sm)] text-[var(--stone-50)] bg-brand-500 border border-brand-600 hover:bg-brand-600 transition-colors duration-150 whitespace-nowrap"
         >
           Detalii
         </LocalizedClientLink>

@@ -68,11 +68,15 @@ export default async function PaginatedProducts({
 
   return (
     <>
+      <style>{`
+        .store-product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-6, 24px); }
+        @media (max-width: 860px) { .store-product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px) { .store-product-grid { grid-template-columns: 1fr; } }
+      `}</style>
       <div
+        className="store-product-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-          gap: "16px",
         }}
         data-testid="products-list"
       >

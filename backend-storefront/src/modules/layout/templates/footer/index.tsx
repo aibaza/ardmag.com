@@ -20,7 +20,7 @@ export default async function Footer() {
           text-decoration: none;
           font-size: 14px;
         }
-        .footer-contact-link:hover { color: #ffffff; }
+        .footer-contact-link:hover { color: var(--stone-50); }
         .footer-legal-link {
           color: var(--stone-600);
           text-decoration: none;
@@ -86,7 +86,7 @@ export default async function Footer() {
                     fontSize: "20px",
                     fontWeight: 600,
                     letterSpacing: "-0.025em",
-                    color: "#ffffff",
+                    color: "var(--stone-50)",
                     lineHeight: 1.1,
                   }}
                 >
@@ -221,7 +221,7 @@ export default async function Footer() {
                 >
                   Distribuitor autorizat
                 </span>
-                <span style={{ fontSize: "16px", fontWeight: 600, color: "#ffffff" }}>
+                <span style={{ fontSize: "16px", fontWeight: 600, color: "var(--stone-50)" }}>
                   TENAX
                 </span>
               </div>

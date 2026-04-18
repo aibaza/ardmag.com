@@ -72,7 +72,7 @@ export default function Hero() {
                   fontWeight: 500,
                   borderRadius: "var(--r-sm)",
                   background: "var(--brand-500)",
-                  color: "white",
+                  color: "var(--stone-50)",
                   border: "1px solid var(--brand-600)",
                   textDecoration: "none",
                 }}
@@ -90,9 +90,9 @@ export default function Hero() {
                   fontSize: "15px",
                   fontWeight: 500,
                   borderRadius: "var(--r-sm)",
-                  background: "white",
+                  background: "var(--surface)",
                   color: "var(--stone-900)",
-                  border: "1px solid white",
+                  border: "1px solid var(--stone-50)",
                   textDecoration: "none",
                 }}
               >
@@ -107,7 +107,7 @@ export default function Hero() {
                 { value: "90", label: "Produse unice" },
               ].map(({ value, label }) => (
                 <div key={label} style={{ display: "flex", flexDirection: "column" }}>
-                  <strong style={{ fontFamily: "var(--f-mono)", fontSize: "22px", fontWeight: 500, color: "white" }}>
+                  <strong style={{ fontFamily: "var(--f-mono)", fontSize: "22px", fontWeight: 500, color: "var(--stone-50)" }}>
                     {value}
                   </strong>
                   <span style={{ fontFamily: "var(--f-mono)", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.06em", marginTop: "2px", color: "var(--stone-500)" }}>
@@ -151,7 +151,7 @@ export default function Hero() {
               <span style={{ fontFamily: "var(--f-mono)", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "8px", color: "var(--brand-600)" }}>
                 {kicker}
               </span>
-              <h3 style={{ fontSize: "20px", lineHeight: "1.2", letterSpacing: "-0.015em", margin: 0, maxWidth: "80%", color: "white", fontWeight: 600 }}>
+              <h3 style={{ fontSize: "20px", lineHeight: "1.2", letterSpacing: "-0.015em", margin: 0, maxWidth: "80%", color: "var(--stone-50)", fontWeight: 600 }}>
                 {title}
               </h3>
               <p style={{ fontSize: "13px", marginTop: "8px", margin: "8px 0 0", color: "var(--stone-400)" }}>
