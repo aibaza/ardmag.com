@@ -1,0 +1,73 @@
+/* Ardmag Design System — Variant B tokens */
+@layer base {
+  :root {
+    /* Brand — Ignition Orange, hue 42 */
+    --brand-50:  oklch(97% 0.020 42);
+    --brand-100: oklch(93% 0.048 42);
+    --brand-200: oklch(86% 0.092 42);
+    --brand-300: oklch(77% 0.142 42);
+    --brand-400: oklch(70% 0.180 42);
+    --brand-500: oklch(64% 0.202 42);
+    --brand-600: oklch(56% 0.190 42);
+    --brand-700: oklch(48% 0.162 42);
+    --brand-800: oklch(39% 0.128 42);
+    --brand-900: oklch(30% 0.098 42);
+    --brand-950: oklch(22% 0.062 42);
+
+    /* Warm Stone neutrals, hue 75 */
+    --stone-50:  oklch(98% 0.003 75);
+    --stone-100: oklch(95% 0.005 75);
+    --stone-200: oklch(90% 0.006 75);
+    --stone-300: oklch(82% 0.006 75);
+    --stone-400: oklch(70% 0.006 75);
+    --stone-500: oklch(55% 0.006 75);
+    --stone-600: oklch(43% 0.006 75);
+    --stone-700: oklch(33% 0.006 75);
+    --stone-800: oklch(24% 0.006 75);
+    --stone-900: oklch(16% 0.006 75);
+    --stone-950: oklch(10% 0.006 75);
+
+    /* Semantic */
+    --success:    oklch(55% 0.14 145);
+    --success-bg: oklch(94% 0.04 145);
+    --success-fg: oklch(32% 0.10 145);
+    --warning:    oklch(72% 0.16 85);
+    --warning-bg: oklch(94% 0.06 85);
+    --warning-fg: oklch(34% 0.12 85);
+    --error:      oklch(52% 0.20 25);
+    --error-bg:   oklch(94% 0.04 25);
+    --error-fg:   oklch(36% 0.14 25);
+    --info:       oklch(50% 0.14 235);
+    --info-bg:    oklch(94% 0.04 235);
+    --info-fg:    oklch(32% 0.12 235);
+
+    /* Semantic aliases */
+    --bg:          var(--stone-50);
+    --surface:     #ffffff;
+    --fg:          var(--stone-900);
+    --fg-muted:    var(--stone-500);
+    --rule:        var(--stone-200);
+    --rule-strong: var(--stone-300);
+
+    /* Typography */
+    --f-sans: var(--font-ibm-plex-sans, "IBM Plex Sans"), ui-sans-serif, system-ui, sans-serif;
+    --f-mono: var(--font-ibm-plex-mono, "IBM Plex Mono"), ui-monospace, "SF Mono", Menlo, monospace;
+
+    /* Spacing scale */
+    --s-1: 4px;  --s-2: 8px;   --s-3: 12px; --s-4: 16px;
+    --s-5: 20px; --s-6: 24px;  --s-8: 32px; --s-10: 40px;
+    --s-12: 48px; --s-16: 64px; --s-20: 80px;
+
+    /* Radii */
+    --r-none: 0;   --r-sm: 2px; --r-md: 4px;
+    --r-lg: 6px;   --r-full: 9999px;
+
+    /* Shadows (stone-tinted, minimal) */
+    --sh-sm: 0 1px 2px oklch(16% 0.006 75 / 0.06);
+    --sh-md: 0 2px 6px oklch(16% 0.006 75 / 0.08), 0 1px 2px oklch(16% 0.006 75 / 0.04);
+    --sh-lg: 0 8px 24px oklch(16% 0.006 75 / 0.12), 0 2px 6px oklch(16% 0.006 75 / 0.06);
+
+    /* Focus ring */
+    --focus-ring: 0 0 0 3px oklch(64% 0.202 42 / 0.35);
+  }
+}
