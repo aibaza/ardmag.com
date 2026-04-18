@@ -2,7 +2,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 export default function Hero() {
   return (
-    <section style={{ background: "var(--stone-900)", color: "white" }}>
+    <section style={{ background: "var(--stone-900)", color: "var(--stone-50)" }}>
       <style>{`
         .hero-grid { grid-template-columns: 1fr 1fr; }
         @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
