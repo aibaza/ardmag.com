@@ -5,9 +5,9 @@ export const isSimpleProduct = (product: HttpTypes.StoreProduct): boolean => {
 }
 
 export function isProductOutOfStock(product: HttpTypes.StoreProduct): boolean {
-  return (product.variants ?? []).every(
-    (v) => (v.inventory_quantity ?? 0) === 0
-  )
+  const variants = product.variants ?? []
+  if (variants.length === 0) return false
+  return variants.every((v) => (v.inventory_quantity ?? 0) === 0)
 }
 
 export function getProductSpecsPreview(
@@ -16,6 +16,9 @@ export function getProductSpecsPreview(
 ): string[] {
   return (product.options ?? [])
     .filter((o) => o.title !== "Title")
-    .flatMap((o) => o.values?.map((v) => v.value ?? "") ?? [])
     .slice(0, max)
+    .map((o) => {
+      const firstValue = o.values?.[0]?.value ?? ""
+      return `${o.title?.toUpperCase() ?? ""}: ${firstValue}`
+    })
 }
