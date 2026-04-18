@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useParams } from "next/navigation"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MobileDrawer from "@modules/layout/components/mobile-drawer"
-import { CATEGORIES } from "../../../../constants/categories"
+import { CATEGORIES } from "@constants/categories"
 
 interface MainBarProps {
   /** CartButton (server component) passed down from the Nav server component */

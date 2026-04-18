@@ -3,7 +3,7 @@ import { getStemFromThumbnail } from "@lib/images"
 import { getProductPrice } from "@lib/util/get-product-price"
 import ProductImage from "@modules/products/components/product-image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { Badge } from "components/ui/badge"
+import { Badge } from "@components/ui/badge"
 
 interface ProductCardProps {
   product: HttpTypes.StoreProduct
