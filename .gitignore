@@ -35,3 +35,4 @@ Thumbs.db
 
 # Medusa admin bundle cache
 backend/public/
+.worktrees/
