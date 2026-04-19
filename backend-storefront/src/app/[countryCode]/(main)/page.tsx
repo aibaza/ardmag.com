@@ -12,7 +12,7 @@ import { listProducts } from '@lib/data/products'
 import { productToCard } from '@lib/util/adapters/product-to-card'
 import { HttpTypes } from '@medusajs/types'
 
-// Design-temp images for categories until proper category images are configured
+// Design-temp images per category until proper category images are configured
 const CAT_IMAGE_MAP: Record<string, string> = {
   'discuri-de-taiere': '/design-temp/cat-discuri.webp',
   'slefuire-piatra': '/design-temp/cat-paduri.webp',
@@ -24,6 +24,19 @@ const CAT_IMAGE_MAP: Record<string, string> = {
   'mese-de-taiat': '/design-temp/cat-echipamente.webp',
   'pachete-promotionale': '/design-temp/cat-mastici.webp',
 }
+
+// Order matching original Wix site navigation (sitemap order)
+const QUICK_CAT_ORDER = [
+  'mastici-tenax',
+  'solutii-pentru-piatra',
+  'slefuire-piatra',
+  'discuri-de-taiere',
+  'abrazivi-si-perii',
+  'abrazivi-oala',
+  'diverse',
+  'mese-de-taiat',
+  'pachete-promotionale',
+]
 
 type Props = {
   params: Promise<{ countryCode: string }>
@@ -58,13 +71,19 @@ export default async function HomePage({ params }: Props) {
     })
     .slice(0, 4)
 
-  const quickCatItems = categories.slice(0, 6).map((cat) => ({
-    href: `/${countryCode}/categories/${cat.handle}`,
-    image: CAT_IMAGE_MAP[cat.handle ?? ''] ?? '/design-temp/cat-echipamente.webp',
-    imageAlt: cat.name ?? '',
-    label: cat.name ?? '',
-    count: 0,
-  }))
+  // Sort categories by Wix-original order, use products.length for count
+  const catByHandle = Object.fromEntries(categories.map((c) => [c.handle ?? '', c]))
+  const quickCatItems = QUICK_CAT_ORDER
+    .map((handle) => catByHandle[handle])
+    .filter(Boolean)
+    .slice(0, 6)
+    .map((cat) => ({
+      href: `/${countryCode}/categories/${cat.handle}`,
+      image: CAT_IMAGE_MAP[cat.handle ?? ''] ?? '/design-temp/cat-echipamente.webp',
+      imageAlt: cat.name ?? '',
+      label: cat.name ?? '',
+      count: (cat as any).products?.length ?? 0,
+    }))
 
   return (
     <>
