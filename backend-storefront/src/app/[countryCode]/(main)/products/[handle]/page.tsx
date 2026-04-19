@@ -142,7 +142,7 @@ export default async function ProductPage(props: Props) {
       <main className="page-inner">
         <Breadcrumb items={breadcrumbItems} current={product.title ?? handle} />
 
-        <div className="pdp-layout">
+        <section className="pdp">
           <PDPGallery {...galleryProps} />
 
           <PDPSummary
@@ -159,7 +159,7 @@ export default async function ProductPage(props: Props) {
             addToCartLabel="Adaugă în coș"
             perks={PDP_PERKS}
           />
-        </div>
+        </section>
 
         {description && (
           <PDPTabs
