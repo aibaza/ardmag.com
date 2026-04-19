@@ -3,6 +3,7 @@ import { StarRating } from '@modules/@shared/components/star-rating'
 import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
 import { PDPPriceCard } from '@modules/product-detail/pdp-price-card'
 import { PDPVariantSelector } from '@modules/product-detail/pdp-variant-selector'
+import { PDPAddToCartButton } from '@modules/product-detail/pdp-add-to-cart-button'
 
 interface PDPPerk {
   icon: ReactNode
@@ -42,10 +43,12 @@ interface PDPSummaryProps {
   stockLabel: string
   stockLocation: string
   addToCartLabel: string
+  variantId: string | null
+  countryCode: string
   perks: PDPPerk[]
 }
 
-export function PDPSummary({ brand, brandHref, title, sku, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, perks }: PDPSummaryProps) {
+export function PDPSummary({ brand, brandHref, title, sku, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, perks }: PDPSummaryProps) {
   return (
     <aside className="pdp-summary">
 
@@ -75,10 +78,7 @@ export function PDPSummary({ brand, brandHref, title, sku, ean, rating, price, w
       {/* Buy */}
       <div className="pdp-buy">
         <QuantityStepper />
-        <button className="btn primary lg">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M2 3h2l1 9h10l1-6H5"/><circle cx="7" cy="15" r="1.3"/><circle cx="14" cy="15" r="1.3"/></svg>
-          {addToCartLabel}
-        </button>
+        <PDPAddToCartButton variantId={variantId} countryCode={countryCode} label={addToCartLabel} />
       </div>
 
       {/* Extras */}

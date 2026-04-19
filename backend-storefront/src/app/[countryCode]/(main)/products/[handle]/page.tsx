@@ -157,6 +157,8 @@ export default async function ProductPage(props: Props) {
             stockLabel={stockLabel}
             stockLocation={stockLocation}
             addToCartLabel="Adaugă în coș"
+            variantId={selectedVariant?.id ?? null}
+            countryCode={countryCode}
             perks={PDP_PERKS}
           />
         </section>

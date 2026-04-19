@@ -1,0 +1,1 @@
+export { PDPAddToCartButton } from "./PDPAddToCartButton"
