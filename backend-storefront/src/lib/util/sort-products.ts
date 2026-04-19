@@ -1,16 +1,11 @@
 import { HttpTypes } from "@medusajs/types"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+
+export type SortOptions = "price_asc" | "price_desc" | "created_at"
 
 interface MinPricedProduct extends HttpTypes.StoreProduct {
   _minPrice?: number
 }
 
-/**
- * Helper function to sort products by price until the store API supports sorting by price
- * @param products
- * @param sortBy
- * @returns products sorted by price
- */
 export function sortProducts(
   products: HttpTypes.StoreProduct[],
   sortBy: SortOptions
