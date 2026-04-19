@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 interface CheckboxOption {
@@ -24,6 +25,66 @@ interface HelpCard {
   description: string
   phone: string
   hours: string
+}
+
+interface PriceRangeInputsProps {
+  absMin: number
+  absMax: number
+  baseUrl: string
+}
+
+function PriceRangeInputs({ absMin, absMax, baseUrl }: PriceRangeInputsProps) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const [localMin, setLocalMin] = useState(searchParams.get("priceMin") ?? String(absMin))
+  const [localMax, setLocalMax] = useState(searchParams.get("priceMax") ?? String(absMax))
+
+  function buildPriceUrl(minVal: string, maxVal: string): string {
+    const params = new URLSearchParams(searchParams.toString())
+    const min = parseInt(minVal, 10)
+    const max = parseInt(maxVal, 10)
+    if (!isNaN(min) && min > absMin) {
+      params.set("priceMin", String(min))
+    } else {
+      params.delete("priceMin")
+    }
+    if (!isNaN(max) && max < absMax) {
+      params.set("priceMax", String(max))
+    } else {
+      params.delete("priceMax")
+    }
+    params.delete("page")
+    const qs = params.toString()
+    return qs ? `${baseUrl}?${qs}` : baseUrl
+  }
+
+  return (
+    <div className="price-range">
+      <div className="bar"></div>
+      <div className="inputs">
+        <input
+          type="number"
+          placeholder="Min"
+          value={localMin}
+          onChange={(e) => setLocalMin(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Max"
+          value={localMax}
+          onChange={(e) => setLocalMax(e.target.value)}
+        />
+      </div>
+      <button
+        type="button"
+        className="btn primary sm"
+        style={{ marginTop: '8px', width: '100%' }}
+        onClick={() => router.push(buildPriceUrl(localMin, localMax))}
+      >
+        Aplică preț
+      </button>
+    </div>
+  )
 }
 
 interface FilterSidebarProps {
@@ -57,6 +118,8 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
     const params = new URLSearchParams(searchParams.toString())
     params.delete("brand")
     params.delete("material")
+    params.delete("priceMin")
+    params.delete("priceMax")
     params.delete("page")
     const qs = params.toString()
     return qs ? `${baseUrl}?${qs}` : baseUrl
@@ -103,13 +166,7 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
               <details key={i} open={group.open}>
                 <summary>{group.title}{group.badge !== undefined && <> <span className="fcount">{group.badge}</span></>}</summary>
                 <div className="filter-body">
-                  <div className="price-range">
-                    <div className="bar"></div>
-                    <div className="inputs">
-                      <input type="number" placeholder="Min" defaultValue={group.min} />
-                      <input type="number" placeholder="Max" defaultValue={group.max} />
-                    </div>
-                  </div>
+                  <PriceRangeInputs absMin={group.min} absMax={group.max} baseUrl={baseUrl} />
                 </div>
               </details>
             )

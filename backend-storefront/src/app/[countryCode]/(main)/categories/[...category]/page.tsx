@@ -16,6 +16,7 @@ import { categoryToHero } from "@lib/util/adapters/category-to-hero"
 import { productsToFilterGroups } from "@lib/util/adapters/products-to-filter-groups"
 import { productToCard } from "@lib/util/adapters/product-to-card"
 import { sortProducts, SortOptions } from "@lib/util/sort-products"
+import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes, StoreRegion } from "@medusajs/types"
 
 const VALID_PAGE_SIZES = [20, 40, 60]
@@ -106,6 +107,8 @@ export default async function CategoryPage(props: Props) {
   const perPage = VALID_PAGE_SIZES.includes(perPageParam) ? perPageParam : DEFAULT_PAGE_SIZE
   const activeBrands = (searchParams.brand as string | undefined)?.split(",").filter(Boolean) ?? []
   const activeMaterials = (searchParams.material as string | undefined)?.split(",").filter(Boolean) ?? []
+  const activePriceMin = parseInt((searchParams.priceMin as string) ?? "", 10)
+  const activePriceMax = parseInt((searchParams.priceMax as string) ?? "", 10)
 
   const productCategory = await getCategoryByHandle(categoryHandle).catch(() => null)
   if (!productCategory) notFound()
@@ -131,6 +134,16 @@ export default async function CategoryPage(props: Props) {
     filteredProducts = filteredProducts.filter((p) =>
       (p.tags ?? []).some((t) => activeMaterials.some((m) => t.value === `material:${m}`))
     )
+  }
+  if (!isNaN(activePriceMin) || !isNaN(activePriceMax)) {
+    filteredProducts = filteredProducts.filter((p) => {
+      const price = getProductMinPrice(p)
+      if (price === null) return false
+      const priceRON = price / 100
+      if (!isNaN(activePriceMin) && priceRON < activePriceMin) return false
+      if (!isNaN(activePriceMax) && priceRON > activePriceMax) return false
+      return true
+    })
   }
 
   // Apply sort
@@ -187,7 +200,7 @@ export default async function CategoryPage(props: Props) {
           <Suspense fallback={<aside className="filters" />}>
             <FilterSidebar
               groups={filterGroups}
-              applyCount={activeBrands.length + activeMaterials.length}
+              applyCount={activeBrands.length + activeMaterials.length + (!isNaN(activePriceMin) || !isNaN(activePriceMax) ? 1 : 0)}
               helpCard={HELP_CARD}
               baseUrl={baseUrl}
             />
