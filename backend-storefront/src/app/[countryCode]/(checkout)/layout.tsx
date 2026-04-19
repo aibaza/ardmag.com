@@ -1,43 +1,33 @@
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
+import type { Metadata } from "next"
 
-export default function CheckoutLayout({
-  children,
-}: {
+export const metadata: Metadata = {
+  title: "Checkout | ardmag.com",
+}
+
+type Props = {
   children: React.ReactNode
-}) {
+  params: Promise<{ countryCode: string }>
+}
+
+export default async function CheckoutLayout({ children, params }: Props) {
+  const { countryCode } = await params
   return (
-    <div className="w-full bg-white relative small:min-h-screen">
-      <div className="h-16 bg-white border-b ">
-        <nav className="flex h-full items-center content-container justify-between">
-          <LocalizedClientLink
-            href="/cart"
-            className="text-small-semi text-ui-fg-base flex items-center gap-x-2 uppercase flex-1 basis-0"
-            data-testid="back-to-cart-link"
-          >
-            <ChevronDown className="rotate-90" size={16} />
-            <span className="mt-px hidden small:block txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base ">
-              Înapoi la coș
-            </span>
-            <span className="mt-px block small:hidden txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base">
-              Înapoi
-            </span>
-          </LocalizedClientLink>
-          <LocalizedClientLink
-            href="/"
-            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
-            data-testid="store-link"
-          >
-            ardmag
-          </LocalizedClientLink>
-          <div className="flex-1 basis-0" />
-        </nav>
-      </div>
-      <div className="relative" data-testid="checkout-container">{children}</div>
-      <div className="py-4 w-full flex items-center justify-center">
-        <MedusaCTA />
-      </div>
-    </div>
+    <>
+      <header style={{ borderBottom: '1px solid var(--rule)', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--bg)' }}>
+        <a href={`/${countryCode}/cart`} style={{ fontSize: 13, color: 'var(--fg-muted)', fontFamily: 'var(--f-sans)' }}>
+          &larr; Inapoi la cos
+        </a>
+        <a href={`/${countryCode}`} style={{ fontFamily: 'var(--f-sans)', fontWeight: 700, fontSize: 18, textDecoration: 'none', color: 'var(--fg)' }}>
+          <span style={{ color: 'var(--brand-600)' }}>a</span>rdmag
+        </a>
+        <span style={{ width: 120 }} />
+      </header>
+      <main style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
+        {children}
+      </main>
+      <footer style={{ borderTop: '1px solid var(--rule)', padding: '16px 24px', textAlign: 'center', fontSize: 12, color: 'var(--fg-muted)', fontFamily: 'var(--f-sans)' }}>
+        ardmag.com · Cluj-Napoca · +40 722 155 441 · <a href="https://anpc.ro" target="_blank" rel="noreferrer">ANPC</a>
+      </footer>
+    </>
   )
 }
