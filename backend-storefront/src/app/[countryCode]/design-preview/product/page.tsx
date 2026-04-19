@@ -13,7 +13,7 @@ import { SiteFooter } from '@modules/layout/site-footer'
 export default function ProductPage() {
   return (
     <>
-      <SiteHeader categoriesHref="/ro/design-preview/category" discuriHref="/ro/design-preview/category" drawerId="mDrawer" drawerClosedAttr />
+      <SiteHeader countryCode="ro" categoriesHref="/ro/design-preview/category" discuriHref="/ro/design-preview/category" drawerId="mDrawer" drawerClosedAttr />
 
       <Breadcrumb items={[{label:"Acasă",href:"/ro"},{label:"Scule diamantate",href:"#"},{label:"Discuri diamantate",href:"/ro/design-preview/category"}]} current="Delta Turbo Ø115" />
 

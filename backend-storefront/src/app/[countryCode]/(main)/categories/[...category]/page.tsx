@@ -177,6 +177,7 @@ export default async function CategoryPage(props: Props) {
   return (
     <>
       <SiteHeaderShell
+        countryCode={countryCode}
         categoriesHref={`/${countryCode}/categories/${categoryHandle[0]}`}
         drawerId="mDrawer"
         drawerClosedAttr

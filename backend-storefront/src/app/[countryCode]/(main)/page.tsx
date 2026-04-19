@@ -75,7 +75,7 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      <SiteHeaderShell />
+      <SiteHeaderShell countryCode={countryCode} />
 
       <main className="page-inner">
 
