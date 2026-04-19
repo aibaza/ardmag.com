@@ -5,6 +5,11 @@
 | # | Componenta | Faza | Verdict | Data | Raport |
 |---|------------|------|---------|------|--------|
 | 01 | Badge | A | PASS | 2026-04-19 | [01-badge](extract/01-badge.md) |
+| 02 | Button | A | PASS | 2026-04-19 | — |
+| 03 | ProductCardSpecTag | A | PASS | 2026-04-19 | — |
+| 04 | StarRating | A | PASS | 2026-04-19 | — |
+| 05 | QuantityStepper | A | PASS | 2026-04-19 | — |
+| 06 | TrustItem | A | PASS | 2026-04-19 | — |
 
 ## Iteratii design (refactoring pagini)
 

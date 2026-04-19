@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Badge } from '@modules/@shared/components/badge'
 import { Button } from '@modules/@shared/components/button'
 import { ProductCardSpecTag } from '@modules/@shared/components/product-card-spec-tag'
+import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
+import { TrustItem } from '@modules/@shared/components/trust-item'
 
 export default function CategoryPage() {
   const [mDrawerOpen, setMDrawerOpen] = useState(false)
@@ -474,10 +476,10 @@ export default function CategoryPage() {
         </div>
         <div className="footer-mid">
           <div className="trust-strip">
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1 10H5z"/><path d="M8 8V5a4 4 0 0 1 8 0v3"/></svg><div><strong>14 zile retur</strong><span>fără întrebări</span></div></div>
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M3 7h13v8H3z"/><path d="M16 10h4l1 3v2h-5z"/><circle cx="7" cy="16" r="2"/><circle cx="17" cy="16" r="2"/></svg><div><strong>Livrare 24-48h</strong><span>țara întreagă</span></div></div>
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3 8 8 9 5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><strong>Plată securizată</strong><span>3DSecure · SSL</span></div></div>
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg><div><strong>Suport tehnic</strong><span>L–V 08–17 · RO</span></div></div>
+            <TrustItem icon={<ReturnIcon />} title="14 zile retur" subtitle="fără întrebări" />
+            <TrustItem icon={<TruckIcon />} title="Livrare 24-48h" subtitle="țara întreagă" />
+            <TrustItem icon={<SecureIcon />} title="Plată securizată" subtitle="3DSecure · SSL" />
+            <TrustItem icon={<SupportIcon />} title="Suport tehnic" subtitle="L–V 08–17 · RO" />
           </div>
           <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
         </div>
