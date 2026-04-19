@@ -1,0 +1,28 @@
+{
+  "component": "pdp-tabs",
+  "pages": [
+    "product"
+  ],
+  "pairs": [
+    {
+      "page": "product",
+      "viewport": "mobile",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "product",
+      "viewport": "tablet",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "product",
+      "viewport": "desktop",
+      "diffPixels": 0,
+      "diffPath": null
+    }
+  ],
+  "totalDiffPixels": 0,
+  "verdict": "PASS"
+}

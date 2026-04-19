@@ -1,0 +1,1 @@
+export { PDPTabs } from './PDPTabs'

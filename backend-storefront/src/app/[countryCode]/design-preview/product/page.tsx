@@ -9,6 +9,7 @@ import { ProductGrid } from '@modules/products/product-grid'
 import { Badge } from '@modules/@shared/components/badge'
 import { PDPGallery } from '@modules/product-detail/pdp-gallery'
 import { PDPSummary } from '@modules/product-detail/pdp-summary'
+import { PDPTabs } from '@modules/product-detail/pdp-tabs'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -180,16 +181,13 @@ export default function ProductPage() {
       </section>
 
       {/* TABS + CONTENT */}
-      <section className="pdp-content">
-        <div className="tabs" role="tablist">
-          <button className="on">Specificații</button>
-          <button>Descriere</button>
-          <button>Utilizare &amp; siguranță</button>
-          <button>Recenzii (47)</button>
-          <button>Fișiere &amp; certificate</button>
-        </div>
-
-        <div className="tab-panel">
+      <PDPTabs tabs={[
+        { label: 'Specificații', active: true },
+        { label: 'Descriere' },
+        { label: 'Utilizare & siguranță' },
+        { label: 'Recenzii (47)' },
+        { label: 'Fișiere & certificate' },
+      ]}>
           <div className="prose">
             <h3>Disc diamantat Turbo Ultra pentru granit și marmură</h3>
             <p>Proiectat pentru tăieri rapide și curate în materiale dure — granit, marmură, plăci ceramice. Banda continuă turbo de 10 mm oferă o viteză de avans superioară și o durată de viață cu până la 40% mai lungă față de un disc segmentat echivalent.</p>
@@ -247,8 +245,7 @@ export default function ProductPage() {
               </tbody>
             </table>
           </aside>
-        </div>
-      </section>
+      </PDPTabs>
 
       {/* RELATED PRODUCTS */}
       <section style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 24px 60px", borderTop: "1px solid var(--rule)", paddingTop: "32px" }}>

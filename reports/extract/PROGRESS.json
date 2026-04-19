@@ -24,10 +24,11 @@
     "20-PDPGallery",
     "21-PDPVariantSelector",
     "22-PDPPriceCard",
-    "23-PDPSummary"
+    "23-PDPSummary",
+    "24-PDPTabs"
   ],
   "failed": [],
-  "current": "24-PDPTabs",
+  "current": "25-SiteFooter",
   "status": "running",
   "components": [
     {
