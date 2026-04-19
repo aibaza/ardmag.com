@@ -32,14 +32,15 @@ export default function CategoryPage() {
       <div className="cat-layout">
 
         <FilterSidebar
+          baseUrl="/ro/design-preview/category"
           groups={[
-            { type: 'checkboxes', title: 'Brand', badge: '7', open: true, options: [
-              { label: 'Delta Research', count: 48, checked: true },
-              { label: 'Tenax', count: 32, checked: true },
-              { label: 'Woosuk', count: 24 },
-              { label: 'Diatex', count: 18 },
-              { label: 'Sait', count: 12 },
-              { label: 'VBT', count: 8 },
+            { type: 'checkboxes', title: 'Brand', paramKey: 'brand', badge: '7', open: true, options: [
+              { label: 'Delta Research', value: 'delta-research', count: 48, checked: true },
+              { label: 'Tenax', value: 'tenax', count: 32, checked: true },
+              { label: 'Woosuk', value: 'woosuk', count: 24 },
+              { label: 'Diatex', value: 'diatex', count: 18 },
+              { label: 'Sait', value: 'sait', count: 12 },
+              { label: 'VBT', value: 'vbt', count: 8 },
             ]},
             { type: 'swatches', title: 'Diametru', badge: 'Ø', open: true, options: [
               { label: 'Ø100' },
@@ -52,29 +53,29 @@ export default function CategoryPage() {
               { label: 'Ø250' },
               { label: 'Ø300' },
             ]},
-            { type: 'checkboxes', title: 'Tip bandă', open: true, options: [
-              { label: 'Turbo', count: 78, checked: true },
-              { label: 'Continuă', count: 34 },
-              { label: 'Segmentată', count: 30 },
+            { type: 'checkboxes', title: 'Tip bandă', paramKey: 'band', open: true, options: [
+              { label: 'Turbo', value: 'turbo', count: 78, checked: true },
+              { label: 'Continuă', value: 'continua', count: 34 },
+              { label: 'Segmentată', value: 'segmentata', count: 30 },
             ]},
-            { type: 'checkboxes', title: 'Material', options: [
-              { label: 'Granit', count: 62 },
-              { label: 'Marmură', count: 48 },
-              { label: 'Beton', count: 38 },
-              { label: 'Beton armat', count: 14 },
-              { label: 'Ceramică', count: 12 },
-              { label: 'Universal', count: 22 },
+            { type: 'checkboxes', title: 'Material', paramKey: 'material', options: [
+              { label: 'Granit', value: 'granit', count: 62 },
+              { label: 'Marmură', value: 'marmura', count: 48 },
+              { label: 'Beton', value: 'beton', count: 38 },
+              { label: 'Beton armat', value: 'beton-armat', count: 14 },
+              { label: 'Ceramică', value: 'ceramica', count: 12 },
+              { label: 'Universal', value: 'universal', count: 22 },
             ]},
-            { type: 'checkboxes', title: 'Filet / montare', options: [
-              { label: 'M14', count: 86 },
-              { label: '22.23 mm', count: 64 },
-              { label: '5/8″', count: 18 },
+            { type: 'checkboxes', title: 'Filet / montare', paramKey: 'filet', options: [
+              { label: 'M14', value: 'm14', count: 86 },
+              { label: '22.23 mm', value: '22-23mm', count: 64 },
+              { label: '5/8″', value: '5-8', count: 18 },
             ]},
             { type: 'price-range', title: 'Preț', open: true, min: 20, max: 250 },
-            { type: 'checkboxes', title: 'Disponibilitate', options: [
-              { label: 'În stoc', count: 128, checked: true },
-              { label: 'Livrare la comandă', count: 14 },
-              { label: 'Doar promoții', count: 22 },
+            { type: 'checkboxes', title: 'Disponibilitate', paramKey: 'stock', options: [
+              { label: 'În stoc', value: 'in-stoc', count: 128, checked: true },
+              { label: 'Livrare la comandă', value: 'la-comanda', count: 14 },
+              { label: 'Doar promoții', value: 'promotii', count: 22 },
             ]},
           ]}
           applyCount={142}

@@ -172,6 +172,7 @@ export default async function CategoryPage(props: Props) {
             groups={filterGroups}
             applyCount={activeBrands.length + activeMaterials.length}
             helpCard={HELP_CARD}
+            baseUrl={baseUrl}
           />
           <div className="cat-products">
             {pageProducts.length === 0 ? (

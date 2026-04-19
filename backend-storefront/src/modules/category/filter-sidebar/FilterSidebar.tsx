@@ -1,7 +1,10 @@
 "use client"
 
+import { useRouter, useSearchParams } from 'next/navigation'
+
 interface CheckboxOption {
   label: string
+  value: string
   count?: number
   checked?: boolean
 }
@@ -12,7 +15,7 @@ interface SwatchOption {
 }
 
 type FilterGroup =
-  | { type: 'checkboxes'; title: string; badge?: string; open?: boolean; options: CheckboxOption[] }
+  | { type: 'checkboxes'; title: string; paramKey: string; badge?: string; open?: boolean; options: CheckboxOption[] }
   | { type: 'swatches'; title: string; badge?: string; open?: boolean; options: SwatchOption[] }
   | { type: 'price-range'; title: string; badge?: string; open?: boolean; min: number; max: number }
 
@@ -27,9 +30,38 @@ interface FilterSidebarProps {
   groups: FilterGroup[]
   applyCount: number
   helpCard: HelpCard
+  baseUrl: string
 }
 
-export function FilterSidebar({ groups, applyCount, helpCard }: FilterSidebarProps) {
+export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterSidebarProps) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  function buildUrl(paramKey: string, value: string, isChecked: boolean): string {
+    const params = new URLSearchParams(searchParams.toString())
+    const current = (params.get(paramKey) ?? "").split(",").filter(Boolean)
+    const next = isChecked
+      ? Array.from(new Set([...current, value]))
+      : current.filter((v) => v !== value)
+    if (next.length === 0) {
+      params.delete(paramKey)
+    } else {
+      params.set(paramKey, next.join(","))
+    }
+    params.delete("page")
+    const qs = params.toString()
+    return qs ? `${baseUrl}?${qs}` : baseUrl
+  }
+
+  function buildResetUrl(): string {
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete("brand")
+    params.delete("material")
+    params.delete("page")
+    const qs = params.toString()
+    return qs ? `${baseUrl}?${qs}` : baseUrl
+  }
+
   return (
     <aside className="filters" id="filters">
       <div className="filter-card">
@@ -40,7 +72,15 @@ export function FilterSidebar({ groups, applyCount, helpCard }: FilterSidebarPro
                 <summary>{group.title}{group.badge !== undefined && <> <span className="fcount">{group.badge}</span></>}</summary>
                 <div className="filter-body">
                   {group.options.map((option, j) => (
-                    <label key={j} className="chk"><input type="checkbox" defaultChecked={option.checked} />{option.label}{option.count !== undefined && <span className="cnt">{option.count}</span>}</label>
+                    <label key={j} className="chk">
+                      <input
+                        type="checkbox"
+                        checked={!!option.checked}
+                        onChange={(e) => router.push(buildUrl(group.paramKey, option.value, e.target.checked))}
+                      />
+                      {option.label}
+                      {option.count !== undefined && <span className="cnt">{option.count}</span>}
+                    </label>
                   ))}
                 </div>
               </details>
@@ -77,8 +117,14 @@ export function FilterSidebar({ groups, applyCount, helpCard }: FilterSidebarPro
           return null
         })}
         <div className="filter-actions">
-          <button className="btn secondary sm">Resetează</button>
-          <button className="btn primary sm">Aplică ({applyCount})</button>
+          <button
+            type="button"
+            className="btn secondary sm"
+            onClick={() => router.push(buildResetUrl())}
+          >
+            Resetează
+          </button>
+          <button type="button" className="btn primary sm">Aplică ({applyCount})</button>
         </div>
       </div>
 
