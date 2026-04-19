@@ -9,7 +9,7 @@ import { Pagination } from '@modules/category/pagination'
 import { CategoryToolbar } from '@modules/category/category-toolbar'
 import { MobileFilterBar } from '@modules/category/mobile-filter-bar'
 import { FilterSidebar } from '@modules/category/filter-sidebar'
-import { ProductCard } from '@modules/products/product-card'
+import { ProductGrid } from '@modules/products/product-grid'
 
 export default function CategoryPage() {
   const [mDrawerOpen, setMDrawerOpen] = useState(false)
@@ -193,165 +193,20 @@ export default function CategoryPage() {
             perPageOptions={[24,48,96]}
           />
 
-          <div className="cat-grid">
-
-            <ProductCard product={{
-              id: "DLT-115-TX-ULTRA",
-              title: "Disc diamantat Delta Turbo Ultra Ø115",
-              sku: "DLT-115-TX-ULTRA",
-              brand: "Delta Research",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-delta-115.jpg",
-              imageAlt: "Disc diamantat Delta Turbo Ultra Ø115",
-              href: "/ro/design-preview/product",
-              price: { now: "38,40 RON", was: "48,00 RON" },
-              badges: [{ type: "promo", label: "−20%" }],
-              specs: ["Ø 115 mm", "Turbo", "Granit"],
-            }} />
-            <ProductCard product={{
-              id: "DLT-125-TX",
-              title: "Disc diamantat Turbo Ø125 filet 22.23",
-              sku: "DLT-125-TX",
-              brand: "Delta Research",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-turbo-180.jpg",
-              imageAlt: "Disc diamantat Turbo Ø125 filet 22.23",
-              href: "/ro/design-preview/product",
-              price: { now: "52,80 RON" },
-              badges: [{ type: "new", label: "Nou" }],
-              specs: ["Ø 125 mm", "Turbo", "Universal"],
-            }} />
-            <ProductCard product={{
-              id: "DLT-180-TX",
-              title: "Disc diamantat Turbo Ø180",
-              sku: "DLT-180-TX",
-              brand: "Delta Research",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-delta-115.jpg",
-              imageAlt: "Disc diamantat Turbo Ø180",
-              href: "/ro/design-preview/product",
-              price: { now: "113,60 RON", was: "142,00 RON" },
-              badges: [{ type: "promo", label: "−20%" }, { type: "stock-low", label: "4 buc", dotVariant: true }],
-              specs: ["Ø 180 mm", "Turbo", "Granit"],
-            }} />
-            <ProductCard product={{
-              id: "DLT-230-TX",
-              title: "Disc diamantat Turbo Ø230 flanșă M14",
-              sku: "DLT-230-TX",
-              brand: "Delta Research",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-turbo-180.jpg",
-              imageAlt: "Disc diamantat Turbo Ø230 flanșă M14",
-              href: "/ro/design-preview/product",
-              price: { now: "168,00 RON" },
-              badges: [],
-              specs: ["Ø 230 mm", "Turbo", "Beton"],
-            }} />
-            <ProductCard product={{
-              id: "DLT-115-SG",
-              title: "Disc diamantat segmentat Ø115",
-              sku: "DLT-115-SG",
-              brand: "Delta Research",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-delta-115.jpg",
-              imageAlt: "Disc diamantat segmentat Ø115",
-              href: "/ro/design-preview/product",
-              price: { now: "34,00 RON" },
-              badges: [],
-              specs: ["Ø 115 mm", "Segmentat", "Beton"],
-            }} />
-            <ProductCard product={{
-              id: "TNX-DC-200",
-              title: "Disc diamantat continuu Ø200 marmură",
-              sku: "TNX-DC-200",
-              brand: "Tenax",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-turbo-180.jpg",
-              imageAlt: "Disc diamantat continuu Ø200 marmură",
-              href: "/ro/design-preview/product",
-              price: { now: "198,00 RON" },
-              badges: [],
-              specs: ["Ø 200 mm", "Continuu", "Marmură"],
-            }} />
-            <ProductCard product={{
-              id: "TNX-DC-250",
-              title: "Disc diamantat continuu Ø250 marmură",
-              sku: "TNX-DC-250",
-              brand: "Tenax",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-delta-115.jpg",
-              imageAlt: "Disc diamantat continuu Ø250 marmură",
-              href: "/ro/design-preview/product",
-              price: { now: "312,00 RON" },
-              badges: [{ type: "stock-low", label: "2 buc", dotVariant: true }],
-              specs: ["Ø 250 mm", "Continuu", "Marmură"],
-            }} />
-            <ProductCard product={{
-              id: "WSK-T-125",
-              title: "Disc diamantat Turbo Ø125 premium",
-              sku: "WSK-T-125",
-              brand: "Woosuk",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-turbo-180.jpg",
-              imageAlt: "Disc diamantat Turbo Ø125 premium",
-              href: "/ro/design-preview/product",
-              price: { now: "78,00 RON", was: "98,00 RON" },
-              badges: [{ type: "promo", label: "−20%" }],
-              specs: ["Ø 125 mm", "Turbo", "Granit"],
-            }} />
-            <ProductCard product={{
-              id: "WSK-T-180",
-              title: "Disc diamantat Turbo Ø180 premium",
-              sku: "WSK-T-180",
-              brand: "Woosuk",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-delta-115.jpg",
-              imageAlt: "Disc diamantat Turbo Ø180 premium",
-              href: "/ro/design-preview/product",
-              price: { now: "148,00 RON" },
-              badges: [],
-              specs: ["Ø 180 mm", "Turbo", "Granit"],
-            }} />
-            <ProductCard product={{
-              id: "DTX-E-115",
-              title: "Disc diamantat Ø115 economic",
-              sku: "DTX-E-115",
-              brand: "Diatex",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-turbo-180.jpg",
-              imageAlt: "Disc diamantat Ø115 economic",
-              href: "/ro/design-preview/product",
-              price: { now: "22,40 RON" },
-              badges: [],
-              specs: ["Ø 115 mm", "Turbo", "Universal"],
-            }} />
-            <ProductCard product={{
-              id: "DTX-BA-230",
-              title: "Disc diamantat Ø230 beton armat",
-              sku: "DTX-BA-230",
-              brand: "Diatex",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-delta-115.jpg",
-              imageAlt: "Disc diamantat Ø230 beton armat",
-              href: "/ro/design-preview/product",
-              price: { now: "142,00 RON" },
-              badges: [],
-              specs: ["Ø 230 mm", "Segmentat", "Beton armat"],
-            }} />
-            <ProductCard product={{
-              id: "DLT-115-TX-5",
-              title: "Disc diamantat Turbo Ø115 - pachet 5 buc",
-              sku: "DLT-115-TX-5",
-              brand: "Delta Research",
-              brandHref: "/ro/design-preview/category",
-              image: "/design-temp/p-disc-turbo-180.jpg",
-              imageAlt: "Disc diamantat Turbo Ø115 - pachet 5 buc",
-              href: "/ro/design-preview/product",
-              price: { now: "172,00 RON", was: "220,00 RON" },
-              badges: [{ type: "promo", label: "Pachet" }],
-              specs: ["Ø 115 mm", "Turbo", "Pachet 5"],
-            }} />
-          </div>
+          <ProductGrid variant="cat" products={[
+            { id: "DLT-115-TX-ULTRA", title: "Disc diamantat Delta Turbo Ultra Ø115", sku: "DLT-115-TX-ULTRA", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-delta-115.jpg", imageAlt: "Disc diamantat Delta Turbo Ultra Ø115", href: "/ro/design-preview/product", price: { now: "38,40 RON", was: "48,00 RON" }, badges: [{ type: "promo", label: "−20%" }], specs: ["Ø 115 mm", "Turbo", "Granit"] },
+            { id: "DLT-125-TX", title: "Disc diamantat Turbo Ø125 filet 22.23", sku: "DLT-125-TX", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat Turbo Ø125 filet 22.23", href: "/ro/design-preview/product", price: { now: "52,80 RON" }, badges: [{ type: "new", label: "Nou" }], specs: ["Ø 125 mm", "Turbo", "Universal"] },
+            { id: "DLT-180-TX", title: "Disc diamantat Turbo Ø180", sku: "DLT-180-TX", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-delta-115.jpg", imageAlt: "Disc diamantat Turbo Ø180", href: "/ro/design-preview/product", price: { now: "113,60 RON", was: "142,00 RON" }, badges: [{ type: "promo", label: "−20%" }, { type: "stock-low", label: "4 buc", dotVariant: true }], specs: ["Ø 180 mm", "Turbo", "Granit"] },
+            { id: "DLT-230-TX", title: "Disc diamantat Turbo Ø230 flanșă M14", sku: "DLT-230-TX", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat Turbo Ø230 flanșă M14", href: "/ro/design-preview/product", price: { now: "168,00 RON" }, badges: [], specs: ["Ø 230 mm", "Turbo", "Beton"] },
+            { id: "DLT-115-SG", title: "Disc diamantat segmentat Ø115", sku: "DLT-115-SG", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-delta-115.jpg", imageAlt: "Disc diamantat segmentat Ø115", href: "/ro/design-preview/product", price: { now: "34,00 RON" }, badges: [], specs: ["Ø 115 mm", "Segmentat", "Beton"] },
+            { id: "TNX-DC-200", title: "Disc diamantat continuu Ø200 marmură", sku: "TNX-DC-200", brand: "Tenax", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat continuu Ø200 marmură", href: "/ro/design-preview/product", price: { now: "198,00 RON" }, badges: [], specs: ["Ø 200 mm", "Continuu", "Marmură"] },
+            { id: "TNX-DC-250", title: "Disc diamantat continuu Ø250 marmură", sku: "TNX-DC-250", brand: "Tenax", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-delta-115.jpg", imageAlt: "Disc diamantat continuu Ø250 marmură", href: "/ro/design-preview/product", price: { now: "312,00 RON" }, badges: [{ type: "stock-low", label: "2 buc", dotVariant: true }], specs: ["Ø 250 mm", "Continuu", "Marmură"] },
+            { id: "WSK-T-125", title: "Disc diamantat Turbo Ø125 premium", sku: "WSK-T-125", brand: "Woosuk", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat Turbo Ø125 premium", href: "/ro/design-preview/product", price: { now: "78,00 RON", was: "98,00 RON" }, badges: [{ type: "promo", label: "−20%" }], specs: ["Ø 125 mm", "Turbo", "Granit"] },
+            { id: "WSK-T-180", title: "Disc diamantat Turbo Ø180 premium", sku: "WSK-T-180", brand: "Woosuk", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-delta-115.jpg", imageAlt: "Disc diamantat Turbo Ø180 premium", href: "/ro/design-preview/product", price: { now: "148,00 RON" }, badges: [], specs: ["Ø 180 mm", "Turbo", "Granit"] },
+            { id: "DTX-E-115", title: "Disc diamantat Ø115 economic", sku: "DTX-E-115", brand: "Diatex", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat Ø115 economic", href: "/ro/design-preview/product", price: { now: "22,40 RON" }, badges: [], specs: ["Ø 115 mm", "Turbo", "Universal"] },
+            { id: "DTX-BA-230", title: "Disc diamantat Ø230 beton armat", sku: "DTX-BA-230", brand: "Diatex", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-delta-115.jpg", imageAlt: "Disc diamantat Ø230 beton armat", href: "/ro/design-preview/product", price: { now: "142,00 RON" }, badges: [], specs: ["Ø 230 mm", "Segmentat", "Beton armat"] },
+            { id: "DLT-115-TX-5", title: "Disc diamantat Turbo Ø115 - pachet 5 buc", sku: "DLT-115-TX-5", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat Turbo Ø115 - pachet 5 buc", href: "/ro/design-preview/product", price: { now: "172,00 RON", was: "220,00 RON" }, badges: [{ type: "promo", label: "Pachet" }], specs: ["Ø 115 mm", "Turbo", "Pachet 5"] },
+          ]} />
 
           <Pagination
             prevHref="#"

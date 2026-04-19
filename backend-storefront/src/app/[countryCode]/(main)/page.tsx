@@ -7,7 +7,7 @@ import { SectionHead } from '@modules/@shared/components/section-head'
 import { Hero } from '@modules/sections/hero'
 import { QuickCategories } from '@modules/sections/quick-categories'
 import { SupplierStrip } from '@modules/sections/supplier-strip'
-import { ProductCard } from '@modules/products/product-card'
+import { ProductGrid } from '@modules/products/product-grid'
 
 export default function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -141,56 +141,12 @@ export default function HomePage() {
         {/* Promo products */}
         <SectionHead eyebrow="Promoții active · 12 produse" title="La reducere săptămâna aceasta" seeAllHref="#" seeAllLabel="Toate promoțiile →" />
 
-        <div className="mini-grid">
-          <ProductCard product={{
-            id: "DLT-115-TX-ULTRA",
-            title: "Disc diamantat Delta Turbo Ultra Ø115",
-            sku: "DLT-115-TX-ULTRA",
-            brand: "Delta Research",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-disc-delta-115.jpg",
-            imageAlt: "Disc diamantat Delta Turbo Ultra Ø115",
-            href: "/ro/design-preview/product",
-            price: { now: "38,40 RON", was: "48,00 RON" },
-            badges: [{ type: "promo", label: "−20%" }],
-          }} />
-          <ProductCard product={{
-            id: "TNX-F8-250",
-            title: "Freză profil F8 Ø250 marmură",
-            sku: "TNX-F8-250",
-            brand: "Tenax",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-freza-f8-250.jpg",
-            imageAlt: "Freză profil F8 Ø250 marmură",
-            href: "/ro/design-preview/product",
-            price: { now: "1.258,00 RON", was: "1.480,00 RON" },
-            badges: [{ type: "promo", label: "−15%" }],
-          }} />
-          <ProductCard product={{
-            id: "DLT-180-TX",
-            title: "Disc diamantat Turbo Ø180 filet 22.23",
-            sku: "DLT-180-TX",
-            brand: "Delta Research",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-disc-turbo-180.jpg",
-            imageAlt: "Disc diamantat Turbo Ø180 filet 22.23",
-            href: "/ro/design-preview/product",
-            price: { now: "113,60 RON", was: "142,00 RON" },
-            badges: [{ type: "promo", label: "−20%" }, { type: "stock-low", label: "4 buc", dotVariant: true }],
-          }} />
-          <ProductCard product={{
-            id: "TNX-MP-1000-TR",
-            title: "Mastice poliester transparent 1 kg",
-            sku: "TNX-MP-1000-TR",
-            brand: "Tenax",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-mastic-1kg.jpg",
-            imageAlt: "Mastice poliester transparent 1 kg",
-            href: "/ro/design-preview/product",
-            price: { now: "282,00 RON", was: "376,00 RON" },
-            badges: [{ type: "promo", label: "Pachet 3+1" }],
-          }} />
-        </div>
+        <ProductGrid variant="mini" products={[
+          { id: "DLT-115-TX-ULTRA", title: "Disc diamantat Delta Turbo Ultra Ø115", sku: "DLT-115-TX-ULTRA", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-delta-115.jpg", imageAlt: "Disc diamantat Delta Turbo Ultra Ø115", href: "/ro/design-preview/product", price: { now: "38,40 RON", was: "48,00 RON" }, badges: [{ type: "promo", label: "−20%" }] },
+          { id: "TNX-F8-250", title: "Freză profil F8 Ø250 marmură", sku: "TNX-F8-250", brand: "Tenax", brandHref: "/ro/design-preview/category", image: "/design-temp/p-freza-f8-250.jpg", imageAlt: "Freză profil F8 Ø250 marmură", href: "/ro/design-preview/product", price: { now: "1.258,00 RON", was: "1.480,00 RON" }, badges: [{ type: "promo", label: "−15%" }] },
+          { id: "DLT-180-TX", title: "Disc diamantat Turbo Ø180 filet 22.23", sku: "DLT-180-TX", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat Turbo Ø180 filet 22.23", href: "/ro/design-preview/product", price: { now: "113,60 RON", was: "142,00 RON" }, badges: [{ type: "promo", label: "−20%" }, { type: "stock-low", label: "4 buc", dotVariant: true }] },
+          { id: "TNX-MP-1000-TR", title: "Mastice poliester transparent 1 kg", sku: "TNX-MP-1000-TR", brand: "Tenax", brandHref: "/ro/design-preview/category", image: "/design-temp/p-mastic-1kg.jpg", imageAlt: "Mastice poliester transparent 1 kg", href: "/ro/design-preview/product", price: { now: "282,00 RON", was: "376,00 RON" }, badges: [{ type: "promo", label: "Pachet 3+1" }] },
+        ]} />
 
         {/* Trust banner */}
         <TrustBanner variant="banner" items={[
@@ -219,56 +175,12 @@ export default function HomePage() {
         {/* New arrivals */}
         <SectionHead eyebrow="Nou intrat · ultimele 30 zile" title="Produse noi în stoc" seeAllHref="#" seeAllLabel="Toate noutățile →" />
 
-        <div className="mini-grid">
-          <ProductCard product={{
-            id: "SAT-4A-VEL-SET",
-            title: "Pad abraziv Velcro — 7 gradații set",
-            sku: "SAT-4A-VEL-SET",
-            brand: "Sait Abrazivi",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-pad-velcro-set.jpg",
-            imageAlt: "Pad abraziv Velcro — 7 gradații set",
-            href: "/ro/design-preview/product",
-            price: { now: "168,00 RON" },
-            badges: [{ type: "new", label: "Nou" }],
-          }} />
-          <ProductCard product={{
-            id: "TNX-F20-200",
-            title: "Freză profil F20 Ø200 granit",
-            sku: "TNX-F20-200",
-            brand: "Tenax",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-freza-f20-200.jpg",
-            imageAlt: "Freză profil F20 Ø200 granit",
-            href: "/ro/design-preview/product",
-            price: { now: "1.890,00 RON" },
-            badges: [{ type: "new", label: "Nou" }],
-          }} />
-          <ProductCard product={{
-            id: "DLT-ECO-1000",
-            title: "Impermeabilizant granit / marmură 1L",
-            sku: "DLT-ECO-1000",
-            brand: "Delta Research",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-impermeabilizant.jpg",
-            imageAlt: "Impermeabilizant granit / marmură 1L",
-            href: "/ro/design-preview/product",
-            price: { now: "142,00 RON" },
-            badges: [{ type: "new", label: "Nou" }],
-          }} />
-          <ProductCard product={{
-            id: "WSK-7-M14",
-            title: "Freză cupă M14 · 7 cupe",
-            sku: "WSK-7-M14",
-            brand: "Woosuk",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-freza-cupa-m14.jpg",
-            imageAlt: "Freză cupă M14 · 7 cupe",
-            href: "/ro/design-preview/product",
-            price: { now: "310,00 RON" },
-            badges: [{ type: "new", label: "Nou" }],
-          }} />
-        </div>
+        <ProductGrid variant="mini" products={[
+          { id: "SAT-4A-VEL-SET", title: "Pad abraziv Velcro — 7 gradații set", sku: "SAT-4A-VEL-SET", brand: "Sait Abrazivi", brandHref: "/ro/design-preview/category", image: "/design-temp/p-pad-velcro-set.jpg", imageAlt: "Pad abraziv Velcro — 7 gradații set", href: "/ro/design-preview/product", price: { now: "168,00 RON" }, badges: [{ type: "new", label: "Nou" }] },
+          { id: "TNX-F20-200", title: "Freză profil F20 Ø200 granit", sku: "TNX-F20-200", brand: "Tenax", brandHref: "/ro/design-preview/category", image: "/design-temp/p-freza-f20-200.jpg", imageAlt: "Freză profil F20 Ø200 granit", href: "/ro/design-preview/product", price: { now: "1.890,00 RON" }, badges: [{ type: "new", label: "Nou" }] },
+          { id: "DLT-ECO-1000", title: "Impermeabilizant granit / marmură 1L", sku: "DLT-ECO-1000", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-impermeabilizant.jpg", imageAlt: "Impermeabilizant granit / marmură 1L", href: "/ro/design-preview/product", price: { now: "142,00 RON" }, badges: [{ type: "new", label: "Nou" }] },
+          { id: "WSK-7-M14", title: "Freză cupă M14 · 7 cupe", sku: "WSK-7-M14", brand: "Woosuk", brandHref: "/ro/design-preview/category", image: "/design-temp/p-freza-cupa-m14.jpg", imageAlt: "Freză cupă M14 · 7 cupe", href: "/ro/design-preview/product", price: { now: "310,00 RON" }, badges: [{ type: "new", label: "Nou" }] },
+        ]} />
 
         <div style={{height:"48px"}}></div>
       </main>

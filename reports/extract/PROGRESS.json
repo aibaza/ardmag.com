@@ -19,10 +19,11 @@
     "15-Pagination",
     "16-CategoryToolbar",
     "17-MobileFilterBar",
-    "18-FilterSidebar"
+    "18-FilterSidebar",
+    "19-ProductGrid"
   ],
   "failed": [],
-  "current": "19-ProductGrid",
+  "current": "20-PDPGallery",
   "status": "running",
   "components": [
     {

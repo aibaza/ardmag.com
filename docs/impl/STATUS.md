@@ -22,6 +22,7 @@
 | 16 | CategoryToolbar | C | PASS | 2026-04-19 | — |
 | 17 | MobileFilterBar | C | PASS | 2026-04-19 | — |
 | 18 | FilterSidebar | C | PASS | 2026-04-19 | — |
+| 19 | ProductGrid | C | PASS | 2026-04-19 | — |
 
 ## Iteratii design (refactoring pagini)
 

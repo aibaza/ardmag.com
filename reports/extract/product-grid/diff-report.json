@@ -1,0 +1,66 @@
+{
+  "component": "product-grid",
+  "pages": [
+    "index",
+    "category",
+    "product"
+  ],
+  "pairs": [
+    {
+      "page": "index",
+      "viewport": "mobile",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "index",
+      "viewport": "tablet",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "index",
+      "viewport": "desktop",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "category",
+      "viewport": "mobile",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "category",
+      "viewport": "tablet",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "category",
+      "viewport": "desktop",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "product",
+      "viewport": "mobile",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "product",
+      "viewport": "tablet",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "product",
+      "viewport": "desktop",
+      "diffPixels": 0,
+      "diffPath": null
+    }
+  ],
+  "totalDiffPixels": 0,
+  "verdict": "PASS"
+}

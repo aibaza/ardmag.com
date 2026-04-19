@@ -7,7 +7,7 @@ import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
-import { ProductCard } from '@modules/products/product-card'
+import { ProductGrid } from '@modules/products/product-grid'
 import { Badge } from '@modules/@shared/components/badge'
 
 export default function ProductPage() {
@@ -327,57 +327,12 @@ export default function ProductPage() {
       {/* RELATED PRODUCTS */}
       <section style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 24px 60px", borderTop: "1px solid var(--rule)", paddingTop: "32px" }}>
         <SectionHead eyebrow="Ai putea avea nevoie și de" title="Accesorii și produse compatibile" seeAllHref="/ro/design-preview/category" seeAllLabel="Vezi toate →" />
-        <div className="mini-grid">
-
-          <ProductCard product={{
-            id: "DLT-180-TX",
-            title: "Disc diamantat Turbo Ø180",
-            sku: "DLT-180-TX",
-            brand: "Delta Research",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-disc-turbo-180.jpg",
-            imageAlt: "Disc diamantat Turbo Ø180",
-            href: "/ro/design-preview/product",
-            price: { now: "113,60 RON", was: "142,00 RON" },
-            badges: [{ type: "promo", label: "−20%" }],
-          }} />
-          <ProductCard product={{
-            id: "WSK-7-M14",
-            title: "Freză cupă M14 · 7 cupe",
-            sku: "WSK-7-M14",
-            brand: "Woosuk",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-freza-cupa-m14.jpg",
-            imageAlt: "Freză cupă M14 · 7 cupe",
-            href: "/ro/design-preview/product",
-            price: { now: "310,00 RON" },
-            badges: [],
-          }} />
-          <ProductCard product={{
-            id: "SAT-4A-VEL-SET",
-            title: "Pad abraziv Velcro — set 7 grit",
-            sku: "SAT-4A-VEL-SET",
-            brand: "Sait Abrazivi",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-pad-velcro-set.jpg",
-            imageAlt: "Pad abraziv Velcro — set 7 grit",
-            href: "/ro/design-preview/product",
-            price: { now: "168,00 RON" },
-            badges: [],
-          }} />
-          <ProductCard product={{
-            id: "DLT-ECO-1000",
-            title: "Impermeabilizant granit / marmură 1L",
-            sku: "DLT-ECO-1000",
-            brand: "Delta Research",
-            brandHref: "/ro/design-preview/category",
-            image: "/design-temp/p-impermeabilizant.jpg",
-            imageAlt: "Impermeabilizant granit / marmură 1L",
-            href: "/ro/design-preview/product",
-            price: { now: "142,00 RON" },
-            badges: [],
-          }} />
-        </div>
+        <ProductGrid variant="mini" products={[
+          { id: "DLT-180-TX", title: "Disc diamantat Turbo Ø180", sku: "DLT-180-TX", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-disc-turbo-180.jpg", imageAlt: "Disc diamantat Turbo Ø180", href: "/ro/design-preview/product", price: { now: "113,60 RON", was: "142,00 RON" }, badges: [{ type: "promo", label: "−20%" }] },
+          { id: "WSK-7-M14", title: "Freză cupă M14 · 7 cupe", sku: "WSK-7-M14", brand: "Woosuk", brandHref: "/ro/design-preview/category", image: "/design-temp/p-freza-cupa-m14.jpg", imageAlt: "Freză cupă M14 · 7 cupe", href: "/ro/design-preview/product", price: { now: "310,00 RON" }, badges: [] },
+          { id: "SAT-4A-VEL-SET", title: "Pad abraziv Velcro — set 7 grit", sku: "SAT-4A-VEL-SET", brand: "Sait Abrazivi", brandHref: "/ro/design-preview/category", image: "/design-temp/p-pad-velcro-set.jpg", imageAlt: "Pad abraziv Velcro — set 7 grit", href: "/ro/design-preview/product", price: { now: "168,00 RON" }, badges: [] },
+          { id: "DLT-ECO-1000", title: "Impermeabilizant granit / marmură 1L", sku: "DLT-ECO-1000", brand: "Delta Research", brandHref: "/ro/design-preview/category", image: "/design-temp/p-impermeabilizant.jpg", imageAlt: "Impermeabilizant granit / marmură 1L", href: "/ro/design-preview/product", price: { now: "142,00 RON" }, badges: [] },
+        ]} />
       </section>
 
       {/* Shared footer partial; inlined into each page */}
