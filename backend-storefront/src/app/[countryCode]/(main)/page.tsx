@@ -5,6 +5,7 @@ import { Badge } from '@modules/@shared/components/badge'
 import { Button } from '@modules/@shared/components/button'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustItem } from '@modules/@shared/components/trust-item'
+import { SectionHead } from '@modules/@shared/components/section-head'
 
 export default function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -150,13 +151,7 @@ export default function HomePage() {
         </div>
 
         {/* Promo products */}
-        <div className="sec-head">
-          <div>
-            <div className="eyebrow-small">Promoții active · 12 produse</div>
-            <h3>La reducere săptămâna aceasta</h3>
-          </div>
-          <a className="see-all" href="#">Toate promoțiile →</a>
-        </div>
+        <SectionHead eyebrow="Promoții active · 12 produse" title="La reducere săptămâna aceasta" seeAllHref="#" seeAllLabel="Toate promoțiile →" />
 
         <div className="mini-grid">
           <article className="pcard">
@@ -235,13 +230,7 @@ export default function HomePage() {
         </div>
 
         {/* New arrivals */}
-        <div className="sec-head">
-          <div>
-            <div className="eyebrow-small">Nou intrat · ultimele 30 zile</div>
-            <h3>Produse noi în stoc</h3>
-          </div>
-          <a className="see-all" href="#">Toate noutățile →</a>
-        </div>
+        <SectionHead eyebrow="Nou intrat · ultimele 30 zile" title="Produse noi în stoc" seeAllHref="#" seeAllLabel="Toate noutățile →" />
 
         <div className="mini-grid">
           <article className="pcard">

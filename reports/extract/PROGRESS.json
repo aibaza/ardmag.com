@@ -7,10 +7,11 @@
     "03-ProductCardSpecTag",
     "04-StarRating",
     "05-QuantityStepper",
-    "06-TrustItem"
+    "06-TrustItem",
+    "07-SectionHead"
   ],
   "failed": [],
-  "current": "07-SectionHead",
+  "current": "08-Breadcrumb",
   "status": "running",
   "components": [
     {

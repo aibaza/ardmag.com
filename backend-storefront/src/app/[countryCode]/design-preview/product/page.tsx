@@ -7,6 +7,7 @@ import { StarRating } from '@modules/@shared/components/star-rating'
 import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustItem } from '@modules/@shared/components/trust-item'
+import { SectionHead } from '@modules/@shared/components/section-head'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -332,13 +333,7 @@ export default function ProductPage() {
 
       {/* RELATED PRODUCTS */}
       <section style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 24px 60px", borderTop: "1px solid var(--rule)", paddingTop: "32px" }}>
-        <div className="sec-head">
-          <div>
-            <div className="eyebrow-small">Ai putea avea nevoie și de</div>
-            <h3>Accesorii și produse compatibile</h3>
-          </div>
-          <a className="see-all" href="/ro/design-preview/category">Vezi toate →</a>
-        </div>
+        <SectionHead eyebrow="Ai putea avea nevoie și de" title="Accesorii și produse compatibile" seeAllHref="/ro/design-preview/category" seeAllLabel="Vezi toate →" />
         <div className="mini-grid">
 
           <article className="pcard">
