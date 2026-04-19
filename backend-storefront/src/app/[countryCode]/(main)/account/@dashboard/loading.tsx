@@ -1,9 +1,9 @@
-import Spinner from "@modules/common/icons/spinner"
-
 export default function Loading() {
   return (
-    <div className="flex items-center justify-center w-full h-full text-ui-fg-base">
-      <Spinner size={36} />
+    <div>
+      <div style={{ height: 28, width: 200, background: 'var(--stone-100)', borderRadius: 'var(--r-md)', marginBottom: 24 }} />
+      <div style={{ height: 80, background: 'var(--stone-100)', borderRadius: 'var(--r-md)', marginBottom: 16 }} />
+      <div style={{ height: 80, background: 'var(--stone-100)', borderRadius: 'var(--r-md)' }} />
     </div>
   )
 }

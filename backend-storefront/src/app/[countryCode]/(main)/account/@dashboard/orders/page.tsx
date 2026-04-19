@@ -1,37 +1,43 @@
-import { Metadata } from "next"
-
-import OrderOverview from "@modules/account/components/order-overview"
-import { notFound } from "next/navigation"
 import { listOrders } from "@lib/data/orders"
-import Divider from "@modules/common/components/divider"
-import TransferRequestForm from "@modules/account/components/transfer-request-form"
+import { retrieveCustomer } from "@lib/data/customer"
+import { OrderRow } from "@modules/order/components/OrderRow"
+import { HttpTypes } from "@medusajs/types"
+import { redirect } from "next/navigation"
 
-export const metadata: Metadata = {
-  title: "Comenzile mele",
-  description: "Istoricul comenzilor tale.",
+type Props = {
+  params: Promise<{ countryCode: string }>
 }
 
-export default async function Orders() {
-  const orders = await listOrders()
+export default async function OrdersPage({ params }: Props) {
+  const { countryCode } = await params
+  const customer = await retrieveCustomer()
 
-  if (!orders) {
-    notFound()
+  if (!customer) {
+    redirect(`/${countryCode}/account`)
   }
 
+  const orders = await listOrders(20, 0).catch(() => [] as HttpTypes.StoreOrder[])
+
   return (
-    <div className="w-full" data-testid="orders-page-wrapper">
-      <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Comenzile mele</h1>
-        <p className="text-base-regular">
-          View your previous orders and their status. You can also create
-          returns or exchanges for your orders if needed.
-        </p>
-      </div>
-      <div>
-        <OrderOverview orders={orders} />
-        <Divider className="my-16" />
-        <TransferRequestForm />
-      </div>
+    <div>
+      <h2 style={{ fontFamily: 'var(--f-sans)', fontWeight: 600, fontSize: 20, marginBottom: 24 }}>
+        Comenzile mele
+      </h2>
+
+      {orders.length === 0 ? (
+        <div className="panel" style={{ padding: '32px 24px', textAlign: 'center' }}>
+          <p style={{ color: 'var(--fg-muted)', marginBottom: 16 }}>Nu ai comenzi inca.</p>
+          <a href={`/${countryCode}/categories`} className="btn primary">
+            Incepe cumparaturile
+          </a>
+        </div>
+      ) : (
+        <div>
+          {orders.map((order) => (
+            <OrderRow key={order.id} order={order} countryCode={countryCode} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
