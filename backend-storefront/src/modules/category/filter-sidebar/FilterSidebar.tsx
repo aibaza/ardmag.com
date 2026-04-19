@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 interface CheckboxOption {
@@ -27,66 +27,6 @@ interface HelpCard {
   hours: string
 }
 
-interface PriceRangeInputsProps {
-  absMin: number
-  absMax: number
-  baseUrl: string
-}
-
-function PriceRangeInputs({ absMin, absMax, baseUrl }: PriceRangeInputsProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const [localMin, setLocalMin] = useState(searchParams.get("priceMin") ?? String(absMin))
-  const [localMax, setLocalMax] = useState(searchParams.get("priceMax") ?? String(absMax))
-
-  function buildPriceUrl(minVal: string, maxVal: string): string {
-    const params = new URLSearchParams(searchParams.toString())
-    const min = parseInt(minVal, 10)
-    const max = parseInt(maxVal, 10)
-    if (!isNaN(min) && min > absMin) {
-      params.set("priceMin", String(min))
-    } else {
-      params.delete("priceMin")
-    }
-    if (!isNaN(max) && max < absMax) {
-      params.set("priceMax", String(max))
-    } else {
-      params.delete("priceMax")
-    }
-    params.delete("page")
-    const qs = params.toString()
-    return qs ? `${baseUrl}?${qs}` : baseUrl
-  }
-
-  return (
-    <div className="price-range">
-      <div className="bar"></div>
-      <div className="inputs">
-        <input
-          type="number"
-          placeholder="Min"
-          value={localMin}
-          onChange={(e) => setLocalMin(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Max"
-          value={localMax}
-          onChange={(e) => setLocalMax(e.target.value)}
-        />
-      </div>
-      <button
-        type="button"
-        className="btn primary sm"
-        style={{ marginTop: '8px', width: '100%' }}
-        onClick={() => router.push(buildPriceUrl(localMin, localMax))}
-      >
-        Aplică preț
-      </button>
-    </div>
-  )
-}
-
 interface FilterSidebarProps {
   groups: FilterGroup[]
   applyCount: number
@@ -98,23 +38,53 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  function buildUrl(paramKey: string, value: string, isChecked: boolean): string {
+  const priceGroup = groups.find((g): g is Extract<FilterGroup, { type: 'price-range' }> => g.type === 'price-range')
+  const absMin = priceGroup?.min ?? 0
+  const absMax = priceGroup?.max ?? 9999
+
+  const urlMin = searchParams.get("priceMin")
+  const urlMax = searchParams.get("priceMax")
+
+  const [localMin, setLocalMin] = useState(urlMin ?? String(absMin))
+  const [localMax, setLocalMax] = useState(urlMax ?? String(absMax))
+
+  // Sync local price state when URL changes (e.g. after reset)
+  useEffect(() => {
+    setLocalMin(urlMin ?? String(absMin))
+    setLocalMax(urlMax ?? String(absMax))
+  }, [urlMin, urlMax, absMin, absMax])
+
+  function buildCheckboxUrl(paramKey: string, value: string, isChecked: boolean): string {
     const params = new URLSearchParams(searchParams.toString())
     const current = (params.get(paramKey) ?? "").split(",").filter(Boolean)
     const next = isChecked
       ? Array.from(new Set([...current, value]))
       : current.filter((v) => v !== value)
-    if (next.length === 0) {
-      params.delete(paramKey)
-    } else {
-      params.set(paramKey, next.join(","))
+    if (next.length === 0) params.delete(paramKey)
+    else params.set(paramKey, next.join(","))
+    params.delete("page")
+    const qs = params.toString()
+    return qs ? `${baseUrl}?${qs}` : baseUrl
+  }
+
+  function buildApplyUrl(): string {
+    const params = new URLSearchParams(searchParams.toString())
+    if (priceGroup) {
+      const min = parseInt(localMin, 10)
+      const max = parseInt(localMax, 10)
+      if (!isNaN(min) && min > absMin) params.set("priceMin", String(min))
+      else params.delete("priceMin")
+      if (!isNaN(max) && max < absMax) params.set("priceMax", String(max))
+      else params.delete("priceMax")
     }
     params.delete("page")
     const qs = params.toString()
     return qs ? `${baseUrl}?${qs}` : baseUrl
   }
 
-  function buildResetUrl(): string {
+  function handleReset() {
+    setLocalMin(String(absMin))
+    setLocalMax(String(absMax))
     const params = new URLSearchParams(searchParams.toString())
     params.delete("brand")
     params.delete("material")
@@ -122,7 +92,7 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
     params.delete("priceMax")
     params.delete("page")
     const qs = params.toString()
-    return qs ? `${baseUrl}?${qs}` : baseUrl
+    router.push(qs ? `${baseUrl}?${qs}` : baseUrl)
   }
 
   return (
@@ -139,7 +109,7 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
                       <input
                         type="checkbox"
                         checked={!!option.checked}
-                        onChange={(e) => router.push(buildUrl(group.paramKey, option.value, e.target.checked))}
+                        onChange={(e) => router.push(buildCheckboxUrl(group.paramKey, option.value, e.target.checked))}
                       />
                       {option.label}
                       {option.count !== undefined && <span className="cnt">{option.count}</span>}
@@ -166,7 +136,23 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
               <details key={i} open={group.open}>
                 <summary>{group.title}{group.badge !== undefined && <> <span className="fcount">{group.badge}</span></>}</summary>
                 <div className="filter-body">
-                  <PriceRangeInputs absMin={group.min} absMax={group.max} baseUrl={baseUrl} />
+                  <div className="price-range">
+                    <div className="bar"></div>
+                    <div className="inputs">
+                      <input
+                        type="number"
+                        placeholder="Min"
+                        value={localMin}
+                        onChange={(e) => setLocalMin(e.target.value)}
+                      />
+                      <input
+                        type="number"
+                        placeholder="Max"
+                        value={localMax}
+                        onChange={(e) => setLocalMax(e.target.value)}
+                      />
+                    </div>
+                  </div>
                 </div>
               </details>
             )
@@ -177,11 +163,17 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
           <button
             type="button"
             className="btn secondary sm"
-            onClick={() => router.push(buildResetUrl())}
+            onClick={handleReset}
           >
             Resetează
           </button>
-          <button type="button" className="btn primary sm">Aplică ({applyCount})</button>
+          <button
+            type="button"
+            className="btn primary sm"
+            onClick={() => router.push(buildApplyUrl())}
+          >
+            Aplică ({applyCount})
+          </button>
         </div>
       </div>
 
