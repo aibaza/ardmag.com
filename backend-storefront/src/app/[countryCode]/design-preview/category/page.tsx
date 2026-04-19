@@ -7,6 +7,7 @@ import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { CategoryHero } from '@modules/category/category-hero'
 import { Pagination } from '@modules/category/pagination'
 import { CategoryToolbar } from '@modules/category/category-toolbar'
+import { MobileFilterBar } from '@modules/category/mobile-filter-bar'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function CategoryPage() {
@@ -213,23 +214,12 @@ export default function CategoryPage() {
 
         <main>
 
-          <div className="mobile-filter-bar">
-            <button className="btn secondary md" onClick={() => { const el = document.getElementById('filters'); if (el) el.classList.add('open') }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 4h12M4 8h8M6 12h4"/></svg>
-              Filtre (3 active)
-            </button>
-            <select className="btn secondary md" style={{ appearance: 'auto', padding: '0 12px' }}><option>Sortare: Popularitate</option><option>Preț ↑</option><option>Preț ↓</option><option>Nou</option></select>
-          </div>
-
-          <div className="active-filters">
-            <span className="lbl">Filtre active:</span>
-            <span className="chip">Delta Research <button className="x" aria-label="șterge">×</button></span>
-            <span className="chip">Tenax <button className="x">×</button></span>
-            <span className="chip">Ø115 <button className="x">×</button></span>
-            <span className="chip">Ø125 <button className="x">×</button></span>
-            <span className="chip">Turbo <button className="x">×</button></span>
-            <button className="chip clear">Șterge tot</button>
-          </div>
+          <MobileFilterBar
+            activeCount={3}
+            sortOptions={["Sortare: Popularitate","Preț ↑","Preț ↓","Nou"]}
+            activeFilters={[{label:"Delta Research"},{label:"Tenax"},{label:"Ø115"},{label:"Ø125"},{label:"Turbo"}]}
+            onOpenFilters={() => { const el = document.getElementById('filters'); if (el) el.classList.add('open') }}
+          />
 
           <CategoryToolbar
             count={142}
