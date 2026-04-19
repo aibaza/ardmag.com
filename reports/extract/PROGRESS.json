@@ -26,11 +26,12 @@
     "22-PDPPriceCard",
     "23-PDPSummary",
     "24-PDPTabs",
-    "25-SiteFooter"
+    "25-SiteFooter",
+    "26-SiteHeader"
   ],
   "failed": [],
-  "current": "26-SiteHeader",
-  "status": "running",
+  "current": null,
+  "status": "complete",
   "components": [
     {
       "num": "01",
