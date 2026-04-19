@@ -1,0 +1,223 @@
+import { Metadata } from "next"
+import { Suspense } from "react"
+import { SiteHeaderShell } from "@modules/layout/site-header"
+import { SiteFooter } from "@modules/layout/site-footer"
+import { Breadcrumb } from "@modules/@shared/components/breadcrumb/Breadcrumb"
+import { CategoryHero } from "@modules/category/category-hero"
+import { CategoryToolbar } from "@modules/category/category-toolbar"
+import { FilterSidebar } from "@modules/category/filter-sidebar"
+import { ProductGrid } from "@modules/products/product-grid"
+import { Pagination } from "@modules/category/pagination"
+import { listProducts } from "@lib/data/products"
+import { productsToFilterGroups } from "@lib/util/adapters/products-to-filter-groups"
+import { productToCard } from "@lib/util/adapters/product-to-card"
+import { sortProducts, SortOptions } from "@lib/util/sort-products"
+import { getProductMinPrice } from "@lib/util/adapters/format-price"
+import { HttpTypes } from "@medusajs/types"
+
+export const metadata: Metadata = {
+  title: "Produse la reducere | ardmag.com",
+  description: "Toate produsele cu reducere activa - preturi reduse real, nu cosmetice.",
+}
+
+const VALID_PAGE_SIZES = [20, 40, 60]
+const DEFAULT_PAGE_SIZE = 20
+const SORT_OPTIONS = ["Relevanță", "Preț ascendent", "Preț descendent", "Cele mai noi"]
+const SORT_MAP: Record<string, SortOptions> = {
+  "Preț ascendent": "price_asc",
+  "Preț descendent": "price_desc",
+  "Cele mai noi": "created_at",
+}
+
+const HELP_CARD = {
+  label: "Ai nevoie de ajutor?",
+  description: "Suntem disponibili L-V 08:00-17:00",
+  phone: "+40 722 155 441",
+  hours: "L-V 08-17",
+}
+
+type Props = {
+  params: Promise<{ countryCode: string }>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
+
+type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
+  calculated_price?: {
+    calculated_amount: number | null
+    original_amount?: number | null
+  } | null
+}
+
+function hasRealDiscount(product: HttpTypes.StoreProduct): boolean {
+  return (product.variants ?? []).some((v) => {
+    const cp = (v as VariantWithCalcPrice).calculated_price
+    return (
+      cp?.original_amount != null &&
+      cp.calculated_amount != null &&
+      cp.original_amount > cp.calculated_amount
+    )
+  })
+}
+
+function buildPageUrl(base: string, page: number, existingParams: Record<string, string | string[] | undefined>): string {
+  const params = new URLSearchParams()
+  for (const [key, value] of Object.entries(existingParams)) {
+    if (key === "page") continue
+    if (typeof value === "string" && value) params.set(key, value)
+  }
+  params.set("page", String(page))
+  return `${base}?${params.toString()}`
+}
+
+function buildPaginationPages(
+  currentPage: number,
+  totalPages: number,
+  baseUrl: string,
+  existingParams: Record<string, string | string[] | undefined> = {}
+): Array<{ label: string; href: string; active?: boolean }> {
+  const pages: Array<{ label: string; href: string; active?: boolean }> = []
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || Math.abs(i - currentPage) <= 1) {
+      pages.push({ label: String(i), href: buildPageUrl(baseUrl, i, existingParams), active: i === currentPage })
+    } else if (pages[pages.length - 1]?.label !== "…") {
+      pages.push({ label: "…", href: "#" })
+    }
+  }
+  return pages
+}
+
+export default async function PromotiiPage({ params, searchParams }: Props) {
+  const [{ countryCode }, sp] = await Promise.all([params, searchParams])
+
+  const sortLabel = (sp.sortBy as string | undefined) ?? "Relevanță"
+  const currentPage = parseInt((sp.page as string) ?? "1", 10) || 1
+  const perPageParam = parseInt((sp.perPage as string) ?? "", 10)
+  const perPage = VALID_PAGE_SIZES.includes(perPageParam) ? perPageParam : DEFAULT_PAGE_SIZE
+  const activeBrands = (sp.brand as string | undefined)?.split(",").filter(Boolean) ?? []
+  const activeMaterials = (sp.material as string | undefined)?.split(",").filter(Boolean) ?? []
+  const activePriceMin = parseInt((sp.priceMin as string) ?? "", 10)
+  const activePriceMax = parseInt((sp.priceMax as string) ?? "", 10)
+
+  const { response: { products: allProducts } } = await listProducts({
+    pageParam: 1,
+    queryParams: {
+      limit: 200,
+      fields: "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images,+categories",
+    },
+    countryCode,
+  }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[], count: 0 }, nextPage: null }))
+
+  // Keep only products with a real active Price List discount
+  const discountedProducts = allProducts.filter(hasRealDiscount)
+
+  // Apply filters
+  let filteredProducts = discountedProducts
+  if (activeBrands.length > 0) {
+    filteredProducts = filteredProducts.filter((p) =>
+      (p.tags ?? []).some((t) => activeBrands.some((b) => t.value === `brand:${b}`))
+    )
+  }
+  if (activeMaterials.length > 0) {
+    filteredProducts = filteredProducts.filter((p) =>
+      (p.tags ?? []).some((t) => activeMaterials.some((m) => t.value === `material:${m}`))
+    )
+  }
+  if (!isNaN(activePriceMin) || !isNaN(activePriceMax)) {
+    filteredProducts = filteredProducts.filter((p) => {
+      const price = getProductMinPrice(p)
+      if (price === null) return false
+      const priceRON = price / 100
+      if (!isNaN(activePriceMin) && priceRON < activePriceMin) return false
+      if (!isNaN(activePriceMax) && priceRON > activePriceMax) return false
+      return true
+    })
+  }
+
+  // Apply sort
+  const sortBy = SORT_MAP[sortLabel]
+  const sortedProducts = sortBy ? sortProducts(filteredProducts, sortBy) : filteredProducts
+
+  // Paginate
+  const totalFiltered = sortedProducts.length
+  const totalPages = Math.max(1, Math.ceil(totalFiltered / perPage))
+  const offset = (currentPage - 1) * perPage
+  const pageProducts = sortedProducts.slice(offset, offset + perPage)
+
+  const filterGroups = productsToFilterGroups(discountedProducts, {
+    brands: activeBrands,
+    materials: activeMaterials,
+  })
+  const productCards = pageProducts.map((p) => productToCard(p, countryCode))
+
+  const baseUrl = `/${countryCode}/promotii`
+  const paginationPages = buildPaginationPages(currentPage, totalPages, baseUrl, sp as Record<string, string | string[] | undefined>)
+  const prevHref = currentPage > 1 ? buildPageUrl(baseUrl, currentPage - 1, sp as Record<string, string | string[] | undefined>) : "#"
+  const nextHref = currentPage < totalPages ? buildPageUrl(baseUrl, currentPage + 1, sp as Record<string, string | string[] | undefined>) : "#"
+
+  return (
+    <>
+      <SiteHeaderShell countryCode={countryCode} drawerId="mDrawer" drawerClosedAttr />
+
+      <main className="page-inner">
+        <Breadcrumb
+          items={[{ label: "Acasa", href: `/${countryCode}` }]}
+          current="Promotii"
+        />
+
+        <CategoryHero
+          eyebrow="Oferte speciale"
+          title="Produse la reducere"
+          description={
+            discountedProducts.length > 0
+              ? `${discountedProducts.length} ${discountedProducts.length === 1 ? "produs" : "produse"} cu reducere activa`
+              : "Momentan nu exista produse la reducere."
+          }
+          meta={[]}
+        />
+
+        <Suspense fallback={<div className="cat-toolbar" />}>
+          <CategoryToolbar
+            count={totalFiltered}
+            sortOptions={SORT_OPTIONS}
+            perPageOptions={VALID_PAGE_SIZES}
+            baseUrl={baseUrl}
+            currentSort={sortLabel}
+            currentPerPage={perPage}
+          />
+        </Suspense>
+
+        <div className="cat-layout">
+          <Suspense fallback={<aside className="filters" />}>
+            <FilterSidebar
+              groups={filterGroups}
+              applyCount={activeBrands.length + activeMaterials.length + (!isNaN(activePriceMin) || !isNaN(activePriceMax) ? 1 : 0)}
+              helpCard={HELP_CARD}
+              baseUrl={baseUrl}
+            />
+          </Suspense>
+          <div className="cat-products">
+            {pageProducts.length === 0 ? (
+              <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
+                {discountedProducts.length === 0
+                  ? "Nu exista produse la reducere momentan."
+                  : "Niciun produs nu corespunde filtrelor selectate."}
+              </div>
+            ) : (
+              <ProductGrid variant="cat" products={productCards} />
+            )}
+            {totalPages > 1 && (
+              <Pagination
+                prevHref={prevHref}
+                nextHref={nextHref}
+                pages={paginationPages}
+                resultsLabel={`${Math.min(offset + 1, totalFiltered)}-${Math.min(offset + perPage, totalFiltered)} din ${totalFiltered} produse`}
+              />
+            )}
+          </div>
+        </div>
+      </main>
+
+      <SiteFooter />
+    </>
+  )
+}

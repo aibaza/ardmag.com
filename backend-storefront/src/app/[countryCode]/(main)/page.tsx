@@ -46,7 +46,12 @@ export default async function HomePage({ params }: Props) {
   const allProducts = allProductsResult.response.products
 
   const promoProducts = allProducts
-    .filter((p) => (p.tags ?? []).some((t) => t.value === 'promo:30'))
+    .filter((p) =>
+      (p.variants ?? []).some((v: any) => {
+        const cp = v.calculated_price
+        return cp?.original_amount != null && cp.original_amount > cp.calculated_amount
+      })
+    )
     .slice(0, 8)
 
   const newProducts = [...allProducts]
@@ -84,7 +89,7 @@ export default async function HomePage({ params }: Props) {
           kicker="Promo luna aprilie · până pe 30"
           title={<>Mastici Tenax<br />la <span style={{color:"var(--brand-400)"}}>-30%</span> reducere</>}
           description="Toată gama de mastici poliesterici și epoxidici Tenax la -30%. Stoc complet în Cluj, livrare 24-48h în toată țara."
-          primaryCta={{ label: "Vezi promoția", href: `/${countryCode}/categories/mastici-tenax` }}
+          primaryCta={{ label: "Vezi promoția", href: `/${countryCode}/promotii` }}
           ghostCta={{ label: "Toate produsele →", href: `/${countryCode}/categories/solutii-pentru-piatra`, style: {color:"#fff",borderColor:"var(--stone-700)"} }}
           stats={[
             { value: "480+", label: "SKU în stoc" },
@@ -122,7 +127,7 @@ export default async function HomePage({ params }: Props) {
             <SectionHead
               eyebrow={`Promoții active · ${promoProducts.length} produse`}
               title="La reducere"
-              seeAllHref={`/${countryCode}/categories/mastici-tenax`}
+              seeAllHref={`/${countryCode}/promotii`}
               seeAllLabel="Toate promoțiile →"
             />
             <ProductGrid
