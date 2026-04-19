@@ -56,18 +56,18 @@ export function AuthForm({ countryCode }: AuthFormProps) {
   const fieldStyle: React.CSSProperties = { marginBottom: 16 }
 
   return (
-    <div style={{ maxWidth: 480, margin: "0 auto" }}>
-      <div style={{ display: "flex", gap: 8, paddingBottom: 16 }}>
+    <div style={{ width: "100%" }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 8, paddingBottom: 16 }}>
         <button
           type="button"
-          className={tab === "login" ? "btn secondary" : "btn ghost"}
+          className={tab === "login" ? "btn secondary md" : "btn ghost md"}
           onClick={() => setTab("login")}
         >
           Autentificare
         </button>
         <button
           type="button"
-          className={tab === "register" ? "btn secondary" : "btn ghost"}
+          className={tab === "register" ? "btn secondary md" : "btn ghost md"}
           onClick={() => setTab("register")}
         >
           Cont nou
@@ -90,7 +90,7 @@ export function AuthForm({ countryCode }: AuthFormProps) {
                 {loginError}
               </p>
             )}
-            <button type="submit" className="btn primary" style={{ width: "100%" }}>
+            <button type="submit" className="btn primary lg" style={{ width: "100%" }}>
               Autentificare
             </button>
           </form>
@@ -122,12 +122,31 @@ export function AuthForm({ countryCode }: AuthFormProps) {
               <label style={labelStyle}>Parola</label>
               <input type="password" name="password" required style={inputStyle} />
             </div>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 16 }}>
+              <input
+                type="checkbox"
+                name="terms"
+                id="terms"
+                required
+                style={{ marginTop: 2, flexShrink: 0 }}
+              />
+              <label htmlFor="terms" style={{ ...labelStyle, marginBottom: 0, cursor: "pointer" }}>
+                Sunt de acord cu{" "}
+                <a href={`/${countryCode}/termeni-si-conditii`} style={{ color: "var(--brand-500)" }}>
+                  Termenii si Conditiile
+                </a>{" "}
+                si{" "}
+                <a href={`/${countryCode}/politica-confidentialitate`} style={{ color: "var(--brand-500)" }}>
+                  Politica de Confidentialitate
+                </a>
+              </label>
+            </div>
             {signupError && (
               <p style={{ color: "var(--brand-600)", fontSize: 13, marginBottom: 12 }}>
                 {signupError}
               </p>
             )}
-            <button type="submit" className="btn primary" style={{ width: "100%" }}>
+            <button type="submit" className="btn primary lg" style={{ width: "100%" }}>
               Creeaza cont
             </button>
           </form>

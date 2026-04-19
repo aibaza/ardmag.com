@@ -25,7 +25,7 @@ export function AddAddressForm({ countryCode }: Props) {
     return (
       <button
         type="button"
-        className="btn secondary"
+        className="btn secondary md"
         onClick={() => setOpen(true)}
         style={{ marginBottom: 16 }}
       >

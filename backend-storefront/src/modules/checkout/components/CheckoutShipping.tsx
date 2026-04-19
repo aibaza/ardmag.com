@@ -45,7 +45,7 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions }: Props
 
       <button
         type="button"
-        className="btn primary"
+        className="btn primary lg"
         style={{ width: '100%' }}
         onClick={handleContinue}
         disabled={!selected || isPending}

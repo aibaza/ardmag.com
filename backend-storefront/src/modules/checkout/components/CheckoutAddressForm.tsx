@@ -36,7 +36,7 @@ export function CheckoutAddressForm({ countryCode, customerEmail }: Props) {
 
       {error && <p style={{ color: 'var(--brand-600)', fontSize: 13, marginBottom: 12 }}>{error as string}</p>}
 
-      <button type="submit" className="btn primary" style={{ width: '100%', marginTop: 8 }}>
+      <button type="submit" className="btn primary lg" style={{ width: '100%', marginTop: 8 }}>
         Continua spre livrare
       </button>
     </form>

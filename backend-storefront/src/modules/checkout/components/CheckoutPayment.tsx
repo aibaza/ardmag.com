@@ -49,7 +49,7 @@ export function CheckoutPayment({ cart, countryCode, paymentProviders }: Props) 
 
       <button
         type="button"
-        className="btn primary"
+        className="btn primary lg"
         style={{ width: '100%' }}
         onClick={handleContinue}
         disabled={!selected || isPending}

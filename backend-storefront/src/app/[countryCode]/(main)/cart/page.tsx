@@ -46,7 +46,7 @@ export default async function CartPage({ params }: Props) {
             <p style={{ color: "var(--fg-muted)", marginBottom: 16 }}>
               Cosul tau este gol.
             </p>
-            <a href={`/${countryCode}/categories`} className="btn primary">
+            <a href={`/${countryCode}/categories`} className="btn primary md">
               Continua cumparaturile
             </a>
           </div>

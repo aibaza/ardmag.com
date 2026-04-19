@@ -34,8 +34,9 @@ export function Hero({ kicker, title, description, primaryCta, ghostCta, stats, 
         <p>{description}</p>
         <div className="hactions">
           <a className="btn primary lg" href={primaryCta.href}>{primaryCta.label}</a>
-          <a className="btn ghost lg" href={ghostCta.href} style={ghostCta.style}>{ghostCta.label}</a>
+          <a className="btn ghost lg hero-ghost" href={ghostCta.href} style={ghostCta.style}>{ghostCta.label}</a>
         </div>
+        <style>{`.hero-ghost:hover{background:var(--stone-700)!important;color:#fff!important}`}</style>
         <div className="stats">
           {stats.map((s, i) => (
             <div key={i}><strong>{s.value}</strong><span>{s.label}</span></div>

@@ -184,15 +184,15 @@ export default async function OrderConfirmedPage({ params }: Props) {
             >
               <a
                 href={`/${countryCode}/account/orders`}
-                className="btn secondary"
-                style={{ textAlign: "center", display: "block" }}
+                className="btn secondary md"
+                style={{ justifyContent: "center" }}
               >
                 Comenzile mele
               </a>
               <a
                 href={`/${countryCode}/categories`}
-                className="btn ghost"
-                style={{ textAlign: "center", display: "block" }}
+                className="btn ghost md"
+                style={{ justifyContent: "center" }}
               >
                 Inapoi la magazin
               </a>
