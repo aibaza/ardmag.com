@@ -246,4 +246,61 @@ describe("productToPdpVariantSelector", () => {
     expect(groups).toHaveLength(1)
     expect(groups[0].title).toBe("CANTITATE")
   })
+
+  it("each option carries variantId of the first matching variant", () => {
+    const product = makeProduct({
+      variants: [
+        {
+          id: "v1",
+          title: "TRANSPARENT / 1 LITRU",
+          manage_inventory: true,
+          inventory_quantity: 100,
+          options: [
+            makeOpt("TRANSPARENT", "CULOARE", "o1"),
+            makeOpt("1 LITRU", "CANTITATE", "o2"),
+          ],
+        },
+        {
+          id: "v2",
+          title: "BEJ / 1 LITRU",
+          manage_inventory: true,
+          inventory_quantity: 100,
+          options: [
+            makeOpt("BEJ", "CULOARE", "o1"),
+            makeOpt("1 LITRU", "CANTITATE", "o2"),
+          ],
+        },
+        {
+          id: "v3",
+          title: "TRANSPARENT / 5 LITRI",
+          manage_inventory: true,
+          inventory_quantity: 100,
+          options: [
+            makeOpt("TRANSPARENT", "CULOARE", "o1"),
+            makeOpt("5 LITRI", "CANTITATE", "o2"),
+          ],
+        },
+      ],
+    })
+    const groups = productToPdpVariantSelector(product)
+    expect(groups[0].options.find((o) => o.label === "TRANSPARENT")?.variantId).toBe("v1")
+    expect(groups[0].options.find((o) => o.label === "BEJ")?.variantId).toBe("v2")
+    expect(groups[1].options.find((o) => o.label === "1 LITRU")?.variantId).toBe("v1")
+    expect(groups[1].options.find((o) => o.label === "5 LITRI")?.variantId).toBe("v3")
+  })
+
+  it("variantId is present on all options when single visible variant", () => {
+    const product = makeProduct({
+      variants: [
+        {
+          id: "v1",
+          options: [makeOpt("5 LITRI", "CANTITATE", "o2")],
+          manage_inventory: true,
+          inventory_quantity: 100,
+        },
+      ],
+    })
+    const groups = productToPdpVariantSelector(product)
+    expect(groups[0].options[0].variantId).toBe("v1")
+  })
 })

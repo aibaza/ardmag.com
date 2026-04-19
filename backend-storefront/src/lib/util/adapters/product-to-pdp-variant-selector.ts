@@ -2,6 +2,7 @@ import type { HttpTypes } from "@medusajs/types"
 
 interface VariantOption {
   label: string
+  variantId: string
   active?: boolean
   unavailable?: boolean
   discount?: string
@@ -96,7 +97,8 @@ export function productToPdpVariantSelector(
         variantsWithValue.length > 0 &&
         variantsWithValue.every((v) => isOutOfStock(v))
 
-      const option: VariantOption = { label: value }
+      const variantId = variantsWithValue[0]?.id ?? variants[0]?.id ?? ""
+      const option: VariantOption = { label: value, variantId }
       if (value === activeOptValue) option.active = true
       if (unavailable) option.unavailable = true
       if (hasPromo) option.discount = "-30%"
