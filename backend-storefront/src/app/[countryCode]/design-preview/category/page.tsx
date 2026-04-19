@@ -5,6 +5,7 @@ import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { CategoryHero } from '@modules/category/category-hero'
+import { Pagination } from '@modules/category/pagination'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function CategoryPage() {
@@ -410,17 +411,19 @@ export default function CategoryPage() {
             }} />
           </div>
 
-          <div className="pagination">
-            <span className="prev"><a href="#" aria-label="prev">←</a></span>
-            <a href="#" className="on">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <span className="dots">…</span>
-            <a href="#">12</a>
-            <a href="#" className="next">→</a>
-          </div>
-          <div className="results-foot">Afișate 1–12 din 142 · pagina 1 din 12</div>
+          <Pagination
+            prevHref="#"
+            nextHref="#"
+            pages={[
+              { label: "1", href: "#", active: true },
+              { label: "2", href: "#" },
+              { label: "3", href: "#" },
+              { label: "4", href: "#" },
+              { label: "…", href: "#" },
+              { label: "12", href: "#" },
+            ]}
+            resultsLabel="Afișate 1–12 din 142 · pagina 1 din 12"
+          />
 
         </main>
       </div>
