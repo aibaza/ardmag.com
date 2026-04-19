@@ -5,6 +5,7 @@ import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
 import { Hero } from '@modules/sections/hero'
+import { QuickCategories } from '@modules/sections/quick-categories'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function HomePage() {
@@ -127,14 +128,14 @@ export default function HomePage() {
         />
 
         {/* Quick categories */}
-        <div className="quick-cats">
-          <a className="qc" href="/ro/design-preview/category"><div className="real"><img src="/design-temp/cat-discuri.webp" alt="Discuri" /></div><div className="label">Discuri</div><div className="count">142</div></a>
-          <a className="qc" href="/ro/design-preview/category"><div className="real"><img src="/design-temp/cat-freze.jpg" alt="Freze" /></div><div className="label">Freze</div><div className="count">87</div></a>
-          <a className="qc" href="/ro/design-preview/category"><div className="real"><img src="/design-temp/cat-paduri.webp" alt="Pad-uri" /></div><div className="label">Pad-uri</div><div className="count">56</div></a>
-          <a className="qc" href="/ro/design-preview/category"><div className="real"><img src="/design-temp/cat-mastici.webp" alt="Mastici" /></div><div className="label">Mastici</div><div className="count">38</div></a>
-          <a className="qc" href="/ro/design-preview/category"><div className="real"><img src="/design-temp/cat-tratamente.webp" alt="Tratamente" /></div><div className="label">Tratamente</div><div className="count">24</div></a>
-          <a className="qc" href="/ro/design-preview/category"><div className="real"><img src="/design-temp/cat-echipamente.webp" alt="Echipamente" /></div><div className="label">Echipamente</div><div className="count">19</div></a>
-        </div>
+        <QuickCategories items={[
+          { href: "/ro/design-preview/category", image: "/design-temp/cat-discuri.webp", imageAlt: "Discuri", label: "Discuri", count: 142 },
+          { href: "/ro/design-preview/category", image: "/design-temp/cat-freze.jpg", imageAlt: "Freze", label: "Freze", count: 87 },
+          { href: "/ro/design-preview/category", image: "/design-temp/cat-paduri.webp", imageAlt: "Pad-uri", label: "Pad-uri", count: 56 },
+          { href: "/ro/design-preview/category", image: "/design-temp/cat-mastici.webp", imageAlt: "Mastici", label: "Mastici", count: 38 },
+          { href: "/ro/design-preview/category", image: "/design-temp/cat-tratamente.webp", imageAlt: "Tratamente", label: "Tratamente", count: 24 },
+          { href: "/ro/design-preview/category", image: "/design-temp/cat-echipamente.webp", imageAlt: "Echipamente", label: "Echipamente", count: 19 },
+        ]} />
 
         {/* Promo products */}
         <SectionHead eyebrow="Promoții active · 12 produse" title="La reducere săptămâna aceasta" seeAllHref="#" seeAllLabel="Toate promoțiile →" />
