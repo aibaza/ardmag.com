@@ -7,7 +7,7 @@ import { Badge } from '@modules/@shared/components/badge'
 import { PDPGallery } from '@modules/product-detail/pdp-gallery'
 import { PDPSummary } from '@modules/product-detail/pdp-summary'
 import { PDPTabs } from '@modules/product-detail/pdp-tabs'
-import { SiteHeader } from '@modules/layout/site-header'
+import { SiteHeader } from '@modules/layout/site-header/SiteHeader'
 import { SiteFooter } from '@modules/layout/site-footer'
 
 export default function ProductPage() {

@@ -7,7 +7,7 @@ import { CategoryToolbar } from '@modules/category/category-toolbar'
 import { MobileFilterBar } from '@modules/category/mobile-filter-bar'
 import { FilterSidebar } from '@modules/category/filter-sidebar'
 import { ProductGrid } from '@modules/products/product-grid'
-import { SiteHeader } from '@modules/layout/site-header'
+import { SiteHeader } from '@modules/layout/site-header/SiteHeader'
 import { SiteFooter } from '@modules/layout/site-footer'
 
 export default function CategoryPage() {
