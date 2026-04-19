@@ -29,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       style={{ minHeight: 0 }}
     >
       {/* Image area */}
-      <div className="aspect-square overflow-hidden bg-stone-100 border-b border-stone-200 rounded-t-[var(--r-sm)]">
+      <div className="aspect-[4/3] overflow-hidden bg-stone-100 border-b border-stone-200 rounded-t-[var(--r-sm)]">
         {stem ? (
           <ProductImage
             slug={product.handle!}

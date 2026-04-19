@@ -42,18 +42,18 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           {product.title}
         </Heading>
 
+        {specRows.length > 0 && (
+          <div className="mt-4">
+            <SpecTable rows={specRows} title="Specificatii tehnice" />
+          </div>
+        )}
+
         {product.description && (
           <div
-            className="text-medium text-ui-fg-subtle prose prose-sm max-w-none"
+            className="text-medium text-ui-fg-subtle prose prose-sm max-w-none mt-4"
             data-testid="product-description"
             dangerouslySetInnerHTML={{ __html: product.description }}
           />
-        )}
-
-        {specRows.length > 0 && (
-          <div className="mt-6">
-            <SpecTable rows={specRows} title="Specificatii tehnice" />
-          </div>
         )}
       </div>
     </div>

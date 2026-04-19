@@ -54,7 +54,7 @@ export default function Hero() {
               }}
             >
               Discuri diamantate, adezivi Tenax, mase de slefuit, scule de pozare.
-              Stoc permanent. Livrare in 24h.
+              Distribuitor autorizat Tenax Romania din 2001.
             </p>
           </div>
 
@@ -124,13 +124,13 @@ export default function Hero() {
           {[
             {
               href: "/categories/discuri-de-taiere",
-              kicker: "7 produse in stoc",
+              kicker: "Discuri diamantate",
               title: "Discuri diamantate de taiere",
               desc: "Pentru marmura, granit, andezit, gresie. Diametre 100-2000mm.",
             },
             {
               href: "/categories/mastici-tenax",
-              kicker: "20 produse in stoc",
+              kicker: "Mastici si adezivi",
               title: "Mastici si adezivi Tenax",
               desc: "Bicomponenti, epoxidici, poliesterici. Set A+B inclus.",
             },

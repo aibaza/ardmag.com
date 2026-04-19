@@ -1,0 +1,49 @@
+base_url: http://localhost:8000
+design_server: http://localhost:7777
+
+pages:
+  - name: homepage
+    url: /ro
+    target_url: "http://localhost:7777/Design%20System%2004%20-%20Chrome%20%26%20Homepage.html"
+    target_selector: null
+
+  - name: category-small
+    url: /ro/categories/mese-de-taiat
+    target_url: "http://localhost:7777/Design%20System%2003%20-%20Commerce%20Components.html"
+    target_selector: null
+
+  - name: category-medium
+    url: /ro/categories/discuri-de-taiere
+    target_url: "http://localhost:7777/Design%20System%2003%20-%20Commerce%20Components.html"
+    target_selector: null
+
+  - name: category-large
+    url: /ro/categories/solutii-pentru-piatra
+    target_url: "http://localhost:7777/Design%20System%2003%20-%20Commerce%20Components.html"
+    target_selector: null
+
+  - name: product-rich
+    url: /ro/products/glaxs-easy
+    target_url: "http://localhost:7777/Design%20System%2003%20-%20Commerce%20Components.html"
+    target_selector: null
+
+  - name: product-bundle
+    url: /ro/products/set-adeziv-profesional-decapant
+    target_url: "http://localhost:7777/Design%20System%2003%20-%20Commerce%20Components.html"
+    target_selector: null
+
+  - name: product-variations
+    url: /ro/products/discuri-orizontale-de-marmura-si-andezit
+    target_url: "http://localhost:7777/Design%20System%2003%20-%20Commerce%20Components.html"
+    target_selector: null
+
+viewports:
+  - mobile    # priority 1 -- iPhone SE (375x667)
+  - tablet    # priority 2 -- iPad Mini (768x1024)
+  - desktop   # priority 3 -- 1440x900
+
+# Notes:
+# - Routes verified 2026-04-19: /ro/categories/{handle} and /ro/products/{handle}
+# - Handles verified against Medusa API: all 7 slugs confirmed valid
+# - Design files served via http-server on port 7777 (Google Fonts require HTTP)
+# - Add cart/checkout/account/search pages here when implemented
