@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 
+import CategoryFilters from "@modules/categories/components/category-filters"
 import InteractiveLink from "@modules/common/components/interactive-link"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
 import RefinementList from "@modules/store/components/refinement-list"
@@ -14,11 +15,13 @@ export default function CategoryTemplate({
   sortBy,
   page,
   countryCode,
+  activeFilters = {},
 }: {
   category: HttpTypes.StoreProductCategory
   sortBy?: SortOptions
   page?: string
   countryCode: string
+  activeFilters?: Record<string, string[]>
 }) {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
@@ -41,7 +44,19 @@ export default function CategoryTemplate({
       className="flex flex-col small:flex-row small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
+      {/* Sidebar: sort + filters */}
+      <div className="flex small:flex-col gap-8 py-4 mb-8 small:px-0 pl-6 small:min-w-[220px] small:max-w-[220px] small:ml-[1.675rem]">
+        <RefinementList sortBy={sort} data-testid="sort-by-container" />
+        <Suspense fallback={null}>
+          <CategoryFilters
+            categoryId={category.id}
+            countryCode={countryCode}
+            activeFilters={activeFilters}
+          />
+        </Suspense>
+      </div>
+
+      {/* Main content */}
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
@@ -89,6 +104,7 @@ export default function CategoryTemplate({
             page={pageNumber}
             categoryId={category.id}
             countryCode={countryCode}
+            activeFilters={activeFilters}
           />
         </Suspense>
       </div>

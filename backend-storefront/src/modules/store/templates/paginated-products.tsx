@@ -1,5 +1,6 @@
 import { listProductsWithSort } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
+import { applyFilters } from "@lib/util/filter-options"
 import ProductCard from "@modules/products/components/product-card"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
@@ -21,6 +22,7 @@ export default async function PaginatedProducts({
   categoryId,
   productsIds,
   countryCode,
+  activeFilters = {},
 }: {
   sortBy?: SortOptions
   page: number
@@ -28,6 +30,7 @@ export default async function PaginatedProducts({
   categoryId?: string
   productsIds?: string[]
   countryCode: string
+  activeFilters?: Record<string, string[]>
 }) {
   const queryParams: PaginatedProductsParams = {
     limit: 12,
@@ -56,7 +59,7 @@ export default async function PaginatedProducts({
   }
 
   const {
-    response: { products, count },
+    response: { products: allProducts },
   } = await listProductsWithSort({
     page,
     queryParams,
@@ -64,7 +67,11 @@ export default async function PaginatedProducts({
     countryCode,
   })
 
+  const products = applyFilters(allProducts, activeFilters)
+  const count = products.length
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
+  const offset = (page - 1) * PRODUCT_LIMIT
+  const pageProducts = products.slice(offset, offset + PRODUCT_LIMIT)
 
   return (
     <>
@@ -73,17 +80,28 @@ export default async function PaginatedProducts({
         @media (max-width: 860px) { .store-product-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 520px) { .store-product-grid { grid-template-columns: 1fr; } }
       `}</style>
-      <div
-        className="store-product-grid"
-        style={{
-          display: "grid",
-        }}
-        data-testid="products-list"
-      >
-        {products.map((p) => (
-          <ProductCard key={p.id} product={p} />
-        ))}
-      </div>
+      {count === 0 ? (
+        <p
+          style={{
+            fontFamily: "var(--f-mono)",
+            fontSize: "13px",
+            color: "var(--stone-500)",
+            padding: "32px 0",
+          }}
+        >
+          Niciun produs nu corespunde filtrelor selectate.
+        </p>
+      ) : (
+        <div
+          className="store-product-grid"
+          style={{ display: "grid" }}
+          data-testid="products-list"
+        >
+          {pageProducts.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      )}
       {totalPages > 1 && (
         <Pagination
           data-testid="product-pagination"
