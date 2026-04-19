@@ -12,6 +12,7 @@ interface PDPPerk {
 
 interface VariantOption {
   label: string
+  variantId: string
   active?: boolean
   unavailable?: boolean
   discount?: string

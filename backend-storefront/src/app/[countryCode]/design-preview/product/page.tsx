@@ -53,21 +53,21 @@ export default function ProductPage() {
           promoDate="30 aprilie"
           variantGroups={[
             { title: 'Diametru', selectedValue: 'Ø 115 mm', options: [
-              { label: 'Ø115', active: true },
-              { label: 'Ø125' },
-              { label: 'Ø150' },
-              { label: 'Ø180' },
-              { label: 'Ø230' },
+              { label: 'Ø115', variantId: 'preview-v1', active: true },
+              { label: 'Ø125', variantId: 'preview-v2' },
+              { label: 'Ø150', variantId: 'preview-v3' },
+              { label: 'Ø180', variantId: 'preview-v4' },
+              { label: 'Ø230', variantId: 'preview-v5' },
             ]},
             { title: 'Filet / montare', selectedValue: '22.23 mm', options: [
-              { label: '22.23 mm', active: true },
-              { label: 'M14' },
-              { label: '5/8″', unavailable: true },
+              { label: '22.23 mm', variantId: 'preview-v1', active: true },
+              { label: 'M14', variantId: 'preview-v6' },
+              { label: '5/8″', variantId: 'preview-v7', unavailable: true },
             ]},
             { title: 'Pachet', selectedValue: '1 bucată', options: [
-              { label: '1 buc', active: true },
-              { label: '5 buc', discount: '−8%' },
-              { label: '10 buc', discount: '−15%' },
+              { label: '1 buc', variantId: 'preview-v1', active: true },
+              { label: '5 buc', variantId: 'preview-v8', discount: '−8%' },
+              { label: '10 buc', variantId: 'preview-v9', discount: '−15%' },
             ]},
           ]}
           stockLabel="În stoc — 24 bucăți"
