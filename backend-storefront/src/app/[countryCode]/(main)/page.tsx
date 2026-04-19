@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
-import { TrustItem } from '@modules/@shared/components/trust-item'
+import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
 import { ProductCard } from '@modules/products/product-card'
 
@@ -204,12 +204,12 @@ export default function HomePage() {
         </div>
 
         {/* Trust banner */}
-        <div className="trust-banner">
-          <div><TruckIcon fill="none" strokeLinecap="round" /><div><strong>Livrare 24–48h</strong><span>țara întreagă</span></div></div>
-          <div><ReturnIcon fill="none" strokeLinecap="round" /><div><strong>14 zile retur</strong><span>fără întrebări</span></div></div>
-          <div><SecureIcon fill="none" strokeLinecap="round" /><div><strong>Distribuitor autorizat</strong><span>Tenax · Sait · Delta</span></div></div>
-          <div><SupportIcon fill="none" strokeLinecap="round" /><div><strong>Suport tehnic</strong><span>L–V 08–17 · RO</span></div></div>
-        </div>
+        <TrustBanner variant="banner" items={[
+          { icon: <TruckIcon fill="none" strokeLinecap="round" />, title: "Livrare 24–48h", subtitle: "țara întreagă" },
+          { icon: <ReturnIcon fill="none" strokeLinecap="round" />, title: "14 zile retur", subtitle: "fără întrebări" },
+          { icon: <SecureIcon fill="none" strokeLinecap="round" />, title: "Distribuitor autorizat", subtitle: "Tenax · Sait · Delta" },
+          { icon: <SupportIcon fill="none" strokeLinecap="round" />, title: "Suport tehnic", subtitle: "L–V 08–17 · RO" },
+        ]} />
 
         {/* Supplier strip */}
         <div className="supplier-strip">
@@ -303,12 +303,12 @@ export default function HomePage() {
           </div>
         </div>
         <div className="footer-mid">
-          <div className="trust-strip">
-            <TrustItem icon={<ReturnIcon />} title="14 zile retur" subtitle="fără întrebări" />
-            <TrustItem icon={<TruckIcon />} title="Livrare 24-48h" subtitle="țara întreagă" />
-            <TrustItem icon={<SecureIcon />} title="Plată securizată" subtitle="3DSecure · SSL" />
-            <TrustItem icon={<SupportIcon />} title="Suport tehnic" subtitle="L–V 08–17 · RO" />
-          </div>
+          <TrustBanner variant="strip" items={[
+            { icon: <ReturnIcon />, title: "14 zile retur", subtitle: "fără întrebări" },
+            { icon: <TruckIcon />, title: "Livrare 24-48h", subtitle: "țara întreagă" },
+            { icon: <SecureIcon />, title: "Plată securizată", subtitle: "3DSecure · SSL" },
+            { icon: <SupportIcon />, title: "Suport tehnic", subtitle: "L–V 08–17 · RO" },
+          ]} />
           <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
         </div>
         <div className="footer-bot"><div className="wrap"><div className="legal"><a href="#">Termeni &amp; condiții</a><a href="#">Politică confidențialitate</a><a href="#">Politică cookies</a><a href="#">GDPR</a><a href="#">ANPC</a><a href="#">Soluționare litigii</a></div><span className="cr">© 2008–2026 ardmag SRL</span></div></div>

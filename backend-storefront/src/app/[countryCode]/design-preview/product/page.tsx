@@ -4,7 +4,7 @@ import { useState } from "react"
 import { StarRating } from '@modules/@shared/components/star-rating'
 import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
-import { TrustItem } from '@modules/@shared/components/trust-item'
+import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { ProductCard } from '@modules/products/product-card'
@@ -399,12 +399,12 @@ export default function ProductPage() {
           </div>
         </div>
         <div className="footer-mid">
-          <div className="trust-strip">
-            <TrustItem icon={<ReturnIcon />} title="14 zile retur" subtitle="fără întrebări" />
-            <TrustItem icon={<TruckIcon />} title="Livrare 24-48h" subtitle="țara întreagă" />
-            <TrustItem icon={<SecureIcon />} title="Plată securizată" subtitle="3DSecure · SSL" />
-            <TrustItem icon={<SupportIcon />} title="Suport tehnic" subtitle="L–V 08–17 · RO" />
-          </div>
+          <TrustBanner variant="strip" items={[
+            { icon: <ReturnIcon />, title: "14 zile retur", subtitle: "fără întrebări" },
+            { icon: <TruckIcon />, title: "Livrare 24-48h", subtitle: "țara întreagă" },
+            { icon: <SecureIcon />, title: "Plată securizată", subtitle: "3DSecure · SSL" },
+            { icon: <SupportIcon />, title: "Suport tehnic", subtitle: "L–V 08–17 · RO" },
+          ]} />
           <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
         </div>
         <div className="footer-bot"><div className="wrap"><div className="legal"><a href="#">Termeni &amp; condiții</a><a href="#">Politică confidențialitate</a><a href="#">Politică cookies</a><a href="#">GDPR</a><a href="#">ANPC</a><a href="#">Soluționare litigii</a></div><span className="cr">© 2008–2026 ardmag SRL</span></div></div>
