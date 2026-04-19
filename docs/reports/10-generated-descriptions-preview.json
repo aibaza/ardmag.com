@@ -1,0 +1,936 @@
+{
+  "generated_at": "2026-04-18T22:01:03.282166+00:00",
+  "total_products": 31,
+  "auto_generated": 30,
+  "needs_manual": 1,
+  "products": [
+    {
+      "id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+      "handle": "mastic-semisolid",
+      "title": "MASTIC SEMISOLID",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "CULOARE": [
+            "ALB",
+            "BEJ",
+            "JURA"
+          ],
+          "CANTITATE": [
+            "18 LITRI"
+          ]
+        },
+        "tags": [
+          "brand:tenax",
+          "promo:30"
+        ],
+        "variant_count": 3,
+        "price_min_ron": 894.0,
+        "price_max_ron": 1032.0,
+        "ribbon": "PROMO 30%"
+      },
+      "proposed_description": "<p>Mastic poliesteric semisolid pentru lipire, chituire si repararea pietrei naturale si cuartzului. Consistenta semisolida -- intermediara intre varianta lichida si cea solida -- permite aplicarea pe suprafete verticale si in rosturi fara scurgere. Intaritorul nu este inclus; se comanda separat. Produs din gama Tenax.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Culoare: Alb, Bej, Jura</li>\n  <li>Cantitate: 18 litri</li>\n</ul>\n<p><strong>PENTRU</strong> -- Piatra naturala, cuart</p>",
+      "word_count": 58,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QAN2RERNNBDV5RAWFC6E",
+      "handle": "ceramaster-3-step",
+      "title": "CERAMASTER 3 STEP",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DIMENSIUNE": [
+            "K100"
+          ],
+          "GRANULAȚIE": [
+            "STEP 0",
+            "STEP 1",
+            "STEP 2",
+            "STEP 3"
+          ]
+        },
+        "tags": [],
+        "variant_count": 4,
+        "price_min_ron": 107.0,
+        "price_max_ron": 107.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Sistem de slefuire si lustruire in 3 pasi pentru ceramica si gresie porcelanata. Dischetele se folosesc progresiv de la abrazare initiala (Step 0) la finisare finala (Step 3), obtinand suprafete lustruite fara urme. Utilizare umeda, diametru 100 mm.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Dimensiune: K100 (100 mm)</li>\n  <li>Granulatie: Step 0, Step 1, Step 2, Step 3</li>\n</ul>\n<p><strong>PENTRU</strong> -- Ceramica, gresie porcelanata</p>",
+      "word_count": 58,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QB1MWAWC8Y4S0AKPYS48",
+      "handle": "dischete-de-slefuit-diamantate",
+      "title": "DISCHETE DE ȘLEFUIT DIAMANTATE",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP DISCHETĂ": [
+            "K100",
+            "K125",
+            "K150",
+            "K80"
+          ],
+          "SPECIALIZARE": [
+            "DRY",
+            "MARMURĂ DRY",
+            "MARMURĂ WET",
+            "OMNIST",
+            "PODELE",
+            "PREMIUM EDGE",
+            "PRESTIGE EDGE",
+            "WET"
+          ],
+          "GRANULAȚIE": [
+            "100",
+            "1500",
+            "200",
+            "3000",
+            "400",
+            "50",
+            "800",
+            "BUFF BLACK",
+            "BUFF WHITE"
+          ]
+        },
+        "tags": [],
+        "variant_count": 85,
+        "price_min_ron": 59.5,
+        "price_max_ron": 500.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Dischete diamantate flexibile pentru slefuirea si lustruitul pietrei naturale si ceramicii. Disponibile in 4 diametre, cu specializari pentru utilizare uscata (dry) si umeda (wet), si granulatie de la 50 la 3000. Variantele Buff Black si Buff White sunt utilizate pentru finisare finala fara granulatie abraziva.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Diametru: K80, K100, K125, K150</li>\n  <li>Specializare: Dry, Wet, Marmura Dry, Marmura Wet, Omnist, Podele, Premium Edge, Prestige Edge</li>\n  <li>Granulatie: 50, 100, 200, 400, 800, 1500, 3000, Buff Black, Buff White</li>\n</ul>",
+      "word_count": 77,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QGQTPYW4QDFDX916K3XY",
+      "handle": "intaritor-mastic",
+      "title": "ÎNTĂRITOR MASTIC",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "MĂRIME": [
+            "MARE",
+            "MEDIU",
+            "MIC"
+          ]
+        },
+        "tags": [
+          "brand:tenax"
+        ],
+        "variant_count": 3,
+        "price_min_ron": 10.0,
+        "price_max_ron": 90.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Intaritor (catalizator) pentru masticuri poliesterice Tenax. Se dozeaza proportional cu masticul de baza: cantitatea influenteaza direct timpul de gel si duritatea finala. Marimea ambalajului se alege in functie de volumul de lucru. Produs din gama Tenax.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Marime: Mic, Mediu, Mare</li>\n</ul>",
+      "word_count": 42,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QH3JVKH54440SEXE99EN",
+      "handle": "set-pigmenti",
+      "title": "SET PIGMENȚI",
+      "category": "",
+      "inputs_used": {
+        "options": {},
+        "tags": [
+          "brand:tenax",
+          "promo:30"
+        ],
+        "variant_count": 1,
+        "price_min_ron": 296.0,
+        "price_max_ron": 296.0,
+        "ribbon": "PROMO 30%"
+      },
+      "proposed_description": "<p>Set de pigmenti pentru colorarea masticurilor si adezivilor poliesterici Tenax. Pigmentii se amesteca in proportii variabile cu masticul de baza pentru obtinerea tonului dorit la lipire, chituire si reparare piatra. Compatibili cu toate masticurile poliesterice din gama Tenax. Produs din gama Tenax.</p>",
+      "word_count": 42,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QNX3SR0632PMKQ33R6AK",
+      "handle": "discuri-marmura-si-andezit-tola-second",
+      "title": "DISCURI MARMURĂ ȘI ANDEZIT TOLA SECOND",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP PIATRĂ": [
+            "ANDEZIT",
+            "MARMURĂ"
+          ],
+          "DIAMETRU": [
+            "1000",
+            "1100",
+            "1200"
+          ]
+        },
+        "tags": [],
+        "variant_count": 6,
+        "price_min_ron": 2862.0,
+        "price_max_ron": 4076.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Discuri diamantate de mare diametru pentru taierea marmurii si andezitului, disponibile in varianta recondiționata (second). Utilizate pe fierastraie cu pod (bridge saw), indicate pentru taieri transversale in fabricile de prelucrare a pietrei. Repastilarea reface segmentele diamantate la capacitate operationala.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Tip piatra: Marmura, Andezit</li>\n  <li>Diametru: 1000, 1100, 1200 mm</li>\n</ul>\n<p><strong>PENTRU</strong> -- Marmura, andezit</p>",
+      "word_count": 54,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QPBX71ASJF208VPW24RP",
+      "handle": "discuri-speciale",
+      "title": "DISCURI SPECIALE",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "SPECIALIZARE": [
+            "CERAMICĂ",
+            "CERAMICĂ CC",
+            "CERAMICĂ DD",
+            "CERAMICĂ DM",
+            "CERAMICĂ PROFILAT",
+            "DC",
+            "DEKTON NOU",
+            "DEKTON REPASTILAT",
+            "DEKTON SILENȚIOS",
+            "EDGE DRY",
+            "GRESIE",
+            "GRESIE SB",
+            "HARD CERAMIC",
+            "HD",
+            "LT39K",
+            "SILENȚIOS TLS"
+          ],
+          "DIAMETRU": [
+            "125",
+            "200",
+            "250",
+            "300",
+            "400",
+            "500"
+          ]
+        },
+        "tags": [],
+        "variant_count": 17,
+        "price_min_ron": 187.0,
+        "price_max_ron": 2101.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Discuri diamantate pentru taierea ceramicii, greșiei, materialelor tehnice tip Dekton si a altor materiale cu duritate sau abrazivitate ridicata. Fiecare varianta de specializare este optimizata pentru comportamentul specific al materialului taiat -- viteza de avans, generare de caldura, calitatea taieturii.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Specializare: Ceramica, Ceramica CC, Ceramica DD, Ceramica DM, Ceramica Profilat, Gresie, Gresie SB, Hard Ceramic, Dekton Nou, Dekton Repastilat, Dekton Silentios, Edge Dry, HD, LT39K, Silentios TLS, DC</li>\n  <li>Diametru: 125, 200, 250, 300, 400, 500 mm</li>\n</ul>\n<p><strong>PENTRU</strong> -- Ceramica, gresie porcelanata, Dekton, materiale tehnice</p>",
+      "word_count": 86,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QQ9QY8RZKG2MMMJCM223",
+      "handle": "discuri-de-andezit",
+      "title": "DISCURI DE ANDEZIT",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DIAMETRU": [
+            "1000",
+            "1100",
+            "1200",
+            "1300",
+            "1600",
+            "2000",
+            "300",
+            "350",
+            "400",
+            "450",
+            "500",
+            "600",
+            "700",
+            "800",
+            "900"
+          ],
+          "CATEGORIE": [
+            "NOU",
+            "REPASTILAT",
+            "SILENȚIOS"
+          ]
+        },
+        "tags": [
+          "material:andezit"
+        ],
+        "variant_count": 36,
+        "price_min_ron": 458.0,
+        "price_max_ron": 20629.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Discuri diamantate pentru taierea andezitului. Disponibile in 15 diametre, de la 300 la 2000 mm, in variante noi, repastilate sau silentioase. Variantele silentioase reduc vibratia si nivelul de zgomot in productie.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Diametru: 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1600, 2000 mm</li>\n  <li>Categorie: Nou, Repastilat, Silentios</li>\n</ul>\n<p><strong>PENTRU</strong> -- Andezit</p>",
+      "word_count": 57,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QQZRY2ZCRXP4W8RPW2YP",
+      "handle": "discuri-de-granit",
+      "title": "DISCURI DE GRANIT",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DIAMETRU": [
+            "250",
+            "300",
+            "350",
+            "400",
+            "450",
+            "500",
+            "600",
+            "700",
+            "800"
+          ],
+          "CATEGORIE": [
+            "NOU",
+            "REPASTILAT",
+            "SILENȚIOS"
+          ]
+        },
+        "tags": [
+          "material:granit"
+        ],
+        "variant_count": 26,
+        "price_min_ron": 434.0,
+        "price_max_ron": 2951.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Discuri diamantate pentru taierea granitului. Disponibile in 9 diametre, de la 250 la 800 mm, in variante noi, repastilate sau silentioase. Variantele silentioase sunt recomandate pentru medii de lucru cu cerinte reduse de zgomot.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Diametru: 250, 300, 350, 400, 450, 500, 600, 700, 800 mm</li>\n  <li>Categorie: Nou, Repastilat, Silentios</li>\n</ul>\n<p><strong>PENTRU</strong> -- Granit</p>",
+      "word_count": 54,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QRH9241QA4PF0PB0ZMDV",
+      "handle": "discuri-orizontale-de-marmura-si-andezit",
+      "title": "DISCURI ORIZONTALE DE MARMURĂ ȘI ANDEZIT",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP PIATRĂ": [
+            "ANDEZIT",
+            "MARMURĂ"
+          ],
+          "DIAMETRU": [
+            "400",
+            "450",
+            "500",
+            "600",
+            "625",
+            "650"
+          ],
+          "CATEGORIE": [
+            "NOU",
+            "REPASTILAT"
+          ]
+        },
+        "tags": [],
+        "variant_count": 20,
+        "price_min_ron": 750.0,
+        "price_max_ron": 2136.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Discuri orizontale pentru taierea marmurii si andezitului, disponibile in variante noi si repastilate. Concepute pentru fierastraie cu cap orizontal, folosite la profilarea si retezarea blocurilor si placilor groase.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Diametru: 400, 450, 500, 600, 625, 650 mm</li>\n  <li>Tip piatra: Marmura, Andezit</li>\n  <li>Categorie: Nou, Repastilat</li>\n</ul>\n<p><strong>PENTRU</strong> -- Marmura, andezit</p>",
+      "word_count": 49,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QS2YNHWSA8JX304GNF0N",
+      "handle": "discuri-marmura",
+      "title": "DISCURI MARMURĂ",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DIAMETRU": [
+            "1000",
+            "1100",
+            "1200",
+            "1300",
+            "1600",
+            "1800",
+            "2000",
+            "300",
+            "350",
+            "400",
+            "450",
+            "500",
+            "600",
+            "700",
+            "800",
+            "900"
+          ],
+          "CATEGORIE": [
+            "NOU",
+            "REPASTILAT",
+            "SILENȚIOS"
+          ]
+        },
+        "tags": [
+          "material:marmura"
+        ],
+        "variant_count": 38,
+        "price_min_ron": 405.0,
+        "price_max_ron": 14464.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Discuri diamantate pentru taierea marmurii. Disponibile in 16 diametre, de la 300 la 2000 mm, in variante noi, repastilate sau silentioase. Gama acopera atat masini portabile cat si fierastraie industriale cu pod.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Diametru: 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1600, 1800, 2000 mm</li>\n  <li>Categorie: Nou, Repastilat, Silentios</li>\n</ul>\n<p><strong>PENTRU</strong> -- Marmura</p>",
+      "word_count": 59,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QST4GGBMKVZS2DFG1SYP",
+      "handle": "pompa-cu-apa",
+      "title": "POMPĂ CU APĂ",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP POMPĂ": [
+            "S2",
+            "S3"
+          ],
+          "CABLU": [
+            "CABLU LUNG",
+            "CABLU SCURT"
+          ]
+        },
+        "tags": [],
+        "variant_count": 2,
+        "price_min_ron": 595.0,
+        "price_max_ron": 744.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Pompa de apa pentru alimentarea sistemelor de racire la masini de taiat si slefuit piatra. Racierea cu apa este obligatorie la utilizarea discurilor diamantate, prelungind durata de viata a sculelor si reducand praful. Disponibila in 2 modele, cu cablu scurt sau lung.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Model: S2, S3</li>\n  <li>Cablu: Scurt, Lung</li>\n</ul>",
+      "word_count": 50,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QT5R2Y6EF1SGMKZ5WC1M",
+      "handle": "masa-de-taiat",
+      "title": "MASĂ DE TĂIAT",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "MODEL MASĂ": [
+            "MS",
+            "SW"
+          ],
+          "LUNGIME TĂIERE": [
+            "100",
+            "125",
+            "150",
+            "200",
+            "60",
+            "80"
+          ]
+        },
+        "tags": [],
+        "variant_count": 6,
+        "price_min_ron": 9431.0,
+        "price_max_ron": 20230.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Masa de taiat pentru prelucrarea placilor din piatra naturala, ceramica si materiale compozite. Dotata cu sistem de ghidaj si alimentare cu apa. Disponibila in 2 modele constructive, cu lungimi de taiere de la 60 la 200 cm.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Model: MS, SW</li>\n  <li>Lungime taiere: 60, 80, 100, 125, 150, 200 cm</li>\n</ul>",
+      "word_count": 51,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QTJNXF2DAWMRZZQHCWZG",
+      "handle": "suport-frankfurt",
+      "title": "SUPORT FRANKFURT",
+      "category": "",
+      "inputs_used": {
+        "options": {},
+        "tags": [],
+        "variant_count": 1,
+        "price_min_ron": 17.5,
+        "price_max_ron": 17.5,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Suport (adaptor) pentru montarea abrazivilor tip Frankfurt pe masini de slefuit piatra. Compatibil cu abrazivi anelli, tangentiali si Frankfurt standard. Componenta de schimb; se verifica uzura periodic. Vandut per bucata.</p>",
+      "word_count": 30,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QTXWCCHF6DE9WMQSPDSG",
+      "handle": "lana-de-otel",
+      "title": "LÂNĂ DE OȚEL",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "GRANULAȚIE": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "tags": [],
+        "variant_count": 4,
+        "price_min_ron": 1190.0,
+        "price_max_ron": 1190.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Lana de otel pentru lustruire manuala si curatarea suprafetelor din piatra naturala. Indicata pentru finisaj fin, eliminarea urmelor superficiale si pregatirea suprafetei inaintea ceruirii. Granulatie 0 este cea mai fina, 3 este cea mai grosiera.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Granulatie: 0 (fina), 1, 2, 3 (grosiera)</li>\n</ul>",
+      "word_count": 44,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QV9N7TAQRMEGKQTB85J9",
+      "handle": "creion",
+      "title": "CREION",
+      "category": "",
+      "inputs_used": {
+        "options": {},
+        "tags": [],
+        "variant_count": 1,
+        "price_min_ron": 10.7,
+        "price_max_ron": 10.7,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Creion pentru marcare pe suprafete din piatra naturala. Utilizat la trasarea liniilor de taiere si a reperelor pe placi si blocuri. Vandut per bucata.</p>",
+      "word_count": 24,
+      "needs_manual": true,
+      "reason_if_manual": "Denumire generica, fara optiuni specificate, fara categorie sau brand. Descrierea propusa e o interpretare standard (creion de marcare). Necesita confirmare de la Cristian -- ar putea fi creion diamantat, cerograf sau alt tip."
+    },
+    {
+      "id": "prod_01KPH3QVMZMF86QCTPBVKTFQ8G",
+      "handle": "baton",
+      "title": "BATON",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP PIATRĂ": [
+            "GRANIT",
+            "MARMURĂ"
+          ]
+        },
+        "tags": [],
+        "variant_count": 2,
+        "price_min_ron": 50.0,
+        "price_max_ron": 83.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Baton abraziv pentru lustruire manuala si conditionarea (dressing) uneltelor diamantate. Folosit la redeschiderea segmentelor diamantate colmatate sau la finisarea manuala a muchiilor. Disponibil in variante pentru granit si pentru marmura.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Tip piatra: Granit, Marmura</li>\n</ul>\n<p><strong>PENTRU</strong> -- Granit, marmura</p>",
+      "word_count": 40,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QW0DH2A7M0J2A8WZASNW",
+      "handle": "material-dezancrasant",
+      "title": "MATERIAL DEZANCRASANT",
+      "category": "",
+      "inputs_used": {
+        "options": {},
+        "tags": [],
+        "variant_count": 1,
+        "price_min_ron": 57.7,
+        "price_max_ron": 57.7,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Material dezancrasant pentru indepartarea depunerilor calcaroase, incrustațiilor si resturilor de adeziv de pe suprafete din piatra naturala si de pe echipamentele de prelucrare. Utilizare in atelier sau pe santier. Vandut per unitate.</p>",
+      "word_count": 32,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QWQEHXPRQ42YXTP83QMZ",
+      "handle": "acid-oxalic",
+      "title": "ACID OXALIC",
+      "category": "",
+      "inputs_used": {
+        "options": {},
+        "tags": [],
+        "variant_count": 1,
+        "price_min_ron": 190.0,
+        "price_max_ron": 190.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Acid oxalic pulbere pentru curatarea si albirea suprafetelor din marmura, calcar si piatra alba. Eficient in indepartarea petelor de rugina, a taninurilor (pete de lemn sau tanin) si a decolorarilor provocate de oxidare. Se foloseste in solutie apoasa. Vandut per unitate.</p>",
+      "word_count": 41,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QX2TN1ZHB2XNPWFPJV0G",
+      "handle": "pasla",
+      "title": "PÂSLĂ",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DENUMIRE": [
+            "PÂSLĂ",
+            "PÂSLĂ PERIE VELCRO"
+          ],
+          "DIAMETRU": [
+            "125",
+            "180"
+          ]
+        },
+        "tags": [],
+        "variant_count": 3,
+        "price_min_ron": 40.0,
+        "price_max_ron": 110.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Pâsla pentru lustruire finala a suprafetelor din piatra naturala. Se utilizeaza cu pasta de lustruit sau fara, in etapa finala a procesului de slefuire. Disponibila in versiune standard si cu prindere velcro (pentru polizoare cu pad velcro), in diametrele 125 si 180 mm.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Tip: Pâsla, Pâsla Perie Velcro</li>\n  <li>Diametru: 125, 180 mm</li>\n</ul>",
+      "word_count": 54,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QXE74RSJBAC2CHPTD196",
+      "handle": "abrazivi-anelli",
+      "title": "ABRAZIVI ANELLI",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP ANELLI": [
+            "EXTRA",
+            "FIXARE DREAPTA",
+            "FIXARE FRONTALĂ",
+            "FIXARE STÂNGA",
+            "SUPERLUX",
+            "TORO (FIX. DREAPTA)",
+            "TORO 5 EXTRA (DREAPTA)",
+            "TORO SUPERLUX"
+          ],
+          "GRANULAȚIE": [
+            "1000",
+            "120",
+            "1200",
+            "220",
+            "24",
+            "320",
+            "36",
+            "400",
+            "46",
+            "500",
+            "60",
+            "600",
+            "80",
+            "800",
+            "STANDARD"
+          ]
+        },
+        "tags": [],
+        "variant_count": 52,
+        "price_min_ron": 23.2,
+        "price_max_ron": 87.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Abrazivi tip inel pentru slefuirea si finisarea pietrei naturale pe masini cu cap rotor. Disponibili in mai multe tipuri de fixare (dreapta, stanga, frontala) pentru compatibilitate cu diferite modele de masini. Gama acoper granulații de la degrosare (24) la lustruit (1200).</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Tip: Extra, Superlux, Toro, Toro 5 Extra, Toro Superlux -- cu fixare dreapta, stanga sau frontala</li>\n  <li>Granulatie: 24, 36, 46, 60, 80, 120, 220, 320, 400, 500, 600, 800, 1000, 1200, Standard</li>\n</ul>",
+      "word_count": 75,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3QYK5TND63QPZ7S8TRV6W",
+      "handle": "abrazivi-tangentiali",
+      "title": "ABRAZIVI TANGENȚIALI",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP TANGENȚIAL": [
+            "GRANIT",
+            "GRANIT SUPERLUX",
+            "MARMURĂ",
+            "MARMURĂ PRESAT"
+          ],
+          "GRANULAȚIE": [
+            "1000",
+            "120",
+            "1200",
+            "16",
+            "180",
+            "220",
+            "24",
+            "320",
+            "36",
+            "400",
+            "46",
+            "500",
+            "60",
+            "600",
+            "80",
+            "800",
+            "STANDARD"
+          ]
+        },
+        "tags": [],
+        "variant_count": 23,
+        "price_min_ron": 16.0,
+        "price_max_ron": 69.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Abrazivi tangentiali pentru slefuirea si profilarea muchiilor la granit si marmura. Variantele Superlux ofera durata de viata extinsa la granulații mari. Variantele Presat sunt indicate pentru presiuni de lucru ridicate. Gama acopera granulații de la degrosare (16) la lustruit (1200).</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Tip: Granit, Granit Superlux, Marmura, Marmura Presat</li>\n  <li>Granulatie: 16, 24, 36, 46, 60, 80, 120, 180, 220, 320, 400, 500, 600, 800, 1000, 1200, Standard</li>\n</ul>\n<p><strong>PENTRU</strong> -- Granit, marmura</p>",
+      "word_count": 71,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R532S3SXJ1G2T9GNVVQ0",
+      "handle": "burghiu",
+      "title": "BURGHIU",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DIAMETRU": [
+            "10 mm",
+            "6 mm",
+            "8 mm"
+          ]
+        },
+        "tags": [],
+        "variant_count": 3,
+        "price_min_ron": 179.0,
+        "price_max_ron": 214.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Burghiu diamantat pentru gaurirea placilor si blocurilor din piatra naturala, marmura, granit si ceramica. Utilizare obligatorie cu alimentare cu apa pentru racire si evacuarea aschiilor. Disponibil in 3 diametre.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Diametru: 6 mm, 8 mm, 10 mm</li>\n</ul>",
+      "word_count": 38,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R5EJHTMN0AD68C9CZ7SA",
+      "handle": "pad-cauciuc",
+      "title": "PAD CAUCIUC",
+      "category": "",
+      "inputs_used": {
+        "options": {},
+        "tags": [],
+        "variant_count": 1,
+        "price_min_ron": 77.0,
+        "price_max_ron": 77.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Pad cauciuc (suport flexibil) pentru fixarea dischetelor si pâslelor de lustruit pe polizoare unghiulare si masini de slefuit. Asigura contact uniform intre discheta si suprafata, absorband vibratiile. Compatibil cu dischete cu prindere velcro. Vandut per bucata.</p>",
+      "word_count": 36,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R5SRPHQC3NWC6ZBGKDW1",
+      "handle": "burete-diamantat",
+      "title": "BURETE DIAMANTAT",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "GRANULAȚIE": [
+            "100",
+            "1500",
+            "200",
+            "3000",
+            "400",
+            "50",
+            "800"
+          ]
+        },
+        "tags": [],
+        "variant_count": 7,
+        "price_min_ron": 89.0,
+        "price_max_ron": 89.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Burete diamantat (hand pad) pentru slefuire si lustruire manuala a pietrei naturale. Utilizat la lucrari de detaliu, margini, profile si zone inaccesibile masinilor. Se foloseste umed, cu apa. Disponibil in 7 granulații de la degrosare (50) la lustruit fin (3000).</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Granulatie: 50, 100, 200, 400, 800, 1500, 3000</li>\n</ul>",
+      "word_count": 50,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R6NCGWK7J2PFKFN5JW3H",
+      "handle": "carote-diamantate",
+      "title": "CAROTE DIAMANTATE",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DIAMETRU": [
+            "100",
+            "20",
+            "25",
+            "35",
+            "40",
+            "45",
+            "50",
+            "60",
+            "63",
+            "70",
+            "80",
+            "90"
+          ]
+        },
+        "tags": [],
+        "variant_count": 12,
+        "price_min_ron": 345.0,
+        "price_max_ron": 755.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Carote diamantate pentru gaurirea umeda a placilor si blocurilor din piatra naturala, granit, marmura si ceramica. Compatibile cu masini de gaurit cu alimentare cu apa. Disponibile in 12 diametre, de la 20 la 100 mm.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Diametru: 20, 25, 35, 40, 45, 50, 60, 63, 70, 80, 90, 100 mm</li>\n</ul>",
+      "word_count": 51,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R7E0WX7N03CPKBS2G846",
+      "handle": "abrazivi-oala",
+      "title": "ABRAZIVI OALĂ",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "TIP OALĂ": [
+            "MINIOALĂ",
+            "OALĂ"
+          ],
+          "GRANULAȚIE": [
+            "120",
+            "16",
+            "220",
+            "24",
+            "320",
+            "36",
+            "400",
+            "60",
+            "80"
+          ]
+        },
+        "tags": [],
+        "variant_count": 17,
+        "price_min_ron": 50.0,
+        "price_max_ron": 137.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Abrazivi tip oala pentru slefuirea si profilarea suprafetelor din piatra naturala. Versiunea oala este pentru masini de masa, minioala pentru masini portabile. Disponibili in 9 granulații, de la degrosare (16) la finisare (400).</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Tip: Oala, Minioala</li>\n  <li>Granulatie: 16, 24, 36, 60, 80, 120, 220, 320, 400</li>\n</ul>",
+      "word_count": 48,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R7WE30598F1E0FSFH1PA",
+      "handle": "intretinere-si-ceruri",
+      "title": "ÎNTREȚINERE ȘI CERURI",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DENUMIRE": [
+            "REFLEX NERA",
+            "REFLEX NEUTRĂ",
+            "SILWAX"
+          ],
+          "CANTITATE": [
+            "1 LITRU",
+            "700 GRAME"
+          ]
+        },
+        "tags": [],
+        "variant_count": 3,
+        "price_min_ron": 60.0,
+        "price_max_ron": 80.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Produse de intretinere si ceruire pentru piatra naturala -- ceara de protectie si conservare a suprafetelor finite. Reflex Nera este indicata pentru pietre inchise la culoare, Reflex Neutra pentru pietre deschise, Silwax pentru o protectie hidrofuga suplimentara.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Produs: Reflex Nera, Reflex Neutra, Silwax</li>\n  <li>Cantitate: 1 litru, 700 grame</li>\n</ul>",
+      "word_count": 50,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R88A0WFG689AV7Y0XTZ7",
+      "handle": "detergenti-acizi",
+      "title": "DETERGENȚI ACIZI",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DENUMIRE": [
+            "DE GRAUB",
+            "SABBIATORE AX/F"
+          ],
+          "CANTITATE": [
+            "1 LITRU",
+            "5 KG",
+            "5 LITRI"
+          ]
+        },
+        "tags": [],
+        "variant_count": 3,
+        "price_min_ron": 54.0,
+        "price_max_ron": 238.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Detergenti cu actiune acida pentru curatarea pietrei naturale. De Graub este specializat pe indepartarea cimentului, chitului si calcarului. Sabbiatore AX/F actioneaza mecano-chimic prin abraziune fina si degresare. Disponibili in ambalaje de 1 litru si 5 litri/kg.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Produs: De Graub, Sabbiatore AX/F</li>\n  <li>Cantitate: 1 litru, 5 litri, 5 kg</li>\n</ul>",
+      "word_count": 50,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R8M9CSVZX6VR3GG8EVH5",
+      "handle": "detergenti",
+      "title": "DETERGENȚI",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DENUMIRE": [
+            "CLEAN STONE",
+            "MAC MUD",
+            "SOLVENTE GAMMA",
+            "TERGON"
+          ],
+          "CANTITATE": [
+            "1 LITRU",
+            "5 LITRI"
+          ]
+        },
+        "tags": [],
+        "variant_count": 8,
+        "price_min_ron": 54.0,
+        "price_max_ron": 238.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Detergenti pentru curatarea si degresarea suprafetelor din piatra naturala. Clean Stone este pentru curatare generala, Mac Mud pentru murdarie grea si namol de slefuire, Solvente Gamma pentru pete organice si grasimi, Tergon pentru indepartarea reziduurilorchimice.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Produs: Clean Stone, Mac Mud, Solvente Gamma, Tergon</li>\n  <li>Cantitate: 1 litru, 5 litri</li>\n</ul>",
+      "word_count": 50,
+      "needs_manual": false,
+      "reason_if_manual": null
+    },
+    {
+      "id": "prod_01KPH3R91T9XXZGTN2KA0KGQH5",
+      "handle": "tratamente-specifice",
+      "title": "TRATAMENTE SPECIFICE",
+      "category": "",
+      "inputs_used": {
+        "options": {
+          "DENUMIRE": [
+            "PROLUX",
+            "RES 1001",
+            "STONE WET"
+          ],
+          "CANTITATE": [
+            "1 LITRU",
+            "5 LITRI"
+          ]
+        },
+        "tags": [],
+        "variant_count": 6,
+        "price_min_ron": 74.0,
+        "price_max_ron": 744.0,
+        "ribbon": ""
+      },
+      "proposed_description": "<p>Tratamente specializate pentru finisarea si protectia suprafetelor din piatra naturala. Prolux este un produs de lustruit, Res 1001 pentru restaurarea aspectului pietrei imbatranite sau deteriorate, Stone Wet pentru efect vizual wet (piatra umeda). Disponibile in ambalaje de 1 si 5 litri.</p>\n<p><strong>DISPONIBIL IN</strong></p>\n<ul>\n  <li>Produs: Prolux, Res 1001, Stone Wet</li>\n  <li>Cantitate: 1 litru, 5 litri</li>\n</ul>",
+      "word_count": 54,
+      "needs_manual": false,
+      "reason_if_manual": null
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "category": {
+    "id": "pcat_01KPH3851NZYN18KMB5MVQG5JY",
+    "name": "MESE DE TĂIAT",
+    "description": "",
+    "handle": "mese-de-taiat",
+    "is_active": true,
+    "is_internal": false,
+    "rank": 6,
+    "parent_category_id": null,
+    "created_at": "2026-04-18T20:06:55.286Z",
+    "updated_at": "2026-04-18T20:06:55.286Z",
+    "metadata": null,
+    "parent_category": null,
+    "category_children": []
+  },
+  "product_count": 2,
+  "products": [
+    {
+      "id": "prod_01KPH3QST4GGBMKVZS2DFG1SYP",
+      "title": "POMPĂ CU APĂ",
+      "handle": "pompa-cu-apa",
+      "status": "published",
+      "thumbnail": "/static/images/pompa-cu-apa/db3b5a_02ca199f549b4f23a15d90e5de0eabac.jpg",
+      "variant_count": 2,
+      "price_min_ron": 595.0,
+      "price_max_ron": 744.0,
+      "options": {
+        "TIP POMPĂ": [
+          "S2",
+          "S3"
+        ],
+        "CABLU": [
+          "CABLU LUNG",
+          "CABLU SCURT"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3QT5R2Y6EF1SGMKZ5WC1M",
+      "title": "MASĂ DE TĂIAT",
+      "handle": "masa-de-taiat",
+      "status": "published",
+      "thumbnail": "/static/images/masa-de-taiat/db3b5a_0946a46c6a074b21bab75680856c960d.jpg",
+      "variant_count": 6,
+      "price_min_ron": 9431.0,
+      "price_max_ron": 20230.0,
+      "options": {
+        "MODEL MASĂ": [
+          "MS",
+          "SW"
+        ],
+        "LUNGIME TĂIERE": [
+          "100",
+          "125",
+          "150",
+          "200",
+          "60",
+          "80"
+        ]
+      }
+    }
+  ]
+}

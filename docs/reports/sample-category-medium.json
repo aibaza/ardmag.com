@@ -1,0 +1,239 @@
+{
+  "category": {
+    "id": "pcat_01KPH384QDM0G3QXCG9WBZN9K3",
+    "name": "DISCURI DE TĂIERE",
+    "description": "",
+    "handle": "discuri-de-taiere",
+    "is_active": true,
+    "is_internal": false,
+    "rank": 5,
+    "parent_category_id": null,
+    "created_at": "2026-04-18T20:06:54.957Z",
+    "updated_at": "2026-04-18T20:06:54.957Z",
+    "metadata": null,
+    "parent_category": null,
+    "category_children": []
+  },
+  "product_count": 7,
+  "products": [
+    {
+      "id": "prod_01KPH3QNX3SR0632PMKQ33R6AK",
+      "title": "DISCURI MARMURĂ ȘI ANDEZIT TOLA SECOND",
+      "handle": "discuri-marmura-si-andezit-tola-second",
+      "status": "published",
+      "thumbnail": "/static/images/discuri-marmura-si-andezit-tola-second/db3b5a_31c4770e784f40dab2c8aae029b99c86.jpg",
+      "variant_count": 6,
+      "price_min_ron": 2862.0,
+      "price_max_ron": 4076.0,
+      "options": {
+        "TIP PIATRĂ": [
+          "ANDEZIT",
+          "MARMURĂ"
+        ],
+        "DIAMETRU": [
+          "1000",
+          "1100",
+          "1200"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3QPBX71ASJF208VPW24RP",
+      "title": "DISCURI SPECIALE",
+      "handle": "discuri-speciale",
+      "status": "published",
+      "thumbnail": "/static/images/discuri-speciale/db3b5a_7717ed64e184492883dd85af22ea4e94.webp",
+      "variant_count": 17,
+      "price_min_ron": 187.0,
+      "price_max_ron": 2101.0,
+      "options": {
+        "SPECIALIZARE": [
+          "CERAMICĂ",
+          "CERAMICĂ CC",
+          "CERAMICĂ DD",
+          "CERAMICĂ DM",
+          "CERAMICĂ PROFILAT",
+          "DC",
+          "DEKTON NOU",
+          "DEKTON REPASTILAT",
+          "DEKTON SILENȚIOS",
+          "EDGE DRY",
+          "GRESIE",
+          "GRESIE SB",
+          "HARD CERAMIC",
+          "HD",
+          "LT39K",
+          "SILENȚIOS TLS"
+        ],
+        "DIAMETRU": [
+          "125",
+          "200",
+          "250",
+          "300",
+          "400",
+          "500"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3QQ9QY8RZKG2MMMJCM223",
+      "title": "DISCURI DE ANDEZIT",
+      "handle": "discuri-de-andezit",
+      "status": "published",
+      "thumbnail": "/static/images/discuri-de-andezit/db3b5a_31c4770e784f40dab2c8aae029b99c86.jpg",
+      "variant_count": 36,
+      "price_min_ron": 458.0,
+      "price_max_ron": 20629.0,
+      "options": {
+        "DIAMETRU": [
+          "1000",
+          "1100",
+          "1200",
+          "1300",
+          "1600",
+          "2000",
+          "300",
+          "350",
+          "400",
+          "450",
+          "500",
+          "600",
+          "700",
+          "800",
+          "900"
+        ],
+        "CATEGORIE": [
+          "NOU",
+          "REPASTILAT",
+          "SILENȚIOS"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3QQZRY2ZCRXP4W8RPW2YP",
+      "title": "DISCURI DE GRANIT",
+      "handle": "discuri-de-granit",
+      "status": "published",
+      "thumbnail": "/static/images/discuri-de-granit/db3b5a_31c4770e784f40dab2c8aae029b99c86.jpg",
+      "variant_count": 26,
+      "price_min_ron": 434.0,
+      "price_max_ron": 2951.0,
+      "options": {
+        "DIAMETRU": [
+          "250",
+          "300",
+          "350",
+          "400",
+          "450",
+          "500",
+          "600",
+          "700",
+          "800"
+        ],
+        "CATEGORIE": [
+          "NOU",
+          "REPASTILAT",
+          "SILENȚIOS"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3QRH9241QA4PF0PB0ZMDV",
+      "title": "DISCURI ORIZONTALE DE MARMURĂ ȘI ANDEZIT",
+      "handle": "discuri-orizontale-de-marmura-si-andezit",
+      "status": "published",
+      "thumbnail": "/static/images/discuri-orizontale-de-marmura-si-andezit/db3b5a_31c4770e784f40dab2c8aae029b99c86.jpg",
+      "variant_count": 20,
+      "price_min_ron": 750.0,
+      "price_max_ron": 2136.0,
+      "options": {
+        "TIP PIATRĂ": [
+          "ANDEZIT",
+          "MARMURĂ"
+        ],
+        "DIAMETRU": [
+          "400",
+          "450",
+          "500",
+          "600",
+          "625",
+          "650"
+        ],
+        "CATEGORIE": [
+          "NOU",
+          "REPASTILAT"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3QS2YNHWSA8JX304GNF0N",
+      "title": "DISCURI MARMURĂ",
+      "handle": "discuri-marmura",
+      "status": "published",
+      "thumbnail": "/static/images/discuri-marmura/db3b5a_31c4770e784f40dab2c8aae029b99c86.jpg",
+      "variant_count": 38,
+      "price_min_ron": 405.0,
+      "price_max_ron": 14464.0,
+      "options": {
+        "DIAMETRU": [
+          "1000",
+          "1100",
+          "1200",
+          "1300",
+          "1600",
+          "1800",
+          "2000",
+          "300",
+          "350",
+          "400",
+          "450",
+          "500",
+          "600",
+          "700",
+          "800",
+          "900"
+        ],
+        "CATEGORIE": [
+          "NOU",
+          "REPASTILAT",
+          "SILENȚIOS"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3RARSHDETG3XC6TGWJJ35",
+      "title": "DISCURI DE TĂIERE DIAMANTATE",
+      "handle": "discuri-de-taiere-diamantate",
+      "status": "published",
+      "thumbnail": "/static/images/discuri-de-taiere-diamantate/db3b5a_775b40ff19bd435cb3c7af6834309391.jpg",
+      "variant_count": 19,
+      "price_min_ron": 161.0,
+      "price_max_ron": 458.0,
+      "options": {
+        "TIP PIATRĂ": [
+          "DISC GRANIT",
+          "DISC MARMURĂ"
+        ],
+        "TIP DISC": [
+          "CURB",
+          "ELECTROPLATED",
+          "TURBO",
+          "TURBO CURB",
+          "TURBO EXTRA CLASS",
+          "VANITY"
+        ],
+        "DIAMETRU": [
+          "100",
+          "115",
+          "125",
+          "180",
+          "230"
+        ],
+        "FIXARE DISC": [
+          "CU FLANȘĂ",
+          "FĂRĂ FLANȘĂ"
+        ]
+      }
+    }
+  ]
+}

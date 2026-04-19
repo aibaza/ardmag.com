@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(npx http-server:*)",
+      "Bash(npx playwright:*)",
+      "Bash(node -:*)",
+      "Bash(node --:*)",
+      "Bash(curl:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)"
+    ]
+  }
+}

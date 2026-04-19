@@ -1,0 +1,185 @@
+{
+  "id": "prod_01KPH3PZHE2GEZ13B8RHSBSRHV",
+  "title": "GLAXS EASY",
+  "subtitle": null,
+  "status": "published",
+  "external_id": null,
+  "description": "<p><strong>ÎNTĂRITORUL ESTE INCLUS.</strong></p><p><strong>SET A + B&nbsp;</strong></p><p><strong>A= 300 G</strong></p><p><strong>B= 300 G</strong></p><p>&nbsp;</p><p><strong>ADEZIV TRANSPARENT FĂRĂ ÎNGĂLBENIRE</strong></p><p><strong>GLAXS EASY</strong></p><p>Adeziv solid, extra puternic și extrem de transparent, caracterizat prin absența totală a îngălbenirii în timp, chiar și sub acțiunea razelor UV. Complet invizibil după aplicare, ușor de polisat și rezistent la temperaturi extreme, fiind ideal pentru lipiri vizibile de înaltă calitate.</p><p><strong>1 KIT (A+B)</strong></p><p><strong>PENTRU</strong> – Ceramică, Piatră naturală, Cuarț</p><p><strong>PLUS</strong></p><ul>\t<li>Lipire extra puternică</li>\t<li>Claritate ridicată (efect invizibil)</li>\t<li>Dozare ușoară</li>\t<li>Utilizare interior / exterior</li>\t<li>Low VOC</li>\t<li>Clasificare VOC A+</li></ul><p><strong>CARACTERISTICI TEHNICE</strong></p><ul>\t<li>Aspect: pastă transparentă</li>\t<li>Colorabil: cu paste colorante universale</li>\t<li>Raport de amestec: 100 + 100</li>\t<li>Timp de gel (25°C): 6 – 8 min</li>\t<li>Fără lipire la suprafață (25°C): ~100 min</li>\t<li>Timp de lucru (25°C): ~150 min</li></ul>",
+  "handle": "glaxs-easy",
+  "is_giftcard": false,
+  "discountable": true,
+  "thumbnail": "/static/images/glaxs-easy/db3b5a_61c2401455c5457db4424736e42b2910.jpg",
+  "collection_id": null,
+  "type_id": "ptyp_01KPH5NTPYC63P83V3HAQPDNYW",
+  "weight": "700",
+  "length": null,
+  "height": null,
+  "width": null,
+  "hs_code": null,
+  "origin_country": null,
+  "mid_code": null,
+  "material": null,
+  "created_at": "2026-04-18T20:15:01.167Z",
+  "updated_at": "2026-04-18T20:49:23.979Z",
+  "deleted_at": null,
+  "metadata": {
+    "ribbon": "PROMO 30%"
+  },
+  "type": {
+    "id": "ptyp_01KPH5NTPYC63P83V3HAQPDNYW",
+    "value": "Adeziv",
+    "metadata": null,
+    "created_at": "2026-04-18T20:49:20.606Z",
+    "updated_at": "2026-04-18T20:49:20.606Z",
+    "deleted_at": null
+  },
+  "collection": null,
+  "options": [
+    {
+      "id": "opt_01KPH3PZHFCES7W2ZKYFRJ5D7B",
+      "title": "Title",
+      "metadata": null,
+      "product_id": "prod_01KPH3PZHE2GEZ13B8RHSBSRHV",
+      "created_at": "2026-04-18T20:15:01.167Z",
+      "updated_at": "2026-04-18T20:15:01.167Z",
+      "deleted_at": null,
+      "values": [
+        {
+          "id": "optval_01KPH3PZHFF5Q4WKFFX928V4PS",
+          "value": "Default Title",
+          "metadata": null,
+          "option_id": "opt_01KPH3PZHFCES7W2ZKYFRJ5D7B",
+          "created_at": "2026-04-18T20:15:01.167Z",
+          "updated_at": "2026-04-18T20:15:01.167Z",
+          "deleted_at": null
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ptag_01KPH889GNJWPCYV1YVBJVSM3G",
+      "value": "brand:tenax",
+      "metadata": null,
+      "created_at": "2026-04-18T21:34:22.741Z",
+      "updated_at": "2026-04-18T21:34:22.741Z",
+      "deleted_at": null
+    },
+    {
+      "id": "ptag_01KPH889JQY2HZK8W5185WJARJ",
+      "value": "material:cuart",
+      "metadata": null,
+      "created_at": "2026-04-18T21:34:22.807Z",
+      "updated_at": "2026-04-18T21:34:22.807Z",
+      "deleted_at": null
+    },
+    {
+      "id": "ptag_01KPH88C9WACKPBW3X2XCCRKF0",
+      "value": "material:ceramica",
+      "metadata": null,
+      "created_at": "2026-04-18T21:34:25.596Z",
+      "updated_at": "2026-04-18T21:34:25.596Z",
+      "deleted_at": null
+    },
+    {
+      "id": "ptag_01KPH889MQNWT25ES3344GM5EW",
+      "value": "material:piatra-naturala",
+      "metadata": null,
+      "created_at": "2026-04-18T21:34:22.871Z",
+      "updated_at": "2026-04-18T21:34:22.871Z",
+      "deleted_at": null
+    },
+    {
+      "id": "ptag_01KPH88AFT5XZNVSGDGFVV89EK",
+      "value": "promo:30",
+      "metadata": null,
+      "created_at": "2026-04-18T21:34:23.738Z",
+      "updated_at": "2026-04-18T21:34:23.738Z",
+      "deleted_at": null
+    }
+  ],
+  "images": [
+    {
+      "id": "img_01KPH43QH8D44GVYZ9T0Y5PGR0",
+      "url": "/static/images/glaxs-easy/db3b5a_61c2401455c5457db4424736e42b2910.jpg",
+      "metadata": null,
+      "rank": 0,
+      "product_id": "prod_01KPH3PZHE2GEZ13B8RHSBSRHV",
+      "created_at": "2026-04-18T20:21:58.952Z",
+      "updated_at": "2026-04-18T20:21:58.952Z",
+      "deleted_at": null
+    }
+  ],
+  "variants": [
+    {
+      "id": "variant_01KPH3PZHXQWXJA0FCJYNAEQWR",
+      "title": "Default Title",
+      "sku": "glaxs-easy-default",
+      "barcode": null,
+      "ean": null,
+      "upc": null,
+      "allow_backorder": false,
+      "manage_inventory": true,
+      "hs_code": null,
+      "origin_country": null,
+      "mid_code": null,
+      "material": null,
+      "weight": null,
+      "length": null,
+      "height": null,
+      "width": null,
+      "metadata": null,
+      "variant_rank": 0,
+      "thumbnail": null,
+      "product_id": "prod_01KPH3PZHE2GEZ13B8RHSBSRHV",
+      "created_at": "2026-04-18T20:15:01.182Z",
+      "updated_at": "2026-04-18T20:15:01.182Z",
+      "deleted_at": null,
+      "options": [
+        {
+          "id": "optval_01KPH3PZHFF5Q4WKFFX928V4PS",
+          "value": "Default Title",
+          "metadata": null,
+          "option_id": "opt_01KPH3PZHFCES7W2ZKYFRJ5D7B",
+          "option": {
+            "id": "opt_01KPH3PZHFCES7W2ZKYFRJ5D7B",
+            "title": "Title",
+            "metadata": null,
+            "product_id": "prod_01KPH3PZHE2GEZ13B8RHSBSRHV",
+            "created_at": "2026-04-18T20:15:01.167Z",
+            "updated_at": "2026-04-18T20:15:01.167Z",
+            "deleted_at": null
+          },
+          "created_at": "2026-04-18T20:15:01.167Z",
+          "updated_at": "2026-04-18T20:15:01.167Z",
+          "deleted_at": null
+        }
+      ],
+      "prices": [
+        {
+          "id": "price_01KPH3PZJC2BP30ZGQYX1NGFWV",
+          "amount": 42800,
+          "currency_code": "ron",
+          "min_quantity": null,
+          "max_quantity": null,
+          "variant_id": "variant_01KPH3PZHXQWXJA0FCJYNAEQWR",
+          "created_at": "2026-04-18T20:15:01.196Z",
+          "updated_at": "2026-04-18T20:15:01.196Z",
+          "rules": {}
+        }
+      ]
+    }
+  ],
+  "sales_channels": [
+    {
+      "id": "sc_01KPH29TA9EXRP1ZT23JVE2AZ7",
+      "name": "Default Sales Channel",
+      "description": "Created by Medusa",
+      "is_disabled": false,
+      "metadata": null,
+      "created_at": "2026-04-18T19:50:21.257Z",
+      "updated_at": "2026-04-18T19:50:21.257Z",
+      "deleted_at": null
+    }
+  ]
+}

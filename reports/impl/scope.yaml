@@ -1,0 +1,26 @@
+base_url: "http://localhost:8000"
+design_server: "http://localhost:7778"
+
+pages:
+  - name: index
+    url: "/ro"
+    target_url: "/index.html"
+    source_html: "resources/design2/index.html"
+    target_tsx: "backend-storefront/src/app/[countryCode]/(main)/page.tsx"
+
+  - name: category
+    url: "/ro/design-preview/category"
+    target_url: "/category.html"
+    source_html: "resources/design2/category.html"
+    target_tsx: "backend-storefront/src/app/[countryCode]/design-preview/category/page.tsx"
+
+  - name: product
+    url: "/ro/design-preview/product"
+    target_url: "/product.html"
+    source_html: "resources/design2/product.html"
+    target_tsx: "backend-storefront/src/app/[countryCode]/design-preview/product/page.tsx"
+
+viewports:
+  - mobile
+  - tablet
+  - desktop

@@ -1,0 +1,609 @@
+{
+  "category": {
+    "id": "pcat_01KPH383SVDBH60EZM36CEBRKY",
+    "name": "SOLUȚII PENTRU PIATRĂ",
+    "description": "",
+    "handle": "solutii-pentru-piatra",
+    "is_active": true,
+    "is_internal": false,
+    "rank": 2,
+    "parent_category_id": null,
+    "created_at": "2026-04-18T20:06:54.012Z",
+    "updated_at": "2026-04-18T20:06:54.012Z",
+    "metadata": null,
+    "parent_category": null,
+    "category_children": []
+  },
+  "product_count": 33,
+  "products": [
+    {
+      "id": "prod_01KPH3Q085YA2V11NCYJYTSZ79",
+      "title": "SABBIATORE AX/F",
+      "handle": "sabbiatore-axf",
+      "status": "published",
+      "thumbnail": "/static/images/sabbiatore-axf/db3b5a_4bbdb64785de48f58b68a977fe8904a8.jpg",
+      "variant_count": 1,
+      "price_min_ron": 238.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q0KHDRHTMQFQR9A7SV1E",
+      "title": "SILWAX",
+      "handle": "silwax",
+      "status": "published",
+      "thumbnail": "/static/images/silwax/db3b5a_27e35b8911f74146abe96ced5a69ffad.jpg",
+      "variant_count": 1,
+      "price_min_ron": 80.0,
+      "price_max_ron": 80.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q0Z087WFZNV89HW2FRFS",
+      "title": "DE GRAUB",
+      "handle": "de-graub",
+      "status": "published",
+      "thumbnail": "/static/images/de-graub/db3b5a_405d04b4f3264dae8ed608aaa51fd98d.jpg",
+      "variant_count": 2,
+      "price_min_ron": 54.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q1AEZRD6HGKTGAGDS4TQ",
+      "title": "TERGON",
+      "handle": "tergon",
+      "status": "published",
+      "thumbnail": "/static/images/tergon/db3b5a_5947152d1348461daaa95a618787bba1.jpg",
+      "variant_count": 2,
+      "price_min_ron": 54.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q1P56NEX7SXC1H16G2NT",
+      "title": "SOLVENTE GAMMA",
+      "handle": "solvente-gamma",
+      "status": "published",
+      "thumbnail": "/static/images/solvente-gamma/db3b5a_2b6e1574ad034aa283078bdcec565b88.jpg",
+      "variant_count": 2,
+      "price_min_ron": 60.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q21J1MSXE888PTP6FEFM",
+      "title": "MAC MUD",
+      "handle": "mac-mud",
+      "status": "published",
+      "thumbnail": "/static/images/mac-mud/db3b5a_3f252ab72cb0436098df2d46b0e1d53c.jpg",
+      "variant_count": 2,
+      "price_min_ron": 60.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q2D364XAXC7YSA2RJE26",
+      "title": "CLEAN STONE",
+      "handle": "clean-stone",
+      "status": "published",
+      "thumbnail": "/static/images/clean-stone/db3b5a_bcab401a1eff4a5bbc04f0b5696a690f.jpg",
+      "variant_count": 2,
+      "price_min_ron": 54.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q2RM4AD7PRHYT4N8ND2A",
+      "title": "STONE WET",
+      "handle": "stone-wet",
+      "status": "published",
+      "thumbnail": "/static/images/stone-wet/db3b5a_aad5a8f5bfe343f5abfa7f234c957548.jpg",
+      "variant_count": 2,
+      "price_min_ron": 128.0,
+      "price_max_ron": 565.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q345XVT70P3GQ755FJ1M",
+      "title": "RES 1001",
+      "handle": "res-1001",
+      "status": "published",
+      "thumbnail": "/static/images/res-1001/db3b5a_bcfc697d8de3459ba4205313294cda6f.jpg",
+      "variant_count": 2,
+      "price_min_ron": 164.0,
+      "price_max_ron": 744.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q3FKYAGTKYKWBTBZSPY2",
+      "title": "PROLUX",
+      "handle": "prolux",
+      "status": "published",
+      "thumbnail": "/static/images/prolux/db3b5a_90066cfa59e9470e942160f3d0211af0.jpg",
+      "variant_count": 2,
+      "price_min_ron": 74.0,
+      "price_max_ron": 298.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q3V4PZVHC31NW3H3M2GQ",
+      "title": "ECO TONER",
+      "handle": "eco-toner",
+      "status": "published",
+      "thumbnail": "/static/images/eco-toner/db3b5a_67ed894b8d2a4a4fb0ca66fe302e3648.jpg",
+      "variant_count": 2,
+      "price_min_ron": 113.0,
+      "price_max_ron": 490.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q46NJB8BG486SJE98DFK",
+      "title": "ECO STONE PRO",
+      "handle": "eco-stone-pro",
+      "status": "published",
+      "thumbnail": "/static/images/eco-stone-pro/db3b5a_b5a663a9dee8432b9372471696c37775.jpg",
+      "variant_count": 2,
+      "price_min_ron": 113.0,
+      "price_max_ron": 490.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q4J4TZT61YMQD14GC537",
+      "title": "ECO DRY+",
+      "handle": "eco-dry",
+      "status": "published",
+      "thumbnail": "/static/images/eco-dry/db3b5a_21aa04cbb6364661b90e33af22f9edb8.jpg",
+      "variant_count": 2,
+      "price_min_ron": 72.0,
+      "price_max_ron": 298.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q4XP1BFAA7CJTMX6M92J",
+      "title": "WET SEAL",
+      "handle": "wet-seal",
+      "status": "published",
+      "thumbnail": "/static/images/wet-seal/db3b5a_c16526c9397541efa99ee6352f8f3054.jpg",
+      "variant_count": 2,
+      "price_min_ron": 155.0,
+      "price_max_ron": 685.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q5943RW4WNH18EKAJWWC",
+      "title": "TOTAL BLACK",
+      "handle": "total-black",
+      "status": "published",
+      "thumbnail": "/static/images/total-black/db3b5a_8e4eb0a5ee3841a6aa081757406840c4.jpg",
+      "variant_count": 2,
+      "price_min_ron": 128.0,
+      "price_max_ron": 565.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q5MKH3YMPJBMBAYG5RTJ",
+      "title": "SEAL",
+      "handle": "seal",
+      "status": "published",
+      "thumbnail": "/static/images/seal/db3b5a_0f7892d2bbc0476094359882547a2e4b.jpg",
+      "variant_count": 2,
+      "price_min_ron": 128.0,
+      "price_max_ron": 565.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q601QM4TSGV9E0RAM9ZJ",
+      "title": "QUASAR",
+      "handle": "quasar",
+      "status": "published",
+      "thumbnail": "/static/images/quasar/db3b5a_b972836a1c0f4ff2a7246051a9ab16f2.jpg",
+      "variant_count": 2,
+      "price_min_ron": 149.0,
+      "price_max_ron": 655.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q6BEHHV6HVWVMZQ5TW5X",
+      "title": "NANO WET",
+      "handle": "nano-wet",
+      "status": "published",
+      "thumbnail": "/static/images/nano-wet/db3b5a_16ef8d6f8239435babd1bf0ed9ab2aac.jpg",
+      "variant_count": 2,
+      "price_min_ron": 167.0,
+      "price_max_ron": 759.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q6Q3ZZSHTW0HPQDSCXMF",
+      "title": "IDROREP",
+      "handle": "idrorep",
+      "status": "published",
+      "thumbnail": "/static/images/idrorep/db3b5a_4cfdbef8b6d4480ca73b05b1044ce019.jpg",
+      "variant_count": 2,
+      "price_min_ron": 80.0,
+      "price_max_ron": 327.0,
+      "options": {
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q72F75Y3R3P5S01E7PEV",
+      "title": "SKUDO",
+      "handle": "skudo",
+      "status": "published",
+      "thumbnail": "/static/images/skudo/db3b5a_4812ffed1d7741cfbf2ba4105e742a2b.png",
+      "variant_count": 1,
+      "price_min_ron": 200.0,
+      "price_max_ron": 200.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q7DSKKJ8GF9SSVG5WCKA",
+      "title": "TONER BLACK",
+      "handle": "toner-black",
+      "status": "published",
+      "thumbnail": "/static/images/toner-black/db3b5a_e303be7947044fc7bdc6cb2d0fe2f871.png",
+      "variant_count": 1,
+      "price_min_ron": 230.0,
+      "price_max_ron": 230.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q7S2VRYNTAZ276V9QSWQ",
+      "title": "PROSEAL FS",
+      "handle": "proseal-fs",
+      "status": "published",
+      "thumbnail": "/static/images/proseal-fs/db3b5a_aa1bed4bb8ef4c448da39084db00b623.png",
+      "variant_count": 1,
+      "price_min_ron": 282.0,
+      "price_max_ron": 282.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q84AJSV2KZ9A8FVJMG2Y",
+      "title": "PROSEAL",
+      "handle": "proseal",
+      "status": "published",
+      "thumbnail": "/static/images/proseal/db3b5a_889a7c59a1e2437089d44b3e5b0313b6.png",
+      "variant_count": 1,
+      "price_min_ron": 170.0,
+      "price_max_ron": 170.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q8FMYYSY4S0AYEX95XJ2",
+      "title": "AGER",
+      "handle": "ager",
+      "status": "published",
+      "thumbnail": "/static/images/ager/db3b5a_f214e9b7226245188021d819172e8443.png",
+      "variant_count": 1,
+      "price_min_ron": 376.0,
+      "price_max_ron": 376.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q8TV07B8N84QW8XT3CMY",
+      "title": "HYDREX",
+      "handle": "hydrex",
+      "status": "published",
+      "thumbnail": "/static/images/hydrex/db3b5a_b955433718164620aa7cc589268247b6.jpg",
+      "variant_count": 1,
+      "price_min_ron": 100.0,
+      "price_max_ron": 100.0,
+      "options": {
+        "Title": [
+          "Default Title"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q96266JPMHFJ25XQQ4SQ",
+      "title": "SOLUȚII TENAX",
+      "handle": "solutii-tenax",
+      "status": "draft",
+      "thumbnail": "/static/images/solutii-tenax/db3b5a_a495495f9d664ecd8731cf736307a1c8.jpg",
+      "variant_count": 6,
+      "price_min_ron": 91.0,
+      "price_max_ron": 361.0,
+      "options": {
+        "DENUMIRE": [
+          "AGER",
+          "HYDREX",
+          "PROSEAL",
+          "PROSEAL FS",
+          "SKUDO",
+          "TONER BLACK"
+        ],
+        "CANTITATE": [
+          "1 LITRU"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3Q9JSKVX7ZEDC7F3SQ520",
+      "title": "SOLUȚII DELTA",
+      "handle": "solutii-delta",
+      "status": "draft",
+      "thumbnail": "/static/images/solutii-delta/db3b5a_e83adf465ae141d9a6cb320acd396978.jpg",
+      "variant_count": 36,
+      "price_min_ron": 54.0,
+      "price_max_ron": 759.0,
+      "options": {
+        "DENUMIRE": [
+          "CLEAN STONE",
+          "DE GRAUB",
+          "ECO DRY +",
+          "ECO STONE PRO",
+          "ECO TONER",
+          "IDROREP",
+          "MAC MUD",
+          "NANO WET",
+          "PROLUX",
+          "QUASAR",
+          "RES 1001",
+          "SABBIATORE AX/F",
+          "SEAL",
+          "SILWAX",
+          "SOLVENTE GAMMA",
+          "STONE WET",
+          "TERGON",
+          "TOTAL BLACK",
+          "WET SEAL"
+        ],
+        "CANTITATE": [
+          "1 LITRU",
+          "5 KG",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3R7WE30598F1E0FSFH1PA",
+      "title": "ÎNTREȚINERE ȘI CERURI",
+      "handle": "intretinere-si-ceruri",
+      "status": "published",
+      "thumbnail": "/static/images/intretinere-si-ceruri/db3b5a_27e35b8911f74146abe96ced5a69ffad.jpg",
+      "variant_count": 3,
+      "price_min_ron": 60.0,
+      "price_max_ron": 80.0,
+      "options": {
+        "DENUMIRE": [
+          "REFLEX NERA",
+          "REFLEX NEUTRĂ",
+          "SILWAX"
+        ],
+        "CANTITATE": [
+          "1 LITRU",
+          "700 GRAME"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3R88A0WFG689AV7Y0XTZ7",
+      "title": "DETERGENȚI ACIZI",
+      "handle": "detergenti-acizi",
+      "status": "published",
+      "thumbnail": "/static/images/detergenti-acizi/db3b5a_405d04b4f3264dae8ed608aaa51fd98d.jpg",
+      "variant_count": 3,
+      "price_min_ron": 54.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "DENUMIRE": [
+          "DE GRAUB",
+          "SABBIATORE AX/F"
+        ],
+        "CANTITATE": [
+          "1 LITRU",
+          "5 KG",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3R8M9CSVZX6VR3GG8EVH5",
+      "title": "DETERGENȚI",
+      "handle": "detergenti",
+      "status": "published",
+      "thumbnail": "/static/images/detergenti/db3b5a_bcab401a1eff4a5bbc04f0b5696a690f.jpg",
+      "variant_count": 8,
+      "price_min_ron": 54.0,
+      "price_max_ron": 238.0,
+      "options": {
+        "DENUMIRE": [
+          "CLEAN STONE",
+          "MAC MUD",
+          "SOLVENTE GAMMA",
+          "TERGON"
+        ],
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3R91T9XXZGTN2KA0KGQH5",
+      "title": "TRATAMENTE SPECIFICE",
+      "handle": "tratamente-specifice",
+      "status": "published",
+      "thumbnail": "/static/images/tratamente-specifice/db3b5a_90066cfa59e9470e942160f3d0211af0.jpg",
+      "variant_count": 6,
+      "price_min_ron": 74.0,
+      "price_max_ron": 744.0,
+      "options": {
+        "DENUMIRE": [
+          "PROLUX",
+          "RES 1001",
+          "STONE WET"
+        ],
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3R9EK98FDQGPJ5SGQF9ES",
+      "title": "IMPERMEABILIZANȚI PE BAZĂ DE APĂ",
+      "handle": "impermeabilizanti-pe-baza-de-apa",
+      "status": "published",
+      "thumbnail": "/static/images/impermeabilizanti-pe-baza-de-apa/db3b5a_21aa04cbb6364661b90e33af22f9edb8.jpg",
+      "variant_count": 7,
+      "price_min_ron": 72.0,
+      "price_max_ron": 490.0,
+      "options": {
+        "DENUMIRE": [
+          "ECO DRY +",
+          "ECO STONE PRO",
+          "ECO TONER",
+          "SKUDO"
+        ],
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    },
+    {
+      "id": "prod_01KPH3R9VW7KGZ5MZ1CBHP8R8J",
+      "title": "IMPERMEABILIZANȚI PE BAZĂ DE SOLVENȚI",
+      "handle": "impermeabilizanti-pe-baza-de-solventi",
+      "status": "published",
+      "thumbnail": "/static/images/impermeabilizanti-pe-baza-de-solventi/db3b5a_0f7892d2bbc0476094359882547a2e4b.jpg",
+      "variant_count": 17,
+      "price_min_ron": 80.0,
+      "price_max_ron": 759.0,
+      "options": {
+        "DENUMIRE": [
+          "AGER",
+          "HYDREX",
+          "IDROREP",
+          "NANO WET",
+          "PROSEAL",
+          "PROSEAL FS",
+          "QUASAR",
+          "SEAL",
+          "TONER BLACK",
+          "TOTAL BLACK",
+          "WET SEAL"
+        ],
+        "CANTITATE": [
+          "1 LITRU",
+          "5 LITRI"
+        ]
+      }
+    }
+  ]
+}

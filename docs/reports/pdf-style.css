@@ -1,0 +1,194 @@
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/home/dc/Work/aiBaza/tools/social/templates/fonts/NotoSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@page {
+  size: A4;
+  margin: 20mm 18mm 22mm 18mm;
+
+  @top-right {
+    content: "ardmag.com — Propuneri Descrieri Produse";
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 8pt;
+    color: #6b7280;
+  }
+
+  @bottom-left {
+    content: "SurCod SRL — Uz intern";
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 8pt;
+    color: #6b7280;
+  }
+
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 8pt;
+    color: #6b7280;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans', 'Liberation Sans', Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.55;
+  color: #1f2937;
+  background: #fff;
+}
+
+/* ── Cover header ─────────────────────────────────────────────────────── */
+
+.cover-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 2.5px solid #aa531d;
+  padding-bottom: 10px;
+  margin-bottom: 28px;
+}
+
+.cover-header img {
+  height: 36px;
+  width: auto;
+}
+
+/* ── Headings ─────────────────────────────────────────────────────────── */
+
+h1 {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 20pt;
+  font-weight: 700;
+  color: #aa531d;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+h2 {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 22px 0 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid #e5e7eb;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: #374151;
+  margin: 16px 0 6px 0;
+  page-break-after: avoid;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 10px 0 16px 0;
+  page-break-inside: auto;
+}
+
+thead tr {
+  background: #aa531d;
+  color: #fff;
+}
+
+thead th {
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+tbody tr:nth-child(even) {
+  background: #faf5f2;
+}
+
+tbody tr:nth-child(odd) {
+  background: #fff;
+}
+
+tbody td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+
+/* ── Code blocks ──────────────────────────────────────────────────────── */
+
+pre {
+  background: #f3f4f6;
+  border-left: 3px solid #aa531d;
+  padding: 10px 12px;
+  font-size: 8pt;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 8px 0 14px 0;
+  line-height: 1.45;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  font-size: 8.5pt;
+  background: #f3f4f6;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ── Paragraphs & lists ───────────────────────────────────────────────── */
+
+p {
+  margin: 0 0 8px 0;
+}
+
+ul, ol {
+  margin: 4px 0 10px 0;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 3px;
+}
+
+/* ── Horizontal rule ──────────────────────────────────────────────────── */
+
+hr {
+  border: none;
+  border-top: 1px solid #d1d5db;
+  margin: 16px 0;
+}
+
+/* ── Links ────────────────────────────────────────────────────────────── */
+
+a {
+  color: #aa531d;
+  text-decoration: none;
+}
+
+/* ── Blockquotes ──────────────────────────────────────────────────────── */
+
+blockquote {
+  border-left: 3px solid #aa531d;
+  margin: 8px 0;
+  padding: 6px 12px;
+  color: #6b7280;
+  font-style: italic;
+}

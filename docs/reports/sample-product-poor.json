@@ -1,0 +1,369 @@
+{
+  "id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+  "title": "MASTIC SEMISOLID",
+  "subtitle": null,
+  "status": "published",
+  "external_id": null,
+  "description": null,
+  "handle": "mastic-semisolid",
+  "is_giftcard": false,
+  "discountable": true,
+  "thumbnail": "/static/images/mastic-semisolid/db3b5a_e4d15fb0361348d0be47457443e6a42e.jpg",
+  "collection_id": null,
+  "type_id": "ptyp_01KPH5NTPYC63P83V3HAQPDNYW",
+  "weight": null,
+  "length": null,
+  "height": null,
+  "width": null,
+  "hs_code": null,
+  "origin_country": null,
+  "mid_code": null,
+  "material": null,
+  "created_at": "2026-04-18T20:14:59.599Z",
+  "updated_at": "2026-04-18T20:49:22.874Z",
+  "deleted_at": null,
+  "metadata": {
+    "ribbon": "PROMO 30%"
+  },
+  "type": {
+    "id": "ptyp_01KPH5NTPYC63P83V3HAQPDNYW",
+    "value": "Adeziv",
+    "metadata": null,
+    "created_at": "2026-04-18T20:49:20.606Z",
+    "updated_at": "2026-04-18T20:49:20.606Z",
+    "deleted_at": null
+  },
+  "collection": null,
+  "options": [
+    {
+      "id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+      "title": "CULOARE",
+      "metadata": null,
+      "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+      "created_at": "2026-04-18T20:14:59.599Z",
+      "updated_at": "2026-04-18T20:14:59.599Z",
+      "deleted_at": null,
+      "values": [
+        {
+          "id": "optval_01KPH3PY0D86DHEZ7MFP4N86MX",
+          "value": "BEJ",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        },
+        {
+          "id": "optval_01KPH3PY0ED9XW91RKKDY7SXGN",
+          "value": "ALB",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        },
+        {
+          "id": "optval_01KPH3PY0EPJV9MA4D54QG2GWJ",
+          "value": "JURA",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        }
+      ]
+    },
+    {
+      "id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+      "title": "CANTITATE",
+      "metadata": null,
+      "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+      "created_at": "2026-04-18T20:14:59.599Z",
+      "updated_at": "2026-04-18T20:14:59.599Z",
+      "deleted_at": null,
+      "values": [
+        {
+          "id": "optval_01KPH3PY0E3QN74DSRDXD5GG87",
+          "value": "18 LITRI",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "id": "ptag_01KPH889GNJWPCYV1YVBJVSM3G",
+      "value": "brand:tenax",
+      "metadata": null,
+      "created_at": "2026-04-18T21:34:22.741Z",
+      "updated_at": "2026-04-18T21:34:22.741Z",
+      "deleted_at": null
+    },
+    {
+      "id": "ptag_01KPH88AFT5XZNVSGDGFVV89EK",
+      "value": "promo:30",
+      "metadata": null,
+      "created_at": "2026-04-18T21:34:23.738Z",
+      "updated_at": "2026-04-18T21:34:23.738Z",
+      "deleted_at": null
+    }
+  ],
+  "images": [
+    {
+      "id": "img_01KPH43NQGSM9FFWCVRMSA4ZTJ",
+      "url": "/static/images/mastic-semisolid/db3b5a_e4d15fb0361348d0be47457443e6a42e.jpg",
+      "metadata": null,
+      "rank": 0,
+      "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+      "created_at": "2026-04-18T20:21:57.104Z",
+      "updated_at": "2026-04-18T20:21:57.104Z",
+      "deleted_at": null
+    }
+  ],
+  "variants": [
+    {
+      "id": "variant_01KPH3PY0ZW3XEP4KBASXY49BB",
+      "title": "BEJ / 18 LITRI",
+      "sku": "mastic-semisolid-1",
+      "barcode": null,
+      "ean": null,
+      "upc": null,
+      "allow_backorder": false,
+      "manage_inventory": true,
+      "hs_code": null,
+      "origin_country": null,
+      "mid_code": null,
+      "material": null,
+      "weight": null,
+      "length": null,
+      "height": null,
+      "width": null,
+      "metadata": null,
+      "variant_rank": 0,
+      "thumbnail": null,
+      "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+      "created_at": "2026-04-18T20:14:59.616Z",
+      "updated_at": "2026-04-18T20:14:59.616Z",
+      "deleted_at": null,
+      "options": [
+        {
+          "id": "optval_01KPH3PY0D86DHEZ7MFP4N86MX",
+          "value": "BEJ",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+          "option": {
+            "id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+            "title": "CULOARE",
+            "metadata": null,
+            "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+            "created_at": "2026-04-18T20:14:59.599Z",
+            "updated_at": "2026-04-18T20:14:59.599Z",
+            "deleted_at": null
+          },
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        },
+        {
+          "id": "optval_01KPH3PY0E3QN74DSRDXD5GG87",
+          "value": "18 LITRI",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+          "option": {
+            "id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+            "title": "CANTITATE",
+            "metadata": null,
+            "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+            "created_at": "2026-04-18T20:14:59.599Z",
+            "updated_at": "2026-04-18T20:14:59.599Z",
+            "deleted_at": null
+          },
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        }
+      ],
+      "prices": [
+        {
+          "id": "price_01KPH3PY1NN85Z7HF00MHXWWD9",
+          "amount": 103200,
+          "currency_code": "ron",
+          "min_quantity": null,
+          "max_quantity": null,
+          "variant_id": "variant_01KPH3PY0ZW3XEP4KBASXY49BB",
+          "created_at": "2026-04-18T20:14:59.638Z",
+          "updated_at": "2026-04-18T20:14:59.638Z",
+          "rules": {}
+        }
+      ]
+    },
+    {
+      "id": "variant_01KPH3PY102EZ86MY8J3DNAMN6",
+      "title": "ALB / 18 LITRI",
+      "sku": "mastic-semisolid-2",
+      "barcode": null,
+      "ean": null,
+      "upc": null,
+      "allow_backorder": false,
+      "manage_inventory": true,
+      "hs_code": null,
+      "origin_country": null,
+      "mid_code": null,
+      "material": null,
+      "weight": null,
+      "length": null,
+      "height": null,
+      "width": null,
+      "metadata": null,
+      "variant_rank": 0,
+      "thumbnail": null,
+      "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+      "created_at": "2026-04-18T20:14:59.616Z",
+      "updated_at": "2026-04-18T20:14:59.616Z",
+      "deleted_at": null,
+      "options": [
+        {
+          "id": "optval_01KPH3PY0E3QN74DSRDXD5GG87",
+          "value": "18 LITRI",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+          "option": {
+            "id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+            "title": "CANTITATE",
+            "metadata": null,
+            "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+            "created_at": "2026-04-18T20:14:59.599Z",
+            "updated_at": "2026-04-18T20:14:59.599Z",
+            "deleted_at": null
+          },
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        },
+        {
+          "id": "optval_01KPH3PY0ED9XW91RKKDY7SXGN",
+          "value": "ALB",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+          "option": {
+            "id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+            "title": "CULOARE",
+            "metadata": null,
+            "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+            "created_at": "2026-04-18T20:14:59.599Z",
+            "updated_at": "2026-04-18T20:14:59.599Z",
+            "deleted_at": null
+          },
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        }
+      ],
+      "prices": [
+        {
+          "id": "price_01KPH3PY1NDWHJPDCM83A5SNHG",
+          "amount": 103200,
+          "currency_code": "ron",
+          "min_quantity": null,
+          "max_quantity": null,
+          "variant_id": "variant_01KPH3PY102EZ86MY8J3DNAMN6",
+          "created_at": "2026-04-18T20:14:59.638Z",
+          "updated_at": "2026-04-18T20:14:59.638Z",
+          "rules": {}
+        }
+      ]
+    },
+    {
+      "id": "variant_01KPH3PY102CSPMZ1K2MH7MQQE",
+      "title": "JURA / 18 LITRI",
+      "sku": "mastic-semisolid-3",
+      "barcode": null,
+      "ean": null,
+      "upc": null,
+      "allow_backorder": false,
+      "manage_inventory": true,
+      "hs_code": null,
+      "origin_country": null,
+      "mid_code": null,
+      "material": null,
+      "weight": null,
+      "length": null,
+      "height": null,
+      "width": null,
+      "metadata": null,
+      "variant_rank": 0,
+      "thumbnail": null,
+      "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+      "created_at": "2026-04-18T20:14:59.616Z",
+      "updated_at": "2026-04-18T20:14:59.616Z",
+      "deleted_at": null,
+      "options": [
+        {
+          "id": "optval_01KPH3PY0E3QN74DSRDXD5GG87",
+          "value": "18 LITRI",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+          "option": {
+            "id": "opt_01KPH3PY0EA2B1BCYCFJP5YXY4",
+            "title": "CANTITATE",
+            "metadata": null,
+            "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+            "created_at": "2026-04-18T20:14:59.599Z",
+            "updated_at": "2026-04-18T20:14:59.599Z",
+            "deleted_at": null
+          },
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        },
+        {
+          "id": "optval_01KPH3PY0EPJV9MA4D54QG2GWJ",
+          "value": "JURA",
+          "metadata": null,
+          "option_id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+          "option": {
+            "id": "opt_01KPH3PY0EBF7A43GSA5PYGVXN",
+            "title": "CULOARE",
+            "metadata": null,
+            "product_id": "prod_01KPH3PY0DH4YRH3A979ATE7N5",
+            "created_at": "2026-04-18T20:14:59.599Z",
+            "updated_at": "2026-04-18T20:14:59.599Z",
+            "deleted_at": null
+          },
+          "created_at": "2026-04-18T20:14:59.599Z",
+          "updated_at": "2026-04-18T20:14:59.599Z",
+          "deleted_at": null
+        }
+      ],
+      "prices": [
+        {
+          "id": "price_01KPH3PY1PYYZ5PQSXBT306WAF",
+          "amount": 89400,
+          "currency_code": "ron",
+          "min_quantity": null,
+          "max_quantity": null,
+          "variant_id": "variant_01KPH3PY102CSPMZ1K2MH7MQQE",
+          "created_at": "2026-04-18T20:14:59.638Z",
+          "updated_at": "2026-04-18T20:14:59.638Z",
+          "rules": {}
+        }
+      ]
+    }
+  ],
+  "sales_channels": [
+    {
+      "id": "sc_01KPH29TA9EXRP1ZT23JVE2AZ7",
+      "name": "Default Sales Channel",
+      "description": "Created by Medusa",
+      "is_disabled": false,
+      "metadata": null,
+      "created_at": "2026-04-18T19:50:21.257Z",
+      "updated_at": "2026-04-18T19:50:21.257Z",
+      "deleted_at": null
+    }
+  ]
+}
