@@ -1,6 +1,7 @@
-import { listProductsWithSort } from "@lib/data/products"
+import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import { applyFilters } from "@lib/util/filter-options"
+import { sortProducts } from "@lib/util/sort-products"
 import ProductCard from "@modules/products/components/product-card"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
@@ -13,6 +14,7 @@ type PaginatedProductsParams = {
   category_id?: string[]
   id?: string[]
   order?: string
+  fields?: string
 }
 
 export default async function PaginatedProducts({
@@ -33,7 +35,9 @@ export default async function PaginatedProducts({
   activeFilters?: Record<string, string[]>
 }) {
   const queryParams: PaginatedProductsParams = {
-    limit: 12,
+    limit: 100,
+    fields:
+      "*variants.calculated_price,+variants.inventory_quantity,*variants.images,+metadata,+tags,+options,+options.values",
   }
 
   if (collectionId) {
@@ -59,19 +63,19 @@ export default async function PaginatedProducts({
   }
 
   const {
-    response: { products: allProducts },
-  } = await listProductsWithSort({
-    page,
+    response: { products: fetched },
+  } = await listProducts({
+    pageParam: 1,
     queryParams,
-    sortBy,
     countryCode,
   })
 
-  const products = applyFilters(allProducts, activeFilters)
-  const count = products.length
+  const sorted = sortProducts(fetched, sortBy ?? "created_at")
+  const filtered = applyFilters(sorted, activeFilters)
+  const count = filtered.length
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
   const offset = (page - 1) * PRODUCT_LIMIT
-  const pageProducts = products.slice(offset, offset + PRODUCT_LIMIT)
+  const pageProducts = filtered.slice(offset, offset + PRODUCT_LIMIT)
 
   return (
     <>
@@ -98,7 +102,7 @@ export default async function PaginatedProducts({
           data-testid="products-list"
         >
           {pageProducts.map((p) => (
-            <ProductCard key={p.id} product={p} />
+            <ProductCard key={p.id} product={p} activeFilters={activeFilters} />
           ))}
         </div>
       )}

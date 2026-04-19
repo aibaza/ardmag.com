@@ -1,13 +1,15 @@
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
-const SUPPLIERS: Array<{ name: string; tagline: string }> = [
-  { name: "TENAX",          tagline: "Adezivi si chimie pentru piatra" },
-  { name: "SAIT",           tagline: "Discuri si abrazive" },
-  { name: "WOOSUK",         tagline: "Discuri diamantate" },
-  { name: "DIATEX",         tagline: "Scule diamantate" },
-  { name: "FOX IRONSTONE",  tagline: "Sisteme de prelucrare" },
-  { name: "VBT",            tagline: "Abrazive industriale" },
-  { name: "DELTA RESEARCH", tagline: "Solutii chimice" },
+const SUPPLIERS: Array<{ name: string; logo: string }> = [
+  { name: "Tenax",          logo: "/images/suppliers/tenax.webp" },
+  { name: "SAIT",           logo: "/images/suppliers/sait.webp" },
+  { name: "Woosuk",         logo: "/images/suppliers/woosuk.webp" },
+  { name: "Diatex",         logo: "/images/suppliers/diatex.webp" },
+  { name: "Fox Ironstone",  logo: "/images/suppliers/fox-ironstone.webp" },
+  { name: "VBT",            logo: "/images/suppliers/vbt.webp" },
+  { name: "Delta Research", logo: "/images/suppliers/delta-research.webp" },
+  { name: "Super Selva",    logo: "/images/suppliers/super-selva.webp" },
 ]
 
 export default function SupplierStrip() {
@@ -33,15 +35,16 @@ export default function SupplierStrip() {
           {SUPPLIERS.map((supplier) => (
             <div
               key={supplier.name}
-              className="flex flex-col items-center justify-center p-4 rounded-[var(--r-sm)] border border-stone-200 bg-white"
+              className="relative flex items-center justify-center p-4 rounded-[var(--r-sm)] border border-stone-200 bg-white"
               style={{ aspectRatio: "3/2" }}
             >
-              <span className="font-mono text-[14px] font-semibold tracking-[0.02em] text-stone-900 text-center">
-                {supplier.name}
-              </span>
-              <span className="text-[11px] text-stone-500 text-center mt-1 leading-[1.3]">
-                {supplier.tagline}
-              </span>
+              <Image
+                src={supplier.logo}
+                alt={supplier.name}
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1280px) 14vw, 180px"
+                className="object-contain p-3"
+              />
             </div>
           ))}
         </div>

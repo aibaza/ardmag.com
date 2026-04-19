@@ -16,6 +16,20 @@ Companie: prezentă pe piață din 2001, cel mai mare distribuitor Tenax din Rom
 
 **Tu NU inventezi design.** Nicio decizie vizuală (culori, fonturi, spacing, layout, componente) nu se ia fără input din track-ul B. Dacă ai nevoie de o decizie vizuală pentru ca ceva să funcționeze, marchezi cu `// DESIGN PENDING: <ce aștepți>` în cod și adaugi o linie în `docs/design-pending.md`. Storefront-ul rulează pe template-ul oficial Next.js starter Medusa (neutru, nestilizat) până la livrarea designului.
 
+## Sursă de adevăr pentru design -- OBLIGATORIU
+
+**Design System-ul finalizat se află în `resources/design/`.** Fișierele HTML din acest folder sunt sursele unice de adevăr pentru orice decizie vizuală. Nu interpreta, nu simplifici, nu "îmbunătățești" -- implementezi exact ce e acolo.
+
+**Fișiere de referință obligatorii (în ordine):**
+- `Design System 04 - Chrome & Homepage.html` -- header (3 straturi), footer, homepage asamblat complet (hero, quick-cats, grile produse, trust banner, supplier strip). **Secțiunea 04** din acest fișier = sursă de adevăr pentru homepage.
+- Orice alt fișier din `resources/design/` are aceeași autoritate pentru secțiunea sa.
+
+**Reguli de implementare:**
+1. Înainte să scrii orice componentă de UI, citești fișierul HTML de referință corespunzător.
+2. Copiezi CSS tokens, clase, structură HTML exact -- nu le reinterpretezi.
+3. Dacă există conflict între ce ai implementat anterior și design system, design system-ul câștigă.
+4. Dacă o secțiune nu e acoperită de niciun fișier din `resources/design/`, marchezi `// DESIGN PENDING` și nu inventezi.
+
 ---
 
 ## Reguli absolute de migrare — nu negociabile
@@ -78,6 +92,35 @@ Ori de câte ori o decizie de UI/UX nu are încă input din track-ul B:
 - **ESLint** — config default din fiecare framework
 - **Fără comentarii decorative** — comentariile doar pentru WHY non-obvious sau DESIGN PENDING
 - **Fără em dash** în cod, copy sau docstrings — folosește cratimă (`-`) sau două cratime (`--`)
+
+---
+
+## Copy integrity -- regulă absolută
+
+Zero copy inventat pe ardmag.com. Toate textele afișate utilizatorului vin din surse autorizate:
+1. Medusa API (date dinamice)
+2. ardmag.com actual (copy verificat)
+3. Date business confirmate (vezi secțiunea dedicată mai jos)
+4. Labels UI standard
+
+Dacă lipsește copy pentru o secțiune, lasă spațiul gol sau folosește tagline-ul aprobat. Nu inventezi slogans, nu inventezi beneficii, nu inventezi promises (livrare X ore, garanție Y zile, etc.).
+
+---
+
+## Date business confirmate pentru copy
+
+- 25 ani experiență
+- Distribuitor autorizat Tenax România
+- Distribuție în 12-18 țări
+- Cluj-Napoca, Calea Baciului 1-3, 400230
+- +40 722 155 441
+- office@arcromdiamonds.ro
+- Livrare gratuită peste 500 RON
+- Promoție -30% Mastici Tenax (aplicată la checkout)
+- Tagline: "25 DE ANI. LA MILIMETRU."
+- Mark logo: "PRECIZIE SOLIDĂ"
+- Furnizori: Tenax, Sait, Woosuk, Diatex, Fox Ironstone, VBT, Delta Research
+- ANPC link prezent pe toate paginile
 
 ---
 

@@ -8,15 +8,15 @@ import { Badge } from "@components/ui/badge"
 
 interface ProductCardProps {
   product: HttpTypes.StoreProduct
+  activeFilters?: Record<string, string[]>
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, activeFilters }: ProductCardProps) {
   const stem = getStemFromThumbnail(product.thumbnail)
   const { cheapestPrice } = getProductPrice({ product })
   const outOfStock = isProductOutOfStock(product)
 
-  // First 3 option specs: "TIP PIATRA: ANDEZIT · DIAMETRU: 115"
-  const specsPreview = getProductSpecsPreview(product, 3).join(" · ")
+  const specsPreview = getProductSpecsPreview(product, 3, activeFilters).join(" · ")
 
   const isSale =
     cheapestPrice?.price_type === "sale" ||

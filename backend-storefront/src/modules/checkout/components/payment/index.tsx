@@ -196,7 +196,7 @@ const Payment = ({
           >
             {!activeSession && isStripeLike(selectedPaymentMethod)
               ? " Enter card details"
-              : "Continue to review"}
+              : "Continuă la recapitulare"}
           </Button>
         </div>
 
@@ -231,7 +231,7 @@ const Payment = ({
                   <Text>
                     {isStripeLike(selectedPaymentMethod) && cardBrand
                       ? cardBrand
-                      : "Another step will appear"}
+                      : "Va apărea un alt pas"}
                   </Text>
                 </div>
               </div>
