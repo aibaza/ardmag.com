@@ -9,6 +9,7 @@ import { SectionHead } from '@modules/@shared/components/section-head'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { ProductGrid } from '@modules/products/product-grid'
 import { Badge } from '@modules/@shared/components/badge'
+import { PDPGallery } from '@modules/product-detail/pdp-gallery'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -118,30 +119,20 @@ export default function ProductPage() {
       <section className="pdp">
 
         {/* GALLERY: [thumbs 72px | main 1fr] */}
-        <div className="pdp-gallery">
-
-          <div className="pdp-thumbs">
-            <button className="pdp-thumb with-real on" aria-label="Imagine frontală"><img src="/design-temp/p-disc-delta-115.jpg" alt="frontal" /></button>
-            <button className="pdp-thumb with-real" aria-label="Imagine unghi"><img src="/design-temp/p-disc-turbo-180.jpg" alt="unghi" /></button>
-            <button className="pdp-thumb with-real" aria-label="Detaliu bandă"><img src="/design-temp/p-disc-delta-115.jpg" alt="bandă" /></button>
-            <button className="pdp-thumb with-real" aria-label="Ambalaj"><img src="/design-temp/p-disc-turbo-180.jpg" alt="ambalaj" /></button>
-            <button className="pdp-thumb" aria-label="Vezi încă 3">
-              <div className="ph" style={{ background: "var(--stone-900)", color: "#fff", letterSpacing: "0.08em" }}>+3</div>
-            </button>
-          </div>
-
-          <div className="pdp-main-img with-real">
-            <img className="main" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Delta Turbo Ø115" />
-            <div className="badges">
-              <Badge type="promo" label="−20%" />
-              <Badge type="new" label="Nou" />
-            </div>
-            <button className="zoom" aria-label="Mărește imaginea">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="5"/><path d="M7 4v6M4 7h6M14 14l-3.5-3.5"/></svg>
-            </button>
-          </div>
-
-        </div>
+        <PDPGallery
+          thumbs={[
+            { src: "/design-temp/p-disc-delta-115.jpg", alt: "frontal", ariaLabel: "Imagine frontală", active: true },
+            { src: "/design-temp/p-disc-turbo-180.jpg", alt: "unghi", ariaLabel: "Imagine unghi" },
+            { src: "/design-temp/p-disc-delta-115.jpg", alt: "bandă", ariaLabel: "Detaliu bandă" },
+            { src: "/design-temp/p-disc-turbo-180.jpg", alt: "ambalaj", ariaLabel: "Ambalaj" },
+            { ariaLabel: "Vezi încă 3", extraCount: 3 },
+          ]}
+          mainImage={{ src: "/design-temp/p-disc-delta-115.jpg", alt: "Disc diamantat Delta Turbo Ø115" }}
+          badges={[
+            { type: "promo", label: "−20%" },
+            { type: "new", label: "Nou" },
+          ]}
+        />
 
         {/* SUMMARY: sticky right sidebar */}
         <aside className="pdp-summary">
