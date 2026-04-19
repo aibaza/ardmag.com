@@ -1,5 +1,13 @@
 # Design Implementation Status
 
+## Faza 1 -- Extractie componente
+
+| # | Componenta | Faza | Verdict | Data | Raport |
+|---|------------|------|---------|------|--------|
+| 01 | Badge | A | PASS | 2026-04-19 | [01-badge](extract/01-badge.md) |
+
+## Iteratii design (refactoring pagini)
+
 | Iteration | Page | Verdict | Date | Report |
 |-----------|------|---------|------|--------|
 | 1 | index | PASS | 2026-04-19 | [iteration-1.md](iteration-1.md) |

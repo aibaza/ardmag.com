@@ -4,7 +4,9 @@
  * Usage: node scripts/console-check.mjs [--url http://localhost:8000]
  */
 
-import { chromium } from 'playwright';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { chromium } = require('/home/dc/Work/SurCod/client-projects/ardmag.com/backend-storefront/node_modules/playwright');
 
 const BASE = process.argv.includes('--url')
   ? process.argv[process.argv.indexOf('--url') + 1]

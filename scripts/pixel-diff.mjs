@@ -14,7 +14,8 @@ import { join } from 'path';
 import process from 'process';
 
 const require = createRequire(import.meta.url);
-const pixelmatch = require('pixelmatch');
+const _pixelmatch = require('pixelmatch');
+const pixelmatch = _pixelmatch.default || _pixelmatch;
 const { PNG } = require('pngjs');
 
 const BASE = '/home/dc/Work/SurCod/client-projects/ardmag.com/reports/extract';

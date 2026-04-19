@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Badge } from '@modules/@shared/components/badge'
 
 export default function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -156,7 +157,7 @@ export default function HomePage() {
 
         <div className="mini-grid">
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Delta Turbo Ultra Ø115" loading="lazy" /><div className="top-tags"><span className="badge promo">−20%</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Delta Turbo Ultra Ø115" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−20%" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Delta Turbo Ultra Ø115</a></h4>
@@ -168,7 +169,7 @@ export default function HomePage() {
             </div>
           </article>
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-freza-f8-250.jpg" alt="Freză profil F8 Ø250 marmură" loading="lazy" /><div className="top-tags"><span className="badge promo">−15%</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-freza-f8-250.jpg" alt="Freză profil F8 Ø250 marmură" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−15%" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Tenax</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Freză profil F8 Ø250 marmură</a></h4>
@@ -180,7 +181,7 @@ export default function HomePage() {
             </div>
           </article>
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø180 filet 22.23" loading="lazy" /><div className="top-tags"><span className="badge promo">−20%</span><span className="badge stock-low dot">4 buc</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø180 filet 22.23" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−20%" /><Badge type="stock-low" label="4 buc" dotVariant /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø180 filet 22.23</a></h4>
@@ -192,7 +193,7 @@ export default function HomePage() {
             </div>
           </article>
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-mastic-1kg.jpg" alt="Mastice poliester transparent 1 kg" loading="lazy" /><div className="top-tags"><span className="badge promo">Pachet 3+1</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-mastic-1kg.jpg" alt="Mastice poliester transparent 1 kg" loading="lazy" /><div className="top-tags"><Badge type="promo" label="Pachet 3+1" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Tenax</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Mastice poliester transparent 1 kg</a></h4>
@@ -241,7 +242,7 @@ export default function HomePage() {
 
         <div className="mini-grid">
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-pad-velcro-set.jpg" alt="Pad abraziv Velcro — 7 gradații set" loading="lazy" /><div className="top-tags"><span className="badge new">Nou</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-pad-velcro-set.jpg" alt="Pad abraziv Velcro — 7 gradații set" loading="lazy" /><div className="top-tags"><Badge type="new" label="Nou" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Sait Abrazivi</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Pad abraziv Velcro — 7 gradații set</a></h4>
@@ -253,7 +254,7 @@ export default function HomePage() {
             </div>
           </article>
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-freza-f20-200.jpg" alt="Freză profil F20 Ø200 granit" loading="lazy" /><div className="top-tags"><span className="badge new">Nou</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-freza-f20-200.jpg" alt="Freză profil F20 Ø200 granit" loading="lazy" /><div className="top-tags"><Badge type="new" label="Nou" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Tenax</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Freză profil F20 Ø200 granit</a></h4>
@@ -265,7 +266,7 @@ export default function HomePage() {
             </div>
           </article>
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-impermeabilizant.jpg" alt="Impermeabilizant granit / marmură 1L" loading="lazy" /><div className="top-tags"><span className="badge new">Nou</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-impermeabilizant.jpg" alt="Impermeabilizant granit / marmură 1L" loading="lazy" /><div className="top-tags"><Badge type="new" label="Nou" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Impermeabilizant granit / marmură 1L</a></h4>
@@ -277,7 +278,7 @@ export default function HomePage() {
             </div>
           </article>
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-freza-cupa-m14.jpg" alt="Freză cupă M14 · 7 cupe" loading="lazy" /><div className="top-tags"><span className="badge new">Nou</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-freza-cupa-m14.jpg" alt="Freză cupă M14 · 7 cupe" loading="lazy" /><div className="top-tags"><Badge type="new" label="Nou" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Woosuk</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Freză cupă M14 · 7 cupe</a></h4>

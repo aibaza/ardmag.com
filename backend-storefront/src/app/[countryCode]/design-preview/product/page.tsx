@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Badge } from '@modules/@shared/components/badge'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -133,8 +134,8 @@ export default function ProductPage() {
           <div className="pdp-main-img with-real">
             <img className="main" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Delta Turbo Ø115" />
             <div className="badges">
-              <span className="badge promo">−20%</span>
-              <span className="badge new">Nou</span>
+              <Badge type="promo" label="−20%" />
+              <Badge type="new" label="Nou" />
             </div>
             <button className="zoom" aria-label="Mărește imaginea">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="5"/><path d="M7 4v6M4 7h6M14 14l-3.5-3.5"/></svg>
@@ -346,7 +347,7 @@ export default function ProductPage() {
         <div className="mini-grid">
 
           <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø180" loading="lazy" /><div className="top-tags"><span className="badge promo">−20%</span></div></a>
+            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø180" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−20%" /></div></a>
             <div className="pcard-body">
               <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
               <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø180</a></h4>
