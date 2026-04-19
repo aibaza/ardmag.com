@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Badge } from '@modules/@shared/components/badge'
-import { Button } from '@modules/@shared/components/button'
 import { StarRating } from '@modules/@shared/components/star-rating'
 import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustItem } from '@modules/@shared/components/trust-item'
 import { SectionHead } from '@modules/@shared/components/section-head'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
+import { ProductCard } from '@modules/products/product-card'
+import { Badge } from '@modules/@shared/components/badge'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -329,54 +329,54 @@ export default function ProductPage() {
         <SectionHead eyebrow="Ai putea avea nevoie și de" title="Accesorii și produse compatibile" seeAllHref="/ro/design-preview/category" seeAllLabel="Vezi toate →" />
         <div className="mini-grid">
 
-          <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø180" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−20%" /></div></a>
-            <div className="pcard-body">
-              <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-              <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø180</a></h4>
-              <div className="pcard-sku">DLT-180-TX</div>
-            </div>
-            <div className="pcard-foot">
-              <div className="pcard-price"><span className="now">113,60 RON</span><span className="was">142,00 RON</span></div>
-              <Button variant="primary" size="sm">Adaugă</Button>
-            </div>
-          </article>
-          <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-freza-cupa-m14.jpg" alt="Freză cupă M14 · 7 cupe" loading="lazy" /></a>
-            <div className="pcard-body">
-              <a className="pcard-brand" href="/ro/design-preview/category">Woosuk</a>
-              <h4 className="pcard-title"><a href="/ro/design-preview/product">Freză cupă M14 · 7 cupe</a></h4>
-              <div className="pcard-sku">WSK-7-M14</div>
-            </div>
-            <div className="pcard-foot">
-              <div className="pcard-price"><span className="now">310,00 RON</span></div>
-              <Button variant="primary" size="sm">Adaugă</Button>
-            </div>
-          </article>
-          <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-pad-velcro-set.jpg" alt="Pad abraziv Velcro — set 7 grit" loading="lazy" /></a>
-            <div className="pcard-body">
-              <a className="pcard-brand" href="/ro/design-preview/category">Sait Abrazivi</a>
-              <h4 className="pcard-title"><a href="/ro/design-preview/product">Pad abraziv Velcro — set 7 grit</a></h4>
-              <div className="pcard-sku">SAT-4A-VEL-SET</div>
-            </div>
-            <div className="pcard-foot">
-              <div className="pcard-price"><span className="now">168,00 RON</span></div>
-              <Button variant="primary" size="sm">Adaugă</Button>
-            </div>
-          </article>
-          <article className="pcard">
-            <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-impermeabilizant.jpg" alt="Impermeabilizant granit / marmură 1L" loading="lazy" /></a>
-            <div className="pcard-body">
-              <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-              <h4 className="pcard-title"><a href="/ro/design-preview/product">Impermeabilizant granit / marmură 1L</a></h4>
-              <div className="pcard-sku">DLT-ECO-1000</div>
-            </div>
-            <div className="pcard-foot">
-              <div className="pcard-price"><span className="now">142,00 RON</span></div>
-              <Button variant="primary" size="sm">Adaugă</Button>
-            </div>
-          </article>
+          <ProductCard product={{
+            id: "DLT-180-TX",
+            title: "Disc diamantat Turbo Ø180",
+            sku: "DLT-180-TX",
+            brand: "Delta Research",
+            brandHref: "/ro/design-preview/category",
+            image: "/design-temp/p-disc-turbo-180.jpg",
+            imageAlt: "Disc diamantat Turbo Ø180",
+            href: "/ro/design-preview/product",
+            price: { now: "113,60 RON", was: "142,00 RON" },
+            badges: [{ type: "promo", label: "−20%" }],
+          }} />
+          <ProductCard product={{
+            id: "WSK-7-M14",
+            title: "Freză cupă M14 · 7 cupe",
+            sku: "WSK-7-M14",
+            brand: "Woosuk",
+            brandHref: "/ro/design-preview/category",
+            image: "/design-temp/p-freza-cupa-m14.jpg",
+            imageAlt: "Freză cupă M14 · 7 cupe",
+            href: "/ro/design-preview/product",
+            price: { now: "310,00 RON" },
+            badges: [],
+          }} />
+          <ProductCard product={{
+            id: "SAT-4A-VEL-SET",
+            title: "Pad abraziv Velcro — set 7 grit",
+            sku: "SAT-4A-VEL-SET",
+            brand: "Sait Abrazivi",
+            brandHref: "/ro/design-preview/category",
+            image: "/design-temp/p-pad-velcro-set.jpg",
+            imageAlt: "Pad abraziv Velcro — set 7 grit",
+            href: "/ro/design-preview/product",
+            price: { now: "168,00 RON" },
+            badges: [],
+          }} />
+          <ProductCard product={{
+            id: "DLT-ECO-1000",
+            title: "Impermeabilizant granit / marmură 1L",
+            sku: "DLT-ECO-1000",
+            brand: "Delta Research",
+            brandHref: "/ro/design-preview/category",
+            image: "/design-temp/p-impermeabilizant.jpg",
+            imageAlt: "Impermeabilizant granit / marmură 1L",
+            href: "/ro/design-preview/product",
+            price: { now: "142,00 RON" },
+            badges: [],
+          }} />
         </div>
       </section>
 

@@ -9,10 +9,11 @@
     "05-QuantityStepper",
     "06-TrustItem",
     "07-SectionHead",
-    "08-Breadcrumb"
+    "08-Breadcrumb",
+    "09-ProductCard"
   ],
   "failed": [],
-  "current": "09-ProductCard",
+  "current": "10-TrustBanner",
   "status": "running",
   "components": [
     {

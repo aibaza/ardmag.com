@@ -12,6 +12,7 @@
 | 06 | TrustItem | A | PASS | 2026-04-19 | — |
 | 07 | SectionHead | B | PASS | 2026-04-19 | — |
 | 08 | Breadcrumb | B | PASS | 2026-04-19 | — |
+| 09 | ProductCard | B | PASS | 2026-04-19 | — |
 
 ## Iteratii design (refactoring pagini)
 

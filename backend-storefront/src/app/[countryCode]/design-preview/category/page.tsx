@@ -1,12 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Badge } from '@modules/@shared/components/badge'
-import { Button } from '@modules/@shared/components/button'
-import { ProductCardSpecTag } from '@modules/@shared/components/product-card-spec-tag'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustItem } from '@modules/@shared/components/trust-item'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
+import { ProductCard } from '@modules/products/product-card'
 
 export default function CategoryPage() {
   const [mDrawerOpen, setMDrawerOpen] = useState(false)
@@ -255,186 +253,162 @@ export default function CategoryPage() {
 
           <div className="cat-grid">
 
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Delta Turbo Ultra Ø115" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−20%" /></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Delta Turbo Ultra Ø115</a></h4>
-                <div className="pcard-sku">DLT-115-TX-ULTRA</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">38,40 RON</span><span className="was">48,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø125 filet 22.23" loading="lazy" /><div className="top-tags"><Badge type="new" label="Nou" /></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø125 filet 22.23</a></h4>
-                <div className="pcard-sku">DLT-125-TX</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 125 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Universal" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">52,80 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Turbo Ø180" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−20%" /><Badge type="stock-low" label="4 buc" dotVariant /></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø180</a></h4>
-                <div className="pcard-sku">DLT-180-TX</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 180 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">113,60 RON</span><span className="was">142,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø230 flanșă M14" loading="lazy" /><div className="top-tags"></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø230 flanșă M14</a></h4>
-                <div className="pcard-sku">DLT-230-TX</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 230 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Beton" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">168,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat segmentat Ø115" loading="lazy" /><div className="top-tags"></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat segmentat Ø115</a></h4>
-                <div className="pcard-sku">DLT-115-SG</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Segmentat" /><ProductCardSpecTag label="Beton" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">34,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat continuu Ø200 marmură" loading="lazy" /><div className="top-tags"></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Tenax</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat continuu Ø200 marmură</a></h4>
-                <div className="pcard-sku">TNX-DC-200</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 200 mm" /><ProductCardSpecTag label="Continuu" /><ProductCardSpecTag label="Marmură" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">198,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat continuu Ø250 marmură" loading="lazy" /><div className="top-tags"><Badge type="stock-low" label="2 buc" dotVariant /></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Tenax</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat continuu Ø250 marmură</a></h4>
-                <div className="pcard-sku">TNX-DC-250</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 250 mm" /><ProductCardSpecTag label="Continuu" /><ProductCardSpecTag label="Marmură" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">312,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø125 premium" loading="lazy" /><div className="top-tags"><Badge type="promo" label="−20%" /></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Woosuk</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø125 premium</a></h4>
-                <div className="pcard-sku">WSK-T-125</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 125 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">78,00 RON</span><span className="was">98,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Turbo Ø180 premium" loading="lazy" /><div className="top-tags"></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Woosuk</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø180 premium</a></h4>
-                <div className="pcard-sku">WSK-T-180</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 180 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">148,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Ø115 economic" loading="lazy" /><div className="top-tags"></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Diatex</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Ø115 economic</a></h4>
-                <div className="pcard-sku">DTX-E-115</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Universal" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">22,40 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-delta-115.jpg" alt="Disc diamantat Ø230 beton armat" loading="lazy" /><div className="top-tags"></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Diatex</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Ø230 beton armat</a></h4>
-                <div className="pcard-sku">DTX-BA-230</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 230 mm" /><ProductCardSpecTag label="Segmentat" /><ProductCardSpecTag label="Beton armat" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">142,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
-            <article className="pcard">
-              <a href="/ro/design-preview/product" className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src="/design-temp/p-disc-turbo-180.jpg" alt="Disc diamantat Turbo Ø115 - pachet 5 buc" loading="lazy" /><div className="top-tags"><Badge type="promo" label="Pachet" /></div></a>
-              <div className="pcard-body">
-                <a className="pcard-brand" href="/ro/design-preview/category">Delta Research</a>
-                <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø115 - pachet 5 buc</a></h4>
-                <div className="pcard-sku">DLT-115-TX-5</div>
-                <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Pachet 5" />
-                </div>
-              </div>
-              <div className="pcard-foot">
-                <div className="pcard-price"><span className="now">172,00 RON</span><span className="was">220,00 RON</span></div>
-                <Button variant="primary" size="sm">Adaugă</Button>
-              </div>
-            </article>
+            <ProductCard product={{
+              id: "DLT-115-TX-ULTRA",
+              title: "Disc diamantat Delta Turbo Ultra Ø115",
+              sku: "DLT-115-TX-ULTRA",
+              brand: "Delta Research",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-delta-115.jpg",
+              imageAlt: "Disc diamantat Delta Turbo Ultra Ø115",
+              href: "/ro/design-preview/product",
+              price: { now: "38,40 RON", was: "48,00 RON" },
+              badges: [{ type: "promo", label: "−20%" }],
+              specs: ["Ø 115 mm", "Turbo", "Granit"],
+            }} />
+            <ProductCard product={{
+              id: "DLT-125-TX",
+              title: "Disc diamantat Turbo Ø125 filet 22.23",
+              sku: "DLT-125-TX",
+              brand: "Delta Research",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-turbo-180.jpg",
+              imageAlt: "Disc diamantat Turbo Ø125 filet 22.23",
+              href: "/ro/design-preview/product",
+              price: { now: "52,80 RON" },
+              badges: [{ type: "new", label: "Nou" }],
+              specs: ["Ø 125 mm", "Turbo", "Universal"],
+            }} />
+            <ProductCard product={{
+              id: "DLT-180-TX",
+              title: "Disc diamantat Turbo Ø180",
+              sku: "DLT-180-TX",
+              brand: "Delta Research",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-delta-115.jpg",
+              imageAlt: "Disc diamantat Turbo Ø180",
+              href: "/ro/design-preview/product",
+              price: { now: "113,60 RON", was: "142,00 RON" },
+              badges: [{ type: "promo", label: "−20%" }, { type: "stock-low", label: "4 buc", dotVariant: true }],
+              specs: ["Ø 180 mm", "Turbo", "Granit"],
+            }} />
+            <ProductCard product={{
+              id: "DLT-230-TX",
+              title: "Disc diamantat Turbo Ø230 flanșă M14",
+              sku: "DLT-230-TX",
+              brand: "Delta Research",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-turbo-180.jpg",
+              imageAlt: "Disc diamantat Turbo Ø230 flanșă M14",
+              href: "/ro/design-preview/product",
+              price: { now: "168,00 RON" },
+              badges: [],
+              specs: ["Ø 230 mm", "Turbo", "Beton"],
+            }} />
+            <ProductCard product={{
+              id: "DLT-115-SG",
+              title: "Disc diamantat segmentat Ø115",
+              sku: "DLT-115-SG",
+              brand: "Delta Research",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-delta-115.jpg",
+              imageAlt: "Disc diamantat segmentat Ø115",
+              href: "/ro/design-preview/product",
+              price: { now: "34,00 RON" },
+              badges: [],
+              specs: ["Ø 115 mm", "Segmentat", "Beton"],
+            }} />
+            <ProductCard product={{
+              id: "TNX-DC-200",
+              title: "Disc diamantat continuu Ø200 marmură",
+              sku: "TNX-DC-200",
+              brand: "Tenax",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-turbo-180.jpg",
+              imageAlt: "Disc diamantat continuu Ø200 marmură",
+              href: "/ro/design-preview/product",
+              price: { now: "198,00 RON" },
+              badges: [],
+              specs: ["Ø 200 mm", "Continuu", "Marmură"],
+            }} />
+            <ProductCard product={{
+              id: "TNX-DC-250",
+              title: "Disc diamantat continuu Ø250 marmură",
+              sku: "TNX-DC-250",
+              brand: "Tenax",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-delta-115.jpg",
+              imageAlt: "Disc diamantat continuu Ø250 marmură",
+              href: "/ro/design-preview/product",
+              price: { now: "312,00 RON" },
+              badges: [{ type: "stock-low", label: "2 buc", dotVariant: true }],
+              specs: ["Ø 250 mm", "Continuu", "Marmură"],
+            }} />
+            <ProductCard product={{
+              id: "WSK-T-125",
+              title: "Disc diamantat Turbo Ø125 premium",
+              sku: "WSK-T-125",
+              brand: "Woosuk",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-turbo-180.jpg",
+              imageAlt: "Disc diamantat Turbo Ø125 premium",
+              href: "/ro/design-preview/product",
+              price: { now: "78,00 RON", was: "98,00 RON" },
+              badges: [{ type: "promo", label: "−20%" }],
+              specs: ["Ø 125 mm", "Turbo", "Granit"],
+            }} />
+            <ProductCard product={{
+              id: "WSK-T-180",
+              title: "Disc diamantat Turbo Ø180 premium",
+              sku: "WSK-T-180",
+              brand: "Woosuk",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-delta-115.jpg",
+              imageAlt: "Disc diamantat Turbo Ø180 premium",
+              href: "/ro/design-preview/product",
+              price: { now: "148,00 RON" },
+              badges: [],
+              specs: ["Ø 180 mm", "Turbo", "Granit"],
+            }} />
+            <ProductCard product={{
+              id: "DTX-E-115",
+              title: "Disc diamantat Ø115 economic",
+              sku: "DTX-E-115",
+              brand: "Diatex",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-turbo-180.jpg",
+              imageAlt: "Disc diamantat Ø115 economic",
+              href: "/ro/design-preview/product",
+              price: { now: "22,40 RON" },
+              badges: [],
+              specs: ["Ø 115 mm", "Turbo", "Universal"],
+            }} />
+            <ProductCard product={{
+              id: "DTX-BA-230",
+              title: "Disc diamantat Ø230 beton armat",
+              sku: "DTX-BA-230",
+              brand: "Diatex",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-delta-115.jpg",
+              imageAlt: "Disc diamantat Ø230 beton armat",
+              href: "/ro/design-preview/product",
+              price: { now: "142,00 RON" },
+              badges: [],
+              specs: ["Ø 230 mm", "Segmentat", "Beton armat"],
+            }} />
+            <ProductCard product={{
+              id: "DLT-115-TX-5",
+              title: "Disc diamantat Turbo Ø115 - pachet 5 buc",
+              sku: "DLT-115-TX-5",
+              brand: "Delta Research",
+              brandHref: "/ro/design-preview/category",
+              image: "/design-temp/p-disc-turbo-180.jpg",
+              imageAlt: "Disc diamantat Turbo Ø115 - pachet 5 buc",
+              href: "/ro/design-preview/product",
+              price: { now: "172,00 RON", was: "220,00 RON" },
+              badges: [{ type: "promo", label: "Pachet" }],
+              specs: ["Ø 115 mm", "Turbo", "Pachet 5"],
+            }} />
           </div>
 
           <div className="pagination">
