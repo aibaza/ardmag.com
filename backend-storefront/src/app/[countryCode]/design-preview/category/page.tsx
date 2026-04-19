@@ -4,6 +4,7 @@ import { useState } from "react"
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
+import { CategoryHero } from '@modules/category/category-hero'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function CategoryPage() {
@@ -104,19 +105,17 @@ export default function CategoryPage() {
 
       <Breadcrumb items={[{label:"Acasă",href:"/ro"},{label:"Scule diamantate",href:"#"}]} current="Discuri diamantate" />
 
-      <header className="cat-hero">
-        <div>
-          <div style={{ fontFamily: 'var(--f-mono)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-muted)' }}>Categorie · 142 produse</div>
-          <h1>Discuri diamantate</h1>
-          <p>Discuri diamantate profesionale pentru tăiere în granit, marmură, beton și materiale dure. Formate Ø100 până la Ø300, bandă turbo, continuă sau segmentată. Distribuitor autorizat Delta Research, Tenax, Woosuk și Diatex.</p>
-          <div className="meta">
-            <span><strong>142</strong> SKU</span>
-            <span><strong>7</strong> branduri</span>
-            <span><strong>Ø100–Ø300</strong> mm</span>
-            <span>Stoc <strong>Cluj-Napoca</strong></span>
-          </div>
-        </div>
-      </header>
+      <CategoryHero
+        eyebrow="Categorie · 142 produse"
+        title="Discuri diamantate"
+        description="Discuri diamantate profesionale pentru tăiere în granit, marmură, beton și materiale dure. Formate Ø100 până la Ø300, bandă turbo, continuă sau segmentată. Distribuitor autorizat Delta Research, Tenax, Woosuk și Diatex."
+        meta={[
+          <><strong>142</strong> SKU</>,
+          <><strong>7</strong> branduri</>,
+          <><strong>Ø100–Ø300</strong> mm</>,
+          <>Stoc <strong>Cluj-Napoca</strong></>,
+        ]}
+      />
 
       <div className="cat-layout">
 
