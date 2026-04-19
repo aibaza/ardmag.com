@@ -7,9 +7,10 @@ interface SiteHeaderProps {
   discuriHref?: string
   drawerId?: string
   drawerClosedAttr?: boolean
+  cartItemCount?: number
 }
 
-export function SiteHeader({ categoriesHref = "#", discuriHref = "#", drawerId, drawerClosedAttr }: SiteHeaderProps) {
+export function SiteHeader({ categoriesHref = "#", discuriHref = "#", drawerId, drawerClosedAttr, cartItemCount = 0 }: SiteHeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
@@ -40,7 +41,7 @@ export function SiteHeader({ categoriesHref = "#", discuriHref = "#", drawerId, 
           <div className="actions">
             <a className="action-btn" href="#" aria-label="cont"><span className="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></span><span className="label">Cont</span></a>
             <a className="action-btn" href="#" aria-label="favorite"><span className="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 20s-7-5-7-11a4 4 0 0 1 7-2.5A4 4 0 0 1 19 9c0 6-7 11-7 11z"/></svg></span><span className="label">Favorite</span><span className="count">4</span></a>
-            <a className="action-btn" href="#" aria-label="coș"><span className="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 4h3l2 12h11l2-8H7"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span><span className="label">Coș</span><span className="count">12</span></a>
+            <a className="action-btn" href="#" aria-label="coș"><span className="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 4h3l2 12h11l2-8H7"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span><span className="label">Coș</span>{cartItemCount > 0 && <span className="count">{cartItemCount}</span>}</a>
           </div>
         </div>
 
@@ -62,7 +63,7 @@ export function SiteHeader({ categoriesHref = "#", discuriHref = "#", drawerId, 
           <a className="logo" href="/ro"><span className="mark">a</span><div className="word">ardmag</div></a>
           <div className="spacer"></div>
           <button className="icon-btn" aria-label="favorite"><svg viewBox="0 0 20 20"><path d="M10 17s-6-4-6-9a3.3 3.3 0 0 1 6-2 3.3 3.3 0 0 1 6 2c0 5-6 9-6 9z"/></svg><span className="count">4</span></button>
-          <button className="icon-btn" aria-label="coș"><svg viewBox="0 0 20 20"><path d="M3 4h2l1.5 9h9l1.5-6H6"/><circle cx="8" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg><span className="count">12</span></button>
+          <button className="icon-btn" aria-label="coș"><svg viewBox="0 0 20 20"><path d="M3 4h2l1.5 9h9l1.5-6H6"/><circle cx="8" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg>{cartItemCount > 0 && <span className="count">{cartItemCount}</span>}</button>
         </div>
 
         {/* Mobile: search row */}

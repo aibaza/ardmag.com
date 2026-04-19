@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { SiteHeader } from '@modules/layout/site-header'
+import { SiteHeaderShell } from '@modules/layout/site-header'
 import { SiteFooter } from '@modules/layout/site-footer'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { PDPGallery } from '@modules/product-detail/pdp-gallery'
@@ -133,7 +133,7 @@ export default async function ProductPage(props: Props) {
 
   return (
     <>
-      <SiteHeader
+      <SiteHeaderShell
         categoriesHref={`/${countryCode}/categories/${categoryHandle}`}
         drawerId="mDrawer"
         drawerClosedAttr

@@ -5,7 +5,7 @@ import { Hero } from '@modules/sections/hero'
 import { QuickCategories } from '@modules/sections/quick-categories'
 import { SupplierStrip } from '@modules/sections/supplier-strip'
 import { ProductGrid } from '@modules/products/product-grid'
-import { SiteHeader } from '@modules/layout/site-header'
+import { SiteHeaderShell } from '@modules/layout/site-header'
 import { SiteFooter } from '@modules/layout/site-footer'
 import { listCategories } from '@lib/data/categories'
 import { listProducts } from '@lib/data/products'
@@ -75,7 +75,7 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeaderShell />
 
       <main className="page-inner">
 

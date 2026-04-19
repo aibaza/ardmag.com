@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
-import { SiteHeader } from '@modules/layout/site-header'
+import { SiteHeaderShell } from '@modules/layout/site-header'
 import { SiteFooter } from '@modules/layout/site-footer'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { CategoryHero } from '@modules/category/category-hero'
@@ -176,7 +176,7 @@ export default async function CategoryPage(props: Props) {
 
   return (
     <>
-      <SiteHeader
+      <SiteHeaderShell
         categoriesHref={`/${countryCode}/categories/${categoryHandle[0]}`}
         drawerId="mDrawer"
         drawerClosedAttr
