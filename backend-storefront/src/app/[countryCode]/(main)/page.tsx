@@ -6,6 +6,7 @@ import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
 import { Hero } from '@modules/sections/hero'
 import { QuickCategories } from '@modules/sections/quick-categories'
+import { SupplierStrip } from '@modules/sections/supplier-strip'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function HomePage() {
@@ -200,21 +201,20 @@ export default function HomePage() {
         ]} />
 
         {/* Supplier strip */}
-        <div className="supplier-strip">
-          <header>
-            <h4>Distribuitor autorizat pentru</h4>
-            <a href="#" style={{fontFamily:"var(--f-mono)",fontSize:"11px",color:"var(--stone-700)",textDecoration:"none",textTransform:"uppercase",letterSpacing:"0.05em"}}>Vezi toți partenerii →</a>
-          </header>
-          <div className="supplier-grid">
-            <a href="#" className="slogo with-real" aria-label="Vezi distribuitor"><span className="real"><img src="/design-temp/dist-tenax.png" alt="Tenax" /></span><span className="sub">Italia · 1960</span></a>
-            <a href="#" className="slogo with-real" aria-label="Vezi distribuitor"><span className="real"><img src="/design-temp/dist-sait.png" alt="Sait" /></span><span className="sub">Italia · 1953</span></a>
-            <a href="#" className="slogo with-real" aria-label="Vezi distribuitor"><span className="real"><img src="/design-temp/dist-woosuk.png" alt="Woosuk" /></span><span className="sub">Korea</span></a>
-            <a href="#" className="slogo with-real" aria-label="Vezi distribuitor"><span className="real"><img src="/design-temp/dist-diatex.png" alt="Diatex" /></span><span className="sub">Franța</span></a>
-            <a href="#" className="slogo with-real" aria-label="Vezi distribuitor"><span className="real"><img src="/design-temp/dist-fox.png" alt="Fox Ironstone" /></span><span className="sub">Italia</span></a>
-            <a href="#" className="slogo with-real" aria-label="Vezi distribuitor"><span className="real"><img src="/design-temp/dist-vbt.png" alt="VBT" /></span><span className="sub">Italia</span></a>
-            <a href="#" className="slogo with-real" aria-label="Vezi distribuitor"><span className="real"><img src="/design-temp/dist-delta.png" alt="Delta Research" /></span><span className="sub">Cluj-Napoca</span></a>
-          </div>
-        </div>
+        <SupplierStrip
+          heading="Distribuitor autorizat pentru"
+          allHref="#"
+          allLabel="Vezi toți partenerii →"
+          suppliers={[
+            { href: "#", image: "/design-temp/dist-tenax.png", imageAlt: "Tenax", sub: "Italia · 1960" },
+            { href: "#", image: "/design-temp/dist-sait.png", imageAlt: "Sait", sub: "Italia · 1953" },
+            { href: "#", image: "/design-temp/dist-woosuk.png", imageAlt: "Woosuk", sub: "Korea" },
+            { href: "#", image: "/design-temp/dist-diatex.png", imageAlt: "Diatex", sub: "Franța" },
+            { href: "#", image: "/design-temp/dist-fox.png", imageAlt: "Fox Ironstone", sub: "Italia" },
+            { href: "#", image: "/design-temp/dist-vbt.png", imageAlt: "VBT", sub: "Italia" },
+            { href: "#", image: "/design-temp/dist-delta.png", imageAlt: "Delta Research", sub: "Cluj-Napoca" },
+          ]}
+        />
 
         {/* New arrivals */}
         <SectionHead eyebrow="Nou intrat · ultimele 30 zile" title="Produse noi în stoc" seeAllHref="#" seeAllLabel="Toate noutățile →" />

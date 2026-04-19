@@ -1,0 +1,1 @@
+export { SupplierStrip } from './SupplierStrip'
