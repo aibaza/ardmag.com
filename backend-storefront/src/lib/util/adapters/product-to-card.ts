@@ -1,6 +1,7 @@
 import type { HttpTypes } from "@medusajs/types"
 import { formatPrice, getProductMinPriceWithOriginal } from "./format-price"
 import { productToBadges } from "./product-to-badges"
+import { imgUrl } from "@lib/util/img-url"
 
 type BadgeType = "promo" | "new" | "stock-low" | "custom"
 
@@ -54,12 +55,13 @@ export function productToCard(
     ? `/${countryCode}/search?brand=${brandSlug}`
     : `/${countryCode}/search`
 
-  const image =
+  const rawImage =
     product.thumbnail ||
     (product.images && product.images.length > 0
       ? product.images[0].url
       : null) ||
     PLACEHOLDER
+  const image = imgUrl(rawImage, 'card')
 
   const href = `/${countryCode}/products/${product.handle}`
 
