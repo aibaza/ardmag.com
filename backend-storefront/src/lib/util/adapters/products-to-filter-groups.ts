@@ -1,16 +1,18 @@
 import type { HttpTypes } from "@medusajs/types"
 import { getProductMinPrice } from "./format-price"
 
-interface CheckboxOption {
+export interface CheckboxOption {
   label: string
+  value: string
   count?: number
   checked?: boolean
 }
 
-type FilterGroup =
+export type FilterGroup =
   | {
       type: "checkboxes"
       title: string
+      paramKey: "brand" | "material"
       badge?: string
       open?: boolean
       options: CheckboxOption[]
@@ -93,6 +95,7 @@ export function productsToFilterGroups(
       .sort((a, b) => b[1] - a[1])
       .map(([slug, count]) => ({
         label: capitalizeSlug(slug),
+        value: slug,
         count,
         checked: activeFilters?.brands?.includes(slug) ?? false,
       }))
@@ -100,6 +103,7 @@ export function productsToFilterGroups(
     groups.push({
       type: "checkboxes",
       title: "Brand",
+      paramKey: "brand",
       open: true,
       options: brandOptions,
     })
@@ -113,6 +117,7 @@ export function productsToFilterGroups(
       .sort((a, b) => b[1] - a[1])
       .map(([slug, count]) => ({
         label: capitalizeSlug(slug),
+        value: slug,
         count,
         checked: activeFilters?.materials?.includes(slug) ?? false,
       }))
@@ -120,6 +125,7 @@ export function productsToFilterGroups(
     groups.push({
       type: "checkboxes",
       title: "Material",
+      paramKey: "material",
       open: true,
       options: materialOptions,
     })

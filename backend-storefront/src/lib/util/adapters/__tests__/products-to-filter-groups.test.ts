@@ -55,9 +55,11 @@ describe("productsToFilterGroups", () => {
     expect(brandGroup).toBeDefined()
     expect(brandGroup?.type).toBe("checkboxes")
     if (brandGroup?.type === "checkboxes") {
+      expect(brandGroup.paramKey).toBe("brand")
       expect(brandGroup.options).toHaveLength(2)
       const tenaxOpt = brandGroup.options.find((o) => o.label === "Tenax")
       expect(tenaxOpt?.count).toBe(2)
+      expect(tenaxOpt?.value).toBe("tenax")
     }
   })
 
@@ -71,8 +73,10 @@ describe("productsToFilterGroups", () => {
     const matGroup = groups.find((g) => g.title === "Material")
     expect(matGroup).toBeDefined()
     if (matGroup?.type === "checkboxes") {
+      expect(matGroup.paramKey).toBe("material")
       const granitOpt = matGroup.options.find((o) => o.label === "Granit")
       expect(granitOpt?.count).toBe(2)
+      expect(granitOpt?.value).toBe("granit")
     }
   })
 
