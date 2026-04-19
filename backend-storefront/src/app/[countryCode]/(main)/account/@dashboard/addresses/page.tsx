@@ -1,38 +1,46 @@
-import { Metadata } from "next"
-import { notFound } from "next/navigation"
-
-import AddressBook from "@modules/account/components/address-book"
-
-import { getRegion } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
+import { AddressCard } from "@modules/account/components/AddressCard"
+import { AddAddressForm } from "@modules/account/components/AddAddressForm"
+import { redirect } from "next/navigation"
 
-export const metadata: Metadata = {
-  title: "Adresele mele",
-  description: "Adresele tale salvate.",
+type Props = {
+  params: Promise<{ countryCode: string }>
 }
 
-export default async function Addresses(props: {
-  params: Promise<{ countryCode: string }>
-}) {
-  const params = await props.params
-  const { countryCode } = params
+export default async function AddressesPage({ params }: Props) {
+  const { countryCode } = await params
   const customer = await retrieveCustomer()
-  const region = await getRegion(countryCode)
 
-  if (!customer || !region) {
-    notFound()
-  }
+  if (!customer) redirect(`/${countryCode}/account`)
+
+  const addresses = customer.addresses ?? []
 
   return (
-    <div className="w-full" data-testid="addresses-page-wrapper">
-      <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Adresele mele</h1>
-        <p className="text-base-regular">
-          View and update your shipping addresses, you can add as many as you
-          like. Saving your addresses will make them available during checkout.
+    <div>
+      <h2
+        style={{
+          fontFamily: "var(--f-sans)",
+          fontWeight: 600,
+          fontSize: 20,
+          marginBottom: 24,
+        }}
+      >
+        Adresele mele
+      </h2>
+
+      <AddAddressForm countryCode={countryCode} />
+
+      {addresses.length === 0 ? (
+        <p style={{ color: "var(--fg-muted)", fontFamily: "var(--f-sans)" }}>
+          Nu ai adrese salvate inca.
         </p>
-      </div>
-      <AddressBook customer={customer} region={region} />
+      ) : (
+        <div>
+          {addresses.map((addr) => (
+            <AddressCard key={addr.id} address={addr} countryCode={countryCode} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
