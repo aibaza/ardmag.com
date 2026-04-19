@@ -12,31 +12,17 @@ import { listProducts } from '@lib/data/products'
 import { productToCard } from '@lib/util/adapters/product-to-card'
 import { HttpTypes } from '@medusajs/types'
 
-// Design-temp images per category until proper category images are configured
 const CAT_IMAGE_MAP: Record<string, string> = {
-  'discuri-de-taiere': '/design-temp/cat-discuri.webp',
-  'slefuire-piatra': '/design-temp/cat-paduri.webp',
-  'mastici-tenax': '/design-temp/cat-mastici.webp',
-  'solutii-pentru-piatra': '/design-temp/cat-tratamente.webp',
-  'diverse': '/design-temp/cat-echipamente.webp',
-  'abrazivi-si-perii': '/design-temp/cat-freze.jpg',
-  'abrazivi-oala': '/design-temp/cat-freze.jpg',
-  'mese-de-taiat': '/design-temp/cat-echipamente.webp',
-  'pachete-promotionale': '/design-temp/cat-mastici.webp',
+  'discuri-de-taiere': '/design-temp/cat-discuri-thumb.webp',
+  'slefuire-piatra': '/design-temp/cat-slefuire-thumb.webp',
+  'mastici-tenax': '/design-temp/cat-mastici-thumb.webp',
+  'solutii-pentru-piatra': '/design-temp/cat-solutii-thumb.webp',
+  'diverse': '/design-temp/cat-diverse-thumb.webp',
+  'abrazivi-si-perii': '/design-temp/cat-abrazivi-perii-thumb.webp',
+  'abrazivi-oala': '/design-temp/cat-abrazivi-oala-thumb.webp',
+  'mese-de-taiat': '/design-temp/cat-mese-thumb.webp',
+  'pachete-promotionale': '/design-temp/cat-pachete-thumb.webp',
 }
-
-// Order matching original Wix site navigation (sitemap order)
-const QUICK_CAT_ORDER = [
-  'mastici-tenax',
-  'solutii-pentru-piatra',
-  'slefuire-piatra',
-  'discuri-de-taiere',
-  'abrazivi-si-perii',
-  'abrazivi-oala',
-  'diverse',
-  'mese-de-taiat',
-  'pachete-promotionale',
-]
 
 type Props = {
   params: Promise<{ countryCode: string }>
@@ -71,12 +57,14 @@ export default async function HomePage({ params }: Props) {
     })
     .slice(0, 4)
 
-  // Sort categories by Wix-original order, use products.length for count
-  const catByHandle = Object.fromEntries(categories.map((c) => [c.handle ?? '', c]))
-  const quickCatItems = QUICK_CAT_ORDER
-    .map((handle) => catByHandle[handle])
-    .filter(Boolean)
-    .slice(0, 6)
+  // Use admin rank order from API; separate pachete-promotionale
+  const pacheteCat = categories.find((c) => c.handle === 'pachete-promotionale')
+  const pacheteIds = new Set(((pacheteCat as any)?.products ?? []).map((p: any) => p.id as string))
+  const pacheteProducts = allProducts.filter((p) => pacheteIds.has(p.id)).slice(0, 4)
+
+  const quickCatItems = categories
+    .filter((c) => c.handle !== 'pachete-promotionale')
+    .slice(0, 8)
     .map((cat) => ({
       href: `/${countryCode}/categories/${cat.handle}`,
       image: CAT_IMAGE_MAP[cat.handle ?? ''] ?? '/design-temp/cat-echipamente.webp',
@@ -109,8 +97,24 @@ export default async function HomePage({ params }: Props) {
           ]}
         />
 
-        {/* Quick categories -- real Medusa categories */}
+        {/* Quick categories -- real Medusa categories, ordered by admin rank */}
         <QuickCategories items={quickCatItems} />
+
+        {/* Pachete Promoționale -- separate section */}
+        {pacheteProducts.length > 0 && (
+          <>
+            <SectionHead
+              eyebrow="Pachete Promoționale"
+              title="Seturi complete"
+              seeAllHref={`/${countryCode}/categories/pachete-promotionale`}
+              seeAllLabel="Vezi toate pachetele →"
+            />
+            <ProductGrid
+              variant="mini"
+              products={pacheteProducts.map((p) => productToCard(p, countryCode))}
+            />
+          </>
+        )}
 
         {/* Promo products -- real data with promo:30 tag */}
         {promoProducts.length > 0 && (
