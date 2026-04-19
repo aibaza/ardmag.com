@@ -4,6 +4,7 @@ import { useState } from "react"
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
+import { Hero } from '@modules/sections/hero'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function HomePage() {
@@ -108,36 +109,22 @@ export default function HomePage() {
       <main className="page-inner">
 
         {/* HERO */}
-        <div className="hero">
-          <div className="hero-main">
-            <span className="kicker">Promo luna aprilie · până pe 30</span>
-            <h2>Discuri diamantate<br />Delta Turbo — până la <span style={{color:"var(--brand-400)"}}>−20%</span></h2>
-            <p>Toate variantele pentru granit + beton armat la Ø115–230 mm. Stoc complet în Cluj, livrare 24–48h în toată țara.</p>
-            <div className="hactions">
-              <a className="btn primary lg" href="#">Vezi promoția</a>
-              <a className="btn ghost lg" href="#" style={{color:"#fff",borderColor:"var(--stone-700)"}}>Toate discurile →</a>
-            </div>
-            <div className="stats">
-              <div><strong>480+</strong><span>SKU în stoc</span></div>
-              <div><strong>7</strong><span>furnizori autorizați</span></div>
-              <div><strong>24h</strong><span>livrare Cluj</span></div>
-            </div>
-          </div>
-          <div className="hero-side">
-            <div className="hero-card with-img">
-              <span className="kicker">Nou · Sait Abrazivi</span>
-              <h3>Pad-uri Velcro 7 gradații</h3>
-              <p>Set complet pentru polish granit de la grit 50 la 3000.</p>
-              <div className="img-wrap"><img src="/design-temp/hero-paduri.jpg" alt="Pad-uri Velcro" loading="lazy" /></div><a href="#">Descoperă setul →</a>
-            </div>
-            <div className="hero-card with-img">
-              <span className="kicker">Ghid tehnic</span>
-              <h3>Cum alegi discul corect</h3>
-              <p>Granit dur vs. marmură vs. beton armat — cheatsheet PDF.</p>
-              <div className="img-wrap"><img src="/design-temp/hero-ghid.jpg" alt="Ghid discuri" loading="lazy" /></div><a href="#">Descarcă ghid →</a>
-            </div>
-          </div>
-        </div>
+        <Hero
+          kicker="Promo luna aprilie · până pe 30"
+          title={<>Discuri diamantate<br />Delta Turbo — până la <span style={{color:"var(--brand-400)"}}>−20%</span></>}
+          description="Toate variantele pentru granit + beton armat la Ø115–230 mm. Stoc complet în Cluj, livrare 24–48h în toată țara."
+          primaryCta={{ label: "Vezi promoția", href: "#" }}
+          ghostCta={{ label: "Toate discurile →", href: "#", style: {color:"#fff",borderColor:"var(--stone-700)"} }}
+          stats={[
+            { value: "480+", label: "SKU în stoc" },
+            { value: "7", label: "furnizori autorizați" },
+            { value: "24h", label: "livrare Cluj" },
+          ]}
+          sideCards={[
+            { kicker: "Nou · Sait Abrazivi", title: "Pad-uri Velcro 7 gradații", description: "Set complet pentru polish granit de la grit 50 la 3000.", image: "/design-temp/hero-paduri.jpg", imageAlt: "Pad-uri Velcro", ctaLabel: "Descoperă setul →", ctaHref: "#" },
+            { kicker: "Ghid tehnic", title: "Cum alegi discul corect", description: "Granit dur vs. marmură vs. beton armat — cheatsheet PDF.", image: "/design-temp/hero-ghid.jpg", imageAlt: "Ghid discuri", ctaLabel: "Descarcă ghid →", ctaHref: "#" },
+          ]}
+        />
 
         {/* Quick categories */}
         <div className="quick-cats">
