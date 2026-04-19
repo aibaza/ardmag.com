@@ -3,6 +3,10 @@
 import { useState } from "react"
 import { Badge } from '@modules/@shared/components/badge'
 import { Button } from '@modules/@shared/components/button'
+import { StarRating } from '@modules/@shared/components/star-rating'
+import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
+import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
+import { TrustItem } from '@modules/@shared/components/trust-item'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -156,13 +160,7 @@ export default function ProductPage() {
           </div>
 
           {/* Rating */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px" }}>
-            <span style={{ color: "var(--brand-500)", letterSpacing: "1px" }}>★★★★★</span>
-            <strong>4.8</strong>
-            <span style={{ color: "var(--fg-muted)" }}>· 47 recenzii</span>
-            <span style={{ color: "var(--fg-muted)" }}>·</span>
-            <a href="#reviews" style={{ color: "var(--brand-700)", textDecoration: "none", fontSize: "12px" }}>Vezi recenziile →</a>
-          </div>
+          <StarRating score={4.8} reviewCount={47} />
 
           {/* Price card */}
           <div className="pdp-price-card">
@@ -219,11 +217,7 @@ export default function ProductPage() {
 
           {/* Buy */}
           <div className="pdp-buy">
-            <div className="qty-stepper">
-              <button className="minus" aria-label="Scade cantitatea">−</button>
-              <input type="number" defaultValue={1} min={1} />
-              <button className="plus" aria-label="Crește cantitatea">+</button>
-            </div>
+            <QuantityStepper />
             <button className="btn primary lg">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M2 3h2l1 9h10l1-6H5"/><circle cx="7" cy="15" r="1.3"/><circle cx="14" cy="15" r="1.3"/></svg>
               Adaugă în coș · 38,40 RON
@@ -418,10 +412,10 @@ export default function ProductPage() {
         </div>
         <div className="footer-mid">
           <div className="trust-strip">
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1 10H5z"/><path d="M8 8V5a4 4 0 0 1 8 0v3"/></svg><div><strong>14 zile retur</strong><span>fără întrebări</span></div></div>
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M3 7h13v8H3z"/><path d="M16 10h4l1 3v2h-5z"/><circle cx="7" cy="16" r="2"/><circle cx="17" cy="16" r="2"/></svg><div><strong>Livrare 24-48h</strong><span>țara întreagă</span></div></div>
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3 8 8 9 5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><strong>Plată securizată</strong><span>3DSecure · SSL</span></div></div>
-            <div className="trust-item"><svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg><div><strong>Suport tehnic</strong><span>L–V 08–17 · RO</span></div></div>
+            <TrustItem icon={<ReturnIcon />} title="14 zile retur" subtitle="fără întrebări" />
+            <TrustItem icon={<TruckIcon />} title="Livrare 24-48h" subtitle="țara întreagă" />
+            <TrustItem icon={<SecureIcon />} title="Plată securizată" subtitle="3DSecure · SSL" />
+            <TrustItem icon={<SupportIcon />} title="Suport tehnic" subtitle="L–V 08–17 · RO" />
           </div>
           <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
         </div>
