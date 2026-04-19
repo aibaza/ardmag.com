@@ -6,6 +6,7 @@ import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { CategoryHero } from '@modules/category/category-hero'
 import { Pagination } from '@modules/category/pagination'
+import { CategoryToolbar } from '@modules/category/category-toolbar'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function CategoryPage() {
@@ -230,26 +231,11 @@ export default function CategoryPage() {
             <button className="chip clear">Șterge tot</button>
           </div>
 
-          <div className="cat-toolbar">
-            <div className="count"><strong>142</strong> produse</div>
-            <div className="spacer"></div>
-            <div className="tbl"><label htmlFor="sort">Sortare:</label>
-              <select id="sort">
-                <option>Popularitate</option>
-                <option>Nou intrat</option>
-                <option>Preț crescător</option>
-                <option>Preț descrescător</option>
-                <option>Brand A–Z</option>
-              </select>
-            </div>
-            <div className="tbl"><label>Pe pagină:</label>
-              <select><option>24</option><option>48</option><option>96</option></select>
-            </div>
-            <div className="view-toggle" role="tablist">
-              <button className="on" aria-label="grid"><svg viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/><rect x="1" y="9" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/></svg></button>
-              <button aria-label="list"><svg viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
-            </div>
-          </div>
+          <CategoryToolbar
+            count={142}
+            sortOptions={["Popularitate","Nou intrat","Preț crescător","Preț descrescător","Brand A–Z"]}
+            perPageOptions={[24,48,96]}
+          />
 
           <div className="cat-grid">
 
