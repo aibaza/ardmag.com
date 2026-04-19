@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Badge } from '@modules/@shared/components/badge'
 import { Button } from '@modules/@shared/components/button'
+import { ProductCardSpecTag } from '@modules/@shared/components/product-card-spec-tag'
 
 export default function CategoryPage() {
   const [mDrawerOpen, setMDrawerOpen] = useState(false)
@@ -264,7 +265,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Delta Turbo Ultra Ø115</a></h4>
                 <div className="pcard-sku">DLT-115-TX-ULTRA</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 115 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Granit</span>
+                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -279,7 +280,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø125 filet 22.23</a></h4>
                 <div className="pcard-sku">DLT-125-TX</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 125 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Universal</span>
+                  <ProductCardSpecTag label="Ø 125 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Universal" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -294,7 +295,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø180</a></h4>
                 <div className="pcard-sku">DLT-180-TX</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 180 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Granit</span>
+                  <ProductCardSpecTag label="Ø 180 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -309,7 +310,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø230 flanșă M14</a></h4>
                 <div className="pcard-sku">DLT-230-TX</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 230 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Beton</span>
+                  <ProductCardSpecTag label="Ø 230 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Beton" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -324,7 +325,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat segmentat Ø115</a></h4>
                 <div className="pcard-sku">DLT-115-SG</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 115 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Segmentat</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Beton</span>
+                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Segmentat" /><ProductCardSpecTag label="Beton" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -339,7 +340,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat continuu Ø200 marmură</a></h4>
                 <div className="pcard-sku">TNX-DC-200</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 200 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Continuu</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Marmură</span>
+                  <ProductCardSpecTag label="Ø 200 mm" /><ProductCardSpecTag label="Continuu" /><ProductCardSpecTag label="Marmură" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -354,7 +355,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat continuu Ø250 marmură</a></h4>
                 <div className="pcard-sku">TNX-DC-250</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 250 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Continuu</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Marmură</span>
+                  <ProductCardSpecTag label="Ø 250 mm" /><ProductCardSpecTag label="Continuu" /><ProductCardSpecTag label="Marmură" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -369,7 +370,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø125 premium</a></h4>
                 <div className="pcard-sku">WSK-T-125</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 125 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Granit</span>
+                  <ProductCardSpecTag label="Ø 125 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -384,7 +385,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø180 premium</a></h4>
                 <div className="pcard-sku">WSK-T-180</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 180 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Granit</span>
+                  <ProductCardSpecTag label="Ø 180 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Granit" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -399,7 +400,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Ø115 economic</a></h4>
                 <div className="pcard-sku">DTX-E-115</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 115 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Universal</span>
+                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Universal" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -414,7 +415,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Ø230 beton armat</a></h4>
                 <div className="pcard-sku">DTX-BA-230</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 230 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Segmentat</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Beton armat</span>
+                  <ProductCardSpecTag label="Ø 230 mm" /><ProductCardSpecTag label="Segmentat" /><ProductCardSpecTag label="Beton armat" />
                 </div>
               </div>
               <div className="pcard-foot">
@@ -429,7 +430,7 @@ export default function CategoryPage() {
                 <h4 className="pcard-title"><a href="/ro/design-preview/product">Disc diamantat Turbo Ø115 - pachet 5 buc</a></h4>
                 <div className="pcard-sku">DLT-115-TX-5</div>
                 <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Ø 115 mm</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Turbo</span><span style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.05em', padding: '2px 6px', background: 'var(--stone-100)', borderRadius: 'var(--r-sm)', color: 'var(--stone-700)' }}>Pachet 5</span>
+                  <ProductCardSpecTag label="Ø 115 mm" /><ProductCardSpecTag label="Turbo" /><ProductCardSpecTag label="Pachet 5" />
                 </div>
               </div>
               <div className="pcard-foot">
