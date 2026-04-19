@@ -253,7 +253,7 @@
   /* ═══════════════════════════════════════════════
      HOMEPAGE PREVIEW sections (all wired together)
   ═══════════════════════════════════════════════ */
-  .page-inner{max-width:1400px;margin:0 auto;padding:0 24px}
+  .page-inner{width:100%;max-width:1400px;margin:0 auto;padding:0 24px}
 
   /* HERO */
   .hero{
