@@ -23,10 +23,11 @@
     "19-ProductGrid",
     "20-PDPGallery",
     "21-PDPVariantSelector",
-    "22-PDPPriceCard"
+    "22-PDPPriceCard",
+    "23-PDPSummary"
   ],
   "failed": [],
-  "current": "23-PDPSummary",
+  "current": "24-PDPTabs",
   "status": "running",
   "components": [
     {

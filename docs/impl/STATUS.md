@@ -26,6 +26,7 @@
 | 20 | PDPGallery | D | PASS | 2026-04-19 | — |
 | 21 | PDPVariantSelector | D | PASS | 2026-04-19 | — |
 | 22 | PDPPriceCard | D | PASS | 2026-04-19 | — |
+| 23 | PDPSummary | D | PASS | 2026-04-19 | — |
 
 ## Iteratii design (refactoring pagini)
 

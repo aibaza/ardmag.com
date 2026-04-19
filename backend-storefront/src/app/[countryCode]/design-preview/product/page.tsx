@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { StarRating } from '@modules/@shared/components/star-rating'
-import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
@@ -10,8 +8,7 @@ import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { ProductGrid } from '@modules/products/product-grid'
 import { Badge } from '@modules/@shared/components/badge'
 import { PDPGallery } from '@modules/product-detail/pdp-gallery'
-import { PDPVariantSelector } from '@modules/product-detail/pdp-variant-selector'
-import { PDPPriceCard } from '@modules/product-detail/pdp-price-card'
+import { PDPSummary } from '@modules/product-detail/pdp-summary'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -137,31 +134,21 @@ export default function ProductPage() {
         />
 
         {/* SUMMARY: sticky right sidebar */}
-        <aside className="pdp-summary">
-
-          <div className="pdp-brand"><a href="/ro/design-preview/category" style={{ color: "inherit", textDecoration: "none" }}>Delta Research</a></div>
-          <h1 className="pdp-title">Disc diamantat Delta Turbo Ultra Ø115 mm</h1>
-          <div className="pdp-sku">
-            <span>SKU <strong>DLT-115-TX-ULTRA</strong></span>
-            <span>EAN <strong>5944123456789</strong></span>
-          </div>
-
-          {/* Rating */}
-          <StarRating score={4.8} reviewCount={47} />
-
-          {/* Price card */}
-          <PDPPriceCard
-            price="38,40 RON"
-            was="48,00 RON"
-            save="−20% · 9,60 RON"
-            priceNoTax="32,27 RON"
-            unitLabel="Per bucată"
-            promoLabel="Promoție activă până pe "
-            promoDate="30 aprilie"
-          />
-
-          {/* Variants */}
-          <PDPVariantSelector groups={[
+        <PDPSummary
+          brand="Delta Research"
+          brandHref="/ro/design-preview/category"
+          title="Disc diamantat Delta Turbo Ultra Ø115 mm"
+          sku="DLT-115-TX-ULTRA"
+          ean="5944123456789"
+          rating={{ score: 4.8, reviewCount: 47 }}
+          price="38,40 RON"
+          was="48,00 RON"
+          save="−20% · 9,60 RON"
+          priceNoTax="32,27 RON"
+          unitLabel="Per bucată"
+          promoLabel="Promoție activă până pe "
+          promoDate="30 aprilie"
+          variantGroups={[
             { title: 'Diametru', selectedValue: 'Ø 115 mm', options: [
               { label: 'Ø115', active: true },
               { label: 'Ø125' },
@@ -179,57 +166,17 @@ export default function ProductPage() {
               { label: '5 buc', discount: '−8%' },
               { label: '10 buc', discount: '−15%' },
             ]},
-          ]} />
-
-          {/* Stock */}
-          <div className="pdp-stock">
-            <span className="dot"></span>
-            <strong>În stoc — 24 bucăți</strong>
-            <span className="loc">Cluj · 24h</span>
-          </div>
-
-          {/* Buy */}
-          <div className="pdp-buy">
-            <QuantityStepper />
-            <button className="btn primary lg">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M2 3h2l1 9h10l1-6H5"/><circle cx="7" cy="15" r="1.3"/><circle cx="14" cy="15" r="1.3"/></svg>
-              Adaugă în coș · 38,40 RON
-            </button>
-          </div>
-
-          {/* Extras */}
-          <div className="pdp-extras">
-            <button className="btn ghost md">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 14s-5-3-5-7a3 3 0 0 1 5-2 3 3 0 0 1 5 2c0 4-5 7-5 7z"/></svg>
-              Favorite
-            </button>
-            <button className="btn ghost md">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 3h10v10H3zM6 7h4M6 10h4"/></svg>
-              Cere ofertă
-            </button>
-          </div>
-
-          {/* Perks */}
-          <div className="pdp-perks">
-            <div className="row">
-              <svg viewBox="0 0 20 20"><path d="M3 7h11v7H3z"/><path d="M14 9h3l1 3v2h-4z"/><circle cx="7" cy="15" r="1.3"/><circle cx="15" cy="15" r="1.3"/></svg>
-              <div><strong>Livrare 24–48h</strong> · <span className="sub">Cluj gratuit 500+ RON</span></div>
-            </div>
-            <div className="row">
-              <svg viewBox="0 0 20 20"><path d="M4 7h12v10H4z"/><path d="M8 7V5a2 2 0 0 1 4 0v2"/></svg>
-              <div><strong>14 zile retur</strong> · <span className="sub">produs neutilizat</span></div>
-            </div>
-            <div className="row">
-              <svg viewBox="0 0 20 20"><path d="M10 3 3 5v6c0 4 3 6 7 7 4-1 7-3 7-7V5z"/><path d="m7 10 2 2 4-4"/></svg>
-              <div><strong>Garanție producător</strong> · <span className="sub">Delta Research</span></div>
-            </div>
-            <div className="row">
-              <svg viewBox="0 0 20 20"><path d="M4 4h12v10H8l-4 3z"/></svg>
-              <div><strong>Suport tehnic</strong> · <span className="sub">0264 123 456</span></div>
-            </div>
-          </div>
-
-        </aside>
+          ]}
+          stockLabel="În stoc — 24 bucăți"
+          stockLocation="Cluj · 24h"
+          addToCartLabel="Adaugă în coș · 38,40 RON"
+          perks={[
+            { icon: <svg viewBox="0 0 20 20"><path d="M3 7h11v7H3z"/><path d="M14 9h3l1 3v2h-4z"/><circle cx="7" cy="15" r="1.3"/><circle cx="15" cy="15" r="1.3"/></svg>, label: 'Livrare 24–48h', sub: 'Cluj gratuit 500+ RON' },
+            { icon: <svg viewBox="0 0 20 20"><path d="M4 7h12v10H4z"/><path d="M8 7V5a2 2 0 0 1 4 0v2"/></svg>, label: '14 zile retur', sub: 'produs neutilizat' },
+            { icon: <svg viewBox="0 0 20 20"><path d="M10 3 3 5v6c0 4 3 6 7 7 4-1 7-3 7-7V5z"/><path d="m7 10 2 2 4-4"/></svg>, label: 'Garanție producător', sub: 'Delta Research' },
+            { icon: <svg viewBox="0 0 20 20"><path d="M4 4h12v10H8l-4 3z"/></svg>, label: 'Suport tehnic', sub: '0264 123 456' },
+          ]}
+        />
       </section>
 
       {/* TABS + CONTENT */}
