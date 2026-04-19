@@ -1,6 +1,6 @@
 # ardmag.com — Project State
 
-**Last activity:** 2026-04-19 - Faza 2 wire-up Medusa data in progress (v0.2.2)
+**Last activity:** 2026-04-19 - Completed quick task 260419-skt: C2 variant selector live - URL v_id sync + price update
 
 ## Current Phase
 Faza 2 — Wire-up Medusa data
