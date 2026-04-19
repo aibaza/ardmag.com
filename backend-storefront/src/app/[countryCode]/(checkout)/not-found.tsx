@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 export default async function NotFound() {
   return (
     <div className="flex flex-col gap-4 items-center justify-center min-h-[calc(100vh-64px)]">
-      <h1 className="text-2xl-semi text-ui-fg-base">Page not found</h1>
+      <h1 className="text-2xl-semi text-ui-fg-base">Pagina nu a fost găsită</h1>
       <p className="text-small-regular text-ui-fg-base">
-        The page you tried to access does not exist.
+        Pagina pe care ai încercat să o accesezi nu există.
       </p>
-      <InteractiveLink href="/">Go to frontpage</InteractiveLink>
+      <InteractiveLink href="/">Înapoi la pagina principală</InteractiveLink>
     </div>
   )
 }
