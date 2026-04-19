@@ -8,6 +8,7 @@ import { CategoryHero } from '@modules/category/category-hero'
 import { Pagination } from '@modules/category/pagination'
 import { CategoryToolbar } from '@modules/category/category-toolbar'
 import { MobileFilterBar } from '@modules/category/mobile-filter-bar'
+import { FilterSidebar } from '@modules/category/filter-sidebar'
 import { ProductCard } from '@modules/products/product-card'
 
 export default function CategoryPage() {
@@ -122,95 +123,60 @@ export default function CategoryPage() {
 
       <div className="cat-layout">
 
-        <aside className="filters" id="filters">
-          <div className="filter-card">
-            <details open>
-              <summary>Brand <span className="fcount">7</span></summary>
-              <div className="filter-body">
-                <label className="chk"><input type="checkbox" defaultChecked />Delta Research<span className="cnt">48</span></label>
-                <label className="chk"><input type="checkbox" defaultChecked />Tenax<span className="cnt">32</span></label>
-                <label className="chk"><input type="checkbox" />Woosuk<span className="cnt">24</span></label>
-                <label className="chk"><input type="checkbox" />Diatex<span className="cnt">18</span></label>
-                <label className="chk"><input type="checkbox" />Sait<span className="cnt">12</span></label>
-                <label className="chk"><input type="checkbox" />VBT<span className="cnt">8</span></label>
-              </div>
-            </details>
-            <details open>
-              <summary>Diametru <span className="fcount">Ø</span></summary>
-              <div className="filter-body"><div className="swatches">
-                <button className="swatch">Ø100</button>
-                <button className="swatch on">Ø115</button>
-                <button className="swatch on">Ø125</button>
-                <button className="swatch">Ø150</button>
-                <button className="swatch">Ø180</button>
-                <button className="swatch">Ø200</button>
-                <button className="swatch">Ø230</button>
-                <button className="swatch">Ø250</button>
-                <button className="swatch">Ø300</button>
-              </div></div>
-            </details>
-            <details open>
-              <summary>Tip bandă</summary>
-              <div className="filter-body">
-                <label className="chk"><input type="checkbox" defaultChecked />Turbo<span className="cnt">78</span></label>
-                <label className="chk"><input type="checkbox" />Continuă<span className="cnt">34</span></label>
-                <label className="chk"><input type="checkbox" />Segmentată<span className="cnt">30</span></label>
-              </div>
-            </details>
-            <details>
-              <summary>Material</summary>
-              <div className="filter-body">
-                <label className="chk"><input type="checkbox" />Granit<span className="cnt">62</span></label>
-                <label className="chk"><input type="checkbox" />Marmură<span className="cnt">48</span></label>
-                <label className="chk"><input type="checkbox" />Beton<span className="cnt">38</span></label>
-                <label className="chk"><input type="checkbox" />Beton armat<span className="cnt">14</span></label>
-                <label className="chk"><input type="checkbox" />Ceramică<span className="cnt">12</span></label>
-                <label className="chk"><input type="checkbox" />Universal<span className="cnt">22</span></label>
-              </div>
-            </details>
-            <details>
-              <summary>Filet / montare</summary>
-              <div className="filter-body">
-                <label className="chk"><input type="checkbox" />M14<span className="cnt">86</span></label>
-                <label className="chk"><input type="checkbox" />22.23 mm<span className="cnt">64</span></label>
-                <label className="chk"><input type="checkbox" />5/8″<span className="cnt">18</span></label>
-              </div>
-            </details>
-            <details open>
-              <summary>Preț</summary>
-              <div className="filter-body">
-                <div className="price-range">
-                  <div className="bar"></div>
-                  <div className="inputs">
-                    <input type="number" placeholder="Min" defaultValue="20" />
-                    <input type="number" placeholder="Max" defaultValue="250" />
-                  </div>
-                </div>
-              </div>
-            </details>
-            <details>
-              <summary>Disponibilitate</summary>
-              <div className="filter-body">
-                <label className="chk"><input type="checkbox" defaultChecked />În stoc<span className="cnt">128</span></label>
-                <label className="chk"><input type="checkbox" />Livrare la comandă<span className="cnt">14</span></label>
-                <label className="chk"><input type="checkbox" />Doar promoții<span className="cnt">22</span></label>
-              </div>
-            </details>
-            <div className="filter-actions">
-              <button className="btn secondary sm">Resetează</button>
-              <button className="btn primary sm">Aplică (142)</button>
-            </div>
-          </div>
-
-          <div className="filter-card">
-            <div style={{ padding: '16px 18px' }}>
-              <div style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg-muted)', marginBottom: '8px' }}>Ai nevoie de ajutor?</div>
-              <div style={{ fontSize: '13px', lineHeight: '1.5', color: 'var(--stone-700)', marginBottom: '12px' }}>Consultanții noștri tehnici te ajută să alegi discul potrivit pentru materialul tău.</div>
-              <div style={{ fontFamily: 'var(--f-mono)', fontSize: '14px', fontWeight: 500, color: 'var(--fg)' }}>0264 123 456</div>
-              <div style={{ fontFamily: 'var(--f-mono)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--fg-muted)', marginTop: '2px' }}>L–V 08:00–17:00</div>
-            </div>
-          </div>
-        </aside>
+        <FilterSidebar
+          groups={[
+            { type: 'checkboxes', title: 'Brand', badge: '7', open: true, options: [
+              { label: 'Delta Research', count: 48, checked: true },
+              { label: 'Tenax', count: 32, checked: true },
+              { label: 'Woosuk', count: 24 },
+              { label: 'Diatex', count: 18 },
+              { label: 'Sait', count: 12 },
+              { label: 'VBT', count: 8 },
+            ]},
+            { type: 'swatches', title: 'Diametru', badge: 'Ø', open: true, options: [
+              { label: 'Ø100' },
+              { label: 'Ø115', active: true },
+              { label: 'Ø125', active: true },
+              { label: 'Ø150' },
+              { label: 'Ø180' },
+              { label: 'Ø200' },
+              { label: 'Ø230' },
+              { label: 'Ø250' },
+              { label: 'Ø300' },
+            ]},
+            { type: 'checkboxes', title: 'Tip bandă', open: true, options: [
+              { label: 'Turbo', count: 78, checked: true },
+              { label: 'Continuă', count: 34 },
+              { label: 'Segmentată', count: 30 },
+            ]},
+            { type: 'checkboxes', title: 'Material', options: [
+              { label: 'Granit', count: 62 },
+              { label: 'Marmură', count: 48 },
+              { label: 'Beton', count: 38 },
+              { label: 'Beton armat', count: 14 },
+              { label: 'Ceramică', count: 12 },
+              { label: 'Universal', count: 22 },
+            ]},
+            { type: 'checkboxes', title: 'Filet / montare', options: [
+              { label: 'M14', count: 86 },
+              { label: '22.23 mm', count: 64 },
+              { label: '5/8″', count: 18 },
+            ]},
+            { type: 'price-range', title: 'Preț', open: true, min: 20, max: 250 },
+            { type: 'checkboxes', title: 'Disponibilitate', options: [
+              { label: 'În stoc', count: 128, checked: true },
+              { label: 'Livrare la comandă', count: 14 },
+              { label: 'Doar promoții', count: 22 },
+            ]},
+          ]}
+          applyCount={142}
+          helpCard={{
+            label: 'Ai nevoie de ajutor?',
+            description: 'Consultanții noștri tehnici te ajută să alegi discul potrivit pentru materialul tău.',
+            phone: '0264 123 456',
+            hours: 'L–V 08:00–17:00',
+          }}
+        />
 
         <main>
 

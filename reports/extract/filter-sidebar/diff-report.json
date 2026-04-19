@@ -1,0 +1,28 @@
+{
+  "component": "filter-sidebar",
+  "pages": [
+    "category"
+  ],
+  "pairs": [
+    {
+      "page": "category",
+      "viewport": "mobile",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "category",
+      "viewport": "tablet",
+      "diffPixels": 0,
+      "diffPath": null
+    },
+    {
+      "page": "category",
+      "viewport": "desktop",
+      "diffPixels": 0,
+      "diffPath": null
+    }
+  ],
+  "totalDiffPixels": 0,
+  "verdict": "PASS"
+}

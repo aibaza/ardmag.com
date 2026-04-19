@@ -10,10 +10,19 @@
     "06-TrustItem",
     "07-SectionHead",
     "08-Breadcrumb",
-    "09-ProductCard"
+    "09-ProductCard",
+    "10-TrustBanner",
+    "11-Hero",
+    "12-QuickCategories",
+    "13-SupplierStrip",
+    "14-CategoryHero",
+    "15-Pagination",
+    "16-CategoryToolbar",
+    "17-MobileFilterBar",
+    "18-FilterSidebar"
   ],
   "failed": [],
-  "current": "10-TrustBanner",
+  "current": "19-ProductGrid",
   "status": "running",
   "components": [
     {

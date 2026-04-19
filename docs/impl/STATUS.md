@@ -13,6 +13,15 @@
 | 07 | SectionHead | B | PASS | 2026-04-19 | — |
 | 08 | Breadcrumb | B | PASS | 2026-04-19 | — |
 | 09 | ProductCard | B | PASS | 2026-04-19 | — |
+| 10 | TrustBanner | B | PASS | 2026-04-19 | — |
+| 11 | Hero | C | PASS | 2026-04-19 | — |
+| 12 | QuickCategories | C | PASS | 2026-04-19 | — |
+| 13 | SupplierStrip | C | PASS | 2026-04-19 | — |
+| 14 | CategoryHero | C | PASS | 2026-04-19 | — |
+| 15 | Pagination | C | PASS | 2026-04-19 | — |
+| 16 | CategoryToolbar | C | PASS | 2026-04-19 | — |
+| 17 | MobileFilterBar | C | PASS | 2026-04-19 | — |
+| 18 | FilterSidebar | C | PASS | 2026-04-19 | — |
 
 ## Iteratii design (refactoring pagini)
 
