@@ -1,6 +1,6 @@
 # ardmag.com — Project State
 
-**Last activity:** 2026-04-19 - Completed quick task 260419-skt: C2 variant selector live - URL v_id sync + price update
+**Last activity:** 2026-04-19 - Completed quick task 260419-srt: C3 Buton "Adaugă în coș" functional + cart counter live
 
 ## Current Phase
 Faza 2 — Wire-up Medusa data
@@ -23,3 +23,4 @@ Niciun blocker activ.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 1 | C2 PDP variant selector: click syncs URL v_id, server re-renders price | 2026-04-19 | 649d8c4 | 260419-skt-c2-variant-selector-live-url-v-id-sync-p |
+| 2 | C3 "Adaugă în coș": button wired to addToCart server action, header counter live | 2026-04-19 | b870d00 | 260419-srt-c3-buton-adauga-in-cos-functional-cart-a |
