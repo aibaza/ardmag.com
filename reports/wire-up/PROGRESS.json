@@ -1,0 +1,24 @@
+{
+  "started": "2026-04-19",
+  "totalAreas": 14,
+  "completed": [],
+  "failed": [],
+  "current": "A1",
+  "status": "running",
+  "areas": [
+    { "id": "A1", "name": "Image URL rewrite", "phase": "A" },
+    { "id": "A2", "name": "Enrichment final run", "phase": "A" },
+    { "id": "A3", "name": "Adapter library", "phase": "A" },
+    { "id": "A4", "name": "SortOptions type fix", "phase": "A" },
+    { "id": "B1", "name": "Homepage real data", "phase": "B" },
+    { "id": "B2", "name": "Category route recreate", "phase": "B" },
+    { "id": "B3", "name": "FilterSidebar wired", "phase": "B" },
+    { "id": "B4", "name": "CategoryToolbar sort", "phase": "B" },
+    { "id": "B5", "name": "Pagination server-side", "phase": "B" },
+    { "id": "C1", "name": "PDP route recreate", "phase": "C" },
+    { "id": "C2", "name": "Variant selector live", "phase": "C" },
+    { "id": "C3", "name": "Add to cart wired", "phase": "C" },
+    { "id": "D",  "name": "Header live data", "phase": "D" },
+    { "id": "E",  "name": "Cleanup + final E2E", "phase": "E" }
+  ]
+}
