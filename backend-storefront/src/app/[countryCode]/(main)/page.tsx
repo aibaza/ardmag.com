@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Badge } from '@modules/@shared/components/badge'
+import { Button } from '@modules/@shared/components/button'
 
 export default function HomePage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -165,7 +166,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">38,40 RON</span><span className="was">48,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -177,7 +178,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">1.258,00 RON</span><span className="was">1.480,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -189,7 +190,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">113,60 RON</span><span className="was">142,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -201,7 +202,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">282,00 RON</span><span className="was">376,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
         </div>
@@ -250,7 +251,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">168,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -262,7 +263,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">1.890,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -274,7 +275,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">142,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -286,7 +287,7 @@ export default function HomePage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">310,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
         </div>

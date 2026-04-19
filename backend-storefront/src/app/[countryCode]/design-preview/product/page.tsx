@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Badge } from '@modules/@shared/components/badge'
+import { Button } from '@modules/@shared/components/button'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -355,7 +356,7 @@ export default function ProductPage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">113,60 RON</span><span className="was">142,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -367,7 +368,7 @@ export default function ProductPage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">310,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -379,7 +380,7 @@ export default function ProductPage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">168,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
           <article className="pcard">
@@ -391,7 +392,7 @@ export default function ProductPage() {
             </div>
             <div className="pcard-foot">
               <div className="pcard-price"><span className="now">142,00 RON</span></div>
-              <button className="btn primary sm">Adaugă</button>
+              <Button variant="primary" size="sm">Adaugă</Button>
             </div>
           </article>
         </div>

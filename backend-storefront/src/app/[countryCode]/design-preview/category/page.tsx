@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Badge } from '@modules/@shared/components/badge'
+import { Button } from '@modules/@shared/components/button'
 
 export default function CategoryPage() {
   const [mDrawerOpen, setMDrawerOpen] = useState(false)
@@ -268,7 +269,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">38,40 RON</span><span className="was">48,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -283,7 +284,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">52,80 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -298,7 +299,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">113,60 RON</span><span className="was">142,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -313,7 +314,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">168,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -328,7 +329,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">34,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -343,7 +344,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">198,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -358,7 +359,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">312,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -373,7 +374,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">78,00 RON</span><span className="was">98,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -388,7 +389,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">148,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -403,7 +404,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">22,40 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -418,7 +419,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">142,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
             <article className="pcard">
@@ -433,7 +434,7 @@ export default function CategoryPage() {
               </div>
               <div className="pcard-foot">
                 <div className="pcard-price"><span className="now">172,00 RON</span><span className="was">220,00 RON</span></div>
-                <button className="btn primary sm">Adaugă</button>
+                <Button variant="primary" size="sm">Adaugă</Button>
               </div>
             </article>
           </div>
