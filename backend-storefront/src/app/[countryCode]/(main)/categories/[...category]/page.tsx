@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { Suspense } from "react"
 import { SiteHeader } from '@modules/layout/site-header'
 import { SiteFooter } from '@modules/layout/site-footer'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
@@ -168,12 +169,14 @@ export default async function CategoryPage(props: Props) {
         />
 
         <div className="cat-layout">
-          <FilterSidebar
-            groups={filterGroups}
-            applyCount={activeBrands.length + activeMaterials.length}
-            helpCard={HELP_CARD}
-            baseUrl={baseUrl}
-          />
+          <Suspense fallback={<aside className="filters" />}>
+            <FilterSidebar
+              groups={filterGroups}
+              applyCount={activeBrands.length + activeMaterials.length}
+              helpCard={HELP_CARD}
+              baseUrl={baseUrl}
+            />
+          </Suspense>
           <div className="cat-products">
             {pageProducts.length === 0 ? (
               <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
