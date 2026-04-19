@@ -83,7 +83,7 @@ export default async function CartPage({ params }: Props) {
                 <a
                   href={`/${countryCode}/checkout`}
                   className="btn primary lg"
-                  style={{ display: "block", textAlign: "center", width: "100%" }}
+                  style={{ width: "100%" }}
                 >
                   Continua spre checkout
                 </a>
