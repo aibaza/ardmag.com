@@ -78,7 +78,7 @@ export function AddressCard({ address, countryCode }: Props) {
             ))}
             <input type="hidden" name="country_code" value={countryCode} />
             {editState.error && (
-              <p style={{ color: "red", fontSize: 12, marginBottom: 8 }}>{editState.error}</p>
+              <p style={{ color: "var(--brand-600)", fontSize: 12, marginBottom: 8 }}>{editState.error}</p>
             )}
             <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
               <button type="submit" className="btn primary sm">

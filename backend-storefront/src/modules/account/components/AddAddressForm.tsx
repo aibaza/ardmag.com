@@ -80,7 +80,7 @@ export function AddAddressForm({ countryCode }: Props) {
             </div>
           ))}
           {state.error && (
-            <p style={{ color: "red", fontSize: 12, marginBottom: 8 }}>{state.error}</p>
+            <p style={{ color: "var(--brand-600)", fontSize: 12, marginBottom: 8 }}>{state.error}</p>
           )}
           <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
             <button type="submit" className="btn primary sm">

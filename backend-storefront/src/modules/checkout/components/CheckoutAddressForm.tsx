@@ -34,7 +34,7 @@ export function CheckoutAddressForm({ countryCode, customerEmail }: Props) {
       {field('Cod postal', 'shipping_address.postal_code')}
       {field('Judet', 'shipping_address.province')}
 
-      {error && <p style={{ color: 'red', fontSize: 13, marginBottom: 12 }}>{error as string}</p>}
+      {error && <p style={{ color: 'var(--brand-600)', fontSize: 13, marginBottom: 12 }}>{error as string}</p>}
 
       <button type="submit" className="btn primary" style={{ width: '100%', marginTop: 8 }}>
         Continua spre livrare

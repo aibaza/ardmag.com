@@ -1,19 +1,16 @@
-import InteractiveLink from "@modules/common/components/interactive-link"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "404",
-  description: "Something went wrong",
+  title: "404 | ardmag.com",
 }
 
-export default async function NotFound() {
+export default function NotFound() {
   return (
-    <div className="flex flex-col gap-4 items-center justify-center min-h-[calc(100vh-64px)]">
-      <h1 className="text-2xl-semi text-ui-fg-base">Pagina nu a fost găsită</h1>
-      <p className="text-small-regular text-ui-fg-base">
-        Pagina pe care ai încercat să o accesezi nu există.
+    <div style={{ padding: "48px 24px", textAlign: "center" }}>
+      <h1 style={{ fontFamily: "var(--f-sans)", fontWeight: 600 }}>Pagina nu a fost găsită</h1>
+      <p style={{ color: "var(--fg-muted)", margin: "16px 0" }}>
+        Pagina pe care ai încercat să o accesezi nu există. <a href="/">Înapoi la pagina principală</a>
       </p>
-      <InteractiveLink href="/">Înapoi la pagina principală</InteractiveLink>
     </div>
   )
 }
