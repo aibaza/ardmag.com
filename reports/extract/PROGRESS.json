@@ -21,10 +21,11 @@
     "17-MobileFilterBar",
     "18-FilterSidebar",
     "19-ProductGrid",
-    "20-PDPGallery"
+    "20-PDPGallery",
+    "21-PDPVariantSelector"
   ],
   "failed": [],
-  "current": "21-PDPVariantSelector",
+  "current": "22-PDPPriceCard",
   "status": "running",
   "components": [
     {

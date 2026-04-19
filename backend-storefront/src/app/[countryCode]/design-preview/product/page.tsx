@@ -10,6 +10,7 @@ import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { ProductGrid } from '@modules/products/product-grid'
 import { Badge } from '@modules/@shared/components/badge'
 import { PDPGallery } from '@modules/product-detail/pdp-gallery'
+import { PDPVariantSelector } from '@modules/product-detail/pdp-variant-selector'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -166,32 +167,25 @@ export default function ProductPage() {
           </div>
 
           {/* Variants */}
-          <div className="variant-group">
-            <div className="label">Diametru <strong>Ø 115 mm</strong></div>
-            <div className="var-opts">
-              <button className="var-opt on">Ø115</button>
-              <button className="var-opt">Ø125</button>
-              <button className="var-opt">Ø150</button>
-              <button className="var-opt">Ø180</button>
-              <button className="var-opt">Ø230</button>
-            </div>
-          </div>
-          <div className="variant-group">
-            <div className="label">Filet / montare <strong>22.23 mm</strong></div>
-            <div className="var-opts">
-              <button className="var-opt on">22.23 mm</button>
-              <button className="var-opt">M14</button>
-              <button className="var-opt off">5/8″</button>
-            </div>
-          </div>
-          <div className="variant-group">
-            <div className="label">Pachet <strong>1 bucată</strong></div>
-            <div className="var-opts">
-              <button className="var-opt on">1 buc</button>
-              <button className="var-opt">5 buc <span style={{ color: "var(--brand-500)", fontSize: "10px", marginLeft: "4px" }}>−8%</span></button>
-              <button className="var-opt">10 buc <span style={{ color: "var(--brand-500)", fontSize: "10px", marginLeft: "4px" }}>−15%</span></button>
-            </div>
-          </div>
+          <PDPVariantSelector groups={[
+            { title: 'Diametru', selectedValue: 'Ø 115 mm', options: [
+              { label: 'Ø115', active: true },
+              { label: 'Ø125' },
+              { label: 'Ø150' },
+              { label: 'Ø180' },
+              { label: 'Ø230' },
+            ]},
+            { title: 'Filet / montare', selectedValue: '22.23 mm', options: [
+              { label: '22.23 mm', active: true },
+              { label: 'M14' },
+              { label: '5/8″', unavailable: true },
+            ]},
+            { title: 'Pachet', selectedValue: '1 bucată', options: [
+              { label: '1 buc', active: true },
+              { label: '5 buc', discount: '−8%' },
+              { label: '10 buc', discount: '−15%' },
+            ]},
+          ]} />
 
           {/* Stock */}
           <div className="pdp-stock">

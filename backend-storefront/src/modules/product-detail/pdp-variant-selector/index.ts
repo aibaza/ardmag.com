@@ -1,0 +1,1 @@
+export { PDPVariantSelector } from './PDPVariantSelector'

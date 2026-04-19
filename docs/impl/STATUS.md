@@ -24,6 +24,7 @@
 | 18 | FilterSidebar | C | PASS | 2026-04-19 | — |
 | 19 | ProductGrid | C | PASS | 2026-04-19 | — |
 | 20 | PDPGallery | D | PASS | 2026-04-19 | — |
+| 21 | PDPVariantSelector | D | PASS | 2026-04-19 | — |
 
 ## Iteratii design (refactoring pagini)
 
