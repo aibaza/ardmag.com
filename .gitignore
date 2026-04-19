@@ -36,3 +36,8 @@ Thumbs.db
 # Medusa admin bundle cache
 backend/public/
 .worktrees/
+
+# Enrichment pipeline cache and state
+.enrichment-cache/
+scripts/enrich-run.jsonl
+scripts/.enrichment-state.jsonl
