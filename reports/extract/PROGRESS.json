@@ -8,10 +8,11 @@
     "04-StarRating",
     "05-QuantityStepper",
     "06-TrustItem",
-    "07-SectionHead"
+    "07-SectionHead",
+    "08-Breadcrumb"
   ],
   "failed": [],
-  "current": "08-Breadcrumb",
+  "current": "09-ProductCard",
   "status": "running",
   "components": [
     {

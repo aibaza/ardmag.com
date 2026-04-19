@@ -8,6 +8,7 @@ import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustItem } from '@modules/@shared/components/trust-item'
 import { SectionHead } from '@modules/@shared/components/section-head'
+import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -111,15 +112,7 @@ export default function ProductPage() {
       </div>
 
 
-      <nav className="crumbs" aria-label="breadcrumb">
-        <a href="/ro">Acasă</a>
-        <span className="sep">/</span>
-        <a href="#">Scule diamantate</a>
-        <span className="sep">/</span>
-        <a href="/ro/design-preview/category">Discuri diamantate</a>
-        <span className="sep">/</span>
-        <span className="cur">Delta Turbo Ø115</span>
-      </nav>
+      <Breadcrumb items={[{label:"Acasă",href:"/ro"},{label:"Scule diamantate",href:"#"},{label:"Discuri diamantate",href:"/ro/design-preview/category"}]} current="Delta Turbo Ø115" />
 
       {/* PDP -- 2 columns: gallery (1fr) + sticky summary (380px) */}
       <section className="pdp">

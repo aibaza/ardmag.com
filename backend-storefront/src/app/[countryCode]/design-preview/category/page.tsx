@@ -6,6 +6,7 @@ import { Button } from '@modules/@shared/components/button'
 import { ProductCardSpecTag } from '@modules/@shared/components/product-card-spec-tag'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustItem } from '@modules/@shared/components/trust-item'
+import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 
 export default function CategoryPage() {
   const [mDrawerOpen, setMDrawerOpen] = useState(false)
@@ -103,13 +104,7 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      <nav className="crumbs" aria-label="breadcrumb">
-        <a href="/ro">Acasă</a>
-        <span className="sep">/</span>
-        <a href="#">Scule diamantate</a>
-        <span className="sep">/</span>
-        <span className="cur">Discuri diamantate</span>
-      </nav>
+      <Breadcrumb items={[{label:"Acasă",href:"/ro"},{label:"Scule diamantate",href:"#"}]} current="Discuri diamantate" />
 
       <header className="cat-hero">
         <div>

@@ -11,6 +11,7 @@
 | 05 | QuantityStepper | A | PASS | 2026-04-19 | — |
 | 06 | TrustItem | A | PASS | 2026-04-19 | — |
 | 07 | SectionHead | B | PASS | 2026-04-19 | — |
+| 08 | Breadcrumb | B | PASS | 2026-04-19 | — |
 
 ## Iteratii design (refactoring pagini)
 
