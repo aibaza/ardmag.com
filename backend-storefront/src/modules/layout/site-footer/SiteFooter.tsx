@@ -1,0 +1,41 @@
+"use client"
+
+import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
+import { TrustBanner } from '@modules/@shared/components/trust-banner'
+
+interface SiteFooterProps {
+  categoriesHref?: string
+}
+
+export function SiteFooter({ categoriesHref = "#" }: SiteFooterProps) {
+  return (
+    <footer className="site-footer">
+      <div className="footer-top">
+        <div className="brand-col">
+          <a className="logo" href="/ro"><span className="mark">a</span><span><div className="word">ardmag</div><div className="tag">scule &amp; abrazivi · din 2008</div></span></a>
+          <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
+          <div className="contact"><div className="phone">Tel. <strong>0264 123 456</strong></div><div>contact@ardmag.ro</div><div>Str. Industriei 14 · Cluj-Napoca</div></div>
+        </div>
+        <div><h5>Magazin</h5><ul><li><a href={categoriesHref}>Toate categoriile</a></li><li><a href="#">Noutăți</a></li><li><a href="#">Promoții</a></li><li><a href="#">Lichidări stoc</a></li><li><a href="#">Catalog PDF</a></li></ul></div>
+        <div><h5>Cont &amp; comenzi</h5><ul><li><a href="#">Contul meu</a></li><li><a href="#">Comenzi &amp; facturi</a></li><li><a href="#">Urmărire livrare</a></li><li><a href="#">Retur produs</a></li><li><a href="#">Cont B2B</a></li></ul></div>
+        <div><h5>Info</h5><ul><li><a href="#">Despre noi</a></li><li><a href="#">Parteneri</a></li><li><a href="#">Livrare &amp; plată</a></li><li><a href="#">Garanții</a></li><li><a href="#">Contact</a></li></ul></div>
+        <div className="news-col">
+          <h5>Newsletter</h5>
+          <p>Promoții, stocuri noi, ghiduri tehnice. Maxim 2 emailuri pe lună.</p>
+          <form className="news-form" onSubmit={(e) => e.preventDefault()}><input type="email" placeholder="email@firma.ro" aria-label="email" suppressHydrationWarning /><button type="submit">Abonează-mă</button></form>
+          <label className="news-consent"><input type="checkbox" defaultChecked /><span>Sunt de acord cu <a href="#" style={{ color: 'var(--stone-300)', textDecoration: 'underline' }}>prelucrarea datelor</a> pentru comunicări comerciale.</span></label>
+        </div>
+      </div>
+      <div className="footer-mid">
+        <TrustBanner variant="strip" items={[
+          { icon: <ReturnIcon />, title: "14 zile retur", subtitle: "fără întrebări" },
+          { icon: <TruckIcon />, title: "Livrare 24-48h", subtitle: "țara întreagă" },
+          { icon: <SecureIcon />, title: "Plată securizată", subtitle: "3DSecure · SSL" },
+          { icon: <SupportIcon />, title: "Suport tehnic", subtitle: "L–V 08–17 · RO" },
+        ]} />
+        <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
+      </div>
+      <div className="footer-bot"><div className="wrap"><div className="legal"><a href="#">Termeni &amp; condiții</a><a href="#">Politică confidențialitate</a><a href="#">Politică cookies</a><a href="#">GDPR</a><a href="#">ANPC</a><a href="#">Soluționare litigii</a></div><span className="cr">© 2008–2026 ardmag SRL</span></div></div>
+    </footer>
+  )
+}
