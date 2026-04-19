@@ -10,7 +10,8 @@ Format: `- [ ] Componentă: <element> — <ce decizie se așteaptă>`
 - [ ] Componentă: pagina de produs — layout selector variații, actualizare preț dinamic, galerie imagini
 - [ ] Componentă: listing categorie — nr. coloane, filtre/sort, paginare vs. infinite scroll
 - [ ] Componentă: header — poziționare logo, meniu navigare, cos, search, mobile menu
-- [ ] Componentă: homepage — hero banner (dimensiune, tip: static/slider), grid categorii, secțiunea furnizori
+- [ ] Componentă: homepage hero — decizie intre "brand hero" (stats + category cards, implementat acum) vs "promo hero" (campanie specifica cu produs + discount, ca in DS04). Promo hero necesita date dinamice din Medusa si decizie de campanie.
+- [ ] Componentă: mobile filter — accordion vs inline pentru panelul de filtre pe mobile (acum: inline functional)
 - [ ] Componentă: footer — structura coloanelor, ANPC placement
 - [ ] Componentă: checkout — single-page sau multi-step
 - [ ] Componentă: pagini cont (login/register/orders) — layout general
