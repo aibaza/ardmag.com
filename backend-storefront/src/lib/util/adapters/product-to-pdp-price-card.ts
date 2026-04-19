@@ -6,9 +6,7 @@ interface PDPPriceCardProps {
   was?: string
   save?: string
   priceNoTax?: string
-  unitLabel?: string
   promoLabel?: string
-  promoDate?: string
 }
 
 type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
@@ -22,17 +20,15 @@ type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
 const VAT_RATE = 0.19
 
 /**
- * Converts a single variant + product into PDPPriceCard props.
+ * Converts a single variant into PDPPriceCard props.
  *
  * - price: formatPrice(calculated_amount)
- * - was: if promo:30, was = price / 0.7
- * - save: if promo:30, "Economisești <amount>"
+ * - was/save/promoLabel: populated when original_amount > calculated_amount (real Price List discount)
  * - priceNoTax: price without 19% TVA
- * - promoLabel/promoDate: if promo:30
  */
 export function productToPdpPriceCard(
   variant: HttpTypes.StoreProductVariant,
-  product: HttpTypes.StoreProduct
+  _product: HttpTypes.StoreProduct
 ): PDPPriceCardProps {
   const typedVariant = variant as VariantWithCalcPrice
   const cp = typedVariant.calculated_price
@@ -44,31 +40,24 @@ export function productToPdpPriceCard(
 
   const currencyCode = cp?.currency_code ?? "ron"
   const price = formatPrice(amount, currencyCode)
-
-  const hasPromo = (product.tags ?? []).some((t) => t.value === "promo:30")
-
-  // Price without 19% VAT
   const amountWithoutTax = Math.round(amount / (1 + VAT_RATE))
   const priceNoTax = formatPrice(amountWithoutTax, currencyCode)
 
-  if (!hasPromo) {
+  const originalAmount = cp?.original_amount ?? null
+  if (originalAmount == null || originalAmount <= amount) {
     return { price, priceNoTax }
   }
 
-  // was = current price / 0.7 (product already has 30% off applied)
-  const wasAmount = Math.round(amount / 0.7)
-  const was = formatPrice(wasAmount, currencyCode)
-
-  // save = was - now
-  const saveAmount = wasAmount - amount
+  const was = formatPrice(originalAmount, currencyCode)
+  const saveAmount = originalAmount - amount
   const save = `Economisești ${formatPrice(saveAmount, currencyCode)}`
+  const discountPct = Math.round((1 - amount / originalAmount) * 100)
 
   return {
     price,
     was,
     save,
     priceNoTax,
-    promoLabel: "Promoție activă - expiră: ",
-    promoDate: "31 mai 2025",
+    promoLabel: `Promotie activa -${discountPct}%`,
   }
 }

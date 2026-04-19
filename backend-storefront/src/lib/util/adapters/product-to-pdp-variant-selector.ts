@@ -15,16 +15,25 @@ interface VariantGroup {
 }
 
 type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
-  calculated_price?: { calculated_amount: number | null } | null
+  calculated_price?: {
+    calculated_amount: number | null
+    original_amount?: number | null
+  } | null
   inventory_quantity?: number | null
 }
 
-/**
- * Returns true if a variant is considered out of stock.
- * Only applies when manage_inventory = true AND inventory_quantity = 0.
- */
 function isOutOfStock(variant: VariantWithCalcPrice): boolean {
   return variant.manage_inventory === true && variant.inventory_quantity === 0
+}
+
+function variantDiscountLabel(variant: VariantWithCalcPrice): string | undefined {
+  const cp = variant.calculated_price
+  if (!cp) return undefined
+  const calc = cp.calculated_amount
+  const orig = cp.original_amount
+  if (calc == null || orig == null || orig <= calc) return undefined
+  const pct = Math.round((1 - calc / orig) * 100)
+  return pct > 0 ? `-${pct}%` : undefined
 }
 
 /**
@@ -34,7 +43,7 @@ function isOutOfStock(variant: VariantWithCalcPrice): boolean {
  * - Groups variants by option dimension (option.title).
  * - Marks active option value for selectedVariantId (or first variant).
  * - Marks unavailable if ALL variants sharing that option value are out of stock.
- * - Shows discount "-30%" if product has promo:30 tag.
+ * - Shows discount label derived from real calculated_price discount (original > calculated).
  */
 export function productToPdpVariantSelector(
   product: HttpTypes.StoreProduct,
@@ -42,7 +51,6 @@ export function productToPdpVariantSelector(
 ): VariantGroup[] {
   const variants = (product.variants ?? []) as VariantWithCalcPrice[]
 
-  // Single variant with no options => default variant, return []
   if (variants.length <= 1) {
     const singleVariant = variants[0]
     if (!singleVariant) return []
@@ -50,13 +58,9 @@ export function productToPdpVariantSelector(
     if (opts.length === 0) return []
   }
 
-  const hasPromo = (product.tags ?? []).some((t) => t.value === "promo:30")
-
-  // Determine the active variant
   const activeVariant =
     variants.find((v) => v.id === selectedVariantId) ?? variants[0]
 
-  // Collect all unique option dimensions in the order they first appear
   const dimensionOrder: string[] = []
   const dimensionMap = new Map<string, Set<string>>()
 
@@ -80,13 +84,11 @@ export function productToPdpVariantSelector(
   for (const dimensionTitle of dimensionOrder) {
     const values = Array.from(dimensionMap.get(dimensionTitle)!)
 
-    // Determine the selected value for this dimension from the active variant
     const activeOptValue =
       activeVariant.options?.find((o) => o.option?.title === dimensionTitle)
         ?.value ?? values[0]
 
     const options: VariantOption[] = values.map((value) => {
-      // All variants that have this value for this dimension
       const variantsWithValue = variants.filter((v) =>
         (v.options ?? []).some(
           (o) => o.option?.title === dimensionTitle && o.value === value
@@ -97,11 +99,16 @@ export function productToPdpVariantSelector(
         variantsWithValue.length > 0 &&
         variantsWithValue.every((v) => isOutOfStock(v))
 
-      const variantId = variantsWithValue[0]?.id ?? variants[0]?.id ?? ""
+      const firstMatchingVariant = variantsWithValue[0]
+      const variantId = firstMatchingVariant?.id ?? variants[0]?.id ?? ""
+      const discount = firstMatchingVariant
+        ? variantDiscountLabel(firstMatchingVariant)
+        : undefined
+
       const option: VariantOption = { label: value, variantId }
       if (value === activeOptValue) option.active = true
       if (unavailable) option.unavailable = true
-      if (hasPromo) option.discount = "-30%"
+      if (discount) option.discount = discount
 
       return option
     })

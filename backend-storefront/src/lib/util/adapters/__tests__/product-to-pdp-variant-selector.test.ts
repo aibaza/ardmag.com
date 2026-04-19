@@ -196,16 +196,16 @@ describe("productToPdpVariantSelector", () => {
     expect(bejOpt?.unavailable).toBeUndefined()
   })
 
-  it("shows discount on options when product has promo:30 tag", () => {
+  it("shows discount on options when variant has real Price List discount", () => {
     const product = makeProduct({
-      tags: [{ id: "t1", value: "promo:30" }],
       variants: [
         {
           id: "v1",
           options: [makeOpt("1 LITRU", "CANTITATE", "o2")],
           manage_inventory: true,
           inventory_quantity: 100,
-        },
+          calculated_price: { calculated_amount: 7000, original_amount: 10000 },
+        } as any,
       ],
     })
     const groups = productToPdpVariantSelector(product)
@@ -213,7 +213,24 @@ describe("productToPdpVariantSelector", () => {
     expect(opt.discount).toBe("-30%")
   })
 
-  it("does NOT show discount when no promo tag", () => {
+  it("does NOT show discount when calculated_amount equals original_amount", () => {
+    const product = makeProduct({
+      variants: [
+        {
+          id: "v1",
+          options: [makeOpt("1 LITRU", "CANTITATE", "o2")],
+          manage_inventory: true,
+          inventory_quantity: 100,
+          calculated_price: { calculated_amount: 10000, original_amount: 10000 },
+        } as any,
+      ],
+    })
+    const groups = productToPdpVariantSelector(product)
+    const opt = groups[0].options[0]
+    expect(opt.discount).toBeUndefined()
+  })
+
+  it("does NOT show discount when no calculated_price", () => {
     const product = makeProduct({
       tags: null,
       variants: [

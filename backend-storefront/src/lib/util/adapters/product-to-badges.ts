@@ -8,36 +8,54 @@ interface Badge {
   dotVariant?: boolean
 }
 
+type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
+  calculated_price?: {
+    calculated_amount: number | null
+    original_amount?: number | null
+  } | null
+  inventory_quantity?: number | null
+}
+
 /**
  * Derives display badges from a StoreProduct.
  *
  * Rules:
- * - tag "promo:30" OR metadata.ribbon contains "PROMO" => {type: "promo", label: "-30%"}
- * - ALL variants have inventory_quantity = 0 AND manage_inventory = true => {type: "stock-low", label: "Stoc limitat"}
+ * - Any variant with original_amount > calculated_amount => {type:"promo", label:"-X%"} (real price list discount)
+ * - Fallback: metadata.ribbon contains "PROMO" => {type:"promo", label:"-30%"} (legacy decorative)
+ * - ALL variants have inventory_quantity = 0 AND manage_inventory = true => {type:"stock-low", label:"Stoc limitat"}
  */
 export function productToBadges(product: HttpTypes.StoreProduct): Badge[] {
   const badges: Badge[] = []
-
-  const tags = product.tags ?? []
+  const variants = (product.variants ?? []) as VariantWithCalcPrice[]
   const metadata = product.metadata ?? {}
 
-  const hasPromoTag = tags.some((t) => t.value === "promo:30")
-  const ribbonValue =
-    typeof metadata["ribbon"] === "string" ? metadata["ribbon"] : ""
-  const hasPromoRibbon = ribbonValue.includes("PROMO")
-
-  if (hasPromoTag || hasPromoRibbon) {
-    badges.push({ type: "promo", label: "-30%" })
+  // Detect real price list discount from calculated_price
+  let maxDiscountPct = 0
+  for (const v of variants) {
+    const cp = v.calculated_price
+    if (!cp) continue
+    const calc = cp.calculated_amount
+    const orig = cp.original_amount
+    if (calc == null || orig == null || orig <= calc) continue
+    const pct = Math.round((1 - calc / orig) * 100)
+    if (pct > maxDiscountPct) maxDiscountPct = pct
   }
 
-  const variants = product.variants ?? []
+  if (maxDiscountPct > 0) {
+    badges.push({ type: "promo", label: `-${maxDiscountPct}%` })
+  } else {
+    // Legacy fallback: ribbon metadata (cosmetic, no real price difference)
+    const ribbonValue =
+      typeof metadata["ribbon"] === "string" ? metadata["ribbon"] : ""
+    if (ribbonValue.includes("PROMO")) {
+      badges.push({ type: "promo", label: "-30%" })
+    }
+  }
+
+  // Stock-low badge
   if (variants.length > 0) {
     const allOutOfStock = variants.every((v) => {
-      const managed = v.manage_inventory === true
-      const qty = (v as HttpTypes.StoreProductVariant & {
-        inventory_quantity?: number | null
-      }).inventory_quantity
-      return managed && qty === 0
+      return v.manage_inventory === true && v.inventory_quantity === 0
     })
     if (allOutOfStock) {
       badges.push({ type: "stock-low", label: "Stoc limitat" })

@@ -112,51 +112,58 @@ describe("productToPdpPriceCard", () => {
     expect(result.priceNoTax).toBe("100,00 RON")
   })
 
-  it("sets was, save, promoLabel, promoDate for promo:30 product", () => {
+  it("sets was, save, promoLabel when original_amount > calculated_amount (real Price List discount)", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 7000 },
+      calculated_price: { calculated_amount: 7000, original_amount: 10000 },
     })
-    const product = makeProduct({
-      tags: [{ id: "t1", value: "promo:30" }],
-    })
-    const result = productToPdpPriceCard(variant, product)
+    const result = productToPdpPriceCard(variant, makeProduct({}))
 
     expect(result.price).toBe("70,00 RON")
-    // was = round(7000 / 0.7) = 10000 => "100,00 RON"
     expect(result.was).toBe("100,00 RON")
-    // save = 10000 - 7000 = 3000 => "Economisești 30,00 RON"
     expect(result.save).toBe("Economisești 30,00 RON")
-    expect(result.promoLabel).toBe("Promoție activă - expiră: ")
-    expect(result.promoDate).toBe("31 mai 2025")
+    expect(result.promoLabel).toBe("Promotie activa -30%")
   })
 
-  it("does NOT set was/save when no promo tag", () => {
+  it("computes correct discount percentage in promoLabel", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 15000 },
+      calculated_price: { calculated_amount: 8000, original_amount: 10000 },
+    })
+    const result = productToPdpPriceCard(variant, makeProduct({}))
+    expect(result.promoLabel).toBe("Promotie activa -20%")
+  })
+
+  it("does NOT set was/save when original_amount equals calculated_amount", () => {
+    const variant = makeVariant({
+      calculated_price: { calculated_amount: 15000, original_amount: 15000 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.was).toBeUndefined()
     expect(result.save).toBeUndefined()
     expect(result.promoLabel).toBeUndefined()
-    expect(result.promoDate).toBeUndefined()
   })
 
-  it("does NOT set was/save when tags is null", () => {
+  it("does NOT set was/save when original_amount is null", () => {
+    const variant = makeVariant({
+      calculated_price: { calculated_amount: 15000, original_amount: null },
+    })
+    const result = productToPdpPriceCard(variant, makeProduct({}))
+    expect(result.was).toBeUndefined()
+    expect(result.save).toBeUndefined()
+  })
+
+  it("does NOT set was/save when no original_amount field", () => {
     const variant = makeVariant({
       calculated_price: { calculated_amount: 15000 },
     })
-    const result = productToPdpPriceCard(variant, makeProduct({ tags: null }))
+    const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.was).toBeUndefined()
   })
 
-  it("includes priceNoTax for promo product too", () => {
+  it("includes priceNoTax for discounted product too", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 11900 },
+      calculated_price: { calculated_amount: 11900, original_amount: 17000 },
     })
-    const product = makeProduct({
-      tags: [{ id: "t1", value: "promo:30" }],
-    })
-    const result = productToPdpPriceCard(variant, product)
+    const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.priceNoTax).toBeDefined()
     expect(result.priceNoTax).toBe("100,00 RON")
   })

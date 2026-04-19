@@ -1,5 +1,5 @@
 import type { HttpTypes } from "@medusajs/types"
-import { formatPrice, getProductMinPrice } from "./format-price"
+import { formatPrice, getProductMinPriceWithOriginal } from "./format-price"
 import { productToBadges } from "./product-to-badges"
 
 type BadgeType = "promo" | "new" | "stock-low" | "custom"
@@ -20,9 +20,6 @@ interface ProductCardProduct {
 
 const PLACEHOLDER = "/static/images/placeholder.jpg"
 
-/**
- * Capitalizes a brand slug: "tenax" => "Tenax", "delta-research" => "Delta Research"
- */
 function capitalizeBrandSlug(slug: string): string {
   return slug
     .split("-")
@@ -30,9 +27,6 @@ function capitalizeBrandSlug(slug: string): string {
     .join(" ")
 }
 
-/**
- * Extracts the brand tag value (part after "brand:") or returns null.
- */
 function extractBrandSlug(
   tags: Array<{ value: string }> | null | undefined
 ): string | null {
@@ -47,6 +41,8 @@ function extractBrandSlug(
 
 /**
  * Converts a StoreProduct to the shape expected by ProductCard.
+ * was price is derived from real original_amount (set by a Price List),
+ * not from a hardcoded tag or math.
  */
 export function productToCard(
   product: HttpTypes.StoreProduct,
@@ -73,21 +69,17 @@ export function productToCard(
       : null
   const sku = firstVariant?.sku ?? ""
 
-  const minPrice = getProductMinPrice(product)
-  const hasTags = product.tags ?? []
-  const hasPromo = hasTags.some((t) => t.value === "promo:30")
+  const priceInfo = getProductMinPriceWithOriginal(product)
 
   let priceNow: string
   let priceWas: string | undefined
 
-  if (minPrice === null) {
+  if (priceInfo === null) {
     priceNow = "Preț la cerere"
   } else {
-    priceNow = formatPrice(minPrice)
-    if (hasPromo) {
-      // was = now / 0.7 (product already has 30% discount applied)
-      const wasAmount = Math.round(minPrice / 0.7)
-      priceWas = formatPrice(wasAmount)
+    priceNow = formatPrice(priceInfo.calculated)
+    if (priceInfo.original > priceInfo.calculated) {
+      priceWas = formatPrice(priceInfo.original)
     }
   }
 

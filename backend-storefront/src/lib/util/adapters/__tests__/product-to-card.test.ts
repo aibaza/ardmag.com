@@ -3,7 +3,10 @@ import { productToCard } from "../product-to-card"
 import type { HttpTypes } from "@medusajs/types"
 
 type TestVariant = Partial<HttpTypes.StoreProductVariant> & {
-  calculated_price?: { calculated_amount: number | null } | null
+  calculated_price?: {
+    calculated_amount: number | null
+    original_amount?: number | null
+  } | null
   inventory_quantity?: number | null
 }
 
@@ -42,7 +45,7 @@ function makeProduct(
       {
         id: "v1",
         sku: "TEN-TRANSP-1L",
-        calculated_price: { calculated_amount: 11500 },
+        calculated_price: { calculated_amount: 11500, original_amount: null },
         options: [
           {
             id: "ov1",
@@ -127,23 +130,36 @@ describe("productToCard", () => {
     expect(card.price.was).toBeUndefined()
   })
 
-  it("sets was price for promo:30 tag", () => {
+  it("sets was price from real original_amount (Price List discount)", () => {
     const product = makeProduct({
-      tags: [
-        { id: "t1", value: "brand:tenax" },
-        { id: "t2", value: "promo:30" },
-      ],
       variants: [
-        { id: "v1", sku: "SKU1", calculated_price: { calculated_amount: 7000 } },
+        {
+          id: "v1",
+          sku: "SKU1",
+          calculated_price: { calculated_amount: 7000, original_amount: 10000 },
+        },
       ],
     })
     const card = productToCard(product)
     expect(card.price.now).toBe("70,00 RON")
-    // was = round(7000/0.7) = 10000 => "100,00 RON"
     expect(card.price.was).toBe("100,00 RON")
   })
 
-  it("does NOT set was price when no promo tag", () => {
+  it("does NOT set was price when original_amount equals calculated_amount", () => {
+    const product = makeProduct({
+      variants: [
+        {
+          id: "v1",
+          sku: "SKU1",
+          calculated_price: { calculated_amount: 10000, original_amount: 10000 },
+        },
+      ],
+    })
+    const card = productToCard(product)
+    expect(card.price.was).toBeUndefined()
+  })
+
+  it("does NOT set was price when original_amount is null", () => {
     const card = productToCard(makeProduct({}))
     expect(card.price.was).toBeUndefined()
   })
@@ -170,7 +186,7 @@ describe("productToCard", () => {
         {
           id: "v1",
           sku: "SKU1",
-          calculated_price: { calculated_amount: 5000 },
+          calculated_price: { calculated_amount: 5000, original_amount: null },
           options: [
             { id: "ov1", value: "A", option: { id: "o1", title: "OPT1", product_id: "prod_1" } },
             { id: "ov2", value: "B", option: { id: "o2", title: "OPT2", product_id: "prod_1" } },
@@ -206,14 +222,22 @@ describe("productToCard", () => {
     expect(card.imageAlt).toBe(longTitle)
   })
 
-  it("includes promo badge in badges when promo:30 tag present", () => {
+  it("includes promo badge when calculated_amount < original_amount", () => {
     const product = makeProduct({
-      tags: [
-        { id: "t1", value: "brand:tenax" },
-        { id: "t2", value: "promo:30" },
+      variants: [
+        {
+          id: "v1",
+          sku: "SKU1",
+          calculated_price: { calculated_amount: 7000, original_amount: 10000 },
+        },
       ],
     })
     const card = productToCard(product)
     expect(card.badges?.some((b) => b.type === "promo")).toBe(true)
+  })
+
+  it("does NOT include promo badge when no price discount", () => {
+    const card = productToCard(makeProduct({}))
+    expect(card.badges?.some((b) => b.type === "promo")).toBe(false)
   })
 })

@@ -115,9 +115,11 @@ describe("productToPdpGallery", () => {
     expect(lastThumb.extraCount).toBe(3) // 6 - 3 visible = 3 extra
   })
 
-  it("includes promo badge from promo:30 tag", () => {
+  it("includes promo badge when calculated_amount < original_amount", () => {
     const product = makeProduct({
-      tags: [{ id: "t1", value: "promo:30" }],
+      variants: [
+        { id: "v1", calculated_price: { calculated_amount: 7000, original_amount: 10000 } } as any,
+      ],
     })
     const result = productToPdpGallery(product)
     expect(result.badges.some((b) => b.type === "promo")).toBe(true)
@@ -125,7 +127,9 @@ describe("productToPdpGallery", () => {
 
   it("badges do not have dotVariant property (PDP context)", () => {
     const product = makeProduct({
-      tags: [{ id: "t1", value: "promo:30" }],
+      variants: [
+        { id: "v1", calculated_price: { calculated_amount: 7000, original_amount: 10000 } } as any,
+      ],
     })
     const result = productToPdpGallery(product)
     result.badges.forEach((b) => {
