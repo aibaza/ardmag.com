@@ -1,0 +1,1 @@
+export { PDPPriceCard } from './PDPPriceCard'

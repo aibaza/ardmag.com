@@ -11,6 +11,7 @@ import { ProductGrid } from '@modules/products/product-grid'
 import { Badge } from '@modules/@shared/components/badge'
 import { PDPGallery } from '@modules/product-detail/pdp-gallery'
 import { PDPVariantSelector } from '@modules/product-detail/pdp-variant-selector'
+import { PDPPriceCard } from '@modules/product-detail/pdp-price-card'
 
 export default function ProductPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -149,22 +150,15 @@ export default function ProductPage() {
           <StarRating score={4.8} reviewCount={47} />
 
           {/* Price card */}
-          <div className="pdp-price-card">
-            <div className="pdp-price-row">
-              <span className="pdp-price">38,40 RON</span>
-              <span className="pdp-was">48,00 RON</span>
-              <span className="pdp-save">−20% · 9,60 RON</span>
-            </div>
-            <div style={{ display: "flex", gap: "14px", alignItems: "center", fontSize: "12px", color: "var(--fg-muted)", fontFamily: "var(--f-mono)" }}>
-              <span>Fără TVA: <strong style={{ color: "var(--fg)" }}>32,27 RON</strong></span>
-              <span>·</span>
-              <span>Per bucată</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 12px", background: "var(--brand-50)", borderRadius: "var(--r-sm)", fontSize: "12.5px", color: "var(--brand-800)", lineHeight: "1.3" }}>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ flexShrink: 0 }}><circle cx="8" cy="8" r="6"/><path d="M5 8l2 2 4-4"/></svg>
-              Promoție activă până pe <strong>30 aprilie</strong>
-            </div>
-          </div>
+          <PDPPriceCard
+            price="38,40 RON"
+            was="48,00 RON"
+            save="−20% · 9,60 RON"
+            priceNoTax="32,27 RON"
+            unitLabel="Per bucată"
+            promoLabel="Promoție activă până pe "
+            promoDate="30 aprilie"
+          />
 
           {/* Variants */}
           <PDPVariantSelector groups={[
