@@ -1,8 +1,18 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { SiteHeader } from '@modules/layout/site-header'
+import { SiteFooter } from '@modules/layout/site-footer'
+import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
+import { PDPGallery } from '@modules/product-detail/pdp-gallery'
+import { PDPSummary } from '@modules/product-detail/pdp-summary'
+import { PDPTabs } from '@modules/product-detail/pdp-tabs'
+import { TruckIcon, ReturnIcon, SecureIcon } from '@modules/@shared/icons/TrustIcons'
 import { listProducts } from "@lib/data/products"
-import { getRegion, listRegions } from "@lib/data/regions"
-import ProductTemplate from "@modules/products/templates"
+import { listRegions } from "@lib/data/regions"
+import { productToPdpGallery } from "@lib/util/adapters/product-to-pdp-gallery"
+import { productToPdpVariantSelector } from "@lib/util/adapters/product-to-pdp-variant-selector"
+import { productToPdpPriceCard } from "@lib/util/adapters/product-to-pdp-price-card"
+import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
 
 type Props = {
@@ -12,120 +22,162 @@ type Props = {
 
 export async function generateStaticParams() {
   try {
-    const countryCodes = await listRegions().then((regions) =>
-      regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
+    const regions = await listRegions().catch(() => [] as HttpTypes.StoreRegion[])
+    const countryCodes = regions.flatMap((r) => (r.countries ?? []).map((c) => c.iso_2).filter(Boolean))
+
+    const { response } = await listProducts({
+      countryCode: countryCodes[0] ?? "ro",
+      queryParams: { limit: 100, fields: "handle" },
+    }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[] } }))
+
+    return countryCodes.flatMap((cc) =>
+      response.products
+        .filter((p) => p.handle)
+        .map((p) => ({ countryCode: cc, handle: p.handle }))
     )
-
-    if (!countryCodes) {
-      return []
-    }
-
-    const promises = countryCodes.map(async (country) => {
-      const { response } = await listProducts({
-        countryCode: country,
-        queryParams: { limit: 100, fields: "handle" },
-      })
-
-      return {
-        country,
-        products: response.products,
-      }
-    })
-
-    const countryProducts = await Promise.all(promises)
-
-    return countryProducts
-      .flatMap((countryData) =>
-        countryData.products.map((product) => ({
-          countryCode: countryData.country,
-          handle: product.handle,
-        }))
-      )
-      .filter((param) => param.handle)
-  } catch (error) {
-    console.error(
-      `Failed to generate static paths for product pages: ${
-        error instanceof Error ? error.message : "Unknown error"
-      }.`
-    )
+  } catch {
     return []
   }
 }
 
-function getImagesForVariant(
-  product: HttpTypes.StoreProduct,
-  selectedVariantId?: string
-) {
-  if (!selectedVariantId || !product.variants) {
-    return product.images
-  }
-
-  const variant = product.variants!.find((v) => v.id === selectedVariantId)
-  if (!variant || !variant.images?.length) {
-    return product.images
-  }
-
-  const imageIdsMap = new Map(variant.images.map((i) => [i.id, true]))
-  return product.images!.filter((i) => imageIdsMap.has(i.id))
-}
-
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
-  const { handle } = params
-  const region = await getRegion(params.countryCode)
-
-  if (!region) {
-    notFound()
+  try {
+    const { response } = await listProducts({
+      countryCode: params.countryCode,
+      queryParams: {
+        handle: params.handle,
+        fields: '*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images',
+      },
+    })
+    const product = response.products[0]
+    if (!product) return {}
+    return {
+      title: `${product.title} | ardmag.com`,
+      description: product.description?.replace(/<[^>]+>/g, '').slice(0, 160) ?? product.title ?? '',
+      openGraph: {
+        title: `${product.title} | ardmag.com`,
+        images: product.thumbnail ? [product.thumbnail] : [],
+      },
+    }
+  } catch {
+    return {}
   }
+}
 
-  const product = await listProducts({
-    countryCode: params.countryCode,
-    queryParams: { handle },
-  }).then(({ response }) => response.products[0])
+const PDP_PERKS = [
+  { icon: <TruckIcon fill="none" strokeLinecap="round" style={{width:16,height:16}} />, label: "Livrare 24-48h", sub: "toata tara" },
+  { icon: <ReturnIcon fill="none" strokeLinecap="round" style={{width:16,height:16}} />, label: "14 zile retur", sub: "fara intrebari" },
+  { icon: <SecureIcon fill="none" strokeLinecap="round" style={{width:16,height:16}} />, label: "Distribuitor autorizat", sub: "Tenax · Sait · Delta" },
+]
 
-  if (!product) {
-    notFound()
-  }
+function getStockLabel(product: HttpTypes.StoreProduct): { label: string; location: string } {
+  const variants = product.variants ?? []
+  const hasTracked = variants.some((v) => v.manage_inventory === true)
+  if (!hasTracked) return { label: "Disponibil", location: "Cluj-Napoca" }
 
-  return {
-    title: `${product.title} | Medusa Store`,
-    description: `${product.title}`,
-    openGraph: {
-      title: `${product.title} | Medusa Store`,
-      description: `${product.title}`,
-      images: product.thumbnail ? [product.thumbnail] : [],
-    },
-  }
+  const inStock = variants.some((v) => (v.inventory_quantity ?? 0) > 0)
+  if (inStock) return { label: "In stoc", location: "Cluj-Napoca" }
+  return { label: "Stoc epuizat", location: "" }
+}
+
+function extractBrand(product: HttpTypes.StoreProduct): { brand: string; brandHref: string } {
+  const brandTag = (product.tags ?? []).find((t) => t.value?.startsWith("brand:"))
+  if (!brandTag) return { brand: "", brandHref: "#" }
+  const slug = brandTag.value.replace("brand:", "")
+  const label = slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+  return { brand: label, brandHref: `/search?brand=${slug}` }
 }
 
 export default async function ProductPage(props: Props) {
-  const params = await props.params
-  const region = await getRegion(params.countryCode)
-  const searchParams = await props.searchParams
-
+  const [params, searchParams] = await Promise.all([props.params, props.searchParams])
+  const { countryCode, handle } = params
   const selectedVariantId = searchParams.v_id
 
-  if (!region) {
-    notFound()
-  }
+  const { response } = await listProducts({
+    countryCode,
+    queryParams: {
+      handle,
+      fields: '*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images,+categories',
+    },
+  }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[] } }))
 
-  const pricedProduct = await listProducts({
-    countryCode: params.countryCode,
-    queryParams: { handle: params.handle },
-  }).then(({ response }) => response.products[0])
+  const product = response.products[0]
+  if (!product) notFound()
 
-  const images = getImagesForVariant(pricedProduct, selectedVariantId)
+  // Pick selected variant or first variant
+  const variants = product.variants ?? []
+  const selectedVariant = selectedVariantId
+    ? variants.find((v) => v.id === selectedVariantId) ?? variants[0]
+    : variants[0]
 
-  if (!pricedProduct) {
-    notFound()
-  }
+  const galleryProps = productToPdpGallery(product)
+  const variantGroups = productToPdpVariantSelector(product, selectedVariant?.id)
+  const priceCardProps = selectedVariant
+    ? productToPdpPriceCard(selectedVariant as HttpTypes.StoreProductVariant, product)
+    : { price: "Pret la cerere" }
+
+  const { brand, brandHref } = extractBrand(product)
+  const { label: stockLabel, location: stockLocation } = getStockLabel(product)
+
+  const categoryName = (product.categories ?? [])[0]?.name ?? "Categorie"
+  const categoryHandle = (product.categories ?? [])[0]?.handle ?? ""
+  const breadcrumbItems = [
+    { label: "Acasă", href: `/${countryCode}` },
+    { label: categoryName, href: `/${countryCode}/categories/${categoryHandle}` },
+  ]
+
+  const description = product.description ?? ""
+
+  const firstVariant = variants[0] ?? { sku: null, ean: null }
 
   return (
-    <ProductTemplate
-      product={pricedProduct}
-      region={region}
-      countryCode={params.countryCode}
-      images={images}
-    />
+    <>
+      <SiteHeader
+        categoriesHref={`/${countryCode}/categories/${categoryHandle}`}
+        drawerId="mDrawer"
+        drawerClosedAttr
+      />
+
+      <main className="page-inner">
+        <Breadcrumb items={breadcrumbItems} current={product.title ?? handle} />
+
+        <div className="pdp-layout">
+          <PDPGallery {...galleryProps} />
+
+          <PDPSummary
+            brand={brand}
+            brandHref={brandHref}
+            title={product.title ?? ""}
+            sku={(firstVariant as any).sku ?? ""}
+            ean={(firstVariant as any).ean ?? ""}
+            rating={{ score: 0, reviewCount: 0 }}
+            {...priceCardProps}
+            variantGroups={variantGroups}
+            stockLabel={stockLabel}
+            stockLocation={stockLocation}
+            addToCartLabel="Adaugă în coș"
+            perks={PDP_PERKS}
+          />
+        </div>
+
+        {description && (
+          <PDPTabs
+            tabs={[
+              { label: "Descriere", active: true },
+              { label: "Specificații" },
+              { label: "Livrare și garanție" },
+            ]}
+          >
+            <div
+              className="pdp-description"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          </PDPTabs>
+        )}
+      </main>
+
+      <SiteFooter />
+    </>
   )
 }
