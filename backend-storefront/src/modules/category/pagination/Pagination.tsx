@@ -15,7 +15,7 @@ export function Pagination({ prevHref, nextHref, pages, resultsLabel }: Paginati
   return (
     <>
       <div className="pagination">
-        <span className="prev"><a href={prevHref} aria-label="prev">←</a></span>
+        <a href={prevHref} className="prev" aria-label="Pagina anterioara">←</a>
         {pages.map((p, i) =>
           p.label === '…'
             ? <span key={i} className="dots">…</span>
