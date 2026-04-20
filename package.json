@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0"
+  },
+  "dependencies": {
+    "csv-parse": "^6.2.1",
+    "cheerio": "^1.0.0",
+    "p-limit": "^3.1.0",
+    "@anthropic-ai/sdk": "^0.53.0",
+    "playwright": "^1.52.0"
+  }
+}
