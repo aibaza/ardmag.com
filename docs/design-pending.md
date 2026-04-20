@@ -19,5 +19,5 @@ Format: `- [ ] Componentă: <element> — <ce decizie se așteaptă>`
 - [ ] Decizie: optiunea COLOR (MASTIC LICHID) — color swatch sau dropdown standard
 - [ ] Decizie: breadcrumbs — exista pe paginile de produs si categorie?
 - [ ] Decizie: tipografie — fonturi pentru heading, body, price
-- [ ] A11Y — Contrast CTA primary (`--brand-500`) — butoane orange pe fundal alb au contrast 3.63:1 (WCAG AA cere 4.5:1 pentru text normal). Optiuni: (1) Darkens `--brand-500` la echivalentul curent al `--brand-600` (oklch 56% 0.190 42) — afecteaza toate CTA-urile si badge-urile `-30%`; (2) Token separat `--brand-accessible-text` doar pentru text-on-brand; (3) Mareste font-weight `.btn.primary` la 700 + font-size >= 18px (large-text rule — 3:1 suficient). Decizie necesara inainte de production.
-- [ ] A11Y — Contrast footer text (`--stone-500`) — text muted footer pe `--stone-900`/`--stone-950` = 4.0:1 (sub 4.5:1). Afecteaza `.footer-top h5`, `.news-consent`, `.trust-item span`, `.footer-bot` (design-system.css:210,225,234,245). Optiuni: (1) Swap `var(--stone-500)` -> `var(--stone-400)` in cele 4 selectoare; (2) Token nou `--fg-muted-on-dark: var(--stone-400)`. Decizie necesara inainte de production.
+- [x] A11Y — Contrast CTA primary — `--brand-500` intunecat la `oklch(56% 0.190 42)`. Rezolvat.
+- [x] A11Y — Contrast footer text — `.footer-top h5`, `.news-consent`, `.trust-item span`, `.footer-bot` swap `--stone-500` -> `--stone-400`. Rezolvat.
