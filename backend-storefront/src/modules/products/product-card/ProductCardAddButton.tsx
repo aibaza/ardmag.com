@@ -24,8 +24,10 @@ export function ProductCardAddButton({
   if (hasMultipleRealVariants) {
     return (
       <a href={href} className="btn primary sm">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 8h10M9 5l3 3-3 3"/>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+          <path d="M2 4h12M2 10h12"/>
+          <circle cx="5" cy="4" r="1.8" fill="currentColor" stroke="none"/>
+          <circle cx="11" cy="10" r="1.8" fill="currentColor" stroke="none"/>
         </svg>
         Alege
       </a>
