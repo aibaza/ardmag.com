@@ -5,6 +5,25 @@ Format: [date] type: description
 
 ---
 
+## 2026-04-20 — Checkout RO complet: livrare, plata, finalizare comanda
+
+### Livrare Romania
+
+- feat(shipping): script idempotent `setup-ro-shipping.ts` — creeaza Regiune Romania (RON), Stock Location "Depozit Cluj", Fulfillment Set "Livrare Romania" (geo_zone country=ro), 5 optiuni de livrare (Fan Courier 19.99 RON, Sameday 21.99 RON, Cargus 22.99 RON, Posta Romana 14.99 RON, Ridicare Cluj 0 RON), regula free shipping la subtotal >= 500 RON
+- feat(shipping): adauga RON la store currencies; asociaza Default Sales Channel cu Depozit Cluj; leaga fulfillment provider manual_manual
+- fix(shipping): TVA Romania 21% (nu 19%)
+- fix(payment): leaga `pp_system_default` (Ramburs la livrare) la Regiunea Romania via `updateRegionsWorkflow`
+- fix(cart): `fix-product-shipping-profiles.ts` — leaga cele 86 de produse importate din Wix la profilul de livrare default; rezolva eroarea "cart items require shipping profiles" la `cart.complete()`
+- chore(shipping): `cleanup-shipping-dupes.ts` — sterge optiunile de livrare duplicate create la rerulari partiale
+
+### Checkout UI
+
+- fix(checkout): logo corect cu transparenta (`logo-transparent.png`) in header-ul de checkout
+- fix(checkout): step indicator afisare corecta (pills + separatori inline)
+- fix(checkout): sumele din OrderSummary right-aligned cu `fontVariantNumeric: tabular-nums`
+
+---
+
 ## 2026-04-20 — Review complet: A11Y + SEO
 
 ### Accesibilitate (WCAG AA)
