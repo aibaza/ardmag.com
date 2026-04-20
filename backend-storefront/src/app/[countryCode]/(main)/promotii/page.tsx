@@ -184,14 +184,12 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
         />
 
         <CategoryHero
-          eyebrow="Oferte speciale"
           title="Produse la reducere"
           description={
             discountedProducts.length > 0
               ? `${discountedProducts.length} ${discountedProducts.length === 1 ? "produs" : "produse"} cu reducere activa`
               : "Momentan nu exista produse la reducere."
           }
-          meta={[]}
         />
 
         <CategoryLayoutClient

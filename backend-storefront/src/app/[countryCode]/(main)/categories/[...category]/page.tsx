@@ -203,8 +203,8 @@ export default async function CategoryPage(props: Props) {
       />
 
       <main className="page-inner">
-        <Breadcrumb items={breadcrumbItems} current={breadcrumbCurrent} />
-        <CategoryHero {...heroProps} />
+        <Breadcrumb items={breadcrumbItems} current={breadcrumbCurrent} meta={heroProps.meta} />
+        <CategoryHero title={heroProps.title} description={heroProps.description} />
         <CategoryLayoutClient
           filterGroups={filterGroups}
           applyCount={filterActiveCount}
