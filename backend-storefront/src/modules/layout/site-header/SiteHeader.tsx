@@ -71,7 +71,7 @@ export function SiteHeader({
         <nav className="cat-nav"><div className="wrap">
           <a href={categoriesHref} className="all"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M2 4h12M2 8h12M2 12h12"/></svg>Toate categoriile</a>
           {categories.map((cat) => (
-            <a key={cat.handle} href={`/${countryCode}/categories/${cat.handle}`}>{cat.name}</a>
+            <a key={cat.handle} href={`/${countryCode}/categories/${cat.handle}`}>{cat.name.charAt(0).toUpperCase() + cat.name.slice(1).toLowerCase()}</a>
           ))}
           <div className="right"><a href="#">Catalog PDF</a></div>
         </div></nav>
