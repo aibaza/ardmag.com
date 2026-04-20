@@ -23,14 +23,16 @@ interface HeroProps {
   ghostCta: { label: string; href: string; style?: CSSProperties }
   stats: HeroStat[]
   sideCards: HeroSideCard[]
+  headingLevel?: "h1" | "h2"
 }
 
-export function Hero({ kicker, title, description, primaryCta, ghostCta, stats, sideCards }: HeroProps) {
+export function Hero({ kicker, title, description, primaryCta, ghostCta, stats, sideCards, headingLevel }: HeroProps) {
+  const Heading = headingLevel ?? "h2"
   return (
     <div className="hero">
       <div className="hero-main">
         <span className="kicker">{kicker}</span>
-        <h2>{title}</h2>
+        <Heading>{title}</Heading>
         <p>{description}</p>
         <div className="hactions">
           <a className="btn primary lg" href={primaryCta.href}>{primaryCta.label}</a>

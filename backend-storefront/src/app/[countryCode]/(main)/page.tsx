@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
@@ -26,6 +27,17 @@ const CAT_IMAGE_MAP: Record<string, string> = {
 
 type Props = {
   params: Promise<{ countryCode: string }>
+}
+
+export const metadata: Metadata = {
+  title: "ARDMAG — Precizie solida. 25 de ani.",
+  description: "Distribuitor autorizat Tenax in Romania. Scule diamantate, mastici, abrazive si consumabile pentru prelucrarea pietrei naturale. Livrare 24-48h in toata tara.",
+  alternates: { canonical: "/ro" },
+  openGraph: {
+    title: "ARDMAG — Precizie solida. 25 de ani.",
+    description: "Distribuitor autorizat Tenax in Romania. Scule diamantate, mastici si consumabile pentru ateliere de piatra.",
+    url: "/ro",
+  },
 }
 
 export default async function HomePage({ params }: Props) {
@@ -86,6 +98,7 @@ export default async function HomePage({ params }: Props) {
 
         {/* HERO -- promotional content, static until CMS is available */}
         <Hero
+          headingLevel="h1"
           kicker="Promo luna aprilie · până pe 30"
           title={<>Mastici Tenax<br />la <span style={{color:"var(--brand-400)"}}>-30%</span> reducere</>}
           description="Toată gama de mastici poliesterici și epoxidici Tenax la -30%. Stoc complet în Cluj, livrare 24-48h în toată țara."

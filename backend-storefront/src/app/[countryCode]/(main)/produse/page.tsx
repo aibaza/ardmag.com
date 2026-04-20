@@ -16,8 +16,10 @@ import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 
 export const metadata: Metadata = {
-  title: "Toate produsele | ardmag.com",
+  title: "Toate produsele",
   description: "Catalogul complet ardmag - scule si consumabile pentru prelucrarea pietrei naturale.",
+  alternates: { canonical: "/ro/produse" },
+  openGraph: { title: "Toate produsele", url: "/ro/produse" },
 }
 
 const VALID_PAGE_SIZES = [20, 40, 60]
@@ -163,6 +165,8 @@ export default async function ProdusePage({ params, searchParams }: Props) {
           title="Toate produsele"
           description={`${allProducts.length} ${allProducts.length === 1 ? "produs" : "produse"} in catalog`}
         />
+
+        <h2 className="sr-only">Catalog produse</h2>
 
         <CategoryLayoutClient
           filterGroups={filterGroups}

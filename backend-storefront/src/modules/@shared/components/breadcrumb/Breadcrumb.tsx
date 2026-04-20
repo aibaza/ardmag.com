@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { BreadcrumbListJsonLd } from '@lib/util/json-ld'
 
 interface BreadcrumbItem {
   label: string
@@ -19,6 +20,8 @@ interface BreadcrumbProps {
 
 export function Breadcrumb({ items, current, meta }: BreadcrumbProps) {
   return (
+    <>
+    <BreadcrumbListJsonLd items={items} current={current} />
     <nav className="crumbs" aria-label="breadcrumb">
       {items.map((item, i) => (
         <Fragment key={i}>
@@ -40,5 +43,6 @@ export function Breadcrumb({ items, current, meta }: BreadcrumbProps) {
         </span>
       )}
     </nav>
+    </>
   )
 }

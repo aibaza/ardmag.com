@@ -37,7 +37,7 @@ export function SiteHeader({
 
   return (
     <>
-      <div className="site-header">
+      <header className="site-header">
         {/* Desktop: utility bar */}
         <div className="util-bar"><div className="wrap">
           <span className="promo"><strong>Transport gratuit</strong> peste 500 RON</span>
@@ -91,12 +91,15 @@ export function SiteHeader({
             <button type="submit"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><span>Cauta</span></button>
           </form>
         </div>
-      </div>
+      </header>
 
       {/* Mobile: slide-in drawer */}
       <div
         className="mobile-drawer"
         id={drawerId}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Meniu mobil"
         data-open={drawerOpen ? "true" : (drawerClosedAttr ? "false" : undefined)}
         onClick={(e) => { if (e.target === e.currentTarget) setDrawerOpen(false) }}
       >
@@ -106,20 +109,20 @@ export function SiteHeader({
             <button className="close" aria-label="inchide" onClick={() => setDrawerOpen(false)}>x</button>
           </div>
           <div className="mm-section-label">Categorii</div>
-          <div className="mm-nav">
+          <nav className="mm-nav" aria-label="Categorii mobile">
             {categories.map((cat) => (
               <a key={cat.handle} href={`/${countryCode}/categories/${cat.handle}`} onClick={() => setDrawerOpen(false)}>
                 {cat.name} <span className="chev">›</span>
               </a>
             ))}
-          </div>
+          </nav>
           <div className="mm-section-label">Cont</div>
-          <div className="mm-nav">
+          <nav className="mm-nav" aria-label="Cont si comenzi">
             <a href={`/${countryCode}/account`}>Intra in cont <span className="chev">›</span></a>
             <a href={`/${countryCode}/account/orders`}>Comanda mea <span className="chev">›</span></a>
-            <a href="mailto:office@arcromdiamonds.ro">Cont B2B <span className="chev">›</span></a>
+            <a href="mailto:office@arcromdiamonds.ro">Cont B2B <span className="chev">↗</span></a>
             <a href="#">Catalog PDF <span className="chev">↗</span></a>
-          </div>
+          </nav>
           <div className="mm-foot">
             <div className="phone"><strong>+40 722 155 441</strong></div>
             <div className="sub">L-V 08:00-17:00 · Cluj-Napoca</div>
