@@ -90,7 +90,7 @@ export function productToCard(
     const seen = new Set<string>()
     for (const opt of firstVariant.options) {
       const title = opt.option?.title
-      if (title && !seen.has(title) && specs.length < 3) {
+      if (title && title.toLowerCase() !== "title" && !seen.has(title) && specs.length < 3) {
         seen.add(title)
         specs.push(title)
       }

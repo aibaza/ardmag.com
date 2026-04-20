@@ -30,11 +30,9 @@ export function ProductCard({ product, countryCode }: ProductCardProps) {
       <div className="pcard-body">
         <a className="pcard-brand" href={product.brandHref}>{product.brand}</a>
         <h4 className="pcard-title"><a href={product.href}>{product.title}</a></h4>
-        {product.specs && (
-          <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
-            {product.specs.map((s, i) => <ProductCardSpecTag key={i} label={s} />)}
-          </div>
-        )}
+        <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap', minHeight: '28px' }}>
+          {product.specs?.map((s, i) => <ProductCardSpecTag key={i} label={s} />)}
+        </div>
       </div>
       <div className="pcard-foot">
         <div className="pcard-price"><span className="now">{product.price.now}</span>{product.price.was && <span className="was">{product.price.was}</span>}</div>
