@@ -56,6 +56,12 @@ export function productToPdpVariantSelector(
     if (!singleVariant) return []
     const opts = singleVariant.options ?? []
     if (opts.length === 0) return []
+    // Medusa placeholder for products without real options
+    const isDefaultPlaceholder =
+      opts.length === 1 &&
+      opts[0].option?.title === "Title" &&
+      opts[0].value === "Default Title"
+    if (isDefaultPlaceholder) return []
   }
 
   const activeVariant =
