@@ -17,9 +17,8 @@ export default async function CheckoutLayout({ children, params }: Props) {
         <a href={`/${countryCode}/cart`} style={{ fontSize: 13, color: 'var(--fg-muted)', fontFamily: 'var(--f-sans)' }}>
           &larr; Inapoi la cos
         </a>
-        <a href={`/${countryCode}`} style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'var(--fg)' }}>
-          <span style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--stone-900)', borderRadius: 'var(--r-sm)', color: 'var(--brand-400)', fontFamily: 'var(--f-mono)', fontWeight: 600, fontSize: 15, letterSpacing: '-0.02em', flexShrink: 0 }}>a</span>
-          <span style={{ fontFamily: 'var(--f-sans)', fontWeight: 600, fontSize: 18, letterSpacing: '-0.025em' }}>ardmag</span>
+        <a href={`/${countryCode}`} className="logo" style={{ textDecoration: 'none' }}>
+          <img src="/logo.png" alt="ARDMAG" className="logo-img" />
         </a>
         <span style={{ width: 120 }} />
       </header>
