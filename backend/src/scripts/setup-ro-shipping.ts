@@ -7,6 +7,7 @@ import {
   createStockLocationsWorkflow,
   createTaxRegionsWorkflow,
   linkSalesChannelsToStockLocationWorkflow,
+  updateRegionsWorkflow,
   updateStoresWorkflow,
 } from "@medusajs/medusa/core-flows";
 
@@ -129,7 +130,29 @@ export default async function setupRoShipping({ container }: ExecArgs) {
     logger.info("Setup RO shipping: region Romania exists, skipped.");
   }
 
-  // --- Tax region RO (TVA 19%) ---
+  // --- Asigura payment provider pp_system_default pe regiunea Romania ---
+  logger.info("Setup RO shipping: linking payment provider to Romania...");
+  const { data: roPaymentProviders } = await query.graph({
+    entity: "region_payment_provider",
+    fields: ["payment_provider_id"],
+    filters: { region_id: region.id },
+  });
+  const hasPaymentProvider = (roPaymentProviders ?? []).some(
+    (p: { payment_provider_id: string }) => p.payment_provider_id === "pp_system_default"
+  );
+  if (!hasPaymentProvider) {
+    await updateRegionsWorkflow(container).run({
+      input: {
+        selector: { id: region.id },
+        update: { payment_providers: ["pp_system_default"] },
+      },
+    });
+    logger.info("Setup RO shipping: pp_system_default linked to Romania.");
+  } else {
+    logger.info("Setup RO shipping: payment provider already linked, skipped.");
+  }
+
+  // --- Tax region RO (TVA 21%) ---
   logger.info("Setup RO shipping: creating tax region...");
   const { data: existingTaxRegions } = await query.graph({
     entity: "tax_region",
