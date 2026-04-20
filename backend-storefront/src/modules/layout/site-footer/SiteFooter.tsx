@@ -4,10 +4,12 @@ import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 
 interface SiteFooterProps {
+  countryCode?: string
   categoriesHref?: string
 }
 
-export function SiteFooter({ categoriesHref = "#" }: SiteFooterProps) {
+export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterProps) {
+  const allHref = categoriesHref ?? `/${countryCode}/produse`
   return (
     <footer className="site-footer">
       <div className="footer-top">
@@ -16,7 +18,7 @@ export function SiteFooter({ categoriesHref = "#" }: SiteFooterProps) {
           <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
           <div className="contact"><div className="phone">Tel. <strong>0264 123 456</strong></div><div>contact@ardmag.ro</div><div>Str. Industriei 14 · Cluj-Napoca</div></div>
         </div>
-        <div><h5>Magazin</h5><ul><li><a href={categoriesHref}>Toate categoriile</a></li><li><a href="#">Noutăți</a></li><li><a href="#">Promoții</a></li><li><a href="#">Lichidări stoc</a></li><li><a href="#">Catalog PDF</a></li></ul></div>
+        <div><h5>Magazin</h5><ul><li><a href={allHref}>Toate categoriile</a></li><li><a href="#">Noutăți</a></li><li><a href="#">Promoții</a></li><li><a href="#">Lichidări stoc</a></li><li><a href="#">Catalog PDF</a></li></ul></div>
         <div><h5>Cont &amp; comenzi</h5><ul><li><a href="#">Contul meu</a></li><li><a href="#">Comenzi &amp; facturi</a></li><li><a href="#">Urmărire livrare</a></li><li><a href="#">Retur produs</a></li><li><a href="#">Cont B2B</a></li></ul></div>
         <div><h5>Info</h5><ul><li><a href="#">Despre noi</a></li><li><a href="#">Parteneri</a></li><li><a href="#">Livrare &amp; plată</a></li><li><a href="#">Garanții</a></li><li><a href="#">Contact</a></li></ul></div>
         <div className="news-col">

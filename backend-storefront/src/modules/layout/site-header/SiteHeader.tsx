@@ -15,13 +15,14 @@ interface SiteHeaderProps {
 
 export function SiteHeader({
   countryCode,
-  categoriesHref = "#",
+  categoriesHref: categoriesHrefProp,
   discuriHref,
   drawerId,
   drawerClosedAttr,
   cartItemCount = 0,
   categories = [],
 }: SiteHeaderProps) {
+  const categoriesHref = categoriesHrefProp ?? `/${countryCode}/produse`
   const [drawerOpen, setDrawerOpen] = useState(false)
   const router = useRouter()
 
@@ -55,7 +56,7 @@ export function SiteHeader({
         <div className="main-bar">
           <a className="logo" href={`/${countryCode}`}><img src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} /><div className="tag">25 de ani pe piatra</div></a>
           <form className="search-combo" role="search" onSubmit={handleSearchSubmit}>
-            <div className="cat" tabIndex={0}>Toate categoriile</div>
+            <a className="cat" href={`/${countryCode}/produse`}>Toate categoriile</a>
             <input type="search" name="q" placeholder="Cauta produs, SKU, brand... (ex: DLT-115-TX)" aria-label="cautare" suppressHydrationWarning />
             <button type="submit"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><span>Cauta</span></button>
           </form>
