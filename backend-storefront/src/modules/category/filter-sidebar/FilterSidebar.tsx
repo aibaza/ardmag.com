@@ -99,7 +99,7 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl, isOpen, o
 
   return (
     <aside className={`filters${isOpen ? ' open' : ''}`} id="filters">
-      {onClose && (
+      {isOpen && onClose && (
         <button
           type="button"
           className="filter-close"
