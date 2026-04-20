@@ -19,7 +19,7 @@ export function ProductCardAddButton({
 }: Props) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
-  const [status, setStatus] = useState<"idle" | "success">("idle")
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
 
   if (hasMultipleRealVariants) {
     return (
@@ -44,10 +44,15 @@ export function ProductCardAddButton({
 
   const handleClick = () => {
     startTransition(async () => {
-      await addToCart({ variantId: defaultVariantId, quantity: 1, countryCode })
-      setStatus("success")
-      router.refresh()
-      setTimeout(() => setStatus("idle"), 2000)
+      try {
+        await addToCart({ variantId: defaultVariantId, quantity: 1, countryCode })
+        setStatus("success")
+        router.refresh()
+        setTimeout(() => setStatus("idle"), 2000)
+      } catch {
+        setStatus("error")
+        setTimeout(() => setStatus("idle"), 3000)
+      }
     })
   }
 
@@ -55,7 +60,9 @@ export function ProductCardAddButton({
     ? "Se adaugă..."
     : status === "success"
       ? "Adăugat"
-      : "Adaugă"
+      : status === "error"
+        ? "Eroare — încearcă din nou"
+        : "Adaugă"
 
   return (
     <button
