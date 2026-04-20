@@ -8,6 +8,7 @@ type BadgeType = "promo" | "new" | "stock-low" | "custom"
 interface ProductCardProduct {
   id: string
   title: string
+  sku: string
   brand: string
   brandHref: string
   image: string
@@ -104,6 +105,7 @@ export function productToCard(
   return {
     id: product.id,
     title: product.title ?? "",
+    sku: product.variants?.[0]?.sku ?? "",
     brand,
     brandHref,
     image,

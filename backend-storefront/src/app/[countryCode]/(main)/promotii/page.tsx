@@ -6,8 +6,7 @@ import { Breadcrumb } from "@modules/@shared/components/breadcrumb/Breadcrumb"
 import { CategoryHero } from "@modules/category/category-hero"
 import { CategoryToolbar } from "@modules/category/category-toolbar"
 import { CategoryLayoutClient } from "@modules/category/category-layout-client"
-import { ProductGrid } from "@modules/products/product-grid"
-import { Pagination } from "@modules/category/pagination"
+import { InfiniteProductGrid } from "@modules/products/infinite-product-grid/InfiniteProductGrid"
 import { listProducts } from "@lib/data/products"
 import { productsToFilterGroups } from "@lib/util/adapters/products-to-filter-groups"
 import { productToCard } from "@lib/util/adapters/product-to-card"
@@ -61,38 +60,11 @@ function hasRealDiscount(product: HttpTypes.StoreProduct): boolean {
   })
 }
 
-function buildPageUrl(base: string, page: number, existingParams: Record<string, string | string[] | undefined>): string {
-  const params = new URLSearchParams()
-  for (const [key, value] of Object.entries(existingParams)) {
-    if (key === "page") continue
-    if (typeof value === "string" && value) params.set(key, value)
-  }
-  params.set("page", String(page))
-  return `${base}?${params.toString()}`
-}
-
-function buildPaginationPages(
-  currentPage: number,
-  totalPages: number,
-  baseUrl: string,
-  existingParams: Record<string, string | string[] | undefined> = {}
-): Array<{ label: string; href: string; active?: boolean }> {
-  const pages: Array<{ label: string; href: string; active?: boolean }> = []
-  for (let i = 1; i <= totalPages; i++) {
-    if (i === 1 || i === totalPages || Math.abs(i - currentPage) <= 1) {
-      pages.push({ label: String(i), href: buildPageUrl(baseUrl, i, existingParams), active: i === currentPage })
-    } else if (pages[pages.length - 1]?.label !== "…") {
-      pages.push({ label: "…", href: "#" })
-    }
-  }
-  return pages
-}
 
 export default async function PromotiiPage({ params, searchParams }: Props) {
   const [{ countryCode }, sp] = await Promise.all([params, searchParams])
 
   const sortLabel = (sp.sortBy as string | undefined) ?? "Relevanță"
-  const currentPage = parseInt((sp.page as string) ?? "1", 10) || 1
   const perPageParam = parseInt((sp.perPage as string) ?? "", 10)
   const perPage = VALID_PAGE_SIZES.includes(perPageParam) ? perPageParam : DEFAULT_PAGE_SIZE
   const activeBrands = (sp.brand as string | undefined)?.split(",").filter(Boolean) ?? []
@@ -139,22 +111,15 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
   const sortBy = SORT_MAP[sortLabel]
   const sortedProducts = sortBy ? sortProducts(filteredProducts, sortBy) : filteredProducts
 
-  // Paginate
   const totalFiltered = sortedProducts.length
-  const totalPages = Math.max(1, Math.ceil(totalFiltered / perPage))
-  const offset = (currentPage - 1) * perPage
-  const pageProducts = sortedProducts.slice(offset, offset + perPage)
 
   const filterGroups = productsToFilterGroups(discountedProducts, {
     brands: activeBrands,
     materials: activeMaterials,
   })
-  const productCards = pageProducts.map((p) => productToCard(p, countryCode))
+  const productCards = sortedProducts.map((p) => productToCard(p, countryCode))
 
   const baseUrl = `/${countryCode}/promotii`
-  const paginationPages = buildPaginationPages(currentPage, totalPages, baseUrl, sp as Record<string, string | string[] | undefined>)
-  const prevHref = currentPage > 1 ? buildPageUrl(baseUrl, currentPage - 1, sp as Record<string, string | string[] | undefined>) : "#"
-  const nextHref = currentPage < totalPages ? buildPageUrl(baseUrl, currentPage + 1, sp as Record<string, string | string[] | undefined>) : "#"
 
   const activeFilters: Array<{ label: string; paramKey: "brand" | "material" | "price"; value?: string }> = []
   for (const b of activeBrands) {
@@ -214,22 +179,14 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
               currentPerPage={perPage}
             />
           </Suspense>
-          {pageProducts.length === 0 ? (
+          {sortedProducts.length === 0 ? (
             <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
               {discountedProducts.length === 0
                 ? "Nu exista produse la reducere momentan."
                 : "Niciun produs nu corespunde filtrelor selectate."}
             </div>
           ) : (
-            <ProductGrid variant="cat" products={productCards} countryCode={countryCode} />
-          )}
-          {totalPages > 1 && (
-            <Pagination
-              prevHref={prevHref}
-              nextHref={nextHref}
-              pages={paginationPages}
-              resultsLabel={`${Math.min(offset + 1, totalFiltered)}-${Math.min(offset + perPage, totalFiltered)} din ${totalFiltered} produse`}
-            />
+            <InfiniteProductGrid allFiltered={productCards} countryCode={countryCode} />
           )}
         </CategoryLayoutClient>
       </main>

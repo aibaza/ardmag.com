@@ -7,8 +7,7 @@ import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { CategoryHero } from '@modules/category/category-hero'
 import { CategoryToolbar } from '@modules/category/category-toolbar'
 import { CategoryLayoutClient } from '@modules/category/category-layout-client'
-import { ProductGrid } from '@modules/products/product-grid'
-import { Pagination } from '@modules/category/pagination'
+import { InfiniteProductGrid } from '@modules/products/infinite-product-grid/InfiniteProductGrid'
 import { getCategoryByHandle, listCategories } from "@lib/data/categories"
 import { listProducts } from "@lib/data/products"
 import { listRegions } from "@lib/data/regions"
@@ -69,43 +68,12 @@ const HELP_CARD = {
   hours: "L-V 08-17",
 }
 
-function buildPageUrl(base: string, page: number, existingParams: Record<string, string | string[] | undefined>): string {
-  const params = new URLSearchParams()
-  for (const [key, value] of Object.entries(existingParams)) {
-    if (key === "page") continue
-    if (typeof value === "string" && value) params.set(key, value)
-  }
-  params.set("page", String(page))
-  return `${base}?${params.toString()}`
-}
-
-function buildPaginationPages(
-  currentPage: number,
-  totalPages: number,
-  baseUrl: string,
-  existingParams: Record<string, string | string[] | undefined> = {}
-): Array<{ label: string; href: string; active?: boolean }> {
-  const pages: Array<{ label: string; href: string; active?: boolean }> = []
-  for (let i = 1; i <= totalPages; i++) {
-    if (
-      i === 1 ||
-      i === totalPages ||
-      Math.abs(i - currentPage) <= 1
-    ) {
-      pages.push({ label: String(i), href: buildPageUrl(baseUrl, i, existingParams), active: i === currentPage })
-    } else if (pages[pages.length - 1]?.label !== '…') {
-      pages.push({ label: '…', href: '#' })
-    }
-  }
-  return pages
-}
 
 export default async function CategoryPage(props: Props) {
   const [params, searchParams] = await Promise.all([props.params, props.searchParams])
   const { category: categoryHandle, countryCode } = params
 
   const sortLabel = (searchParams.sortBy as string | undefined) ?? "Relevanță"
-  const currentPage = parseInt((searchParams.page as string) ?? "1", 10) || 1
   const perPageParam = parseInt((searchParams.perPage as string) ?? "", 10)
   const perPage = VALID_PAGE_SIZES.includes(perPageParam) ? perPageParam : DEFAULT_PAGE_SIZE
   const activeBrands = (searchParams.brand as string | undefined)?.split(",").filter(Boolean) ?? []
@@ -116,7 +84,7 @@ export default async function CategoryPage(props: Props) {
   const productCategory = await getCategoryByHandle(categoryHandle).catch(() => null)
   if (!productCategory) notFound()
 
-  const { response: { products: allCategoryProducts, count } } = await listProducts({
+  const { response: { products: allCategoryProducts } } = await listProducts({
     pageParam: 1,
     queryParams: {
       limit: 200,
@@ -151,15 +119,9 @@ export default async function CategoryPage(props: Props) {
 
   // Apply sort
   const sortBy = SORT_MAP[sortLabel]
-  const sortedProducts = sortBy
-    ? sortProducts(filteredProducts, sortBy)
-    : filteredProducts
+  const sortedProducts = sortBy ? sortProducts(filteredProducts, sortBy) : filteredProducts
 
-  // Paginate
   const totalFiltered = sortedProducts.length
-  const totalPages = Math.max(1, Math.ceil(totalFiltered / perPage))
-  const offset = (currentPage - 1) * perPage
-  const pageProducts = sortedProducts.slice(offset, offset + perPage)
 
   // Build adaptor outputs
   const filterGroups = productsToFilterGroups(allCategoryProducts, {
@@ -167,13 +129,9 @@ export default async function CategoryPage(props: Props) {
     materials: activeMaterials,
   })
   const heroProps = categoryToHero(productCategory, allCategoryProducts)
-  const productCards = pageProducts.map((p) => productToCard(p, countryCode))
+  const productCards = sortedProducts.map((p) => productToCard(p, countryCode))
 
   const baseUrl = `/${countryCode}/categories/${categoryHandle.join("/")}`
-  const paginationPages = buildPaginationPages(currentPage, totalPages, baseUrl, searchParams as Record<string, string | string[] | undefined>)
-  const prevHref = currentPage > 1 ? buildPageUrl(baseUrl, currentPage - 1, searchParams as Record<string, string | string[] | undefined>) : "#"
-  const nextHref = currentPage < totalPages ? buildPageUrl(baseUrl, currentPage + 1, searchParams as Record<string, string | string[] | undefined>) : "#"
-
   const breadcrumbItems = [{ label: "Acasa", href: `/${countryCode}` }]
   const breadcrumbCurrent = productCategory.name ?? categoryHandle[categoryHandle.length - 1]
 
@@ -227,20 +185,12 @@ export default async function CategoryPage(props: Props) {
               currentPerPage={perPage}
             />
           </Suspense>
-          {pageProducts.length === 0 ? (
+          {sortedProducts.length === 0 ? (
             <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
               Niciun produs nu corespunde filtrelor selectate.
             </div>
           ) : (
-            <ProductGrid variant="cat" products={productCards} countryCode={countryCode} />
-          )}
-          {totalPages > 1 && (
-            <Pagination
-              prevHref={prevHref}
-              nextHref={nextHref}
-              pages={paginationPages}
-              resultsLabel={`${Math.min(offset + 1, totalFiltered)}-${Math.min(offset + perPage, totalFiltered)} din ${totalFiltered} produse`}
-            />
+            <InfiniteProductGrid allFiltered={productCards} countryCode={countryCode} />
           )}
         </CategoryLayoutClient>
       </main>
