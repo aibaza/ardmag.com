@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { productToCard } from "../product-to-card"
+import { imgUrl } from "../../img-url"
 import type { HttpTypes } from "@medusajs/types"
 
 type TestVariant = Partial<HttpTypes.StoreProductVariant> & {
@@ -90,7 +91,7 @@ describe("productToCard", () => {
 
   it("uses thumbnail as image", () => {
     const card = productToCard(makeProduct({}))
-    expect(card.image).toBe("https://cdn.example.com/thumb.jpg")
+    expect(card.image).toBe(imgUrl("https://cdn.example.com/thumb.jpg", "card"))
   })
 
   it("falls back to first image URL when no thumbnail", () => {
@@ -101,19 +102,19 @@ describe("productToCard", () => {
       ],
     })
     const card = productToCard(product)
-    expect(card.image).toBe("https://cdn.example.com/img1.jpg")
+    expect(card.image).toBe(imgUrl("https://cdn.example.com/img1.jpg", "card"))
   })
 
   it("uses placeholder when no thumbnail AND no images", () => {
     const product = makeProduct({ thumbnail: null, images: null })
     const card = productToCard(product)
-    expect(card.image).toBe("/static/images/placeholder.jpg")
+    expect(card.image).toBe(imgUrl("/static/images/placeholder.jpg", "card"))
   })
 
   it("uses placeholder when thumbnail null and images is empty array", () => {
     const product = makeProduct({ thumbnail: null, images: [] })
     const card = productToCard(product)
-    expect(card.image).toBe("/static/images/placeholder.jpg")
+    expect(card.image).toBe(imgUrl("/static/images/placeholder.jpg", "card"))
   })
 
   it("formats price from calculated_amount", () => {
