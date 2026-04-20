@@ -91,8 +91,14 @@ export default function CategoryPage() {
 
           <MobileFilterBar
             activeCount={3}
-            sortOptions={["Sortare: Popularitate","Preț ↑","Preț ↓","Nou"]}
-            activeFilters={[{label:"Delta Research"},{label:"Tenax"},{label:"Ø115"},{label:"Ø125"},{label:"Turbo"}]}
+            sortOptions={["Sortare: Popularitate","Pret crescator","Pret descrescator","Nou"]}
+            currentSort="Sortare: Popularitate"
+            baseUrl="/ro/design-preview/category"
+            activeFilters={[
+              {label:"Delta Research", paramKey:"brand", value:"delta-research"},
+              {label:"Tenax", paramKey:"brand", value:"tenax"},
+              {label:"Pret 100-500 RON", paramKey:"price"},
+            ]}
             onOpenFilters={() => { const el = document.getElementById('filters'); if (el) el.classList.add('open') }}
           />
 

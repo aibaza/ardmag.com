@@ -32,9 +32,11 @@ interface FilterSidebarProps {
   applyCount: number
   helpCard: HelpCard
   baseUrl: string
+  isOpen?: boolean
+  onClose?: () => void
 }
 
-export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterSidebarProps) {
+export function FilterSidebar({ groups, applyCount, helpCard, baseUrl, isOpen, onClose }: FilterSidebarProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -96,7 +98,18 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl }: FilterS
   }
 
   return (
-    <aside className="filters" id="filters">
+    <aside className={`filters${isOpen ? ' open' : ''}`} id="filters">
+      {onClose && (
+        <button
+          type="button"
+          className="filter-close"
+          aria-label="Inchide filtre"
+          onClick={onClose}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '12px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: 'var(--fg)', padding: '4px' }}
+        >
+          &#x2715;
+        </button>
+      )}
       <div className="filter-card">
         {groups.map((group, i) => {
           if (group.type === 'checkboxes') {

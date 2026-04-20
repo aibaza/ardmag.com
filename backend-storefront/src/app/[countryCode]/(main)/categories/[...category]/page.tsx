@@ -6,7 +6,7 @@ import { SiteFooter } from '@modules/layout/site-footer'
 import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { CategoryHero } from '@modules/category/category-hero'
 import { CategoryToolbar } from '@modules/category/category-toolbar'
-import { FilterSidebar } from '@modules/category/filter-sidebar'
+import { CategoryLayoutClient } from '@modules/category/category-layout-client'
 import { ProductGrid } from '@modules/products/product-grid'
 import { Pagination } from '@modules/category/pagination'
 import { getCategoryByHandle, listCategories } from "@lib/data/categories"
@@ -171,8 +171,27 @@ export default async function CategoryPage(props: Props) {
   const prevHref = currentPage > 1 ? buildPageUrl(baseUrl, currentPage - 1, searchParams as Record<string, string | string[] | undefined>) : "#"
   const nextHref = currentPage < totalPages ? buildPageUrl(baseUrl, currentPage + 1, searchParams as Record<string, string | string[] | undefined>) : "#"
 
-  const breadcrumbItems = [{ label: "Acasă", href: `/${countryCode}` }]
+  const breadcrumbItems = [{ label: "Acasa", href: `/${countryCode}` }]
   const breadcrumbCurrent = productCategory.name ?? categoryHandle[categoryHandle.length - 1]
+
+  const activeFilters: Array<{ label: string; paramKey: "brand" | "material" | "price"; value?: string }> = []
+  for (const b of activeBrands) {
+    const brandGroup = filterGroups.find((g) => g.type === "checkboxes" && g.paramKey === "brand")
+    const displayLabel = (brandGroup?.type === "checkboxes" && brandGroup.options.find((o) => o.value === b)?.label) || b
+    activeFilters.push({ label: displayLabel, paramKey: "brand", value: b })
+  }
+  for (const m of activeMaterials) {
+    const materialGroup = filterGroups.find((g) => g.type === "checkboxes" && g.paramKey === "material")
+    const displayLabel = (materialGroup?.type === "checkboxes" && materialGroup.options.find((o) => o.value === m)?.label) || m
+    activeFilters.push({ label: displayLabel, paramKey: "material", value: m })
+  }
+  if (!isNaN(activePriceMin) || !isNaN(activePriceMax)) {
+    const minStr = !isNaN(activePriceMin) ? String(activePriceMin) : "-"
+    const maxStr = !isNaN(activePriceMax) ? String(activePriceMax) : "-"
+    activeFilters.push({ label: `Pret ${minStr}-${maxStr} RON`, paramKey: "price" })
+  }
+
+  const filterActiveCount = activeBrands.length + activeMaterials.length + (!isNaN(activePriceMin) || !isNaN(activePriceMax) ? 1 : 0)
 
   return (
     <>
@@ -186,43 +205,42 @@ export default async function CategoryPage(props: Props) {
       <main className="page-inner">
         <Breadcrumb items={breadcrumbItems} current={breadcrumbCurrent} />
         <CategoryHero {...heroProps} />
-        <div className="cat-layout">
-          <Suspense fallback={<aside className="filters" />}>
-            <FilterSidebar
-              groups={filterGroups}
-              applyCount={activeBrands.length + activeMaterials.length + (!isNaN(activePriceMin) || !isNaN(activePriceMax) ? 1 : 0)}
-              helpCard={HELP_CARD}
+        <CategoryLayoutClient
+          filterGroups={filterGroups}
+          applyCount={filterActiveCount}
+          helpCard={HELP_CARD}
+          baseUrl={baseUrl}
+          activeCount={filterActiveCount}
+          sortOptions={SORT_OPTIONS}
+          currentSort={sortLabel}
+          activeFilters={activeFilters}
+        >
+          <Suspense fallback={<div className="cat-toolbar" />}>
+            <CategoryToolbar
+              count={totalFiltered}
+              sortOptions={SORT_OPTIONS}
+              perPageOptions={VALID_PAGE_SIZES}
               baseUrl={baseUrl}
+              currentSort={sortLabel}
+              currentPerPage={perPage}
             />
           </Suspense>
-          <div className="cat-products">
-            <Suspense fallback={<div className="cat-toolbar" />}>
-              <CategoryToolbar
-                count={totalFiltered}
-                sortOptions={SORT_OPTIONS}
-                perPageOptions={VALID_PAGE_SIZES}
-                baseUrl={baseUrl}
-                currentSort={sortLabel}
-                currentPerPage={perPage}
-              />
-            </Suspense>
-            {pageProducts.length === 0 ? (
-              <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
-                Niciun produs nu corespunde filtrelor selectate.
-              </div>
-            ) : (
-              <ProductGrid variant="cat" products={productCards} countryCode={countryCode} />
-            )}
-            {totalPages > 1 && (
-              <Pagination
-                prevHref={prevHref}
-                nextHref={nextHref}
-                pages={paginationPages}
-                resultsLabel={`${Math.min(offset + 1, totalFiltered)}-${Math.min(offset + perPage, totalFiltered)} din ${totalFiltered} produse`}
-              />
-            )}
-          </div>
-        </div>
+          {pageProducts.length === 0 ? (
+            <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
+              Niciun produs nu corespunde filtrelor selectate.
+            </div>
+          ) : (
+            <ProductGrid variant="cat" products={productCards} countryCode={countryCode} />
+          )}
+          {totalPages > 1 && (
+            <Pagination
+              prevHref={prevHref}
+              nextHref={nextHref}
+              pages={paginationPages}
+              resultsLabel={`${Math.min(offset + 1, totalFiltered)}-${Math.min(offset + perPage, totalFiltered)} din ${totalFiltered} produse`}
+            />
+          )}
+        </CategoryLayoutClient>
       </main>
 
       <SiteFooter />
