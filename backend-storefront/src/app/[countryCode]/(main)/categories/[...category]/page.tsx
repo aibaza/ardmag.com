@@ -211,7 +211,7 @@ export default async function CategoryPage(props: Props) {
                 Niciun produs nu corespunde filtrelor selectate.
               </div>
             ) : (
-              <ProductGrid variant="cat" products={productCards} />
+              <ProductGrid variant="cat" products={productCards} countryCode={countryCode} />
             )}
             {totalPages > 1 && (
               <Pagination

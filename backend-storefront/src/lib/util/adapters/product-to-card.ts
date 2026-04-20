@@ -17,6 +17,8 @@ interface ProductCardProduct {
   price: { now: string; was?: string }
   badges?: Array<{ type: BadgeType; label: string; dotVariant?: boolean }>
   specs?: string[]
+  defaultVariantId: string | null
+  hasMultipleRealVariants: boolean
 }
 
 const PLACEHOLDER = "/static/images/placeholder.jpg"
@@ -99,6 +101,10 @@ export function productToCard(
     }
   }
 
+  const defaultVariantId = product.variants?.[0]?.id ?? null
+  const hasMultipleRealVariants =
+    product.variants != null && product.variants.length > 1
+
   return {
     id: product.id,
     title: product.title ?? "",
@@ -111,5 +117,7 @@ export function productToCard(
     price: { now: priceNow, was: priceWas },
     badges: productToBadges(product),
     specs: specs.length > 0 ? specs : undefined,
+    defaultVariantId,
+    hasMultipleRealVariants,
   }
 }

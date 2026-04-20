@@ -65,7 +65,7 @@ export default async function SearchPage(props: Props) {
           </div>
         )}
 
-        {productCards.length > 0 && <ProductGrid variant="cat" products={productCards} />}
+        {productCards.length > 0 && <ProductGrid variant="cat" products={productCards} countryCode={countryCode} />}
       </main>
       <SiteFooter />
     </>

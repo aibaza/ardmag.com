@@ -117,6 +117,7 @@ export default async function HomePage({ params }: Props) {
             <ProductGrid
               variant="mini"
               products={pacheteProducts.map((p) => productToCard(p, countryCode))}
+              countryCode={countryCode}
             />
           </>
         )}
@@ -133,6 +134,7 @@ export default async function HomePage({ params }: Props) {
             <ProductGrid
               variant="mini"
               products={promoProducts.map((p) => productToCard(p, countryCode))}
+              countryCode={countryCode}
             />
           </>
         )}
@@ -173,6 +175,7 @@ export default async function HomePage({ params }: Props) {
             <ProductGrid
               variant="mini"
               products={newProducts.map((p) => productToCard(p, countryCode))}
+              countryCode={countryCode}
             />
           </>
         )}

@@ -14,18 +14,21 @@ interface ProductGridItem {
   price: { now: string; was?: string }
   badges?: Array<{ type: BadgeType; label: string; dotVariant?: boolean }>
   specs?: string[]
+  defaultVariantId: string | null
+  hasMultipleRealVariants: boolean
 }
 
 interface ProductGridProps {
   variant: 'mini' | 'cat'
   products: ProductGridItem[]
+  countryCode: string
 }
 
-export function ProductGrid({ variant, products }: ProductGridProps) {
+export function ProductGrid({ variant, products, countryCode }: ProductGridProps) {
   return (
     <div className={variant === 'cat' ? 'cat-grid' : 'mini-grid'}>
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} countryCode={countryCode} />
       ))}
     </div>
   )
