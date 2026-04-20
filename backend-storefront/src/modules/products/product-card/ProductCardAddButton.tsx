@@ -23,7 +23,10 @@ export function ProductCardAddButton({
 
   if (hasMultipleRealVariants) {
     return (
-      <a href={href} className="btn secondary sm">
+      <a href={href} className="btn primary sm">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 8h10M9 5l3 3-3 3"/>
+        </svg>
         Alege
       </a>
     )
@@ -61,7 +64,7 @@ export function ProductCardAddButton({
     : status === "success"
       ? "Adăugat"
       : status === "error"
-        ? "Eroare — încearcă din nou"
+        ? "Eroare - încearcă din nou"
         : "Adaugă"
 
   return (
@@ -73,6 +76,11 @@ export function ProductCardAddButton({
       aria-busy={isPending}
       style={isPending ? { opacity: 0.6, cursor: "not-allowed" } : undefined}
     >
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+        <path d="M1.5 2h1.8l1.3 8h9l1.4-5.5H5"/>
+        <circle cx="5.5" cy="12.5" r="1.2"/>
+        <circle cx="11.5" cy="12.5" r="1.2"/>
+      </svg>
       {label}
     </button>
   )
