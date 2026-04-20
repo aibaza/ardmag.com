@@ -13,8 +13,9 @@ type Props = {
 }
 
 export const metadata: Metadata = {
-  title: "Cautare | ardmag.com",
+  title: "Cautare",
   description: "Rezultate cautare scule si consumabile pentru piatra naturala",
+  robots: { index: false, follow: false },
 }
 
 export default async function SearchPage(props: Props) {

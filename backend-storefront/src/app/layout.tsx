@@ -1,9 +1,18 @@
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import "styles/globals.css"
+import { OrganizationJsonLd, WebSiteJsonLd } from "@lib/util/json-ld"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
+  title: {
+    default: "ARDMAG — Scule si consumabile pentru prelucrarea pietrei",
+    template: "%s · ARDMAG",
+  },
+  description: "Distribuitor autorizat Tenax in Romania. Scule diamantate, mastici, abrazive si consumabile pentru ateliere de piatra naturala. 25 de ani. La milimetru.",
+  applicationName: "ARDMAG",
+  keywords: ["scule piatra naturala", "Tenax Romania", "discuri diamantate", "mastic piatra", "ARDMAG", "Arcrom Diamonds"],
+  authors: [{ name: "Arcrom Diamonds" }],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -14,6 +23,14 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/site.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "ro_RO",
+    siteName: "ARDMAG",
+    url: getBaseURL(),
+  },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout(props: { children: React.ReactNode }) {
@@ -28,6 +45,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         />
       </head>
       <body>
+        <OrganizationJsonLd />
+        <WebSiteJsonLd />
         {props.children}
       </body>
     </html>

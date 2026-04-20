@@ -14,6 +14,7 @@ import { productToPdpVariantSelector } from "@lib/util/adapters/product-to-pdp-v
 import { productToPdpPriceCard } from "@lib/util/adapters/product-to-pdp-price-card"
 import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
+import { ProductJsonLd } from "@lib/util/json-ld"
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
@@ -52,11 +53,20 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     })
     const product = response.products[0]
     if (!product) return {}
+    const canonical = `/${params.countryCode}/products/${params.handle}`
     return {
-      title: `${product.title} | ardmag.com`,
+      title: product.title ?? params.handle,
       description: product.description?.replace(/<[^>]+>/g, '').slice(0, 160) ?? product.title ?? '',
+      alternates: { canonical },
       openGraph: {
-        title: `${product.title} | ardmag.com`,
+        title: product.title ?? params.handle,
+        description: product.description?.replace(/<[^>]+>/g, '').slice(0, 160) ?? '',
+        images: product.thumbnail ? [product.thumbnail] : [],
+        url: canonical,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: product.title ?? params.handle,
         images: product.thumbnail ? [product.thumbnail] : [],
       },
     }
@@ -131,8 +141,19 @@ export default async function ProductPage(props: Props) {
 
   const firstVariant = variants[0] ?? { sku: null, ean: null }
 
+  const rawPrice = (selectedVariant as any)?.calculated_price?.calculated_amount ?? undefined
+
   return (
     <>
+      <ProductJsonLd
+        name={product.title ?? handle}
+        description={product.description?.replace(/<[^>]+>/g, '').slice(0, 300)}
+        image={product.thumbnail ?? undefined}
+        brand={brand || undefined}
+        price={rawPrice}
+        inStock={stockLabel !== "Stoc epuizat"}
+        url={`/${countryCode}/products/${handle}`}
+      />
       <SiteHeaderShell
         countryCode={countryCode}
         categoriesHref={`/${countryCode}/categories/${categoryHandle}`}

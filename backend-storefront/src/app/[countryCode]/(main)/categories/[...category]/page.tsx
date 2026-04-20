@@ -50,9 +50,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   try {
     const category = await getCategoryByHandle(params.category)
     if (!category) return {}
+    const canonical = `/${params.countryCode}/categories/${params.category.join("/")}`
     return {
-      title: `${category.name} | ardmag.com`,
-      description: category.description ?? `${category.name} - scule și consumabile pentru prelucrarea pietrei`,
+      title: category.name,
+      description: category.description ?? `${category.name} - scule si consumabile pentru prelucrarea pietrei`,
+      alternates: { canonical },
+      openGraph: { title: category.name, url: canonical },
     }
   } catch {
     return {}

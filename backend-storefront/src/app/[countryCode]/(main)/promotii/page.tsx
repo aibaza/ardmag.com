@@ -16,8 +16,10 @@ import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 
 export const metadata: Metadata = {
-  title: "Produse la reducere | ardmag.com",
+  title: "Produse la reducere",
   description: "Toate produsele cu reducere activa - preturi reduse real, nu cosmetice.",
+  alternates: { canonical: "/ro/promotii" },
+  openGraph: { title: "Produse la reducere", url: "/ro/promotii" },
 }
 
 const VALID_PAGE_SIZES = [20, 40, 60]
