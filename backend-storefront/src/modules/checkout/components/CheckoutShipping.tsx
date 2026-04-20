@@ -25,6 +25,7 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions }: Props
 
   return (
     <div>
+      <a href="?step=address" style={{ display: 'inline-block', marginBottom: 16, color: 'var(--fg-muted)', fontSize: 13, fontFamily: 'var(--f-mono)', textDecoration: 'none' }}>← Inapoi la adresa</a>
       <h3 style={{ fontFamily: 'var(--f-sans)', fontWeight: 600, marginBottom: 16 }}>Metoda de livrare</h3>
 
       {shippingOptions.length === 0 ? (

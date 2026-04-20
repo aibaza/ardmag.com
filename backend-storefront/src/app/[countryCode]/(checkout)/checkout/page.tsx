@@ -48,6 +48,17 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
 
   const customer = await retrieveCustomer()
 
+  // Step guards -- redirect to earliest incomplete step
+  if (step === 'delivery' && !cart.shipping_address?.address_1) {
+    redirect(`/${countryCode}/checkout?step=address`)
+  }
+  if (step === 'payment' && !(cart.shipping_methods && cart.shipping_methods.length > 0)) {
+    redirect(`/${countryCode}/checkout?step=delivery`)
+  }
+  if (step === 'review' && !(cart.payment_collection?.payment_sessions && cart.payment_collection.payment_sessions.length > 0)) {
+    redirect(`/${countryCode}/checkout?step=payment`)
+  }
+
   let shippingOptions: HttpTypes.StoreShippingOption[] = []
   let paymentProviders: HttpTypes.StorePaymentProvider[] = []
 

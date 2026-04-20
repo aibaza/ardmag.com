@@ -32,6 +32,7 @@ export function CheckoutPayment({ cart, countryCode, paymentProviders }: Props) 
 
   return (
     <div>
+      <a href="?step=delivery" style={{ display: 'inline-block', marginBottom: 16, color: 'var(--fg-muted)', fontSize: 13, fontFamily: 'var(--f-mono)', textDecoration: 'none' }}>← Inapoi la livrare</a>
       <h3 style={{ fontFamily: 'var(--f-sans)', fontWeight: 600, marginBottom: 16 }}>Metoda de plata</h3>
 
       {paymentProviders.length === 0 ? (
