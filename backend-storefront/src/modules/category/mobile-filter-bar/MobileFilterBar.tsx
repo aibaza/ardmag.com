@@ -1,12 +1,7 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation"
-
-interface ActiveFilter {
-  label: string
-  paramKey: "brand" | "material" | "price"
-  value?: string
-}
+import type { ActiveFilter } from "@lib/util/adapters/products-to-filter-groups"
 
 interface MobileFilterBarProps {
   activeCount: number
@@ -88,13 +83,13 @@ export function MobileFilterBar({
       {activeFilters.length > 0 && (
         <div className="active-filters">
           <span className="lbl">Filtre active:</span>
-          {activeFilters.map((f, i) => (
-            <span key={i} className="chip">
+          {activeFilters.map((f) => (
+            <span key={`${f.paramKey}-${f.value ?? 'price'}`} className="chip">
               {f.label}{' '}
               <button
                 type="button"
                 className="x"
-                aria-label="sterge"
+                aria-label="Șterge filtru"
                 onClick={() => removeFilter(f)}
               >
                 &times;
@@ -102,7 +97,7 @@ export function MobileFilterBar({
             </span>
           ))}
           <button type="button" className="chip clear" onClick={clearAllFilters}>
-            Sterge tot
+            Șterge tot
           </button>
         </div>
       )}

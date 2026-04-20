@@ -9,6 +9,12 @@ const FILTER_LABELS: Record<string, string> = {
   "piatra-naturala": "Piatră naturală", "universal": "Universal",
 }
 
+export interface ActiveFilter {
+  label: string
+  paramKey: "brand" | "material" | "price"
+  value?: string
+}
+
 export interface CheckboxOption {
   label: string
   value: string

@@ -3,13 +3,7 @@
 import { useState } from "react"
 import { FilterSidebar } from "@modules/category/filter-sidebar"
 import { MobileFilterBar } from "@modules/category/mobile-filter-bar"
-import type { FilterGroup } from "@lib/util/adapters/products-to-filter-groups"
-
-interface ActiveFilter {
-  label: string
-  paramKey: "brand" | "material" | "price"
-  value?: string
-}
+import type { FilterGroup, ActiveFilter } from "@lib/util/adapters/products-to-filter-groups"
 
 interface HelpCard {
   label: string
