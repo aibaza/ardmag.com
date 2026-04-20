@@ -14,9 +14,9 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
     <footer className="site-footer">
       <div className="footer-top">
         <div className="brand-col">
-          <a className="logo" href="/ro"><img src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} /><div className="tag">scule &amp; abrazivi · din 2008</div></a>
+          <a className="logo" href="/ro"><img src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} /><div className="tag">25 de ani pe piatra</div></a>
           <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
-          <div className="contact"><div className="phone">Tel. <strong>0264 123 456</strong></div><div>contact@ardmag.ro</div><div>Str. Industriei 14 · Cluj-Napoca</div></div>
+          <div className="contact"><div className="phone">Tel. <strong>+40 722 155 441</strong></div><div>office@arcromdiamonds.ro</div><div>Calea Baciului 1-3 · Cluj-Napoca</div></div>
         </div>
         <div><h5>Magazin</h5><ul><li><a href={allHref}>Toate categoriile</a></li><li><a href="#">Noutăți</a></li><li><a href="#">Promoții</a></li><li><a href="#">Lichidări stoc</a></li><li><a href="#">Catalog PDF</a></li></ul></div>
         <div><h5>Cont &amp; comenzi</h5><ul><li><a href="#">Contul meu</a></li><li><a href="#">Comenzi &amp; facturi</a></li><li><a href="#">Urmărire livrare</a></li><li><a href="#">Retur produs</a></li><li><a href="#">Cont B2B</a></li></ul></div>
@@ -37,7 +37,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
         ]} />
         <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
       </div>
-      <div className="footer-bot"><div className="wrap"><div className="legal"><a href="#">Termeni &amp; condiții</a><a href="#">Politică confidențialitate</a><a href="#">Politică cookies</a><a href="#">GDPR</a><a href="#">ANPC</a><a href="#">Soluționare litigii</a></div><span className="cr">© 2008–2026 ardmag SRL</span></div></div>
+      <div className="footer-bot"><div className="wrap"><div className="legal"><a href="#">Termeni &amp; condiții</a><a href="#">Politică confidențialitate</a><a href="#">Politică cookies</a><a href="#">GDPR</a><a href="#">ANPC</a><a href="#">Soluționare litigii</a></div><span className="cr">© 2001–2026 Arcrom Diamonds SRL</span></div></div>
     </footer>
   )
 }

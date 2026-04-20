@@ -100,15 +100,18 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl, isOpen, o
   return (
     <aside className={`filters${isOpen ? ' open' : ''}`} id="filters">
       {isOpen && onClose && (
-        <button
-          type="button"
-          className="filter-close"
-          aria-label="Inchide filtre"
-          onClick={onClose}
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginBottom: '12px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: 'var(--fg)', padding: '4px' }}
-        >
-          &#x2715;
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', padding: '0 2px' }}>
+          <span style={{ fontFamily: 'var(--f-mono)', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--fg)' }}>Filtre</span>
+          <button
+            type="button"
+            className="filter-close"
+            aria-label="Inchide filtre"
+            onClick={onClose}
+            style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '13px', color: 'var(--fg-muted)', padding: '4px 0', fontFamily: 'inherit' }}
+          >
+            Închide <span aria-hidden="true">&#x2715;</span>
+          </button>
+        </div>
       )}
       <div className="filter-card">
         {groups.map((group, i) => {
