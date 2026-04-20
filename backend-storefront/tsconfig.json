@@ -35,6 +35,9 @@
     ".nyc_output",
     "coverage",
     "jest-coverage",
-    "src/_archive"
+    "src/_archive",
+    "**/__tests__/**",
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ]
 }

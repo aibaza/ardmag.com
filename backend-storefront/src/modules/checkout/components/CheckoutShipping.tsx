@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 interface Props {
   cartId: string
   countryCode: string
-  shippingOptions: HttpTypes.StoreShippingOption[]
+  shippingOptions: HttpTypes.StoreCartShippingOption[]
 }
 
 export function CheckoutShipping({ cartId, countryCode, shippingOptions }: Props) {

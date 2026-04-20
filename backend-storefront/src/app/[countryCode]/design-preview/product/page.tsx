@@ -38,6 +38,8 @@ export default function ProductPage() {
 
         {/* SUMMARY: sticky right sidebar */}
         <PDPSummary
+          variantId="preview-v1"
+          countryCode="ro"
           brand="Delta Research"
           brandHref="/ro/design-preview/category"
           title="Disc diamantat Delta Turbo Ultra Ø115 mm"

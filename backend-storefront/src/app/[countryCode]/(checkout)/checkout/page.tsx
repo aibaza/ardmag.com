@@ -59,11 +59,11 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
     redirect(`/${countryCode}/checkout?step=payment`)
   }
 
-  let shippingOptions: HttpTypes.StoreShippingOption[] = []
+  let shippingOptions: HttpTypes.StoreCartShippingOption[] = []
   let paymentProviders: HttpTypes.StorePaymentProvider[] = []
 
   if (step === 'delivery' && cart.id) {
-    shippingOptions = (await listCartShippingMethods(cart.id)) ?? []
+    shippingOptions = ((await listCartShippingMethods(cart.id)) ?? []) as HttpTypes.StoreCartShippingOption[]
   }
   if (step === 'payment' && cart.region_id) {
     paymentProviders = (await listCartPaymentMethods(cart.region_id)) ?? []
