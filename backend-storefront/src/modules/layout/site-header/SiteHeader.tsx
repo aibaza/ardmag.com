@@ -53,7 +53,7 @@ export function SiteHeader({
 
         {/* Desktop: main bar */}
         <div className="main-bar">
-          <a className="logo" href={`/${countryCode}`}><span className="mark">a</span><span><div className="word">ARDmag</div><div className="tag">25 de ani pe piatra</div></span></a>
+          <a className="logo" href={`/${countryCode}`}><img src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} /><div className="tag">25 de ani pe piatra</div></a>
           <form className="search-combo" role="search" onSubmit={handleSearchSubmit}>
             <div className="cat" tabIndex={0}>Toate categoriile</div>
             <input type="search" name="q" placeholder="Cauta produs, SKU, brand... (ex: DLT-115-TX)" aria-label="cautare" suppressHydrationWarning />
@@ -78,7 +78,7 @@ export function SiteHeader({
         {/* Mobile: compact bar */}
         <div className="mobile-header">
           <button className="burger" aria-label="meniu" onClick={() => setDrawerOpen(true)}><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
-          <a className="logo" href={`/${countryCode}`}><span className="mark">a</span><div className="word">ARDmag</div></a>
+          <a className="logo logo-compact" href={`/${countryCode}`}><img src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} /></a>
           <div className="spacer"></div>
           <button className="icon-btn" aria-label="favorite"><svg viewBox="0 0 20 20"><path d="M10 17s-6-4-6-9a3.3 3.3 0 0 1 6-2 3.3 3.3 0 0 1 6 2c0 5-6 9-6 9z"/></svg><span className="count">4</span></button>
           <a className="icon-btn" href={`/${countryCode}/cart`} aria-label="cos"><svg viewBox="0 0 20 20"><path d="M3 4h2l1.5 9h9l1.5-6H6"/><circle cx="8" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg>{cartItemCount > 0 && <span className="count">{cartItemCount}</span>}</a>
@@ -102,7 +102,7 @@ export function SiteHeader({
       >
         <div className="mobile-menu">
           <div className="mm-head">
-            <a className="logo" href={`/${countryCode}`}><span className="mark">a</span><div className="word">ARDmag</div></a>
+            <a className="logo logo-compact" href={`/${countryCode}`}><img src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} /></a>
             <button className="close" aria-label="inchide" onClick={() => setDrawerOpen(false)}>x</button>
           </div>
           <div className="mm-section-label">Categorii</div>

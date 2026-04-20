@@ -12,7 +12,7 @@ export function SiteFooter({ categoriesHref = "#" }: SiteFooterProps) {
     <footer className="site-footer">
       <div className="footer-top">
         <div className="brand-col">
-          <a className="logo" href="/ro"><span className="mark">a</span><span><div className="word">ardmag</div><div className="tag">scule &amp; abrazivi · din 2008</div></span></a>
+          <a className="logo" href="/ro"><img src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} /><div className="tag">scule &amp; abrazivi · din 2008</div></a>
           <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
           <div className="contact"><div className="phone">Tel. <strong>0264 123 456</strong></div><div>contact@ardmag.ro</div><div>Str. Industriei 14 · Cluj-Napoca</div></div>
         </div>
