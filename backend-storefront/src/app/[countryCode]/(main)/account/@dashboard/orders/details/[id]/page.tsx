@@ -208,7 +208,7 @@ export default async function OrderDetailPage({ params }: Props) {
                 >
                   {item.product_title ?? item.title}
                 </div>
-                {item.variant?.title && item.variant.title !== "Default" && (
+                {item.variant?.title && item.variant.title !== "Default Title" && (
                   <div
                     style={{
                       fontSize: 12,

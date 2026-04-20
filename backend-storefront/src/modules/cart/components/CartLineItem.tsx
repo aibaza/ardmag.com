@@ -43,7 +43,7 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
         <div style={{ fontFamily: "var(--f-sans)", fontWeight: 500, fontSize: 14 }}>
           {item.product_title}
         </div>
-        {item.variant?.title && item.variant.title !== "Default" && (
+        {item.variant?.title && item.variant.title !== "Default Title" && (
           <div style={{ fontSize: 12, color: "var(--fg-muted)", marginTop: 2 }}>
             {item.variant.title}
           </div>

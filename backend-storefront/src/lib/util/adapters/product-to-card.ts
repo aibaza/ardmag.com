@@ -69,7 +69,8 @@ export function productToCard(
     product.variants && product.variants.length > 0
       ? product.variants[0]
       : null
-  const sku = firstVariant?.sku ?? ""
+  const rawSku = firstVariant?.sku ?? ""
+  const sku = rawSku.endsWith("-default") ? "" : rawSku
 
   const priceInfo = getProductMinPriceWithOriginal(product)
 

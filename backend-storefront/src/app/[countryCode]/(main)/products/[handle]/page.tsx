@@ -150,7 +150,7 @@ export default async function ProductPage(props: Props) {
             brand={brand}
             brandHref={brandHref}
             title={product.title ?? ""}
-            sku={(firstVariant as any).sku ?? ""}
+            sku={((firstVariant as any).sku ?? "").replace(/-default$/, "")}
             ean={(firstVariant as any).ean ?? ""}
             rating={{ score: 0, reviewCount: 0 }}
             {...priceCardProps}

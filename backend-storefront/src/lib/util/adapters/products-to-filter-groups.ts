@@ -1,6 +1,14 @@
 import type { HttpTypes } from "@medusajs/types"
 import { getProductMinPrice } from "./format-price"
 
+const FILTER_LABELS: Record<string, string> = {
+  "tenax": "Tenax", "sait": "Sait", "woosuk": "Woosuk", "diatex": "Diatex",
+  "delta-research": "Delta Research", "vbt": "VBT", "fox-ironstone": "Fox Ironstone",
+  "granit": "Granit", "marmura": "Marmură", "beton": "Beton", "beton-armat": "Beton armat",
+  "ceramica": "Ceramică", "travertin": "Travertin", "cuart": "Cuarț", "andezit": "Andezit",
+  "piatra-naturala": "Piatră naturală", "universal": "Universal",
+}
+
 export interface CheckboxOption {
   label: string
   value: string
@@ -41,11 +49,8 @@ interface ActiveFilters {
 /**
  * Capitalizes a slug: "tenax" => "Tenax", "delta-research" => "Delta Research"
  */
-function capitalizeSlug(slug: string): string {
-  return slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
+function labelForSlug(slug: string): string {
+  return FILTER_LABELS[slug] ?? slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
 }
 
 /**
@@ -94,7 +99,7 @@ export function productsToFilterGroups(
     const brandOptions: CheckboxOption[] = Array.from(brandCounts.entries())
       .sort((a, b) => b[1] - a[1])
       .map(([slug, count]) => ({
-        label: capitalizeSlug(slug),
+        label: labelForSlug(slug),
         value: slug,
         count,
         checked: activeFilters?.brands?.includes(slug) ?? false,
@@ -116,7 +121,7 @@ export function productsToFilterGroups(
     )
       .sort((a, b) => b[1] - a[1])
       .map(([slug, count]) => ({
-        label: capitalizeSlug(slug),
+        label: labelForSlug(slug),
         value: slug,
         count,
         checked: activeFilters?.materials?.includes(slug) ?? false,

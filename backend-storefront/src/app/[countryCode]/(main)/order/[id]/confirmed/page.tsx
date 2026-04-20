@@ -122,7 +122,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
                   >
                     {item.product_title ?? item.title}
                   </div>
-                  {item.variant?.title && item.variant.title !== "Default" && (
+                  {item.variant?.title && item.variant.title !== "Default Title" && (
                     <div style={{ fontSize: 12, color: "var(--fg-muted)" }}>
                       {item.variant.title}
                     </div>
