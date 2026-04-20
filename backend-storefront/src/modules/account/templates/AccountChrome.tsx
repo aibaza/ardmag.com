@@ -21,16 +21,9 @@ export function AccountChrome({ children, countryCode }: AccountChromeProps) {
           items={[{ label: "Acasa", href: `/${countryCode}` }]}
           current="Cont"
         />
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: 32,
-            marginTop: 24,
-          }}
-        >
+        <div className="cat-layout" style={{ marginTop: 24 }}>
           <AccountSidebar countryCode={countryCode} />
-          <div style={{ flex: 1, minWidth: 0 }}>{children}</div>
+          <div style={{ minWidth: 0 }}>{children}</div>
         </div>
       </main>
       <SiteFooter />

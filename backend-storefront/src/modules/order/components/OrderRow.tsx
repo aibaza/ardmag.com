@@ -47,7 +47,7 @@ export function OrderRow({ order, countryCode }: OrderRowProps) {
       <span className={statusClass}>{statusLabel}</span>
       <span style={{ marginLeft: "auto" }}>{total}</span>
       <a
-        href={`/${countryCode}/account/orders/${order.id}`}
+        href={`/${countryCode}/account/orders/details/${order.id}`}
         className="btn ghost sm"
       >
         Detalii
