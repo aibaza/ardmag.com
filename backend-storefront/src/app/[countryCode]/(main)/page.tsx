@@ -3,6 +3,8 @@ import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
 import { Hero } from '@modules/sections/hero'
+import { getHeroFallback } from '@modules/sections/hero/hero-fallback'
+import { productToHero } from '@modules/sections/hero/product-to-hero'
 import { QuickCategories } from '@modules/sections/quick-categories'
 import { SupplierStrip } from '@modules/sections/supplier-strip'
 import { ProductGrid } from '@modules/products/product-grid'
@@ -57,6 +59,13 @@ export default async function HomePage({ params }: Props) {
 
   const allProducts = allProductsResult.response.products
 
+  const featuredProduct = allProducts.find((p) =>
+    p.tags?.some((t) => t.value === "featured")
+  )
+  const heroProps = featuredProduct
+    ? productToHero(featuredProduct, countryCode)
+    : getHeroFallback(countryCode)
+
   const promoProducts = allProducts
     .filter((p) =>
       (p.variants ?? []).some((v: any) => {
@@ -96,24 +105,8 @@ export default async function HomePage({ params }: Props) {
 
       <main className="page-inner">
 
-        {/* HERO -- promotional content, static until CMS is available */}
-        <Hero
-          headingLevel="h1"
-          kicker="Promo luna aprilie · până pe 30"
-          title={<>Mastici Tenax<br />la <span style={{color:"var(--brand-400)"}}>-30%</span> reducere</>}
-          description="Toată gama de mastici poliesterici și epoxidici Tenax la -30%. Stoc complet în Cluj, livrare 24-48h în toată țara."
-          primaryCta={{ label: "Vezi promoția", href: `/${countryCode}/promotii` }}
-          ghostCta={{ label: "Toate produsele →", href: `/${countryCode}/categories/solutii-pentru-piatra`, style: {color:"#fff",borderColor:"var(--stone-700)"} }}
-          stats={[
-            { value: "480+", label: "produse în stoc" },
-            { value: "7", label: "furnizori autorizați" },
-            { value: "24h", label: "livrare Cluj" },
-          ]}
-          sideCards={[
-            { kicker: "Nou · Sait Abrazivi", title: "Pad-uri Velcro 7 gradații", description: "Set complet pentru polish granit de la grit 50 la 3000.", image: "/design-temp/hero-paduri.jpg", imageAlt: "Pad-uri Velcro", ctaLabel: "Descoperă setul →", ctaHref: `/${countryCode}/categories/slefuire-piatra` },
-            { kicker: "Ghid tehnic", title: "Cum alegi discul corect", description: "Granit dur vs. marmura vs. beton armat -- cheatsheet PDF.", image: "/design-temp/hero-ghid.jpg", imageAlt: "Ghid discuri", ctaLabel: "Toate discurile →", ctaHref: `/${countryCode}/categories/discuri-de-taiere` },
-          ]}
-        />
+        {/* HERO -- driven by featured-tagged product; falls back to static copy */}
+        <Hero {...heroProps} />
 
         {/* Quick categories -- real Medusa categories, ordered by admin rank */}
         <QuickCategories items={quickCatItems} />
