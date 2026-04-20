@@ -8,13 +8,13 @@ Format: `- [ ] Componentă: <element> — <ce decizie se așteaptă>`
 
 - [x] Componentă: card produs în listing — hover effect existent confirmat. Nicio schimbare.
 - [x] Componentă: pagina de produs — galerie: thumbnail strip vertical stanga + main image. Confirmat. Selector variații si pret dinamic: implementate.
-- [ ] Componentă: listing categorie — infinite scroll (inlocuieste paginarea numerica). De implementat: Intersection Observer + fetch page urmatoare, pastreaza URL sync cu ?page=.
+- [x] Componentă: listing categorie — infinite scroll. InfiniteProductGrid client component cu useIntersection, slice 24/pagina din allFiltered. Pagini: categories, produse, promotii.
 - [x] Componentă: header — 3 straturi (util-bar + main-bar + cat-nav) confirmate. Mobile burger + logo + favorite + cos confirmat.
-- [ ] Componentă: homepage hero — promo hero dinamic din Medusa (tag `featured` pe produs). Layout vizual identic cu cel actual. De implementat: fetch produs featured + wire date in Hero component.
+- [x] Componentă: homepage hero — promo hero dinamic din Medusa. Tag `featured` pe produs, adapter product-to-hero.ts, fallback static. Layout identic.
 - [x] Componentă: mobile filter — inline confirmat. Header "Filtre" + buton "Închide ×" adaugat (era X izolat).
 - [x] Componentă: footer — 5 coloane confirmate, ANPC in footer-bot. Date contact reale aplicate.
-- [ ] Componentă: checkout — multi-step: Adresa -> Livrare -> Plata. Progress bar vizibil. De implementat.
-- [ ] Componentă: pagini cont — dashboard cu sidebar fix (Comenzile mele, Profil, Adrese, Logout) + continut in dreapta. De implementat.
+- [x] Componentă: checkout — multi-step. Progress bar (StepIndicator), billing address + same-as-billing, step guards, back navigation, review cu line items + totals.
+- [x] Componentă: pagini cont — dashboard cu sidebar sticky (position: sticky, cat-layout grid). Fix route mismatch orders/details/[id]. aria-current pe link activ.
 - [x] Componentă: card categorie — imagine + label + nr. produse. Confirmat.
 - [x] Decizie: optiunea COLOR — chip buttons implementate (TRANSPARENT, BEJ, 1 LITRU). Confirmat.
 - [x] Decizie: breadcrumbs — produs, categorie, /produse. Homepage fara. Confirmat.
