@@ -29,12 +29,12 @@ export function OrderSummary({
           <tbody>
             <tr>
               <td>Subtotal</td>
-              <td>{fmt(subtotal, currency_code)}</td>
+              <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(subtotal, currency_code)}</td>
             </tr>
             {discount_total != null && discount_total > 0 && (
               <tr>
                 <td>Reducere</td>
-                <td style={{ color: "var(--brand-600)" }}>
+                <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums", color: "var(--brand-600)" }}>
                   -{fmt(discount_total, currency_code)}
                 </td>
               </tr>
@@ -42,18 +42,18 @@ export function OrderSummary({
             {shipping_total != null && (
               <tr>
                 <td>Transport</td>
-                <td>{fmt(shipping_total, currency_code)}</td>
+                <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(shipping_total, currency_code)}</td>
               </tr>
             )}
             {tax_total != null && tax_total > 0 && (
               <tr>
                 <td>TVA</td>
-                <td>{fmt(tax_total, currency_code)}</td>
+                <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(tax_total, currency_code)}</td>
               </tr>
             )}
             <tr style={{ fontWeight: 600 }}>
               <td>Total</td>
-              <td>{fmt(total, currency_code)}</td>
+              <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(total, currency_code)}</td>
             </tr>
           </tbody>
         </table>

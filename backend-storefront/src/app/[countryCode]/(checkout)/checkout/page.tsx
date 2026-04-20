@@ -22,15 +22,19 @@ function StepIndicator({ current }: { current: Step }) {
   const labels: Record<Step, string> = { address: 'Adresa', delivery: 'Livrare', payment: 'Plata', review: 'Confirmare' }
   const currentIdx = STEPS.indexOf(current)
   return (
-    <div style={{ display: 'flex', gap: 0, marginBottom: 32, fontFamily: 'var(--f-sans)', fontSize: 13 }}>
-      {STEPS.map((step, i) => (
-        <div key={step} style={{ display: 'flex', alignItems: 'center', flex: i < STEPS.length - 1 ? 1 : 'none' }}>
-          <span style={{ padding: '4px 12px', borderRadius: 'var(--r-full)', background: i <= currentIdx ? 'var(--brand-600)' : 'var(--stone-100)', color: i <= currentIdx ? '#fff' : 'var(--fg-muted)', fontWeight: i === currentIdx ? 600 : 400 }}>
+    <div style={{ display: 'flex', alignItems: 'center', marginBottom: 32, fontFamily: 'var(--f-sans)', fontSize: 13 }}>
+      {STEPS.flatMap((step, i) => {
+        const done = i <= currentIdx
+        const active = i === currentIdx
+        const pill = (
+          <span key={step} style={{ whiteSpace: 'nowrap', padding: '4px 12px', borderRadius: 'var(--r-full)', background: done ? 'var(--brand-600)' : 'var(--stone-100)', color: done ? '#fff' : 'var(--fg-muted)', fontWeight: active ? 600 : 400 }}>
             {i + 1}. {labels[step]}
           </span>
-          {i < STEPS.length - 1 && <div style={{ flex: 1, height: 1, background: 'var(--rule)', margin: '0 4px' }} />}
-        </div>
-      ))}
+        )
+        return i < STEPS.length - 1
+          ? [pill, <div key={`sep-${i}`} style={{ flex: 1, height: 1, background: 'var(--rule)', minWidth: 8, maxWidth: 32, margin: '0 2px' }} />]
+          : [pill]
+      })}
     </div>
   )
 }
