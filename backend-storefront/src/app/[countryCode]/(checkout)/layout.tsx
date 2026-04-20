@@ -18,7 +18,7 @@ export default async function CheckoutLayout({ children, params }: Props) {
           &larr; Inapoi la cos
         </a>
         <a href={`/${countryCode}`} className="logo" style={{ textDecoration: 'none' }}>
-          <img src="/logo.png" alt="ARDMAG" className="logo-img" />
+          <img src="/logo-white.png" alt="ARDMAG" className="logo-img" />
         </a>
         <span style={{ width: 120 }} />
       </header>
