@@ -5,7 +5,6 @@ type BadgeType = 'promo' | 'new' | 'stock-low' | 'custom'
 interface ProductGridItem {
   id: string
   title: string
-  sku: string
   brand: string
   brandHref: string
   image: string

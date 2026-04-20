@@ -92,7 +92,7 @@ export default async function HomePage({ params }: Props) {
           primaryCta={{ label: "Vezi promoția", href: `/${countryCode}/promotii` }}
           ghostCta={{ label: "Toate produsele →", href: `/${countryCode}/categories/solutii-pentru-piatra`, style: {color:"#fff",borderColor:"var(--stone-700)"} }}
           stats={[
-            { value: "480+", label: "SKU în stoc" },
+            { value: "480+", label: "produse în stoc" },
             { value: "7", label: "furnizori autorizați" },
             { value: "24h", label: "livrare Cluj" },
           ]}

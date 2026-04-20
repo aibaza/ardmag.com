@@ -164,17 +164,6 @@ describe("productToCard", () => {
     expect(card.price.was).toBeUndefined()
   })
 
-  it("extracts sku from first variant", () => {
-    const card = productToCard(makeProduct({}))
-    expect(card.sku).toBe("TEN-TRANSP-1L")
-  })
-
-  it("returns empty sku when no variants", () => {
-    const product = makeProduct({ variants: [] })
-    const card = productToCard(product)
-    expect(card.sku).toBe("")
-  })
-
   it("extracts specs from first variant options", () => {
     const card = productToCard(makeProduct({}))
     expect(card.specs).toEqual(["CULOARE", "CANTITATE"])

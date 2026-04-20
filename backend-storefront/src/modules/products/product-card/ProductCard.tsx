@@ -30,7 +30,6 @@ export function ProductCard({ product, countryCode }: ProductCardProps) {
       <div className="pcard-body">
         <a className="pcard-brand" href={product.brandHref}>{product.brand}</a>
         <h4 className="pcard-title"><a href={product.href}>{product.title}</a></h4>
-        <div className="pcard-sku">{product.sku}</div>
         {product.specs && (
           <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap' }}>
             {product.specs.map((s, i) => <ProductCardSpecTag key={i} label={s} />)}

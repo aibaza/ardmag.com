@@ -41,7 +41,6 @@ export default function ProductPage() {
           brand="Delta Research"
           brandHref="/ro/design-preview/category"
           title="Disc diamantat Delta Turbo Ultra Ø115 mm"
-          sku="DLT-115-TX-ULTRA"
           ean="5944123456789"
           rating={{ score: 4.8, reviewCount: 47 }}
           price="38,40 RON"

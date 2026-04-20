@@ -22,7 +22,7 @@ export default function CategoryPage() {
         title="Discuri diamantate"
         description="Discuri diamantate profesionale pentru tăiere în granit, marmură, beton și materiale dure. Formate Ø100 până la Ø300, bandă turbo, continuă sau segmentată. Distribuitor autorizat Delta Research, Tenax, Woosuk și Diatex."
         meta={[
-          <><strong>142</strong> SKU</>,
+          <><strong>142</strong> produse</>,
           <><strong>7</strong> branduri</>,
           <><strong>Ø100–Ø300</strong> mm</>,
           <>Stoc <strong>Cluj-Napoca</strong></>,

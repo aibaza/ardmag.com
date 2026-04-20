@@ -20,7 +20,7 @@ export function categoryToHero(
   ).size
 
   const meta: Array<{ prefix?: string; strong: string; label?: string }> = [
-    { strong: String(products.length), label: "SKU" },
+    { strong: String(products.length), label: products.length === 1 ? "produs" : "produse" },
     ...(brandCount > 0
       ? [{ strong: String(brandCount), label: brandCount === 1 ? "brand" : "branduri" }]
       : []),

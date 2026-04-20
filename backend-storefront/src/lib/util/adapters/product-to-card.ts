@@ -8,7 +8,6 @@ type BadgeType = "promo" | "new" | "stock-low" | "custom"
 interface ProductCardProduct {
   id: string
   title: string
-  sku: string
   brand: string
   brandHref: string
   image: string
@@ -71,9 +70,6 @@ export function productToCard(
     product.variants && product.variants.length > 0
       ? product.variants[0]
       : null
-  const rawSku = firstVariant?.sku ?? ""
-  const sku = rawSku.endsWith("-default") ? "" : rawSku
-
   const priceInfo = getProductMinPriceWithOriginal(product)
 
   let priceNow: string
@@ -108,7 +104,6 @@ export function productToCard(
   return {
     id: product.id,
     title: product.title ?? "",
-    sku,
     brand,
     brandHref,
     image,
