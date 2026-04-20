@@ -175,17 +175,6 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
           meta={[]}
         />
 
-        <Suspense fallback={<div className="cat-toolbar" />}>
-          <CategoryToolbar
-            count={totalFiltered}
-            sortOptions={SORT_OPTIONS}
-            perPageOptions={VALID_PAGE_SIZES}
-            baseUrl={baseUrl}
-            currentSort={sortLabel}
-            currentPerPage={perPage}
-          />
-        </Suspense>
-
         <div className="cat-layout">
           <Suspense fallback={<aside className="filters" />}>
             <FilterSidebar
@@ -196,6 +185,16 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
             />
           </Suspense>
           <div className="cat-products">
+            <Suspense fallback={<div className="cat-toolbar" />}>
+              <CategoryToolbar
+                count={totalFiltered}
+                sortOptions={SORT_OPTIONS}
+                perPageOptions={VALID_PAGE_SIZES}
+                baseUrl={baseUrl}
+                currentSort={sortLabel}
+                currentPerPage={perPage}
+              />
+            </Suspense>
             {pageProducts.length === 0 ? (
               <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
                 {discountedProducts.length === 0

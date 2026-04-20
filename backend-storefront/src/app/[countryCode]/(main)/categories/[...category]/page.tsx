@@ -186,17 +186,6 @@ export default async function CategoryPage(props: Props) {
       <main className="page-inner">
         <Breadcrumb items={breadcrumbItems} current={breadcrumbCurrent} />
         <CategoryHero {...heroProps} />
-        <Suspense fallback={<div className="cat-toolbar" />}>
-          <CategoryToolbar
-            count={totalFiltered}
-            sortOptions={SORT_OPTIONS}
-            perPageOptions={VALID_PAGE_SIZES}
-            baseUrl={baseUrl}
-            currentSort={sortLabel}
-            currentPerPage={perPage}
-          />
-        </Suspense>
-
         <div className="cat-layout">
           <Suspense fallback={<aside className="filters" />}>
             <FilterSidebar
@@ -207,6 +196,16 @@ export default async function CategoryPage(props: Props) {
             />
           </Suspense>
           <div className="cat-products">
+            <Suspense fallback={<div className="cat-toolbar" />}>
+              <CategoryToolbar
+                count={totalFiltered}
+                sortOptions={SORT_OPTIONS}
+                perPageOptions={VALID_PAGE_SIZES}
+                baseUrl={baseUrl}
+                currentSort={sortLabel}
+                currentPerPage={perPage}
+              />
+            </Suspense>
             {pageProducts.length === 0 ? (
               <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
                 Niciun produs nu corespunde filtrelor selectate.
