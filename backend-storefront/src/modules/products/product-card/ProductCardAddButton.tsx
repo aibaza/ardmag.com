@@ -23,7 +23,7 @@ export function ProductCardAddButton({
 
   if (hasMultipleRealVariants) {
     return (
-      <a href={href} className="btn primary sm">
+      <a href={href} className="btn secondary sm">
         Alege
       </a>
     )
