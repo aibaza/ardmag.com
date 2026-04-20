@@ -5,6 +5,35 @@ Format: [date] type: description
 
 ---
 
+## 2026-04-20 — Review complet: A11Y + SEO
+
+### Accesibilitate (WCAG AA)
+
+- fix(a11y): PDPTabs convertit la client component cu role="tab", aria-selected, aria-controls, aria-labelledby, tabIndex si navigare cu tastele Arrow
+- fix(a11y): CategoryToolbar — view-toggle schimbat din role="tablist" (incorect) in role="group" + aria-pressed pe butoane grid/list
+- fix(a11y): SiteHeader — `<div>` -> `<header>` landmark; mobile drawer primeste role="dialog", aria-modal, aria-label; navigatii mobile `<div>` -> `<nav aria-label>`
+- fix(a11y): Homepage — Hero primeste headingLevel="h1" (pagina nu avea H1)
+- fix(a11y): `/produse` — `<h2 className="sr-only">` adaugat inainte de product grid (rezolva salt H1->H4)
+- fix(a11y): `--brand-500` intunecat la `oklch(56% 0.190 42)` — contrast CTA orange trece WCAG AA (era 3.63:1, acum >4.5:1)
+- fix(a11y): footer muted text — 4 selectoare swap `--stone-500` -> `--stone-400` pe fundal dark (era 4.0:1, acum >4.5:1)
+
+### SEO
+
+- feat(seo): `src/app/sitemap.ts` — App Router route, serveste `/sitemap.xml` cu toate produsele + categoriile + pagini statice; lastModified din `product.updated_at`
+- feat(seo): `src/app/robots.ts` — staging (`ardmag.surmont.co`) returneaza `Disallow: /`; productie returneaza reguli corecte cu link catre sitemap
+- feat(seo): `src/lib/util/json-ld.tsx` — OrganizationJsonLd (adresa, telefon, email), WebSiteJsonLd (cu SearchAction), BreadcrumbListJsonLd, ProductJsonLd (cu Offer, price, availability)
+- feat(seo): root layout — title template `"%s · ARDMAG"`, description, OG defaults (locale ro_RO, siteName, type website), Twitter card summary_large_image
+- feat(seo): homepage — metadata export cu title/description/OG/canonical
+- feat(seo): pagina produs — canonical URL, OG description + URL, Twitter card cu imagine; ProductJsonLd injectat cu pret real din calculated_price
+- feat(seo): pagini categorie — canonical URL, OG; eliminat sufix `| ardmag.com` (template root il adauga)
+- feat(seo): collections — eliminat boilerplate `"| Medusa Store"`
+- feat(seo): /promotii — canonical; /search — canonical + robots noindex/nofollow
+- feat(seo): Breadcrumb — injecteaza BreadcrumbListJsonLd automat pe toate paginile cu breadcrumb
+- fix(middleware): exclud `robots.txt` si `sitemap.xml` din matcher — "robots" continea "ro" si declansa un redirect loop
+- chore: sters `next-sitemap.js` (config mort, referinta env gresita, pachet neinstalat)
+
+---
+
 ## 2026-04-18 / 2026-04-19 — Faza 1: Bootstrap + Import Catalog
 
 ### Backend (Medusa v2)
