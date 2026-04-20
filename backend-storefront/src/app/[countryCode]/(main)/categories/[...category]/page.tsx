@@ -163,7 +163,7 @@ export default async function CategoryPage(props: Props) {
     brands: activeBrands,
     materials: activeMaterials,
   })
-  const heroProps = categoryToHero(productCategory)
+  const heroProps = categoryToHero(productCategory, allCategoryProducts)
   const productCards = pageProducts.map((p) => productToCard(p, countryCode))
 
   const baseUrl = `/${countryCode}/categories/${categoryHandle.join("/")}`
