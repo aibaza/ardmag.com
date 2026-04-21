@@ -8,6 +8,10 @@ checkEnvVariables()
 const S3_HOSTNAME = process.env.MEDUSA_CLOUD_S3_HOSTNAME
 const S3_PATHNAME = process.env.MEDUSA_CLOUD_S3_PATHNAME
 
+// R2 CDN (media.ardmag.com) and Railway backend (api.ardmag.com)
+const R2_HOSTNAME = process.env.NEXT_PUBLIC_R2_HOSTNAME || "media.ardmag.com"
+const RAILWAY_HOSTNAME = process.env.NEXT_PUBLIC_BACKEND_HOSTNAME || "api.ardmag.com"
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -51,6 +55,14 @@ const nextConfig = {
             },
           ]
         : []),
+      {
+        protocol: "https",
+        hostname: R2_HOSTNAME,
+      },
+      {
+        protocol: "https",
+        hostname: RAILWAY_HOSTNAME,
+      },
     ],
   },
 }
