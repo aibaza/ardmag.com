@@ -39,14 +39,16 @@ export async function POST(req: NextRequest) {
   if (SMTP2GO_API_KEY) {
     const res = await fetch("https://api.smtp2go.com/v3/email/send", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Smtp2go-Api-Key": SMTP2GO_API_KEY!,
+      },
       body: JSON.stringify({
-        api_key: SMTP2GO_API_KEY,
-        to: [{ email: ADMIN_EMAIL }],
         sender: `ardmag.com contact <${FROM_EMAIL}>`,
+        to: [ADMIN_EMAIL],
         subject: `Mesaj de contact de la ${name}`,
         html_body: html,
-        reply_to: email,
+        custom_headers: [{ header: "Reply-To", value: email }],
       }),
     })
     const result = (await res.json()) as { data?: { succeeded?: number } }

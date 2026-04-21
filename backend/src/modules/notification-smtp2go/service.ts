@@ -72,16 +72,18 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
   ): Promise<NotificationTypes.ProviderSendNotificationResultsDTO> {
     const res = await fetch("https://api.smtp2go.com/v3/email/send", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Smtp2go-Api-Key": this.options_.apiKey!,
+      },
       body: JSON.stringify({
-        api_key: this.options_.apiKey,
-        to: [{ email: to }],
         sender: from,
+        to: [to],
         subject,
         html_body: html,
       }),
     })
-    const result = (await res.json()) as { data?: { succeeded?: number }; error?: string }
+    const result = (await res.json()) as { data?: { succeeded?: number; error?: string; error_code?: string } }
     if (!res.ok || result.data?.succeeded !== 1) {
       this.logger_.error(`smtp2go API: failed to send to ${to} — ${JSON.stringify(result)}`)
       return {}
