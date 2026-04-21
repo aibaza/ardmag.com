@@ -15,12 +15,19 @@ if (process.env.STRIPE_API_KEY) {
   })
 }
 
-if (process.env.SMTP2GO_API_KEY) {
+if (process.env.SMTP2GO_API_KEY || process.env.SMTP_HOST) {
   modules.push({
     resolve: "./src/modules/notification-smtp2go",
     options: {
+      // HTTP API mode (preferred)
       apiKey: process.env.SMTP2GO_API_KEY,
-      fromEmail: process.env.SMTP_FROM || "office@arcromdiamonds.ro",
+      // SMTP relay mode (fallback when no API key)
+      smtpHost: process.env.SMTP_HOST,
+      smtpPort: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT) : 587,
+      smtpUser: process.env.SMTP_USERNAME,
+      smtpPass: process.env.SMTP_PASSWORD,
+      // Common
+      fromEmail: process.env.SMTP_FROM || "ardmag@surcod.ro",
       fromName: "ardmag.com",
     },
   })
