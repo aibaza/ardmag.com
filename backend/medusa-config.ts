@@ -4,6 +4,45 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
 const modules: Record<string, unknown>[] = []
 
+// Redis event bus (productie) sau in-memory (dev fara REDIS_URL)
+if (process.env.REDIS_URL) {
+  modules.push({
+    resolve: "@medusajs/medusa/event-bus-redis",
+    options: { redisUrl: process.env.REDIS_URL },
+  })
+  modules.push({
+    resolve: "@medusajs/medusa/cache-redis",
+    options: { redisUrl: process.env.REDIS_URL, ttl: 30 },
+  })
+  modules.push({
+    resolve: "@medusajs/medusa/workflow-engine-redis",
+    options: { redis: { redisUrl: process.env.REDIS_URL } },
+  })
+}
+
+// File storage: R2 (S3-compatible) daca sunt setate credentialele, altfel local
+if (process.env.R2_ACCESS_KEY_ID && process.env.R2_SECRET_ACCESS_KEY) {
+  modules.push({
+    resolve: "@medusajs/medusa/file",
+    options: {
+      providers: [
+        {
+          resolve: "@medusajs/file-s3",
+          id: "s3",
+          options: {
+            file_url: process.env.R2_PUBLIC_URL,
+            access_key_id: process.env.R2_ACCESS_KEY_ID,
+            secret_access_key: process.env.R2_SECRET_ACCESS_KEY,
+            region: "auto",
+            bucket: process.env.R2_BUCKET,
+            endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+          },
+        },
+      ],
+    },
+  })
+}
+
 const paymentProviders: Record<string, unknown>[] = []
 if (process.env.STRIPE_API_KEY) {
   paymentProviders.push({
