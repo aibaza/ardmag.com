@@ -33,7 +33,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
           { icon: <ReturnIcon />, title: "14 zile retur", subtitle: "fără întrebări" },
           { icon: <TruckIcon />, title: "Livrare 24-48h", subtitle: "țara întreagă" },
           { icon: <SecureIcon />, title: "Plată securizată", subtitle: "3DSecure · SSL" },
-          { icon: <SupportIcon />, title: "Suport tehnic", subtitle: "L–V 08–17 · RO" },
+          { icon: <SupportIcon />, title: "Suport tehnic", subtitle: "L–V 08–16 · RO" },
         ]} />
         <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
       </div>

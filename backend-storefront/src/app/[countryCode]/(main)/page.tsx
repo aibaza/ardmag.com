@@ -150,7 +150,7 @@ export default async function HomePage({ params }: Props) {
           { icon: <TruckIcon fill="none" strokeLinecap="round" />, title: "Livrare 24-48h", subtitle: "țara întreagă" },
           { icon: <ReturnIcon fill="none" strokeLinecap="round" />, title: "14 zile retur", subtitle: "fără întrebări" },
           { icon: <SecureIcon fill="none" strokeLinecap="round" />, title: "Distribuitor autorizat", subtitle: "Tenax · Sait · Delta" },
-          { icon: <SupportIcon fill="none" strokeLinecap="round" />, title: "Suport tehnic", subtitle: "L-V 08-17 · RO" },
+          { icon: <SupportIcon fill="none" strokeLinecap="round" />, title: "Suport tehnic", subtitle: "L-V 08-16 · RO" },
         ]} />
 
         {/* Supplier strip */}

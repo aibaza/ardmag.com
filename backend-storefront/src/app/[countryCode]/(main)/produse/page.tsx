@@ -32,9 +32,9 @@ const SORT_MAP: Record<string, SortOptions> = {
 
 const HELP_CARD = {
   label: "Ai nevoie de ajutor?",
-  description: "Suntem disponibili L-V 08:00-17:00",
+  description: "Suntem disponibili L-V 08:00-16:00",
   phone: "+40 722 155 441",
-  hours: "L-V 08-17",
+  hours: "L-V 08-16",
 }
 
 type Props = {

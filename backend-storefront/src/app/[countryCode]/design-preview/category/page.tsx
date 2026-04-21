@@ -83,7 +83,7 @@ export default function CategoryPage() {
             label: 'Ai nevoie de ajutor?',
             description: 'Consultanții noștri tehnici te ajută să alegi discul potrivit pentru materialul tău.',
             phone: '0264 123 456',
-            hours: 'L–V 08:00–17:00',
+            hours: 'L–V 08:00–16:00',
           }}
         />
 

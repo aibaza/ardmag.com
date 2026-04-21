@@ -239,7 +239,7 @@ async function importProduct(
       title: "Default Title",
       sku: `${slugify(product.name)}-default`,
       options: { Title: "Default Title" },
-      prices: [{ amount: price, currency_code: "ron" }],
+      prices: [{ amount: price, currency_code: "ron", includes_tax: true }],
     })
   } else {
     let variantIndex = 0
@@ -270,7 +270,7 @@ async function importProduct(
         title: titleParts.join(" / ") || `Variant ${variantIndex}`,
         sku: `${slugify(product.name)}-${variantIndex}`,
         options: optionValues,
-        prices: [{ amount: price, currency_code: "ron" }],
+        prices: [{ amount: price, currency_code: "ron", includes_tax: true }],
       })
     }
   }

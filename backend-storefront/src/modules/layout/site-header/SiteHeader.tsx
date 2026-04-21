@@ -44,7 +44,7 @@ export function SiteHeader({
           <span className="divider">·</span>
           <a href="tel:+40722155441">Tel. +40 722 155 441</a>
           <span className="divider">·</span>
-          <span>L-V 08:00-17:00</span>
+          <span>L-V 08:00-16:00</span>
           <div className="right">
             <a href={`/${countryCode}/account/orders`}>Comanda mea</a><span className="divider">·</span>
             <a href="mailto:office@arcromdiamonds.ro">Cont B2B</a><span className="divider">·</span>
@@ -125,7 +125,7 @@ export function SiteHeader({
           </nav>
           <div className="mm-foot">
             <div className="phone"><strong>+40 722 155 441</strong></div>
-            <div className="sub">L-V 08:00-17:00 · Cluj-Napoca</div>
+            <div className="sub">L-V 08:00-16:00 · Cluj-Napoca</div>
           </div>
         </div>
       </div>

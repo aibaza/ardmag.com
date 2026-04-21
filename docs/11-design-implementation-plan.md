@@ -657,7 +657,7 @@ The header has 3 layers:
 
 **Layer 1 - UtilBar** (`stone-900` background):
 - Left: promo dot (brand-500) + message "Transport gratuit la comenzi peste 500 lei"
-- Dividers separating: "Program Lun-Vin: 8-17" and "Cluj-Napoca"
+- Dividers separating: "Program Lun-Vin: 8-16" and "Cluj-Napoca"
 - Right: phone link, email link, lang switcher (static "RO" for now)
 
 **Layer 2 - MainBar** (white background):
@@ -685,7 +685,7 @@ export default function UtilBar() {
           <span>la comenzi peste 500 lei</span>
         </span>
         <span className="text-[var(--stone-600)]">|</span>
-        <span>Lun - Vin: 8 - 17</span>
+        <span>Lun - Vin: 8 - 16</span>
         <span className="text-[var(--stone-600)]">|</span>
         <span>Cluj-Napoca</span>
         <div className="ml-auto flex gap-4 items-center">
@@ -1014,7 +1014,7 @@ export default function MobileDrawer({ categories }: MobileDrawerProps) {
               </LocalizedClientLink>
               <div className="mt-3 font-[family-name:var(--f-mono)] text-[11px] uppercase tracking-[0.06em]" style={{ color: "var(--fg-muted)" }}>
                 <div>+40 722 155 441</div>
-                <div>Lun-Vin: 8-17</div>
+                <div>Lun-Vin: 8-16</div>
               </div>
             </div>
           </div>
@@ -1160,7 +1160,7 @@ export default async function Footer() {
             Contact
           </h5>
           <div className="text-[13px] flex flex-col gap-2" style={{ color: "var(--stone-400)" }}>
-            <div>Lun - Vin: 8:00 - 17:00</div>
+            <div>Lun - Vin: 8:00 - 16:00</div>
             <a href="tel:+40722155441" className="no-underline hover:text-white" style={{ color: "var(--stone-300)" }}>
               +40 722 155 441
             </a>
