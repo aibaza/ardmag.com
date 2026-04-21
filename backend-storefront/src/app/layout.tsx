@@ -2,6 +2,9 @@ import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import "styles/globals.css"
 import { OrganizationJsonLd, WebSiteJsonLd } from "@lib/util/json-ld"
+import { CookieConsentBanner } from "@components/cookie-consent/CookieConsent"
+import { GoogleAnalytics } from "@components/cookie-consent/GoogleAnalytics"
+import { MetaPixel } from "@components/cookie-consent/MetaPixel"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -48,6 +51,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <OrganizationJsonLd />
         <WebSiteJsonLd />
         {props.children}
+        <CookieConsentBanner />
+        <GoogleAnalytics />
+        <MetaPixel />
       </body>
     </html>
   )
