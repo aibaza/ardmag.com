@@ -7,7 +7,6 @@ node_modules/
 .next/
 dist/
 build/
-.medusa/
 
 # Environment variables
 .env

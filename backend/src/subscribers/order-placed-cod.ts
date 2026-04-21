@@ -20,8 +20,9 @@ export default async function orderPlacedCod({
       relations: ["payment_collections.payments"],
     })
 
-    const hasCodPayment = order.payment_collections?.some((pc) =>
-      pc.payments?.some((p) => p.provider_id?.includes("pp_system_default"))
+    const orderAny = order as any
+    const hasCodPayment = orderAny.payment_collections?.some((pc: any) =>
+      pc.payments?.some((p: any) => p.provider_id?.includes("pp_system_default"))
     )
 
     if (!hasCodPayment) return
