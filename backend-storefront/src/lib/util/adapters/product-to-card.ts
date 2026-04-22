@@ -21,7 +21,10 @@ interface ProductCardProduct {
   hasMultipleRealVariants: boolean
 }
 
-const PLACEHOLDER = "/static/images/placeholder.jpg"
+function validUrl(url: string | null | undefined): string | null {
+  if (!url || !url.startsWith('http')) return null
+  return url
+}
 
 function capitalizeBrandSlug(slug: string): string {
   return slug
@@ -58,11 +61,9 @@ export function productToCard(
     : `/${countryCode}/search`
 
   const rawImage =
-    product.thumbnail ||
-    (product.images && product.images.length > 0
-      ? product.images[0].url
-      : null) ||
-    PLACEHOLDER
+    validUrl(product.thumbnail) ||
+    validUrl(product.images?.[0]?.url) ||
+    ''
   const image = imgUrl(rawImage, 'card')
 
   const href = `/${countryCode}/products/${product.handle}`

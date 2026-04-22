@@ -17,8 +17,12 @@ interface PDPGalleryProps {
   badges: Array<{ type: BadgeType; label: string }>
 }
 
-const PLACEHOLDER = "/static/images/placeholder.jpg"
 const MAX_VISIBLE_THUMBS = 4
+
+function validUrl(url: string | null | undefined): string | null {
+  if (!url || !url.startsWith('http')) return null
+  return url
+}
 
 /**
  * Converts a StoreProduct to PDPGallery props.
@@ -36,16 +40,18 @@ export function productToPdpGallery(
   if (images.length > 0) {
     const sorted = [...images].sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0))
     for (const img of sorted) {
-      allImageUrls.push(img.url)
+      const u = validUrl(img.url)
+      if (u) allImageUrls.push(u)
     }
-  } else if (product.thumbnail) {
-    allImageUrls.push(product.thumbnail)
+  }
+  if (allImageUrls.length === 0 && validUrl(product.thumbnail)) {
+    allImageUrls.push(product.thumbnail!)
   }
 
   const mainSrc =
     allImageUrls.length > 0
       ? allImageUrls[0]
-      : product.thumbnail ?? PLACEHOLDER
+      : validUrl(product.thumbnail) ?? ''
 
   const title = product.title ?? ""
 
@@ -56,7 +62,7 @@ export function productToPdpGallery(
   if (allImageUrls.length === 0) {
     thumbs = [
       {
-        src: PLACEHOLDER,
+        src: '',
         alt: title,
         ariaLabel: "Imagine produs",
         active: true,
