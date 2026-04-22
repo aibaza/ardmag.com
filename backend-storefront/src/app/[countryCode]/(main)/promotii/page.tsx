@@ -14,6 +14,8 @@ import { sortProducts, SortOptions } from "@lib/util/sort-products"
 import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 
+export const maxDuration = 60
+
 export const metadata: Metadata = {
   title: "Produse la reducere",
   description: "Toate produsele cu reducere activa - preturi reduse real, nu cosmetice.",

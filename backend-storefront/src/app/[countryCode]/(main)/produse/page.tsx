@@ -14,6 +14,8 @@ import { sortProducts, SortOptions } from "@lib/util/sort-products"
 import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 
+export const maxDuration = 60
+
 export const metadata: Metadata = {
   title: "Toate produsele",
   description: "Catalogul complet ardmag - scule si consumabile pentru prelucrarea pietrei naturale.",
