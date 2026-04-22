@@ -23,6 +23,7 @@ import { OrganizationJsonLd, WebSiteJsonLd } from "@lib/util/json-ld"
 import { CookieConsentBanner } from "@components/cookie-consent/CookieConsent"
 import { GoogleAnalytics } from "@components/cookie-consent/GoogleAnalytics"
 import { MetaPixel } from "@components/cookie-consent/MetaPixel"
+import { FastNav } from "@components/nav/FastNav"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -57,7 +58,10 @@ export const metadata: Metadata = {
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="ro" data-mode="light" className={`${plexSans.variable} ${plexMono.variable}`}>
-      <head />
+      <head>
+        <link rel="preconnect" href="https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev" />
+      </head>
       <body>
         <OrganizationJsonLd />
         <WebSiteJsonLd />
@@ -65,6 +69,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <CookieConsentBanner />
         <GoogleAnalytics />
         <MetaPixel />
+        <FastNav />
       </body>
     </html>
   )

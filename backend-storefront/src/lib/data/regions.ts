@@ -3,12 +3,12 @@
 import { sdk } from "@lib/config"
 import medusaError from "@lib/util/medusa-error"
 import { HttpTypes } from "@medusajs/types"
-import { getCacheOptions } from "./cookies"
+import { getCacheOptions, getCacheOptionsStatic } from "./cookies"
 
-export const listRegions = async () => {
-  const next = {
-    ...(await getCacheOptions("regions")),
-  }
+export const listRegions = async ({ staticCache = false }: { staticCache?: boolean } = {}) => {
+  const next = staticCache
+    ? getCacheOptionsStatic("regions")
+    : { ...(await getCacheOptions("regions")) }
 
   return sdk.client
     .fetch<{ regions: HttpTypes.StoreRegion[] }>(`/store/regions`, {
@@ -37,13 +37,16 @@ export const retrieveRegion = async (id: string) => {
 
 const regionMap = new Map<string, HttpTypes.StoreRegion>()
 
-export const getRegion = async (countryCode: string) => {
+export const getRegion = async (
+  countryCode: string,
+  { staticCache = false }: { staticCache?: boolean } = {}
+) => {
   try {
     if (regionMap.has(countryCode)) {
       return regionMap.get(countryCode)
     }
 
-    const regions = await listRegions()
+    const regions = await listRegions({ staticCache })
 
     if (!regions) {
       return null

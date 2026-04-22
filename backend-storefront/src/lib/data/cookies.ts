@@ -49,6 +49,11 @@ export const getCacheOptions = async (
   return { tags: [`${cacheTag}`] }
 }
 
+/** Static variant — no cookies() read, uses a global tag for CDN/ISR cache. */
+export const getCacheOptionsStatic = (tag: string): { tags: string[] } => ({
+  tags: [tag],
+})
+
 export const setAuthToken = async (token: string) => {
   const cookies = await nextCookies()
   cookies.set("_medusa_jwt", token, {

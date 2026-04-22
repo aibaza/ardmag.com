@@ -1,11 +1,14 @@
 import { sdk } from "@lib/config"
 import { HttpTypes } from "@medusajs/types"
-import { getCacheOptions } from "./cookies"
+import { getCacheOptions, getCacheOptionsStatic } from "./cookies"
 
-export const listCategories = async (query?: Record<string, any>) => {
-  const next = {
-    ...(await getCacheOptions("categories")),
-  }
+export const listCategories = async (
+  query?: Record<string, any>,
+  { staticCache = false }: { staticCache?: boolean } = {}
+) => {
+  const next = staticCache
+    ? getCacheOptionsStatic("categories")
+    : { ...(await getCacheOptions("categories")) }
 
   const limit = query?.limit || 100
 

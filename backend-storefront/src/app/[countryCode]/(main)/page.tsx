@@ -31,6 +31,8 @@ type Props = {
   params: Promise<{ countryCode: string }>
 }
 
+export const revalidate = 1800
+
 export const metadata: Metadata = {
   title: "ARDMAG — Precizie solida. 25 de ani.",
   description: "Distribuitor autorizat Tenax in Romania. Scule diamantate, mastici, abrazive si consumabile pentru prelucrarea pietrei naturale. Livrare 24-48h in toata tara.",
@@ -46,7 +48,7 @@ export default async function HomePage({ params }: Props) {
   const { countryCode } = await params
 
   const [categories, allProductsResult] = await Promise.all([
-    listCategories().catch(() => [] as HttpTypes.StoreProductCategory[]),
+    listCategories(undefined, { staticCache: true }).catch(() => [] as HttpTypes.StoreProductCategory[]),
     listProducts({
       pageParam: 1,
       queryParams: {
@@ -54,6 +56,7 @@ export default async function HomePage({ params }: Props) {
         fields: '*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images',
       },
       countryCode,
+      publicFetch: true,
     }).catch(() => ({ response: { products: [], count: 0 }, nextPage: null })),
   ])
 

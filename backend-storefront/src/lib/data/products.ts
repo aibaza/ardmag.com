@@ -4,7 +4,7 @@ import { sdk } from "@lib/config"
 import { sortProducts } from "@lib/util/sort-products"
 import { HttpTypes } from "@medusajs/types"
 import { SortOptions } from "@lib/util/sort-products"
-import { getAuthHeaders, getCacheOptions } from "./cookies"
+import { getAuthHeaders, getCacheOptions, getCacheOptionsStatic } from "./cookies"
 import { getRegion, retrieveRegion } from "./regions"
 
 export const listProducts = async ({
@@ -12,11 +12,14 @@ export const listProducts = async ({
   queryParams,
   countryCode,
   regionId,
+  publicFetch = false,
 }: {
   pageParam?: number
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductListParams
   countryCode?: string
   regionId?: string
+  /** Skip auth headers and per-user cache tags — for public/static pages */
+  publicFetch?: boolean
 }): Promise<{
   response: { products: HttpTypes.StoreProduct[]; count: number }
   nextPage: number | null
@@ -33,7 +36,7 @@ export const listProducts = async ({
   let region: HttpTypes.StoreRegion | undefined | null
 
   if (countryCode) {
-    region = await getRegion(countryCode)
+    region = await getRegion(countryCode, { staticCache: publicFetch })
   } else {
     region = await retrieveRegion(regionId!)
   }
@@ -45,13 +48,11 @@ export const listProducts = async ({
     }
   }
 
-  const headers = {
-    ...(await getAuthHeaders()),
-  }
+  const headers = publicFetch ? {} : { ...(await getAuthHeaders()) }
 
-  const next = {
-    ...(await getCacheOptions("products")),
-  }
+  const next = publicFetch
+    ? getCacheOptionsStatic("products")
+    : { ...(await getCacheOptions("products")) }
 
   return sdk.client
     .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(

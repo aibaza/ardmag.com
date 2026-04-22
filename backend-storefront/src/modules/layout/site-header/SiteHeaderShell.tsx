@@ -1,4 +1,3 @@
-import { retrieveCart } from "@lib/data/cart"
 import { listCategories } from "@lib/data/categories"
 import { HttpTypes } from "@medusajs/types"
 import { SiteHeader } from "./SiteHeader"
@@ -12,11 +11,9 @@ interface SiteHeaderShellProps {
 }
 
 export async function SiteHeaderShell(props: SiteHeaderShellProps) {
-  const [cart, categories] = await Promise.all([
-    retrieveCart().catch(() => null),
-    listCategories().catch(() => [] as HttpTypes.StoreProductCategory[]),
-  ])
-  const cartItemCount = cart?.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0
+  const categories = await listCategories(undefined, { staticCache: true }).catch(
+    () => [] as HttpTypes.StoreProductCategory[]
+  )
 
   const drawerCategories = categories
     .filter((c) => c.handle !== 'pachete-promotionale')
@@ -29,7 +26,7 @@ export async function SiteHeaderShell(props: SiteHeaderShellProps) {
   return (
     <SiteHeader
       {...props}
-      cartItemCount={cartItemCount}
+      cartItemCount={0}
       categories={drawerCategories}
       countryCode={props.countryCode}
     />

@@ -17,6 +17,12 @@ const RAILWAY_HOSTNAME = process.env.NEXT_PUBLIC_BACKEND_HOSTNAME || "api.ardmag
  */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    staleTimes: {
+      dynamic: 30,
+      static: 180,
+    },
+  },
   logging: {
     fetches: {
       fullUrl: true,
@@ -74,8 +80,12 @@ const nextConfig = {
 
 nextConfig.headers = async () => [
   {
-    source: "/:path*\\.(svg|jpg|jpeg|png|webp|avif|ico|woff|woff2)",
+    source: "/:path*\\.(svg|jpg|jpeg|png|webp|avif|ico|woff|woff2|js|css)",
     headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+  },
+  {
+    source: "/(.*)",
+    headers: [{ key: "X-DNS-Prefetch-Control", value: "on" }],
   },
 ]
 
