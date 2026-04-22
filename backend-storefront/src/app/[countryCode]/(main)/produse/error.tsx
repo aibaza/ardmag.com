@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 export default function ProduseError({
   error,
@@ -9,9 +9,16 @@ export default function ProduseError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const retries = useRef(0)
+
   useEffect(() => {
     console.error("[produse] page error:", error)
-  }, [error])
+    if (retries.current < 2) {
+      retries.current += 1
+      const t = setTimeout(reset, 600)
+      return () => clearTimeout(t)
+    }
+  }, [error, reset])
 
   return (
     <main className="page-inner" style={{ padding: "64px 24px", textAlign: "center" }}>
