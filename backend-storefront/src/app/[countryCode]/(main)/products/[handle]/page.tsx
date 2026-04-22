@@ -110,7 +110,7 @@ export default async function ProductPage(props: Props) {
     countryCode,
     queryParams: {
       handle,
-      fields: '*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images,+categories',
+      fields: '*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images,*categories',
     },
   }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[] } }))
 
