@@ -13,6 +13,9 @@ build/
 .env.local
 .env.*.local
 
+# Secrets (never commit)
+docs/deployment/SECRETS.md
+
 # Logs
 *.log
 npm-debug.log*
