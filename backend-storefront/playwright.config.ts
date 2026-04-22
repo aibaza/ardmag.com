@@ -19,6 +19,7 @@ export default defineConfig({
       name: "chromium-mobile",
       use: {
         ...devices["Pixel 5"],
+        channel: "chromium",
         viewport: { width: 375, height: 812 },
         deviceScaleFactor: 2,
       },
@@ -26,9 +27,11 @@ export default defineConfig({
     {
       name: "chromium-tablet",
       use: {
-        ...devices["iPad Mini"],
+        ...devices["Desktop Chrome"],
+        channel: "chromium",
         viewport: { width: 768, height: 1024 },
         deviceScaleFactor: 2,
+        userAgent: "Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
       },
     },
     {
