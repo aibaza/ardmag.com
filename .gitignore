@@ -43,3 +43,4 @@ backend/public/
 .enrichment-cache/
 scripts/enrich-run.jsonl
 scripts/.enrichment-state.jsonl
+.vercel

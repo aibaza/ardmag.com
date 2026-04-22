@@ -30,7 +30,7 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-const BACKEND_URL = "http://localhost:9000"
+const BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
 const ADMIN_EMAIL = "admin@ardmag.com"
 const ADMIN_PASSWORD = "Admin1234!"
 const IMAGES_DIR = path.resolve(__dirname, "../backend/static/images")
@@ -126,6 +126,7 @@ async function main() {
       region: "auto",
       endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
       credentials: { accessKeyId: R2_ACCESS_KEY_ID, secretAccessKey: R2_SECRET_ACCESS_KEY },
+      forcePathStyle: true,
     })
 
     let uploaded = 0

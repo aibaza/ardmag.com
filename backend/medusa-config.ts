@@ -27,8 +27,8 @@ if (process.env.R2_ACCESS_KEY_ID && process.env.R2_SECRET_ACCESS_KEY) {
     options: {
       providers: [
         {
-          resolve: "@medusajs/file-s3",
-          id: "s3",
+          resolve: "./src/modules/file-r2-variants",
+          id: "r2-variants",
           options: {
             file_url: process.env.R2_PUBLIC_URL,
             access_key_id: process.env.R2_ACCESS_KEY_ID,
