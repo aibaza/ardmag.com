@@ -18,6 +18,8 @@ import { sortProducts, SortOptions } from "@lib/util/sort-products"
 import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes, StoreRegion } from "@medusajs/types"
 
+export const dynamic = 'force-dynamic'
+
 const VALID_PAGE_SIZES = [20, 40, 60]
 const DEFAULT_PAGE_SIZE = 20
 const SORT_OPTIONS = ["Relevanță", "Preț ascendent", "Preț descendent", "Cele mai noi"]
