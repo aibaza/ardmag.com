@@ -132,11 +132,12 @@ export default async function ProductPage(props: Props) {
   const { brand, brandHref } = extractBrand(product)
   const { label: stockLabel, location: stockLocation } = getStockLabel(product)
 
-  const categoryName = (product.categories ?? [])[0]?.name ?? "Categorie"
-  const categoryHandle = (product.categories ?? [])[0]?.handle ?? ""
+  const firstCategory = (product.categories ?? [])[0]
+  const categoryName = firstCategory?.name ?? "Toate produsele"
+  const categoryHref = firstCategory?.handle ? `/categories/${firstCategory.handle}` : `/produse`
   const breadcrumbItems = [
     { label: "Acasă", href: `/${countryCode}` },
-    { label: categoryName, href: `/categories/${categoryHandle}` },
+    { label: categoryName, href: categoryHref },
   ]
 
   const description = product.description ?? ""
@@ -158,7 +159,7 @@ export default async function ProductPage(props: Props) {
       />
       <SiteHeaderShell
         countryCode={countryCode}
-        categoriesHref={`/categories/${categoryHandle}`}
+        categoriesHref={categoryHref}
         drawerId="mDrawer"
         drawerClosedAttr
       />
