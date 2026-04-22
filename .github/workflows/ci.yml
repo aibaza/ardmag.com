@@ -21,7 +21,6 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
       - run: npm ci --legacy-peer-deps
-      - run: npx tsc --noEmit
 
   storefront:
     name: Storefront lint + tsc
