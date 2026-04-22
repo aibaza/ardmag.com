@@ -89,6 +89,9 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // Routes that need per-user cache cookie (cart, account, checkout, orders)
+  const isUserRoute = /\/(cart|account|checkout|order)(\/|$)/.test(pathname)
+
   const urlFirstSegment = pathname.split("/")[1]?.toLowerCase()
   const urlHasCountryCode = urlFirstSegment === countryCode
 
@@ -103,7 +106,7 @@ export async function middleware(request: NextRequest) {
     }
 
     const response = NextResponse.next()
-    if (!cacheIdCookie) {
+    if (!cacheIdCookie && isUserRoute) {
       response.cookies.set("_medusa_cache_id", cacheId, { maxAge: 60 * 60 * 24 })
     }
     return response
@@ -115,7 +118,7 @@ export async function middleware(request: NextRequest) {
   const rewriteUrl = new URL(`${rewritePath}${request.nextUrl.search}`, request.url)
   const response = NextResponse.rewrite(rewriteUrl)
 
-  if (!cacheIdCookie) {
+  if (!cacheIdCookie && isUserRoute) {
     response.cookies.set("_medusa_cache_id", cacheId, { maxAge: 60 * 60 * 24 })
   }
 
