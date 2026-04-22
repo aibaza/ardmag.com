@@ -51,7 +51,7 @@ export function Hero({ kicker, title, description, primaryCta, ghostCta, stats, 
             <span className="kicker">{card.kicker}</span>
             <h3>{card.title}</h3>
             <p>{card.description}</p>
-            <div className="img-wrap"><img src={card.image} alt={card.imageAlt} loading="lazy" /></div><a href={card.ctaHref}>{card.ctaLabel}</a>
+            <div className="img-wrap"><img src={card.image} alt={card.imageAlt} width={600} height={400} loading="lazy" /></div><a href={card.ctaHref}>{card.ctaLabel}</a>
           </div>
         ))}
       </div>

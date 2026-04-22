@@ -19,7 +19,7 @@ export function CheckoutPayment({ cart, countryCode, paymentProviders }: Props) 
     if (!selected || !cart.id) return
     startTransition(async () => {
       await initiatePaymentSession(cart, { provider_id: selected })
-      router.push(`/${countryCode}/checkout?step=review`)
+      router.push(`/checkout?step=review`)
     })
   }
 

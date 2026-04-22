@@ -136,7 +136,7 @@ export default async function ProductPage(props: Props) {
   const categoryHandle = (product.categories ?? [])[0]?.handle ?? ""
   const breadcrumbItems = [
     { label: "Acasă", href: `/${countryCode}` },
-    { label: categoryName, href: `/${countryCode}/categories/${categoryHandle}` },
+    { label: categoryName, href: `/categories/${categoryHandle}` },
   ]
 
   const description = product.description ?? ""
@@ -154,11 +154,11 @@ export default async function ProductPage(props: Props) {
         brand={brand || undefined}
         price={rawPrice}
         inStock={stockLabel !== "Stoc epuizat"}
-        url={`/${countryCode}/products/${handle}`}
+        url={`/products/${handle}`}
       />
       <SiteHeaderShell
         countryCode={countryCode}
-        categoriesHref={`/${countryCode}/categories/${categoryHandle}`}
+        categoriesHref={`/categories/${categoryHandle}`}
         drawerId="mDrawer"
         drawerClosedAttr
       />

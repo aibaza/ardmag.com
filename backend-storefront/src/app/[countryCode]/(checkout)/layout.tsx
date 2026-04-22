@@ -14,11 +14,12 @@ export default async function CheckoutLayout({ children, params }: Props) {
   return (
     <>
       <header style={{ borderBottom: '1px solid var(--rule)', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--bg)' }}>
-        <a href={`/${countryCode}/cart`} style={{ fontSize: 13, color: 'var(--fg-muted)', fontFamily: 'var(--f-sans)' }}>
+        <a href={`/cart`} style={{ fontSize: 13, color: 'var(--fg-muted)', fontFamily: 'var(--f-sans)' }}>
           &larr; Inapoi la cos
         </a>
         <a href={`/${countryCode}`} className="logo" style={{ textDecoration: 'none' }}>
-          <img src="/logo-transparent.png" alt="ARDMAG" className="logo-img" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-transparent.png" alt="ARDMAG" className="logo-img" width={200} height={30} />
         </a>
         <span style={{ width: 120 }} />
       </header>

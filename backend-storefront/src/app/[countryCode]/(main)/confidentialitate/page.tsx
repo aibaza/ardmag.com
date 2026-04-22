@@ -103,7 +103,7 @@ export default async function ConfidentialitatePage({
 
         <h2 style={h2Style}>6. Cookies</h2>
         <p style={pStyle}>
-          Utilizam cookies conform <a href={`/${countryCode}/cookie-policy`}>Politicii de cookies</a>.
+          Utilizam cookies conform <a href={`/cookie-policy`}>Politicii de cookies</a>.
           Poti gestiona preferintele de cookies din banner-ul afisat la prima vizita.
         </p>
 

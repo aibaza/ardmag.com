@@ -13,7 +13,7 @@ export default async function OrdersPage({ params }: Props) {
   const customer = await retrieveCustomer()
 
   if (!customer) {
-    redirect(`/${countryCode}/account`)
+    redirect(`/account`)
   }
 
   const orders = await listOrders(20, 0).catch(() => [] as HttpTypes.StoreOrder[])
@@ -27,7 +27,7 @@ export default async function OrdersPage({ params }: Props) {
       {orders.length === 0 ? (
         <div className="panel" style={{ padding: '32px 24px', textAlign: 'center' }}>
           <p style={{ color: 'var(--fg-muted)', marginBottom: 16 }}>Nu ai comenzi inca.</p>
-          <a href={`/${countryCode}/categories`} className="btn primary md">
+          <a href={`/categories`} className="btn primary md">
             Incepe cumparaturile
           </a>
         </div>

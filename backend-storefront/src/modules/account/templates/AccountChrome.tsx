@@ -18,7 +18,7 @@ export function AccountChrome({ children, countryCode }: AccountChromeProps) {
       />
       <main className="page-inner">
         <Breadcrumb
-          items={[{ label: "Acasa", href: `/${countryCode}` }]}
+          items={[{ label: "Acasa", href: "/" }]}
           current="Cont"
         />
         <div className="cat-layout" style={{ marginTop: 24 }}>

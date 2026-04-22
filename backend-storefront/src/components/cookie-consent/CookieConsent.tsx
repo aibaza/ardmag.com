@@ -76,7 +76,7 @@ export function CookieConsentBanner() {
       <p style={{ margin: "0 0 16px", fontSize: 14, color: "var(--fg-muted, #64748b)", lineHeight: 1.6 }}>
         Folosim cookie-uri pentru a-ti imbunatati experienta pe site.{" "}
         <a
-          href="/ro/cookie-policy"
+          href="/cookie-policy"
           style={{ color: "var(--brand-600, #0284c7)", textDecoration: "underline" }}
         >
           Afla mai mult

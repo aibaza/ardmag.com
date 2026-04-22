@@ -8,10 +8,10 @@ interface AccountSidebarProps {
 }
 
 const navItems = (countryCode: string) => [
-  { label: "Cont", href: `/${countryCode}/account` },
-  { label: "Comenzile mele", href: `/${countryCode}/account/orders` },
-  { label: "Profil", href: `/${countryCode}/account/profile` },
-  { label: "Adrese", href: `/${countryCode}/account/addresses` },
+  { label: "Cont", href: `/account` },
+  { label: "Comenzile mele", href: `/account/orders` },
+  { label: "Profil", href: `/account/profile` },
+  { label: "Adrese", href: `/account/addresses` },
 ]
 
 export function AccountSidebar({ countryCode }: AccountSidebarProps) {

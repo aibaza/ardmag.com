@@ -1,5 +1,3 @@
-import { ArrowUpRightMini } from "@medusajs/icons"
-import { Text } from "@medusajs/ui"
 import { Metadata } from "next"
 import Link from "next/link"
 
@@ -11,19 +9,25 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="flex flex-col gap-4 items-center justify-center min-h-[calc(100vh-64px)]">
-      <h1 className="text-2xl-semi text-ui-fg-base">Pagina nu a fost găsită</h1>
-      <p className="text-small-regular text-ui-fg-base">
+      <h1 className="text-2xl font-semibold text-slate-800">Pagina nu a fost găsită</h1>
+      <p className="text-sm text-slate-600">
         Pagina pe care ai încercat să o accesezi nu există.
       </p>
       <Link
-        className="flex gap-x-1 items-center group"
+        className="flex gap-x-1 items-center group text-sm text-blue-600 hover:text-blue-700"
         href="/"
       >
-        <Text className="text-ui-fg-interactive">Înapoi la pagina principală</Text>
-        <ArrowUpRightMini
-          className="group-hover:rotate-45 ease-in-out duration-150"
-          color="var(--fg-interactive)"
-        />
+        Înapoi la pagina principală
+        <svg
+          className="w-3.5 h-3.5 group-hover:rotate-45 ease-in-out duration-150"
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        >
+          <path d="M3 13L13 3M13 3H7M13 3v6" />
+        </svg>
       </Link>
     </div>
   )

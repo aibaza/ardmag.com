@@ -1,7 +1,7 @@
 import type { HttpTypes } from "@medusajs/types"
 import { formatPrice, getProductMinPriceWithOriginal } from "./format-price"
 import { productToBadges } from "./product-to-badges"
-import { imgUrl } from "@lib/util/img-url"
+import { imageVariant } from "@lib/util/image-variant"
 
 type BadgeType = "promo" | "new" | "stock-low" | "custom"
 
@@ -57,16 +57,16 @@ export function productToCard(
   const brandSlug = extractBrandSlug(product.tags)
   const brand = brandSlug ? capitalizeBrandSlug(brandSlug) : ""
   const brandHref = brandSlug
-    ? `/${countryCode}/search?brand=${brandSlug}`
-    : `/${countryCode}/search`
+    ? `/search?brand=${brandSlug}`
+    : `/search`
 
   const rawImage =
     validUrl(product.thumbnail) ||
     validUrl(product.images?.[0]?.url) ||
     ''
-  const image = imgUrl(rawImage, 'card')
+  const image = imageVariant(rawImage, "small")
 
-  const href = `/${countryCode}/products/${product.handle}`
+  const href = `/products/${product.handle}`
 
   const firstVariant =
     product.variants && product.variants.length > 0

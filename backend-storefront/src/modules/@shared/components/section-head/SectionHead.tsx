@@ -10,7 +10,7 @@ export function SectionHead({ eyebrow, title, seeAllHref, seeAllLabel = 'Toate' 
     <div className="sec-head">
       <div>
         <div className="eyebrow-small">{eyebrow}</div>
-        <h3>{title}</h3>
+        <h2>{title}</h2>
       </div>
       <a className="see-all" href={seeAllHref}>{seeAllLabel}</a>
     </div>

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { productToCard } from "../product-to-card"
-import { imgUrl } from "../../img-url"
+import { imageVariant } from "../../image-variant"
 import type { HttpTypes } from "@medusajs/types"
 
 type TestVariant = Partial<HttpTypes.StoreProductVariant> & {
@@ -80,21 +80,21 @@ describe("productToCard", () => {
 
   it("sets brandHref with country code", () => {
     const card = productToCard(makeProduct({}))
-    expect(card.brandHref).toBe("/ro/search?brand=tenax")
+    expect(card.brandHref).toBe("/search?brand=tenax")
   })
 
   it("uses custom countryCode", () => {
     const card = productToCard(makeProduct({}), "en")
-    expect(card.href).toBe("/en/products/mastic-tenax-transparente")
-    expect(card.brandHref).toBe("/en/search?brand=tenax")
+    expect(card.href).toBe("/products/mastic-tenax-transparente")
+    expect(card.brandHref).toBe("/search?brand=tenax")
   })
 
-  it("uses thumbnail as image", () => {
+  it("uses thumbnail as image (small variant)", () => {
     const card = productToCard(makeProduct({}))
-    expect(card.image).toBe(imgUrl("https://cdn.example.com/thumb.jpg", "card"))
+    expect(card.image).toBe(imageVariant("https://cdn.example.com/thumb.jpg", "small"))
   })
 
-  it("falls back to first image URL when no thumbnail", () => {
+  it("falls back to first image URL when no thumbnail (small variant)", () => {
     const product = makeProduct({
       thumbnail: null,
       images: [
@@ -102,19 +102,19 @@ describe("productToCard", () => {
       ],
     })
     const card = productToCard(product)
-    expect(card.image).toBe(imgUrl("https://cdn.example.com/img1.jpg", "card"))
+    expect(card.image).toBe(imageVariant("https://cdn.example.com/img1.jpg", "small"))
   })
 
-  it("uses placeholder when no thumbnail AND no images", () => {
+  it("returns empty string when no thumbnail AND no images", () => {
     const product = makeProduct({ thumbnail: null, images: null })
     const card = productToCard(product)
-    expect(card.image).toBe(imgUrl("/static/images/placeholder.jpg", "card"))
+    expect(card.image).toBe("")
   })
 
-  it("uses placeholder when thumbnail null and images is empty array", () => {
+  it("returns empty string when thumbnail null and images is empty array", () => {
     const product = makeProduct({ thumbnail: null, images: [] })
     const card = productToCard(product)
-    expect(card.image).toBe(imgUrl("/static/images/placeholder.jpg", "card"))
+    expect(card.image).toBe("")
   })
 
   it("formats price from calculated_amount", () => {

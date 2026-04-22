@@ -17,7 +17,7 @@ export default async function ProfilePage({ params }: Props) {
   const customer = await retrieveCustomer()
 
   if (!customer) {
-    redirect(`/${countryCode}/account`)
+    redirect(`/account`)
   }
 
   return (

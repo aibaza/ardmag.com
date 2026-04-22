@@ -31,7 +31,7 @@ export function productToHero(
   const primaryCtaHref =
     typeof heroMeta.primaryCtaHref === 'string'
       ? heroMeta.primaryCtaHref
-      : `/${countryCode}/products/${product.handle}`
+      : `/products/${product.handle}`
 
   const ghostCtaLabel =
     typeof heroMeta.ghostCtaLabel === 'string'
@@ -41,7 +41,7 @@ export function productToHero(
   const ghostCtaHref =
     typeof heroMeta.ghostCtaHref === 'string'
       ? heroMeta.ghostCtaHref
-      : `/${countryCode}/store`
+      : `/store`
 
   const stats = Array.isArray(heroMeta.stats)
     ? (heroMeta.stats as Array<{ value: string; label: string }>)

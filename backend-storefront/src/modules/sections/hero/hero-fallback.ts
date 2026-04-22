@@ -9,10 +9,10 @@ export function getHeroFallback(countryCode: string): HeroProps {
     kicker: "Promo luna aprilie · până pe 30",
     title: "Mastici Tenax la -30% reducere",
     description: "Toată gama de mastici poliesterici și epoxidici Tenax la -30%. Stoc complet în Cluj, livrare 24-48h în toată țara.",
-    primaryCta: { label: "Vezi promoția", href: `/${countryCode}/promotii` },
+    primaryCta: { label: "Vezi promoția", href: `/promotii` },
     ghostCta: {
       label: "Toate produsele →",
-      href: `/${countryCode}/categories/solutii-pentru-piatra`,
+      href: `/categories/solutii-pentru-piatra`,
       style: { color: "#fff", borderColor: "var(--stone-700)" } as CSSProperties,
     },
     stats: [
@@ -28,7 +28,7 @@ export function getHeroFallback(countryCode: string): HeroProps {
         image: "/design-temp/hero-paduri.jpg",
         imageAlt: "Pad-uri Velcro",
         ctaLabel: "Descoperă setul →",
-        ctaHref: `/${countryCode}/categories/slefuire-piatra`,
+        ctaHref: `/categories/slefuire-piatra`,
       },
       {
         kicker: "Ghid tehnic",
@@ -37,7 +37,7 @@ export function getHeroFallback(countryCode: string): HeroProps {
         image: "/design-temp/hero-ghid.jpg",
         imageAlt: "Ghid discuri",
         ctaLabel: "Toate discurile →",
-        ctaHref: `/${countryCode}/categories/discuri-de-taiere`,
+        ctaHref: `/categories/discuri-de-taiere`,
       },
     ],
     headingLevel: "h1",

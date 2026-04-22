@@ -26,7 +26,7 @@ interface ProductCardProps {
 export function ProductCard({ product, countryCode }: ProductCardProps) {
   return (
     <article className="pcard">
-      <a href={product.href} className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src={product.image} alt={product.imageAlt} loading="lazy" /><div className="top-tags">{product.badges?.map((b, i) => <Badge key={i} type={b.type} label={b.label} dotVariant={b.dotVariant} />)}</div></a>
+      <a href={product.href} className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><img className="pimg" src={product.image} alt={product.imageAlt} width={400} height={400} loading="lazy" /><div className="top-tags">{product.badges?.map((b, i) => <Badge key={i} type={b.type} label={b.label} dotVariant={b.dotVariant} />)}</div></a>
       <div className="pcard-body">
         <a className="pcard-brand" href={product.brandHref}>{product.brand}</a>
         <h4 className="pcard-title"><a href={product.href}>{product.title}</a></h4>

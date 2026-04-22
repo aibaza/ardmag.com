@@ -13,7 +13,7 @@ export default async function DashboardPage({ params }: Props) {
   const customer = await retrieveCustomer()
 
   if (!customer) {
-    redirect(`/${countryCode}/account`)
+    redirect(`/account`)
   }
 
   const orders = await listOrders(5, 0).catch(() => [] as HttpTypes.StoreOrder[])
@@ -42,7 +42,7 @@ export default async function DashboardPage({ params }: Props) {
         </div>
         <div className="panel">
           <div className="panel-body" style={{ textAlign: 'center' }}>
-            <a href={`/${countryCode}/account/profile`} className="btn ghost sm">
+            <a href={`/account/profile`} className="btn ghost sm">
               Editeaza profilul
             </a>
           </div>
@@ -58,7 +58,7 @@ export default async function DashboardPage({ params }: Props) {
             <OrderRow key={order.id} order={order} countryCode={countryCode} />
           ))}
           <div style={{ marginTop: 16 }}>
-            <a href={`/${countryCode}/account/orders`} className="btn ghost sm">
+            <a href={`/account/orders`} className="btn ghost sm">
               Vezi toate comenzile
             </a>
           </div>

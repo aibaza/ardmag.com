@@ -85,7 +85,7 @@ function AddressBlock({
 export default async function OrderDetailPage({ params }: Props) {
   const { countryCode, id } = await params
   const customer = await retrieveCustomer()
-  if (!customer) redirect(`/${countryCode}/account`)
+  if (!customer) redirect(`/account`)
 
   const order = await retrieveOrder(id).catch(() => null)
   if (!order) notFound()
@@ -97,7 +97,7 @@ export default async function OrderDetailPage({ params }: Props) {
     <div>
       {/* Back link */}
       <a
-        href={`/${countryCode}/account/orders`}
+        href={`/account/orders`}
         style={{
           fontSize: 13,
           color: "var(--fg-muted)",

@@ -3,7 +3,8 @@ import { getBaseURL } from "@lib/util/env"
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = getBaseURL()
-  const isStaging = !baseUrl.includes("ardmag.com") || baseUrl.includes("surmont")
+  const PRODUCTION_HOSTS = ["ardmag.com", "magazin.ardmag.com", "ardmag.surcod.ro"]
+  const isStaging = !PRODUCTION_HOSTS.some((h) => baseUrl.includes(h))
 
   if (isStaging) {
     return {
@@ -15,7 +16,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/account/", "/cart", "/checkout/", "/ro/order/", "/ro/account/"],
+      disallow: ["/account/", "/cart", "/checkout/", "/order/", "/account/"],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   }

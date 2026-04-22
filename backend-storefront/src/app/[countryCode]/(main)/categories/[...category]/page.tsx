@@ -133,7 +133,7 @@ export default async function CategoryPage(props: Props) {
   const heroProps = categoryToHero(productCategory, allCategoryProducts)
   const productCards = sortedProducts.map((p) => productToCard(p, countryCode))
 
-  const baseUrl = `/${countryCode}/categories/${categoryHandle.join("/")}`
+  const baseUrl = `/categories/${categoryHandle.join("/")}`
   const breadcrumbItems = [{ label: "Acasa", href: `/${countryCode}` }]
   const breadcrumbCurrent = productCategory.name ?? categoryHandle[categoryHandle.length - 1]
 

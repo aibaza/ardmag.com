@@ -19,7 +19,7 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions }: Props
     if (!selected) return
     startTransition(async () => {
       await setShippingMethod({ cartId, shippingMethodId: selected })
-      router.push(`/${countryCode}/checkout?step=payment`)
+      router.push(`/checkout?step=payment`)
     })
   }
 

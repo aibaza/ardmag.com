@@ -11,7 +11,7 @@ export default async function AddressesPage({ params }: Props) {
   const { countryCode } = await params
   const customer = await retrieveCustomer()
 
-  if (!customer) redirect(`/${countryCode}/account`)
+  if (!customer) redirect(`/account`)
 
   const addresses = customer.addresses ?? []
 

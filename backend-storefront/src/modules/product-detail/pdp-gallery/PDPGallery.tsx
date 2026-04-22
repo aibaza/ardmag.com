@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Badge } from '@modules/@shared/components/badge'
+import { imageVariant } from '@lib/util/image-variant'
 
 type BadgeType = 'promo' | 'new' | 'stock-low' | 'custom'
 
@@ -24,8 +25,9 @@ export function PDPGallery({ thumbs, mainImage, badges }: PDPGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
 
-  const currentSrc = images[activeIndex]?.src ?? mainImage.src
+  const currentOriginal = images[activeIndex]?.src ?? mainImage.src
   const currentAlt = images[activeIndex]?.alt ?? mainImage.alt
+  const currentLarge = imageVariant(currentOriginal, "large")
 
   return (
     <>
@@ -39,13 +41,13 @@ export function PDPGallery({ thumbs, mainImage, badges }: PDPGalleryProps) {
               aria-label={thumb.ariaLabel}
               onClick={() => setActiveIndex(i)}
             >
-              <img src={thumb.src} alt={thumb.alt} />
+              <img src={imageVariant(thumb.src!, "tiny")} alt={thumb.alt} width={80} height={80} loading="lazy" />
             </button>
           ))}
         </div>
 
         <div className="pdp-main-img with-real">
-          <img className="main" src={currentSrc} alt={currentAlt} />
+          <img className="main" src={currentLarge} alt={currentAlt} width={1200} height={1200} />
           <div className="badges">
             {badges.map((b, i) => <Badge key={i} type={b.type} label={b.label} />)}
           </div>
@@ -66,7 +68,7 @@ export function PDPGallery({ thumbs, mainImage, badges }: PDPGalleryProps) {
           onClick={() => setLightboxOpen(false)}
         >
           <img
-            src={currentSrc}
+            src={currentOriginal}
             alt={currentAlt}
             style={{ maxWidth: '90vw', maxHeight: '90vh', objectFit: 'contain', borderRadius: 4 }}
             onClick={(e) => e.stopPropagation()}

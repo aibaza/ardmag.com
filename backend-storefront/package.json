@@ -74,5 +74,14 @@
     "react": "19.0.5",
     "react-dom": "19.0.5"
   },
-  "packageManager": "npm@11.6.2"
+  "packageManager": "npm@11.6.2",
+  "browserslist": [
+    ">0.5%",
+    "not dead",
+    "not op_mini all",
+    "chrome >= 111",
+    "firefox >= 111",
+    "safari >= 16",
+    "edge >= 111"
+  ]
 }

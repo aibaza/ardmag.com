@@ -92,7 +92,7 @@ export default async function HomePage({ params }: Props) {
     .filter((c) => c.handle !== 'pachete-promotionale')
     .slice(0, 8)
     .map((cat) => ({
-      href: `/${countryCode}/categories/${cat.handle}`,
+      href: `/categories/${cat.handle}`,
       image: CAT_IMAGE_MAP[cat.handle ?? ''] ?? '/design-temp/cat-echipamente.webp',
       imageAlt: cat.name ?? '',
       label: cat.name ?? '',
@@ -106,7 +106,7 @@ export default async function HomePage({ params }: Props) {
       <main className="page-inner">
 
         {/* HERO -- driven by featured-tagged product; falls back to static copy */}
-        <Hero {...heroProps} />
+        <Hero {...heroProps} headingLevel="h1" />
 
         {/* Quick categories -- real Medusa categories, ordered by admin rank */}
         <QuickCategories items={quickCatItems} />
@@ -117,7 +117,7 @@ export default async function HomePage({ params }: Props) {
             <SectionHead
               eyebrow="Pachete Promoționale"
               title="Seturi complete"
-              seeAllHref={`/${countryCode}/categories/pachete-promotionale`}
+              seeAllHref={`/categories/pachete-promotionale`}
               seeAllLabel="Vezi toate pachetele →"
             />
             <ProductGrid
@@ -134,7 +134,7 @@ export default async function HomePage({ params }: Props) {
             <SectionHead
               eyebrow={`Promoții active · ${promoProducts.length} produse`}
               title="La reducere"
-              seeAllHref={`/${countryCode}/promotii`}
+              seeAllHref={`/promotii`}
               seeAllLabel="Toate promoțiile →"
             />
             <ProductGrid
@@ -159,13 +159,13 @@ export default async function HomePage({ params }: Props) {
           allHref="#"
           allLabel="Vezi toți partenerii →"
           suppliers={[
-            { href: "#", image: "/design-temp/dist-tenax.png", imageAlt: "Tenax", sub: "Italia · 1960" },
-            { href: "#", image: "/design-temp/dist-sait.png", imageAlt: "Sait", sub: "Italia · 1953" },
-            { href: "#", image: "/design-temp/dist-woosuk.png", imageAlt: "Woosuk", sub: "Korea" },
-            { href: "#", image: "/design-temp/dist-diatex.png", imageAlt: "Diatex", sub: "Franța" },
-            { href: "#", image: "/design-temp/dist-fox.png", imageAlt: "Fox Ironstone", sub: "Italia" },
-            { href: "#", image: "/design-temp/dist-vbt.png", imageAlt: "VBT", sub: "Italia" },
-            { href: "#", image: "/design-temp/dist-delta.png", imageAlt: "Delta Research", sub: "Cluj-Napoca" },
+            { href: "#", image: "/design-temp/dist-tenax.webp", imageAlt: "Tenax", sub: "Italia · 1960" },
+            { href: "#", image: "/design-temp/dist-sait.webp", imageAlt: "Sait", sub: "Italia · 1953" },
+            { href: "#", image: "/design-temp/dist-woosuk.webp", imageAlt: "Woosuk", sub: "Korea" },
+            { href: "#", image: "/design-temp/dist-diatex.webp", imageAlt: "Diatex", sub: "Franța" },
+            { href: "#", image: "/design-temp/dist-fox.webp", imageAlt: "Fox Ironstone", sub: "Italia" },
+            { href: "#", image: "/design-temp/dist-vbt.webp", imageAlt: "VBT", sub: "Italia" },
+            { href: "#", image: "/design-temp/dist-delta.webp", imageAlt: "Delta Research", sub: "Cluj-Napoca" },
           ]}
         />
 
@@ -175,7 +175,7 @@ export default async function HomePage({ params }: Props) {
             <SectionHead
               eyebrow="Recent adăugate"
               title="Produse noi în stoc"
-              seeAllHref={`/${countryCode}/categories/diverse`}
+              seeAllHref={`/categories/diverse`}
               seeAllLabel="Toate produsele →"
             />
             <ProductGrid

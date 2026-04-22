@@ -17,8 +17,8 @@ import { HttpTypes } from "@medusajs/types"
 export const metadata: Metadata = {
   title: "Toate produsele",
   description: "Catalogul complet ardmag - scule si consumabile pentru prelucrarea pietrei naturale.",
-  alternates: { canonical: "/ro/produse" },
-  openGraph: { title: "Toate produsele", url: "/ro/produse" },
+  alternates: { canonical: "/produse" },
+  openGraph: { title: "Toate produsele", url: "/produse" },
 }
 
 const VALID_PAGE_SIZES = [20, 40, 60]
@@ -96,7 +96,7 @@ export default async function ProdusePage({ params, searchParams }: Props) {
   })
   const productCards = sortedProducts.map((p) => productToCard(p, countryCode))
 
-  const baseUrl = `/${countryCode}/produse`
+  const baseUrl = `/produse`
 
   const activeFilters: Array<{ label: string; paramKey: "brand" | "material" | "price"; value?: string }> = []
   for (const b of activeBrands) {

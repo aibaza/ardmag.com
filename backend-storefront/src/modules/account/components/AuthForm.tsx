@@ -16,7 +16,7 @@ export function AuthForm({ countryCode }: AuthFormProps) {
   async function handleLogin(prevState: string | null, formData: FormData) {
     const result = await login(prevState, formData)
     if (!result) {
-      router.push(`/${countryCode}/account`)
+      router.push(`/account`)
       return null
     }
     return result
@@ -25,7 +25,7 @@ export function AuthForm({ countryCode }: AuthFormProps) {
   async function handleSignup(prevState: string | null, formData: FormData) {
     const result = await signup(prevState, formData)
     if (!result) {
-      router.push(`/${countryCode}/account`)
+      router.push(`/account`)
       return null
     }
     return result as string
@@ -132,11 +132,11 @@ export function AuthForm({ countryCode }: AuthFormProps) {
               />
               <label htmlFor="terms" style={{ ...labelStyle, marginBottom: 0, cursor: "pointer" }}>
                 Sunt de acord cu{" "}
-                <a href={`/${countryCode}/termeni-si-conditii`} style={{ color: "var(--brand-500)" }}>
+                <a href={`/termeni-si-conditii`} style={{ color: "var(--brand-500)" }}>
                   Termenii si Conditiile
                 </a>{" "}
                 si{" "}
-                <a href={`/${countryCode}/politica-confidentialitate`} style={{ color: "var(--brand-500)" }}>
+                <a href={`/politica-confidentialitate`} style={{ color: "var(--brand-500)" }}>
                   Politica de Confidentialitate
                 </a>
               </label>

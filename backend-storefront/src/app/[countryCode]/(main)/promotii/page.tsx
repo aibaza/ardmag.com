@@ -17,8 +17,8 @@ import { HttpTypes } from "@medusajs/types"
 export const metadata: Metadata = {
   title: "Produse la reducere",
   description: "Toate produsele cu reducere activa - preturi reduse real, nu cosmetice.",
-  alternates: { canonical: "/ro/promotii" },
-  openGraph: { title: "Produse la reducere", url: "/ro/promotii" },
+  alternates: { canonical: "/promotii" },
+  openGraph: { title: "Produse la reducere", url: "/promotii" },
 }
 
 const VALID_PAGE_SIZES = [20, 40, 60]
@@ -119,7 +119,7 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
   })
   const productCards = sortedProducts.map((p) => productToCard(p, countryCode))
 
-  const baseUrl = `/${countryCode}/promotii`
+  const baseUrl = `/promotii`
 
   const activeFilters: Array<{ label: string; paramKey: "brand" | "material" | "price"; value?: string }> = []
   for (const b of activeBrands) {

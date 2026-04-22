@@ -183,14 +183,14 @@ export default async function OrderConfirmedPage({ params }: Props) {
               style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}
             >
               <a
-                href={`/${countryCode}/account/orders`}
+                href={`/account/orders`}
                 className="btn secondary md"
                 style={{ justifyContent: "center" }}
               >
                 Comenzile mele
               </a>
               <a
-                href={`/${countryCode}/categories`}
+                href={`/categories`}
                 className="btn ghost md"
                 style={{ justifyContent: "center" }}
               >
