@@ -42,10 +42,10 @@ export function FastNav() {
       prefetched.add(href)
       // RSC router cache (used on subsequent client-side nav)
       router.prefetch(href)
-      // Explicit fetch — warms server-side Next.js fetch cache + visible in DevTools
+      // Explicit fetch - warms server-side Next.js fetch cache + visible in DevTools
       fetch(href, {
         headers: { "Purpose": "prefetch", "Sec-Purpose": "prefetch" },
-        // @ts-ignore — priority is non-standard but supported in Chrome
+        // @ts-ignore - priority is non-standard but supported in Chrome
         priority: "low",
       }).catch(() => {})
     }

@@ -4,7 +4,7 @@ import { SiteFooter } from "@modules/layout/site-footer"
 
 export const metadata: Metadata = {
   title: "Termeni si conditii | ardmag.com",
-  description: "Termeni si conditii de utilizare ardmag.com — ARC ROM DIAMONDS SRL, CUI 13828707.",
+  description: "Termeni si conditii de utilizare ardmag.com - ARC ROM DIAMONDS SRL, CUI 13828707.",
 }
 
 const UPDATED = "Aprilie 2026"
@@ -83,7 +83,7 @@ export default async function TermeniPage({
 
         <h2 style={h2Style}>6. Garantie</h2>
         <p style={pStyle}>
-          Produsele beneficiaza de garantie legala de conformitate conform Legii 449/2003 — 2 ani de la livrare
+          Produsele beneficiaza de garantie legala de conformitate conform Legii 449/2003 - 2 ani de la livrare
           pentru persoane fizice. Defectele de fabricatie sunt acoperite de garantie. Uzura normala, deteriorarea
           cauzata de utilizare incorecta sau modificarile aduse produsului nu sunt acoperite.
         </p>

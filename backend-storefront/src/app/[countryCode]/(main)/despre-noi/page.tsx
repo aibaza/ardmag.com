@@ -5,7 +5,7 @@ import { SiteFooter } from "@modules/layout/site-footer"
 export const metadata: Metadata = {
   title: "Despre noi | ardmag.com",
   description:
-    "ARC ROM DIAMONDS SRL — distribuitor autorizat Tenax, producator Delta Research. 25 de ani pe piata pietrei naturale din Romania.",
+    "ARC ROM DIAMONDS SRL - distribuitor autorizat Tenax, producator Delta Research. 25 de ani pe piata pietrei naturale din Romania.",
 }
 
 export default async function DespreNoiPage({
@@ -23,14 +23,14 @@ export default async function DespreNoiPage({
           Despre noi
         </h1>
         <p style={{ color: "var(--fg-muted)", fontFamily: "var(--f-mono)", marginBottom: 40 }}>
-          ARC ROM DIAMONDS SRL — activi din 2001
+          ARC ROM DIAMONDS SRL - activi din 2001
         </p>
 
         <section style={{ marginBottom: 40 }}>
           <p style={{ lineHeight: 1.7, marginBottom: 16 }}>
             Suntem prezenti pe piata consumabilelor pentru prelucrarea pietrei naturale din 2001.
             Compania ofera solutii tehnice complete in domeniul extragerii, prelucrarii, montarii,
-            tratarii, curatarii si intretinerii pietrelor ornamentale — marmura, travertin, andezit.
+            tratarii, curatarii si intretinerii pietrelor ornamentale - marmura, travertin, andezit.
           </p>
           <p style={{ lineHeight: 1.7, marginBottom: 16 }}>
             <strong>CEL MAI MARE DISTRIBUITOR TENAX DIN ROMANIA.</strong>{" "}

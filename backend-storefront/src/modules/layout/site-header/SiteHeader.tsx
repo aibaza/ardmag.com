@@ -80,7 +80,7 @@ export function SiteHeader({
           </div>
         </div>
 
-        {/* Desktop: category nav — live from API */}
+        {/* Desktop: category nav - live from API */}
         <nav className="cat-nav"><div className="wrap">
           <a href={categoriesHref} className="all"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M2 4h12M2 8h12M2 12h12"/></svg>Toate categoriile</a>
           {categories.map((cat) => (

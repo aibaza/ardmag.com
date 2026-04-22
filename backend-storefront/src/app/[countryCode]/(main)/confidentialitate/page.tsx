@@ -5,7 +5,7 @@ import { SiteFooter } from "@modules/layout/site-footer"
 export const metadata: Metadata = {
   title: "Politica de confidentialitate | ardmag.com",
   description:
-    "Politica de prelucrare a datelor cu caracter personal — ARC ROM DIAMONDS SRL, conform GDPR (Regulamentul UE 2016/679).",
+    "Politica de prelucrare a datelor cu caracter personal - ARC ROM DIAMONDS SRL, conform GDPR (Regulamentul UE 2016/679).",
 }
 
 const UPDATED = "Aprilie 2026"
@@ -56,10 +56,10 @@ export default async function ConfidentialitatePage({
         <p style={pStyle}>Datele sunt prelucrate pentru:</p>
         <ul style={{ lineHeight: 2, paddingLeft: 20, marginBottom: 14 }}>
           <li>Procesarea si livrarea comenzilor (temei: executarea contractului)</li>
-          <li>Comunicatii tranzactionale — confirmare comanda, actualizari livrare (temei: executarea contractului)</li>
+          <li>Comunicatii tranzactionale - confirmare comanda, actualizari livrare (temei: executarea contractului)</li>
           <li>Suport client (temei: interesul legitim al Operatorului)</li>
-          <li>Newsletter / comunicari comerciale (temei: consimtamantul tau — retractabil oricand)</li>
-          <li>Obligatii legale — facturare, raportari fiscale (temei: obligatie legala)</li>
+          <li>Newsletter / comunicari comerciale (temei: consimtamantul tau - retractabil oricand)</li>
+          <li>Obligatii legale - facturare, raportari fiscale (temei: obligatie legala)</li>
         </ul>
 
         <h2 style={h2Style}>3. Drepturile tale</h2>
@@ -95,10 +95,10 @@ export default async function ConfidentialitatePage({
           Nu vindem datele tale. Le partajam doar cu:
         </p>
         <ul style={{ lineHeight: 2, paddingLeft: 20, marginBottom: 14 }}>
-          <li>Curierii parteneri (Fan Courier, Sameday, Cargus, Posta Romana) — date necesare livrarii</li>
-          <li>Procesatorul de plati Stripe — date necesare tranzactiei (nu stocam datele cardului)</li>
-          <li>Furnizori de servicii tehnice (hosting, email) — sub acorduri de prelucrare a datelor</li>
-          <li>Autoritati publice — cand suntem obligati legal</li>
+          <li>Curierii parteneri (Fan Courier, Sameday, Cargus, Posta Romana) - date necesare livrarii</li>
+          <li>Procesatorul de plati Stripe - date necesare tranzactiei (nu stocam datele cardului)</li>
+          <li>Furnizori de servicii tehnice (hosting, email) - sub acorduri de prelucrare a datelor</li>
+          <li>Autoritati publice - cand suntem obligati legal</li>
         </ul>
 
         <h2 style={h2Style}>6. Cookies</h2>

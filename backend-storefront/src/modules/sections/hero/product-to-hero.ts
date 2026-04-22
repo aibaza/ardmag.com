@@ -51,7 +51,7 @@ export function productToHero(
         { value: "24h", label: "livrare Cluj" },
       ]
 
-  // sideCards: not derivable from a single product — leave empty
+  // sideCards: not derivable from a single product - leave empty
   const sideCards: HeroProps['sideCards'] = Array.isArray(heroMeta.sideCards)
     ? (heroMeta.sideCards as HeroProps['sideCards'])
     : []

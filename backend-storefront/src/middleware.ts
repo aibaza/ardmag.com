@@ -84,7 +84,7 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname
 
-  // pass through static file requests (by extension) — e.g. _next/image origin fetches
+  // pass through static file requests (by extension) - e.g. _next/image origin fetches
   if (pathname.includes(".")) {
     return NextResponse.next()
   }
@@ -112,7 +112,7 @@ export async function middleware(request: NextRequest) {
     return response
   }
 
-  // No country code in URL — rewrite internally to /{countryCode}/path so Next.js
+  // No country code in URL - rewrite internally to /{countryCode}/path so Next.js
   // routing works, while keeping the clean URL visible to the user.
   const rewritePath = pathname === "/" ? `/${countryCode}` : `/${countryCode}${pathname}`
   const rewriteUrl = new URL(`${rewritePath}${request.nextUrl.search}`, request.url)

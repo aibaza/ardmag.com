@@ -91,7 +91,7 @@ export default async function LivrareSimPlataPage({
         </table>
 
         <div style={{ background: "var(--brand-50, #f0f9ff)", border: "1px solid var(--brand-200, #bae6fd)", borderRadius: "var(--r-md)", padding: "16px 20px", marginBottom: 32 }}>
-          <strong>Livrare gratuita la comenzi de peste 500 RON</strong> — se aplica automat la checkout pentru Fan Courier.
+          <strong>Livrare gratuita la comenzi de peste 500 RON</strong> - se aplica automat la checkout pentru Fan Courier.
         </div>
 
         <h2 style={h2Style}>Procesare comanda</h2>

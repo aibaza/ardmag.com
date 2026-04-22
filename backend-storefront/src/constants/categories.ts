@@ -1,4 +1,4 @@
-// Ardmag product categories — single source of truth
+// Ardmag product categories - single source of truth
 // Handles verified against Medusa backend 2026-04-19
 export const CATEGORIES = [
   { handle: "mastici-tenax",         name: "MASTICI TENAX",          productCount: 20 },

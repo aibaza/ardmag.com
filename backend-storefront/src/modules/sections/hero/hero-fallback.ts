@@ -3,7 +3,7 @@ import type { Hero } from './Hero'
 
 type HeroProps = Parameters<typeof Hero>[0]
 
-// Extracted verbatim from page.tsx static Hero props — no copy invented here
+// Extracted verbatim from page.tsx static Hero props - no copy invented here
 export function getHeroFallback(countryCode: string): HeroProps {
   return {
     kicker: "Promo luna aprilie · până pe 30",

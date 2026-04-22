@@ -71,7 +71,7 @@ export default function ProductPage() {
               { label: '10 buc', variantId: 'preview-v9', discount: '−15%' },
             ]},
           ]}
-          stockLabel="În stoc — 24 bucăți"
+          stockLabel="În stoc - 24 bucăți"
           stockLocation="Cluj · 24h"
           addToCartLabel="Adaugă în coș · 38,40 RON"
           perks={[
@@ -93,14 +93,14 @@ export default function ProductPage() {
       ]}>
           <div className="prose">
             <h3>Disc diamantat Turbo Ultra pentru granit și marmură</h3>
-            <p>Proiectat pentru tăieri rapide și curate în materiale dure — granit, marmură, plăci ceramice. Banda continuă turbo de 10 mm oferă o viteză de avans superioară și o durată de viață cu până la 40% mai lungă față de un disc segmentat echivalent.</p>
+            <p>Proiectat pentru tăieri rapide și curate în materiale dure - granit, marmură, plăci ceramice. Banda continuă turbo de 10 mm oferă o viteză de avans superioară și o durată de viață cu până la 40% mai lungă față de un disc segmentat echivalent.</p>
             <p>Compatibil cu polizoarele unghiulare standard, filet 22.23 mm. Viteza periferică maximă 80 m/s (13.300 rpm la Ø115).</p>
             <h3>Recomandări de utilizare</h3>
             <ul>
               <li>Folosiți sub apă pentru o durată de viață maximă</li>
               <li>Nu depășiți turația maximă marcată pe disc</li>
               <li>Verificați fixarea flanșei înainte de fiecare utilizare</li>
-              <li>Nu e recomandat pentru beton armat dens — folosiți discul DLT-230-SG</li>
+              <li>Nu e recomandat pentru beton armat dens - folosiți discul DLT-230-SG</li>
             </ul>
 
             <h3>Dimensiuni</h3>

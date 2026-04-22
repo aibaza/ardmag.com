@@ -23,7 +23,7 @@ export function SupplierStrip({ heading, allHref, allLabel, suppliers }: Supplie
       </header>
       <div className="supplier-grid">
         {suppliers.map((s, i) => (
-          <a key={i} href={s.href} className="slogo with-real" aria-label={`${s.imageAlt} — distribuitor`}><span className="real"><Image src={s.image} alt={s.imageAlt} width={160} height={80} loading="lazy" /></span><span className="sub">{s.sub}</span></a>
+          <a key={i} href={s.href} className="slogo with-real" aria-label={`${s.imageAlt} - distribuitor`}><span className="real"><Image src={s.image} alt={s.imageAlt} width={160} height={80} loading="lazy" /></span><span className="sub">{s.sub}</span></a>
         ))}
       </div>
     </div>

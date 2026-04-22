@@ -18,7 +18,7 @@ export const listProducts = async ({
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductListParams
   countryCode?: string
   regionId?: string
-  /** Skip auth headers and per-user cache tags — for public/static pages */
+  /** Skip auth headers and per-user cache tags - for public/static pages */
   publicFetch?: boolean
 }): Promise<{
   response: { products: HttpTypes.StoreProduct[]; count: number }
