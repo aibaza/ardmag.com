@@ -14,6 +14,13 @@ export const sdk = new Medusa({
   publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
 })
 
+/** Static SDK — no locale header, no cookies() read. Use for ISR/static pages. */
+export const staticSdk = new Medusa({
+  baseUrl: MEDUSA_BACKEND_URL,
+  debug: false,
+  publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+})
+
 const originalFetch = sdk.client.fetch.bind(sdk.client)
 
 sdk.client.fetch = async <T>(

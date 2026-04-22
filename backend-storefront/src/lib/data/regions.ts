@@ -1,6 +1,6 @@
 "use server"
 
-import { sdk } from "@lib/config"
+import { sdk, staticSdk } from "@lib/config"
 import medusaError from "@lib/util/medusa-error"
 import { HttpTypes } from "@medusajs/types"
 import { getCacheOptions, getCacheOptionsStatic } from "./cookies"
@@ -10,7 +10,7 @@ export const listRegions = async ({ staticCache = false }: { staticCache?: boole
     ? getCacheOptionsStatic("regions")
     : { ...(await getCacheOptions("regions")) }
 
-  return sdk.client
+  return (staticCache ? staticSdk : sdk).client
     .fetch<{ regions: HttpTypes.StoreRegion[] }>(`/store/regions`, {
       method: "GET",
       next,

@@ -1,6 +1,6 @@
 "use server"
 
-import { sdk } from "@lib/config"
+import { sdk, staticSdk } from "@lib/config"
 import { sortProducts } from "@lib/util/sort-products"
 import { HttpTypes } from "@medusajs/types"
 import { SortOptions } from "@lib/util/sort-products"
@@ -54,7 +54,7 @@ export const listProducts = async ({
     ? getCacheOptionsStatic("products")
     : { ...(await getCacheOptions("products")) }
 
-  return sdk.client
+  return (publicFetch ? staticSdk : sdk).client
     .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
       `/store/products`,
       {

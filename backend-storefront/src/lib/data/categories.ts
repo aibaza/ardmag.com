@@ -1,4 +1,4 @@
-import { sdk } from "@lib/config"
+import { sdk, staticSdk } from "@lib/config"
 import { HttpTypes } from "@medusajs/types"
 import { getCacheOptions, getCacheOptionsStatic } from "./cookies"
 
@@ -12,7 +12,7 @@ export const listCategories = async (
 
   const limit = query?.limit || 100
 
-  return sdk.client
+  return (staticCache ? staticSdk : sdk).client
     .fetch<{ product_categories: HttpTypes.StoreProductCategory[] }>(
       "/store/product-categories",
       {
