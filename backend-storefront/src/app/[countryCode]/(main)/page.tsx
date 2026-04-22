@@ -34,11 +34,11 @@ type Props = {
 export const revalidate = 1800
 
 export const metadata: Metadata = {
-  title: "ARDMAG — Precizie solida. 25 de ani.",
+  title: "ARDMAG — Experți în piatră de peste 25 de ani",
   description: "Distribuitor autorizat Tenax in Romania. Scule diamantate, mastici, abrazive si consumabile pentru prelucrarea pietrei naturale. Livrare 24-48h in toata tara.",
   alternates: { canonical: "/ro" },
   openGraph: {
-    title: "ARDMAG — Precizie solida. 25 de ani.",
+    title: "ARDMAG — Experți în piatră de peste 25 de ani",
     description: "Distribuitor autorizat Tenax in Romania. Scule diamantate, mastici si consumabile pentru ateliere de piatra.",
     url: "/ro",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ARDMAG — Experti in piatra de peste 25 de ani" }],

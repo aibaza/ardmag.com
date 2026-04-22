@@ -485,7 +485,7 @@ Niciun competitor romanesc nu are video. Tenax USA are demo-uri. Hoffmann Group 
 
 ### Principiu 9: Ton direct, fara corporate speak
 
-Nike nu spune "solutie completa de footwear pentru atletism de inalta performanta". Spune "Just Do It" si arata un atlet in actiune. Under Armour spune "Protect This House." ardmag are tagline-ul "PRECIZIE SOLIDA" -- e bun, dar tot textul de pe site trebuie sa sustina acelasi ton: direct, ferm, tehnic fara jargon inutil.
+Nike nu spune "solutie completa de footwear pentru atletism de inalta performanta". Spune "Just Do It" si arata un atlet in actiune. Under Armour spune "Protect This House." ardmag are tagline-ul "Experți în piatră de peste 25 de ani" -- tot textul de pe site trebuie sa sustina acelasi ton: direct, ferm, tehnic fara jargon inutil.
 
 **Aplicare ardmag:** Revizuieste orice text de produs sau descriere de categorie care contine "solutie completa", "calitate superioara", "la cele mai inalte standarde". Inlocuieste cu specificatii sau cu beneficii masurabile.
 

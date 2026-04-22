@@ -69,7 +69,7 @@ export function SiteHeader({
 
         {/* Desktop: main bar */}
         <div className="main-bar">
-          <a className="logo" href="/"><Image src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" /><div className="tag">25 de ani pe piatra</div></a>
+          <a className="logo" href="/"><Image src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
           <form className="search-combo" role="search" onSubmit={handleSearchSubmit}>
             <input type="search" name="q" placeholder="Cauta produs sau brand..." aria-label="cautare" suppressHydrationWarning />
             <button type="submit"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><span>Cauta</span></button>

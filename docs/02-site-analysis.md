@@ -43,7 +43,7 @@ Surse: WebFetch pe homepage, sitemap, 3 pagini de produs, 2 pagini de categorie,
 - Activitate: extragere, prelucrare, montare, tratare, curățare și întreținere pietre ornamentale (marmură, travertin, andezit)
 - Claim validat: **"CEL MAI MARE DISTRIBUITOR TENAX DIN ROMÂNIA"**
 - Tagline aprobat: **"25 DE ANI. LA MILIMETRU."**
-- Mark logo: **"PRECIZIE SOLIDĂ"**
+- Tagline: **"Experți în piatră de peste 25 de ani"**
 - Distribuție în **12-18 țări**
 
 ### Divizia Delta Research

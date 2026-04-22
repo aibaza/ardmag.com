@@ -141,7 +141,7 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
 <body style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#333">
   <div style="background:#1e293b;padding:24px;text-align:center">
     <h1 style="color:#fff;margin:0;font-size:20px">ardmag.com</h1>
-    <p style="color:#94a3b8;margin:4px 0 0">PRECIZIE SOLIDA</p>
+    <p style="color:#94a3b8;margin:4px 0 0">Experți în piatră de peste 25 de ani</p>
   </div>
   <div style="padding:32px 24px">
     <h2 style="color:#1e293b">Comanda confirmata #${displayId}</h2>

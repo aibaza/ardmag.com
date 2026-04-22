@@ -15,7 +15,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
     <footer className="site-footer">
       <div className="footer-top">
         <div className="brand-col">
-          <a className="logo" href="/"><Image src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} loading="lazy" sizes="200px" /><div className="tag">25 de ani pe piatra</div></a>
+          <a className="logo" href="/"><Image src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} loading="lazy" sizes="200px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
           <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
           <div className="contact"><div className="phone">Tel. <strong>+40 722 155 441</strong></div><div>office@arcromdiamonds.ro</div><div>Calea Baciului 1-3 · Cluj-Napoca</div></div>
         </div>

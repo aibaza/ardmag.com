@@ -12,7 +12,7 @@ Companie: prezentă pe piață din 2001, cel mai mare distribuitor Tenax din Rom
 
 **Track A — Implementare (tu, Claude Code):** bootstrap Medusa v2, import catalog din CSV, API-uri, admin, logică de business, deploy pe localhost. Acesta este track-ul tău.
 
-**Track B — Design (Ciprian cu Claude prin artifacts):** UI/UX complet nou pornind de la logo + tagline "PRECIZIE SOLIDĂ" cu paleta slate/grey. Outputul din track-ul B ajunge în `resources/design/` sub formă de design tokens, componente HTML/React de referință și/sau screenshot-uri.
+**Track B — Design (Ciprian cu Claude prin artifacts):** UI/UX complet nou pornind de la logo + tagline "Experți în piatră de peste 25 de ani" cu paleta slate/grey. Outputul din track-ul B ajunge în `resources/design/` sub formă de design tokens, componente HTML/React de referință și/sau screenshot-uri.
 
 **Tu NU inventezi design.** Nicio decizie vizuală (culori, fonturi, spacing, layout, componente) nu se ia fără input din track-ul B. Dacă ai nevoie de o decizie vizuală pentru ca ceva să funcționeze, marchezi cu `// DESIGN PENDING: <ce aștepți>` în cod și adaugi o linie în `docs/design-pending.md`. Storefront-ul rulează pe template-ul oficial Next.js starter Medusa (neutru, nestilizat) până la livrarea designului.
 
@@ -117,8 +117,7 @@ Dacă lipsește copy pentru o secțiune, lasă spațiul gol sau folosește tagli
 - office@arcromdiamonds.ro
 - Livrare gratuită peste 500 RON
 - Promoție -30% Mastici Tenax (aplicată la checkout)
-- Tagline: "25 DE ANI. LA MILIMETRU."
-- Mark logo: "PRECIZIE SOLIDĂ"
+- Tagline: "Experți în piatră de peste 25 de ani"
 - Furnizori: Tenax, Sait, Woosuk, Diatex, Fox Ironstone, VBT, Delta Research
 - ANPC link prezent pe toate paginile
 
