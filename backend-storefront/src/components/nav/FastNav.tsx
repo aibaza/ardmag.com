@@ -56,8 +56,17 @@ export function FastNav() {
       if (e.defaultPrevented) return
       const a = findAnchor(e.target)
       if (!a || !isEligibleForFastActivate(a)) return
+      const href = a.getAttribute("href")!
       e.preventDefault()
-      router.push(a.getAttribute("href")!)
+      // fallback to hard nav if router.push doesn't complete in 2s (e.g. RSC stream error)
+      const fallback = setTimeout(() => { window.location.href = href }, 2000)
+      const prevUrl = window.location.href
+      router.push(href)
+      // cancel fallback once navigation starts (URL changes)
+      requestAnimationFrame(function check() {
+        if (window.location.href !== prevUrl) { clearTimeout(fallback); return }
+        requestAnimationFrame(check)
+      })
     }
 
     document.addEventListener("mouseover", onMouseOver, { passive: true })
