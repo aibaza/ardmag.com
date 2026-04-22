@@ -159,16 +159,16 @@ export default async function HomePage({ params }: Props) {
         {/* Supplier strip */}
         <SupplierStrip
           heading="Distribuitor autorizat pentru"
-          allHref="#"
+          allHref="/produse"
           allLabel="Vezi toți partenerii →"
           suppliers={[
-            { href: "#", image: "/design-temp/dist-tenax.webp", imageAlt: "Tenax", sub: "Italia · 1960" },
-            { href: "#", image: "/design-temp/dist-sait.webp", imageAlt: "Sait", sub: "Italia · 1953" },
-            { href: "#", image: "/design-temp/dist-woosuk.webp", imageAlt: "Woosuk", sub: "Korea" },
-            { href: "#", image: "/design-temp/dist-diatex.webp", imageAlt: "Diatex", sub: "Franța" },
-            { href: "#", image: "/design-temp/dist-fox.webp", imageAlt: "Fox Ironstone", sub: "Italia" },
-            { href: "#", image: "/design-temp/dist-vbt.webp", imageAlt: "VBT", sub: "Italia" },
-            { href: "#", image: "/design-temp/dist-delta.webp", imageAlt: "Delta Research", sub: "Cluj-Napoca" },
+            { href: "/produse?brand=tenax", image: "/design-temp/dist-tenax.webp", imageAlt: "Tenax", sub: "Italia · 1960" },
+            { href: "/produse?brand=sait", image: "/design-temp/dist-sait.webp", imageAlt: "Sait", sub: "Italia · 1953" },
+            { href: "/produse?brand=woosuk", image: "/design-temp/dist-woosuk.webp", imageAlt: "Woosuk", sub: "Korea" },
+            { href: "/produse?brand=diatex", image: "/design-temp/dist-diatex.webp", imageAlt: "Diatex", sub: "Franța" },
+            { href: "/produse?brand=fox-ironstone", image: "/design-temp/dist-fox.webp", imageAlt: "Fox Ironstone", sub: "Italia" },
+            { href: "/produse?brand=vbt", image: "/design-temp/dist-vbt.webp", imageAlt: "VBT", sub: "Italia" },
+            { href: "/produse?brand=delta-research", image: "/design-temp/dist-delta.webp", imageAlt: "Delta Research", sub: "Cluj-Napoca" },
           ]}
         />
 
