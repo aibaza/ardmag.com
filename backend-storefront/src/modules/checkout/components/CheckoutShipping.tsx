@@ -14,7 +14,11 @@ interface Props {
 export function CheckoutShipping({ cartId, countryCode, shippingOptions }: Props) {
   const [selected, setSelected] = useState<string | null>(shippingOptions[0]?.id ?? null)
   const [isPending, startTransition] = useTransition()
-  const [calc, setCalc] = useState<Record<string, number | "loading" | "error">>({})
+  const [calc, setCalc] = useState<Record<string, number | "loading" | "error">>(() => {
+    const init: Record<string, "loading"> = {}
+    shippingOptions.filter((o) => (o as any).price_type === "calculated").forEach((o) => { init[o.id] = "loading" })
+    return init
+  })
   const router = useRouter()
 
   useEffect(() => {

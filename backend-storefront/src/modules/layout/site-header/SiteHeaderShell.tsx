@@ -1,4 +1,5 @@
 import { listCategories } from "@lib/data/categories"
+import { retrieveCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { SiteHeader } from "./SiteHeader"
 
@@ -23,10 +24,13 @@ export async function SiteHeaderShell(props: SiteHeaderShellProps) {
       count: (c as any).products?.length ?? 0,
     }))
 
+  const cart = await retrieveCart().catch(() => null)
+  const cartItemCount = cart?.items?.reduce((sum, item) => sum + (item.quantity ?? 0), 0) ?? 0
+
   return (
     <SiteHeader
       {...props}
-      cartItemCount={0}
+      cartItemCount={cartItemCount}
       categories={drawerCategories}
       countryCode={props.countryCode}
     />
