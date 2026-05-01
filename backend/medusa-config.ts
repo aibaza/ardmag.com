@@ -62,6 +62,16 @@ if (paymentProviders.length > 0) {
   })
 }
 
+modules.push({
+  resolve: "@medusajs/medusa/fulfillment",
+  options: {
+    providers: [
+      { resolve: "@medusajs/medusa/fulfillment-manual", id: "manual" },
+      { resolve: "./src/modules/fulfillment-fan-courier", id: "fan-courier" },
+    ],
+  },
+})
+
 if (process.env.SMTP2GO_API_KEY || process.env.SMTP_HOST) {
   modules.push({
     resolve: "./src/modules/notification-smtp2go",
