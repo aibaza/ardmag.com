@@ -1,0 +1,9 @@
+{
+  "experimentalServices": {
+    "backend": {
+      "entrypoint": "backend",
+      "routePrefix": "/",
+      "framework": "vite"
+    }
+  }
+}

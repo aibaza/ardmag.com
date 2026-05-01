@@ -19,63 +19,82 @@
 
 | Serviciu | Platforma | URL |
 |---|---|---|
-| Backend API + Admin | Railway | https://api.ardmag.surcod.ro |
-| Storefront | Vercel | https://ardmag.surcod.ro |
-| PostgreSQL | Railway (addon) | gestionat de Railway |
-| Redis | Railway (addon) | gestionat de Railway |
+| Storefront (Next.js) | Self-hosted, 10.57.1.100:8000 | https://ardmag.surmont.co |
+| Backend Admin + API | Self-hosted, 10.57.1.100:9000 | https://admin.ardmag.surmont.co |
+| Backend API (storefront) | Railway | https://api.ardmag.surcod.ro |
+| PostgreSQL | Self-hosted, localhost:5432/ardmag | pe aceeasi masina |
+| Redis | Docker container `redis-ardmag`, localhost:6379 | pe aceeasi masina |
+| Reverse proxy | OpenResty pe 10.57.1.10 | termina SSL, proxiaza la 10.57.1.100 |
 | Object storage (imagini) | Cloudflare R2 | https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev |
-| DNS | Cloudflare | surcod.ro zone |
-| Container images | GHCR | ghcr.io/aibaza/ardmag-backend:latest |
+| DNS | Cloudflare | surmont.co zone |
 
 ---
 
 ## URL-uri de productie
 
-- **Storefront:** https://ardmag.surcod.ro
-- **Backend API:** https://api.ardmag.surcod.ro
-- **Admin panel:** https://api.ardmag.surcod.ro/app
-- **Health check:** https://api.ardmag.surcod.ro/health (trebuie sa returneze 200)
+- **Storefront:** https://ardmag.surmont.co
+- **Admin panel:** https://admin.ardmag.surmont.co/app
+- **Health check backend local:** http://10.57.1.100:9000/health
+- **API Railway (folosit de storefront):** https://api.ardmag.surcod.ro
+
+---
+
+## Infrastructura self-hosted
+
+Masina de productie: IP extern 188.24.19.120, IP LAN 10.57.1.100.
+
+### Servicii systemd (user dc)
+
+```bash
+# status
+systemctl --user status ardmag-backend.service
+systemctl --user status ardmag-storefront.service
+
+# restart
+systemctl --user restart ardmag-backend.service
+systemctl --user restart ardmag-storefront.service
+
+# logs
+journalctl --user -u ardmag-backend.service -n 50
+journalctl --user -u ardmag-storefront.service -n 50
+```
+
+Ambele servicii sunt enabled (pornesc automat la boot via linger: `loginctl enable-linger dc`).
+
+### Redis
+
+```bash
+docker start redis-ardmag      # pornire manuala daca e cazul
+docker ps | grep redis-ardmag  # verifica status
+```
+
+Containerul are `--restart unless-stopped` - porneste automat cu Docker daemon.
+
+### Note importante
+
+- `medusa start` ruleaza din `backend/` (directorul sursa), nu din `.medusa/server/`
+- Admin build-ul trebuie sa existe la `backend/public/admin/` - daca lipseste, copiaza din `backend/.medusa/server/public/admin/`
+- OpenResty (10.57.1.10) nu e pe aceeasi masina - nu ai SSH access direct; config-ul lui nu e in repo
 
 ---
 
 ## DNS Setup (Cloudflare)
 
-Ambele recorduri sunt DNS-only (gray cloud - proxy Cloudflare dezactivat).
-
 | Record | Tip | Target |
 |---|---|---|
-| ardmag.surcod.ro | CNAME | cname.vercel-dns.com |
+| ardmag.surmont.co | A | 188.24.19.120 |
+| admin.ardmag.surmont.co | A | 188.24.19.120 |
 | api.ardmag.surcod.ro | CNAME | vulr3lsz.up.railway.app |
-
-Subdomeniile `.surmont.co` sunt folosite pentru dev local (Cloudflare Tunnel pe laptopul lui Ciprian) si nu sunt relevante pentru productie.
 
 ---
 
-## Railway - Backend
+## Railway - Backend API (pentru storefront)
+
+Storefront-ul (`ardmag.surmont.co`) face fetch-uri la `https://api.ardmag.surcod.ro` - acesta e un backend Medusa separat pe Railway. Gestionat independent.
 
 ### Port
 
-Railway asigneaza automat `PORT=8080`. Medusa trebuie sa asculte pe acest port, nu pe 9000 (care e default-ul Medusa pentru dev local).
-
-### Start command
-
-```
-npx medusa db:migrate && npx medusa start
-```
-
-Migratiile ruleaza automat la fiecare deploy, inainte de pornirea serverului.
-
-### Variabile de mediu
-
-Toate secretele sunt setate ca environment variables in Railway dashboard. Nu exista fisiere `.env` pe Railway. Valorile concrete sunt in `docs/deployment/SECRETS.md` (uz intern SurCod, nu se da clientului).
-
----
-
-## Vercel - Storefront
-
-Storefront-ul Next.js este deploiat pe Vercel conectat la repo-ul GitHub. Deploy automat la push pe branch-ul principal.
-
-Variabilele de mediu sunt setate in Vercel dashboard (Settings > Environment Variables). Valorile concrete sunt in `docs/deployment/SECRETS.md`.
+Railway asigneaza automat `PORT=8080`.
 
 ---
 
@@ -89,25 +108,25 @@ R2 serveste toate imaginile de produs. Bucket-ul are acces public activat. Crede
 
 ---
 
-## Docker / GHCR - Container Flow
+## Deploy - Backend self-hosted
 
-Exista doua Dockerfile-uri in `backend/`:
-
-- **`backend/Dockerfile.ghcr`** - build real. Compileaza aplicatia, instaleaza dependintele, produce imaginea finala.
-- **`backend/Dockerfile`** - FROM-only. Contine doar `FROM ghcr.io/aibaza/ardmag-backend:latest`. Acesta este fisierul pe care il foloseste Railway.
-
-Logica: Railway nu face build local - trage imaginea pre-built din GHCR. Noi facem build local si push pe GHCR, Railway detecteaza imaginea noua si redeploy-uieste automat.
-
-### Deploy flow complet
+La modificari de cod in `backend/`:
 
 ```bash
 cd backend
 npm run build
-docker build -f Dockerfile.ghcr -t ghcr.io/aibaza/ardmag-backend:latest .
-docker push ghcr.io/aibaza/ardmag-backend:latest
+# copiaza admin build daca lipseste:
+# cp -r .medusa/server/public/admin public/admin
+systemctl --user restart ardmag-backend.service
 ```
 
-Dupa push, Railway trage automat imaginea noua si restarteaza serviciul.
+La modificari in `backend-storefront/`:
+
+```bash
+cd backend-storefront
+npm run build
+systemctl --user restart ardmag-storefront.service
+```
 
 ---
 
@@ -149,6 +168,9 @@ ardmag.com/
 ## Smoke test productie
 
 ```bash
-cd backend-storefront
-BASE_URL=https://ardmag.surcod.ro npx playwright test tests/e2e/smoke.spec.ts --project=chromium-desktop
+# health check backend
+curl https://admin.ardmag.surmont.co/health
+
+# storefront
+curl -I https://ardmag.surmont.co/
 ```
