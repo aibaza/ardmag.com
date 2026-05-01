@@ -184,9 +184,14 @@ function parseSolutiiDelta(): Entry[] {
       const cant = String(row[1] ?? "").trim()
       const price = parseNum(row[2])
       const weightKg = parseNum(row[3])
-      if (den) curProd = den.toUpperCase()
+      if (den) curProd = den.toUpperCase().replace(/\s+/g, " ").trim()
       if (!curProd || !cant || !price) continue
-      const variantTitle = `${curProd} / ${normCant(cant)}`
+      let cantNorm = normCant(cant)
+      // SABBIATORE AX/F vine ca "5 LITRI" in XLS dar DB are "5 KG" (acelasi produs)
+      if (curProd.startsWith("SABBIATORE") && cantNorm === "5 LITRI") cantNorm = "5 KG"
+      // ECO DRY in XLS = ECO DRY + in DB (omis semnul + in lista de preturi)
+      if (curProd === "ECO DRY") curProd = "ECO DRY +"
+      const variantTitle = `${curProd} / ${cantNorm}`
       entries.push({ productTitle, variantTitle, price, weightKg, source: `${sheet} R${r}` })
     }
   }
