@@ -22,6 +22,30 @@ type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
   inventory_quantity?: number | null
 }
 
+// Cauta varianta care pastreaza cat mai multe optiuni din activeVariant,
+// dar schimba dimensiunea specificata la noua valoare.
+function bestMatchingVariant(
+  candidates: VariantWithCalcPrice[],
+  activeVariant: VariantWithCalcPrice,
+  changedDimension: string
+): VariantWithCalcPrice {
+  const activeOpts = new Map(
+    (activeVariant.options ?? [])
+      .filter((o) => o.option?.title !== changedDimension)
+      .map((o) => [o.option?.title, o.value])
+  )
+  let best = candidates[0]
+  let bestScore = -1
+  for (const v of candidates) {
+    let score = 0
+    for (const [dim, val] of activeOpts) {
+      if ((v.options ?? []).some((o) => o.option?.title === dim && o.value === val)) score++
+    }
+    if (score > bestScore) { bestScore = score; best = v }
+  }
+  return best
+}
+
 function isOutOfStock(variant: VariantWithCalcPrice): boolean {
   return variant.manage_inventory === true && variant.inventory_quantity === 0
 }
@@ -105,7 +129,9 @@ export function productToPdpVariantSelector(
         variantsWithValue.length > 0 &&
         variantsWithValue.every((v) => isOutOfStock(v))
 
-      const firstMatchingVariant = variantsWithValue[0]
+      const firstMatchingVariant = variantsWithValue.length > 0
+        ? bestMatchingVariant(variantsWithValue, activeVariant, dimensionTitle)
+        : undefined
       const variantId = firstMatchingVariant?.id ?? variants[0]?.id ?? ""
       const discount = firstMatchingVariant
         ? variantDiscountLabel(firstMatchingVariant)
