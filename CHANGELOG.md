@@ -5,6 +5,40 @@ Format: [date] type: description
 
 ---
 
+## 2026-05-01 — Catalog: preturi corecte, variante BUC., cleanup
+
+### Preturi + greutati (Railway prod)
+
+- fix(scripts): `update-all-prices-weights.ts` -- parseNum suporta format romanesc `1.100,00`
+- fix(scripts): DISCURI DE TAIERE -- format variant corect `DISC {stone} / {model} / {size} / {flanso}`
+- fix(scripts): K-series -- MARM->MARMURA DRY, PAV->PODELE, EDGE->PRESTIGE/PREMIUM EDGE
+- fix(scripts): PAD POLIMASTER -- format corect cu inch (`17"`), HEX pentru 13"
+- fix(scripts): CAROTE fara prefix D, BURGHIU cu sufix ` mm`
+- fix(scripts): FREZE -- mapping explicit per tip (TALER, TURBO PIATRA/BETON, SEMIBASTON, BASTON)
+- fix(scripts): PERIE OTEL/INOX -- combinate in DB ca varianta unica
+- fix(scripts): VEL/SAITDISC CUTIE/BAX -- multiplica pret per bucata × cantitate (bug critic)
+- aplicat pe Railway: 490 variante cu pret actualizat, 532 variante cu greutate
+
+### Variante BUC. per bucata
+
+- feat(scripts): `scripts/add-buc-variants.ts` -- script nou, adauga variante per bucata
+- feat(db): 51 variante BUC. noi pe DISCHETE DE SLEFUIT CU CARBURA (VEL + SAITDISC, toate granulatiile), fiecare cu price_set + inventory complet wirat
+- sincronizat pe local DB pentru consistenta cu scriptul de update preturi
+
+### Cleanup catalog
+
+- fix(db): MASA DE TAIAT arhivata (status=draft, variante soft-deleted) -- fabrica furnizorului a inchis
+- fix(db): POMPA CU APA mutata in categoria DIVERSE
+- fix(db): categoria MESE DE TAIAT soft-deleted
+
+### Storefront: variant selector
+
+- fix(adapter): `product-to-pdp-variant-selector.ts` -- selectie context-aware; la click pe o optiune pastreaza cat mai multe din selectiile curente
+- efect: SAITDISC + diametru 125 functioneaza impreuna; parametrii nu se mai reseteaza
+- test: `tests/e2e/variant-selector.spec.ts` -- 3 scenarii, toate PASS
+
+---
+
 ## 2026-04-20 — Checkout RO complet: livrare, plata, finalizare comanda
 
 ### Livrare Romania
