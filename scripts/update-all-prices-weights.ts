@@ -598,36 +598,42 @@ function parseSait(): Entry[] {
       entries.push({ productTitle: "DISCHETE DE ȘLEFUIT CU CARBURĂ", variantTitle, price: finalPrice, weightKg, source: src })
     }
 
-    // SAITRON 125/180 → DISCURI DE ȘLEFUIT CU CARBURĂ (produs nou)
+    // SAITRON 125/180 → DISCURI DE ȘLEFUIT CU CARBURĂ
+    // DB format: "SAITRON / {size} / {gr} / BUCATĂ (1 BUC.)" | "SAITRON / {size} / {gr} / CUTIE (10 BUC.)"
     else if (curProduct.startsWith("SAITRON 125") || curProduct.startsWith("SAITRON 180")) {
       const size = curProduct.startsWith("SAITRON 125") ? "125" : "180"
       const grMatch = curProduct.match(/GR\.\s*(\d+)/)
       const gr = grMatch ? grMatch[1] : null
       if (!gr) continue
 
-      let um = col1
-      if (um === "BUC.") um = "BUC."
-      else if (um.startsWith("CUTIE 10")) um = "CUTIE 10 BUC."
+      let cant: string | null = null
+      if (col1 === "BUC.") cant = "BUCATĂ (1 BUC.)"
+      else if (col1.startsWith("CUTIE 10")) cant = "CUTIE (10 BUC.)"
+      if (!cant) continue
 
-      const variantTitle = `SAITRON ${size} / ${gr} / ${um}`
+      const variantTitle = `SAITRON / ${size} / ${gr} / ${cant}`
       entries.push({ productTitle: "DISCURI DE ȘLEFUIT CU CARBURĂ", variantTitle, price, weightKg, source: src })
     }
 
-    // SAITRIS 180 → DISCURI DE ȘLEFUIT CU CARBURĂ (produs nou)
+    // SAITRIS 180 → DISCURI DE ȘLEFUIT CU CARBURĂ
+    // DB format: "SAITRIS / 180 / {gr} / BUCATĂ (1 BUC.)"
     else if (curProduct.startsWith("SAITRIS 180")) {
       const grMatch = curProduct.match(/GR\.\s*(\d+)/)
       const gr = grMatch ? grMatch[1] : null
       if (!gr) continue
-      const variantTitle = `SAITRIS 180 / ${gr} / BUC.`
+      if (col1 !== "BUC.") continue
+      const variantTitle = `SAITRIS / 180 / ${gr} / BUCATĂ (1 BUC.)`
       entries.push({ productTitle: "DISCURI DE ȘLEFUIT CU CARBURĂ", variantTitle, price, weightKg, source: src })
     }
 
-    // EK WIENNER → DISCURI DE ȘLEFUIT CU CARBURĂ (produs nou)
+    // EK WIENNER → DISCURI DE ȘLEFUIT CU CARBURĂ
+    // DB format: "EK WIENNER / {size} / STANDARD / BUCATĂ (1 BUC.)"
     else if (curProduct.startsWith("EK WIENNER")) {
       const sizeMatch = curProduct.match(/EK WIENNER (\d+)/)
       const size = sizeMatch ? sizeMatch[1] : null
       if (!size) continue
-      const variantTitle = `EK WIENNER ${size} / BUC.`
+      if (col1 !== "buc." && col1.toUpperCase() !== "BUC.") continue
+      const variantTitle = `EK WIENNER / ${size} / STANDARD / BUCATĂ (1 BUC.)`
       entries.push({ productTitle: "DISCURI DE ȘLEFUIT CU CARBURĂ", variantTitle, price, weightKg, source: src })
     }
 
@@ -656,7 +662,7 @@ function parseSait(): Entry[] {
       const sizeMatch = curProduct.match(/SUPORT VELCROPAD (\d+)/)
       const size = sizeMatch ? sizeMatch[1] : null
       if (!size) continue
-      entries.push({ productTitle: "DISCURI DE ȘLEFUIT CU CARBURĂ", variantTitle: `VELCROPAD ${size} / BUC.`, price, weightKg, source: src })
+      entries.push({ productTitle: "DISCURI DE ȘLEFUIT CU CARBURĂ", variantTitle: `VELCROPAD / ${size} / STANDARD / BUCATĂ (1 BUC.)`, price, weightKg, source: src })
     }
   }
 
