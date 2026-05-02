@@ -7,8 +7,7 @@ export const CATEGORIES = [
   { handle: "slefuire-piatra",       name: "ȘLEFUIRE PIATRĂ",        productCount: 10 },
   { handle: "discuri-de-taiere",     name: "DISCURI DE TĂIERE",      productCount: 7  },
   { handle: "abrazivi-si-perii",     name: "ABRAZIVI ȘI PERII",      productCount: 3  },
-  { handle: "mese-de-taiat",         name: "MESE DE TĂIAT",          productCount: 2  },
-  { handle: "pachete-promotionale",  name: "PACHETE PROMOȚIONALE",   productCount: 1  },
+  { handle: "seturi-complete",        name: "SETURI COMPLETE",         productCount: 1  },
   { handle: "abrazivi-oala",         name: "ABRAZIVI OALĂ",          productCount: 1  },
 ] as const
 

@@ -23,8 +23,7 @@ const CAT_IMAGE_MAP: Record<string, string> = {
   'diverse': '/design-temp/cat-diverse-thumb.webp',
   'abrazivi-si-perii': '/design-temp/cat-abrazivi-perii-thumb.webp',
   'abrazivi-oala': '/design-temp/cat-abrazivi-oala-thumb.webp',
-  'mese-de-taiat': '/design-temp/cat-mese-thumb.webp',
-  'pachete-promotionale': '/design-temp/cat-pachete-thumb.webp',
+  'seturi-complete': '/design-temp/cat-pachete-thumb.webp',
 }
 
 type Props = {
@@ -87,13 +86,8 @@ export default async function HomePage({ params }: Props) {
     })
     .slice(0, 4)
 
-  // Use admin rank order from API; separate pachete-promotionale
-  const pacheteCat = categories.find((c) => c.handle === 'pachete-promotionale')
-  const pacheteIds = new Set(((pacheteCat as any)?.products ?? []).map((p: any) => p.id as string))
-  const pacheteProducts = allProducts.filter((p) => pacheteIds.has(p.id)).slice(0, 4)
-
   const quickCatItems = categories
-    .filter((c) => c.handle !== 'pachete-promotionale')
+    .filter((c) => c.handle !== 'mese-de-taiat')
     .slice(0, 8)
     .map((cat) => ({
       href: `/categories/${cat.handle}`,
@@ -114,23 +108,6 @@ export default async function HomePage({ params }: Props) {
 
         {/* Quick categories -- real Medusa categories, ordered by admin rank */}
         <QuickCategories items={quickCatItems} />
-
-        {/* Pachete Promoționale -- separate section */}
-        {pacheteProducts.length > 0 && (
-          <>
-            <SectionHead
-              eyebrow="Pachete Promoționale"
-              title="Seturi complete"
-              seeAllHref={`/categories/pachete-promotionale`}
-              seeAllLabel="Vezi toate pachetele →"
-            />
-            <ProductGrid
-              variant="mini"
-              products={pacheteProducts.map((p) => productToCard(p, countryCode))}
-              countryCode={countryCode}
-            />
-          </>
-        )}
 
         {/* Promo products -- real data with promo:30 tag */}
         {promoProducts.length > 0 && (

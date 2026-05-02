@@ -17,7 +17,7 @@ export async function SiteHeaderShell(props: SiteHeaderShellProps) {
   )
 
   const drawerCategories = categories
-    .filter((c) => c.handle !== 'pachete-promotionale')
+    .filter((c) => c.handle !== 'mese-de-taiat')
     .map((c) => ({
       name: c.name ?? '',
       handle: c.handle ?? '',
