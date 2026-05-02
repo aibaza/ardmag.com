@@ -8,23 +8,37 @@ interface OrderRowProps {
 function getStatusInfo(status: string): { label: string; className: string } {
   switch (status) {
     case "pending":
-      return { label: "In asteptare", className: "badge" }
+      return { label: "In asteptare", className: "badge stock-low" }
     case "completed":
       return { label: "Finalizata", className: "badge stock-in" }
     case "cancelled":
       return { label: "Anulata", className: "badge" }
+    case "requires_action":
+      return { label: "Actiune necesara", className: "badge stock-low" }
     default:
       return { label: status, className: "badge" }
   }
 }
 
 function formatTotal(amount: number, currencyCode?: string): string {
-  const value = (amount / 100).toFixed(2).replace(".", ",")
-  return `${value} ${(currencyCode ?? "RON").toUpperCase()}`
+  return `${(amount / 100).toFixed(2).replace(".", ",")} ${(currencyCode ?? "RON").toUpperCase()}`
 }
 
-export function OrderRow({ order, countryCode }: OrderRowProps) {
-  const date = new Date(order.created_at!).toLocaleDateString("ro-RO")
+function formatRelativeDate(date: string | Date): string {
+  const diffMs = Date.now() - new Date(date).getTime()
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+  if (diffDays < 1) return "azi"
+  if (diffDays < 2) return "ieri"
+  if (diffDays < 14) return `acum ${diffDays} ${diffDays === 1 ? "zi" : "zile"}`
+  return new Date(date).toLocaleDateString("ro-RO", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  })
+}
+
+export function OrderRow({ order }: OrderRowProps) {
+  const dateLabel = formatRelativeDate(order.created_at ?? "")
   const { label: statusLabel, className: statusClass } = getStatusInfo(order.status ?? "pending")
   const total = formatTotal(order.total ?? 0, order.currency_code)
 
@@ -42,8 +56,8 @@ export function OrderRow({ order, countryCode }: OrderRowProps) {
       <span style={{ fontFamily: "var(--f-mono)", fontWeight: 600, fontSize: 13 }}>
         #{order.display_id}
       </span>
-      <span style={{ color: "var(--fg-muted)", fontSize: 13, fontFamily: "var(--f-mono)" }}>
-        {date}
+      <span style={{ color: "var(--fg-muted)", fontSize: 12, fontFamily: "var(--f-mono)" }}>
+        {dateLabel}
       </span>
       <span className={statusClass}>{statusLabel}</span>
       <span style={{ fontWeight: 600, fontFamily: "var(--f-mono)", fontSize: 13, textAlign: "right" }}>
