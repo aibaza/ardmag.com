@@ -57,6 +57,8 @@
   .btn.inv{background:#fff;color:var(--stone-900);border-color:#fff}
   .btn.inv:hover{background:var(--stone-100)}
   .btn svg{width:16px;height:16px;flex-shrink:0}
+  .btn .spin{width:14px;height:14px;border:1.5px solid currentColor;border-right-color:transparent;border-radius:50%;animation:_spin 700ms linear infinite;flex-shrink:0}
+  @keyframes _spin{to{transform:rotate(360deg)}}
 
   .badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--f-mono);font-size:10px;font-weight:500;line-height:1;padding:4px 7px;border-radius:var(--r-sm);letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap}
   .badge.dot::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:0.9}
@@ -849,6 +851,13 @@ a.badge:hover{transform:translateY(-1px)}
 
 /* panel-body cu padding standard */
 .panel-body.padded{padding:16px 20px}
+
+/* form grids -- address forms */
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-row-3{display:grid;grid-template-columns:2fr 2fr 120px;gap:12px}
+@media(max-width:560px){
+  .form-row-3{grid-template-columns:1fr}
+}
 
 @media(max-width:860px){
   /* Swap desktop header chrome for mobile */
