@@ -30,7 +30,7 @@ type Props = {
   params: Promise<{ countryCode: string }>
 }
 
-export const revalidate = 1800
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: "ARDMAG - Experți în piatră de peste 25 de ani",
