@@ -14,7 +14,8 @@ export default function ProduseError({
   const [exhausted, setExhausted] = useState(false)
 
   useEffect(() => {
-    if (error.name === "AbortError") { reset(); return }
+    const isNavCancel = error.name === "AbortError" || error.message?.includes("input stream")
+    if (isNavCancel) { reset(); return }
 
     console.error("[produse] page error:", error)
 

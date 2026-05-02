@@ -20,7 +20,8 @@ export default function GlobalError({
       error.message?.includes("Importing a module script failed")
 
     if (isChunkError) { window.location.reload(); return }
-    if (error.name === "AbortError") { reset(); return }
+    const isNavCancel = error.name === "AbortError" || error.message?.includes("input stream")
+    if (isNavCancel) { reset(); return }
 
     console.error("[global-error]", error)
     const t = setTimeout(() => setShowError(true), 1500)
