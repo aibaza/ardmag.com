@@ -68,11 +68,11 @@ export default async function DashboardPage({ params }: Props) {
         <div className="panel" style={{ marginBottom: 0, textAlign: "center", padding: "24px 20px" }}>
           {lastOrder ? (
             <>
-              <div style={{ fontSize: 20, fontWeight: 700, lineHeight: 1, fontFamily: "var(--f-mono)" }}>
-                #{lastOrder.display_id}
+              <div style={{ fontSize: 24, fontWeight: 700, lineHeight: 1, fontFamily: "var(--f-mono)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {formatRelativeDate(lastOrder.created_at ?? "")}
               </div>
               <div style={{ fontSize: 11, color: "var(--fg-muted)", marginTop: 8, fontFamily: "var(--f-mono)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                {formatRelativeDate(lastOrder.created_at ?? "")}
+                Ultima comanda · #{lastOrder.display_id}
               </div>
             </>
           ) : (
