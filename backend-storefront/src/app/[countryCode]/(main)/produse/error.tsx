@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { DiscLoader } from "@modules/@shared/components/disc-loader/DiscLoader"
 
 export default function ProduseError({
   error,
@@ -13,7 +14,6 @@ export default function ProduseError({
   const [exhausted, setExhausted] = useState(false)
 
   useEffect(() => {
-    // AbortError = navigation cancelled an in-flight fetch -- transparent reset
     if (error.name === "AbortError") { reset(); return }
 
     console.error("[produse] page error:", error)
@@ -41,17 +41,9 @@ export default function ProduseError({
     )
   }
 
-  // Transient error — show spinner while auto-retrying
   return (
     <main className="page-inner" style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "40vh" }}>
-      <div style={{
-        width: 32, height: 32,
-        border: "3px solid var(--stone-200)",
-        borderTopColor: "var(--brand-500)",
-        borderRadius: "50%",
-        animation: "spin 700ms linear infinite",
-      }} />
-      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+      <DiscLoader size={72} />
     </main>
   )
 }
