@@ -190,7 +190,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
                 Comenzile mele
               </a>
               <a
-                href={`/categories`}
+                href={`/${countryCode}/produse`}
                 className="btn ghost md"
                 style={{ justifyContent: "center" }}
               >

@@ -86,7 +86,7 @@ export default async function DashboardPage({ params }: Props) {
       {/* Quick Actions */}
       <div className="dash-grid-3" style={{ marginBottom: 24 }}>
         {[
-          { label: "Continua cumparaturile", href: `/${countryCode}/categories` },
+          { label: "Continua cumparaturile", href: `/${countryCode}/produse` },
           { label: "Adresele mele", href: `/account/addresses` },
           { label: "Profilul meu", href: `/account/profile` },
         ].map(({ label, href }) => (
@@ -116,7 +116,7 @@ export default async function DashboardPage({ params }: Props) {
         <div className="panel">
           <div className="panel-body padded" style={{ textAlign: "center", padding: "32px 24px" }}>
             <p style={{ color: "var(--fg-muted)", marginBottom: 16 }}>Nu ai comenzi inca.</p>
-            <a href={`/${countryCode}/categories`} className="btn primary md">
+            <a href={`/${countryCode}/produse`} className="btn primary md">
               Cumpara acum
             </a>
           </div>

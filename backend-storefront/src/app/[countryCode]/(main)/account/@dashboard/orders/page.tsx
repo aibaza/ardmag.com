@@ -22,7 +22,7 @@ export default async function OrdersPage({ params }: Props) {
     return (
       <div className="panel" style={{ padding: "32px 24px", textAlign: "center" }}>
         <p style={{ color: "var(--fg-muted)", marginBottom: 16 }}>Nu ai comenzi inca.</p>
-        <a href="/categories" className="btn primary md">
+        <a href={`/${countryCode}/produse`} className="btn primary md">
           Incepe cumparaturile
         </a>
       </div>
