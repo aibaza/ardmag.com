@@ -48,14 +48,25 @@ export function FastNav() {
       }).catch(() => {})
     }
 
+    let pendingAnchor: HTMLAnchorElement | null = null
+
     const onMouseDown = (e: MouseEvent) => {
       if (e.button !== 0) return
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
       if (e.defaultPrevented) return
       const a = findAnchor(e.target)
       if (!a || !isEligibleForFastActivate(a)) return
-      const href = a.getAttribute("href")!
       e.preventDefault()
+      pendingAnchor = a
+    }
+
+    const onMouseUp = (e: MouseEvent) => {
+      if (e.button !== 0) return
+      const pressed = pendingAnchor
+      pendingAnchor = null
+      if (!pressed) return
+      if (findAnchor(e.target) !== pressed) return
+      const href = pressed.getAttribute("href")!
       const fallback = setTimeout(() => { window.location.href = href }, 2000)
       const prevUrl = window.location.href
       router.push(href)
@@ -67,9 +78,11 @@ export function FastNav() {
 
     document.addEventListener("mouseover", onMouseOver, { passive: true })
     document.addEventListener("mousedown", onMouseDown)
+    document.addEventListener("mouseup", onMouseUp)
     return () => {
       document.removeEventListener("mouseover", onMouseOver)
       document.removeEventListener("mousedown", onMouseDown)
+      document.removeEventListener("mouseup", onMouseUp)
     }
   }, [router])
 
