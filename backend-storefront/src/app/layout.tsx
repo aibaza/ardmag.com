@@ -71,6 +71,21 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <GoogleAnalytics />
         <MetaPixel />
         <FastNav />
+        {/* Speculation Rules API: prefetch nativ browser la mousedown (Chrome/Edge 121+).
+            Complementar cu FastNav — browserul gestionează automat save-data/battery-saver.
+            Doar prefetch, niciodată prerender (incompatibil cu Next.js SPA/RSC). */}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prefetch: [{
+                source: "document",
+                where: { href_matches: "/*", not: { href_matches: ["/api/*", "/_next/*"] } },
+                eagerness: "conservative",
+              }],
+            }),
+          }}
+        />
       </body>
     </html>
   )
