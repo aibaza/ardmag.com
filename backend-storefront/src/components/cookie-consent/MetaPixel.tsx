@@ -11,6 +11,7 @@ export function MetaPixel() {
       const consent = getCookieConsent()
       if (consent?.marketing && PIXEL_ID && typeof window.fbq !== "undefined") {
         window.fbq("consent", "grant")
+        window.fbq("track", "PageView")
       }
     }
 
@@ -35,7 +36,6 @@ export function MetaPixel() {
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('consent', 'revoke');
           fbq('init', '${PIXEL_ID}');
-          fbq('track', 'PageView');
         `}
       </Script>
     </>
