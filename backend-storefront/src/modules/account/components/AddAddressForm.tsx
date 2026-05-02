@@ -1,8 +1,7 @@
 "use client"
 import { useState, useActionState } from "react"
 import { addCustomerAddress } from "@lib/data/customer"
-import { AddressFields, Field, ProvinceSelect, PostalField, inputStyle, labelStyle } from "@modules/checkout/components/AddressFieldsShared"
-import { JUDETE_RO } from "@lib/data/romania"
+import { AddressFields } from "@modules/checkout/components/AddressFieldsShared"
 
 interface Props {
   countryCode: string
@@ -12,10 +11,7 @@ export function AddAddressForm({ countryCode }: Props) {
   const [open, setOpen] = useState(false)
 
   const [state, action] = useActionState(
-    async (
-      prev: { success: boolean; error: string | null },
-      formData: FormData
-    ) => {
+    async (prev: { success: boolean; error: string | null }, formData: FormData) => {
       const result = await addCustomerAddress({}, formData)
       if (result?.success) setOpen(false)
       return result ?? { success: false, error: "Eroare necunoscuta" }
@@ -25,12 +21,7 @@ export function AddAddressForm({ countryCode }: Props) {
 
   if (!open) {
     return (
-      <button
-        type="button"
-        className="btn secondary md"
-        onClick={() => setOpen(true)}
-        style={{ marginBottom: 16 }}
-      >
+      <button type="button" className="btn secondary md" onClick={() => setOpen(true)} style={{ marginBottom: 16 }}>
         + Adauga adresa noua
       </button>
     )
@@ -39,46 +30,50 @@ export function AddAddressForm({ countryCode }: Props) {
   return (
     <div className="panel" style={{ marginBottom: 16 }}>
       <div className="panel-head">
-        <h4 style={{ fontFamily: "var(--f-sans)", fontWeight: 600 }}>Adresa noua</h4>
+        <h3>Adresa noua</h3>
       </div>
-      <div className="panel-body">
-        <form action={action}>
+      <div className="panel-body padded">
+        <form action={action} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <input type="hidden" name="country_code" value={countryCode} />
 
-          {/* Eticheta adresa */}
-          <div style={{ marginBottom: 12 }}>
-            <label style={labelStyle}>Eticheta (ex: Acasa, Birou)</label>
-            <input name="address_name" style={inputStyle} placeholder="Acasa" />
+          <div className="field">
+            <label>Eticheta (ex: Acasa, Birou)</label>
+            <div className="input-shell md">
+              <input name="address_name" placeholder="Acasa" />
+            </div>
           </div>
 
           <AddressFields prefix="" defaults={undefined} />
 
-          {/* Campuri optionale */}
-          <div style={{ marginBottom: 12 }}>
-            <label style={labelStyle}>Adresa (linie 2, optional)</label>
-            <input name="address_2" style={inputStyle} />
+          <div className="field">
+            <label>Adresa linie 2 (optional)</label>
+            <div className="input-shell md">
+              <input name="address_2" />
+            </div>
           </div>
-          <div style={{ marginBottom: 12 }}>
-            <label style={labelStyle}>Companie (optional)</label>
-            <input name="company" style={inputStyle} />
-          </div>
-
-          {/* Default flags */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 12 }}>
-            <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", fontFamily: "var(--f-sans)", fontSize: 14 }}>
-              <input type="checkbox" name="is_default_shipping" style={{ width: 16, height: 16 }} />
-              Livrare implicita
-            </label>
-            <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", fontFamily: "var(--f-sans)", fontSize: 14 }}>
-              <input type="checkbox" name="is_default_billing" style={{ width: 16, height: 16 }} />
-              Facturare implicita
-            </label>
+          <div className="field">
+            <label>Companie (optional)</label>
+            <div className="input-shell md">
+              <input name="company" />
+            </div>
           </div>
 
-          {state.error && (
-            <p style={{ color: "var(--brand-600)", fontSize: 12, marginBottom: 8 }}>{state.error}</p>
-          )}
-          <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <label className="check-row">
+              <input type="checkbox" name="is_default_shipping" />
+              <span className="check-box" />
+              <span className="label">Livrare implicita</span>
+            </label>
+            <label className="check-row">
+              <input type="checkbox" name="is_default_billing" />
+              <span className="check-box" />
+              <span className="label">Facturare implicita</span>
+            </label>
+          </div>
+
+          {state.error && <p className="hint error">{state.error}</p>}
+
+          <div style={{ display: "flex", gap: 8 }}>
             <button type="submit" className="btn primary sm">Salveaza adresa</button>
             <button type="button" className="btn ghost sm" onClick={() => setOpen(false)}>Anuleaza</button>
           </div>

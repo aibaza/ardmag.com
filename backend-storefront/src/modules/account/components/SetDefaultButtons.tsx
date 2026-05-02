@@ -20,26 +20,14 @@ export function SetDefaultButtons({ addressId, isDefaultShipping, isDefaultBilli
   if (isDefaultShipping && isDefaultBilling) return null
 
   return (
-    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
+    <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 10 }}>
       {!isDefaultShipping && (
-        <button
-          type="button"
-          className="btn ghost sm"
-          onClick={() => handleSet("shipping")}
-          disabled={isPending}
-          style={{ fontSize: 12 }}
-        >
+        <button type="button" className="btn secondary sm" onClick={() => handleSet("shipping")} disabled={isPending}>
           Seteaza livrare implicita
         </button>
       )}
       {!isDefaultBilling && (
-        <button
-          type="button"
-          className="btn ghost sm"
-          onClick={() => handleSet("billing")}
-          disabled={isPending}
-          style={{ fontSize: 12 }}
-        >
+        <button type="button" className="btn secondary sm" onClick={() => handleSet("billing")} disabled={isPending}>
           Seteaza facturare implicita
         </button>
       )}

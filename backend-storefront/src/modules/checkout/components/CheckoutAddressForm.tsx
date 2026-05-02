@@ -2,7 +2,7 @@
 import { useActionState, useState } from "react"
 import { setAddresses } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
-import { AddressFields, inputStyle, labelStyle } from "./AddressFieldsShared"
+import { AddressFields } from "./AddressFieldsShared"
 import { SavedAddressPicker } from "./SavedAddressPicker"
 
 interface Props {
@@ -36,7 +36,6 @@ export function CheckoutAddressForm({
     savedAddresses[0]?.id ??
     null
 
-  // null = "new address" mode; string = picked saved address
   const [selectedShippingId, setSelectedShippingId] = useState<string | null>(
     hasAddresses && !cartShippingAddress?.address_1 ? (defaultShippingId ?? null) : null
   )
@@ -48,38 +47,27 @@ export function CheckoutAddressForm({
 
   const useNewShipping = selectedShippingId === null
   const useNewBilling = selectedBillingId === null
-
   const email = cartEmail || customerEmail || ""
 
   return (
-    <form action={action}>
+    <form action={action} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <input type="hidden" name="shipping_address.country_code" value="ro" />
-      {!sameAsBilling && (
-        <input type="hidden" name="billing_address.country_code" value="ro" />
-      )}
+      {!sameAsBilling && <input type="hidden" name="billing_address.country_code" value="ro" />}
+      {!useNewShipping && <input type="hidden" name="shipping_address_id" value={selectedShippingId!} />}
+      {!sameAsBilling && !useNewBilling && <input type="hidden" name="billing_address_id" value={selectedBillingId!} />}
 
-      {/* Hidden field: saved address ID (when picker mode) */}
-      {!useNewShipping && (
-        <input type="hidden" name="shipping_address_id" value={selectedShippingId!} />
-      )}
-      {!sameAsBilling && !useNewBilling && (
-        <input type="hidden" name="billing_address_id" value={selectedBillingId!} />
-      )}
+      <h3 style={{ fontWeight: 600, margin: 0 }}>Adresa de livrare</h3>
 
-      <h3 style={{ fontFamily: "var(--f-sans)", fontWeight: 600, marginBottom: 16 }}>
-        Adresa de livrare
-      </h3>
-
-      {/* Email — afisat doar daca nu e logat sau cartul nu are email */}
       {!email && (
-        <div style={{ marginBottom: 12 }}>
-          <label style={labelStyle}>Email *</label>
-          <input type="email" name="email" required style={inputStyle} />
+        <div className="field">
+          <label>Email *</label>
+          <div className="input-shell md">
+            <input type="email" name="email" required />
+          </div>
         </div>
       )}
       {email && <input type="hidden" name="email" value={email} />}
 
-      {/* Shipping: picker sau form */}
       {hasAddresses ? (
         <>
           <SavedAddressPicker
@@ -89,50 +77,46 @@ export function CheckoutAddressForm({
             mode="shipping"
           />
           {useNewShipping && (
-            <div style={{ marginTop: 16 }}>
+            <>
               <AddressFields prefix="shipping_address" defaults={cartShippingAddress ?? undefined} />
               {isLoggedIn && (
-                <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, cursor: "pointer" }}>
-                  <input type="checkbox" name="save_to_account" defaultChecked style={{ width: 16, height: 16 }} />
-                  <span style={{ fontFamily: "var(--f-sans)", fontSize: 14 }}>Salveaza adresa in cont</span>
+                <label className="check-row">
+                  <input type="checkbox" name="save_to_account" defaultChecked />
+                  <span className="check-box" />
+                  <span className="label">Salveaza adresa in cont</span>
                 </label>
               )}
-            </div>
+            </>
           )}
         </>
       ) : (
         <>
           <AddressFields prefix="shipping_address" defaults={cartShippingAddress ?? undefined} />
           {isLoggedIn && (
-            <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, cursor: "pointer" }}>
-              <input type="checkbox" name="save_to_account" defaultChecked style={{ width: 16, height: 16 }} />
-              <span style={{ fontFamily: "var(--f-sans)", fontSize: 14 }}>Salveaza adresa in cont</span>
+            <label className="check-row">
+              <input type="checkbox" name="save_to_account" defaultChecked />
+              <span className="check-box" />
+              <span className="label">Salveaza adresa in cont</span>
             </label>
           )}
         </>
       )}
 
-      {/* Same-as-billing toggle */}
-      <div style={{ margin: "16px 0", display: "flex", alignItems: "center", gap: 8 }}>
+      <label className="check-row" style={{ marginTop: 4 }}>
         <input
           type="checkbox"
           id="same_as_billing"
           name="same_as_billing"
           checked={sameAsBilling}
           onChange={(e) => setSameAsBilling(e.target.checked)}
-          style={{ width: 16, height: 16, cursor: "pointer" }}
         />
-        <label htmlFor="same_as_billing" style={{ fontFamily: "var(--f-sans)", fontSize: 14, cursor: "pointer", color: "var(--fg-base)" }}>
-          Adresa de facturare este aceeasi cu cea de livrare
-        </label>
-      </div>
+        <span className="check-box" />
+        <span className="label">Adresa de facturare este aceeasi cu cea de livrare</span>
+      </label>
 
-      {/* Billing address block */}
       {!sameAsBilling && (
         <>
-          <h3 style={{ fontFamily: "var(--f-sans)", fontWeight: 600, marginBottom: 16, marginTop: 8 }}>
-            Adresa de facturare
-          </h3>
+          <h3 style={{ fontWeight: 600, margin: 0 }}>Adresa de facturare</h3>
           {hasAddresses ? (
             <>
               <SavedAddressPicker
@@ -142,9 +126,7 @@ export function CheckoutAddressForm({
                 mode="billing"
               />
               {useNewBilling && (
-                <div style={{ marginTop: 16 }}>
-                  <AddressFields prefix="billing_address" defaults={cartBillingAddress ?? undefined} />
-                </div>
+                <AddressFields prefix="billing_address" defaults={cartBillingAddress ?? undefined} />
               )}
             </>
           ) : (
@@ -153,13 +135,9 @@ export function CheckoutAddressForm({
         </>
       )}
 
-      {error && (
-        <p style={{ color: "var(--brand-600)", fontSize: 13, marginBottom: 12 }}>
-          {error as string}
-        </p>
-      )}
+      {error && <p className="hint error">{error as string}</p>}
 
-      <button type="submit" className="btn primary lg" style={{ width: "100%", marginTop: 8 }}>
+      <button type="submit" className="btn primary lg" style={{ width: "100%" }}>
         Continua spre livrare
       </button>
     </form>
