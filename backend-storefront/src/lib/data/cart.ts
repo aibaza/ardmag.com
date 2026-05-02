@@ -228,13 +228,15 @@ export async function setShippingMethod({
     ...(await getAuthHeaders()),
   }
 
-  return sdk.store.cart
-    .addShippingMethod(cartId, { option_id: shippingMethodId }, {}, headers)
-    .then(async () => {
-      const cartCacheTag = await getCacheTag("carts")
-      revalidateTag(cartCacheTag)
-    })
-    .catch(medusaError)
+  try {
+    await sdk.store.cart.addShippingMethod(cartId, { option_id: shippingMethodId }, {}, headers)
+    const cartCacheTag = await getCacheTag("carts")
+    revalidateTag(cartCacheTag)
+  } catch (e: any) {
+    return medusaError(e)
+  }
+
+  redirect("/checkout?step=payment")
 }
 
 export async function initiatePaymentSession(

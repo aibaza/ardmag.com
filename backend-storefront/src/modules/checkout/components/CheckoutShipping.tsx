@@ -3,7 +3,6 @@ import { useState, useTransition, useEffect } from "react"
 import { setShippingMethod } from "@lib/data/cart"
 import { calculatePriceForShippingOption } from "@lib/data/fulfillment"
 import { HttpTypes } from "@medusajs/types"
-import { useRouter } from "next/navigation"
 
 interface Props {
   cartId: string
@@ -23,8 +22,6 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
     })
     return init
   })
-  const router = useRouter()
-
   useEffect(() => {
     // Fetch async doar pentru optiunile pentru care nu avem pretul de pe server
     shippingOptions
@@ -50,7 +47,6 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
     if (!selected) return
     startTransition(async () => {
       await setShippingMethod({ cartId, shippingMethodId: selected })
-      router.push(`/checkout?step=payment`)
     })
   }
 
