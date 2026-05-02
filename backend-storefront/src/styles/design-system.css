@@ -980,3 +980,16 @@ a.badge:hover{transform:translateY(-1px)}
   .footer-top{grid-template-columns:1fr!important}
   .footer-top .brand-col{grid-template-columns:1fr!important}
 }
+
+/* ── DiscLoader animation ─────────────────────────────── */
+.disc-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: disc-inertia 2.6s infinite;
+}
+@keyframes disc-inertia {
+  0%   { transform: rotate(0deg);   animation-timing-function: cubic-bezier(.15,.7,.2,1); }
+  70%  { transform: rotate(340deg); }
+  100% { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) { .disc-spin { animation: none; } }

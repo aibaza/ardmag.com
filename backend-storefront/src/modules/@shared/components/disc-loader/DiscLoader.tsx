@@ -12,7 +12,7 @@ export function DiscLoader({ size = 80, className }: DiscLoaderProps) {
       style={{ width: size, height: size, flexShrink: 0 }}
     >
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width={size} height={size} style={{ display: "block" }}>
-        <g style={{ transformBox: "fill-box", transformOrigin: "center", animation: "disc-inertia 2.6s infinite" }}>
+        <g className="disc-spin">
           {/* Steel body with gullet slots + relief holes */}
           <path fillRule="evenodd"
             d="M 178 100 A 78 78 0 1 1 22 100 A 78 78 0 1 1 178 100 Z
@@ -55,16 +55,6 @@ export function DiscLoader({ size = 80, className }: DiscLoaderProps) {
           </g>
         </g>
       </svg>
-      <style>{`
-        @keyframes disc-inertia {
-          0%   { transform: rotate(0deg);   animation-timing-function: cubic-bezier(.15,.7,.2,1); }
-          70%  { transform: rotate(340deg); }
-          100% { transform: rotate(360deg); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          [aria-label="Se incarca"] svg g { animation: none !important; }
-        }
-      `}</style>
     </div>
   )
 }
