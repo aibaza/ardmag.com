@@ -14,14 +14,16 @@ export default function ProduseError({
   const [exhausted, setExhausted] = useState(false)
 
   useEffect(() => {
-    const isNavCancel = error.name === "AbortError" || error.message?.includes("input stream")
-    if (isNavCancel) { reset(); return }
+    // AbortError = navigation cancelled fetch — definitively transient, safe to reset immediately
+    if (error.name === "AbortError") { reset(); return }
 
-    console.error("[produse] page error:", error)
+    // Stream error = can recurse if reset() re-triggers stream — rate-limit with delay + counter
+    const isStream = error.message?.includes("input stream")
+    if (!isStream) console.error("[produse] page error:", error)
 
     if (retries.current < 3) {
       retries.current += 1
-      const t = setTimeout(reset, 800)
+      const t = setTimeout(reset, isStream ? 1200 : 800)
       return () => clearTimeout(t)
     }
 
