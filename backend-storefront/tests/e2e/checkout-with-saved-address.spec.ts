@@ -37,11 +37,14 @@ test("Checkout picker: doua adrese salvate, default selectat, billing toggle ara
   await expect(page.locator(".badge.stock-in", { hasText: /livrare implicita/i })).toBeVisible()
 
   // "Aceeasi adresa pentru facturare" e bifat by default
-  const sameCheckbox = page.locator('input[name="same_as_billing"]')
-  await expect(sameCheckbox).toBeChecked()
+  // check-row: input e opacity:0 — verificam prin isChecked(), click pe label
+  const sameLabel = page.locator("label.check-row", { hasText: /aceeasi/i })
+  await expect(sameLabel).toBeVisible()
+  const sameInput = page.locator('input[name="same_as_billing"]')
+  expect(await sameInput.isChecked()).toBe(true)
 
   // Debifa → apare sectiunea billing
-  await sameCheckbox.uncheck()
+  await sameLabel.click()
   await expect(page.locator("h3", { hasText: /facturare/i })).toBeVisible({ timeout: 5000 })
 
   // Picker billing are badge-ul "Facturare implicita" pe Birou

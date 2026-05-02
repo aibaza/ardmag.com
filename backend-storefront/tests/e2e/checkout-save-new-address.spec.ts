@@ -27,10 +27,10 @@ test("Checkout: adresa noua introdusa cu 'Salveaza in cont' apare in account", a
   // Forma direct (fara picker — nu exista adrese salvate)
   await expect(page.locator('input[name="shipping_address.address_1"]')).toBeVisible({ timeout: 10000 })
 
-  // Checkbox "Salveaza in cont" este prezent si bifat implicit
-  const saveCheckbox = page.locator('input[name="save_to_account"]')
-  await expect(saveCheckbox).toBeVisible()
-  await expect(saveCheckbox).toBeChecked()
+  // Checkbox "Salveaza in cont" e prezent (check-row: input e opacity:0, verificam prin isChecked)
+  const saveInput = page.locator('input[name="save_to_account"]')
+  expect(await saveInput.isChecked()).toBe(true)
+  await expect(page.locator("label.check-row", { hasText: /salveaza/i })).toBeVisible()
 
   // Completeaza form-ul
   await page.fill('[name="shipping_address.first_name"]', "Ana")
@@ -100,5 +100,6 @@ test("Checkout: form arata pickerul cand exista adrese salvate", async ({ page, 
   // Click pe "Adresa noua" → apare form-ul manual cu checkbox "Salveaza in cont"
   await page.locator("button", { hasText: /adresa noua/i }).click()
   await expect(page.locator('input[name="shipping_address.address_1"]')).toBeVisible({ timeout: 5000 })
-  await expect(page.locator('input[name="save_to_account"]')).toBeVisible()
+  // check-row: input e opacity:0 — verificam label-ul vizibil
+  await expect(page.locator("label.check-row", { hasText: /salveaza/i })).toBeVisible()
 })
