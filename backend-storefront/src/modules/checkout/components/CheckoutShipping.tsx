@@ -9,23 +9,27 @@ interface Props {
   cartId: string
   countryCode: string
   shippingOptions: HttpTypes.StoreCartShippingOption[]
+  calculatedPrices?: Record<string, number>
 }
 
-export function CheckoutShipping({ cartId, countryCode, shippingOptions }: Props) {
+export function CheckoutShipping({ cartId, countryCode, shippingOptions, calculatedPrices = {} }: Props) {
   const [selected, setSelected] = useState<string | null>(shippingOptions[0]?.id ?? null)
   const [isPending, startTransition] = useTransition()
+  // Initializeaza cu preturile pre-calculate de pe server; fallback async pentru cele lipsa
   const [calc, setCalc] = useState<Record<string, number | "loading" | "error">>(() => {
-    const init: Record<string, "loading"> = {}
-    shippingOptions.filter((o) => (o as any).price_type === "calculated").forEach((o) => { init[o.id] = "loading" })
+    const init: Record<string, number | "loading"> = {}
+    shippingOptions.filter((o) => (o as any).price_type === "calculated").forEach((o) => {
+      init[o.id] = calculatedPrices[o.id] ?? "loading"
+    })
     return init
   })
   const router = useRouter()
 
   useEffect(() => {
+    // Fetch async doar pentru optiunile pentru care nu avem pretul de pe server
     shippingOptions
-      .filter((o) => (o as any).price_type === "calculated")
+      .filter((o) => (o as any).price_type === "calculated" && calc[o.id] === "loading")
       .forEach((o) => {
-        setCalc((c) => ({ ...c, [o.id]: "loading" }))
         calculatePriceForShippingOption(o.id, cartId)
           .then((r) => setCalc((c) => ({ ...c, [o.id]: r?.amount ?? "error" })))
           .catch(() => setCalc((c) => ({ ...c, [o.id]: "error" })))

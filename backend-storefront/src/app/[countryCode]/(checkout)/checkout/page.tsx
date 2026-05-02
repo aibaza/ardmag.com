@@ -1,6 +1,6 @@
 import { retrieveCart } from "@lib/data/cart"
 import { retrieveCustomer } from "@lib/data/customer"
-import { listCartShippingMethods } from "@lib/data/fulfillment"
+import { listCartShippingMethods, calculatePriceForShippingOption } from "@lib/data/fulfillment"
 import { listCartPaymentMethods } from "@lib/data/payment"
 import { OrderSummary } from "@modules/order/components/OrderSummary"
 import { CheckoutAddressForm } from "@modules/checkout/components/CheckoutAddressForm"
@@ -64,17 +64,27 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
   }
 
   let shippingOptions: HttpTypes.StoreCartShippingOption[] = []
+  let calculatedShippingPrices: Record<string, number> = {}
   let paymentProviders: HttpTypes.StorePaymentProvider[] = []
 
   if (step === 'delivery' && cart.id) {
     shippingOptions = ((await listCartShippingMethods(cart.id)) ?? []) as HttpTypes.StoreCartShippingOption[]
+    // Pre-calculeaza pretul pentru optiunile de tip calculated
+    await Promise.all(
+      shippingOptions
+        .filter((o) => (o as any).price_type === "calculated")
+        .map(async (o) => {
+          const result = await calculatePriceForShippingOption(o.id, cart.id).catch(() => null)
+          if (result?.amount != null) calculatedShippingPrices[o.id] = result.amount
+        })
+    )
   }
   if (step === 'payment' && cart.region_id) {
     paymentProviders = (await listCartPaymentMethods(cart.region_id)) ?? []
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 320px', gap: 40, alignItems: 'flex-start' }}>
+    <div className="checkout-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 320px', gap: 40, alignItems: 'flex-start' }}>
       <div>
         <StepIndicator current={step} />
 
@@ -90,6 +100,7 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
             cartId={cart.id}
             countryCode={countryCode}
             shippingOptions={shippingOptions}
+            calculatedPrices={calculatedShippingPrices}
           />
         )}
 

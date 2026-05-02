@@ -41,16 +41,10 @@ export const calculatePriceForShippingOption = async (
     ...(await getAuthHeaders()),
   }
 
-  const next = {
-    ...(await getCacheOptions("fulfillment")),
-  }
+  const body: Record<string, unknown> = { cart_id: cartId }
+  if (data) body.data = data
 
-  const body = { cart_id: cartId, data }
-
-  if (data) {
-    body.data = data
-  }
-
+  // POST requests nu suporta next.tags in Next.js 14 — nu adaugam cache options
   return sdk.client
     .fetch<{ shipping_option: HttpTypes.StoreCartShippingOption }>(
       `/store/shipping-options/${optionId}/calculate`,
@@ -58,11 +52,9 @@ export const calculatePriceForShippingOption = async (
         method: "POST",
         body,
         headers,
-        next,
+        cache: "no-store",
       }
     )
     .then(({ shipping_option }) => shipping_option)
-    .catch((e) => {
-      return null
-    })
+    .catch(() => null)
 }
