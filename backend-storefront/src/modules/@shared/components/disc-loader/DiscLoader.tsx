@@ -12,7 +12,7 @@ export function DiscLoader({ size = 80, className }: DiscLoaderProps) {
       style={{ width: size, height: size, flexShrink: 0 }}
     >
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width={size} height={size} style={{ display: "block" }}>
-        <g style={{ transformOrigin: "100px 100px", animation: "disc-inertia 2.6s infinite" }}>
+        <g style={{ transformBox: "fill-box", transformOrigin: "center", animation: "disc-inertia 2.6s infinite" }}>
           {/* Steel body with gullet slots + relief holes */}
           <path fillRule="evenodd"
             d="M 178 100 A 78 78 0 1 1 22 100 A 78 78 0 1 1 178 100 Z
