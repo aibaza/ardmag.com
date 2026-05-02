@@ -92,6 +92,10 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
           <CheckoutAddressForm
             countryCode={countryCode}
             customerEmail={customer?.email}
+            customer={customer as HttpTypes.StoreCustomer | null}
+            cartShippingAddress={cart.shipping_address ?? null}
+            cartBillingAddress={cart.billing_address ?? null}
+            cartEmail={cart.email ?? null}
           />
         )}
 

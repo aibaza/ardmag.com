@@ -33,7 +33,7 @@ export const retrieveCustomer =
       .fetch<{ customer: HttpTypes.StoreCustomer }>(`/store/customers/me`, {
         method: "GET",
         query: {
-          fields: "*orders",
+          fields: "*orders,*addresses",
         },
         headers,
         next,
@@ -162,22 +162,20 @@ export const addCustomerAddress = async (
   currentState: Record<string, unknown>,
   formData: FormData
 ): Promise<any> => {
-  const isDefaultBilling = (currentState.isDefaultBilling as boolean) || false
-  const isDefaultShipping = (currentState.isDefaultShipping as boolean) || false
-
   const address = {
+    address_name: (formData.get("address_name") as string) || undefined,
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
-    company: formData.get("company") as string,
+    company: (formData.get("company") as string) || undefined,
     address_1: formData.get("address_1") as string,
-    address_2: formData.get("address_2") as string,
+    address_2: (formData.get("address_2") as string) || undefined,
     city: formData.get("city") as string,
     postal_code: formData.get("postal_code") as string,
     province: formData.get("province") as string,
-    country_code: formData.get("country_code") as string,
-    phone: formData.get("phone") as string,
-    is_default_billing: isDefaultBilling,
-    is_default_shipping: isDefaultShipping,
+    country_code: (formData.get("country_code") as string) || "ro",
+    phone: (formData.get("phone") as string) || undefined,
+    is_default_shipping: formData.get("is_default_shipping") === "on",
+    is_default_billing: formData.get("is_default_billing") === "on",
   }
 
   const headers = {
@@ -186,7 +184,7 @@ export const addCustomerAddress = async (
 
   return sdk.store.customer
     .createAddress(address, {}, headers)
-    .then(async ({ customer }) => {
+    .then(async () => {
       const customerCacheTag = await getCacheTag("customers")
       revalidateTag(customerCacheTag)
       return { success: true, error: null }
@@ -226,22 +224,20 @@ export const updateCustomerAddress = async (
     return { success: false, error: "Address ID is required" }
   }
 
-  const address = {
+  const address: HttpTypes.StoreUpdateCustomerAddress = {
+    address_name: (formData.get("address_name") as string) || undefined,
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
-    company: formData.get("company") as string,
+    company: (formData.get("company") as string) || undefined,
     address_1: formData.get("address_1") as string,
-    address_2: formData.get("address_2") as string,
+    address_2: (formData.get("address_2") as string) || undefined,
     city: formData.get("city") as string,
     postal_code: formData.get("postal_code") as string,
     province: formData.get("province") as string,
-    country_code: formData.get("country_code") as string,
-  } as HttpTypes.StoreUpdateCustomerAddress
-
-  const phone = formData.get("phone") as string
-
-  if (phone) {
-    address.phone = phone
+    country_code: (formData.get("country_code") as string) || "ro",
+    phone: (formData.get("phone") as string) || undefined,
+    is_default_shipping: formData.get("is_default_shipping") === "on" ? true : undefined,
+    is_default_billing: formData.get("is_default_billing") === "on" ? true : undefined,
   }
 
   const headers = {
@@ -258,4 +254,24 @@ export const updateCustomerAddress = async (
     .catch((err) => {
       return { success: false, error: err.toString() }
     })
+}
+
+export const setDefaultAddress = async (
+  addressId: string,
+  type: "shipping" | "billing"
+): Promise<{ success: boolean; error: string | null }> => {
+  const headers = { ...(await getAuthHeaders()) }
+  const update =
+    type === "shipping"
+      ? { is_default_shipping: true }
+      : { is_default_billing: true }
+
+  return sdk.store.customer
+    .updateAddress(addressId, update, {}, headers)
+    .then(async () => {
+      const tag = await getCacheTag("customers")
+      revalidateTag(tag)
+      return { success: true, error: null }
+    })
+    .catch((err) => ({ success: false, error: err.toString() }))
 }

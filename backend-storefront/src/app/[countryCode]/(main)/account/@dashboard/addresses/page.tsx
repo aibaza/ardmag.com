@@ -17,16 +17,12 @@ export default async function AddressesPage({ params }: Props) {
 
   return (
     <div>
-      <h2
-        style={{
-          fontFamily: "var(--f-sans)",
-          fontWeight: 600,
-          fontSize: 20,
-          marginBottom: 24,
-        }}
-      >
+      <h2 style={{ fontFamily: "var(--f-sans)", fontWeight: 600, fontSize: 20, marginBottom: 4 }}>
         Adresele mele
       </h2>
+      <p style={{ fontFamily: "var(--f-sans)", fontSize: 13, color: "var(--fg-muted)", marginBottom: 24 }}>
+        Adresele salvate aici se completeaza automat la checkout.
+      </p>
 
       <AddAddressForm countryCode={countryCode} />
 
@@ -36,8 +32,8 @@ export default async function AddressesPage({ params }: Props) {
         </p>
       ) : (
         <div>
-          {addresses.map((addr) => (
-            <AddressCard key={addr.id} address={addr} countryCode={countryCode} />
+          {addresses.map((addr, i) => (
+            <AddressCard key={addr.id} address={addr} index={i} countryCode={countryCode} />
           ))}
         </div>
       )}

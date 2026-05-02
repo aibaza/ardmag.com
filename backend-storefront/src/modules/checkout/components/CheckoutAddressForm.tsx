@@ -1,101 +1,118 @@
 "use client"
 import { useActionState, useState } from "react"
 import { setAddresses } from "@lib/data/cart"
-import { JUDETE_RO } from "@lib/data/romania"
+import { HttpTypes } from "@medusajs/types"
+import { AddressFields, inputStyle, labelStyle } from "./AddressFieldsShared"
+import { SavedAddressPicker } from "./SavedAddressPicker"
 
 interface Props {
   countryCode: string
   customerEmail?: string
+  customer?: HttpTypes.StoreCustomer | null
+  cartShippingAddress?: HttpTypes.StoreCartAddress | null
+  cartBillingAddress?: HttpTypes.StoreCartAddress | null
+  cartEmail?: string | null
 }
 
-const inputStyle: React.CSSProperties = {
-  width: "100%", padding: "8px 10px",
-  border: "1px solid var(--rule)", borderRadius: "var(--r-md)",
-  fontFamily: "var(--f-sans)", fontSize: 14, boxSizing: "border-box",
-  background: "var(--bg-base)",
-}
+export function CheckoutAddressForm({
+  countryCode,
+  customerEmail,
+  customer,
+  cartShippingAddress,
+  cartBillingAddress,
+  cartEmail,
+}: Props) {
+  const savedAddresses = customer?.addresses ?? []
+  const hasAddresses = savedAddresses.length > 0
+  const isLoggedIn = !!customer
 
-const labelStyle: React.CSSProperties = {
-  display: "block", fontSize: 12, fontWeight: 500,
-  marginBottom: 4, color: "var(--fg-muted)", fontFamily: "var(--f-sans)",
-}
+  const defaultShippingId =
+    savedAddresses.find((a) => a.is_default_shipping)?.id ??
+    savedAddresses[0]?.id ??
+    null
 
-function Field({ label, name, type = "text", required = true }: {
-  label: string; name: string; type?: string; required?: boolean
-}) {
-  return (
-    <div style={{ marginBottom: 12 }}>
-      <label style={labelStyle}>{label}{required && " *"}</label>
-      <input type={type} name={name} required={required} style={inputStyle} />
-    </div>
+  const defaultBillingId =
+    savedAddresses.find((a) => a.is_default_billing)?.id ??
+    savedAddresses[0]?.id ??
+    null
+
+  // null = "new address" mode; string = picked saved address
+  const [selectedShippingId, setSelectedShippingId] = useState<string | null>(
+    hasAddresses && !cartShippingAddress?.address_1 ? (defaultShippingId ?? null) : null
   )
-}
-
-function PostalField({ name }: { name: string }) {
-  return (
-    <div style={{ marginBottom: 12 }}>
-      <label style={labelStyle}>Cod poștal *</label>
-      <input
-        type="text"
-        name={name}
-        required
-        maxLength={6}
-        pattern="\d{6}"
-        title="6 cifre"
-        placeholder="400001"
-        style={inputStyle}
-      />
-    </div>
+  const [selectedBillingId, setSelectedBillingId] = useState<string | null>(
+    hasAddresses && !cartBillingAddress?.address_1 ? (defaultBillingId ?? null) : null
   )
-}
-
-function ProvinceSelect({ name }: { name: string }) {
-  return (
-    <div style={{ marginBottom: 12 }}>
-      <label style={labelStyle}>Județ *</label>
-      <select name={name} required defaultValue="" style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
-        <option value="" disabled>Selectează județul</option>
-        {JUDETE_RO.map((j) => (
-          <option key={j} value={j}>{j}</option>
-        ))}
-      </select>
-    </div>
-  )
-}
-
-function AddressFields({ prefix }: { prefix: "shipping_address" | "billing_address" }) {
-  return (
-    <>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-        <Field label="Prenume" name={`${prefix}.first_name`} />
-        <Field label="Nume" name={`${prefix}.last_name`} />
-      </div>
-      <Field label="Telefon" name={`${prefix}.phone`} type="tel" />
-      <Field label="Adresă" name={`${prefix}.address_1`} />
-      <Field label="Oraș" name={`${prefix}.city`} />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-        <PostalField name={`${prefix}.postal_code`} />
-        <ProvinceSelect name={`${prefix}.province`} />
-      </div>
-    </>
-  )
-}
-
-export function CheckoutAddressForm({ countryCode }: Props) {
-  const [error, action] = useActionState(setAddresses, null)
   const [sameAsBilling, setSameAsBilling] = useState(true)
+  const [error, action] = useActionState(setAddresses, null)
+
+  const useNewShipping = selectedShippingId === null
+  const useNewBilling = selectedBillingId === null
+
+  const email = cartEmail || customerEmail || ""
 
   return (
     <form action={action}>
       <input type="hidden" name="shipping_address.country_code" value="ro" />
+      {!sameAsBilling && (
+        <input type="hidden" name="billing_address.country_code" value="ro" />
+      )}
+
+      {/* Hidden field: saved address ID (when picker mode) */}
+      {!useNewShipping && (
+        <input type="hidden" name="shipping_address_id" value={selectedShippingId!} />
+      )}
+      {!sameAsBilling && !useNewBilling && (
+        <input type="hidden" name="billing_address_id" value={selectedBillingId!} />
+      )}
 
       <h3 style={{ fontFamily: "var(--f-sans)", fontWeight: 600, marginBottom: 16 }}>
         Adresa de livrare
       </h3>
 
-      <Field label="Email" name="email" type="email" />
-      <AddressFields prefix="shipping_address" />
+      {/* Email — afisat doar daca nu e logat sau cartul nu are email */}
+      {!email && (
+        <div style={{ marginBottom: 12 }}>
+          <label style={labelStyle}>Email *</label>
+          <input type="email" name="email" required style={inputStyle} />
+        </div>
+      )}
+      {email && <input type="hidden" name="email" value={email} />}
 
+      {/* Shipping: picker sau form */}
+      {hasAddresses ? (
+        <>
+          <SavedAddressPicker
+            addresses={savedAddresses}
+            selectedId={selectedShippingId}
+            onSelect={setSelectedShippingId}
+            mode="shipping"
+          />
+          {useNewShipping && (
+            <div style={{ marginTop: 16 }}>
+              <AddressFields prefix="shipping_address" defaults={cartShippingAddress ?? undefined} />
+              {isLoggedIn && (
+                <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, cursor: "pointer" }}>
+                  <input type="checkbox" name="save_to_account" defaultChecked style={{ width: 16, height: 16 }} />
+                  <span style={{ fontFamily: "var(--f-sans)", fontSize: 14 }}>Salveaza adresa in cont</span>
+                </label>
+              )}
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          <AddressFields prefix="shipping_address" defaults={cartShippingAddress ?? undefined} />
+          {isLoggedIn && (
+            <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, cursor: "pointer" }}>
+              <input type="checkbox" name="save_to_account" defaultChecked style={{ width: 16, height: 16 }} />
+              <span style={{ fontFamily: "var(--f-sans)", fontSize: 14 }}>Salveaza adresa in cont</span>
+            </label>
+          )}
+        </>
+      )}
+
+      {/* Same-as-billing toggle */}
       <div style={{ margin: "16px 0", display: "flex", alignItems: "center", gap: 8 }}>
         <input
           type="checkbox"
@@ -106,17 +123,33 @@ export function CheckoutAddressForm({ countryCode }: Props) {
           style={{ width: 16, height: 16, cursor: "pointer" }}
         />
         <label htmlFor="same_as_billing" style={{ fontFamily: "var(--f-sans)", fontSize: 14, cursor: "pointer", color: "var(--fg-base)" }}>
-          Adresa de facturare este aceeași cu cea de livrare
+          Adresa de facturare este aceeasi cu cea de livrare
         </label>
       </div>
 
+      {/* Billing address block */}
       {!sameAsBilling && (
         <>
-          <input type="hidden" name="billing_address.country_code" value="ro" />
           <h3 style={{ fontFamily: "var(--f-sans)", fontWeight: 600, marginBottom: 16, marginTop: 8 }}>
             Adresa de facturare
           </h3>
-          <AddressFields prefix="billing_address" />
+          {hasAddresses ? (
+            <>
+              <SavedAddressPicker
+                addresses={savedAddresses}
+                selectedId={selectedBillingId}
+                onSelect={setSelectedBillingId}
+                mode="billing"
+              />
+              {useNewBilling && (
+                <div style={{ marginTop: 16 }}>
+                  <AddressFields prefix="billing_address" defaults={cartBillingAddress ?? undefined} />
+                </div>
+              )}
+            </>
+          ) : (
+            <AddressFields prefix="billing_address" defaults={cartBillingAddress ?? undefined} />
+          )}
         </>
       )}
 
@@ -127,7 +160,7 @@ export function CheckoutAddressForm({ countryCode }: Props) {
       )}
 
       <button type="submit" className="btn primary lg" style={{ width: "100%", marginTop: 8 }}>
-        Continuă spre livrare
+        Continua spre livrare
       </button>
     </form>
   )
