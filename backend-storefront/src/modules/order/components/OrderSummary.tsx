@@ -11,6 +11,25 @@ function fmt(amount: number, currency: string): string {
   return `${(amount / 100).toFixed(2).replace(".", ",")} ${currency.toUpperCase()}`
 }
 
+const rowStyle: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "baseline",
+  padding: "10px 20px",
+  borderBottom: "1px solid var(--rule)",
+  fontSize: 13,
+}
+
+const labelStyle: React.CSSProperties = {
+  color: "var(--fg-muted)",
+}
+
+const valueStyle: React.CSSProperties = {
+  fontFamily: "var(--f-mono)",
+  fontVariantNumeric: "tabular-nums",
+  fontSize: 13,
+}
+
 export function OrderSummary({
   subtotal,
   discount_total,
@@ -20,43 +39,53 @@ export function OrderSummary({
   currency_code = "RON",
 }: OrderSummaryProps) {
   return (
-    <div className="panel">
+    <div className="panel" style={{ marginBottom: 0 }}>
       <div className="panel-head">
         <h3>Rezumat comanda</h3>
       </div>
       <div className="panel-body">
-        <table className="spec-table">
-          <tbody>
-            <tr>
-              <td>Subtotal</td>
-              <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(subtotal, currency_code)}</td>
-            </tr>
-            {discount_total != null && discount_total > 0 && (
-              <tr>
-                <td>Reducere</td>
-                <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums", color: "var(--brand-600)" }}>
-                  -{fmt(discount_total, currency_code)}
-                </td>
-              </tr>
-            )}
-            {shipping_total != null && (
-              <tr>
-                <td>Transport</td>
-                <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(shipping_total, currency_code)}</td>
-              </tr>
-            )}
-            {tax_total != null && tax_total > 0 && (
-              <tr>
-                <td>TVA</td>
-                <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(tax_total, currency_code)}</td>
-              </tr>
-            )}
-            <tr style={{ fontWeight: 600 }}>
-              <td>Total</td>
-              <td style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{fmt(total, currency_code)}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div style={rowStyle}>
+          <span style={labelStyle}>Subtotal</span>
+          <span style={valueStyle}>{fmt(subtotal, currency_code)}</span>
+        </div>
+
+        {discount_total != null && discount_total > 0 && (
+          <div style={rowStyle}>
+            <span style={labelStyle}>Reducere</span>
+            <span style={{ ...valueStyle, color: "var(--brand-600)" }}>
+              -{fmt(discount_total, currency_code)}
+            </span>
+          </div>
+        )}
+
+        {shipping_total != null && (
+          <div style={rowStyle}>
+            <span style={labelStyle}>Transport</span>
+            <span style={valueStyle}>{fmt(shipping_total, currency_code)}</span>
+          </div>
+        )}
+
+        {tax_total != null && tax_total > 0 && (
+          <div style={rowStyle}>
+            <span style={labelStyle}>TVA</span>
+            <span style={valueStyle}>{fmt(tax_total, currency_code)}</span>
+          </div>
+        )}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "baseline",
+            padding: "12px 20px",
+            fontWeight: 600,
+          }}
+        >
+          <span style={{ fontSize: 14 }}>Total</span>
+          <span style={{ fontFamily: "var(--f-mono)", fontVariantNumeric: "tabular-nums", fontSize: 15 }}>
+            {fmt(total, currency_code)}
+          </span>
+        </div>
       </div>
     </div>
   )

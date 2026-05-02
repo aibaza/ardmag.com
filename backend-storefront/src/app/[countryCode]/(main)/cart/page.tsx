@@ -60,13 +60,9 @@ export default async function CartPage({ params }: Props) {
               alignItems: "flex-start",
             }}
           >
-            <div>
+            <div className="panel" style={{ marginBottom: 0 }}>
               {items.map((item) => (
-                <CartLineItem
-                  key={item.id}
-                  item={item}
-                  currencyCode={cart?.currency_code}
-                />
+                <CartLineItem key={item.id} item={item} currencyCode={cart?.currency_code} />
               ))}
             </div>
 
