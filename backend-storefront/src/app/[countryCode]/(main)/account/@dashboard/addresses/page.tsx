@@ -24,7 +24,7 @@ export default async function AddressesPage({ params }: Props) {
         Adresele salvate aici se completeaza automat la checkout.
       </p>
 
-      <AddAddressForm countryCode={countryCode} />
+      <AddAddressForm countryCode={countryCode} isFirstAddress={addresses.length === 0} />
 
       {addresses.length === 0 ? (
         <p style={{ color: "var(--fg-muted)", fontFamily: "var(--f-sans)" }}>

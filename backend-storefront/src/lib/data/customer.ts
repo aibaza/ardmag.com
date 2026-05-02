@@ -162,11 +162,15 @@ export const addCustomerAddress = async (
   currentState: Record<string, unknown>,
   formData: FormData
 ): Promise<any> => {
+  const entityType = (formData.get("entity_type") as string) || "none"
+  const cnp = (formData.get("cnp") as string)?.trim() || undefined
+  const cui = (formData.get("cui") as string)?.trim() || undefined
+
   const address = {
     address_name: (formData.get("address_name") as string) || undefined,
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
-    company: (formData.get("company") as string) || undefined,
+    company: entityType === "pj" ? ((formData.get("company") as string) || undefined) : undefined,
     address_1: formData.get("address_1") as string,
     address_2: (formData.get("address_2") as string) || undefined,
     city: formData.get("city") as string,
@@ -176,6 +180,11 @@ export const addCustomerAddress = async (
     phone: (formData.get("phone") as string) || undefined,
     is_default_shipping: formData.get("is_default_shipping") === "on",
     is_default_billing: formData.get("is_default_billing") === "on",
+    metadata: {
+      entity_type: entityType === "none" ? null : entityType,
+      cnp: entityType === "pf" ? (cnp ?? null) : null,
+      cui: entityType === "pj" ? (cui ?? null) : null,
+    },
   }
 
   const headers = {
@@ -224,11 +233,15 @@ export const updateCustomerAddress = async (
     return { success: false, error: "Address ID is required" }
   }
 
+  const entityType = (formData.get("entity_type") as string) || "none"
+  const cnp = (formData.get("cnp") as string)?.trim() || undefined
+  const cui = (formData.get("cui") as string)?.trim() || undefined
+
   const address: HttpTypes.StoreUpdateCustomerAddress = {
     address_name: (formData.get("address_name") as string) || undefined,
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
-    company: (formData.get("company") as string) || undefined,
+    company: entityType === "pj" ? ((formData.get("company") as string) || undefined) : undefined,
     address_1: formData.get("address_1") as string,
     address_2: (formData.get("address_2") as string) || undefined,
     city: formData.get("city") as string,
@@ -238,6 +251,11 @@ export const updateCustomerAddress = async (
     phone: (formData.get("phone") as string) || undefined,
     is_default_shipping: formData.get("is_default_shipping") === "on" ? true : undefined,
     is_default_billing: formData.get("is_default_billing") === "on" ? true : undefined,
+    metadata: {
+      entity_type: entityType === "none" ? null : entityType,
+      cnp: entityType === "pf" ? (cnp ?? null) : null,
+      cui: entityType === "pj" ? (cui ?? null) : null,
+    },
   }
 
   const headers = {

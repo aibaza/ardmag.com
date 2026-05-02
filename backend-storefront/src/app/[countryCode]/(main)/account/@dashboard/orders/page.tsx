@@ -18,26 +18,28 @@ export default async function OrdersPage({ params }: Props) {
 
   const orders = await listOrders(20, 0).catch(() => [] as HttpTypes.StoreOrder[])
 
-  return (
-    <div>
-      <h2 style={{ fontFamily: 'var(--f-sans)', fontWeight: 600, fontSize: 20, marginBottom: 24 }}>
-        Comenzile mele
-      </h2>
+  if (orders.length === 0) {
+    return (
+      <div className="panel" style={{ padding: "32px 24px", textAlign: "center" }}>
+        <p style={{ color: "var(--fg-muted)", marginBottom: 16 }}>Nu ai comenzi inca.</p>
+        <a href="/categories" className="btn primary md">
+          Incepe cumparaturile
+        </a>
+      </div>
+    )
+  }
 
-      {orders.length === 0 ? (
-        <div className="panel" style={{ padding: '32px 24px', textAlign: 'center' }}>
-          <p style={{ color: 'var(--fg-muted)', marginBottom: 16 }}>Nu ai comenzi inca.</p>
-          <a href={`/categories`} className="btn primary md">
-            Incepe cumparaturile
-          </a>
-        </div>
-      ) : (
-        <div>
-          {orders.map((order) => (
-            <OrderRow key={order.id} order={order} countryCode={countryCode} />
-          ))}
-        </div>
-      )}
+  return (
+    <div className="panel">
+      <div className="panel-head">
+        <h3>Comenzile mele</h3>
+        <span className="note">{orders.length} {orders.length === 1 ? "comanda" : "comenzi"}</span>
+      </div>
+      <div className="panel-body">
+        {orders.map((order) => (
+          <OrderRow key={order.id} order={order} countryCode={countryCode} />
+        ))}
+      </div>
     </div>
   )
 }

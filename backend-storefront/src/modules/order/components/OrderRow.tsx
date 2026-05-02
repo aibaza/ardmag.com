@@ -25,31 +25,31 @@ function formatTotal(amount: number, currencyCode?: string): string {
 
 export function OrderRow({ order, countryCode }: OrderRowProps) {
   const date = new Date(order.created_at!).toLocaleDateString("ro-RO")
-  const { label: statusLabel, className: statusClass } = getStatusInfo(
-    order.status ?? "pending"
-  )
+  const { label: statusLabel, className: statusClass } = getStatusInfo(order.status ?? "pending")
   const total = formatTotal(order.total ?? 0, order.currency_code)
 
   return (
     <div
       style={{
-        display: "flex",
-        alignItems: "center",
+        display: "grid",
+        gridTemplateColumns: "90px 110px 1fr 110px auto",
         gap: 16,
-        padding: "12px 0",
+        alignItems: "center",
+        padding: "14px 20px",
         borderBottom: "1px solid var(--rule)",
       }}
     >
-      <span style={{ fontFamily: "var(--f-sans)", fontWeight: 600 }}>
+      <span style={{ fontFamily: "var(--f-mono)", fontWeight: 600, fontSize: 13 }}>
         #{order.display_id}
       </span>
-      <span style={{ color: "var(--fg-muted)", fontSize: 13 }}>{date}</span>
+      <span style={{ color: "var(--fg-muted)", fontSize: 13, fontFamily: "var(--f-mono)" }}>
+        {date}
+      </span>
       <span className={statusClass}>{statusLabel}</span>
-      <span style={{ marginLeft: "auto" }}>{total}</span>
-      <a
-        href={`/account/orders/details/${order.id}`}
-        className="btn ghost sm"
-      >
+      <span style={{ fontWeight: 600, fontFamily: "var(--f-mono)", fontSize: 13, textAlign: "right" }}>
+        {total}
+      </span>
+      <a href={`/account/orders/details/${order.id}`} className="btn ghost sm">
         Detalii
       </a>
     </div>
