@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { OrbitalLoader } from "@modules/@shared/components/disc-loader/OrbitalLoader"
+import { SimpleLoader } from "@modules/@shared/components/disc-loader/SimpleLoader"
 
 export default function ProduseError({
   error,
@@ -43,7 +43,7 @@ export default function ProduseError({
 
   return (
     <main className="page-inner" style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "40vh" }}>
-      <OrbitalLoader size={72} />
+      <SimpleLoader size={72} />
     </main>
   )
 }

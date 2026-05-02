@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { OrbitalLoader } from "@modules/@shared/components/disc-loader/OrbitalLoader"
+import { SimpleLoader } from "@modules/@shared/components/disc-loader/SimpleLoader"
 
 export default function GlobalError({
   error,
@@ -32,7 +32,7 @@ export default function GlobalError({
     return (
       <html lang="ro">
         <body style={{ margin: 0, background: "#fafaf9", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-          <OrbitalLoader size={80} />
+          <SimpleLoader size={80} />
         </body>
       </html>
     )
@@ -42,7 +42,7 @@ export default function GlobalError({
     <html lang="ro">
       <body style={{ margin: 0, fontFamily: "system-ui, sans-serif", background: "#fafaf9", color: "#1c1c1c" }}>
         <main style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "24px", textAlign: "center" }}>
-          <OrbitalLoader size={64} />
+          <SimpleLoader size={64} />
           <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: 12, marginTop: 24 }}>A aparut o eroare</h1>
           <p style={{ fontSize: "0.875rem", color: "#737373", marginBottom: 24 }}>
             Reincarca pagina sau revino mai tarziu.
