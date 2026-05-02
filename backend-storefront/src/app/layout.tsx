@@ -24,6 +24,7 @@ import { CookieConsentBanner } from "@components/cookie-consent/CookieConsent"
 import { GoogleAnalytics } from "@components/cookie-consent/GoogleAnalytics"
 import { MetaPixel } from "@components/cookie-consent/MetaPixel"
 import { FastNav } from "@components/nav/FastNav"
+import { Providers } from "./providers"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -58,34 +59,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="ro" data-mode="light" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="ro" suppressHydrationWarning className={`${plexSans.variable} ${plexMono.variable}`}>
       <head>
         <link rel="preconnect" href="https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev" />
       </head>
       <body>
-        <OrganizationJsonLd />
-        <WebSiteJsonLd />
-        {props.children}
-        <CookieConsentBanner />
-        <GoogleAnalytics />
-        <MetaPixel />
-        <FastNav />
-        {/* Speculation Rules API: prefetch nativ browser la mousedown (Chrome/Edge 121+).
-            Complementar cu FastNav — browserul gestionează automat save-data/battery-saver.
-            Doar prefetch, niciodată prerender (incompatibil cu Next.js SPA/RSC). */}
-        <script
-          type="speculationrules"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              prefetch: [{
-                source: "document",
-                where: { href_matches: "/*", not: { href_matches: ["/api/*", "/_next/*"] } },
-                eagerness: "conservative",
-              }],
-            }),
-          }}
-        />
+        <Providers>
+          <OrganizationJsonLd />
+          <WebSiteJsonLd />
+          {props.children}
+          <CookieConsentBanner />
+          <GoogleAnalytics />
+          <MetaPixel />
+          <FastNav />
+        </Providers>
       </body>
     </html>
   )
