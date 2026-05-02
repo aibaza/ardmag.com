@@ -43,7 +43,7 @@ export default async function DashboardPage({ params }: Props) {
       </p>
 
       {/* Stats */}
-      <div className="form-row-3" style={{ marginBottom: 16 }}>
+      <div className="dash-grid-3" style={{ marginBottom: 16 }}>
         {/* Comenzi */}
         <div className="panel" style={{ marginBottom: 0, textAlign: "center", padding: "24px 20px" }}>
           <div style={{ fontSize: 32, fontWeight: 700, lineHeight: 1, fontFamily: "var(--f-mono)" }}>
@@ -84,7 +84,7 @@ export default async function DashboardPage({ params }: Props) {
       </div>
 
       {/* Quick Actions */}
-      <div className="form-row-3" style={{ marginBottom: 24 }}>
+      <div className="dash-grid-3" style={{ marginBottom: 24 }}>
         {[
           { label: "Continua cumparaturile", href: `/${countryCode}/categories` },
           { label: "Adresele mele", href: `/account/addresses` },
@@ -123,6 +123,8 @@ export default async function DashboardPage({ params }: Props) {
         </div>
       )}
       <style>{`
+        .dash-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+        @media(max-width:560px){ .dash-grid-3 { grid-template-columns:1fr; } }
         .dash-quick-action {
           display: flex;
           align-items: center;
