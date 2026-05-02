@@ -1154,3 +1154,48 @@ a.badge:hover{transform:translateY(-1px)}
 .actions .theme-toggle{color:var(--stone-600);width:40px;height:40px}
 .actions .theme-toggle svg{width:20px;height:20px}
 .actions .theme-toggle:hover{background:var(--stone-50);color:var(--brand-700)}
+
+/* ── Dark mode component overrides — primitive backgrounds ──────── */
+/* Componentele care folosesc stone-50/100 ca fundal — nu sunt alias semantice
+   deci nu se adaptează automat la dark mode. Override explicit per componentă. */
+[data-theme="dark"]{
+  /* Hover states pe surface: stone-50/100 → elev-1/2 echivalent */
+  --_hover-bg: oklch(22% 0.008 75);
+  --_subtle-bg: oklch(16% 0.008 75);
+}
+/* P0: Product card image container */
+[data-theme="dark"] .pcard-img{background:var(--elev-2)}
+/* P1: Product card footer strip */
+[data-theme="dark"] .pcard-foot{background:var(--elev-1)}
+/* P1: PDP price card */
+[data-theme="dark"] .pdp-price-card{background:var(--elev-1)}
+/* P1: Panel head (filters, sections cu header gri) */
+[data-theme="dark"] .panel-head{background:var(--elev-1)}
+/* P1: Supplier logos grid */
+[data-theme="dark"] .supplier-grid{background:var(--elev-1)}
+/* P1: Filter actions footer */
+[data-theme="dark"] .filter-actions{background:var(--elev-1)}
+/* P1: mm-foot in mobile drawer */
+[data-theme="dark"] .mm-foot{background:var(--elev-2)}
+/* P2: Spec table header cells */
+[data-theme="dark"] .spec-table th{background:var(--elev-1)}
+/* P2: Tech docs section header */
+[data-theme="dark"] .tech-docs .hd{background:var(--elev-1)}
+/* P2: Search combo category tab */
+[data-theme="dark"] .search-combo .cat{background:var(--elev-2)}
+/* P2: Placeholder pe imagini produs neîncărcate */
+[data-theme="dark"] .pcard-img .placeholder span{background:var(--elev-2);border-color:var(--rule)}
+[data-theme="dark"] .pdp-main-img .ph span{background:var(--elev-2);border-color:var(--rule)}
+/* P2: PDP thumbnail hover */
+[data-theme="dark"] .pdp-thumb{background:var(--elev-2);border-color:var(--rule)}
+/* P2: Hover states pe butoane secundare/ghost */
+[data-theme="dark"] .btn.secondary:hover{background:var(--_hover-bg)}
+[data-theme="dark"] .btn.ghost:hover{background:var(--_hover-bg)}
+[data-theme="dark"] .action-btn:hover{background:var(--_hover-bg)}
+[data-theme="dark"] .cat-nav a:hover,[data-theme="dark"] .cat-nav button:hover{background:var(--_hover-bg)}
+[data-theme="dark"] .mm-nav a:hover{background:var(--_hover-bg)}
+[data-theme="dark"] .pagination a:hover{background:var(--_hover-bg)}
+[data-theme="dark"] .tabs button:hover:not(.on){background:var(--_subtle-bg)}
+/* P2: spec chip / inline code */
+[data-theme="dark"] .spec-chip,[data-theme="dark"] a.spec-chip{background:var(--elev-2);color:var(--fg-muted)}
+[data-theme="dark"] code.inl{background:var(--elev-2);color:var(--fg-muted)}
