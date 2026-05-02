@@ -12,6 +12,8 @@ export default function ProduseError({
   const retries = useRef(0)
 
   useEffect(() => {
+    // AbortError = navigation cancelled an in-flight fetch -- not a real error
+    if (error.name === "AbortError") { reset(); return }
     console.error("[produse] page error:", error)
     if (retries.current < 2) {
       retries.current += 1
