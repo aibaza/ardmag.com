@@ -20,6 +20,7 @@
     --focus-ring:0 0 0 3px oklch(64% 0.202 42 / 0.35);
   }
   *{box-sizing:border-box}html,body{margin:0;padding:0}
+  a{cursor:pointer}
   body{font-family:var(--f-sans);font-size:14px;line-height:1.5;color:var(--fg);background:var(--bg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss03","cv11"}
 
   /* Meta-canvas wrappers */
@@ -1199,3 +1200,53 @@ a.badge:hover{transform:translateY(-1px)}
 /* P2: spec chip / inline code */
 [data-theme="dark"] .spec-chip,[data-theme="dark"] a.spec-chip{background:var(--elev-2);color:var(--fg-muted)}
 [data-theme="dark"] code.inl{background:var(--elev-2);color:var(--fg-muted)}
+
+/* ── Dark mode text contrast — stone primitives ca culoare de text ──────
+   stone-800/700/600 raman intunecate pe fond dark = aproape invizibile.
+   Folosim aceeasi scala ca footer-ul dark-native:
+     stone-200 (90%) = text primar interactiv   (cf. footer links)
+     stone-300 (82%) = text standard            (cf. footer body)
+     stone-400 (70%) = text secundar/muted      (cf. footer captions)
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Elemente cu stone-800/900 ca text — aproape invizibile pe dark */
+[data-theme="dark"] .chk{color:var(--stone-200)}
+[data-theme="dark"] .chk:hover{color:var(--fg)}
+[data-theme="dark"] .cat-nav a,[data-theme="dark"] .cat-nav button{color:var(--stone-200)}
+[data-theme="dark"] .action-btn{color:var(--stone-200)}
+[data-theme="dark"] .mobile-header .icon-btn{color:var(--stone-200)}
+[data-theme="dark"] .var-opt{color:var(--stone-300);border-color:var(--rule)}
+[data-theme="dark"] .btn.secondary{color:var(--stone-200);border-color:var(--rule-strong)}
+[data-theme="dark"] .btn.ghost{color:var(--stone-200)}
+[data-theme="dark"] .btn.inv{background:var(--elev-2);color:var(--fg);border-color:var(--rule-strong)}
+
+/* Elemente cu stone-700 ca text — contrast scazut pe dark */
+[data-theme="dark"] .pagination a,[data-theme="dark"] .pagination span{color:var(--stone-300);border-color:var(--rule)}
+[data-theme="dark"] .sec-head .see-all,[data-theme="dark"] .section-head .see-all{color:var(--stone-300)}
+[data-theme="dark"] .slogo{color:var(--stone-300)}
+[data-theme="dark"] .qty-stepper button{color:var(--stone-300)}
+[data-theme="dark"] .prose p,[data-theme="dark"] .prose ul,[data-theme="dark"] .prose ol{color:var(--stone-300)}
+[data-theme="dark"] .prose h2,[data-theme="dark"] .prose h3,[data-theme="dark"] .prose h4{color:var(--fg)}
+
+/* Elemente cu stone-600 ca text — contrast mediu, dar sub pragul acceptabil */
+[data-theme="dark"] .action-btn .label{color:var(--stone-400)}
+[data-theme="dark"] .mm-head .close{color:var(--stone-400)}
+[data-theme="dark"] .view-toggle button{color:var(--stone-400)}
+[data-theme="dark"] .tabs button{color:var(--stone-400)}
+[data-theme="dark"] .tabs button.on{color:var(--fg)}
+
+/* Filter sidebar specific */
+[data-theme="dark"] .filter-card summary{color:var(--fg)}
+[data-theme="dark"] .filter-card{border-color:var(--rule)}
+
+/* Chip-uri active (filtru aplicat) */
+[data-theme="dark"] .chip{color:var(--stone-300);border-color:var(--rule)}
+
+/* Swatch select (variante produse) */
+[data-theme="dark"] .swatch{color:var(--stone-300);border-color:var(--rule)}
+
+/* View toggle activ */
+[data-theme="dark"] .view-toggle button.on{background:var(--elev-2);color:var(--fg)}
+
+/* Hover text pe cat-nav pastrat vizibil */
+[data-theme="dark"] .cat-nav a:hover,[data-theme="dark"] .cat-nav button:hover{color:var(--brand-400)}
