@@ -6,7 +6,7 @@ type HeroProps = Parameters<typeof Hero>[0]
 // Extracted verbatim from page.tsx static Hero props - no copy invented here
 export function getHeroFallback(countryCode: string): HeroProps {
   return {
-    kicker: "Promo luna aprilie · până pe 30",
+    kicker: "Promo luna mai · până pe 31",
     title: "Mastici Tenax la -30% reducere",
     description: "Toată gama de mastici poliesterici și epoxidici Tenax la -30%. Stoc complet în Cluj, livrare 24-48h în toată țara.",
     primaryCta: { label: "Vezi promoția", href: `/promotii` },
@@ -28,7 +28,7 @@ export function getHeroFallback(countryCode: string): HeroProps {
         image: "/design-temp/hero-paduri.jpg",
         imageAlt: "Pad-uri Velcro",
         ctaLabel: "Descoperă setul →",
-        ctaHref: `/categories/slefuire-piatra`,
+        ctaHref: `/blog/pad-uri-velcro-7-gradatii`,
       },
       {
         kicker: "Ghid tehnic",
@@ -36,8 +36,8 @@ export function getHeroFallback(countryCode: string): HeroProps {
         description: "Granit dur vs. marmura vs. beton armat -- cheatsheet PDF.",
         image: "/design-temp/hero-ghid.jpg",
         imageAlt: "Ghid discuri",
-        ctaLabel: "Toate discurile →",
-        ctaHref: `/categories/discuri-de-taiere`,
+        ctaLabel: "Citeste ghidul →",
+        ctaHref: `/blog/cum-alegi-discul-corect`,
       },
     ],
     headingLevel: "h1",

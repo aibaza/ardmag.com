@@ -62,9 +62,7 @@ export function SiteHeader({
           <span className="divider">·</span>
           <span>L-V 08:00-16:00</span>
           <div className="right">
-            <a href={`/account/orders`}>Comanda mea</a><span className="divider">·</span>
-            <a href="mailto:office@arcromdiamonds.ro">Cont B2B</a><span className="divider">·</span>
-            <select aria-label="limba"><option>RO</option><option>EN</option><option>HU</option></select>
+            <a href={`/account/orders`}>Comanda mea</a>
             <ThemeToggle />
           </div>
         </div></div>
@@ -88,7 +86,7 @@ export function SiteHeader({
           {categories.map((cat) => (
             <a key={cat.handle} href={`/categories/${cat.handle}`}>{cat.name.charAt(0).toUpperCase() + cat.name.slice(1).toLowerCase()}</a>
           ))}
-          <div className="right"></div>
+          <a href="/blog">Blog</a>
         </div></nav>
 
         {/* Mobile: compact bar */}
@@ -131,11 +129,14 @@ export function SiteHeader({
               </a>
             ))}
           </nav>
+          <div className="mm-section-label">Resurse</div>
+          <nav className="mm-nav" aria-label="Resurse">
+            <a href="/blog" onClick={() => setDrawerOpen(false)}>Blog <span className="chev">›</span></a>
+          </nav>
           <div className="mm-section-label">Cont</div>
           <nav className="mm-nav" aria-label="Cont si comenzi">
             <a href={`/account`}>Intra in cont <span className="chev">›</span></a>
             <a href={`/account/orders`}>Comanda mea <span className="chev">›</span></a>
-            <a href="mailto:office@arcromdiamonds.ro">Cont B2B <span className="chev">↗</span></a>
           </nav>
           <div className="mm-foot">
             <div className="phone"><strong>+40 722 155 441</strong></div>
