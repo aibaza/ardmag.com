@@ -62,7 +62,6 @@ export function SiteHeader({
           <span className="divider">·</span>
           <span>L-V 08:00-16:00</span>
           <div className="right">
-            <a href={`/account/orders`}>Comanda mea</a>
             <ThemeToggle />
           </div>
         </div></div>
