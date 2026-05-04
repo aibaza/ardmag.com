@@ -604,6 +604,7 @@ function parseSait(): Entry[] {
     }
 
     // SAITRON 125/180 → DISCURI DE ȘLEFUIT CU CARBURĂ
+    // XLS da pret per BUCATA pentru ambele randuri (BUC si CUTIE). CUTIE = pret × 10.
     // DB format: "SAITRON / {size} / {gr} / BUCATĂ (1 BUC.)" | "SAITRON / {size} / {gr} / CUTIE (10 BUC.)"
     else if (curProduct.startsWith("SAITRON 125") || curProduct.startsWith("SAITRON 180")) {
       const size = curProduct.startsWith("SAITRON 125") ? "125" : "180"
@@ -612,12 +613,17 @@ function parseSait(): Entry[] {
       if (!gr) continue
 
       let cant: string | null = null
-      if (col1 === "BUC.") cant = "BUCATĂ (1 BUC.)"
-      else if (col1.startsWith("CUTIE 10")) cant = "CUTIE (10 BUC.)"
+      let finalPrice = price
+      if (col1 === "BUC.") {
+        cant = "BUCATĂ (1 BUC.)"
+      } else if (col1.startsWith("CUTIE 10")) {
+        cant = "CUTIE (10 BUC.)"
+        finalPrice = price * 10
+      }
       if (!cant) continue
 
       const variantTitle = `SAITRON / ${size} / ${gr} / ${cant}`
-      entries.push({ productTitle: "DISCURI DE ȘLEFUIT CU CARBURĂ", variantTitle, price, weightKg, source: src })
+      entries.push({ productTitle: "DISCURI DE ȘLEFUIT CU CARBURĂ", variantTitle, price: finalPrice, weightKg, source: src })
     }
 
     // SAITRIS 180 → DISCURI DE ȘLEFUIT CU CARBURĂ
@@ -997,8 +1003,8 @@ async function main() {
     return
   }
 
-  // 5. Genereaza SQL si aplica via railway connect Postgres
-  console.log(`\nGenerez SQL-ul si aplic via Railway...`)
+  // 5. Genereaza SQL si aplica pe Railway Postgres via tunnel
+  console.log(`\nGenerez SQL-ul si aplic pe Railway...`)
   const allSqls: string[] = ["BEGIN;"]
   for (const { sqls } of matched) allSqls.push(...sqls)
   allSqls.push("SELECT 'weights set: ' || COUNT(*) FROM product_variant WHERE weight IS NOT NULL AND deleted_at IS NULL AND updated_at > NOW() - INTERVAL '5 seconds';")
@@ -1006,7 +1012,6 @@ async function main() {
 
   const sqlText = allSqls.join("\n")
 
-  // Pipe SQL via railway connect Postgres
   const result = spawnSync(
     "railway", ["connect", "Postgres"],
     {
@@ -1018,7 +1023,7 @@ async function main() {
   )
 
   if (result.error) {
-    console.error("Eroare railway connect:", result.error)
+    console.error("Eroare psql:", result.error)
     process.exit(1)
   }
 
