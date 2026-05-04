@@ -22,11 +22,15 @@ interface ProductGridProps {
   variant: 'mini' | 'cat'
   products: ProductGridItem[]
   countryCode: string
+  viewMode?: 'grid' | 'list'
 }
 
-export function ProductGrid({ variant, products, countryCode }: ProductGridProps) {
+export function ProductGrid({ variant, products, countryCode, viewMode = 'grid' }: ProductGridProps) {
+  const cls = variant === 'cat'
+    ? `cat-grid${viewMode === 'list' ? ' cat-grid--list' : ''}`
+    : 'mini-grid'
   return (
-    <div className={variant === 'cat' ? 'cat-grid' : 'mini-grid'}>
+    <div className={cls}>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} countryCode={countryCode} />
       ))}

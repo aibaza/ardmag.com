@@ -26,12 +26,14 @@ interface InfiniteProductGridProps {
   allFiltered: ProductGridItem[]
   countryCode: string
   pageSize?: number
+  viewMode?: "grid" | "list"
 }
 
 export function InfiniteProductGrid({
   allFiltered,
   countryCode,
   pageSize = 24,
+  viewMode = "grid",
 }: InfiniteProductGridProps) {
   const [visibleCount, setVisibleCount] = useState(pageSize)
   const sentinelRef = useRef<HTMLDivElement>(null)
@@ -57,7 +59,7 @@ export function InfiniteProductGrid({
 
   return (
     <div aria-live="polite">
-      <ProductGrid variant="cat" products={visibleProducts} countryCode={countryCode} />
+      <ProductGrid variant="cat" products={visibleProducts} countryCode={countryCode} viewMode={viewMode} />
       {hasMore && (
         <>
           <div ref={sentinelRef} style={{ height: 1 }} aria-hidden="true" />

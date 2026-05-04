@@ -79,6 +79,7 @@ export default async function CategoryPage(props: Props) {
   const sortLabel = (searchParams.sortBy as string | undefined) ?? "Relevanță"
   const perPageParam = parseInt((searchParams.perPage as string) ?? "", 10)
   const perPage = VALID_PAGE_SIZES.includes(perPageParam) ? perPageParam : DEFAULT_PAGE_SIZE
+  const viewMode = (searchParams.view as string | undefined) === "list" ? "list" : "grid"
   const activeBrands = (searchParams.brand as string | undefined)?.split(",").filter(Boolean) ?? []
   const activeMaterials = (searchParams.material as string | undefined)?.split(",").filter(Boolean) ?? []
   const activePriceMin = parseInt((searchParams.priceMin as string) ?? "", 10)
@@ -193,7 +194,7 @@ export default async function CategoryPage(props: Props) {
               Niciun produs nu corespunde filtrelor selectate.
             </div>
           ) : (
-            <InfiniteProductGrid allFiltered={productCards} countryCode={countryCode} />
+            <InfiniteProductGrid allFiltered={productCards} countryCode={countryCode} viewMode={viewMode} />
           )}
         </CategoryLayoutClient>
       </main>

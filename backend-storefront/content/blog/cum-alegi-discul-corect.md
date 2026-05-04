@@ -18,7 +18,7 @@ La granit (6-7 Mohs), liantul trebuie să fie moale. Se uzează rapid și expune
 
 La marmură (3-4 Mohs), invers. Liantul dur ține geometria segmentului și previne uzura prematură.
 
-Un disc marcat „pentru granit" folosit pe marmură produce vibrații, marginea se ciobește, și discul se uzează de 3 ori mai repede decât normal.
+Un disc marcat „pentru granit" folosit pe marmură produce vibrații, pot apărea rupturi sau ciobituri.
 
 ## Beton armat: altă categorie complet
 
@@ -32,9 +32,9 @@ Fiecare disc are marcat `n_max`, adică turația maximă admisă. Un disc de 115
 
 Verifici `n_max` înainte de prima utilizare.
 
-Pe etichetă cauți în ordine: materialul recomandat, diametrul (mm), alezajul (mm), `n_max` (rpm), viteza periferică maximă (m/s). Dacă una din informații lipsește, discul nu respectă standardul.
+Pe etichetă cauți în ordine: materialul recomandat, diametrul (mm), alezajul (mm), `n_max` (rpm), viteza periferică maximă (m/s).
 
-Data viitoare când cumperi un disc, întoarce cutia și citești `n_max` înainte de preț. Discurile din gama [Tenax](https://www.tenax.net/) și celelalte branduri din stocul nostru au toate specificațiile pe etichetă și pe ambalaj. Le găsești la [Discuri diamantate](/categories/discuri-de-taiere).
+Alegerea corectă a discului se face în funcție de material, turație și, eventual, puterea sculei de debitat. Data viitoare când cumperi un disc, întoarce cutia și citești `n_max` înainte de preț. Le găsești la [Discuri diamantate](/categories/discuri-de-taiere).
 
 ---
 

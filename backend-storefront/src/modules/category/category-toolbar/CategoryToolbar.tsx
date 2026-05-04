@@ -50,6 +50,20 @@ export function CategoryToolbar({
     router.push(buildUrl("perPage", value))
   }
 
+  const isListView = searchParams.get("view") === "list"
+
+  function handleViewChange(view: "grid" | "list") {
+    if (!baseUrl) return
+    const params = new URLSearchParams(searchParams.toString())
+    if (view === "list") {
+      params.set("view", "list")
+    } else {
+      params.delete("view")
+    }
+    const qs = params.toString()
+    router.push(qs ? `${baseUrl}?${qs}` : (baseUrl ?? ""))
+  }
+
   return (
     <div className="cat-toolbar">
       <div className="count"><strong>{count}</strong> produse</div>
@@ -73,8 +87,8 @@ export function CategoryToolbar({
         </select>
       </div>
       <div className="view-toggle" role="group" aria-label="Mod afișare produse">
-        <button aria-label="grilă" aria-pressed={true} className="on"><svg viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/><rect x="1" y="9" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/></svg></button>
-        <button aria-label="listă" aria-pressed={false}><svg viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
+        <button aria-label="grilă" aria-pressed={!isListView} className={!isListView ? "on" : ""} onClick={() => handleViewChange("grid")}><svg viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/><rect x="1" y="9" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/></svg></button>
+        <button aria-label="listă" aria-pressed={isListView} className={isListView ? "on" : ""} onClick={() => handleViewChange("list")}><svg viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
       </div>
     </div>
   )
