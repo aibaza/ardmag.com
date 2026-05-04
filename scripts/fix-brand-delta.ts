@@ -5,9 +5,9 @@
 //   npx ts-node scripts/fix-brand-delta.ts          # dry-run (default)
 //   npx ts-node scripts/fix-brand-delta.ts --apply  # aplică modificările
 
-const BACKEND_URL = "http://localhost:9000"
-const ADMIN_EMAIL = "admin@ardmag.com"
-const ADMIN_PASSWORD = "Admin1234!"
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:9000"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@ardmag.com"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Admin1234!"
 const DRY_RUN = !process.argv.includes("--apply")
 
 const DELTA_PRODUCT_TITLES = [

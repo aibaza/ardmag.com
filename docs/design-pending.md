@@ -21,3 +21,6 @@ Format: `- [ ] Componentă: <element> — <ce decizie se așteaptă>`
 - [x] Decizie: tipografie — IBM Plex Sans (body) + IBM Plex Mono (labels/preturi). Confirmat.
 - [x] A11Y — Contrast CTA primary — `--brand-500` intunecat la `oklch(56% 0.190 42)`. Rezolvat.
 - [x] A11Y — Contrast footer text — `.footer-top h5`, `.news-consent`, `.trust-item span`, `.footer-bot` swap `--stone-500` -> `--stone-400`. Rezolvat.
+- [ ] Componentă: blog index -- layout lista carduri articole (imagine per card, tag chips, paginare)
+- [ ] Componentă: blog article view -- tipografie editorial, hero image, breadcrumb, related articles
+- [ ] Email templates -- layout vizual exact pentru review track B. Implementarea curenta: single-column 600px, header slate-900 + logo, footer cu identitate completa, tokens derivate din storefront globals.css. Nicio decizie noua de design -- doar aliniere cu ce exista pe site.

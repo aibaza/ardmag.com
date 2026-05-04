@@ -12,7 +12,7 @@ export function OrganizationJsonLd() {
       "@type": "ContactPoint",
       telephone: "+40-722-155-441",
       contactType: "customer service",
-      email: "office@arcromdiamonds.ro",
+      email: "office@ardmag.ro",
       availableLanguage: ["Romanian"],
     },
     address: {

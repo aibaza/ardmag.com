@@ -6,7 +6,7 @@ import { ContactForm } from "./ContactForm"
 export const metadata: Metadata = {
   title: "Contact | ardmag.com",
   description:
-    "Contacteaza-ne: +40 722 155 441, office@arcromdiamonds.ro. Calea Baciului 1-3, Cluj-Napoca. Program L-V 08-16.",
+    "Contacteaza-ne: +40 722 155 441, office@ardmag.ro. Calea Baciului 1-3, Cluj-Napoca. Program L-V 08-16.",
 }
 
 export default async function ContactPage({
@@ -36,8 +36,8 @@ export default async function ContactPage({
               </li>
               <li>
                 <strong>Email:</strong>{" "}
-                <a href="mailto:office@arcromdiamonds.ro" style={{ color: "var(--brand-600)" }}>
-                  office@arcromdiamonds.ro
+                <a href="mailto:office@ardmag.ro" style={{ color: "var(--brand-600)" }}>
+                  office@ardmag.ro
                 </a>
               </li>
               <li><strong>Adresa:</strong> Calea Baciului 1-3, Cluj-Napoca 400230</li>

@@ -3,7 +3,7 @@ import { getBaseURL } from "@lib/util/env"
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = getBaseURL()
-  const PRODUCTION_HOSTS = ["ardmag.com", "magazin.ardmag.com", "ardmag.surcod.ro"]
+  const PRODUCTION_HOSTS = ["ardmag.ro", "ardmag.com", "magazin.ardmag.com", "ardmag.surcod.ro"]
   const isStaging = !PRODUCTION_HOSTS.some((h) => baseUrl.includes(h))
 
   if (isStaging) {

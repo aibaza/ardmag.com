@@ -1,0 +1,34 @@
+1. Pe site nu pot da back la pagina anterioara. (browser firefox, daca ii cumva relevant) - pare sa se fi rezolvat in timp ce scriam lista
+2. Pe home page, la pachete promotionale apare poza de la o masina de taiat. nu mai vindem masini de taiat
+3. Categoria "DISCURI MARMURĂ ȘI ANDEZIT TOLA SECOND" ar trebui scoasa. nu vrem sa vindem si discurile second hand
+4. De la toate discurile de taiat trebuie sa scoatem varianta de repastilat(second hand)
+5. La discurile de taiat apar pozele de doua ori.
+6. La toate categoriile de discuri(inafara de cele speciale) trebuie puse dimensiunile intre 300 - 600 conform listelor de pret. 
+Cele mai mari de 600 nu le-am putea livra prin curier, fapt pt care ne-am gandit sa avem o categorie gen "made to order" unde sa intre discurile peste 600, elemente de fir, etc(tre sa vad ce mai gasesc)
+7. Eliminam categoria de discuri orizontale cu totul.
+8. Sa punem diametrele la discurile care raman in ordine, momentan sunt random.
+9. Acelasi lucru si la oale si minioale ca la pct 7.
+10. La periile frankfurt diamantate de la categoria abrazivi la ultima parte din descriere textu apare aproape dublat, cu mici diferente
+11. Puse granulatiile la diversele tipuri de abrazivi in ordine dupa tip si granulatie ca la discuri (pct. 7)
+12. La solutii iar apar o buna parte din solutiile Delta drept Tenax. In listele de pret le ai corecte.
+13. Cand vei adauga diverse solutii din listele de pret care nu apar pe site-ul vechi, nu vom avea poze pana nu apucam sa facem cateva. Probabil le includem cand vedem de restul pozelor.
+14. Proseal FS de la tenax il scoatem de pe site.
+15. Butonul de list view din partea dreapta nu functioneaza
+16. Cantitatile de la mastic puse in ordine gen 1L, 4L, 18L
+17. La mastic Tenax SOLIDO in lista de pret nu apare Jura, vad ca tu l-ai luat de pe site-u vechi. ramane pe site la aceleasi preturi ca si cel BEJ
+18. la mastic SOLIDO la 4L avem alb, negru, bej, transparent(384 RON)
+19. la mastic SOLIDO la 18L avem alb, bej, jura
+20. Mastic Titanium solid trebuie scos, nu il mai vindem
+21. In lista de pret am scris TENAX DOMO ALB 10 A 1L +B 1L, trebuia TENAX ALB DOMO 10 A 1L +B 1L
+22. https://ardmag.surcod.ro/blog/cum-alegi-discul-corect - "materialul pe care tăiești.", "Discurile din gama Tenax" tenax nu are discuri.
+"discul se uzează de 3 ori mai repede decât normal." - incorect, trebuie scos "pot aparea rupturi sau ciobituri" e mai corect
+"Dacă una din informații lipsește, discul nu respectă standardul." trebuie scos
+trebuie adaugat ceva gen: alegerea perfecta a discului se face in functie de material, turatie, si eventual puterea sculei de debitat
+nu toate discurile noastre au "celelalte branduri din stocul nostru au toate specificațiile pe etichetă și pe ambalaj." - mai bine scoatem
+23. https://ardmag.surcod.ro/blog/pad-uri-velcro-7-gradatii - in loc de grit/gradatii termenul folosit este "granulatie"
+
+"Suprafața capătă aspect mat-uniform" si incepe sa capete un usor luciu
+
+"Pad-urile Sait" nu doar SAIT, mai bine Pad-urile diamantate
+"Nu lucra uscat cu pad-uri din seria de lustruit" PE UMED(avem si seria de lustruit pe uscat)
+"Setul complet de 7 pad-uri Sait " scoate SAIT de aici

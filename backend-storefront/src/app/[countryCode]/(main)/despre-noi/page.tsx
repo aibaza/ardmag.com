@@ -68,7 +68,7 @@ export default async function DespreNoiPage({
           </h2>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, lineHeight: 2 }}>
             <li><strong>Telefon:</strong> +40 722 155 441</li>
-            <li><strong>Email:</strong> office@arcromdiamonds.ro</li>
+            <li><strong>Email:</strong> office@ardmag.ro</li>
             <li><strong>Adresa:</strong> Calea Baciului 1-3, Cluj-Napoca 400230</li>
             <li><strong>Program:</strong> Luni-Vineri, 08:00-16:00</li>
             <li><strong>CUI:</strong> 13828707 &nbsp;|&nbsp; <strong>Reg. Com.:</strong> J12/553/2001</li>

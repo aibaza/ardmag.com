@@ -1,11 +1,22 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: unknown
+last_updated: "2026-05-04T09:14:39.220Z"
+last_activity: 2026-04-19 - Completed starter leftover pages rebuild (account, checkout, order-confirmed, cart)
+---
+
 # ardmag.com — Project State
 
 **Last activity:** 2026-04-19 - Completed starter leftover pages rebuild (account, checkout, order-confirmed, cart)
 
 ## Current Phase
+
 Faza 2 — Wire-up Medusa data
 
 ## Completed
+
 - Faza 1: 26 componente extrase, tag v0.1.0
 - A2: enrichment 58/90 produse cu brand/material tags
 - A3: 8 adapters pure + 95 Vitest tests
@@ -16,6 +27,7 @@ Faza 2 — Wire-up Medusa data
 - Category images: 9 thumbs cu bg transparent, optimizate, auto-trim
 
 ## Blockers/Concerns
+
 Niciun blocker activ.
 
 ### Quick Tasks Completed

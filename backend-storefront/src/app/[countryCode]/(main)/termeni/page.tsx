@@ -119,7 +119,7 @@ export default async function TermeniPage({
         <h2 style={h2Style}>10. Contact</h2>
         <p style={pStyle}>
           ARC ROM DIAMONDS SRL, Calea Baciului 1-3, Cluj-Napoca 400230<br />
-          Tel: +40 722 155 441 &nbsp;|&nbsp; Email: office@arcromdiamonds.ro
+          Tel: +40 722 155 441 &nbsp;|&nbsp; Email: office@ardmag.ro
         </p>
       </main>
       <SiteFooter countryCode={countryCode} />

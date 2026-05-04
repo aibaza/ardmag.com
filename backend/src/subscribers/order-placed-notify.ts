@@ -1,7 +1,7 @@
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 
-const ADMIN_EMAIL = process.env.ORDER_NOTIFY_EMAIL || "office@arcromdiamonds.ro"
+const ADMIN_EMAIL = process.env.ORDER_NOTIFY_EMAIL || "office@ardmag.ro"
 
 export default async function orderPlacedNotify({
   event,

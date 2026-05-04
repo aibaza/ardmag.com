@@ -75,7 +75,7 @@ export default async function ConfidentialitatePage({
         </ul>
         <p style={pStyle}>
           Pentru exercitarea drepturilor, contacteaza-ne la{" "}
-          <a href="mailto:office@arcromdiamonds.ro">office@arcromdiamonds.ro</a>.
+          <a href="mailto:office@ardmag.ro">office@ardmag.ro</a>.
           Raspundem in maximum 30 de zile. Ai si dreptul de a depune o plangere la{" "}
           <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">
             ANSPDCP
@@ -117,7 +117,7 @@ export default async function ConfidentialitatePage({
         <p style={pStyle}>
           Operator: ARC ROM DIAMONDS SRL<br />
           Adresa: Calea Baciului 1-3, Cluj-Napoca 400230<br />
-          Email: <a href="mailto:office@arcromdiamonds.ro">office@arcromdiamonds.ro</a><br />
+          Email: <a href="mailto:office@ardmag.ro">office@ardmag.ro</a><br />
           Tel: +40 722 155 441
         </p>
       </main>

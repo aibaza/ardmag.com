@@ -36,6 +36,7 @@ if (process.env.R2_ACCESS_KEY_ID && process.env.R2_SECRET_ACCESS_KEY) {
             region: "auto",
             bucket: process.env.R2_BUCKET,
             endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+            cache_control: "public, max-age=31536000, immutable",
           },
         },
       ],
@@ -63,6 +64,10 @@ if (paymentProviders.length > 0) {
 }
 
 modules.push({
+  resolve: "./src/modules/newsletter",
+})
+
+modules.push({
   resolve: "@medusajs/medusa/fulfillment",
   options: {
     providers: [
@@ -74,15 +79,28 @@ modules.push({
 
 if (process.env.SMTP2GO_API_KEY || process.env.SMTP_HOST) {
   modules.push({
-    resolve: "./src/modules/notification-smtp2go",
+    resolve: "@medusajs/medusa/notification",
     options: {
-      apiKey: process.env.SMTP2GO_API_KEY,
-      smtpHost: process.env.SMTP_HOST,
-      smtpPort: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT) : 587,
-      smtpUser: process.env.SMTP_USERNAME,
-      smtpPass: process.env.SMTP_PASSWORD,
-      fromEmail: process.env.SMTP_FROM || "ardmag@surcod.ro",
-      fromName: "ardmag.com",
+      providers: [
+        {
+          resolve: "./src/modules/notification-smtp2go",
+          id: "smtp2go",
+          options: {
+            channels: ["email"],
+            apiKey: process.env.SMTP2GO_API_KEY,
+            smtpHost: process.env.SMTP_HOST,
+            smtpPort: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT) : 587,
+            smtpUser: process.env.SMTP_USERNAME,
+            smtpPass: process.env.SMTP_PASSWORD,
+            fromEmailTransactional: process.env.SMTP_FROM_TRANSACTIONAL || "comenzi@ardmag.ro",
+            fromEmailContact: process.env.SMTP_FROM_CONTACT || "contact@ardmag.ro",
+            fromEmailNoreply: process.env.SMTP_FROM_NOREPLY || "no-reply@ardmag.ro",
+            replyTo: process.env.SMTP_REPLY_TO || "office@ardmag.ro",
+            fromName: "ardmag.ro",
+            siteBaseUrl: process.env.SITE_BASE_URL || "https://ardmag.ro",
+          },
+        },
+      ],
     },
   })
 }

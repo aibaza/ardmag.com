@@ -125,7 +125,7 @@ export default async function CookiePolicyPage({
         <h2 style={h2Style}>Contact</h2>
         <p style={pStyle}>
           Intrebari despre cookies:{" "}
-          <a href="mailto:office@arcromdiamonds.ro">office@arcromdiamonds.ro</a>
+          <a href="mailto:office@ardmag.ro">office@ardmag.ro</a>
         </p>
       </main>
       <SiteFooter countryCode={countryCode} />

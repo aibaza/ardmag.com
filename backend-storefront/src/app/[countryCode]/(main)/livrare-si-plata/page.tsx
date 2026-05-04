@@ -127,7 +127,7 @@ export default async function LivrareSimPlataPage({
           Costul returului este suportat de client, exceptand cazul in care produsul este defect sau gresit livrat.
         </p>
         <p style={{ lineHeight: 1.7 }}>
-          Pentru initializarea unui retur, contacteaza-ne la <a href="mailto:office@arcromdiamonds.ro">office@arcromdiamonds.ro</a> sau +40 722 155 441.
+          Pentru initializarea unui retur, contacteaza-ne la <a href="mailto:office@ardmag.ro">office@ardmag.ro</a> sau +40 722 155 441.
         </p>
       </main>
       <SiteFooter countryCode={countryCode} />

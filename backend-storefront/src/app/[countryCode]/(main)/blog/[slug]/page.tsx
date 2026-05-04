@@ -203,7 +203,7 @@ export default async function BlogArticlePage({ params }: Props) {
               </p>
               <div className="b-links">
                 <Link href="/blog">Toate articolele →</Link>
-                <a href="mailto:office@arcromdiamonds.ro">Intreaba tehnic</a>
+                <a href="mailto:office@ardmag.ro">Intreaba tehnic</a>
               </div>
             </div>
           </div>
