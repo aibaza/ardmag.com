@@ -23,7 +23,9 @@ const CAT_IMAGE_MAP: Record<string, string> = {
   'diverse': '/design-temp/cat-diverse-thumb.webp',
   'abrazivi-si-perii': '/design-temp/cat-abrazivi-perii-thumb.webp',
   'abrazivi-oala': '/design-temp/cat-abrazivi-oala-thumb.webp',
-  'seturi-complete': '/design-temp/cat-seturi-thumb.webp',
+  'seturi-complete': '/design-temp/cat-pachete-thumb.webp',
+  'pachete-promotionale': '/design-temp/cat-pachete-thumb.webp',
+  'mese-de-taiat': '/design-temp/cat-pachete-thumb.webp',
 }
 
 type Props = {
@@ -91,7 +93,7 @@ export default async function HomePage({ params }: Props) {
     .slice(0, 8)
     .map((cat) => ({
       href: `/categories/${cat.handle}`,
-      image: CAT_IMAGE_MAP[cat.handle ?? ''] ?? '/design-temp/cat-echipamente.webp',
+      image: CAT_IMAGE_MAP[cat.handle ?? ''] ?? '/design-temp/cat-seturi-thumb.webp',
       imageAlt: cat.name ?? '',
       label: cat.name ?? '',
       count: (cat as any).products?.length ?? 0,
