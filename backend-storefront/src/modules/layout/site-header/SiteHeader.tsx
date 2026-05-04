@@ -62,6 +62,7 @@ export function SiteHeader({
           <span className="divider">·</span>
           <span>L-V 08:00-16:00</span>
           <div className="right">
+            <a href="/blog">Blog</a>
             <ThemeToggle />
           </div>
         </div></div>
@@ -85,7 +86,6 @@ export function SiteHeader({
           {categories.map((cat) => (
             <a key={cat.handle} href={`/categories/${cat.handle}`}>{cat.name.charAt(0).toUpperCase() + cat.name.slice(1).toLowerCase()}</a>
           ))}
-          <a href="/blog">Blog</a>
         </div></nav>
 
         {/* Mobile: compact bar */}
