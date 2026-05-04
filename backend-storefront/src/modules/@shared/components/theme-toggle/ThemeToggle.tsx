@@ -23,17 +23,15 @@ const SystemIcon = () => (
   </svg>
 )
 
-const THEMES = ["system", "light", "dark"] as const
+const THEMES = ["light", "dark"] as const
 type Theme = typeof THEMES[number]
 
 const ICONS: Record<Theme, React.FC> = {
-  system: SystemIcon,
   light: SunIcon,
   dark: MoonIcon,
 }
 
 const LABELS: Record<Theme, string> = {
-  system: "Tema sistem",
   light: "Tema luminoasa",
   dark: "Tema intunecata",
 }
@@ -48,7 +46,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     return <button className={`theme-toggle ${className ?? ""}`.trim()} aria-label="Schimba tema" />
   }
 
-  const current = (theme as Theme) ?? "system"
+  const current = (theme as Theme) ?? "light"
   const next = THEMES[(THEMES.indexOf(current) + 1) % THEMES.length]
   const Icon = ICONS[current]
 
