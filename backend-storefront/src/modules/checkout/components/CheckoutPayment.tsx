@@ -227,6 +227,22 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
         </div>
       )}
 
+      {selectedIsStripe && (
+        <div style={{
+          padding: "10px 14px",
+          marginBottom: 12,
+          background: "#fef9c3",
+          border: "1px solid #fde047",
+          borderRadius: "var(--r-md)",
+          fontFamily: "var(--f-sans)",
+          fontSize: 13,
+          color: "#713f12",
+          lineHeight: 1.5,
+        }}>
+          <strong>Plata cu cardul este in modul TEST.</strong> Cardurile reale nu sunt procesate momentan. Pentru o comanda reala, alege <strong>Ramburs la livrare</strong>.
+        </div>
+      )}
+
       {error && (
         <p style={{ color: "var(--brand-600)", fontSize: 13, marginBottom: 12, fontFamily: "var(--f-sans)" }}>
           {error}
