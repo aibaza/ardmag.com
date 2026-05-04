@@ -21,7 +21,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
         </div>
         <div><h3>Magazin</h3><ul><li><a href={allHref}>Toate categoriile</a></li><li><a href="/promotii">Promoții</a></li></ul></div>
         <div><h3>Cont &amp; comenzi</h3><ul><li><a href="/account">Contul meu</a></li><li><a href="/account/orders">Comenzi &amp; facturi</a></li></ul></div>
-        <div><h3>Info</h3><ul><li><a href={`/despre-noi`}>Despre noi</a></li><li><a href={`/livrare-si-plata`}>Livrare &amp; plată</a></li><li><a href={`/contact`}>Contact</a></li></ul></div>
+        <div><h3>Info</h3><ul><li><a href={`/despre-noi`}>Despre noi</a></li><li><a href={`/livrare-si-plata`}>Livrare &amp; plată</a></li><li><a href={`/contact`}>Contact</a></li><li><a href="/blog">Blog</a></li></ul></div>
         <div className="news-col">
           <h3>Newsletter</h3>
           <p>Promoții, stocuri noi, ghiduri tehnice. Maxim 2 emailuri pe lună.</p>
