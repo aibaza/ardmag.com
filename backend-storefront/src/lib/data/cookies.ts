@@ -42,11 +42,14 @@ export const getCacheOptions = async (
 
   const cacheTag = await getCacheTag(tag)
 
+  // Always include the global tag so admin-triggered revalidateTag(tag)
+  // can invalidate caches even for anonymous requests (no _medusa_cache_id cookie).
+  // For logged-in users the per-user tag still allows scoped invalidation.
   if (!cacheTag) {
-    return {}
+    return { tags: [tag] }
   }
 
-  return { tags: [`${cacheTag}`] }
+  return { tags: [cacheTag, tag] }
 }
 
 /** Static variant - no cookies() read, uses a global tag for CDN/ISR cache. */
