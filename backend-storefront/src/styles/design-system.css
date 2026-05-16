@@ -726,7 +726,8 @@ a.badge:hover{transform:translateY(-1px)}
   padding:12%;
   box-sizing:border-box;
   display:block;
-  background:var(--surface);
+  background:#fff;
+  border-radius:var(--r-sm);
 }
 .pcard-img.with-real .top-tags{z-index:2}
 

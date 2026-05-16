@@ -24,3 +24,4 @@ Format: `- [ ] Componentă: <element> — <ce decizie se așteaptă>`
 - [ ] Componentă: blog index -- layout lista carduri articole (imagine per card, tag chips, paginare)
 - [ ] Componentă: blog article view -- tipografie editorial, hero image, breadcrumb, related articles
 - [ ] Email templates -- layout vizual exact pentru review track B. Implementarea curenta: single-column 600px, header slate-900 + logo, footer cu identitate completa, tokens derivate din storefront globals.css. Nicio decizie noua de design -- doar aliniere cu ce exista pe site.
+- [x] Componenta: imagini produs in dark mode (img.pimg pe cards listing) -- aplicat optiunea 2 (paspartout CSS universal): background #fff + border-radius var(--r-sm) pe .pimg. In light mode efect invizibil (alb pe alb), in dark mode imaginea apare cu rama alba intentionata.
