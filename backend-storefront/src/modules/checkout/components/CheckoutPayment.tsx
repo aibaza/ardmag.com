@@ -16,6 +16,8 @@ const stripePromise = process.env.NEXT_PUBLIC_STRIPE_KEY
   ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY)
   : null
 
+const stripeIsTestMode = (process.env.NEXT_PUBLIC_STRIPE_KEY || "").startsWith("pk_test_")
+
 function isStripe(id: string) {
   return id.includes("stripe") && !id.includes("oxxo") && !id.includes("ideal")
     && !id.includes("giropay") && !id.includes("blik") && !id.includes("bancontact")
@@ -227,7 +229,7 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
         </div>
       )}
 
-      {selectedIsStripe && (
+      {selectedIsStripe && stripeIsTestMode && (
         <div style={{
           padding: "10px 14px",
           marginBottom: 12,
