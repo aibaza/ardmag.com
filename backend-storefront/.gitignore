@@ -57,3 +57,4 @@ dump.rdb
 /playwright/.cache/
 /playwright/.auth
 .image-cache/
+.env*.local
