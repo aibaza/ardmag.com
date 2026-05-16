@@ -13,6 +13,7 @@ import { SiteFooter } from '@modules/layout/site-footer'
 import { listCategories } from '@lib/data/categories'
 import { listProducts } from '@lib/data/products'
 import { productToCard } from '@lib/util/adapters/product-to-card'
+import { listArticles } from '@lib/blog'
 import { HttpTypes } from '@medusajs/types'
 
 const CAT_IMAGE_MAP: Record<string, string> = {
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
 export default async function HomePage({ params }: Props) {
   const { countryCode } = await params
 
-  const [categories, allProductsResult] = await Promise.all([
+  const [categories, allProductsResult, articles] = await Promise.all([
     listCategories(undefined, { staticCache: true }).catch(() => [] as HttpTypes.StoreProductCategory[]),
     listProducts({
       pageParam: 1,
@@ -60,6 +61,7 @@ export default async function HomePage({ params }: Props) {
       countryCode,
       publicFetch: true,
     }).catch(() => ({ response: { products: [], count: 0 }, nextPage: null })),
+    listArticles().catch(() => []),
   ])
 
   const allProducts = allProductsResult.response.products
@@ -67,9 +69,26 @@ export default async function HomePage({ params }: Props) {
   const featuredProduct = allProducts.find((p) =>
     p.tags?.some((t) => t.value === "featured")
   )
-  const heroProps = featuredProduct
+  const heroPropsBase = featuredProduct
     ? productToHero(featuredProduct, countryCode)
     : getHeroFallback(countryCode)
+
+  // Override sideCards with the latest 2 published articles (auto-updating)
+  const latestArticles = articles.slice(0, 2)
+  const heroProps = latestArticles.length === 2
+    ? {
+        ...heroPropsBase,
+        sideCards: latestArticles.map((a) => ({
+          kicker: a.kicker ?? (a.tags?.[0] ?? "Ghid"),
+          title: a.title,
+          description: a.description,
+          image: a.heroImage ?? "/design-temp/hero-ghid.jpg",
+          imageAlt: a.title,
+          ctaLabel: "Citește articolul →",
+          ctaHref: `/blog/${a.slug}`,
+        })),
+      }
+    : heroPropsBase
 
   const promoProducts = allProducts
     .filter((p) =>

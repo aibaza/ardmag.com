@@ -746,29 +746,30 @@ a.badge:hover{transform:translateY(-1px)}
 .qc .real img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
 .qc .phld{display:none}
 
-/* Hero card with image — decorative bottom-right corner image */
+/* Hero card with full-bleed background image + left fade to surface */
 .hero-card.with-img{position:relative;overflow:hidden}
 .hero-card.with-img .phld{display:none}
-.hero-card.with-img .img-wrap{
-  position:absolute;right:12px;bottom:12px;
-  width:44%;max-width:200px;height:54%;max-height:180px;
-  margin:0;background:transparent;border-radius:var(--r-sm);
-  display:flex;align-items:center;justify-content:center;
-  padding:0;box-sizing:border-box;
-  pointer-events:none;
-  z-index:0;
+.hero-card.with-img .hcard-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:right center;
+  z-index:0;border-radius:0;
 }
-.hero-card.with-img .img-wrap img{
-  max-width:100%;max-height:100%;width:auto;height:auto;
-  object-fit:contain;display:block;
-  mix-blend-mode:multiply;
-  opacity:0.92;
+.hero-card.with-img .hcard-fade{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(
+    to right,
+    var(--surface) 0%,
+    var(--surface) 32%,
+    color-mix(in oklch, var(--surface), transparent 100%) 100%
+  );
 }
-/* Ensure text content sits above the decorative image */
-.hero-card.with-img > *:not(.img-wrap){position:relative;z-index:1}
-/* Keep text from overlapping the image: reserve right padding on text block */
-.hero-card.with-img p{padding-right:44%}
-.hero-card.with-img h3{padding-right:10%}
+.hero-card.with-img > *:not(.hcard-bg):not(.hcard-fade){position:relative;z-index:2}
+.hero-card.with-img p{max-width:58%}
+.hero-card.with-img h3{max-width:58%}
+@media(max-width:600px){
+  .hero-card.with-img p,.hero-card.with-img h3{max-width:70%}
+  .hero-card.with-img .hcard-fade{background:linear-gradient(to right, var(--surface) 0%, var(--surface) 45%, color-mix(in oklch, var(--surface), transparent 100%) 100%)}
+}
 
 /* Supplier logos — fixed height, image inherits */
 .slogo.with-real{padding:12px 16px;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
