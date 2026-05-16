@@ -1,11 +1,19 @@
 import { AbstractFulfillmentProviderService } from "@medusajs/framework/utils"
 import { Logger, CreateShippingOptionDTO } from "@medusajs/framework/types"
 import { fallbackTariff } from "./lib/fallback-tariff"
-import { totalWeightGrams } from "./lib/weight"
 import { getToken } from "./lib/token-cache"
 import { getInternalTariff } from "./lib/api"
+import { fetchVariantWeights } from "./lib/variant-weights"
 
 type InjectedDeps = { logger: Logger }
+
+const DEFAULT_WEIGHT_G = 1000
+
+type ContextItem = {
+  quantity: number
+  variant_id?: string | null
+  variant?: { weight?: number | null } | null
+}
 
 export class FanCourierProviderService extends AbstractFulfillmentProviderService {
   static identifier = "fan-courier"
@@ -29,17 +37,48 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
     return true
   }
 
+  private async computeTotalKg(items: ContextItem[]): Promise<number> {
+    if (items.length === 0) return 0
+
+    const idsToFetch: string[] = []
+    for (const it of items) {
+      if (typeof it.variant?.weight !== "number" && it.variant_id) {
+        idsToFetch.push(it.variant_id)
+      }
+    }
+
+    let weightMap: Map<string, number> = new Map()
+    if (idsToFetch.length > 0) {
+      try {
+        weightMap = await fetchVariantWeights(idsToFetch)
+      } catch (err) {
+        this.logger.warn(`[FanCourier] fetchVariantWeights failed: ${(err as Error).message}`)
+      }
+    }
+
+    let totalG = 0
+    for (const it of items) {
+      const fromContext = typeof it.variant?.weight === "number" ? it.variant.weight : null
+      const fromDb = it.variant_id ? weightMap.get(it.variant_id) ?? null : null
+      const w = fromContext ?? fromDb ?? DEFAULT_WEIGHT_G
+      totalG += w * (it.quantity || 0)
+    }
+    return totalG / 1000
+  }
+
   async calculatePrice(
     _optionData: Record<string, unknown>,
     _data: Record<string, unknown>,
     context: Record<string, unknown>
   ) {
-    const items = (context.items as Array<{ quantity: number; variant?: { weight?: number | null } | null }>) ?? []
+    const items = (context.items as ContextItem[]) ?? []
     const addr = context.shipping_address as { province?: string; city?: string } | undefined
 
-    const totalKg = totalWeightGrams(items) / 1000
+    const totalKg = await this.computeTotalKg(items)
     const county = addr?.province || "Cluj"
     const locality = addr?.city || "Cluj-Napoca"
+
+    this.logger.info(`[FanCourier] calc: ${items.length} items, ${totalKg}kg -> ${county}/${locality}`)
 
     const hasCredentials =
       process.env.FAN_COURIER_USERNAME &&
@@ -78,7 +117,6 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
   }
 
   async createFulfillment() {
-    // Faza 2: genereaza AWB prin POST /intern-awb
     return { data: {}, labels: [] }
   }
 
