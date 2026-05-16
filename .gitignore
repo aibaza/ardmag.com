@@ -12,9 +12,24 @@ build/
 .env
 .env.local
 .env.*.local
+.env.production
+.env.production.local
 
 # Secrets (never commit)
 docs/deployment/SECRETS.md
+
+# Planning workflow output (GSD / ardmag-iterate)
+.planning/
+
+# Workflow extract analysis output
+docs/impl/
+
+# Static images: surse neutilizate (sectiunea quick-categories foloseste /design-temp/)
+backend/static/images/categories/
+backend/static/images/suppliers/
+
+# Backup folders create manual (NU intra in deploy)
+**/backup__*/
 
 # Logs
 *.log
