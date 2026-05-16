@@ -55,8 +55,8 @@ export function PDPVariantSelector({ groups }: PDPVariantSelectorProps) {
                   {option.label}{option.discount !== undefined && <> <span style={{ color: "var(--brand-500)", fontSize: "10px", marginLeft: "4px" }}>{option.discount}</span></>}
                   {option.contactToOrder && (
                     <span aria-hidden="true" style={{ marginLeft: 4, display: 'inline-flex', alignItems: 'center' }}>
-                      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3.6 2.5C3 3.7 2.8 4.5 3.5 6.3c1 2.5 2.7 4.2 5.2 5.2 1.8.7 2.6.5 3.8-.1l1.1-.5c.4-.2.5-.7.3-1.1l-1-1.6c-.2-.3-.7-.5-1-.3l-.9.5c-.9-.4-2-1.5-2.4-2.4l.5-.9c.2-.4 0-.8-.3-1l-1.6-1c-.4-.2-.9-.1-1.1.3l-.5 1.1z"/>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"/>
                       </svg>
                     </span>
                   )}

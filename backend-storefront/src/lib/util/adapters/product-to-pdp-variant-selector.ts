@@ -113,7 +113,12 @@ export function productToPdpVariantSelector(
   const groups: VariantGroup[] = []
 
   for (const dimensionTitle of dimensionOrder) {
-    const values = Array.from(dimensionMap.get(dimensionTitle)!)
+    const rawValues = Array.from(dimensionMap.get(dimensionTitle)!)
+    // Sort numeric values ascending (e.g. diametru 300, 350, ...), alphabetic otherwise
+    const allNumeric = rawValues.every((v) => /^\d+([.,]\d+)?$/.test(v.trim()))
+    const values = allNumeric
+      ? rawValues.sort((a, b) => Number(a.replace(',', '.')) - Number(b.replace(',', '.')))
+      : rawValues.sort((a, b) => a.localeCompare(b, 'ro'))
 
     const activeOptValue =
       activeVariant.options?.find((o) => o.option?.title === dimensionTitle)
