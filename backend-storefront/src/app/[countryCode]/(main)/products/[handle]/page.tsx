@@ -145,6 +145,7 @@ export default async function ProductPage(props: Props) {
   const firstVariant = variants[0] ?? { sku: null, ean: null }
 
   const rawPrice = (selectedVariant as any)?.calculated_price?.calculated_amount ?? undefined
+  const contactToOrder = (selectedVariant?.metadata as any)?.contact_to_order === true
 
   return (
     <>
@@ -184,6 +185,7 @@ export default async function ProductPage(props: Props) {
             variantId={selectedVariant?.id ?? null}
             countryCode={countryCode}
             perks={PDP_PERKS}
+            contactToOrder={contactToOrder}
           />
         </section>
 

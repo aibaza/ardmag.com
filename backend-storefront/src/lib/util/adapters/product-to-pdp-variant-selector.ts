@@ -6,6 +6,7 @@ interface VariantOption {
   active?: boolean
   unavailable?: boolean
   discount?: string
+  contactToOrder?: boolean
 }
 
 interface VariantGroup {
@@ -136,11 +137,15 @@ export function productToPdpVariantSelector(
       const discount = firstMatchingVariant
         ? variantDiscountLabel(firstMatchingVariant)
         : undefined
+      const contactToOrder =
+        firstMatchingVariant?.metadata &&
+        (firstMatchingVariant.metadata as Record<string, unknown>).contact_to_order === true
 
       const option: VariantOption = { label: value, variantId }
       if (value === activeOptValue) option.active = true
       if (unavailable) option.unavailable = true
       if (discount) option.discount = discount
+      if (contactToOrder) option.contactToOrder = true
 
       return option
     })

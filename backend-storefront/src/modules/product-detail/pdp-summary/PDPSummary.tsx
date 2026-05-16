@@ -4,6 +4,7 @@ import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
 import { PDPPriceCard } from '@modules/product-detail/pdp-price-card'
 import { PDPVariantSelector } from '@modules/product-detail/pdp-variant-selector'
 import { PDPAddToCartButton } from '@modules/product-detail/pdp-add-to-cart-button'
+import { PDPContactOrderButton } from '@modules/product-detail/pdp-contact-order'
 
 interface PDPPerk {
   icon: ReactNode
@@ -45,9 +46,10 @@ interface PDPSummaryProps {
   variantId: string | null
   countryCode: string
   perks: PDPPerk[]
+  contactToOrder?: boolean
 }
 
-export function PDPSummary({ brand, brandHref, title, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, perks }: PDPSummaryProps) {
+export function PDPSummary({ brand, brandHref, title, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, perks, contactToOrder }: PDPSummaryProps) {
   return (
     <aside className="pdp-summary">
 
@@ -73,11 +75,18 @@ export function PDPSummary({ brand, brandHref, title, ean, rating, price, was, s
         <span className="loc">{stockLocation}</span>
       </div>
 
-      {/* Buy */}
-      <div className="pdp-buy">
-        <QuantityStepper />
-        <PDPAddToCartButton variantId={variantId} countryCode={countryCode} label={addToCartLabel} />
-      </div>
+      {/* Buy / Contact */}
+      {contactToOrder ? (
+        <PDPContactOrderButton
+          productTitle={title}
+          variantLabel={variantGroups.map(g => `${g.title} ${g.selectedValue}`).join(', ')}
+        />
+      ) : (
+        <div className="pdp-buy">
+          <QuantityStepper />
+          <PDPAddToCartButton variantId={variantId} countryCode={countryCode} label={addToCartLabel} />
+        </div>
+      )}
 
       {/* Extras */}
       <div className="pdp-extras">

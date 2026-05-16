@@ -585,6 +585,9 @@
 .var-opt:hover{border-color:var(--stone-500)}
 .var-opt.on{background:var(--stone-900);color:#fff;border-color:var(--stone-900)}
 .var-opt.off{opacity:0.4;cursor:not-allowed;text-decoration:line-through}
+.var-opt.contact{border-color:var(--brand-500);color:var(--brand-600);background:var(--surface)}
+.var-opt.contact:hover{background:var(--brand-50,#fef2f2);border-color:var(--brand-600)}
+.var-opt.on.contact{background:var(--brand-600);color:#fff;border-color:var(--brand-600)}
 
 /* Qty + CTA */
 .pdp-buy{display:grid;grid-template-columns:auto 1fr;gap:10px}
