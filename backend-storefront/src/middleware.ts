@@ -97,9 +97,11 @@ export async function middleware(request: NextRequest) {
 
   // URL already has a country code prefix:
   // - if it's the default region, redirect to clean URL without prefix (301)
+  //   EXCEPT for non-GET requests (Server Actions are POSTs to the current URL;
+  //   a 301 would convert them to GET and silently drop the action)
   // - if it's another region, pass through normally
   if (urlHasCountryCode) {
-    if (countryCode === DEFAULT_REGION) {
+    if (countryCode === DEFAULT_REGION && request.method === "GET") {
       const cleanPath = pathname.replace(`/${countryCode}`, "") || "/"
       const cleanUrl = `${request.nextUrl.origin}${cleanPath}${request.nextUrl.search}`
       return NextResponse.redirect(cleanUrl, 301)

@@ -23,7 +23,7 @@ export default async function CheckoutLayout({ children, params }: Props) {
         </a>
         <span style={{ width: 120 }} />
       </header>
-      <main style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
+      <main style={{ maxWidth: 1024, margin: '0 auto', padding: '32px 24px', boxSizing: 'border-box', width: '100%' }}>
         {children}
       </main>
       <footer style={{ borderTop: '1px solid var(--rule)', padding: '16px 24px', textAlign: 'center', fontSize: 12, color: 'var(--fg-muted)', fontFamily: 'var(--f-sans)' }}>

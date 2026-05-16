@@ -426,8 +426,7 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
     return e.message
   }
 
-  const countryCode = (formData.get("shipping_address.country_code") as string) || "ro"
-  redirect(`/${countryCode}/checkout?step=delivery`)
+  redirect(`/checkout?step=delivery`)
 }
 
 /**

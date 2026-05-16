@@ -85,7 +85,7 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
 
   return (
     <div className="checkout-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 320px', gap: 40, alignItems: 'flex-start' }}>
-      <div>
+      <div style={{ minWidth: 0 }}>
         <StepIndicator current={step} />
 
         {step === 'address' && (
