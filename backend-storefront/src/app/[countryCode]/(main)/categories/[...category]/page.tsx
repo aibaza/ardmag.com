@@ -19,6 +19,7 @@ import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes, StoreRegion } from "@medusajs/types"
 
 export const maxDuration = 60
+export const revalidate = 300
 
 const VALID_PAGE_SIZES = [20, 40, 60]
 const DEFAULT_PAGE_SIZE = 20

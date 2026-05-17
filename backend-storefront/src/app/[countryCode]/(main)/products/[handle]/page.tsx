@@ -17,6 +17,7 @@ import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
 import { ProductJsonLd } from "@lib/util/json-ld"
 
+export const revalidate = 300
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>

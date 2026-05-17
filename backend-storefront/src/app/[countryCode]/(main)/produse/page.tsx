@@ -15,6 +15,7 @@ import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 
 export const maxDuration = 60
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: "Toate produsele",
