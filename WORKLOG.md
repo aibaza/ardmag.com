@@ -181,3 +181,54 @@ component, fara cost suplimentar). Regex extracts /categories/{handle}
 din pathname, comparat cu cat.handle in loop.
 
 Fisiere: 3 modificate (SiteHeader.tsx, design-system.css, SiteFooter.tsx).
+
+## 2026-05-17 17:00 -- UI cos + checkout polish: trash icon, CTA, panel detalii livrare, footer spacing
+
+Commits: `16eb79c`, `3cbe40c`, `07c4aa2`
+Deploy: https://ardmag.ro/cart | Vercel: ardmag-storefront-ovbcxz8ib
+Confirmat: DA ("confirm ca tot ce ai implementat este corect")
+
+Patru fix-uri de UX vizibile in fluxul cos -> checkout -> confirmare,
+toate descoperite vizual de user pe live:
+
+1. **Trash icon + label "Sterge" (commit 16eb79c)** -- butonul de stergere
+   din linia de cos era un SVG custom cu path improvizat (corp 4x9
+   distorsionat), fara label, iar clasa `.icon-only` aplicata pe el nu
+   era definita nicaieri in CSS. Pentru target 50+ era nedescifrabil.
+   Inlocuit cu trash-2 Lucide standard (24x24 viewbox). Pe desktop
+   butonul ramane `.btn.ghost.sm` standard cu icon + label "Sterge"
+   alaturi. Pe mobile (<=640px) label-ul se ascunde si butonul revine
+   la cerc 36x36 ca sa nu fure spatiu lateral. Hover: text rosu via
+   `var(--error)` + fundal pal `var(--error-bg)`.
+
+2. **CTA "Finalizeaza comanda" (commit 3cbe40c)** -- "Continua spre
+   checkout" amestec EN/RO, fara diacritica. 5 alternative propuse,
+   user-ul a ales "Finalizeaza comanda" -- formula standard in
+   e-commerce RO (eMag, Altex, Dedeman), neutra fata de pasii urmatori
+   (livrare/plata/review).
+
+3. **Panel detalii livrare pe pagina de confirmare (commit 3cbe40c)** --
+   adresa de livrare era inghesuita la coada listei de produse, in text
+   mut, fara card. Acum:
+   - "Produse comandate" si "Detalii livrare" sunt panel-uri peer
+     (background var(--surface), border var(--rule), padding 0)
+   - Panel-ul livrare are titlu + nota "Plasata pe 17 mai 2026, ora 14:32"
+     in panel-head (formatare RO via toLocaleDateString/Time)
+   - Doua coloane interior via `.form-row-2`: Adresa (cu telefon in mono
+     font) si Metoda livrare (nume + pret in mono)
+   - Pe mobile coloanele se stivuiesc automat
+   - Bonus: `retrieveOrder` fetch-uieste acum explicit `*shipping_methods`
+     + `*shipping_address` + `*billing_address` ca sa fie disponibile
+     in toate paginile order detail (nu doar dependent de defaults Medusa)
+
+4. **Footer nu mai e lipit pe paginile .page-inner (commit 07c4aa2)** --
+   pe cart, /produse, /promotii, /search, /products/[handle], pagina de
+   confirmare, ultimul element era flush cu marginea dark a footerului.
+   Diagnostic: `.site-footer` nu are margin-top, iar `.page-inner` nu
+   avea padding-bottom. Homepage si /blog au layout-uri proprii cu
+   padding pe sectiuni, deci nu au fost niciodata afectate.
+   Fix: adaugat `padding-bottom: 64px` pe `.page-inner` in
+   design-system.css. Schimbare punctuala, zero impact pe homepage/blog.
+
+Fisiere: 5 modificate (CartLineItem.tsx, cart/page.tsx,
+order/[id]/confirmed/page.tsx, lib/data/orders.ts, design-system.css).
