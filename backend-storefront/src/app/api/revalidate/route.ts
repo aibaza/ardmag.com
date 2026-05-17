@@ -22,5 +22,9 @@ export async function GET(req: NextRequest) {
   revalidateTag("products")
   revalidatePath("/")
   revalidatePath("/[countryCode]", "page")
+  revalidatePath("/produse", "page")
+  revalidatePath("/promotii", "page")
+  revalidatePath("/categories/[...category]", "page")
+  revalidatePath("/products/[handle]", "page")
   return NextResponse.json({ revalidated: true, default: true })
 }

@@ -17,7 +17,6 @@ import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
 import { ProductJsonLd } from "@lib/util/json-ld"
 
-export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
@@ -113,6 +112,7 @@ export default async function ProductPage(props: Props) {
       handle,
       fields: '*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images,*categories',
     },
+    publicFetch: true,
   }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[] } }))
 
   const product = response.products[0]

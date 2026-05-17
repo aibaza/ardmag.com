@@ -18,7 +18,6 @@ import { sortProducts, SortOptions } from "@lib/util/sort-products"
 import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes, StoreRegion } from "@medusajs/types"
 
-export const dynamic = 'force-dynamic'
 export const maxDuration = 60
 
 const VALID_PAGE_SIZES = [20, 40, 60]
@@ -96,6 +95,7 @@ export default async function CategoryPage(props: Props) {
       fields: '*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images',
     },
     countryCode,
+    publicFetch: true,
   }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[], count: 0 }, nextPage: null }))
 
   // Apply filters

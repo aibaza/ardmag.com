@@ -89,6 +89,23 @@ nextConfig.headers = async () => [
     source: "/:path*\\.(svg|jpg|jpeg|png|webp|avif|ico|woff|woff2|js|css)",
     headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
   },
+  // Pagini catalog - cache la edge cu SWR (invalidate manual via /api/revalidate)
+  {
+    source: "/produse",
+    headers: [{ key: "Cache-Control", value: "public, s-maxage=300, stale-while-revalidate=900" }],
+  },
+  {
+    source: "/promotii",
+    headers: [{ key: "Cache-Control", value: "public, s-maxage=300, stale-while-revalidate=900" }],
+  },
+  {
+    source: "/categories/:path*",
+    headers: [{ key: "Cache-Control", value: "public, s-maxage=300, stale-while-revalidate=900" }],
+  },
+  {
+    source: "/products/:handle*",
+    headers: [{ key: "Cache-Control", value: "public, s-maxage=300, stale-while-revalidate=900" }],
+  },
   {
     source: "/(.*)",
     headers: [{ key: "X-DNS-Prefetch-Control", value: "on" }],
