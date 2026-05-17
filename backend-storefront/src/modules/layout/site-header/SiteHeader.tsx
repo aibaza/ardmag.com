@@ -11,7 +11,6 @@ interface SiteHeaderProps {
   discuriHref?: string
   drawerId?: string
   drawerClosedAttr?: boolean
-  cartItemCount?: number
   categories?: Array<{ name: string; handle: string; count: number }>
 }
 
@@ -21,12 +20,11 @@ export function SiteHeader({
   discuriHref,
   drawerId,
   drawerClosedAttr,
-  cartItemCount = 0,
   categories = [],
 }: SiteHeaderProps) {
   const categoriesHref = categoriesHrefProp ?? `/produse`
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [liveCartCount, setLiveCartCount] = useState(cartItemCount)
+  const [liveCartCount, setLiveCartCount] = useState<number | undefined>(undefined)
   const router = useRouter()
 
   useEffect(() => {
@@ -76,7 +74,7 @@ export function SiteHeader({
           </form>
           <div className="actions">
             <a className="action-btn" href={`/account`} aria-label="cont"><span className="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></span><span className="label">Cont</span></a>
-            <a className="action-btn" href={`/cart`} aria-label="cos"><span className="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 4h3l2 12h11l2-8H7"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span><span className="label">Cos</span>{liveCartCount > 0 && <span className="count">{liveCartCount}</span>}</a>
+            <a className="action-btn" href={`/cart`} aria-label="cos"><span className="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 4h3l2 12h11l2-8H7"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span><span className="label">Cos</span>{liveCartCount === undefined ? <span className="count count-skeleton" aria-hidden="true" /> : liveCartCount > 0 && <span className="count">{liveCartCount}</span>}</a>
           </div>
         </div>
 
@@ -93,7 +91,7 @@ export function SiteHeader({
           <button className="burger" aria-label="meniu" onClick={() => setDrawerOpen(true)}><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
           <a className="logo logo-compact" href="/"><Image src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} priority sizes="150px" /></a>
           <div className="spacer"></div>
-          <a className="icon-btn" href={`/cart`} aria-label="cos"><svg viewBox="0 0 20 20"><path d="M3 4h2l1.5 9h9l1.5-6H6"/><circle cx="8" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg>{liveCartCount > 0 && <span className="count">{liveCartCount}</span>}</a>
+          <a className="icon-btn" href={`/cart`} aria-label="cos"><svg viewBox="0 0 20 20"><path d="M3 4h2l1.5 9h9l1.5-6H6"/><circle cx="8" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg>{liveCartCount === undefined ? <span className="count count-skeleton" aria-hidden="true" /> : liveCartCount > 0 && <span className="count">{liveCartCount}</span>}</a>
         </div>
 
         {/* Mobile: search row */}
