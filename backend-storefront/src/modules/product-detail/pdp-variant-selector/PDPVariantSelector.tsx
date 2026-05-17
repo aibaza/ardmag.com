@@ -39,7 +39,7 @@ export function PDPVariantSelector({ groups }: PDPVariantSelectorProps) {
     <>
       {groups.map((group, i) => (
         <div key={i} className="variant-group">
-          <div className="label">{group.title} <strong>{group.selectedValue}</strong></div>
+          <div className="label">{group.title}</div>
           <div className="var-opts">
             {group.options.map((option, j) => {
               const cls = `var-opt${option.active ? ' on' : option.unavailable ? ' off' : ''}${option.contactToOrder ? ' contact' : ''}`
