@@ -94,17 +94,23 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
         {/* Remove */}
         <button
           type="button"
-          className="btn ghost sm icon-only cli-remove"
-          aria-label="Sterge produsul"
+          className="btn ghost sm cli-remove"
+          aria-label="Șterge produsul din coș"
+          title="Șterge din coș"
           onClick={() => {
             startTransition(() => {
               deleteLineItem(item.id)
             })
           }}
         >
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M2 4h12M6 4V2h4v2M5 4l1 9h4l1-9" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M3 6h18" />
+            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+            <line x1="10" y1="11" x2="10" y2="17" />
+            <line x1="14" y1="11" x2="14" y2="17" />
           </svg>
+          <span className="cli-remove-label">Șterge</span>
         </button>
       </div>
 
@@ -155,7 +161,19 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
           min-width: 90px;
           text-align: right;
         }
-        .cart-line-item .cli-remove { grid-area: remove; }
+        .cart-line-item .cli-remove {
+          grid-area: remove;
+          color: var(--fg-muted);
+          transition: color 120ms, background-color 120ms;
+        }
+        .cart-line-item .cli-remove:hover {
+          color: var(--error);
+          background: var(--error-bg);
+        }
+        .cart-line-item .cli-remove-label {
+          font-size: 13px;
+          font-weight: 500;
+        }
 
         @media (max-width: 640px) {
           .cart-line-item .cli-grid {
@@ -168,6 +186,15 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
           .cart-line-item .cli-thumb { width: 56px; height: 56px; }
           .cart-line-item .cli-qty { justify-self: start; }
           .cart-line-item .cli-price { align-self: center; }
+          .cart-line-item .cli-remove {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: 50%;
+          }
+          .cart-line-item .cli-remove-label {
+            display: none;
+          }
         }
       `}</style>
     </div>
