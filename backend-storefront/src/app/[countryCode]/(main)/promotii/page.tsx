@@ -4,18 +4,15 @@ import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 import { Breadcrumb } from "@modules/@shared/components/breadcrumb/Breadcrumb"
 import { CategoryHero } from "@modules/category/category-hero"
-import { CategoryToolbar } from "@modules/category/category-toolbar"
-import { CategoryLayoutClient } from "@modules/category/category-layout-client"
-import { InfiniteProductGrid } from "@modules/products/infinite-product-grid/InfiniteProductGrid"
+import { CatalogClient, type CatalogItem } from "@modules/products/catalog-client"
 import { listProducts } from "@lib/data/products"
 import { productsToFilterGroups } from "@lib/util/adapters/products-to-filter-groups"
 import { productToCard } from "@lib/util/adapters/product-to-card"
-import { sortProducts, SortOptions } from "@lib/util/sort-products"
 import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 
 export const maxDuration = 60
-export const revalidate = 300
+export const revalidate = false
 
 export const metadata: Metadata = {
   title: "Produse la reducere",
@@ -27,11 +24,6 @@ export const metadata: Metadata = {
 const VALID_PAGE_SIZES = [20, 40, 60]
 const DEFAULT_PAGE_SIZE = 20
 const SORT_OPTIONS = ["Relevanță", "Preț ascendent", "Preț descendent", "Cele mai noi"]
-const SORT_MAP: Record<string, SortOptions> = {
-  "Preț ascendent": "price_asc",
-  "Preț descendent": "price_desc",
-  "Cele mai noi": "created_at",
-}
 
 const HELP_CARD = {
   label: "Ai nevoie de ajutor?",
@@ -42,7 +34,6 @@ const HELP_CARD = {
 
 type Props = {
   params: Promise<{ countryCode: string }>
-  searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
 type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
@@ -53,7 +44,6 @@ type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
 }
 
 function hasRealDiscount(product: HttpTypes.StoreProduct): boolean {
-  // 1) Real price list discount: original_amount > calculated_amount
   const hasPriceListDiscount = (product.variants ?? []).some((v) => {
     const cp = (v as VariantWithCalcPrice).calculated_price
     return (
@@ -63,25 +53,19 @@ function hasRealDiscount(product: HttpTypes.StoreProduct): boolean {
     )
   })
   if (hasPriceListDiscount) return true
-  // 2) Fallback legacy: metadata.ribbon contains "PROMO" -- aliniat cu logica
-  //    productToBadges, ca pagina /promotii sa includa produsele care
-  //    afiseaza badge -30% pe carduri chiar daca API-ul nu returneaza
-  //    original_amount in calculated_price.
   const ribbon = (product.metadata as Record<string, unknown> | null | undefined)?.["ribbon"]
   return typeof ribbon === "string" && ribbon.includes("PROMO")
 }
 
+function extractTagSlugs(product: HttpTypes.StoreProduct, prefix: string): string[] {
+  return (product.tags ?? [])
+    .map((t) => t.value)
+    .filter((v): v is string => typeof v === "string" && v.startsWith(`${prefix}:`))
+    .map((v) => v.slice(prefix.length + 1))
+}
 
-export default async function PromotiiPage({ params, searchParams }: Props) {
-  const [{ countryCode }, sp] = await Promise.all([params, searchParams])
-
-  const sortLabel = (sp.sortBy as string | undefined) ?? "Relevanță"
-  const perPageParam = parseInt((sp.perPage as string) ?? "", 10)
-  const perPage = VALID_PAGE_SIZES.includes(perPageParam) ? perPageParam : DEFAULT_PAGE_SIZE
-  const activeBrands = (sp.brand as string | undefined)?.split(",").filter(Boolean) ?? []
-  const activeMaterials = (sp.material as string | undefined)?.split(",").filter(Boolean) ?? []
-  const activePriceMin = parseInt((sp.priceMin as string) ?? "", 10)
-  const activePriceMax = parseInt((sp.priceMax as string) ?? "", 10)
+export default async function PromotiiPage({ params }: Props) {
+  const { countryCode } = await params
 
   const { response: { products: allProducts } } = await listProducts({
     pageParam: 1,
@@ -93,64 +77,22 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
     publicFetch: true,
   }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[], count: 0 }, nextPage: null }))
 
-  // Keep only products with a real active Price List discount
   const discountedProducts = allProducts.filter(hasRealDiscount)
 
-  // Apply filters
-  let filteredProducts = discountedProducts
-  if (activeBrands.length > 0) {
-    filteredProducts = filteredProducts.filter((p) =>
-      (p.tags ?? []).some((t) => activeBrands.some((b) => t.value === `brand:${b}`))
-    )
-  }
-  if (activeMaterials.length > 0) {
-    filteredProducts = filteredProducts.filter((p) =>
-      (p.tags ?? []).some((t) => activeMaterials.some((m) => t.value === `material:${m}`))
-    )
-  }
-  if (!isNaN(activePriceMin) || !isNaN(activePriceMax)) {
-    filteredProducts = filteredProducts.filter((p) => {
-      const price = getProductMinPrice(p)
-      if (price === null) return false
-      const priceRON = price / 100
-      if (!isNaN(activePriceMin) && priceRON < activePriceMin) return false
-      if (!isNaN(activePriceMax) && priceRON > activePriceMax) return false
-      return true
-    })
-  }
+  const filterGroups = productsToFilterGroups(discountedProducts)
 
-  // Apply sort
-  const sortBy = SORT_MAP[sortLabel]
-  const sortedProducts = sortBy ? sortProducts(filteredProducts, sortBy) : filteredProducts
-
-  const totalFiltered = sortedProducts.length
-
-  const filterGroups = productsToFilterGroups(discountedProducts, {
-    brands: activeBrands,
-    materials: activeMaterials,
+  const items: CatalogItem[] = discountedProducts.map((p) => {
+    const minPrice = getProductMinPrice(p)
+    return {
+      card: productToCard(p, countryCode),
+      meta: {
+        brandSlugs: extractTagSlugs(p, "brand"),
+        materialSlugs: extractTagSlugs(p, "material"),
+        minPriceRon: minPrice !== null ? minPrice / 100 : null,
+        createdAtMs: p.created_at ? new Date(p.created_at).getTime() : 0,
+      },
+    }
   })
-  const productCards = sortedProducts.map((p) => productToCard(p, countryCode))
-
-  const baseUrl = `/promotii`
-
-  const activeFilters: Array<{ label: string; paramKey: "brand" | "material" | "price"; value?: string }> = []
-  for (const b of activeBrands) {
-    const brandGroup = filterGroups.find((g) => g.type === "checkboxes" && g.paramKey === "brand")
-    const displayLabel = (brandGroup?.type === "checkboxes" && brandGroup.options.find((o) => o.value === b)?.label) || b
-    activeFilters.push({ label: displayLabel, paramKey: "brand", value: b })
-  }
-  for (const m of activeMaterials) {
-    const materialGroup = filterGroups.find((g) => g.type === "checkboxes" && g.paramKey === "material")
-    const displayLabel = (materialGroup?.type === "checkboxes" && materialGroup.options.find((o) => o.value === m)?.label) || m
-    activeFilters.push({ label: displayLabel, paramKey: "material", value: m })
-  }
-  if (!isNaN(activePriceMin) || !isNaN(activePriceMax)) {
-    const minStr = !isNaN(activePriceMin) ? String(activePriceMin) : "-"
-    const maxStr = !isNaN(activePriceMax) ? String(activePriceMax) : "-"
-    activeFilters.push({ label: `Pret ${minStr}-${maxStr} Lei`, paramKey: "price" })
-  }
-
-  const filterActiveCount = activeBrands.length + activeMaterials.length + (!isNaN(activePriceMin) || !isNaN(activePriceMax) ? 1 : 0)
 
   return (
     <>
@@ -171,36 +113,24 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
           }
         />
 
-        <CategoryLayoutClient
-          filterGroups={filterGroups}
-          applyCount={filterActiveCount}
-          helpCard={HELP_CARD}
-          baseUrl={baseUrl}
-          activeCount={filterActiveCount}
-          sortOptions={SORT_OPTIONS}
-          currentSort={sortLabel}
-          activeFilters={activeFilters}
-        >
-          <Suspense fallback={<div className="cat-toolbar" />}>
-            <CategoryToolbar
-              count={totalFiltered}
+        {discountedProducts.length === 0 ? (
+          <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
+            Nu exista produse la reducere momentan.
+          </div>
+        ) : (
+          <Suspense fallback={<div style={{ minHeight: 400 }} />}>
+            <CatalogClient
+              items={items}
+              filterGroups={filterGroups as any}
+              helpCard={HELP_CARD}
+              baseUrl="/promotii"
+              countryCode={countryCode}
               sortOptions={SORT_OPTIONS}
               perPageOptions={VALID_PAGE_SIZES}
-              baseUrl={baseUrl}
-              currentSort={sortLabel}
-              currentPerPage={perPage}
+              defaultPerPage={DEFAULT_PAGE_SIZE}
             />
           </Suspense>
-          {sortedProducts.length === 0 ? (
-            <div style={{ padding: "48px 0", textAlign: "center", color: "var(--fg-muted)" }}>
-              {discountedProducts.length === 0
-                ? "Nu exista produse la reducere momentan."
-                : "Niciun produs nu corespunde filtrelor selectate."}
-            </div>
-          ) : (
-            <InfiniteProductGrid allFiltered={productCards} countryCode={countryCode} />
-          )}
-        </CategoryLayoutClient>
+        )}
       </main>
 
       <SiteFooter />
