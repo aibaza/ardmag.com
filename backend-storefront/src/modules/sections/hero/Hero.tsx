@@ -47,14 +47,14 @@ export function Hero({ kicker, title, description, primaryCta, ghostCta, stats, 
       </div>
       <div className="hero-side">
         {sideCards.map((card, i) => (
-          <div key={i} className="hero-card with-img">
+          <a key={i} className="hero-card with-img" href={card.ctaHref} aria-label={`${card.kicker}: ${card.title}`}>
             <img className="hcard-bg" src={card.image} alt="" aria-hidden="true" width={800} height={450} loading="lazy" />
             <span className="hcard-fade" aria-hidden="true" />
             <span className="kicker">{card.kicker}</span>
             <h3>{card.title}</h3>
             <p>{card.description}</p>
-            <a href={card.ctaHref}>{card.ctaLabel}</a>
-          </div>
+            <span className="hcard-cta">{card.ctaLabel}</span>
+          </a>
         ))}
       </div>
     </div>

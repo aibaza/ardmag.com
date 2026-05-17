@@ -296,12 +296,16 @@
     background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-sm);
     padding:22px;display:flex;flex-direction:column;gap:8px;
     position:relative;overflow:hidden;
+    color:inherit;text-decoration:none;
+    transition:border-color 120ms, box-shadow 120ms, transform 120ms;
   }
+  .hero-card:hover{border-color:var(--stone-400);box-shadow:var(--sh-sm);transform:translateY(-1px)}
   .hero-card .kicker{font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-600)}
   .hero-card h3{font-size:20px;line-height:1.2;letter-spacing:-0.015em;margin:0;max-width:80%}
+  .hero-card:hover h3{color:var(--brand-700)}
   .hero-card p{color:var(--fg-muted);font-size:13px;margin:0;max-width:80%}
-  .hero-card a{margin-top:auto;font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--brand-700);text-decoration:none}
-  .hero-card a:hover{color:var(--brand-800)}
+  .hero-card .hcard-cta{margin-top:auto;font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--brand-700)}
+  .hero-card:hover .hcard-cta{color:var(--brand-800)}
   .hero-card .phld{
     position:absolute;right:-8px;bottom:-8px;width:120px;height:120px;
     background:repeating-linear-gradient(135deg, var(--stone-200) 0 10px, var(--stone-100) 10px 20px);
