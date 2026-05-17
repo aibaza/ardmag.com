@@ -1222,6 +1222,9 @@ a.badge:hover{transform:translateY(-1px)}
 [data-theme="dark"] .action-btn{color:var(--stone-200)}
 [data-theme="dark"] .mobile-header .icon-btn{color:var(--stone-200)}
 [data-theme="dark"] .var-opt{color:var(--stone-300);border-color:var(--rule)}
+[data-theme="dark"] .var-opt.contact{color:var(--brand-500);border-color:var(--brand-500)}
+[data-theme="dark"] .var-opt.contact:hover{background:color-mix(in oklch, var(--brand-500), transparent 88%);border-color:var(--brand-600)}
+[data-theme="dark"] .var-opt.on.contact{background:var(--brand-600);color:#fff;border-color:var(--brand-600)}
 [data-theme="dark"] .btn.secondary{color:var(--stone-200);border-color:var(--rule-strong)}
 [data-theme="dark"] .btn.ghost{color:var(--stone-200)}
 [data-theme="dark"] .btn.inv{background:var(--elev-2);color:var(--fg);border-color:var(--rule-strong)}
