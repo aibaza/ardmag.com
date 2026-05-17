@@ -105,11 +105,11 @@ function StripeCardForm({
   }
 
   return (
-    <div style={{ marginTop: 12, padding: "12px 16px", border: "1px solid var(--brand-400)", borderRadius: "var(--r-md)", background: "var(--stone-50)" }}>
+    <div style={{ marginTop: 12, padding: "12px 16px", border: "1px solid var(--brand-400)", borderRadius: "var(--r-md)", background: "var(--surface)", color: "var(--fg)" }}>
       <div style={{ marginBottom: 10, fontFamily: "var(--f-sans)", fontSize: 13, fontWeight: 500, color: "var(--fg-muted)" }}>
         Date card
       </div>
-      <div style={{ padding: "10px 12px", border: "1px solid var(--rule)", borderRadius: "var(--r-md)", background: "white" }}>
+      <div style={{ padding: "10px 12px", border: "1px solid var(--rule)", borderRadius: "var(--r-md)", background: "#fff" }}>
         <CardElement options={{
           style: {
             base: {

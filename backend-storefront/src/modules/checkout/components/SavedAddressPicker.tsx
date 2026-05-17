@@ -46,7 +46,9 @@ export function SavedAddressPicker({ addresses, selectedId, onSelect, mode }: Pr
                 padding: "12px 16px",
                 border: `1px solid ${isSelected ? "var(--brand-600)" : "var(--rule)"}`,
                 borderRadius: "var(--r-md)", cursor: "pointer",
-                background: isSelected ? "var(--stone-50)" : "var(--bg-base)",
+                background: "var(--surface)",
+                color: "var(--fg)",
+                boxShadow: isSelected ? "0 0 0 1px var(--brand-600) inset" : "none",
               }}
             >
               <input

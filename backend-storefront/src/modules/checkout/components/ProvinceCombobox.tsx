@@ -69,11 +69,11 @@ export function ProvinceCombobox({ name, defaultValue = "" }: Props) {
               key={j}
               onMouseDown={() => handleSelect(j)}
               style={{
-                padding: "8px 12px", cursor: "pointer", fontSize: 14,
-                background: j === selected ? "var(--stone-100)" : "transparent",
+                padding: "8px 12px", cursor: "pointer", fontSize: 14, color: "var(--fg)",
+                background: j === selected ? "color-mix(in oklch, var(--fg) 10%, transparent)" : "transparent",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "var(--stone-50)" }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = j === selected ? "var(--stone-100)" : "transparent" }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "color-mix(in oklch, var(--fg) 6%, transparent)" }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = j === selected ? "color-mix(in oklch, var(--fg) 10%, transparent)" : "transparent" }}
             >
               {j}
             </div>
