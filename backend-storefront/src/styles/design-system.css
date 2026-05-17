@@ -730,6 +730,16 @@ a.badge:hover{transform:translateY(-1px)}
   border-radius:var(--r-sm);
 }
 .pcard-img.with-real .top-tags{z-index:2}
+.pcard-brand-logo{
+  position:absolute;bottom:10px;right:10px;z-index:2;
+  max-height:24px;max-width:72px;width:auto;height:auto;
+  background:rgba(255,255,255,0.92);
+  border:1px solid var(--rule);
+  border-radius:var(--r-sm);
+  padding:3px 6px;
+  object-fit:contain;
+  pointer-events:none;
+}
 
 /* List view — parent has explicit width:200px so aspect-ratio computes height */
 .cat-list .pcard-img.with-real{min-height:200px}

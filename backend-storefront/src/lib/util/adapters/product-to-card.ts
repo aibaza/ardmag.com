@@ -11,6 +11,7 @@ interface ProductCardProduct {
   sku: string
   brand: string
   brandHref: string
+  brandLogo?: string
   image: string
   imageAlt: string
   href: string
@@ -19,6 +20,48 @@ interface ProductCardProduct {
   specs?: string[]
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
+}
+
+// Plural in romana pentru axele de varianta cunoscute (din DB).
+// Folosit pentru "{count} {plural}" in specs.
+const AXIS_PLURAL: Record<string, string> = {
+  "CANTITATE": "cantități",
+  "DIAMETRU": "diametre",
+  "GRANULAȚIE": "granulații",
+  "DENUMIRE": "denumiri",
+  "TIP PIATRĂ": "tipuri piatră",
+  "CULOARE": "culori",
+  "CATEGORIE": "categorii",
+  "SPECIALIZARE": "specializări",
+  "TIP DISCHETĂ": "tipuri dischetă",
+  "TIP DISC": "tipuri disc",
+  "MODEL MASĂ": "modele masă",
+  "DIMENSIUNE": "dimensiuni",
+  "FIXARE DISC": "fixări disc",
+  "LUNGIME TĂIERE": "lungimi tăiere",
+  "MĂRIME": "mărimi",
+  "CABLU": "cabluri",
+  "TIP ANELLI": "tipuri anelli",
+  "TIP FRANKFURT": "tipuri frankfurt",
+  "TIP FREZĂ": "tipuri freză",
+  "TIP MASTIC": "tipuri mastic",
+  "TIP OALĂ": "tipuri oală",
+  "TIP PAD": "tipuri pad",
+  "TIP POMPĂ": "tipuri pompă",
+  "TIP TANGENȚIAL": "tipuri tangențial",
+}
+
+function axisLabel(axis: string, count: number): string {
+  const plural = AXIS_PLURAL[axis.toUpperCase()] ?? axis.toLowerCase()
+  return `${count} ${plural}`
+}
+
+// Brand slug -> path PNG/WEBP logo (transparent bg, /public/design-temp/)
+const BRAND_LOGO_MAP: Record<string, string> = {
+  "tenax": "/design-temp/dist-tenax.webp",
+  "delta-research": "/design-temp/dist-delta.webp",
+  "sait": "/design-temp/dist-sait.webp",
+  "woosuk": "/design-temp/dist-woosuk.webp",
 }
 
 function validUrl(url: string | null | undefined): string | null {
@@ -86,17 +129,24 @@ export function productToCard(
     }
   }
 
-  // specs: unique option titles from first variant's options, max 3
-  const specs: string[] = []
-  if (firstVariant?.options) {
-    const seen = new Set<string>()
-    for (const opt of firstVariant.options) {
+  // specs: pentru fiecare axa de varianta (option title), afiseaza "{count} {plural}"
+  // unde count = nr valori unice in catalog. Skip axe cu 1 valoare (info inutila) si
+  // skip "Title" placeholder Medusa. Max 3 specs.
+  const axisValues = new Map<string, Set<string>>()
+  for (const variant of product.variants ?? []) {
+    for (const opt of variant.options ?? []) {
       const title = opt.option?.title
-      if (title && title.toLowerCase() !== "title" && !seen.has(title) && specs.length < 3) {
-        seen.add(title)
-        specs.push(title)
-      }
+      const value = opt.value
+      if (!title || title.toLowerCase() === "title" || value === undefined || value === null) continue
+      if (!axisValues.has(title)) axisValues.set(title, new Set())
+      axisValues.get(title)!.add(String(value))
     }
+  }
+  const specs: string[] = []
+  for (const [title, values] of axisValues) {
+    if (values.size <= 1) continue
+    if (specs.length >= 3) break
+    specs.push(axisLabel(title, values.size))
   }
 
   const defaultVariantId = product.variants?.[0]?.id ?? null
@@ -109,6 +159,7 @@ export function productToCard(
     sku: product.variants?.[0]?.sku ?? "",
     brand,
     brandHref,
+    brandLogo: brandSlug ? BRAND_LOGO_MAP[brandSlug] : undefined,
     image,
     imageAlt: product.title ?? "",
     href,
