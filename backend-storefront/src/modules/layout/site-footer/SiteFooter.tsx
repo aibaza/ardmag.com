@@ -72,7 +72,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
           <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
           <div className="contact"><div className="phone">Tel. <strong>+40 722 155 441</strong></div><div>office@ardmag.ro</div><div>Calea Baciului 1-3 · Cluj-Napoca</div></div>
         </div>
-        <div><h3>Magazin</h3><ul><li><a href={allHref}>Toate categoriile</a></li><li><a href="/promotii">Promoții</a></li></ul></div>
+        <div><h3>Magazin</h3><ul><li><a href={allHref}>Toate produsele</a></li><li><a href="/promotii">Promoții</a></li></ul></div>
         <div><h3>Cont &amp; comenzi</h3><ul><li><a href="/account">Contul meu</a></li><li><a href="/account/orders">Comenzi &amp; facturi</a></li></ul></div>
         <div><h3>Info</h3><ul><li><a href={`/despre-noi`}>Despre noi</a></li><li><a href={`/livrare-si-plata`}>Livrare &amp; plată</a></li><li><a href={`/contact`}>Contact</a></li><li><a href="/blog">Blog</a></li></ul></div>
         <div className="news-col">
