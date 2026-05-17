@@ -13,6 +13,10 @@ interface CartLineItemProps {
 export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
   const [isPending, startTransition] = useTransition()
 
+  const productHandle =
+    (item as any).product_handle ?? item.variant?.product?.handle ?? null
+  const productHref = productHandle ? `/products/${productHandle}` : null
+
   return (
     <div
       className="cart-line-item"
@@ -25,12 +29,16 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
     >
       <div className="cli-grid">
         {/* Thumb */}
-        {item.thumbnail ? (
-          <img
-            className="cli-thumb"
-            src={item.thumbnail}
-            alt={item.title ?? ""}
-          />
+        {productHref ? (
+          <a href={productHref} className="cli-thumb-link" aria-label={item.product_title ?? "Vezi produs"}>
+            {item.thumbnail ? (
+              <img className="cli-thumb" src={item.thumbnail} alt={item.title ?? ""} />
+            ) : (
+              <div className="cli-thumb cli-thumb-placeholder" />
+            )}
+          </a>
+        ) : item.thumbnail ? (
+          <img className="cli-thumb" src={item.thumbnail} alt={item.title ?? ""} />
         ) : (
           <div className="cli-thumb cli-thumb-placeholder" />
         )}
@@ -38,7 +46,13 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
         {/* Title + variant */}
         <div className="cli-info">
           <div style={{ fontWeight: 500, fontSize: 14, lineHeight: 1.3 }}>
-            {item.product_title}
+            {productHref ? (
+              <a href={productHref} className="cli-title-link">
+                {item.product_title}
+              </a>
+            ) : (
+              item.product_title
+            )}
           </div>
           {item.variant?.title && item.variant.title !== "Default Title" && (
             <div
@@ -111,6 +125,22 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
         .cart-line-item .cli-thumb-placeholder {
           background: var(--stone-100);
           border: 1px solid var(--rule);
+        }
+        .cart-line-item .cli-thumb-link {
+          grid-area: thumb;
+          display: block;
+          line-height: 0;
+        }
+        .cart-line-item .cli-thumb-link:hover .cli-thumb {
+          opacity: 0.85;
+        }
+        .cart-line-item .cli-title-link {
+          color: inherit;
+          text-decoration: none;
+        }
+        .cart-line-item .cli-title-link:hover {
+          color: var(--brand-700);
+          text-decoration: underline;
         }
         .cart-line-item .cli-info { grid-area: info; min-width: 0; }
         .cart-line-item .cli-qty { grid-area: qty; }

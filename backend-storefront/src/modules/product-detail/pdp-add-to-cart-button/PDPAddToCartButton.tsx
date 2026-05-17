@@ -27,6 +27,7 @@ export function PDPAddToCartButton({ variantId, countryCode, label }: Props) {
         await addToCart({ variantId, quantity: 1, countryCode })
         setStatus("success")
         window.dispatchEvent(new CustomEvent("cartupdate"))
+        window.dispatchEvent(new CustomEvent("cartadded"))
         router.refresh()
         // Reset success label after 2s so user can add again with normal label
         setTimeout(() => setStatus("idle"), 2000)

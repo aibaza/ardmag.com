@@ -53,6 +53,7 @@ export function ProductCardAddButton({
         await addToCart({ variantId: defaultVariantId, quantity: 1, countryCode })
         setStatus("success")
         window.dispatchEvent(new CustomEvent("cartupdate"))
+        window.dispatchEvent(new CustomEvent("cartadded"))
         router.refresh()
         setTimeout(() => setStatus("idle"), 2000)
       } catch {

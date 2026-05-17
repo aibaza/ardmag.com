@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { ThemeToggle } from "@modules/@shared/components/theme-toggle/ThemeToggle"
+import { AddToCartSheet } from "@modules/cart/components/AddToCartSheet/AddToCartSheet"
 
 interface SiteHeaderProps {
   countryCode: string
@@ -142,6 +143,8 @@ export function SiteHeader({
           </div>
         </div>
       </div>
+
+      <AddToCartSheet />
     </>
   )
 }
