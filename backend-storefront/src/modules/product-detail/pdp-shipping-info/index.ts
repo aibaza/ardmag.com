@@ -1,0 +1,1 @@
+export { PDPShippingInfo } from "./PDPShippingInfo"

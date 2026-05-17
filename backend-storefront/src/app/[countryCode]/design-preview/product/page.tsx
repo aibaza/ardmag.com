@@ -85,12 +85,8 @@ export default function ProductPage() {
 
       {/* TABS + CONTENT */}
       <PDPTabs tabs={[
-        { label: 'Specificații', active: true },
-        { label: 'Descriere' },
-        { label: 'Utilizare & siguranță' },
-        { label: 'Recenzii (47)' },
-        { label: 'Fișiere & certificate' },
-      ]}>
+        { label: 'Specificații', content: (
+          <>
           <div className="prose">
             <h3>Disc diamantat Turbo Ultra pentru granit și marmură</h3>
             <p>Proiectat pentru tăieri rapide și curate în materiale dure - granit, marmură, plăci ceramice. Banda continuă turbo de 10 mm oferă o viteză de avans superioară și o durată de viață cu până la 40% mai lungă față de un disc segmentat echivalent.</p>
@@ -148,7 +144,9 @@ export default function ProductPage() {
               </tbody>
             </table>
           </aside>
-      </PDPTabs>
+          </>
+        )},
+      ]} />
 
       {/* RELATED PRODUCTS */}
       <section style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 24px 60px", borderTop: "1px solid var(--rule)", paddingTop: "32px" }}>

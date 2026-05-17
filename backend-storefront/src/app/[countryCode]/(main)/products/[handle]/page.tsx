@@ -6,6 +6,7 @@ import { Breadcrumb } from '@modules/@shared/components/breadcrumb'
 import { PDPGallery } from '@modules/product-detail/pdp-gallery'
 import { PDPSummary } from '@modules/product-detail/pdp-summary'
 import { PDPTabs } from '@modules/product-detail/pdp-tabs'
+import { PDPShippingInfo } from '@modules/product-detail/pdp-shipping-info'
 import { TruckIcon, ReturnIcon, SecureIcon } from '@modules/@shared/icons/TrustIcons'
 import { listProducts } from "@lib/data/products"
 import { listRegions } from "@lib/data/regions"
@@ -189,20 +190,21 @@ export default async function ProductPage(props: Props) {
           />
         </section>
 
-        {description && (
-          <PDPTabs
-            tabs={[
-              { label: "Descriere", active: true },
-              { label: "Specificații" },
-              { label: "Livrare și garanție" },
-            ]}
-          >
-            <div
-              className="pdp-description"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
-          </PDPTabs>
-        )}
+        <PDPTabs
+          tabs={[
+            {
+              label: "Descriere",
+              content: description ? (
+                <div
+                  className="pdp-description"
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
+              ) : null,
+            },
+            { label: "Specificații", content: null },
+            { label: "Livrare și garanție", content: <PDPShippingInfo /> },
+          ]}
+        />
       </main>
 
       <SiteFooter />

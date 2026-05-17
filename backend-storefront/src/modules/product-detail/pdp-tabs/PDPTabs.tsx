@@ -4,30 +4,30 @@ import { ReactNode, useState, useId } from 'react'
 
 interface PDPTab {
   label: string
-  active?: boolean
+  content: ReactNode
 }
 
 interface PDPTabsProps {
   tabs: PDPTab[]
-  children: ReactNode
 }
 
-export function PDPTabs({ tabs, children }: PDPTabsProps) {
+export function PDPTabs({ tabs }: PDPTabsProps) {
   const baseId = useId()
-  const [activeIdx, setActiveIdx] = useState(() => {
-    const found = tabs.findIndex(t => t.active)
-    return found >= 0 ? found : 0
-  })
+  // Filter out tabs cu content gol (null/undefined/empty)
+  const activeTabs = tabs.filter((t) => t.content)
+  const [activeIdx, setActiveIdx] = useState(0)
+
+  if (activeTabs.length === 0) return null
 
   function handleKeyDown(e: React.KeyboardEvent, i: number) {
-    if (e.key === 'ArrowRight') setActiveIdx((i + 1) % tabs.length)
-    if (e.key === 'ArrowLeft') setActiveIdx((i - 1 + tabs.length) % tabs.length)
+    if (e.key === 'ArrowRight') setActiveIdx((i + 1) % activeTabs.length)
+    if (e.key === 'ArrowLeft') setActiveIdx((i - 1 + activeTabs.length) % activeTabs.length)
   }
 
   return (
     <section className="pdp-content">
       <div className="tabs" role="tablist">
-        {tabs.map((tab, i) => (
+        {activeTabs.map((tab, i) => (
           <button
             key={i}
             role="tab"
@@ -49,7 +49,7 @@ export function PDPTabs({ tabs, children }: PDPTabsProps) {
         id={`${baseId}-panel-${activeIdx}`}
         aria-labelledby={`${baseId}-tab-${activeIdx}`}
       >
-        {activeIdx === 0 ? children : null}
+        {activeTabs[activeIdx].content}
       </div>
     </section>
   )

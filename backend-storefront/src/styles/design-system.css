@@ -632,6 +632,14 @@
 .prose ul li{margin-bottom:4px}
 .prose ul li::marker{color:var(--brand-500)}
 
+.pdp-shipping-info{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:900px}
+@media(max-width:760px){.pdp-shipping-info{grid-template-columns:1fr}}
+.pdp-shipping-info .row{display:flex;gap:14px;align-items:flex-start}
+.pdp-shipping-info .icon{width:32px;height:32px;flex-shrink:0;color:var(--brand-600);display:flex;align-items:center;justify-content:center}
+.pdp-shipping-info .icon svg{width:24px;height:24px}
+.pdp-shipping-info .text strong{display:block;font-size:14.5px;font-weight:600;color:var(--fg);margin-bottom:4px}
+.pdp-shipping-info .text p{margin:0;color:var(--fg-muted);font-size:13px;line-height:1.55}
+
 .spec-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-sm);overflow:hidden}
 .spec-table th,.spec-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
 .spec-table tr:last-child th,.spec-table tr:last-child td{border-bottom:0}
