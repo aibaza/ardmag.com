@@ -94,7 +94,7 @@ if (process.env.SMTP2GO_API_KEY || process.env.SMTP_HOST) {
             smtpPass: process.env.SMTP_PASSWORD,
             fromEmailTransactional: process.env.SMTP_FROM_TRANSACTIONAL || "comenzi@ardmag.ro",
             fromEmailContact: process.env.SMTP_FROM_CONTACT || "contact@ardmag.ro",
-            fromEmailNoreply: process.env.SMTP_FROM_NOREPLY || "no-reply@ardmag.ro",
+            fromEmailNoreply: process.env.SMTP_FROM_NOREPLY || "office@ardmag.ro",
             replyTo: process.env.SMTP_REPLY_TO || "office@ardmag.ro",
             fromName: "ardmag.ro",
             siteBaseUrl: process.env.SITE_BASE_URL || "https://ardmag.ro",

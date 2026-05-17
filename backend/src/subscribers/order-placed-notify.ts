@@ -1,7 +1,7 @@
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 
-const ADMIN_EMAIL = process.env.ORDER_NOTIFY_EMAIL || "office@ardmag.ro"
+const ADMIN_EMAIL = process.env.ORDER_NOTIFY_EMAIL || "comenzi@ardmag.ro"
 
 export default async function orderPlacedNotify({
   event,
@@ -22,15 +22,37 @@ export default async function orderPlacedNotify({
   }
 
   try {
-    const orderModuleService = container.resolve(Modules.ORDER)
-    const order = await orderModuleService.retrieveOrder(orderId, {
-      relations: [
-        "items",
-        "shipping_address",
-        "billing_address",
-        "payment_collections.payment_sessions",
+    const query = container.resolve(ContainerRegistrationKeys.QUERY)
+    const { data: orders } = await query.graph({
+      entity: "order",
+      fields: [
+        "id",
+        "display_id",
+        "email",
+        "total",
+        "subtotal",
+        "tax_total",
+        "shipping_total",
+        "discount_total",
+        "currency_code",
+        "created_at",
+        "items.*",
+        "items.product.*",
+        "items.variant.*",
+        "items.thumbnail",
+        "shipping_address.*",
+        "billing_address.*",
+        "shipping_methods.*",
+        "payment_collections.*",
+        "payment_collections.payments.*",
       ],
+      filters: { id: orderId },
     })
+    const order = orders?.[0]
+    if (!order) {
+      logger.warn(`[order-notify] Order ${orderId} not found via Query`)
+      return
+    }
 
     // Email catre admin
     await notificationModuleService.createNotifications({
@@ -57,6 +79,6 @@ export default async function orderPlacedNotify({
 }
 
 export const config: SubscriberConfig = {
-  event: "order.created",
+  event: "order.placed",
   context: { subscriberId: "order-placed-notify" },
 }

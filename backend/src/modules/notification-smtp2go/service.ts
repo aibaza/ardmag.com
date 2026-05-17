@@ -51,6 +51,14 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
         auth: { user: options.smtpUser, pass: options.smtpPass },
       })
     }
+
+    const mode = options.apiKey ? "HTTP API" : (options.smtpHost ? "SMTP relay" : "DISABLED")
+    const senders = [
+      options.fromEmailTransactional ?? "comenzi@ardmag.ro",
+      options.fromEmailContact ?? "contact@ardmag.ro",
+      options.fromEmailNoreply ?? "office@ardmag.ro",
+    ].join(", ")
+    this.logger_.info(`[smtp2go] Notification provider initialized: mode=${mode}, senders=[${senders}], replyTo=${options.replyTo ?? "office@ardmag.ro"}`)
   }
 
   static validateOptions(options: Record<string, unknown>) {
@@ -91,7 +99,7 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
     if (template.startsWith("contact.")) {
       return this.options_.fromEmailContact ?? "contact@ardmag.ro"
     }
-    return this.options_.fromEmailNoreply ?? "no-reply@ardmag.ro"
+    return this.options_.fromEmailNoreply ?? "office@ardmag.ro"
   }
 
   private async sendViaApi(

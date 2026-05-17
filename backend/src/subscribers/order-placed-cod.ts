@@ -1,5 +1,5 @@
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
-import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
 // When an order is placed with COD (pp_system_default / ramburs), log it for
 // manual processing. The pp_system_default provider keeps payment in "not_paid"
@@ -15,10 +15,20 @@ export default async function orderPlacedCod({
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
 
   try {
-    const orderModuleService = container.resolve(Modules.ORDER)
-    const order = await orderModuleService.retrieveOrder(orderId, {
-      relations: ["payment_collections.payments"],
+    const query = container.resolve(ContainerRegistrationKeys.QUERY)
+    const { data: orders } = await query.graph({
+      entity: "order",
+      fields: [
+        "id",
+        "display_id",
+        "email",
+        "total",
+        "payment_collections.payments.provider_id",
+      ],
+      filters: { id: orderId },
     })
+    const order = orders?.[0]
+    if (!order) return
 
     const orderAny = order as any
     const hasCodPayment = orderAny.payment_collections?.some((pc: any) =>
@@ -38,6 +48,6 @@ export default async function orderPlacedCod({
 }
 
 export const config: SubscriberConfig = {
-  event: "order.created",
+  event: "order.placed",
   context: { subscriberId: "order-placed-cod" },
 }
