@@ -2,6 +2,7 @@
 import { useState, useTransition, useEffect } from "react"
 import { setShippingMethod } from "@lib/data/cart"
 import { calculatePriceForShippingOption } from "@lib/data/fulfillment"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { HttpTypes } from "@medusajs/types"
 
 interface Props {
@@ -38,9 +39,9 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
       const v = calc[opt.id]
       if (v === "loading") return "Calculam..."
       if (v === "error" || v == null) return "—"
-      return `${(v / 100).toFixed(2)} RON`
+      return `${(v / 100).toFixed(2)} Lei`
     }
-    return opt.amount != null ? `${(opt.amount / 100).toFixed(2)} RON` : "Gratuit"
+    return opt.amount != null ? `${(opt.amount / 100).toFixed(2)} Lei` : "Gratuit"
   }
 
   function handleContinue() {
@@ -63,7 +64,7 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
             <label key={opt.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', border: `1px solid ${selected === opt.id ? 'var(--brand-600)' : 'var(--rule)'}`, borderRadius: 'var(--r-md)', marginBottom: 8, cursor: 'pointer', fontFamily: 'var(--f-sans)' }}>
               <input type="radio" name="shipping_option" value={opt.id} checked={selected === opt.id} onChange={() => setSelected(opt.id)} />
               <span style={{ flex: 1 }}>{opt.name}</span>
-              <span style={{ fontWeight: 600 }}>{displayPrice(opt)}</span>
+              <span style={{ fontWeight: 600 }}><FormattedPrice value={displayPrice(opt)} /></span>
             </label>
           ))}
         </div>

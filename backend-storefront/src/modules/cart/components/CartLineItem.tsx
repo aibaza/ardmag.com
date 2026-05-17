@@ -3,6 +3,8 @@
 import { useTransition } from "react"
 import { updateLineItem, deleteLineItem } from "@lib/data/cart"
 import { QuantityStepper } from "@modules/@shared/components/quantity-stepper/QuantityStepper"
+import { formatPrice } from "@lib/util/adapters/format-price"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { HttpTypes } from "@medusajs/types"
 
 interface CartLineItemProps {
@@ -86,7 +88,7 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
 
         {/* Price */}
         <div className="cli-price">
-          {((item.unit_price * item.quantity) / 100).toFixed(2).replace(".", ",")} {currencyCode?.toUpperCase() ?? "RON"}
+          <FormattedPrice value={formatPrice(item.unit_price * item.quantity, currencyCode ?? "ron")} />
         </div>
 
         {/* Remove */}

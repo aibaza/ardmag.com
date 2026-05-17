@@ -1,3 +1,6 @@
+import { formatPrice } from "@lib/util/adapters/format-price"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
+
 interface OrderSummaryProps {
   subtotal: number
   discount_total?: number
@@ -7,9 +10,7 @@ interface OrderSummaryProps {
   currency_code?: string
 }
 
-function fmt(amount: number, currency: string): string {
-  return `${(amount / 100).toFixed(2).replace(".", ",")} ${currency.toUpperCase()}`
-}
+const fmt = (amount: number, currency: string) => formatPrice(amount, currency)
 
 const rowStyle: React.CSSProperties = {
   display: "flex",
@@ -36,7 +37,7 @@ export function OrderSummary({
   shipping_total,
   tax_total,
   total,
-  currency_code = "RON",
+  currency_code = "ron",
 }: OrderSummaryProps) {
   return (
     <div className="panel" style={{ marginBottom: 0 }}>
@@ -46,14 +47,14 @@ export function OrderSummary({
       <div className="panel-body">
         <div style={rowStyle}>
           <span style={labelStyle}>Subtotal</span>
-          <span style={valueStyle}>{fmt(subtotal, currency_code)}</span>
+          <span style={valueStyle}><FormattedPrice value={fmt(subtotal, currency_code)} /></span>
         </div>
 
         {discount_total != null && discount_total > 0 && (
           <div style={rowStyle}>
             <span style={labelStyle}>Reducere</span>
             <span style={{ ...valueStyle, color: "var(--brand-600)" }}>
-              -{fmt(discount_total, currency_code)}
+              <FormattedPrice value={`-${fmt(discount_total, currency_code)}`} />
             </span>
           </div>
         )}
@@ -61,14 +62,14 @@ export function OrderSummary({
         {shipping_total != null && (
           <div style={rowStyle}>
             <span style={labelStyle}>Transport</span>
-            <span style={valueStyle}>{fmt(shipping_total, currency_code)}</span>
+            <span style={valueStyle}><FormattedPrice value={fmt(shipping_total, currency_code)} /></span>
           </div>
         )}
 
         {tax_total != null && tax_total > 0 && (
           <div style={rowStyle}>
             <span style={labelStyle}>TVA</span>
-            <span style={valueStyle}>{fmt(tax_total, currency_code)}</span>
+            <span style={valueStyle}><FormattedPrice value={fmt(tax_total, currency_code)} /></span>
           </div>
         )}
 
@@ -83,7 +84,7 @@ export function OrderSummary({
         >
           <span style={{ fontSize: 14 }}>Total</span>
           <span style={{ fontFamily: "var(--f-mono)", fontVariantNumeric: "tabular-nums", fontSize: 15 }}>
-            {fmt(total, currency_code)}
+            <FormattedPrice value={fmt(total, currency_code)} />
           </span>
         </div>
       </div>

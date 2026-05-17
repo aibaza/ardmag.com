@@ -153,7 +153,7 @@ export default async function CategoryPage(props: Props) {
   if (!isNaN(activePriceMin) || !isNaN(activePriceMax)) {
     const minStr = !isNaN(activePriceMin) ? String(activePriceMin) : "-"
     const maxStr = !isNaN(activePriceMax) ? String(activePriceMax) : "-"
-    activeFilters.push({ label: `Pret ${minStr}-${maxStr} RON`, paramKey: "price" })
+    activeFilters.push({ label: `Pret ${minStr}-${maxStr} Lei`, paramKey: "price" })
   }
 
   const filterActiveCount = activeBrands.length + activeMaterials.length + (!isNaN(activePriceMin) || !isNaN(activePriceMax) ? 1 : 0)

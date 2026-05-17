@@ -1,6 +1,8 @@
 import { retrieveCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { PlaceOrderButton } from "./PlaceOrderButton"
+import { formatPrice } from "@lib/util/adapters/format-price"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 
 interface Props {
   cartId: string
@@ -8,11 +10,7 @@ interface Props {
 
 function fmt(amount: number | null | undefined, currency: string): string {
   if (amount == null) return "--"
-  return new Intl.NumberFormat("ro-RO", {
-    style: "currency",
-    currency: currency.toUpperCase(),
-    minimumFractionDigits: 2,
-  }).format(amount / 100)
+  return formatPrice(amount, currency)
 }
 
 function providerLabel(id: string): string {
@@ -50,7 +48,7 @@ export async function CheckoutReview({ cartId }: Props) {
     )
   }
 
-  const currency = cart.currency_code ?? "RON"
+  const currency = cart.currency_code ?? "ron"
   const shippingMethod = cart.shipping_methods?.[0]
   const paymentSession = cart.payment_collection?.payment_sessions?.[0]
 
@@ -171,7 +169,7 @@ export async function CheckoutReview({ cartId }: Props) {
                   flexShrink: 0,
                 }}
               >
-                {fmt(item.unit_price * item.quantity, currency)}
+                <FormattedPrice value={fmt(item.unit_price * item.quantity, currency)} />
               </div>
             </li>
           ))}
@@ -207,7 +205,7 @@ export async function CheckoutReview({ cartId }: Props) {
                 Subtotal
               </td>
               <td style={{ padding: "4px 0", textAlign: "right" }}>
-                {fmt(cart.subtotal, currency)}
+                <FormattedPrice value={fmt(cart.subtotal, currency)} />
               </td>
             </tr>
             {(cart.discount_total ?? 0) > 0 && (
@@ -222,7 +220,7 @@ export async function CheckoutReview({ cartId }: Props) {
                     color: "var(--brand-600)",
                   }}
                 >
-                  -{fmt(cart.discount_total, currency)}
+                  <FormattedPrice value={`-${fmt(cart.discount_total, currency)}`} />
                 </td>
               </tr>
             )}
@@ -232,7 +230,7 @@ export async function CheckoutReview({ cartId }: Props) {
               </td>
               <td style={{ padding: "4px 0", textAlign: "right" }}>
                 {cart.shipping_total != null && cart.shipping_total > 0
-                  ? fmt(cart.shipping_total, currency)
+                  ? <FormattedPrice value={fmt(cart.shipping_total, currency)} />
                   : "Gratuit"}
               </td>
             </tr>
@@ -242,7 +240,7 @@ export async function CheckoutReview({ cartId }: Props) {
                   TVA
                 </td>
                 <td style={{ padding: "4px 0", textAlign: "right" }}>
-                  {fmt(cart.tax_total, currency)}
+                  <FormattedPrice value={fmt(cart.tax_total, currency)} />
                 </td>
               </tr>
             )}
@@ -264,7 +262,7 @@ export async function CheckoutReview({ cartId }: Props) {
                   fontSize: 15,
                 }}
               >
-                {fmt(cart.total, currency)}
+                <FormattedPrice value={fmt(cart.total, currency)} />
               </td>
             </tr>
           </tbody>

@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { formatPrice } from "@lib/util/adapters/format-price"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 
 interface CartSnapshot {
   itemCount: number
@@ -16,19 +18,6 @@ interface CartSnapshot {
 }
 
 const AUTO_DISMISS_MS = 5500
-
-function formatAmount(value: number, currency: string): string {
-  try {
-    return new Intl.NumberFormat("ro-RO", {
-      style: "currency",
-      currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(value)
-  } catch {
-    return `${value.toFixed(2)} ${currency}`
-  }
-}
 
 export function AddToCartSheet() {
   const [open, setOpen] = useState(false)
@@ -191,7 +180,7 @@ export function AddToCartSheet() {
               )}
               <div className="atc-sheet-meta">
                 {item.quantity} {item.quantity === 1 ? "buc" : "buc"} ·{" "}
-                <strong>{formatAmount(item.subtotal, snapshot!.currencyCode)}</strong>
+                <strong><FormattedPrice value={formatPrice(item.subtotal, snapshot!.currencyCode)} /></strong>
               </div>
             </div>
           </div>
@@ -204,7 +193,7 @@ export function AddToCartSheet() {
               {snapshot.itemCount === 1 ? "produs" : "produse"}
             </span>
             <span className="atc-sheet-total-amount">
-              {formatAmount(snapshot.totalAmount, snapshot.currencyCode)}
+              <FormattedPrice value={formatPrice(snapshot.totalAmount, snapshot.currencyCode)} />
             </span>
           </div>
         )}

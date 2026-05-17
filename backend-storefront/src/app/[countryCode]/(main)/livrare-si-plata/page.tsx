@@ -5,7 +5,7 @@ import { SiteFooter } from "@modules/layout/site-footer"
 export const metadata: Metadata = {
   title: "Livrare si plata | ardmag.com",
   description:
-    "Livrare in 1-3 zile lucratoare prin Fan Courier, Sameday, Cargus. Livrare gratuita peste 500 RON. Plata cu card sau ramburs.",
+    "Livrare in 1-3 zile lucratoare prin Fan Courier, Sameday, Cargus. Livrare gratuita peste 500 Lei. Plata cu card sau ramburs.",
 }
 
 export default async function LivrareSimPlataPage({
@@ -49,7 +49,7 @@ export default async function LivrareSimPlataPage({
           Livrare si plata
         </h1>
         <p style={{ color: "var(--fg-muted)", marginBottom: 40 }}>
-          Livram in toata Romania. Livrare gratuita la comenzi de peste 500 RON.
+          Livram in toata Romania. Livrare gratuita la comenzi de peste 500 Lei.
         </p>
 
         <h2 style={h2Style}>Optiuni de livrare</h2>
@@ -65,22 +65,22 @@ export default async function LivrareSimPlataPage({
             <tr>
               <td style={tdStyle}>Fan Courier</td>
               <td style={tdStyle}>1-2 zile lucratoare</td>
-              <td style={tdStyle}>19,99 RON</td>
+              <td style={tdStyle}>19,99 Lei</td>
             </tr>
             <tr>
               <td style={tdStyle}>Sameday</td>
               <td style={tdStyle}>1-2 zile lucratoare</td>
-              <td style={tdStyle}>21,99 RON</td>
+              <td style={tdStyle}>21,99 Lei</td>
             </tr>
             <tr>
               <td style={tdStyle}>Cargus</td>
               <td style={tdStyle}>2-3 zile lucratoare</td>
-              <td style={tdStyle}>22,99 RON</td>
+              <td style={tdStyle}>22,99 Lei</td>
             </tr>
             <tr>
               <td style={tdStyle}>Posta Romana</td>
               <td style={tdStyle}>3-5 zile lucratoare</td>
-              <td style={tdStyle}>14,99 RON</td>
+              <td style={tdStyle}>14,99 Lei</td>
             </tr>
             <tr>
               <td style={tdStyle}>Ridicare din depozit Cluj-Napoca</td>
@@ -91,7 +91,7 @@ export default async function LivrareSimPlataPage({
         </table>
 
         <div style={{ background: "var(--brand-50, #f0f9ff)", border: "1px solid var(--brand-200, #bae6fd)", borderRadius: "var(--r-md)", padding: "16px 20px", marginBottom: 32 }}>
-          <strong>Livrare gratuita la comenzi de peste 500 RON</strong> - se aplica automat la checkout pentru Fan Courier.
+          <strong>Livrare gratuita la comenzi de peste 500 Lei</strong> - se aplica automat la checkout pentru Fan Courier.
         </div>
 
         <h2 style={h2Style}>Procesare comanda</h2>

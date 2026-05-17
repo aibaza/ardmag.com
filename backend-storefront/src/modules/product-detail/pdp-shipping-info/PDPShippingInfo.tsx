@@ -8,8 +8,8 @@ const ITEMS = [
   },
   {
     icon: <SecureIcon fill="none" strokeLinecap="round" />,
-    title: "Livrare gratuită peste 500 RON",
-    desc: "Transport gratuit pentru comenzile cu valoare de peste 500 RON. Sub acest prag, costul este calculat automat la checkout in functie de greutate si destinatie.",
+    title: "Livrare gratuită peste 500 Lei",
+    desc: "Transport gratuit pentru comenzile cu valoare de peste 500 Lei. Sub acest prag, costul este calculat automat la checkout in functie de greutate si destinatie.",
   },
   {
     icon: <ReturnIcon fill="none" strokeLinecap="round" />,

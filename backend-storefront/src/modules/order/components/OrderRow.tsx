@@ -1,4 +1,6 @@
 import { HttpTypes } from "@medusajs/types"
+import { formatPrice } from "@lib/util/adapters/format-price"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 
 interface OrderRowProps {
   order: HttpTypes.StoreOrder
@@ -20,10 +22,6 @@ function getStatusInfo(status: string): { label: string; className: string } {
   }
 }
 
-function formatTotal(amount: number, currencyCode?: string): string {
-  return `${(amount / 100).toFixed(2).replace(".", ",")} ${(currencyCode ?? "RON").toUpperCase()}`
-}
-
 function formatRelativeDate(date: string | Date): string {
   const diffMs = Date.now() - new Date(date).getTime()
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
@@ -40,7 +38,7 @@ function formatRelativeDate(date: string | Date): string {
 export function OrderRow({ order }: OrderRowProps) {
   const dateLabel = formatRelativeDate(order.created_at ?? "")
   const { label: statusLabel, className: statusClass } = getStatusInfo(order.status ?? "pending")
-  const total = formatTotal(order.total ?? 0, order.currency_code)
+  const total = formatPrice(order.total ?? 0, order.currency_code ?? "ron")
 
   return (
     <div
@@ -61,7 +59,7 @@ export function OrderRow({ order }: OrderRowProps) {
       </span>
       <span className={statusClass}>{statusLabel}</span>
       <span style={{ fontWeight: 600, fontFamily: "var(--f-mono)", fontSize: 13, textAlign: "right" }}>
-        {total}
+        <FormattedPrice value={total} />
       </span>
       <a href={`/account/orders/details/${order.id}`} className="btn ghost sm">
         Detalii

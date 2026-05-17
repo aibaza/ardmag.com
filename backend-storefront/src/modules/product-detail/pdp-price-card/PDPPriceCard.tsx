@@ -1,3 +1,5 @@
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
+
 interface PDPPriceCardProps {
   price: string
   was?: string
@@ -12,13 +14,13 @@ export function PDPPriceCard({ price, was, save, priceNoTax, unitLabel, promoLab
   return (
     <div className="pdp-price-card">
       <div className="pdp-price-row">
-        <span className="pdp-price">{price}</span>
-        {was && <span className="pdp-was">{was}</span>}
+        <span className="pdp-price"><FormattedPrice value={price} /></span>
+        {was && <span className="pdp-was"><FormattedPrice value={was} /></span>}
         {save && <span className="pdp-save">{save}</span>}
       </div>
       {priceNoTax && (
-        <div style={{ display: "flex", gap: "14px", alignItems: "center", fontSize: "12px", color: "var(--fg-muted)", fontFamily: "var(--f-mono)" }}>
-          <span>Fără TVA: <strong style={{ color: "var(--fg)" }}>{priceNoTax}</strong></span>
+        <div style={{ display: "flex", gap: "14px", alignItems: "center", justifyContent: "flex-end", fontSize: "12px", color: "var(--fg-muted)", fontFamily: "var(--f-mono)" }}>
+          <span>Fără TVA: <strong style={{ color: "var(--fg)" }}><FormattedPrice value={priceNoTax} /></strong></span>
           {unitLabel && <><span>·</span><span>{unitLabel}</span></>}
         </div>
       )}

@@ -55,7 +55,7 @@ export function SiteHeader({
       <header className="site-header">
         {/* Desktop: utility bar */}
         <div className="util-bar"><div className="wrap">
-          <span className="promo"><strong>Transport gratuit</strong> peste 500 RON</span>
+          <span className="promo"><strong>Transport gratuit</strong> peste 500 Lei</span>
           <span className="divider">·</span>
           <a href="tel:+40722155441">Tel. +40 722 155 441</a>
           <span className="divider">·</span>

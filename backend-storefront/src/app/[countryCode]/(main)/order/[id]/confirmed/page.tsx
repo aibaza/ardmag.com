@@ -4,6 +4,8 @@ import { SiteHeaderShell } from "@modules/layout/site-header/SiteHeaderShell"
 import { SiteFooter } from "@modules/layout/site-footer"
 import { Breadcrumb } from "@modules/@shared/components/breadcrumb/Breadcrumb"
 import { OrderSummary } from "@modules/order/components/OrderSummary"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
+import { formatPrice } from "@lib/util/adapters/format-price"
 import { notFound } from "next/navigation"
 
 export const metadata: Metadata = {
@@ -131,8 +133,8 @@ export default async function OrderConfirmedPage({ params }: Props) {
                     Cant: {item.quantity}
                   </div>
                 </div>
-                <div style={{ fontFamily: "var(--f-sans)", fontWeight: 500 }}>
-                  {((item.unit_price * item.quantity) / 100).toFixed(2)} {currency}
+                <div style={{ fontFamily: "var(--f-sans)", fontWeight: 500, textAlign: "right" }}>
+                  <FormattedPrice value={formatPrice(item.unit_price * item.quantity, currency)} />
                 </div>
               </div>
             ))}

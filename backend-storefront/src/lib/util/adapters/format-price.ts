@@ -2,7 +2,9 @@ import type { HttpTypes } from "@medusajs/types"
 
 /**
  * Formats a minor-unit RON amount to Romanian locale string.
- * 103200 => "1.032,00 RON", 11500 => "115,00 RON"
+ * 103200 => "1.032,00 Lei", 11500 => "115,00 Lei"
+ * For currency_code "ron" the display is "Lei" (consumer-facing); for any
+ * other currency the ISO code is shown uppercase.
  */
 export function formatPrice(amount: number, currencyCode = "ron"): string {
   const value = amount / 100
@@ -15,8 +17,8 @@ export function formatPrice(amount: number, currencyCode = "ron"): string {
   // Insert "." as thousands separator
   const intFormatted = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
-  const upper = currencyCode.toUpperCase()
-  return `${intFormatted},${decPart} ${upper}`
+  const label = currencyCode.toLowerCase() === "ron" ? "Lei" : currencyCode.toUpperCase()
+  return `${intFormatted},${decPart} ${label}`
 }
 
 type VariantWithPrice = HttpTypes.StoreProductVariant & {

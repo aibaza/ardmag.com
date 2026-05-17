@@ -1,5 +1,6 @@
 import { Badge } from '@modules/@shared/components/badge'
 import { ProductCardSpecTag } from '@modules/@shared/components/product-card-spec-tag'
+import { FormattedPrice } from '@modules/@shared/components/formatted-price'
 import { ProductCardAddButton } from './ProductCardAddButton'
 
 type BadgeType = 'promo' | 'new' | 'stock-low' | 'custom'
@@ -36,7 +37,7 @@ export function ProductCard({ product, countryCode }: ProductCardProps) {
         </div>
       </div>
       <div className="pcard-foot">
-        <div className="pcard-price"><span className="now">{product.price.now}</span>{product.price.was && <span className="was">{product.price.was}</span>}</div>
+        <div className="pcard-price"><span className="now"><FormattedPrice value={product.price.now} /></span>{product.price.was && <span className="was"><FormattedPrice value={product.price.was} /></span>}</div>
         <ProductCardAddButton
           href={product.href}
           defaultVariantId={product.defaultVariantId}

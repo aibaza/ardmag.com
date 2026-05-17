@@ -6,7 +6,7 @@ export async function GET() {
 
   if (!cart) {
     return NextResponse.json(
-      { itemCount: 0, totalAmount: 0, currencyCode: "RON", lastItem: null },
+      { itemCount: 0, totalAmount: 0, currencyCode: "ron", lastItem: null },
       { headers: { "Cache-Control": "no-store" } }
     )
   }
@@ -31,15 +31,16 @@ export async function GET() {
             : null,
         thumbnail: last.thumbnail ?? null,
         quantity: last.quantity ?? 0,
-        subtotal: (last.subtotal ?? last.unit_price * last.quantity ?? 0) / 1,
+        subtotal:
+          last.subtotal ?? (last.unit_price ?? 0) * (last.quantity ?? 0),
       }
     : null
 
   return NextResponse.json(
     {
       itemCount,
-      totalAmount: (cart.subtotal ?? cart.total ?? 0) / 1,
-      currencyCode: (cart.currency_code ?? "ron").toUpperCase(),
+      totalAmount: cart.subtotal ?? cart.total ?? 0,
+      currencyCode: cart.currency_code ?? "ron",
       lastItem,
     },
     { headers: { "Cache-Control": "no-store" } }

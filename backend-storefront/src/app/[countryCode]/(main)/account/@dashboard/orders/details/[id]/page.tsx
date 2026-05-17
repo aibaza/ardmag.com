@@ -1,6 +1,7 @@
 import { retrieveOrder } from "@lib/data/orders"
 import { retrieveCustomer } from "@lib/data/customer"
 import { OrderSummary } from "@modules/order/components/OrderSummary"
+import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { HttpTypes } from "@medusajs/types"
 import { redirect, notFound } from "next/navigation"
 import { Metadata } from "next"
@@ -206,8 +207,8 @@ export default async function OrderDetailPage({ params }: Props) {
                       Cant: {item.quantity}
                     </div>
                   </div>
-                  <div style={{ fontFamily: "var(--f-mono)", fontWeight: 600, fontSize: 13, flexShrink: 0 }}>
-                    {fmt(item.unit_price * item.quantity, currency)}
+                  <div style={{ fontFamily: "var(--f-mono)", fontWeight: 600, fontSize: 13, flexShrink: 0, textAlign: "right" }}>
+                    <FormattedPrice value={fmt(item.unit_price * item.quantity, currency)} />
                   </div>
                 </div>
               ))}

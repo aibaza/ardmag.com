@@ -51,7 +51,7 @@ export default async function TermeniPage({
 
         <h2 style={h2Style}>2. Produse si preturi</h2>
         <p style={pStyle}>
-          Preturile afisate includ TVA (21%) si sunt exprimate in RON. Vanzatorul isi rezerva dreptul de a
+          Preturile afisate includ TVA (21%) si sunt exprimate in Lei. Vanzatorul isi rezerva dreptul de a
           modifica preturile fara preaviz. Pretul valabil este cel afisat la momentul plasarii comenzii.
           Disponibilitatea stocului este verificata la momentul procesarii comenzii.
         </p>
@@ -67,7 +67,7 @@ export default async function TermeniPage({
         <p style={pStyle}>
           Termenul standard de livrare este 1-3 zile lucratoare de la confirmarea comenzii, in limita
           stocului disponibil. Costurile de livrare sunt afistate la checkout. Livrare gratuita la comenzi
-          de peste 500 RON (Fan Courier).
+          de peste 500 Lei (Fan Courier).
         </p>
 
         <h2 style={h2Style}>5. Dreptul de retur</h2>
