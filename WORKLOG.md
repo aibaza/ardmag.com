@@ -152,3 +152,32 @@ aplice client. Navigare interior site = zero flash.
 Toate cu `cache-control: public, s-maxage=300, stale-while-revalidate=900`
 si `x-vercel-cache: HIT`. Invalidare manuala via /api/revalidate cand
 se modifica catalogul.
+
+## 2026-05-17 16:00 -- Nav "Toate produsele" + active state pe categoria curenta
+
+Commits: `3d6c49c`, `a578969`
+Deploy: https://ardmag.ro/ | Vercel: ardmag-storefront-q9nzu3xxa
+Confirmat: DA ("arata super")
+
+UX polish pe meniul principal:
+
+1. **"Toate categoriile" -> "Toate produsele"** in header (butonul cu
+   fundal negru din stanga nav-ului) si footer ("Magazin > Toate
+   produsele"). Link-ul oricum mergea la /produse, doar label-ul era
+   confuz.
+
+2. **Active state vizual** pe categoria curenta cand user-ul navigheaza
+   pe /categories/X:
+   - Link-ul respectiv din cat-nav devine highlighted cu
+     border-bottom: var(--brand-500) si color: var(--brand-700) (deja
+     existau aceste reguli CSS, doar lipsea aplicarea active class)
+   - Pentru butonul "Toate produsele" cand user-ul e pe /produse,
+     fundalul devine var(--brand-600) (regula CSS noua, ca sa pastreze
+     contrastul vs background-ul negru by default)
+   - aria-current="page" pentru a11y
+
+Folosit usePathname() din next/navigation in SiteHeader (deja client
+component, fara cost suplimentar). Regex extracts /categories/{handle}
+din pathname, comparat cu cat.handle in loop.
+
+Fisiere: 3 modificate (SiteHeader.tsx, design-system.css, SiteFooter.tsx).
