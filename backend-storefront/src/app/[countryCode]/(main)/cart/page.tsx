@@ -81,7 +81,7 @@ export default async function CartPage({ params }: Props) {
                   className="btn primary lg"
                   style={{ width: "100%" }}
                 >
-                  Continua spre checkout
+                  Finalizează comanda
                 </a>
               </div>
             </div>

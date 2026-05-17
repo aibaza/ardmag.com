@@ -12,6 +12,20 @@ export const metadata: Metadata = {
   title: "Comanda confirmata | ardmag.com",
 }
 
+function formatRoDateTime(date: string | Date): string {
+  const d = typeof date === "string" ? new Date(date) : date
+  const datePart = d.toLocaleDateString("ro-RO", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  })
+  const timePart = d.toLocaleTimeString("ro-RO", {
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+  return `${datePart}, ora ${timePart}`
+}
+
 type Props = {
   params: Promise<{ countryCode: string; id: string }>
 }
@@ -83,90 +97,147 @@ export default async function OrderConfirmedPage({ params }: Props) {
             alignItems: "flex-start",
           }}
         >
-          <div>
-            <h2
-              style={{
-                fontFamily: "var(--f-sans)",
-                fontWeight: 600,
-                fontSize: 18,
-                marginBottom: 16,
-              }}
-            >
-              Produse comandate
-            </h2>
-            {(order.items ?? []).map((item) => (
-              <div
-                key={item.id}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  padding: "12px 0",
-                  borderBottom: "1px solid var(--rule)",
-                }}
-              >
-                {item.thumbnail && (
-                  <img
-                    src={item.thumbnail}
-                    alt={item.title}
-                    style={{
-                      width: 56,
-                      height: 56,
-                      objectFit: "cover",
-                      borderRadius: "var(--r-md)",
-                      flexShrink: 0,
-                    }}
-                  />
-                )}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    style={{ fontFamily: "var(--f-sans)", fontWeight: 500, fontSize: 14 }}
-                  >
-                    {item.product_title ?? item.title}
-                  </div>
-                  {item.variant?.title && item.variant.title !== "Default Title" && (
-                    <div style={{ fontSize: 12, color: "var(--fg-muted)" }}>
-                      {item.variant.title}
-                    </div>
-                  )}
-                  <div style={{ fontSize: 12, color: "var(--fg-muted)" }}>
-                    Cant: {item.quantity}
-                  </div>
-                </div>
-                <div style={{ fontFamily: "var(--f-sans)", fontWeight: 500, textAlign: "right" }}>
-                  <FormattedPrice value={formatPrice(item.unit_price * item.quantity, currency)} />
-                </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {/* Items panel */}
+            <div className="panel" style={{ marginBottom: 0 }}>
+              <div className="panel-head">
+                <h3>Produse comandate</h3>
               </div>
-            ))}
+              <div className="panel-body">
+                {(order.items ?? []).map((item) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 14,
+                      padding: "14px 20px",
+                      borderBottom: "1px solid var(--rule)",
+                    }}
+                  >
+                    {item.thumbnail && (
+                      <img
+                        src={item.thumbnail}
+                        alt={item.title}
+                        style={{
+                          width: 52,
+                          height: 52,
+                          objectFit: "cover",
+                          borderRadius: "var(--r-sm)",
+                          flexShrink: 0,
+                        }}
+                      />
+                    )}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div
+                        style={{ fontFamily: "var(--f-sans)", fontWeight: 500, fontSize: 14 }}
+                      >
+                        {item.product_title ?? item.title}
+                      </div>
+                      {item.variant?.title && item.variant.title !== "Default Title" && (
+                        <div
+                          style={{
+                            fontFamily: "var(--f-mono)",
+                            fontSize: 11,
+                            color: "var(--fg-muted)",
+                            marginTop: 2,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.04em",
+                          }}
+                        >
+                          {item.variant.title}
+                        </div>
+                      )}
+                      <div
+                        style={{
+                          fontFamily: "var(--f-mono)",
+                          fontSize: 11,
+                          color: "var(--fg-muted)",
+                          marginTop: 2,
+                        }}
+                      >
+                        Cant: {item.quantity}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--f-mono)",
+                        fontWeight: 600,
+                        fontSize: 13,
+                        flexShrink: 0,
+                        textAlign: "right",
+                      }}
+                    >
+                      <FormattedPrice value={formatPrice(item.unit_price * item.quantity, currency)} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-            {/* Address */}
-            {order.shipping_address && (
-              <div style={{ marginTop: 24 }}>
-                <h3
-                  style={{
-                    fontFamily: "var(--f-sans)",
-                    fontWeight: 600,
-                    fontSize: 15,
-                    marginBottom: 8,
-                  }}
-                >
-                  Adresa de livrare
-                </h3>
-                <div
-                  style={{
-                    fontFamily: "var(--f-sans)",
-                    fontSize: 14,
-                    color: "var(--fg-muted)",
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {order.shipping_address.first_name} {order.shipping_address.last_name}
-                  <br />
-                  {order.shipping_address.address_1}
-                  <br />
-                  {order.shipping_address.postal_code} {order.shipping_address.city}
-                  <br />
-                  {order.shipping_address.country_code?.toUpperCase()}
+            {/* Delivery details panel */}
+            {(order.shipping_address || (order.shipping_methods?.length ?? 0) > 0) && (
+              <div className="panel" style={{ marginBottom: 0 }}>
+                <div className="panel-head">
+                  <h3>Detalii livrare</h3>
+                  <span className="note">
+                    Plasată pe {formatRoDateTime(order.created_at)}
+                  </span>
+                </div>
+                <div className="panel-body padded">
+                  <div className="form-row-2">
+                    {order.shipping_address && (
+                      <div>
+                        <div className="eyebrow" style={{ marginBottom: 8 }}>
+                          Adresă
+                        </div>
+                        <div style={{ fontSize: 14, lineHeight: 1.7 }}>
+                          {order.shipping_address.first_name} {order.shipping_address.last_name}
+                          <br />
+                          {order.shipping_address.address_1}
+                          {order.shipping_address.address_2 ? `, ${order.shipping_address.address_2}` : ""}
+                          <br />
+                          {order.shipping_address.postal_code} {order.shipping_address.city}
+                          <br />
+                          {order.shipping_address.province ? `${order.shipping_address.province}, ` : ""}
+                          {order.shipping_address.country_code?.toUpperCase()}
+                          {order.shipping_address.phone && (
+                            <>
+                              <br />
+                              <span style={{ fontFamily: "var(--f-mono)", fontSize: 13 }}>
+                                {order.shipping_address.phone}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {(order.shipping_methods?.length ?? 0) > 0 && (
+                      <div>
+                        <div className="eyebrow" style={{ marginBottom: 8 }}>
+                          Metodă livrare
+                        </div>
+                        <div style={{ fontSize: 14, lineHeight: 1.7 }}>
+                          {order.shipping_methods!.map((sm) => (
+                            <div key={sm.id} style={{ marginBottom: 4 }}>
+                              {sm.name}
+                              <div
+                                style={{
+                                  fontFamily: "var(--f-mono)",
+                                  fontSize: 12,
+                                  color: "var(--fg-muted)",
+                                  marginTop: 2,
+                                }}
+                              >
+                                <FormattedPrice value={formatPrice(sm.amount ?? 0, currency)} />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
