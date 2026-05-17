@@ -53,7 +53,8 @@ type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
 }
 
 function hasRealDiscount(product: HttpTypes.StoreProduct): boolean {
-  return (product.variants ?? []).some((v) => {
+  // 1) Real price list discount: original_amount > calculated_amount
+  const hasPriceListDiscount = (product.variants ?? []).some((v) => {
     const cp = (v as VariantWithCalcPrice).calculated_price
     return (
       cp?.original_amount != null &&
@@ -61,6 +62,13 @@ function hasRealDiscount(product: HttpTypes.StoreProduct): boolean {
       cp.original_amount > cp.calculated_amount
     )
   })
+  if (hasPriceListDiscount) return true
+  // 2) Fallback legacy: metadata.ribbon contains "PROMO" -- aliniat cu logica
+  //    productToBadges, ca pagina /promotii sa includa produsele care
+  //    afiseaza badge -30% pe carduri chiar daca API-ul nu returneaza
+  //    original_amount in calculated_price.
+  const ribbon = (product.metadata as Record<string, unknown> | null | undefined)?.["ribbon"]
+  return typeof ribbon === "string" && ribbon.includes("PROMO")
 }
 
 
