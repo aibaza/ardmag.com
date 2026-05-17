@@ -171,6 +171,8 @@
   .cat-nav a.active{color:var(--brand-700);border-bottom-color:var(--brand-500)}
   .cat-nav .all{background:var(--stone-900);color:#fff;margin-right:12px;font-family:var(--f-sans);font-weight:500;white-space:nowrap}
   .cat-nav .all:hover{background:var(--stone-800);color:#fff}
+  .cat-nav .all.active{background:var(--brand-600);color:#fff;border-bottom-color:transparent}
+  .cat-nav .all.active:hover{background:var(--brand-700);color:#fff}
   .cat-nav .all svg{width:14px;height:14px}
   .cat-nav .right{margin-left:auto;display:flex}
   .cat-nav .right a{color:var(--fg-muted);font-size:13px}

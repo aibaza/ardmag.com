@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { ThemeToggle } from "@modules/@shared/components/theme-toggle/ThemeToggle"
 import { AddToCartSheet } from "@modules/cart/components/AddToCartSheet/AddToCartSheet"
 
@@ -27,6 +27,12 @@ export function SiteHeader({
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [liveCartCount, setLiveCartCount] = useState<number | undefined>(undefined)
   const router = useRouter()
+  const pathname = usePathname() ?? ""
+  const isOnProduse = pathname === "/produse" || pathname === `/${countryCode}/produse`
+  const activeCategoryHandle = (() => {
+    const m = pathname.match(/^(?:\/[a-z]{2})?\/categories\/([^/?#]+)/)
+    return m ? decodeURIComponent(m[1]) : null
+  })()
 
   useEffect(() => {
     const refresh = () =>
@@ -81,9 +87,16 @@ export function SiteHeader({
 
         {/* Desktop: category nav - live from API */}
         <nav className="cat-nav"><div className="wrap">
-          <a href={categoriesHref} className="all"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M2 4h12M2 8h12M2 12h12"/></svg>Toate categoriile</a>
+          <a href={categoriesHref} className={`all${isOnProduse ? " active" : ""}`}><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M2 4h12M2 8h12M2 12h12"/></svg>Toate produsele</a>
           {categories.map((cat) => (
-            <a key={cat.handle} href={`/categories/${cat.handle}`}>{cat.name.charAt(0).toUpperCase() + cat.name.slice(1).toLowerCase()}</a>
+            <a
+              key={cat.handle}
+              href={`/categories/${cat.handle}`}
+              className={cat.handle === activeCategoryHandle ? "active" : undefined}
+              aria-current={cat.handle === activeCategoryHandle ? "page" : undefined}
+            >
+              {cat.name.charAt(0).toUpperCase() + cat.name.slice(1).toLowerCase()}
+            </a>
           ))}
         </div></nav>
 

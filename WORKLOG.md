@@ -102,3 +102,53 @@ ulterior). Acest entry consolideaza livrarile in master.
 
 Fisiere modificate: 21 fisiere refactor + 1 component nou (FormattedPrice +
 index). Build SSG mentinut: 783 pagini static, homepage TTFB ~160ms hit cached.
+
+## 2026-05-17 15:15 -- Cache agresiv catalog: /produse, /promotii, categorii, PDP-uri
+
+Commits: `17235cc`, `f606673`, `b72cd39`
+Deploy: https://ardmag.ro/produse | Vercel: ardmag-storefront-mj3ol6f5o
+Confirmat: DA ("arata si merge excelent")
+
+Extinde strategia agresiva de cache aplicata pe homepage la TOATE
+paginile de catalog. Aliniere finala TTFB <300ms peste tot.
+
+**Layer 1 (commit 17235cc)** - next.config.js + scoate force-dynamic
+- 4 entries Cache-Control public s-maxage=300 SWR=900 in next.config
+  pentru /produse, /promotii, /categories/*, /products/*
+- Scos force-dynamic din toate 4 paginile
+- categories + products/[handle]: publicFetch:true pentru a nu varia
+  raspunsul per cookie
+- /api/revalidate: extins default purge cu paths catalog (1 chemare
+  invalidateaza tot)
+
+**Layer 2 (commit f606673)** - revalidate=300 pe pagini
+- Next.js suprascrie Cache-Control din config pentru pagini dynamic.
+  revalidate=N pe pagina e singura cale.
+
+**Layer 3 (commit b72cd39)** - CRITICAL: filtrare server->client pentru
+/produse + /promotii ca pagina sa devina SSG
+- Layer 1+2 au mers pentru /categories/* si /products/[handle] (au
+  generateStaticParams existing). NU mergeau pentru /produse + /promotii
+  pentru ca citeau searchParams (brand/material/price/sort) pe server
+  -> Next le marca dynamic indiferent de revalidate.
+- Solutie: server fetch + serve TOATE produsele cu meta (tags, minPrice,
+  createdAt). Wrapper client nou CatalogClient cu useSearchParams +
+  useMemo aplica filtrare+sortare in browser. Suspense boundary
+  obligatoriu pentru SSG.
+- Pe /promotii, hasRealDiscount filtrare ramane server-side (nu depinde
+  de URL).
+- 2 fisiere noi (CatalogClient.tsx + index.ts), 2 fisiere refactor.
+
+Trade-off acceptat: cand utilizatorul intra direct cu link
+?brand=tenax, vede ~50ms toate produsele inainte ca filtrul sa se
+aplice client. Navigare interior site = zero flash.
+
+**Rezultate masurate:**
+- /produse: 1.5s -> 115ms (13x mai rapid)
+- /promotii: 1.4s -> 100ms (14x mai rapid)
+- /categories/discuri-de-taiere: 1.4s -> 277ms (5x)
+- /products/mastic-semisolid: 1.5s -> 176ms (8.5x)
+
+Toate cu `cache-control: public, s-maxage=300, stale-while-revalidate=900`
+si `x-vercel-cache: HIT`. Invalidare manuala via /api/revalidate cand
+se modifica catalogul.
