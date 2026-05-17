@@ -35,11 +35,13 @@ export default async function BlogIndexPage({
           <div className="blog-grid">
             {articles.map((article) => (
               <Link key={article.slug} href={`/blog/${article.slug}`} className="acard">
-                {article.heroImage ? (
-                  <img src={article.heroImage} alt={article.title} className="a-img" style={{ objectFit: "cover" }} />
-                ) : (
-                  <div className="a-img" />
-                )}
+                <div className="a-img-wrap">
+                  {article.heroImage ? (
+                    <img src={article.heroImage} alt={article.title} loading="lazy" />
+                  ) : (
+                    <div className="a-img-phld" />
+                  )}
+                </div>
                 <div className="a-meta">
                   <span className="cat">{article.kicker?.split("·")[0].trim() ?? "Blog"}</span>
                   <span>· {formatDate(article.publishedAt)}</span>
