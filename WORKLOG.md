@@ -232,3 +232,75 @@ toate descoperite vizual de user pe live:
 
 Fisiere: 5 modificate (CartLineItem.tsx, cart/page.tsx,
 order/[id]/confirmed/page.tsx, lib/data/orders.ts, design-system.css).
+
+## 2026-05-17 19:15 -- Email Medusa functional + dark mode checkout
+
+Commits: `4d98304`, `51c2c0d`
+Deploy: https://ardmag.ro/checkout | Vercel: ardmag-storefront-hw9mriwyo | Railway: medusa redeploy
+Confirmat: DA ("totul arata bine")
+
+**Problema descoperita:** zero emailuri trimise de la lansare. SMTP2GO dashboard
+gol pentru toate orderele #18-#25. User a observat ca testul de maine pe site
+ar fi blocat fara emailuri functionale.
+
+**Diagnostic in 3 straturi:**
+
+1. **Event name gresit (commit `4d98304` parte 1):**
+   Subscribers ascultau la `order.created` dar Medusa v2 emite `order.placed`
+   la finalizarea checkout-ului (verificat in
+   `@medusajs/utils/dist/core-flows/events.js`: `OrderWorkflowEvents.PLACED`).
+   Fix: order-placed-notify.ts si order-placed-cod.ts trecut la `order.placed`.
+   (customer-created-welcome, auth-password-reset, order-shipment-created
+   erau deja cu nume corecte.)
+
+2. **Cross-module relations crapau (commit `4d98304` parte 2):**
+   Dupa fix event, subscribers firau si crapau cu
+   "TypeError: Cannot read properties of undefined (reading 'kind')".
+   Cauza: `orderModuleService.retrieveOrder({ relations: [..., "payment_collections.payments"] })`
+   nu poate traversa cross-module - payment_collections e in Payment module,
+   linked via remote link. MikroORM cauta metadata relatiei si gaseste undefined.
+   Fix: inlocuit cu Query API (ContainerRegistrationKeys.QUERY) care e calea
+   corecta in v2 pentru cross-module reads.
+
+3. **Dockerfile lipsea COPY pentru subscribers (commit `4d98304` parte 3):**
+   Imaginea Docker copia doar `src/modules/` peste baza
+   `ghcr.io/aibaza/ardmag-backend:latest`. Subscribers ramaneau la versiunea
+   veche din baza, deci modificarile locale nu ajungeau in productie.
+   Fix: adaugat `COPY .medusa/server/src/subscribers/` si `src/jobs/` in
+   Dockerfile.
+
+**Polish in acelasi commit:**
+- ADMIN_EMAIL default in order-placed-notify: `office@ardmag.ro` ->
+  `comenzi@ardmag.ro` (consistent cu Cloudflare routing care trimite
+  `comenzi@ardmag.ro` -> `comenzi@arcromdiamonds.ro` la Cristian)
+- `fromEmailNoreply` default: `no-reply@ardmag.ro` -> `office@ardmag.ro`
+  (no-reply nu exista in Cloudflare routing; office da)
+- Log explicit la initializarea Smtp2goNotificationService cu mode + senders
+  vizibil in Railway logs la primul send
+
+**Smoke test reusit:** Order #26 plasat cu email `ciprian.dobrea@gmail.com`,
+ORDER_NOTIFY_EMAIL temporar setat la acelasi email pentru a primi ambele
+emailuri local fara sa-l deranjam pe Cristian. SMTP2GO a aratat 2 entries
+Delivered: "Confirmare comanda" (customer) + "Comanda noua #26" (admin).
+Dupa confirmare, restaurat ORDER_NOTIFY_EMAIL=comenzi@ardmag.ro pentru prod.
+
+**Dark mode checkout (commit `51c2c0d`):**
+- SavedAddressPicker: background `--surface` (adapt light/dark) +
+  box-shadow inset brand-600 pentru selected (in loc de fundal `--stone-50`
+  hardcoded care era alb pe ambele teme)
+- CheckoutPayment "Date card" panel: `--surface` + `--fg` explicit. Iframe
+  Stripe ramane `#fff` (limitare Stripe Elements - vizibil in dark mode dar
+  nefixabil fara Stripe Appearance API, separat)
+- ProvinceCombobox hover/selected: `color-mix(in oklch, var(--fg) 10%, transparent)` -
+  tint adaptiv care merge si pe light (subtle grey) si pe dark (subtle white
+  overlay) fara override-uri
+
+**Memorie nou-salvata:** `project_infrastructure_state.md` (cine controleaza
+ce - eu am domeniu ardmag.ro, Stripe dev account, GA4/Pixel le produc eu) si
+`feedback_client_facing_language.md` (regula zero-jargon pentru emails catre
+Andrei/Cristian). Plus skill nou `client-email-writer` in ~/.claude/skills/
+pentru viitoarele drafturi.
+
+Fisiere modificate: 8 (5 backend: Dockerfile, medusa-config.ts,
+notification-smtp2go/service.ts, 2 subscribers; 3 storefront:
+SavedAddressPicker.tsx, CheckoutPayment.tsx, ProvinceCombobox.tsx).
