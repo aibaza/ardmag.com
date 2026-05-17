@@ -732,11 +732,7 @@ a.badge:hover{transform:translateY(-1px)}
 .pcard-img.with-real .top-tags{z-index:2}
 .pcard-brand-logo{
   position:absolute;bottom:10px;right:10px;z-index:2;
-  max-height:24px;max-width:72px;width:auto;height:auto;
-  background:rgba(255,255,255,0.92);
-  border:1px solid var(--rule);
-  border-radius:var(--r-sm);
-  padding:3px 6px;
+  max-width:100px;width:auto;height:auto;
   object-fit:contain;
   pointer-events:none;
 }
