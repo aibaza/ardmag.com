@@ -82,6 +82,7 @@ export default async function PromotiiPage({ params, searchParams }: Props) {
       fields: "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images,+categories",
     },
     countryCode,
+    publicFetch: true,
   }).catch(() => ({ response: { products: [] as HttpTypes.StoreProduct[], count: 0 }, nextPage: null }))
 
   // Keep only products with a real active Price List discount
