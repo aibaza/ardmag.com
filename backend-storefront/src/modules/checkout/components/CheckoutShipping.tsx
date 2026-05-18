@@ -3,6 +3,7 @@ import { useState, useTransition, useEffect } from "react"
 import { setShippingMethod } from "@lib/data/cart"
 import { calculatePriceForShippingOption } from "@lib/data/fulfillment"
 import { FormattedPrice } from "@modules/@shared/components/formatted-price"
+import { formatPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 
 interface Props {
@@ -39,9 +40,9 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
       const v = calc[opt.id]
       if (v === "loading") return "Calculam..."
       if (v === "error" || v == null) return "—"
-      return `${v.toFixed(2)} Lei`
+      return formatPrice(v)
     }
-    return opt.amount != null ? `${opt.amount.toFixed(2)} Lei` : "Gratuit"
+    return opt.amount != null ? formatPrice(opt.amount) : "Gratuit"
   }
 
   function handleContinue() {

@@ -87,7 +87,7 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
 
     if (!hasCredentials) {
       return {
-        calculated_amount: fallbackTariff(totalKg) * 100,
+        calculated_amount: fallbackTariff(totalKg),
         is_calculated_price_tax_inclusive: true,
       }
     }
@@ -96,13 +96,13 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
       const token = await getToken()
       const total = await getInternalTariff({ token, weight: Math.max(totalKg, 0.1), county, locality })
       return {
-        calculated_amount: Math.round(total * 100),
+        calculated_amount: Math.round(total * 100) / 100,
         is_calculated_price_tax_inclusive: true,
       }
     } catch (err) {
       this.logger.error("[FanCourier] calculatePrice failed, using fallback", err as Error)
       return {
-        calculated_amount: fallbackTariff(totalKg) * 100,
+        calculated_amount: fallbackTariff(totalKg),
         is_calculated_price_tax_inclusive: true,
       }
     }
