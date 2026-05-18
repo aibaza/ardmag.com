@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const article = await getArticle(slug)
   if (!article) return {}
+  const ogImage = article.heroImage ?? "/opengraph-image.jpg"
   return {
     title: `${article.title} | Ardmag`,
     description: article.description,
@@ -37,6 +38,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt ?? article.publishedAt,
+      images: [
+        {
+          url: ogImage,
+          width: 1376,
+          height: 768,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
+      images: [ogImage],
     },
   }
 }
