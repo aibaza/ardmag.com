@@ -469,3 +469,61 @@ select-uieste o optiune via radio. Transport se aplica la submit "Continua
 spre plata". Comportament identic cu pre-migrare. Posibil fix viitor.
 
 Fisiere modificate: 2 (1 backend + 1 storefront).
+
+---
+
+## 2026-05-18 (seara) -- Corectii catalog Andrei + fix Title Case categorii
+
+Commits: `aef3148`, `ec434b0`
+Deploy: https://ardmag.ro/ (storefront Vercel) + DB updates pe Railway via admin API
+Confirmat: DA (Ciprian, "aprob")
+
+Sursa: `/home/dc/Downloads/corectii.txt` (18 puncte de la Andrei, trimise via email).
+
+**Aplicat (12 din 18):**
+- 11 descrieri produs rescrise verbatim din textul Andrei: abrazivi-anelli,
+  abrazivi-oala, abrazivi-tangentiali, baton, burghiu, carote-diamantate,
+  creion (corectat: NU e diamantat, e marcaj simplu), detergenti,
+  detergenti-acizi, dischete-de-slefuit-diamantate, discuri-de-andezit
+- 1 produs nou documentat: dischete-de-slefuit-cu-carbura (VEL+SAITDISC),
+  "profilul cu centrul adancit" mutat de la generic la specific SAITDISC
+- Label categorii homepage: "MASTICI TENAX" (caps complet) sau "Mastici tenax"
+  (sentence case buggy in nav top) -> "Mastici Tenax" (Title Case proper)
+
+**Cum:**
+- 12 fisiere `.md` editate / 1 nou in `backend-storefront/codex-copy-proposals/`
+- Script nou `scripts/apply-descriptions-from-codex.ts` (parse .md sectiunea
+  "Descriere propusa (HTML simplu)" -> POST /admin/products/{id} cu description).
+  Suporta --dry-run (default), --apply, --only=<handle>
+- Util nou `backend-storefront/src/lib/util/category-title.ts` cu
+  `formatCategoryTitle()` (Title Case). Aplicat in `SiteHeader.tsx`
+  (nav top + mobile drawer) + `page.tsx` (quick categories cards homepage)
+- Cache invalidat post-update DB via `GET /api/revalidate?secret=...`
+  pentru `revalidateTag("products")` + `revalidatePath("/products/[handle]")`
+
+**Blocked - intrebari catre Andrei (6 puncte, draft email in
+`docs/email-andrei-corectii-2026-05-18.md`):**
+1. EK-WINNER duplicat (produs stand-alone in "Slefuire piatra" + varianta
+   "EK WIENNER" sub produsul agregat `discuri-de-slefuit-cu-carbura`) - care
+   forma pastram + cum mutam la "Discuri de taiere"?
+2. Saitroanele (SAITRON 125, SAITRON 180, SAITRIS 180) - acelasi tip de
+   duplicare (stand-alone + variante sub agregat). Care forma pastram?
+3. Saitris 180 "SFC" - ce inseamna SFC?
+4. Suport Velcropad - pagina e deja 404 pe ardmag.ro, confirm cu Andrei
+5. Creion - text scurt aplicat ("Creion de marcaj pentru piatra..."),
+   intreb daca vrea descriere mai detaliata
+6. Discuri de granit - mesajul corectii.txt s-a oprit la titlu (truncat)
+
+**Verificare live:** confirmat de Ciprian dupa cache invalidate. Grep markers
+gasite pe toate 12 pagini:
+- creion: "Creion de marcaj" (vs vechi "Creion diamantat")
+- abrazivi-anelli: "baioneta" (vs vechi "Frankfurt")
+- baton: "pasle" (luciu manual, vs vechi "rectificare manuala")
+- discuri-de-andezit: "Aproape toate" (vs vechi "peste 500 mm")
+- + restul 8 produse
+
+Audit log: `scripts/apply-descriptions-audit.jsonl` (toate update-urile cu
+timestamp + diff size). Idempotent: re-runs marcheaza "IDENTICAL (skip)".
+
+Fisiere modificate: 18 (12 .md catalog + 1 .md draft email + 3 storefront UI/util
++ 1 script nou + 1 audit log).
