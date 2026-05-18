@@ -59,7 +59,7 @@ Reglementarea avansează în paralel. [Materialele în contact cu alimentele sun
 5. **Ce finisare aștepți?** Opacă colorată în masă, transparentă, lustruibilă, mată.
 6. **Ce certificate cere lucrarea?** Contact alimentar, exterior, rezistență chimică specifică.
 
-Răspunsul la aceste șase întrebări restrânge alegerea la una-două familii. Fișa tehnică (TDS) și fișa de siguranță (SDS) a produsului concret confirmă alegerea sau o exclud.
+Răspunsul la aceste șase întrebări restrânge alegerea la una-două familii. Fișa tehnică și fișa de securitate a produsului concret confirmă alegerea sau o exclud.
 
 ## Greșeli frecvente
 
@@ -67,16 +67,16 @@ Câteva apar repetat în atelier și pe șantier:
 
 - mai mult întăritor la epoxidic „ca să se întărească mai repede", greșeală care strică complet proprietățile mecanice finale;
 - catalizare excesivă la poliester, care produce fisuri și schimbare de culoare;
-- aplicare pe piatră prăfuită sau umedă fără confirmare în TDS că produsul tolerează umiditatea;
+- aplicare pe piatră prăfuită sau umedă fără confirmare în fișa tehnică că produsul tolerează umiditatea;
 - folosirea unui mastic estetic pentru o lipire structurală;
 - ignorarea temperaturii atelierului, care modifică sensibil timpul de lucru și calitatea întăririi;
-- presupuneri de food-contact fără certificat scris pe produsul respectiv.
+- presupuneri de contact alimentar fără certificat scris pe produsul respectiv.
 
 ## Cum citești fișa tehnică înainte de comandă
 
-Pe TDS cauți, în ordine: raportul de amestec, timpul de lucru (pot life), timpul de întărire la temperatura atelierului, suporturile recomandate, comportamentul la apă și UV, posibilitatea de aplicare verticală, paleta de culori disponibilă, posibilitatea de șlefuire-lustruire și certificările specifice (contact alimentar, exterior, rezistență chimică).
+În fișa tehnică cauți, în ordine: raportul de amestec, timpul de lucru, timpul de întărire la temperatura atelierului, suporturile recomandate, comportamentul la apă și UV, posibilitatea de aplicare verticală, paleta de culori disponibilă, posibilitatea de șlefuire-lustruire și certificările specifice (contact alimentar, exterior, rezistență chimică).
 
-Dacă TDS-ul nu spune ceva explicit, nu presupui. Întrebi furnizorul sau alegi alt produs.
+Dacă fișa tehnică nu spune ceva explicit, nu presupui. Întrebi furnizorul sau alegi alt produs.
 
 Gama de mastici Tenax o găsești în secțiunea de [Mastici și adezivi](/categories/mastici-si-adezivi). Pentru lucrări atipice (zone umede, contact alimentar, exterior expus UV, aglomerate de quartz sau ceramică sinterizată), confirmarea produsului se face pe baza fișei tehnice, nu pe baza familiei chimice.
 
