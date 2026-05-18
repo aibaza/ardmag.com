@@ -13,6 +13,7 @@ import { SiteFooter } from '@modules/layout/site-footer'
 import { listCategories } from '@lib/data/categories'
 import { listProducts } from '@lib/data/products'
 import { productToCard } from '@lib/util/adapters/product-to-card'
+import { formatCategoryTitle } from '@lib/util/category-title'
 import { listArticles } from '@lib/blog'
 import { HttpTypes } from '@medusajs/types'
 
@@ -113,8 +114,8 @@ export default async function HomePage({ params }: Props) {
     .map((cat) => ({
       href: `/categories/${cat.handle}`,
       image: CAT_IMAGE_MAP[cat.handle ?? ''] ?? '/design-temp/cat-seturi-thumb.webp',
-      imageAlt: cat.name ?? '',
-      label: cat.name ?? '',
+      imageAlt: formatCategoryTitle(cat.name ?? ''),
+      label: formatCategoryTitle(cat.name ?? ''),
       count: (cat as any).products?.length ?? 0,
     }))
 

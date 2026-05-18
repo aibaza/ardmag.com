@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import { ThemeToggle } from "@modules/@shared/components/theme-toggle/ThemeToggle"
 import { AddToCartSheet } from "@modules/cart/components/AddToCartSheet/AddToCartSheet"
+import { formatCategoryTitle } from "@lib/util/category-title"
 
 interface SiteHeaderProps {
   countryCode: string
@@ -95,7 +96,7 @@ export function SiteHeader({
               className={cat.handle === activeCategoryHandle ? "active" : undefined}
               aria-current={cat.handle === activeCategoryHandle ? "page" : undefined}
             >
-              {cat.name.charAt(0).toUpperCase() + cat.name.slice(1).toLowerCase()}
+              {formatCategoryTitle(cat.name)}
             </a>
           ))}
         </div></nav>
@@ -136,7 +137,7 @@ export function SiteHeader({
           <nav className="mm-nav" aria-label="Categorii mobile">
             {categories.map((cat) => (
               <a key={cat.handle} href={`/categories/${cat.handle}`} onClick={() => setDrawerOpen(false)}>
-                {cat.name} <span className="chev">›</span>
+                {formatCategoryTitle(cat.name)} <span className="chev">›</span>
               </a>
             ))}
           </nav>
