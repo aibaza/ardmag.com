@@ -345,3 +345,87 @@ domenii), dar pentru curatenie SEO ar trebui schimbat. Nu blocheaza nimic
 acum.
 
 Fisiere modificate: 1 (`backend-storefront/src/app/[countryCode]/(main)/blog/[slug]/page.tsx`).
+
+## 2026-05-18 19:15 -- Migrare preturi DB raw decimal + cleanup test orders + fix bug billing latent Stripe
+
+Commits: `c7dac35`, `53bf9f3`
+Deploy: https://ardmag.ro/ | Vercel: ardmag-storefront-jlwqjegtk
+Confirmat: DA ("preturile par ok")
+
+Operatia mare a zilei: migrarea modelului de stocare preturi de la legacy v1
+(×100 / bani) la Medusa v2 standard (raw decimal RON). Fereastra de mentenanta
+~10 min pe site live, executat inainte de primul client real.
+
+**De ce era necesar:**
+
+Scriptul de import Wix→Medusa (`scripts/import-wix-catalog.ts`) stoca preturile
+multiplicate cu 100 (un produs de 137 RON → DB amount=13700). Storefront-ul
+compensa prin formatPrice care imparte la 100. Admin Medusa nu stia de divizare
+si afisa "lei 13,700.00 RON" pentru un produs de 137 RON.
+
+Dar mai grav: **Stripe Payment Provider (`@medusajs/payment-stripe`)** apeleaza
+`getSmallestUnit(amount, currency_code)` care multiplica cu `10^decimal_digits`.
+Pentru RON (decimal_digits=2), face ×100. Deci:
+- payment.amount = 13700 (intentie 137 RON, stocat ×100)
+- Stripe plugin trimite 13700 × 100 = 1,370,000 bani = 13,700 RON catre Stripe
+- Toate test orders au fost charge-uite la 100× over (verificat: payment.data.stripe_amount
+  pentru o comanda de 137 RON era 1370000, pentru una de 420 RON era 4200000)
+- Bug latent mascat de Stripe test cards care accepta orice suma fara raport
+
+Migrarea aceasta a fixat si admin display si overcharge-ul Stripe simultan.
+
+**Strategia: scope chirurgical.** In loc sa migrez toate cele ~25 de tabele cu
+campuri monetare (orders, carts, payments, tax lines, etc.), am sters complet
+datele tranzactionale test si am migrat DOAR catalog prices. Argumentatie: cele
+27 orders + 253 carts erau toate test/dev, nu au existat clienti reali inca.
+Stergerea elimina riscul de mismatch in totaluri si reduce scopul migrarii la
+2 coloane (`price.amount` + `price.raw_amount` jsonb).
+
+**7 faze de executie:**
+
+1. **Pre-flight** -- DB connection check, prep storefront local: format-price.ts
+   scoate /100, tests fixtures actualizate (Lei in loc de RON), middleware
+   maintenance, import script fix
+2. **Maintenance ON** -- env MAINTENANCE_MODE=on pe Vercel + commit `c7dac35`
+   middleware 503 → site afiseaza pagina "mentenanta programata, revenim in
+   5 min" cu phone fallback
+3. **Backup** -- pg_dump custom format prin Railway SSH (necesitat instalare
+   postgresql18-client pentru ca server-ul e 18.3 si default client din alpine
+   era 17 → error version mismatch). Dump 867KB salvat /tmp/ + pulled local
+   via base64 stream, MD5 verificat
+4. **Cleanup tranzactional** -- single transaction stergand din 23 tabele
+   (order_line_item_tax_line, order_item, order_summary, payment_collection,
+   cart_line_item, etc.) plus reset display_id sequence la 1
+5. **Migrare catalog** -- UPDATE price SET amount = amount/100, plus
+   jsonb_set pe raw_amount->value pentru sincronizare. 1004 randuri actualizate.
+   Verificat top preturi 14k-20k RON (corect pentru produse profesionale piatra),
+   shipping 19.99-21.99 RON
+6. **Storefront deploy** -- env MAINTENANCE_MODE removed + commit `53bf9f3` cu
+   /100 scos de peste tot (format-price.ts + 8 alte locuri: filter pages, json-ld,
+   shipping, order details, import script). Verificat tests pass (15/15)
+7. **Verificare** -- toate paginile 200, PDP afiseaza 76 Lei pentru mastic-solid
+   (era 7.600 inainte de revalidate cache), cart API test cu unit_price=76 raw,
+   admin orders gol
+
+**Gotcha intalnit:** dupa migrare DB, primul curl pe PDP afisa inca preturi
+×100 (7.600 Lei pentru un produs de 76 RON). Cauza: Next.js fetch cache cu
+`force-cache` si tag "products" tinea raspunsul de la API inainte de migrare
+(`getCacheOptionsStatic("products")` in `lib/data/cookies.ts`). Path-level
+revalidatePath nu era suficient. Trigger pe `/api/revalidate?secret=...` fara
+parametri (default revalidateTag(\"products\")) a flush-uit cache-ul si PDP
+afisa imediat preturi corecte. De tinut minte pentru viitoare migrari.
+
+**Backup pastrat pentru rollback:**
+- Container Railway: `/tmp/ardmag-prelaunch-20260518-1902.dump`
+- Local: `/home/dc/_backups/ardmag-2026-05-18/ardmag-prelaunch-20260518-1902.dump`
+- MD5: 69e8961f4eb5f517b0cd178b38d7d796
+
+**Side-effects pozitive:**
+- Admin Medusa afiseaza acum preturi normale (137 Lei in loc de 13,700 Lei)
+- Stripe billing va factura corect la primul client real (137 RON, nu 13,700)
+- Catalog si shipping prices aliniate cu standardul Medusa v2
+- Display ID prima comanda reala = #1 (slate curat)
+- Import script pregatit pentru reimporturi viitoare (parsePrice returneaza raw)
+
+Fisiere modificate: 11 (10 storefront + 1 import script + 1 plan local).
+Cod liniile schimbate: 31 inserted, 51 deleted (refactor curat).
