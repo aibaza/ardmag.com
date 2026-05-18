@@ -39,9 +39,9 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
       const v = calc[opt.id]
       if (v === "loading") return "Calculam..."
       if (v === "error" || v == null) return "—"
-      return `${(v / 100).toFixed(2)} Lei`
+      return `${v.toFixed(2)} Lei`
     }
-    return opt.amount != null ? `${(opt.amount / 100).toFixed(2)} Lei` : "Gratuit"
+    return opt.amount != null ? `${opt.amount.toFixed(2)} Lei` : "Gratuit"
   }
 
   function handleContinue() {

@@ -96,7 +96,8 @@ function buildImageUrl(mediaId: string): string {
 function parsePrice(basePrice: string, surcharge: string): number {
   const base = parseFloat(basePrice || "0")
   const extra = parseFloat(surcharge || "0")
-  return Math.round((base + extra) * 100) // bani RON
+  // Medusa v2 stocheaza preturile ca raw decimal (RON), nu in bani
+  return Math.round((base + extra) * 100) / 100
 }
 
 // ─── API Client ───────────────────────────────────────────────────────────────
@@ -230,7 +231,7 @@ async function importProduct(
     // Medusa v2 cere cel puțin o opțiune chiar și pe produse simple
     options.push({ title: "Title", values: ["Default Title"] })
 
-    const price = Math.round(basePrice * 100)
+    const price = Math.round(basePrice * 100) / 100
     const isDraft = price === 0
     if (isDraft) {
       stats.draftProducts.push(product.name)
@@ -276,7 +277,7 @@ async function importProduct(
   }
 
   // Status
-  const hasZeroPrice = isSimpleProduct && Math.round(basePrice * 100) === 0
+  const hasZeroPrice = isSimpleProduct && (Math.round(basePrice * 100) / 100) === 0
   const status = hasZeroPrice || !product.visible || product.visible === "false"
     ? "draft"
     : "published"

@@ -88,7 +88,7 @@ export default async function PromotiiPage({ params }: Props) {
       meta: {
         brandSlugs: extractTagSlugs(p, "brand"),
         materialSlugs: extractTagSlugs(p, "material"),
-        minPriceRon: minPrice !== null ? minPrice / 100 : null,
+        minPriceRon: minPrice,
         createdAtMs: p.created_at ? new Date(p.created_at).getTime() : 0,
       },
     }

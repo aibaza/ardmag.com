@@ -1,16 +1,14 @@
 import type { HttpTypes } from "@medusajs/types"
 
 /**
- * Formats a minor-unit RON amount to Romanian locale string.
- * 103200 => "1.032,00 Lei", 11500 => "115,00 Lei"
+ * Formats a raw decimal RON amount to Romanian locale string.
+ * 1032 => "1.032,00 Lei", 115 => "115,00 Lei"
  * For currency_code "ron" the display is "Lei" (consumer-facing); for any
  * other currency the ISO code is shown uppercase.
  */
 export function formatPrice(amount: number, currencyCode = "ron"): string {
-  const value = amount / 100
-
   // Romanian format: thousands separator = ".", decimal separator = ","
-  const parts = value.toFixed(2).split(".")
+  const parts = amount.toFixed(2).split(".")
   const intPart = parts[0]
   const decPart = parts[1]
 

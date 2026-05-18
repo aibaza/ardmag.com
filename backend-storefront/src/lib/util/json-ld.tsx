@@ -108,7 +108,7 @@ export function ProductJsonLd({
     ...(brand && { brand: { "@type": "Brand", name: brand } }),
     offers: {
       "@type": "Offer",
-      ...(price != null && { price: (price / 100).toFixed(2), priceCurrency: currency }),
+      ...(price != null && { price: price.toFixed(2), priceCurrency: currency }),
       availability: inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
       url: `${baseUrl}${url}`,

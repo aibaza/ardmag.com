@@ -3,36 +3,36 @@ import { formatPrice, getProductMinPrice } from "../format-price"
 import type { HttpTypes } from "@medusajs/types"
 
 describe("formatPrice", () => {
-  it("formats 103200 to 1.032,00 RON", () => {
-    expect(formatPrice(103200)).toBe("1.032,00 RON")
+  it("formats 1032 to 1.032,00 Lei", () => {
+    expect(formatPrice(1032)).toBe("1.032,00 Lei")
   })
 
-  it("formats 11500 to 115,00 RON", () => {
-    expect(formatPrice(11500)).toBe("115,00 RON")
+  it("formats 115 to 115,00 Lei", () => {
+    expect(formatPrice(115)).toBe("115,00 Lei")
   })
 
-  it("formats 100 to 1,00 RON", () => {
-    expect(formatPrice(100)).toBe("1,00 RON")
+  it("formats 1 to 1,00 Lei", () => {
+    expect(formatPrice(1)).toBe("1,00 Lei")
   })
 
-  it("formats 100000 to 1.000,00 RON", () => {
-    expect(formatPrice(100000)).toBe("1.000,00 RON")
+  it("formats 1000 to 1.000,00 Lei", () => {
+    expect(formatPrice(1000)).toBe("1.000,00 Lei")
   })
 
-  it("formats 1000000 to 10.000,00 RON", () => {
-    expect(formatPrice(1000000)).toBe("10.000,00 RON")
+  it("formats 10000 to 10.000,00 Lei", () => {
+    expect(formatPrice(10000)).toBe("10.000,00 Lei")
   })
 
-  it("formats 999 to 9,99 RON", () => {
-    expect(formatPrice(999)).toBe("9,99 RON")
+  it("formats 9.99 to 9,99 Lei", () => {
+    expect(formatPrice(9.99)).toBe("9,99 Lei")
   })
 
   it("formats with custom currency code uppercased", () => {
-    expect(formatPrice(5000, "eur")).toBe("50,00 EUR")
+    expect(formatPrice(50, "eur")).toBe("50,00 EUR")
   })
 
   it("formats 0 correctly", () => {
-    expect(formatPrice(0)).toBe("0,00 RON")
+    expect(formatPrice(0)).toBe("0,00 Lei")
   })
 })
 

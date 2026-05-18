@@ -115,9 +115,8 @@ export default async function CategoryPage(props: Props) {
     filteredProducts = filteredProducts.filter((p) => {
       const price = getProductMinPrice(p)
       if (price === null) return false
-      const priceRON = price / 100
-      if (!isNaN(activePriceMin) && priceRON < activePriceMin) return false
-      if (!isNaN(activePriceMax) && priceRON > activePriceMax) return false
+      if (!isNaN(activePriceMin) && price < activePriceMin) return false
+      if (!isNaN(activePriceMax) && price > activePriceMax) return false
       return true
     })
   }

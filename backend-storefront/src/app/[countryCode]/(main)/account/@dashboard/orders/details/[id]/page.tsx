@@ -34,7 +34,7 @@ function badgeClass(status: string): string {
 }
 
 function fmt(amount: number, currency: string): string {
-  return `${(amount / 100).toFixed(2).replace(".", ",")} ${currency.toUpperCase()}`
+  return `${amount.toFixed(2).replace(".", ",")} ${currency.toUpperCase()}`
 }
 
 type OrderAddress = HttpTypes.StoreOrder["shipping_address"]

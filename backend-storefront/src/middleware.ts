@@ -68,25 +68,7 @@ async function getCountryCode(
   }
 }
 
-const MAINTENANCE_HTML = `<!doctype html><html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ardmag.ro - mentenanta programata</title><style>body{font-family:system-ui,-apple-system,sans-serif;background:#0f1115;color:#e6e8eb;display:grid;place-items:center;min-height:100vh;margin:0;padding:24px;text-align:center}main{max-width:480px}h1{font-size:24px;margin:0 0 12px;font-weight:600}p{margin:8px 0;color:#a3a8b3;line-height:1.5}.logo{font-size:32px;font-weight:700;letter-spacing:.5px;margin-bottom:24px;color:#e6e8eb}</style></head><body><main><div class="logo">ARDMAG</div><h1>Mentenanta programata</h1><p>Aducem cateva imbunatatiri pe site. Revenim in cateva minute.</p><p style="margin-top:24px;font-size:14px">Pentru urgente: <a href="tel:+40722155441" style="color:#e6e8eb">+40 722 155 441</a></p></main></body></html>`
-
 export async function middleware(request: NextRequest) {
-  if (process.env.MAINTENANCE_MODE === "on") {
-    const pathname = request.nextUrl.pathname
-    // Allow static asset requests through so the 503 page itself (no assets needed)
-    // and any future status page can load. Block everything else.
-    if (!pathname.includes(".")) {
-      return new NextResponse(MAINTENANCE_HTML, {
-        status: 503,
-        headers: {
-          "Content-Type": "text/html; charset=utf-8",
-          "Cache-Control": "no-store",
-          "Retry-After": "300",
-        },
-      })
-    }
-  }
-
   const cacheIdCookie = request.cookies.get("_medusa_cache_id")
   const cacheId = cacheIdCookie?.value || crypto.randomUUID()
 

@@ -158,8 +158,8 @@ export function productsToFilterGroups(
       type: "price-range",
       title: "Preț",
       open: true,
-      min: Math.floor(priceMin / 100),
-      max: Math.ceil(priceMax / 100),
+      min: Math.floor(priceMin),
+      max: Math.ceil(priceMax),
     })
   }
 
