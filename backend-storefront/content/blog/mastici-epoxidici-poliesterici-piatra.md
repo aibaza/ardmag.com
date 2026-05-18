@@ -5,6 +5,7 @@ kicker: "Ghid tehnic · Mastici"
 publishedAt: "2026-05-18"
 author: "Echipa ardmag"
 tags: ["mastici", "epoxidic", "poliesteric", "piatra naturala", "Tenax"]
+heroImage: "/blog/mastici-epoxidici-poliesterici-piatra/hero.webp"
 ---
 
 Nu există mastic universal pentru piatră. Alegerea corectă rămâne tehnică: depinde de tipul lucrării, materialul de bază, mediul de exploatare și timpul de lucru pe care îl ai în atelier sau pe șantier.
