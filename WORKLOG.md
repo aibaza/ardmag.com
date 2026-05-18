@@ -304,3 +304,44 @@ pentru viitoarele drafturi.
 Fisiere modificate: 8 (5 backend: Dockerfile, medusa-config.ts,
 notification-smtp2go/service.ts, 2 subscribers; 3 storefront:
 SavedAddressPicker.tsx, CheckoutPayment.tsx, ProvinceCombobox.tsx).
+
+## 2026-05-18 13:50 -- OG image + meta sociale pe articole blog
+
+Commits: `0e6aaa8`, `3185ea2`
+Deploy: https://ardmag.ro/blog/mastici-epoxidici-poliesterici-piatra | Vercel: ardmag-storefront-r7rd7etlw
+Confirmat: DA ("arata bine" pe verifier OG)
+
+Articolele de blog aratau text-only la share pe Facebook/LinkedIn/WhatsApp:
+`og:image` lipsea complet, iar verifier-ul opengraph.io semnala scor 30/100
+critical.
+
+**Cauza:** `generateMetadata` din `/blog/[slug]/page.tsx` seta `openGraph`
+fara campul `images`. In Next.js metadata API, cand child route seteaza
+`openGraph`, obiectul mostenit din root layout e suprascris complet --
+deci si `images` (din opengraph-image.jpg auto-generat), si `siteName`,
+`locale`, `url` din parent layout dispareau.
+
+**Fix in 2 pasi:**
+
+1. **`0e6aaa8`** -- adaugat `openGraph.images` din `article.heroImage`
+   (1376x768 webp, una per articol in `/public/blog/<slug>/hero.webp`).
+   Fallback la `/opengraph-image.jpg` daca articolul nu are hero.
+   Adaugat si block `twitter` cu `card: summary_large_image` + acelasi image.
+
+2. **`3185ea2`** -- adaugat campurile lipsa semnalate de OG verifier
+   (`og:url`, `og:site_name = ARDMAG`, `og:locale = ro_RO`) si `<link
+   rel="canonical">` pe articol. Le-am adaugat explicit in `openGraph`
+   pentru ca Next.js nu le mosteneste din parent layout cand child override-uieste.
+
+**Verificat pe live (toate 3 articole):** og:title, og:description, og:url,
+og:site_name, og:locale, og:type=article, og:image (+ width 1376, height 768,
+alt), twitter:card, canonical -- toate prezente.
+
+**TODO separat:** URL-urile in canonical/og:url/og:image ies cu
+`ardmag.surcod.ro` in loc de `ardmag.ro` pentru ca `NEXT_PUBLIC_BASE_URL`
+in env Vercel pointeaza inca la subdomeniul vechi. Functional OK (Facebook
+scrape de pe ardmag.ro citeste tag-urile, imaginea load-eaza din ambele
+domenii), dar pentru curatenie SEO ar trebui schimbat. Nu blocheaza nimic
+acum.
+
+Fisiere modificate: 1 (`backend-storefront/src/app/[countryCode]/(main)/blog/[slug]/page.tsx`).
