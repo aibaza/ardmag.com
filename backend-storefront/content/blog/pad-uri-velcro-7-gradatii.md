@@ -1,18 +1,18 @@
 ---
-title: "Pad-uri Velcro în 7 trepte: de ce nu poți sări nicio granulație"
-description: "Fiecare treaptă de granulație îndepărtează exact zgârieturile lăsate de treapta anterioară. Dacă sari una, dublezi munca la treptele următoare."
+title: "Pad-uri Velcro în 7 trepte: de ce nu e bine să sari granulații"
+description: "Fiecare treaptă reduce urmele lăsate de treapta anterioară. Dacă sari una, crești timpul de lucru la finisare."
 kicker: "Ghid tehnic · Abrazivi"
 publishedAt: "2026-05-04"
 author: "Echipa ardmag"
-tags: ["pad-uri", "velcro", "polish", "granit", "marmura", "sait", "lustruit"]
+tags: ["pad-uri", "velcro", "polish", "granit", "marmura", "lustruit"]
 heroImage: "/blog/pad-uri-velcro-7-gradatii/hero.webp"
 ---
 
 Oglinda se face de la granulația 50, nu de la granulația 800.
 
-Sună contraintuitiv. Logica e simplă: fiecare treaptă de granulație lasă zgârieturi cu adâncime și lățime definite de [standardul FEPA](https://www.fepa-abrasives.com/abrasive-products/grains/) pentru dimensiunea granulei. La granulația 50, granula medie are ~300 microni. La granulația 3000, are ~4 microni.
+Sună contraintuitiv. Logica e simplă: dimensiunea granulei influențează urmele lăsate pe suprafață. [Standardele FEPA](https://www.fepa-abrasives.com/abrasive-products/grains/) descriu dimensiunile granulelor abrazive; în lucru, fiecare treaptă pregătește suprafața pentru treapta următoare.
 
-Granulația următoare îndepărtează exact adâncimea lăsată de cea anterioară. Dacă sari de la granulația 100 direct la 400, granulația 400 nu ajunge la fundul zgârieturilor de la 100. Le aplatizează pe margini. La lumina rasantă (adică lumina dintr-un unghi mic față de suprafață) le vezi pe toate.
+Granulația următoare reduce urmele lăsate de cea anterioară. Dacă sari de la granulația 100 direct la 400, treapta 400 poate doar să rotunjească marginile zgârieturilor mai adânci. La lumina rasantă (adică lumina dintr-un unghi mic față de suprafață) le vezi pe toate.
 
 ## Cele 7 trepte
 
@@ -24,29 +24,30 @@ Granulația următoare îndepărtează exact adâncimea lăsată de cea anterioa
 | 4 | 400 | Suprafața capătă aspect mat-uniform și începe să capete un ușor luciu |
 | 5 | 800 | Pregătire pentru luciu |
 | 6 | 1500 | Luciu incipient, vizibil pe granit negru |
-| 7 | 3000 | Oglindă pe marmură albă și granit |
+| 7 | 3000 | Luciu ridicat, în funcție de material, sculă și tehnică |
 
 ## Tehnica
 
-Apă tot timpul. [Pad-urile diamantate](https://www.saitabrasives.com/) pentru lustruit sunt proiectate exclusiv pentru utilizare umedă. Fără răcire, liantul se degradează și lasă dungi exact pe suprafețele pe care le finisezi.
+Există două serii distincte de pad-uri diamantate pentru lustruit: seria pentru utilizare umedă și seria pentru utilizare uscată. Cele două nu sunt interschimbabile. Verifică pe ambalaj pentru ce regim a fost proiectat pad-ul înainte de a-l monta.
+
+Pentru seria umedă, apă tot timpul. Fără răcire, liantul se degradează și lasă dungi exact pe suprafețele pe care le finisezi.
 
 Presiune uniformă, mișcare în cercuri de 15-20 cm diametru, avans lent. Nu grăbi treapta 6 și 7. Acolo se câștigă sau se pierde oglinda.
 
-Nu lucra uscat cu pad-uri din seria de lustruit pe umed (seria de lustruit pe uscat este separată). Utilizare uscată e acceptabilă doar pentru rectificare grosolană (granulația 50-100), nu pentru finisaj.
+Nu lucra uscat cu pad-uri din seria de lustruit pe umed. Pentru regim uscat folosești pad-uri din seria dedicată uscatului.
 
-## Mașina și mandrina
+## Mașina și talerul suport
 
-Setul e compatibil cu orice polizor unghiular de 125 mm cu mandrina velcro M14. Merge și pe mașini orbitale la 5 mm excentricitate.
+Setul este compatibil cu polizoare de 125 mm care acceptă taler suport Velcro M14, dacă turația este potrivită. Poate fi folosit și pe mașini orbitale compatibile, în funcție de taler și de recomandarea producătorului.
 
-Nu forța un pad de 125 mm pe o mandrina de 115 mm. Pad-ul depășește marginea, vibrează, și lasă urme circulare vizibile la finisaj.
+Nu forța un pad de 125 mm pe un taler suport de 115 mm. Pad-ul depășește marginea, vibrează și lasă urme circulare vizibile la finisaj.
 
 Viteza recomandată: 1500-2500 rpm pentru marmură, 2000-3000 rpm pentru granit.
 
-Setul complet de 7 pad-uri e disponibil în stoc la Cluj. Îl găsești la [Șlefuire piatră](/categories/slefuire-piatra).
+Setul complet de 7 pad-uri îl găsești la [Șlefuire piatră](/categories/slefuire-piatra). Disponibilitatea per granulație și taler o vezi pe pagina fiecărui produs.
 
 ---
 
 ## Surse și referințe
 
-- [FEPA, Federation of European Producers of Abrasives - standarde grit](https://www.fepa-abrasives.com/abrasive-products/grains/)
-- [Sait Abrasives, pad-uri diamantate pentru lustruit](https://www.saitabrasives.com/)
+- [FEPA, Federation of European Producers of Abrasives - standarde granulație](https://www.fepa-abrasives.com/abrasive-products/grains/)

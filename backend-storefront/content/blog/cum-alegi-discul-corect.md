@@ -18,13 +18,13 @@ La granit (6-7 Mohs), liantul trebuie să fie moale. Se uzează rapid și expune
 
 La marmură (3-4 Mohs), invers. Liantul dur ține geometria segmentului și previne uzura prematură.
 
-Un disc marcat „pentru granit" folosit pe marmură produce vibrații, pot apărea rupturi sau ciobituri.
+Un disc marcat „pentru granit" folosit pe marmură poate produce vibrații și poate lăsa rupturi sau ciobituri.
 
 ## Beton armat: altă categorie complet
 
-Betonul adaugă armatura metalică. Discul trebuie să treacă peste oțel fără șoc brusc. Geometria potrivită e segmentul continuu (turbo sau laser-welded), care absoarbe contactul cu armatura fără să sară sau să crape.
+Betonul adaugă armatura metalică. Discul trebuie să treacă peste oțel fără șoc brusc. Alegerea se face după indicația producătorului: disc pentru beton armat, cu segment și prindere potrivite pentru contactul intermitent cu armatura.
 
-Nu există disc universal bun pe toate trei materialele. Dacă cineva îți vinde un „disc universal profesional", e un compromis acceptabil pentru bricolaj ocazional, nu pentru tăiere de calitate.
+Discurile universale sunt compromisuri. Pot fi acceptabile pentru lucrări ocazionale, dar nu sunt prima alegere când vrei tăiere controlată pe granit, marmură sau beton armat.
 
 ## Diametru, turație și ce scrie pe etichetă
 
@@ -42,4 +42,3 @@ Alegerea corectă a discului se face în funcție de material, turație și, eve
 
 - [Scala Mohs pe Wikipedia](https://ro.wikipedia.org/wiki/Scala_Mohs)
 - [EN 13236:2015, cerințe de siguranță pentru scule superabrazive](https://www.en-standard.eu/bs-en-13236-2015-safety-requirements-for-superabrasives/)
-- [Tenax, discuri diamantate profesionale](https://www.tenax.net/)
