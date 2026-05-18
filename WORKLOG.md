@@ -429,3 +429,43 @@ afisa imediat preturi corecte. De tinut minte pentru viitoare migrari.
 
 Fisiere modificate: 11 (10 storefront + 1 import script + 1 plan local).
 Cod liniile schimbate: 31 inserted, 51 deleted (refactor curat).
+
+## 2026-05-18 20:35 -- Fan Courier: aliniere la modelul raw decimal post-migrare
+
+Commits: `4953921`
+Deploy: https://ardmag.ro/ro/checkout | Vercel: storefront + Railway: backend
+Confirmat: DA ("19,76 Lei arata bine")
+
+Post-mortem rapid al migrarii din 19:15: Fan Courier provider e shipping option
+de tip `calculated` (nu stocat in `price` table, calculat dinamic per request)
+si returna `calculated_amount` multiplicat cu 100 in serviciul propriu. Asta a
+ramas neatins de migrarea catalog si la primul checkout test a aparut:
+- afisare "2254.00 Lei" pentru un cost de 22.54 RON
+- Stripe ar fi facturat 2254 RON (din nou bug 100x, identic cu cel rezolvat
+  ore inainte pe catalog)
+
+**Fix:**
+- `backend/src/modules/fulfillment-fan-courier/service.ts`: scos `* 100` din
+  toate cele 3 return-uri (fallbackTariff x2 + getInternalTariff). Pastrat
+  `Math.round(total * 100) / 100` pe rezultatul de la endpoint extern doar
+  pentru rotunjire la 2 zecimale (fara multiplicare scalara)
+- `backend-storefront/src/modules/checkout/components/CheckoutShipping.tsx`:
+  foloseste `formatPrice()` helper in loc de `${v.toFixed(2)} Lei` manual.
+  Asta da format Romanian "19,76 Lei" in loc de format US "19.76 Lei"
+
+**Deploy:**
+- Backend: `npx medusa build` local + `railway up --detach` (necesar pentru a
+  push-a noul `.medusa/` compilat la Railway -- folder gitignored, dar
+  whitelist via `.railwayignore`)
+- Storefront: `git push` standard -> Vercel auto-build
+
+**Verificare:** checkout test cu produs mastic-solid (80 Lei) + adresa Cluj-Napoca
+arata Fan Courier 19,76 Lei (raw decimal corect din endpoint-ul Fan Courier
+extern, rotunjit la 2 zecimale).
+
+**Loose end UX (nu blocant, dinainte de migrare):** in pasul Livrare al
+checkout-ului, Rezumat Comanda nu actualizeaza Transport in total cand se
+select-uieste o optiune via radio. Transport se aplica la submit "Continua
+spre plata". Comportament identic cu pre-migrare. Posibil fix viitor.
+
+Fisiere modificate: 2 (1 backend + 1 storefront).
