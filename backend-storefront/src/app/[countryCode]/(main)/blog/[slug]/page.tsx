@@ -29,13 +29,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = await getArticle(slug)
   if (!article) return {}
   const ogImage = article.heroImage ?? "/opengraph-image.jpg"
+  const articleUrl = `/blog/${slug}`
   return {
     title: `${article.title} | Ardmag`,
     description: article.description,
+    alternates: { canonical: articleUrl },
     openGraph: {
       title: article.title,
       description: article.description,
       type: "article",
+      url: articleUrl,
+      siteName: "ARDMAG",
+      locale: "ro_RO",
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt ?? article.publishedAt,
       images: [
