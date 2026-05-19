@@ -68,11 +68,11 @@ export default async function CartPage({ params }: Props) {
 
             <div style={{ position: "sticky", top: 24 }}>
               <OrderSummary
-                subtotal={cart?.subtotal ?? 0}
+                subtotal={(cart as any)?.item_total ?? ((cart?.subtotal ?? 0) - (cart?.shipping_total ?? 0))}
                 discount_total={cart?.discount_total}
-                shipping_total={cart?.shipping_total}
+                shipping_total={undefined}
                 tax_total={cart?.tax_total}
-                total={cart?.total ?? 0}
+                total={(cart as any)?.item_total ?? ((cart?.subtotal ?? 0) - (cart?.shipping_total ?? 0))}
                 currency_code={cart?.currency_code}
               />
               <div style={{ marginTop: 12 }}>

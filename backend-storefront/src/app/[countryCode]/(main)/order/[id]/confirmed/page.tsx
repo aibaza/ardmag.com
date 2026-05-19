@@ -245,7 +245,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
 
           <div style={{ position: "sticky", top: 24 }}>
             <OrderSummary
-              subtotal={order.subtotal ?? 0}
+              subtotal={(order as any).item_total ?? ((order.subtotal ?? 0) - (order.shipping_total ?? 0))}
               discount_total={order.discount_total}
               shipping_total={order.shipping_total}
               tax_total={order.tax_total}

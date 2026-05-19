@@ -205,7 +205,7 @@ export async function CheckoutReview({ cartId }: Props) {
                 Subtotal
               </td>
               <td style={{ padding: "4px 0", textAlign: "right" }}>
-                <FormattedPrice value={fmt(cart.subtotal, currency)} />
+                <FormattedPrice value={fmt((cart as any).item_total ?? ((cart.subtotal ?? 0) - (cart.shipping_total ?? 0)), currency)} />
               </td>
             </tr>
             {(cart.discount_total ?? 0) > 0 && (

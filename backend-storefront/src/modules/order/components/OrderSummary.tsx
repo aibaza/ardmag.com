@@ -59,7 +59,7 @@ export function OrderSummary({
           </div>
         )}
 
-        {shipping_total != null && (
+        {shipping_total != null && shipping_total > 0 && (
           <div style={rowStyle}>
             <span style={labelStyle}>Transport</span>
             <span style={valueStyle}><FormattedPrice value={fmt(shipping_total, currency_code)} /></span>

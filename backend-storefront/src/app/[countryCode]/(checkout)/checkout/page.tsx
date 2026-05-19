@@ -123,7 +123,7 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
 
       <div style={{ position: 'sticky', top: 24 }}>
         <OrderSummary
-          subtotal={cart.subtotal ?? 0}
+          subtotal={(cart as any).item_total ?? ((cart.subtotal ?? 0) - (cart.shipping_total ?? 0))}
           discount_total={cart.discount_total}
           shipping_total={cart.shipping_total}
           tax_total={cart.tax_total}
