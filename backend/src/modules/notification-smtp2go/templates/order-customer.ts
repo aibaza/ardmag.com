@@ -12,10 +12,12 @@ function renderItemCell(item: Record<string, unknown>): string {
 }
 
 function getPaymentLabel(order: Record<string, unknown>): { label: string; instructions: string } {
-  const sessions = (order?.payment_collections as Array<Record<string, unknown>>)
-    ?.flatMap((pc) => (pc.payment_sessions as Array<Record<string, unknown>>)?.map((ps) => ps.provider_id) ?? []) ?? []
-  const providerId = sessions[0]?.toString() ?? ""
-  if (providerId.includes("pp_system_default")) {
+  // Citim provider-ul din pc.payments (snapshot-at pe order), NU din pc.payment_sessions
+  // (ephemeral checkout state, nu este in query).
+  const providers = (order?.payment_collections as Array<Record<string, unknown>>)
+    ?.flatMap((pc) => (pc.payments as Array<Record<string, unknown>>)?.map((p) => p.provider_id) ?? []) ?? []
+  const providerId = (providers[0] ?? "").toString().toLowerCase()
+  if (providerId.includes("pp_system_default") || providerId.includes("manual")) {
     const total = Number(order?.total ?? 0)
     const freeShipping = total >= 500
     return {
@@ -23,9 +25,15 @@ function getPaymentLabel(order: Record<string, unknown>): { label: string; instr
       instructions: `Pregătiți suma de <strong>${total.toFixed(2)} RON</strong> la primirea coletului.${freeShipping ? " Livrare gratuită (comandă peste 500 RON)." : ""}`,
     }
   }
+  if (providerId.includes("stripe")) {
+    return {
+      label: "Card (Stripe)",
+      instructions: "Plata a fost procesată. Nu este necesară nicio acțiune suplimentară.",
+    }
+  }
   return {
-    label: "Card (Stripe)",
-    instructions: "Plata a fost procesată. Nu este necesară nicio acțiune suplimentară.",
+    label: providerId || "Necunoscut",
+    instructions: "",
   }
 }
 

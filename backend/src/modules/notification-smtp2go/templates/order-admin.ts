@@ -25,9 +25,16 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
     ? `${addr.first_name ?? ""} ${addr.last_name ?? ""}, ${addr.address_1 ?? ""}, ${addr.city ?? ""}`
     : "N/A"
 
-  const sessions = (order?.payment_collections as Array<Record<string, unknown>>)
-    ?.flatMap((pc) => (pc.payment_sessions as Array<Record<string, unknown>>)?.map((ps) => ps.provider_id) ?? []) ?? []
-  const paymentMethod = sessions[0]?.toString().includes("pp_system_default") ? "Ramburs (la curier)" : "Card (Stripe)"
+  // Citim provider-ul din pc.payments (snapshot-at pe order line items), NU din
+  // pc.payment_sessions (ephemeral checkout state, nu este in query).
+  const providers = (order?.payment_collections as Array<Record<string, unknown>>)
+    ?.flatMap((pc) => (pc.payments as Array<Record<string, unknown>>)?.map((p) => p.provider_id) ?? []) ?? []
+  const providerId = (providers[0] ?? "").toString().toLowerCase()
+  const paymentMethod = providerId.includes("pp_system_default") || providerId.includes("manual")
+    ? "Ramburs (la curier)"
+    : providerId.includes("stripe")
+      ? "Card (Stripe)"
+      : providerId || "Necunoscut"
 
   const itemsHtml = items.map((item) => `
     <tr>
