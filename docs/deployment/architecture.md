@@ -1,4 +1,6 @@
-# ardmag.com - Arhitectura si Deployment
+# ARDmag.ro - Arhitectura si Deployment
+
+Brand: ARDmag.ro (Arc Rom Diamonds). Domeniu principal: `ardmag.ro`. Domeniul `ardmag.com` redirectează 308 la `ardmag.ro` (Vercel apex aliases).
 
 ## Stack
 
@@ -153,6 +155,8 @@ systemctl --user restart ardmag-storefront.service
 ---
 
 ## Structura repo
+
+Folder local: `ardmag.com/` (păstrat pentru a nu rupe path-uri Claude Code și scripturi cu path-uri absolute; nu apare niciodată în producție).
 
 ```
 ardmag.com/

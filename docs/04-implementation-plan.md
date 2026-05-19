@@ -164,7 +164,7 @@ Faza 1 se poate executa complet fără design din track-ul B — rulează pe tem
 **Deliverables:**
 - Medusa backend deploiat pe Railway cu PostgreSQL și Redis
 - Next.js storefront deploiat pe Vercel conectat la backend Railway
-- Domeniu ardmag.com live pe noua infrastructură
+- Domeniu ardmag.ro live pe noua infrastructură (ardmag.com redirectează 308 la ardmag.ro)
 - Stripe live mode configurat cu RON
 - Email tranzacțional funcțional prin SMTP2GO
 - SSL automat pe ambele servicii

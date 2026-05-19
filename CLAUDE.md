@@ -1,8 +1,22 @@
-# ardmag.com — CLAUDE.md
+# ARDmag.ro — CLAUDE.md
+
+**Brand:** ARDmag.ro (sau ARDmag, ardmag, ardmag.ro). ARD vine de la **Arc Rom Diamonds** (compania mamă).
+**Domeniu principal:** `ardmag.ro`. Domeniul legacy `ardmag.com` redirectează 308 la `ardmag.ro` (Vercel apex aliases). Nu mai folosim `.com` în comunicare nouă.
+**Folder local:** `ardmag.com/` (păstrat pentru a nu rupe path-uri Claude Code și scripturi cu path-uri absolute; nu apare niciodată în producție).
+
+## Workflow deploy + consemnare — OBLIGATORIU
+
+**La orice modificare livrată pe ardmag.ro folosește skill-ul `aibaza-deploy-workflow`.** Acesta definește ordinea: deploy CLI pentru testare → confirmare user pe URL live → git commit/push + WORKLOG.md + ClickUp task + time entry.
+
+Fără respectarea acestui flow, munca devine invizibilă: nu apare în istoric, nu apare în facturare, nu rămâne urmă de ce s-a făcut. Nu sări pași și nu presupune că „știi ce a fost livrat" — consemnezi de fiecare dată la confirmare.
+
+**Lesson learned (19 mai 2026):** pentru deploy pe Railway nu e suficient `git push`. Backend-ul folosește Dockerfile care copiază din `.medusa/server/` (gitignored). Trebuie ÎNTOTDEAUNA: `cd backend && npm run build` (regenerează `.medusa/server/`) → `railway up --service medusa --detach`. Doar push pe master nu propagă schimbările de cod în container — vezi explicație în WORKLOG sesiunea 19 mai.
+
+---
 
 ## Context proiect
 
-ardmag.com este magazinul propriu al aiBaza pentru scule și consumabile destinate prelucrării pietrei naturale. Site-ul actual rulează pe Wix. Proiectul migrează pe **Medusa v2** (backend) + **Next.js** (storefront), self-hosted, cu dev inițial pe localhost.
+ardmag.ro este magazinul propriu al aiBaza pentru scule și consumabile destinate prelucrării pietrei naturale. Site-ul vechi rula pe Wix (domeniu istoric ardmag.com, acum redirect 308). Proiectul migrează pe **Medusa v2** (backend) + **Next.js** (storefront), self-hosted, cu dev inițial pe localhost.
 
 Companie: prezentă pe piață din 2001, cel mai mare distribuitor Tenax din România. Contact: +40 722 155 441, office@arcromdiamonds.ro, Calea Baciului 1-3, Cluj-Napoca 400230.
 
@@ -97,9 +111,9 @@ Ori de câte ori o decizie de UI/UX nu are încă input din track-ul B:
 
 ## Copy integrity -- regulă absolută
 
-Zero copy inventat pe ardmag.com. Toate textele afișate utilizatorului vin din surse autorizate:
+Zero copy inventat pe ardmag.ro. Toate textele afișate utilizatorului vin din surse autorizate:
 1. Medusa API (date dinamice)
-2. ardmag.com actual (copy verificat)
+2. ardmag.ro / ardmag.com (legacy Wix) -- copy verificat
 3. Date business confirmate (vezi secțiunea dedicată mai jos)
 4. Labels UI standard
 
