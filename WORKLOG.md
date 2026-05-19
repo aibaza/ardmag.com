@@ -814,3 +814,28 @@ Railway deploys: 7 succese
 Vercel deploys: 3+ auto
 
 Ziua de lansare a fost dura dar magazinul e stabil acum. Comenzile #1, #2, #3 sunt OK (sandu_dolha livrare la sediu POS; #2 si #3 anulate de Andrei).
+
+---
+
+## 2026-05-19 18:15 -- Cleanup final: comenzi test sterse + fix referinta orfana
+
+Commits: doar SQL (fara push)
+Deploy: nu necesar
+Confirmat: DA ("arata bine")
+
+### Comenzi sterse (la cererea user)
+
+User a cerut sa ramana doar #1 (sandu_dolha, singura tranzactie financiara reala). Soft-delete via SQL pe:
+- #2 rinzis.andrei (1.632 Lei refunded delivered)
+- #3 ciprian.dobrea (147.76 Lei canceled)
+- #4 rinzis.andrei (694 Lei refunded canceled)
+
+Medusa Admin API NU expune DELETE pe orders (integrity financiara). SQL direct: `UPDATE order SET deleted_at = NOW() WHERE display_id IN (2,3,4)`. Reversibil.
+
+### Fix orphan reference
+
+Pagina admin /orders/1 returna 404 "Stock location with id: sloc_01KPNGVX8TF3T8GSEVD6K5H7N3 was not found". Acel sloc era vechiul "Depozit Cluj" sters de user mai devreme. `fulfillment.location_id` pe comanda #1 inca pointa la el.
+
+Fix: `UPDATE fulfillment SET location_id = '<sloc activ>' WHERE id = 'ful_...'`. Pagina admin functioneaza acum.
+
+Magazinul e curat: 1 comanda reala vizibila in admin, configurarea de shipping consistenta, niciun orphan reference de la stock_location-ul sters.
