@@ -105,6 +105,8 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
             countryCode={countryCode}
             shippingOptions={shippingOptions}
             calculatedPrices={calculatedShippingPrices}
+            itemTotal={(cart as any).item_total ?? ((cart.subtotal ?? 0) - (cart.shipping_total ?? 0))}
+            currentShippingMethodId={cart.shipping_methods?.[0]?.shipping_option_id ?? null}
           />
         )}
 

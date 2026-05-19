@@ -13,7 +13,12 @@ type ContextItem = {
   quantity: number
   variant_id?: string | null
   variant?: { weight?: number | null } | null
+  unit_price?: number | string | null
+  subtotal?: number | string | null
 }
+
+// Politica ARDmag.ro: livrare gratuita pentru comenzi peste 500 RON valoare produse.
+const FREE_SHIPPING_THRESHOLD_RON = 500
 
 export class FanCourierProviderService extends AbstractFulfillmentProviderService {
   static identifier = "fan-courier"
@@ -78,7 +83,23 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
     const county = addr?.province || "Cluj"
     const locality = addr?.city || "Cluj-Napoca"
 
-    this.logger.info(`[FanCourier] calc: ${items.length} items, ${totalKg}kg -> ${county}/${locality}`)
+    // Free shipping policy: comenzi peste 500 RON valoare produse -> gratuit.
+    const itemTotal = items.reduce((sum, it) => {
+      const subtotal = it.subtotal != null ? Number(it.subtotal) : 0
+      if (subtotal > 0) return sum + subtotal
+      const unitPrice = it.unit_price != null ? Number(it.unit_price) : 0
+      return sum + unitPrice * (it.quantity || 0)
+    }, 0)
+
+    if (itemTotal >= FREE_SHIPPING_THRESHOLD_RON) {
+      this.logger.info(`[FanCourier] calc: ${items.length} items, ${totalKg}kg, item_total=${itemTotal} RON >= ${FREE_SHIPPING_THRESHOLD_RON} -> FREE SHIPPING`)
+      return {
+        calculated_amount: 0,
+        is_calculated_price_tax_inclusive: true,
+      }
+    }
+
+    this.logger.info(`[FanCourier] calc: ${items.length} items, ${totalKg}kg, item_total=${itemTotal} RON -> ${county}/${locality}`)
 
     const hasCredentials =
       process.env.FAN_COURIER_USERNAME &&
