@@ -1,15 +1,15 @@
 /**
  * One-time script: uploads product images from backend/static/images/ to Cloudflare R2,
- * then rewrites Medusa image URLs from /static/images/... to https://media.ardmag.com/images/...
+ * then rewrites Medusa image URLs from /static/images/... to https://media.ardmag.ro/images/...
  *
  * Prerequisites:
  *   - R2 bucket "ardmag-media" created in Cloudflare
- *   - Custom domain media.ardmag.com pointed at bucket
+ *   - Custom domain media.ardmag.ro pointed at bucket
  *   - R2 API token with Object:Write permissions
  *
  * Env vars required (add to backend/.env or export):
  *   R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY
- *   Optional: R2_BUCKET (default: ardmag-media), R2_PUBLIC_URL (default: https://media.ardmag.com)
+ *   Optional: R2_BUCKET (default: ardmag-media), R2_PUBLIC_URL (default: https://media.ardmag.ro)
  *
  * Usage:
  *   npx ts-node scripts/upload-images-to-r2.ts              # dry-run
@@ -34,7 +34,7 @@ const BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
 const ADMIN_EMAIL = "admin@ardmag.ro"
 const ADMIN_PASSWORD = "Admin1234!"
 const IMAGES_DIR = path.resolve(__dirname, "../backend/static/images")
-const R2_PUBLIC_URL = (process.env.R2_PUBLIC_URL || "https://media.ardmag.com").replace(/\/$/, "")
+const R2_PUBLIC_URL = (process.env.R2_PUBLIC_URL || "https://media.ardmag.ro").replace(/\/$/, "")
 const R2_BUCKET = process.env.R2_BUCKET || "ardmag-media"
 const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID || ""
 const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID || ""
@@ -94,7 +94,7 @@ function contentType(filePath: string): string {
 }
 
 function localUrlToR2Url(localUrl: string): string {
-  // /static/images/eco-dry/file.jpg -> https://media.ardmag.com/images/eco-dry/file.jpg
+  // /static/images/eco-dry/file.jpg -> https://media.ardmag.ro/images/eco-dry/file.jpg
   const key = localUrl.replace(/^\/static\//, "")
   return `${R2_PUBLIC_URL}/${key}`
 }
