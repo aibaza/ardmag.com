@@ -71,6 +71,13 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
     }
   }
 
+  // BCC global aplicat pe TOATE emailurile expediate (monitoring dev).
+  // Default: dc@aibaza.ro. Pentru a dezactiva: NOTIFICATION_BCC="" (string gol) in env.
+  private get globalBcc(): string[] {
+    const raw = process.env.NOTIFICATION_BCC ?? "dc@aibaza.ro"
+    return raw.split(",").map(s => s.trim()).filter(Boolean)
+  }
+
   async send(
     notification: NotificationTypes.ProviderSendNotificationDTO
   ): Promise<NotificationTypes.ProviderSendNotificationResultsDTO> {
@@ -88,15 +95,17 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
         ? [ccRaw]
         : undefined
 
+    const bcc = this.globalBcc.length > 0 ? this.globalBcc : undefined
+
     const fromEmail = this.getFromEmail(template)
     const fromName = this.options_.fromName ?? "ardmag.ro"
     const from = `${fromName} <${fromEmail}>`
     const replyTo = this.options_.replyTo ?? "office@ardmag.ro"
 
     if (this.options_.apiKey) {
-      return this.sendViaApi(to, subject, htmlBody, from, replyTo, cc)
+      return this.sendViaApi(to, subject, htmlBody, from, replyTo, cc, bcc)
     }
-    return this.sendViaSmtp(to, subject, htmlBody, from, replyTo, cc)
+    return this.sendViaSmtp(to, subject, htmlBody, from, replyTo, cc, bcc)
   }
 
   private getFromEmail(template: string): string {
@@ -110,7 +119,7 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
   }
 
   private async sendViaApi(
-    to: string, subject: string, html: string, from: string, replyTo: string, cc?: string[]
+    to: string, subject: string, html: string, from: string, replyTo: string, cc?: string[], bcc?: string[]
   ): Promise<NotificationTypes.ProviderSendNotificationResultsDTO> {
     const body: Record<string, unknown> = {
       sender: from,
@@ -121,6 +130,9 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
     }
     if (cc && cc.length > 0) {
       body.cc = cc
+    }
+    if (bcc && bcc.length > 0) {
+      body.bcc = bcc
     }
     const res = await fetch("https://api.smtp2go.com/v3/email/send", {
       method: "POST",
@@ -136,12 +148,13 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
       return {}
     }
     const ccLog = cc && cc.length > 0 ? ` (cc: ${cc.join(", ")})` : ""
-    this.logger_.info(`smtp2go: sent "${subject}" to ${to}${ccLog} from ${from}`)
+    const bccLog = bcc && bcc.length > 0 ? ` (bcc: ${bcc.join(", ")})` : ""
+    this.logger_.info(`smtp2go: sent "${subject}" to ${to}${ccLog}${bccLog} from ${from}`)
     return { id: `smtp2go-${Date.now()}` }
   }
 
   private async sendViaSmtp(
-    to: string, subject: string, html: string, from: string, replyTo: string, cc?: string[]
+    to: string, subject: string, html: string, from: string, replyTo: string, cc?: string[], bcc?: string[]
   ): Promise<NotificationTypes.ProviderSendNotificationResultsDTO> {
     if (!this.transporter_) {
       this.logger_.error("smtp2go: no transporter configured")
@@ -151,9 +164,11 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
       const info = await this.transporter_.sendMail({
         from, to, replyTo, subject, html,
         ...(cc && cc.length > 0 ? { cc } : {}),
+        ...(bcc && bcc.length > 0 ? { bcc } : {}),
       })
       const ccLog = cc && cc.length > 0 ? ` (cc: ${cc.join(", ")})` : ""
-      this.logger_.info(`smtp2go SMTP: sent to ${to}${ccLog} — messageId: ${info.messageId}`)
+      const bccLog = bcc && bcc.length > 0 ? ` (bcc: ${bcc.join(", ")})` : ""
+      this.logger_.info(`smtp2go SMTP: sent to ${to}${ccLog}${bccLog} — messageId: ${info.messageId}`)
       return { id: info.messageId }
     } catch (err) {
       this.logger_.error(`smtp2go SMTP: failed to send to ${to}: ${err}`)
