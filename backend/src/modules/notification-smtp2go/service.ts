@@ -81,15 +81,22 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
     const htmlBody = (data as Record<string, unknown>)?.html as string | undefined
       ?? this.renderTemplate(template, data as Record<string, unknown>)
 
+    const ccRaw = (data as Record<string, unknown>)?.cc
+    const cc = Array.isArray(ccRaw)
+      ? (ccRaw as unknown[]).filter((v): v is string => typeof v === "string" && v.length > 0)
+      : typeof ccRaw === "string" && ccRaw.length > 0
+        ? [ccRaw]
+        : undefined
+
     const fromEmail = this.getFromEmail(template)
     const fromName = this.options_.fromName ?? "ardmag.ro"
     const from = `${fromName} <${fromEmail}>`
     const replyTo = this.options_.replyTo ?? "office@ardmag.ro"
 
     if (this.options_.apiKey) {
-      return this.sendViaApi(to, subject, htmlBody, from, replyTo)
+      return this.sendViaApi(to, subject, htmlBody, from, replyTo, cc)
     }
-    return this.sendViaSmtp(to, subject, htmlBody, from, replyTo)
+    return this.sendViaSmtp(to, subject, htmlBody, from, replyTo, cc)
   }
 
   private getFromEmail(template: string): string {
@@ -103,41 +110,50 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
   }
 
   private async sendViaApi(
-    to: string, subject: string, html: string, from: string, replyTo: string
+    to: string, subject: string, html: string, from: string, replyTo: string, cc?: string[]
   ): Promise<NotificationTypes.ProviderSendNotificationResultsDTO> {
+    const body: Record<string, unknown> = {
+      sender: from,
+      to: [to],
+      subject,
+      html_body: html,
+      custom_headers: [{ header: "Reply-To", value: replyTo }],
+    }
+    if (cc && cc.length > 0) {
+      body.cc = cc
+    }
     const res = await fetch("https://api.smtp2go.com/v3/email/send", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-Smtp2go-Api-Key": this.options_.apiKey!,
       },
-      body: JSON.stringify({
-        sender: from,
-        to: [to],
-        subject,
-        html_body: html,
-        custom_headers: [{ header: "Reply-To", value: replyTo }],
-      }),
+      body: JSON.stringify(body),
     })
     const result = (await res.json()) as { data?: { succeeded?: number; error?: string; error_code?: string } }
     if (!res.ok || result.data?.succeeded !== 1) {
       this.logger_.error(`smtp2go API: failed to send to ${to} — ${JSON.stringify(result)}`)
       return {}
     }
-    this.logger_.info(`smtp2go: sent "${subject}" to ${to} from ${from}`)
+    const ccLog = cc && cc.length > 0 ? ` (cc: ${cc.join(", ")})` : ""
+    this.logger_.info(`smtp2go: sent "${subject}" to ${to}${ccLog} from ${from}`)
     return { id: `smtp2go-${Date.now()}` }
   }
 
   private async sendViaSmtp(
-    to: string, subject: string, html: string, from: string, replyTo: string
+    to: string, subject: string, html: string, from: string, replyTo: string, cc?: string[]
   ): Promise<NotificationTypes.ProviderSendNotificationResultsDTO> {
     if (!this.transporter_) {
       this.logger_.error("smtp2go: no transporter configured")
       return {}
     }
     try {
-      const info = await this.transporter_.sendMail({ from, to, replyTo, subject, html })
-      this.logger_.info(`smtp2go SMTP: sent to ${to} — messageId: ${info.messageId}`)
+      const info = await this.transporter_.sendMail({
+        from, to, replyTo, subject, html,
+        ...(cc && cc.length > 0 ? { cc } : {}),
+      })
+      const ccLog = cc && cc.length > 0 ? ` (cc: ${cc.join(", ")})` : ""
+      this.logger_.info(`smtp2go SMTP: sent to ${to}${ccLog} — messageId: ${info.messageId}`)
       return { id: info.messageId }
     } catch (err) {
       this.logger_.error(`smtp2go SMTP: failed to send to ${to}: ${err}`)

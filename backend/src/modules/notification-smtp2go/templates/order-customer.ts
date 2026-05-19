@@ -1,8 +1,14 @@
-import { colors, font } from "./tokens"
+import { colors, font, formatPrice } from "./tokens"
 import { wrapEmail } from "./layout"
 
-function formatPrice(value: unknown): string {
-  return (Number(value ?? 0) / 100).toFixed(2)
+function renderItemCell(item: Record<string, unknown>): string {
+  const title = item.product_title ?? item.title ?? ""
+  const variantTitle = (item.variant_title as string | undefined) ?? ""
+  const showVariant = variantTitle && variantTitle !== "Default Title"
+  return `
+    <div style="font-size:${font.sizeBase}">${title}</div>
+    ${showVariant ? `<div style="font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:11px;color:${colors.mutedText};text-transform:uppercase;letter-spacing:0.04em;margin-top:4px">${variantTitle}</div>` : ""}
+  `
 }
 
 function getPaymentLabel(order: Record<string, unknown>): { label: string; instructions: string } {
@@ -10,7 +16,7 @@ function getPaymentLabel(order: Record<string, unknown>): { label: string; instr
     ?.flatMap((pc) => (pc.payment_sessions as Array<Record<string, unknown>>)?.map((ps) => ps.provider_id) ?? []) ?? []
   const providerId = sessions[0]?.toString() ?? ""
   if (providerId.includes("pp_system_default")) {
-    const total = Number(order?.total ?? 0) / 100
+    const total = Number(order?.total ?? 0)
     const freeShipping = total >= 500
     return {
       label: "Ramburs",
@@ -33,9 +39,9 @@ export function renderOrderCustomer(order: Record<string, unknown> | undefined, 
 
   const itemsHtml = items.map((item) => `
     <tr>
-      <td style="padding:10px 8px;border-bottom:1px solid ${colors.border};font-size:${font.sizeBase}">${item.title ?? item.product_title ?? ""}</td>
-      <td style="padding:10px 8px;border-bottom:1px solid ${colors.border};text-align:center;white-space:nowrap">${item.quantity}</td>
-      <td style="padding:10px 8px;border-bottom:1px solid ${colors.border};text-align:right;white-space:nowrap">${formatPrice(item.unit_price)} RON</td>
+      <td style="padding:10px 8px;border-bottom:1px solid ${colors.border};vertical-align:top">${renderItemCell(item)}</td>
+      <td style="padding:10px 8px;border-bottom:1px solid ${colors.border};text-align:center;white-space:nowrap;vertical-align:top">${item.quantity}</td>
+      <td style="padding:10px 8px;border-bottom:1px solid ${colors.border};text-align:right;white-space:nowrap;vertical-align:top">${formatPrice(item.unit_price)} RON</td>
     </tr>`).join("")
 
   const body = `

@@ -5,6 +5,38 @@ Format: [date] type: description
 
 ---
 
+## 2026-05-19 — Emailuri comanda: preturi raw decimal + variant info + CC office
+
+### Bug critic preturi /100
+
+- fix(email): `templates/order-admin.ts`, `templates/order-customer.ts`, `templates/cart-abandoned.ts` -- scoate `/100` din `formatPrice`; post-migrare 18 mai DB-ul stocheaza raw decimal
+- fix(email): `templates/order-customer.ts` -- threshold ramburs (livrare gratuita >= 500 RON) si suma de plata afiseaza valoarea reala, nu 1/100
+- fix(email): `templates/cart-abandoned.ts` -- threshold livrare gratuita 500 RON corect
+- impact: comenzile post 18 mai (ex. comanda #1 sandu_dolha 1046 RON) afisau "10.46 RON" in email; acum afiseaza 1046.00 RON corect
+
+### Variant info complet in emailuri
+
+- feat(email): `templates/order-admin.ts` -- afiseaza 3 linii per produs (titlu, identificator handle/SKU, optiuni varianta) -- match cu admin Medusa
+- feat(email): `templates/order-customer.ts` -- afiseaza 2 linii per produs (titlu, optiuni varianta in monospace uppercase)
+- foloseste `item.variant_title` si `item.variant_sku`/`product_handle` (snapshot-ate pe order line item de Medusa, nu necesita modificari de query)
+- filtru "Default Title" pentru produsele fara variante reale (90 produse, 30 single-variant)
+
+### CC office@ardmag.ro pe emailul intern
+
+- feat(email): `subscribers/order-placed-notify.ts` -- adauga `ADMIN_CC` (configurabil prin `ORDER_NOTIFY_CC`, default `office@ardmag.ro`)
+- feat(email): `modules/notification-smtp2go/service.ts` -- threadat `cc` prin `data` payload; suport pentru SMTP2GO HTTP API (`body.cc`) si nodemailer SMTP fallback
+
+### Refactor + test
+
+- refactor(email): `formatPrice` centralizat in `templates/tokens.ts` (era duplicat in 3 template-uri); preveniri regresii viitoare la modelul de pret
+- test(email): `templates/__tests__/tokens.unit.spec.ts` -- 3 grupe Jest unit; lock-uieste raw decimal (`formatPrice(464) === "464.00"`)
+
+### Script audit
+
+- chore(scripts): `scripts/list-recent-orders.ts` -- listeaza comenzile din ultimele 14 zile cu total real (raw decimal) si payment status; folosit pentru a identifica comenzile care au primit emailuri cu preturi /100
+
+---
+
 ## 2026-05-01 — Catalog: preturi corecte, variante BUC., cleanup
 
 ### Preturi + greutati (Railway prod)

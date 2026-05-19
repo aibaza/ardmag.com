@@ -17,3 +17,8 @@ export const font = {
   sizeSmall: "13px",
   sizeLegal: "11px",
 }
+
+// Preturi stocate raw decimal in DB (migrare 18 mai 2026). NU diviza la 100.
+export function formatPrice(value: unknown): string {
+  return Number(value ?? 0).toFixed(2)
+}

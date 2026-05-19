@@ -1,14 +1,10 @@
-import { colors, font } from "./tokens"
+import { colors, font, formatPrice } from "./tokens"
 import { wrapEmail } from "./layout"
-
-function formatPrice(value: unknown): string {
-  return (Number(value ?? 0) / 100).toFixed(2)
-}
 
 export function renderCartAbandoned(cart: Record<string, unknown>, baseUrl: string): string {
   const items = (cart.items as Array<Record<string, unknown>>) ?? []
   const total = formatPrice(cart.total)
-  const totalNum = Number(cart.total ?? 0) / 100
+  const totalNum = Number(cart.total ?? 0)
   const freeShippingNote = totalNum > 0 && totalNum < 500
     ? `<p style="margin:0 0 16px;font-size:${font.sizeSmall};color:#0f766e">
          Adaugă produse pentru a ajunge la 500 RON și beneficiezi de <strong>livrare gratuită</strong>.

@@ -1,7 +1,16 @@
-import { colors, font } from "./tokens"
+import { colors, font, formatPrice } from "./tokens"
 
-function formatPrice(value: unknown): string {
-  return (Number(value ?? 0) / 100).toFixed(2)
+function renderItemCell(item: Record<string, unknown>): string {
+  const title = item.product_title ?? item.title ?? ""
+  const identifier = item.variant_sku ?? item.product_handle ?? ""
+  const variantTitle = (item.variant_title as string | undefined) ?? ""
+  const showVariant = variantTitle && variantTitle !== "Default Title"
+  const lineStyle = `font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:11px;color:${colors.mutedText};margin-top:2px`
+  return `
+    <div>${title}</div>
+    ${identifier ? `<div style="${lineStyle}">${identifier}</div>` : ""}
+    ${showVariant ? `<div style="${lineStyle};text-transform:uppercase">${variantTitle}</div>` : ""}
+  `
 }
 
 export function renderOrderAdmin(order: Record<string, unknown> | undefined): string {
@@ -22,9 +31,9 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
 
   const itemsHtml = items.map((item) => `
     <tr>
-      <td style="padding:7px 8px;border-bottom:1px solid ${colors.border}">${item.title ?? item.product_title ?? ""}</td>
-      <td style="padding:7px 8px;border-bottom:1px solid ${colors.border};text-align:center">${item.quantity}</td>
-      <td style="padding:7px 8px;border-bottom:1px solid ${colors.border};text-align:right">${formatPrice(item.unit_price)} RON</td>
+      <td style="padding:7px 8px;border-bottom:1px solid ${colors.border};vertical-align:top">${renderItemCell(item)}</td>
+      <td style="padding:7px 8px;border-bottom:1px solid ${colors.border};text-align:center;vertical-align:top">${item.quantity}</td>
+      <td style="padding:7px 8px;border-bottom:1px solid ${colors.border};text-align:right;vertical-align:top;white-space:nowrap">${formatPrice(item.unit_price)} RON</td>
     </tr>`).join("")
 
   return `<!DOCTYPE html>

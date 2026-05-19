@@ -2,6 +2,10 @@ import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 
 const ADMIN_EMAIL = process.env.ORDER_NOTIFY_EMAIL || "comenzi@ardmag.ro"
+const ADMIN_CC = (process.env.ORDER_NOTIFY_CC ?? "office@ardmag.ro")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean)
 
 export default async function orderPlacedNotify({
   event,
@@ -54,12 +58,16 @@ export default async function orderPlacedNotify({
       return
     }
 
-    // Email catre admin
+    // Email catre admin (cu CC pe office@ardmag.ro)
     await notificationModuleService.createNotifications({
       to: ADMIN_EMAIL,
       channel: "email",
       template: "order.confirmation.admin",
-      data: { order, subject: `Comanda noua #${order.display_id} — ${order.email}` },
+      data: {
+        order,
+        subject: `Comanda noua #${order.display_id} — ${order.email}`,
+        cc: ADMIN_CC,
+      },
     })
 
     // Email confirmare catre client
