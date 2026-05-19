@@ -655,3 +655,71 @@ SMTP2GO confirma livrare cu succes pentru ambele comenzi. Andrei nu a primit ema
 - Ambele cu expirare 20 mai 11:24 RO
 
 Fisiere modificate: 21 in master + WORKLOG.md (local). 3 commits push-uite.
+
+---
+
+## 2026-05-19 15:00 -- R2 custom domain media.ardmag.ro + fix critic metoda de plata in emailuri
+
+Commits: `240907b`, `6dbc07c`
+Deploy: `https://api.ardmag.ro` (Railway `9fec9f71`) + Vercel auto-redeploy
+Confirmat: DA (Cipri test order + Andrei rezolvat comanda #1 prin ridicare sediu POS)
+
+### 1. R2 custom domain `media.ardmag.ro`
+
+User a configurat in Cloudflare R2 dashboard. Active imediat, HTTP 200, image/jpeg servit OK.
+
+**Aplicat:**
+- Vercel env `NEXT_PUBLIC_R2_HOSTNAME=media.ardmag.ro` (via API v10 -- CLI nu transmitea valoarea prin stdin)
+- Railway env `R2_PUBLIC_URL=https://media.ardmag.ro` (via `railway variables --set`)
+- DB rewrite: 199 imagini + 95 thumbnails -- `pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev` -> `media.ardmag.ro` (transaction simpla cu replace())
+- Cache revalidation: `GET /api/revalidate?secret=...` -- toate paginile reincarcate
+- Env templates + `scripts/upload-images-to-r2.ts` updated (commit `240907b`)
+
+**Verificare:** homepage + categoria mastici-tenax + pagini produs servesc toate imagini de pe media.ardmag.ro. URL-ul vechi `pub-28d7a...r2.dev` ramane functional dar nu mai e folosit.
+
+### 2. Fix critic metoda de plata (commit `6dbc07c`)
+
+**Trigger:** Cipri a plasat comanda #3 (147.76 Lei, RAMBURS) -- emailul intern afisa "Card (Stripe)" gresit. Cipri a flagat ca problema grava: persoanele de la office (Adriana via CC) primeau date gresite despre plata.
+
+**Root cause:** template-urile order-admin.ts si order-customer.ts citeau `pc.payment_sessions` (ephemeral checkout state, NU este in query). Query-ul din `order-placed-notify.ts` cere `payment_collections.payments.*` -- alta relatie. Sessions array era gol pe ORICE comanda, deci fallback default `"Card (Stripe)"` se aplica universal.
+
+**Impact istoric pe cele 3 comenzi din ziua de lansare:**
+- #1 sandu_dolha (RAMBURS): email "Card (Stripe)" -- GRESIT, dar Andrei a livrat la sediu cu POS la preluare deci fara prejudiciu
+- #2 rinzis.andrei (Stripe): email "Card (Stripe)" -- corect prin coincidenta (fallback default)
+- #3 ciprian.dobrea (RAMBURS): email "Card (Stripe)" -- GRESIT, raportat de Cipri
+
+**Fix:**
+- Citeste `pc.payments[0].provider_id` (snapshot-at, queried correct)
+- Detectie explicita pentru pp_system_default/manual -> "Ramburs (la curier)"
+- Detectie explicita pentru stripe -> "Card (Stripe)"
+- Provideri necunoscuti afisati ca string raw (nu mai exista fail silent care defaulteaza la Card)
+- Test Jest nou: `templates/__tests__/order-admin.unit.spec.ts` cu 3 scenarii (ramburs/stripe/unknown). Tests pass 3/3.
+
+**Pattern lesson Medusa v2:**
+- `cart.payment_collection.payment_sessions[*]` = ephemeral checkout state (cart-level)
+- `order.payment_collections[*].payments[*]` = committed payments (order-level)
+- Pentru order events, **intotdeauna citim din `payments`, nu `payment_sessions`**.
+
+Ambele relatii pot exista in DB pentru aceeasi comanda, dar `payments` e ce ramane definitiv si e ce queryul nostru cere explicit.
+
+### Comenzi test rezolvate
+
+User confirma:
+- #1 livrata cu ridicare la sediu (POS la preluare) -- OK
+- #2 si #3 anulate de Andrei
+
+Fisiere modificate: 11 (5 templates + 1 test + 1 service + 2 env templates + 1 script + 1 docs).
+4 commits push-uite, 2 deploy-uri Railway, 1 deploy Vercel.
+
+### Statistici totale ziua de lansare 19 mai
+
+Total commits: 13 (intre `61b1fc5` si `6dbc07c`)
+Total deploy-uri Railway: 4 (4da60f49, 0e859e84, af0d75d6, 9fec9f71)
+Total deploy-uri Vercel: 1+ (auto-redeploy la env change)
+Bug-uri critice descoperite si fix-uite live:
+1. preturi /100 in emailuri (post-migrare 18 mai)
+2. variant info lipsa din emailuri (UX)
+3. CC office si BCC monitoring (UX)
+4. media.ardmag.com -> media.ardmag.ro (rebrand)
+5. payment method gresit in emailuri (sessions vs payments confusion)
+6. deploy gotcha medusa build + railway up (workflow)
