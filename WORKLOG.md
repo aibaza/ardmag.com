@@ -527,3 +527,67 @@ timestamp + diff size). Idempotent: re-runs marcheaza "IDENTICAL (skip)".
 
 Fisiere modificate: 18 (12 .md catalog + 1 .md draft email + 3 storefront UI/util
 + 1 script nou + 1 audit log).
+
+---
+
+## 2026-05-19 10:30 -- Fix critic emailuri comanda: preturi /100 + variant info + CC office
+
+Commits: `c340b0a`
+Deploy: https://api.ardmag.ro (Railway auto-deploy la push pe master)
+Confirmat: PENDING (test order de plasat dupa Railway Ready)
+
+Raportat de Andrei dimineata (screenshot email primit pe comenzi@ardmag.ro
+pentru comanda #1 sandu_dolha): preturi afisate 10.46 / 3.86 / 1.96 / Total
+10.46 RON, in loc de 464 / 386 / 196 / Total 1046 RON. Raport 1:100 exact.
+
+**Root cause:** template-urile de email din `notification-smtp2go/templates/`
+au fost ratate la migrarea raw decimal din 18 mai (commits `53bf9f3` storefront
+si `4953921` Fan Courier). Aveau 3 copii identice ale `formatPrice` cu
+`/100` -- exact pattern-ul care a permis bug-ul sa scape.
+
+**Aplicat:**
+- `formatPrice` centralizat in `templates/tokens.ts` (export shared)
+- scos `/100` din `templates/order-admin.ts`, `order-customer.ts`,
+  `cart-abandoned.ts` -- toate cele 5 locuri (3 formatPrice + 2 threshold-uri
+  ad-hoc pentru livrare gratuita 500 RON si suma ramburs)
+- `templates/__tests__/tokens.unit.spec.ts` -- 3 grupe Jest unit, lock-uiesc
+  raw decimal. Trec local 3/3.
+
+**Extindere emailuri cu variant info:**
+- `templates/order-admin.ts` -- 3 linii per produs (titlu + identificator
+  variant_sku/product_handle + variant_title) -- match exact cu admin
+  Medusa care arata "DISCURI DE GRANIT / discuri-de-granit-2 / 250 . NOU"
+- `templates/order-customer.ts` -- 2 linii (titlu + variant_title in
+  monospace uppercase, fara SKU care e noise pentru client)
+- foloseste campurile snapshot-ate de Medusa pe order line item
+  (`item.variant_title`, `item.variant_sku`, `item.product_handle`) -- fara
+  modificari de query.graph, datele erau deja in payload
+- filtru "Default Title" pentru produsele single-variant (30 din 90)
+
+**CC office@ardmag.ro pe emailul intern:**
+- `subscribers/order-placed-notify.ts` -- `ADMIN_CC` configurabil prin env
+  var `ORDER_NOTIFY_CC` (default `office@ardmag.ro`)
+- `modules/notification-smtp2go/service.ts` -- `data.cc` threadat prin
+  notification payload, propagat la sendViaApi (SMTP2GO body.cc) si
+  sendViaSmtp (nodemailer cc field)
+
+**Script audit comenzi afectate:**
+- `scripts/list-recent-orders.ts` -- listeaza comenzile din ultimele 14 zile
+  cu total raw decimal, email client, payment status. Output text simplu
+  pentru a fi copiat in email-ul catre Andrei.
+- Rulare pe prod: `railway run npx medusa exec ./src/scripts/list-recent-orders.ts`
+
+**Verificare locala:**
+- `npx tsc --noEmit` zero erori
+- `npm run test:unit -- tokens.unit.spec` -- 3/3 PASS
+- render-test cu mock order (comanda #1 sandu_dolha) genereaza HTML cu
+  464.00 / 386.00 / 196.00 / Total 1046.00 RON si variant info complet
+
+**Pasi urmatori (dupa Railway Ready):**
+1. Test order live cu varianta selectata -> verific email primit pe
+   comenzi@ardmag.ro cu CC pe office@ardmag.ro si variant_title vizibil
+2. Rulez audit script-ul pe prod ca sa identific comenzile cu preturi /100
+3. Email catre Andrei cu lista comenzilor afectate (decide el daca scrie
+   clientilor)
+
+Fisiere modificate: 9 (1 nou test + 1 script nou + 1 CHANGELOG + 6 email).
