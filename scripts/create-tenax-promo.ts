@@ -5,7 +5,7 @@
 // Usage: cd scripts && npx ts-node create-tenax-promo.ts
 
 const BACKEND_URL = "http://localhost:9000"
-const ADMIN_EMAIL = "admin@ardmag.com"
+const ADMIN_EMAIL = "admin@ardmag.ro"
 const ADMIN_PASSWORD = "Admin1234!"
 const CATEGORY_HANDLE = "mastici-tenax"
 const PRICE_LIST_TITLE = "Mastici Tenax -30% (aprilie 2026)"

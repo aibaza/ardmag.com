@@ -4,7 +4,7 @@
 // Usage: cd scripts && npx ts-node fix-prices-includes-tax.ts
 
 const BACKEND_URL = "https://admin.ardmag.surmont.co"
-const ADMIN_EMAIL = "admin@ardmag.com"
+const ADMIN_EMAIL = "admin@ardmag.ro"
 const ADMIN_PASSWORD = "Admin1234!"
 const CURRENCY = "ron"
 const CONCURRENCY = 20

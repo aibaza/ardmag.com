@@ -18,7 +18,7 @@ function htmlToText(html: string): string {
     .trim()
 }
 
-const SYSTEM_PROMPT = `You are a product data extractor for an e-commerce catalog of stone-working tools and supplies (ardmag.com).
+const SYSTEM_PROMPT = `You are a product data extractor for an e-commerce catalog of stone-working tools and supplies (ardmag.ro).
 
 MISSION: Extract structured product attributes from provided raw data. Output a single JSON object matching the SubagentOutput schema. No other text.
 

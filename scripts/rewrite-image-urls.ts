@@ -13,7 +13,7 @@ import * as fs from "fs"
 import * as path from "path"
 
 const BACKEND_URL = "http://localhost:9000"
-const ADMIN_EMAIL = "admin@ardmag.com"
+const ADMIN_EMAIL = "admin@ardmag.ro"
 const ADMIN_PASSWORD = "Admin1234!"
 const STATIC_IMAGES_DIR = path.resolve(__dirname, "../backend/static/images")
 const DRY_RUN = !process.argv.includes("--apply")

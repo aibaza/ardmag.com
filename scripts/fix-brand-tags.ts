@@ -2,7 +2,7 @@ import * as fs from "fs"
 import * as path from "path"
 
 const BACKEND_URL = "http://localhost:9000"
-const ADMIN_EMAIL = "admin@ardmag.com"
+const ADMIN_EMAIL = "admin@ardmag.ro"
 const ADMIN_PASSWORD = "Admin1234!"
 const DRY_RUN = !process.argv.includes("--apply")
 

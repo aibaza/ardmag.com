@@ -9,7 +9,7 @@ import * as XLSX from "xlsx"
 import * as path from "path"
 
 const BACKEND_URL = process.env.BACKEND_URL || "https://admin.ardmag.surmont.co"
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@ardmag.com"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@ardmag.ro"
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Admin1234!"
 const DRY_RUN = !process.argv.includes("--apply")
 const PARSE_ONLY = process.argv.includes("--parse-only")

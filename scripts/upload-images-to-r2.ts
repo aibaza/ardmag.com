@@ -31,7 +31,7 @@ if (fs.existsSync(envPath)) {
 }
 
 const BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
-const ADMIN_EMAIL = "admin@ardmag.com"
+const ADMIN_EMAIL = "admin@ardmag.ro"
 const ADMIN_PASSWORD = "Admin1234!"
 const IMAGES_DIR = path.resolve(__dirname, "../backend/static/images")
 const R2_PUBLIC_URL = (process.env.R2_PUBLIC_URL || "https://media.ardmag.com").replace(/\/$/, "")

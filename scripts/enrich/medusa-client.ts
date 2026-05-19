@@ -2,7 +2,7 @@
 // Uses native fetch (Node 18+). No axios.
 
 const BACKEND_URL = "http://localhost:9000"
-const ADMIN_EMAIL = "admin@ardmag.com"
+const ADMIN_EMAIL = "admin@ardmag.ro"
 const ADMIN_PASSWORD = "Admin1234!"
 const PUBLISHABLE_KEY =
   "pk_56dae88717f8f6c8d4632979fb5f50d99ef68a41a6e89096ef500063ee7a35af"
