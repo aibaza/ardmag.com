@@ -5,7 +5,44 @@ Format: [date] type: description
 
 ---
 
-## 2026-05-19 — Ziua de lansare: 7 fix-uri si rebrand ARDmag.ro
+## 2026-05-19 — Ziua de lansare: stabilizare emailuri, catalog cleanup, shipping rework
+
+### Shipping: restore + filtrare la 2 metode (Fan Courier + Ridicare personala)
+
+- fix(shipping): restore complet dupa cascade delete cand user-ul a sters vechiul stock_location "Depozit Cluj" (a luat cu el fulfillment_set "Livrare Romania", service_zone "Romania", geo_zone "ro" si 15 shipping_options)
+- chore(shipping): filtrat catalogul de opțiuni la 2: `Fan Courier` (calculated, API tarif) si `Ridicare personala` (flat 0 RON, redenumit din "Ridicare Cluj"). Scoase: Cargus × 3, Sameday × 3, Posta Romana × 3, dubluri Fan Courier manual_manual × 2, dubluri Ridicare Cluj × 2
+- fix(shipping): restore `shipping_option_price_set` + `price_set` + `price` care erau soft-deleted (pretul de baza era detached -> POST /carts/{id}/shipping-methods returna 400 "Shipping options do not have a price")
+
+### Free shipping 500 RON (politica ARDmag)
+
+- feat(shipping): `modules/fulfillment-fan-courier/service.ts` calculatePrice extrage item_total din context.items si returneaza 0 cand >= 500 RON
+- feat(checkout): `CheckoutShipping.tsx` afiseaza strikethrough pe tariful calculat + "Gratuit" verde cand cart-ul depaseste 500 Lei; banner verde explicativ deasupra listei
+
+### Real-time switch metoda de livrare
+
+- feat(checkout): `CheckoutShipping.tsx` apeleaza `setShippingMethod` pe radio change (in transition) -- summary-ul de pe dreapta se actualizeaza instant, fara click pe "Continua spre plata"
+- feat(checkout): preselectie din `cart.shipping_methods[0]` daca exista deja (nu mai default pe prima optiune din lista la fiecare reincarcare)
+
+### Subtotal items-only + Total corect
+
+- fix(checkout): in Medusa v2, `cart.subtotal` include shipping_total. UI afisa eronat "Subtotal 51.37 / Transport 18.37 / Total 51.37" pentru o comanda cu 33 RON produse + 18.37 livrare. Acum:
+  - `OrderSummary` afiseaza linia Transport doar cand shipping_total > 0 (ascuns pe cart page)
+  - Subtotal foloseste `cart.item_total` (produse only)
+  - Total pe cart page = items only; Total pe checkout = items + transport
+
+### Catalog cleanup (post raspuns Andrei pe duplicate)
+
+- chore(catalog): soft-delete pe 4 produse standalone duplicate ale agregatului `discuri-de-slefuit-cu-carbura`: ek-winner, saitris-180, saitron-125, saitron-180 (variantele exista in agregat cu DIAMETRU 125/180/230 ca optiune separata)
+- chore(catalog): soft-delete pe variantele VELCROPAD × 3 (115/125/180) din agregat -- nu apartin la slefuit cu carbura
+- chore(catalog): soft-delete pe variantele EK WIENNER × 3 (125/180/230) din agregat -- per Andrei, EK WIENNER e disc diamantat turbo de taiere, nu slefuire
+- Rezultat: agregatul are doar SAITRIS si SAITRON (24 variante), TIP DISC afiseaza doar 2 butoane
+
+### Infrastructure: Railway Hobby + heap 1024 MB
+
+- chore(infra): upgrade Railway de la trial la Hobby ($5/luna, $5 credit inclus); trial-ul expira in 2 zile, neupgrade ar fi insemnat pierderea proiectului
+- fix(infra): `NODE_OPTIONS=--max-old-space-size` ridicat de la 460 MB la 1024 MB; root cause OOM crash recurent pe DELETE-uri si query-uri mari (/store/products?limit=100 returna 2.1 MB response)
+
+### Bug critic metoda de plata in emailuri
 
 ### Bug critic metoda de plata in emailuri
 

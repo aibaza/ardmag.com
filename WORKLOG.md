@@ -723,3 +723,94 @@ Bug-uri critice descoperite si fix-uite live:
 4. media.ardmag.com -> media.ardmag.ro (rebrand)
 5. payment method gresit in emailuri (sessions vs payments confusion)
 6. deploy gotcha medusa build + railway up (workflow)
+
+---
+
+## 2026-05-19 17:00 -- Catalog cleanup + shipping rework + free shipping 500 RON
+
+Commits: `eafc375`, `cf63a09`
+Deploy: Railway `a110a1de` SUCCESS + Vercel auto-deploy
+Confirmat: DA ("arata bine, fa release")
+
+### Catalog (consolidare duplicate dupa raspuns Andrei)
+
+User a sters din admin Medusa vechiul `Depozit Cluj` (disabled) si a redenumit `Depozit Principal` in `Depozit Cluj`. Asta a triggered cascade delete pe fulfillment_set "Livrare Romania", service_zone "Romania", geo_zone "ro" si 15 shipping_options.
+
+Plus, Andrei a confirmat ca:
+- EK-WINNER apartine la categoria de taiere (disc diamantat turbo), NU slefuire
+- Saitroanele pot ramane cu dropdown (in agregat)
+- SFC din titlul SAITRIS de eliminat (deferred)
+- VELCROPAD nu apartine in agregat
+
+Soft-delete-uri aplicate:
+- 4 produse standalone (ek-winner, saitris-180, saitron-125, saitron-180) -- duplicate ale agregatului `discuri-de-slefuit-cu-carbura`
+- 3 variante VELCROPAD (115/125/180) din agregat
+- 3 variante EK WIENNER (125/180/230) din agregat
+- Total -10 variante in agregat: 30 -> 24 (doar SAITRIS si SAITRON raman)
+
+### Infrastructure (cauza OOM-urilor)
+
+Backend Medusa crash-uia repetat in timpul DELETE-urilor cu `FATAL ERROR: Reached heap limit Allocation failed`. Investigare:
+- `NODE_OPTIONS=--max-old-space-size=460` setat manual pe Railway, prea strans
+- Query-urile `/store/products?limit=100` returneaza 2.1 MB raspuns, consum mare RAM per request
+
+Fix: user a facut upgrade Railway Trial -> Hobby ($5/luna, $5 credit). Eu am setat `NODE_OPTIONS` la 1024 MB. API stabil 200 dupa.
+
+### Shipping restore + filtrare
+
+Dupa cascade delete:
+- `shipping_options` toate sterse (15), `fulfillment_set` "Livrare Romania" sters, `service_zone` "Romania" sters, `geo_zone` "ro" sters
+- Plus 2 `fulfillment_set`-uri active "Depozit Principal pick up" si "Depozit Principal shipping" goale (probabil incercari user)
+
+Restore SQL atomic:
+1. UNDELETE fulfillment_set "Livrare Romania" + service_zone + geo_zone + 15 shipping_options
+2. Re-link `location_fulfillment_set`: shifted din vechiul sloc sters la cel nou activ
+3. Filtrare la 2 metode active (cerinta user: ridicare + Fan Courier API):
+   - `Fan Courier` (provider_id=fan-courier_fan-courier, calculated)
+   - `Ridicare personala` (redenumit din "Ridicare Cluj", flat 0 RON)
+4. Restore `shipping_option_price_set` + `price_set` + `price` (erau si ele soft-deleted; cauza erorii 400 "Shipping options do not have a price")
+
+### Real-time switch + free shipping 500 RON
+
+`CheckoutShipping.tsx`:
+- onChange pe radio apeleaza setShippingMethod imediat (in transition); cart se revalideaza, summary se updateaza fara click pe buton
+- preselectie din cart.shipping_methods[0] daca exista (nu mai default pe prima opt din lista)
+- afisare strikethrough pe tariful calculat + "Gratuit" verde cand item_total >= 500
+- banner verde sus: "Comanda ta depaseste 500 Lei -- livrarea cu Fan Courier este gratuita"
+
+`fulfillment-fan-courier/service.ts`:
+- calculatePrice extrage item_total din `context.items` (subtotal sau unit_price × quantity)
+- daca item_total >= 500 RON -> returneaza calculated_amount=0 (nu mai cheama API Fan Courier inutil)
+- log line include item_total pentru debug
+
+### Subtotal items-only + Total corect
+
+Medusa v2 cart returneaza:
+- cart.item_total = produse only (33)
+- cart.shipping_total = transport (18.37)
+- cart.subtotal = items + shipping (51.37) <-- INCLUDE shipping!
+- cart.total = 51.37 (egal cu subtotal pentru ca VAT e in pret)
+
+UI afisa "Subtotal 51.37" cu Transport 18.37 ca linie separata si Total 51.37 -- matematica gresita pentru user. Fix:
+- `OrderSummary` afiseaza Transport doar cand shipping_total > 0 (ascuns pe cart page)
+- Subtotal foloseste cart.item_total (33), nu cart.subtotal
+- Cart page: Total = items only (livrarea nu e selectata acolo)
+- Checkout: Total = cart.total (= items + shipping)
+
+Aplicat in 6 fisiere: OrderSummary, cart/page, checkout/page, CheckoutReview, order/[id]/confirmed/page, account orders/details/[id]/page.
+
+Commits push-uite:
+- `eafc375` fix(checkout): Subtotal items-only + Total = items + Transport
+- `cf63a09` feat(shipping): real-time switch + free shipping 500 RON cu strikethrough
+
+Plus toate restore-urile + cleanup-urile catalog au fost facute direct via SQL atomic + Medusa Admin API DELETE (toate soft-delete reversibile).
+
+### Statistici sesiune
+
+Commits push-uite azi: 14 (intre 61b1fc5 si cf63a09)
+SQL atomic transactions: 5 (catalog cleanup × 2, shipping restore × 2, free shipping policy)
+Bug-uri critice rezolvate: 9 (preturi /100, variant info, CC office, BCC, rebrand .com, R2 switch, payment method, shipping cascade, OOM)
+Railway deploys: 7 succese
+Vercel deploys: 3+ auto
+
+Ziua de lansare a fost dura dar magazinul e stabil acum. Comenzile #1, #2, #3 sunt OK (sandu_dolha livrare la sediu POS; #2 si #3 anulate de Andrei).
