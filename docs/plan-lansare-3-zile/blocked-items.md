@@ -19,7 +19,7 @@ Acestea NU blochează lansarea — avem plan B pentru fiecare. Dar trebuie urmă
 ### ardmag.ro domeniu
 - **Ce:** domeniu `.ro` recomandat, 70 lei/an
 - **Unde:** orice registrar RO (RoTLD, ROTLD.ro, Go Daddy RO)
-- **Plan B:** lansăm pe ardmag.surmont.co / ardmag.com, mutăm domeniu când e cumpărat
+- **Plan B:** lansăm pe ardmag.surmont.co / ARDmag.ro, mutăm domeniu când e cumpărat
 - **Status:** necumpărat (confirmat 30 apr WhatsApp)
 
 ### Credentiale SelfAWB Fan Courier
