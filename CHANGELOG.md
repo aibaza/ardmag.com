@@ -5,7 +5,41 @@ Format: [date] type: description
 
 ---
 
-## 2026-05-19 — Emailuri comanda: preturi raw decimal + variant info + CC office
+## 2026-05-19 — Ziua de lansare: 7 fix-uri si rebrand ARDmag.ro
+
+### Bug critic metoda de plata in emailuri
+
+- fix(email): `templates/order-admin.ts`, `templates/order-customer.ts` -- citesc `pc.payments[0].provider_id` (snapshot-at pe order, queried), NU `pc.payment_sessions` (ephemeral cart-level, neinclus in query.graph fields)
+- impact: pe TOATE comenzile (din ziua de lansare), emailul afisa "Card (Stripe)" indiferent de plata reala -- fallback default cand sessions era undefined; sandu_dolha si ciprian aveau RAMBURS dar email zicea Stripe
+- detectie explicita: `pp_system_default`/`manual` -> "Ramburs (la curier)"; `stripe` -> "Card (Stripe)"; alt provider -> string raw (nu mai e fail silent)
+- test(email): `templates/__tests__/order-admin.unit.spec.ts` -- 3 scenarii (ramburs/Stripe/unknown), PASS
+
+### Brand: ardmag.com -> ARDmag.ro
+
+- refactor(brand): domeniul principal devine `ardmag.ro`; `ardmag.com` ramane activ doar pentru 308 redirect SEO-safe la `ardmag.ro`
+- 14 scripturi de import/catalog: `ADMIN_EMAIL` default `admin@ardmag.com` -> `admin@ardmag.ro`
+- `scripts/enrich/subagent-prompt.ts`: system prompt AI catalog research aliniat
+- `backend-storefront/src/app/robots.ts`: scos `magazin.ardmag.com` (subdomain neutilizat); pastrat `ardmag.com` pentru SEO coverage 308
+- docs: CLAUDE.md, docs/04-implementation-plan.md, docs/deployment/architecture.md, SECRETS.md aliniate
+
+### Media domain: media.ardmag.ro custom domain R2
+
+- chore(r2): adaugat custom domain `media.ardmag.ro` pentru bucket `ardmag-media` in Cloudflare R2
+- env(vercel): `NEXT_PUBLIC_R2_HOSTNAME=media.ardmag.ro` (production + preview)
+- env(railway): `R2_PUBLIC_URL=https://media.ardmag.ro`
+- db: rewrite 199 imagini + 95 thumbnails -- `pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev` -> `media.ardmag.ro` (transaction simpla cu replace())
+- toate paginile storefront servesc imagini de pe media.ardmag.ro; URL-ul vechi R2 default ramane functional dar nu mai e folosit
+
+### Monitoring BCC
+
+- feat(email): BCC global `dc@aibaza.ro` pe toate emailurile expediate (configurabil prin `NOTIFICATION_BCC` env)
+- threadat prin SMTP2GO HTTP API si nodemailer SMTP fallback
+- temporar, pentru visibility ridicata pe emailurile reale care pleaca clientilor in primele zile de productie
+
+### Workflow lesson learned
+
+- chore(deploy): pentru schimbari de cod backend NU e suficient `git push`. Dockerfile copiaza din `.medusa/server/` (gitignored), deci Railway nu vede codul nou pana nu rulam `npm run build` + `railway up --service medusa --detach` din `backend/`
+- adaugat in CLAUDE.md ca regula explicita
 
 ### Bug critic preturi /100
 
