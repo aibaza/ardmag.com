@@ -591,3 +591,67 @@ si `4953921` Fan Courier). Aveau 3 copii identice ale `formatPrice` cu
    clientilor)
 
 Fisiere modificate: 9 (1 nou test + 1 script nou + 1 CHANGELOG + 6 email).
+
+---
+
+## 2026-05-19 12:45 -- BCC global + rebrand ardmag.ro + deploy gotcha discovered
+
+Commits: `975f593`, `a8ffaba`, `2d601ca`
+Deploy: https://api.ardmag.ro (Railway -- via `railway up`, NU git push)
+Confirmat: PENDING (Andrei va plasa test order)
+
+**Trigger:** Andrei raportat la 12:45 ca a plasat comanda #2 (1632 Lei) si nu a primit emailul de client. Investigare a expus 2 probleme distincte.
+
+**Bug 1: deploy gotcha (root cause emailuri /100 erau in continuare prezente in prod).**
+
+Dockerfile-ul backend-ului copiaza din `.medusa/server/` (output `medusa build`), iar `.medusa/server/` este gitignored. Cand fac doar `git push`, Railway face checkout din GitHub fara `.medusa/server/` -- dar Docker COPY foloseste fisierele cache-ate de la `railway up` anterior. Comanda #1 sandu_dolha si comanda #2 Andrei au primit ambele emailuri cu preturi /100 desi commit-urile `61b1fc5` + `b3e50fe` erau push-uite pe master inca de la 11:18.
+
+Verificat direct in `.medusa/server/src/modules/notification-smtp2go/templates/order-admin.js`: continea `formatPrice` cu `/100`, build vechi din 18 mai 20:38.
+
+**Fix workflow (definitiv):**
+```
+cd backend && npm run build    # regenereaza .medusa/server/ cu codul nou
+railway up --service medusa --detach
+```
+NU mai e suficient `git push`. Adaugat in CLAUDE.md sectiunea Workflow ca lesson learned.
+
+**Bug 2: deliverability Yahoo.**
+
+SMTP2GO confirma livrare cu succes pentru ambele comenzi. Andrei nu a primit emailul de la comanda #2 in inbox (probabil spam Yahoo sau a aterizat tarziu). Nu investigat in detaliu in aceasta sesiune -- deferred.
+
+**Aplicat in sesiunea curenta:**
+
+1. **BCC `dc@aibaza.ro` global pe toate emailurile** (commit `975f593`)
+   - `modules/notification-smtp2go/service.ts` adauga `globalBcc` getter (citeste `NOTIFICATION_BCC` env, default `dc@aibaza.ro`)
+   - Threadat prin sendViaApi (`body.bcc` SMTP2GO) si sendViaSmtp (`bcc` nodemailer)
+   - Log line indica BCC: `smtp2go: sent "..." to X (cc: ...) (bcc: dc@aibaza.ro)`
+   - User vrea sa vada toate comunicarile "cel putin pentru o vreme"
+
+2. **Rebrand ardmag.com -> ardmag.ro** (commits `a8ffaba` + `2d601ca`)
+   - Cerere user: domeniu principal = ardmag.ro; .com redirecteaza 308; brand se scrie "ARDmag.ro" / "ARDmag" / "ardmag.ro" (ARD = Arc Rom Diamonds)
+   - 14 scripturi cu `ADMIN_EMAIL = "admin@ardmag.com"` -> `"admin@ardmag.ro"` (consistenta brand; admin real e ciprian.dobrea@gmail.com setat via env)
+   - `scripts/enrich/subagent-prompt.ts`: system prompt AI catalog research
+   - `backend-storefront/src/app/robots.ts`: scos `magazin.ardmag.com` (subdomain neutilizat); pastrat `ardmag.com` pentru SEO coverage 308
+   - Docs: CLAUDE.md (header), `docs/04-implementation-plan.md`, `docs/deployment/architecture.md`, `docs/deployment/SECRETS.md` (gitignored, local-only update)
+   - Memorie interna: `MEMORY.md`, `project_db_infrastructure.md`, `project_price_management.md`, `project_ro_vat_rate.md`; nou entry `project_brand_naming.md`
+
+   Deferred (concerns separate):
+   - `media.ardmag.com` in env templates + upload-images-to-r2.ts: alias R2 functional, ramane pana e configurat `media.ardmag.ro` DNS
+   - Rename GitHub repo `aibaza/ardmag.com` (user decide)
+   - Folder local pastrat (nu se rupe nimic; nu apare in prod)
+
+**Side-effect commit:** `scripts/capture-pages.mjs` (untracked anterior, screenshot utility) a fost inclus accidental in commit-ul de rebrand prin `git add scripts/`. Lasat ca-i; benign.
+
+**Verificare:**
+- `npx tsc --noEmit` backend: clean
+- `npm run test:unit -- tokens.unit.spec`: 3/3 PASS
+- `grep -r "ardmag\.com" backend/src/ backend-storefront/src/ scripts/`: doar `robots.ts` SEO + `upload-images-to-r2.ts` alias R2 (ambele intentionale)
+- `npm run build`: SUCCESS, `.medusa/server/` regenerat cu codul nou
+- `railway up`: deploy `0e859e84` in BUILDING
+
+**Invitatii admin Medusa (de la cererea anterioara user):**
+- comenzi@ardmag.ro: `invite_01KRZNCCBFAGZX342B41RDS8KF` accepta deja (din ce vad in log-uri request POST /auth/user/emailpass/register la 12:20 cu referrer token)
+- office@ardmag.ro: `invite_01KRZNCCG4XA7E55838CS35NWD` (pending)
+- Ambele cu expirare 20 mai 11:24 RO
+
+Fisiere modificate: 21 in master + WORKLOG.md (local). 3 commits push-uite.
