@@ -3,7 +3,7 @@ import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 
 export const metadata: Metadata = {
-  title: "Despre noi | ardmag.com",
+  title: "Despre noi | ARDmag.ro",
   description:
     "ARC ROM DIAMONDS SRL - distribuitor autorizat Tenax, producator Delta Research. 25 de ani pe piata pietrei naturale din Romania.",
 }

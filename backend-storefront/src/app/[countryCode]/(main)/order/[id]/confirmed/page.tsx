@@ -9,7 +9,7 @@ import { formatPrice } from "@lib/util/adapters/format-price"
 import { notFound } from "next/navigation"
 
 export const metadata: Metadata = {
-  title: "Comanda confirmata | ardmag.com",
+  title: "Comanda confirmata | ARDmag.ro",
 }
 
 function formatRoDateTime(date: string | Date): string {

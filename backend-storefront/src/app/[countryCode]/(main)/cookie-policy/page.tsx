@@ -3,8 +3,8 @@ import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 
 export const metadata: Metadata = {
-  title: "Politica de cookies | ardmag.com",
-  description: "Lista cookie-urilor utilizate pe ardmag.com si modul de gestionare a preferintelor.",
+  title: "Politica de cookies | ARDmag.ro",
+  description: "Lista cookie-urilor utilizate pe ARDmag.ro si modul de gestionare a preferintelor.",
 }
 
 const UPDATED = "Aprilie 2026"
@@ -40,7 +40,7 @@ export default async function CookiePolicyPage({
         </p>
 
         <p style={pStyle}>
-          Aceasta pagina explica ce cookie-uri folosim pe ardmag.com, de ce si cum poti controla utilizarea lor.
+          Aceasta pagina explica ce cookie-uri folosim pe ARDmag.ro, de ce si cum poti controla utilizarea lor.
         </p>
 
         <h2 style={h2Style}>Cookie-uri necesare (nu necesita consimtamant)</h2>

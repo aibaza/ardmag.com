@@ -3,7 +3,7 @@ import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 
 export const metadata: Metadata = {
-  title: "Politica de confidentialitate | ardmag.com",
+  title: "Politica de confidentialitate | ARDmag.ro",
   description:
     "Politica de prelucrare a datelor cu caracter personal - ARC ROM DIAMONDS SRL, conform GDPR (Regulamentul UE 2016/679).",
 }

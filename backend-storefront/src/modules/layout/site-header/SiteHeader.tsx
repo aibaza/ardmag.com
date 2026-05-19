@@ -75,7 +75,7 @@ export function SiteHeader({
 
         {/* Desktop: main bar */}
         <div className="main-bar">
-          <a className="logo" href="/"><Image src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
+          <a className="logo" href="/"><Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
           <form className="search-combo" role="search" onSubmit={handleSearchSubmit}>
             <input type="search" name="q" placeholder="Cauta produs sau brand..." aria-label="cautare" suppressHydrationWarning />
             <button type="submit"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><span>Cauta</span></button>
@@ -104,7 +104,7 @@ export function SiteHeader({
         {/* Mobile: compact bar */}
         <div className="mobile-header">
           <button className="burger" aria-label="meniu" onClick={() => setDrawerOpen(true)}><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
-          <a className="logo logo-compact" href="/"><Image src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} priority sizes="150px" /></a>
+          <a className="logo logo-compact" href="/"><Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="150px" /></a>
           <div className="spacer"></div>
           <a className="icon-btn" href={`/cart`} aria-label="cos"><svg viewBox="0 0 20 20"><path d="M3 4h2l1.5 9h9l1.5-6H6"/><circle cx="8" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg>{liveCartCount === undefined ? <span className="count count-skeleton" aria-hidden="true" /> : liveCartCount > 0 && <span className="count">{liveCartCount}</span>}</a>
         </div>
@@ -130,7 +130,7 @@ export function SiteHeader({
       >
         <div className="mobile-menu">
           <div className="mm-head">
-            <a className="logo logo-compact" href="/"><Image src="/logo.png" alt="ARDMAG" className="logo-img" width={1367} height={208} loading="lazy" sizes="150px" /></a>
+            <a className="logo logo-compact" href="/"><Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} loading="lazy" sizes="150px" /></a>
             <button className="close" aria-label="inchide" onClick={() => setDrawerOpen(false)}>x</button>
           </div>
           <div className="mm-section-label">Categorii</div>

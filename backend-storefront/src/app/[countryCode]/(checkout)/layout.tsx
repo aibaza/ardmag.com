@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Checkout | ardmag.com",
+  title: "Checkout | ARDmag.ro",
 }
 
 type Props = {
@@ -19,7 +19,7 @@ export default async function CheckoutLayout({ children, params }: Props) {
         </a>
         <a href={`/${countryCode}`} className="logo" style={{ textDecoration: 'none' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-transparent.png" alt="ARDMAG" className="logo-img" width={200} height={30} />
+          <img src="/logo-transparent.png" alt="ARDmag.ro" className="logo-img" width={200} height={30} />
         </a>
         <span style={{ width: 120 }} />
       </header>
@@ -27,7 +27,7 @@ export default async function CheckoutLayout({ children, params }: Props) {
         {children}
       </main>
       <footer style={{ borderTop: '1px solid var(--rule)', padding: '16px 24px', textAlign: 'center', fontSize: 12, color: 'var(--fg-muted)', fontFamily: 'var(--f-sans)' }}>
-        ardmag.com · Cluj-Napoca · +40 722 155 441 · <a href="https://anpc.ro" target="_blank" rel="noreferrer">ANPC</a>
+        ARDmag.ro · Cluj-Napoca · +40 722 155 441 · <a href="https://anpc.ro" target="_blank" rel="noreferrer">ANPC</a>
       </footer>
     </>
   )

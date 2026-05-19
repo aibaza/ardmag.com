@@ -6,7 +6,7 @@ import { Breadcrumb } from "@modules/@shared/components/breadcrumb/Breadcrumb"
 import { OrderSummary } from "@modules/order/components/OrderSummary"
 import { CartLineItem } from "@modules/cart/components/CartLineItem"
 
-export const metadata: Metadata = { title: "Cos | ardmag.com" }
+export const metadata: Metadata = { title: "Cos | ARDmag.ro" }
 
 type Props = { params: Promise<{ countryCode: string }> }
 

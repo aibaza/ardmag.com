@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { AuthForm } from "@modules/account/components/AuthForm"
 
 export const metadata: Metadata = {
-  title: "Autentificare | ardmag.com",
+  title: "Autentificare | ARDmag.ro",
 }
 
 type Props = {

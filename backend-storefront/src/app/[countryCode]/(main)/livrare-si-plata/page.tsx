@@ -3,7 +3,7 @@ import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 
 export const metadata: Metadata = {
-  title: "Livrare si plata | ardmag.com",
+  title: "Livrare si plata | ARDmag.ro",
   description:
     "Livrare in 1-3 zile lucratoare prin Fan Courier, Sameday, Cargus. Livrare gratuita peste 500 Lei. Plata cu card sau ramburs.",
 }

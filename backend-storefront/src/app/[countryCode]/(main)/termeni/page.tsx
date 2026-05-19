@@ -3,8 +3,8 @@ import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 
 export const metadata: Metadata = {
-  title: "Termeni si conditii | ardmag.com",
-  description: "Termeni si conditii de utilizare ardmag.com - ARC ROM DIAMONDS SRL, CUI 13828707.",
+  title: "Termeni si conditii | ARDmag.ro",
+  description: "Termeni si conditii de utilizare ARDmag.ro - ARC ROM DIAMONDS SRL, CUI 13828707.",
 }
 
 const UPDATED = "Aprilie 2026"
@@ -37,7 +37,7 @@ export default async function TermeniPage({
         </p>
 
         <p style={pStyle}>
-          Prezentii termeni reglementeaza utilizarea platformei ardmag.com, operata de{" "}
+          Prezentii termeni reglementeaza utilizarea platformei ARDmag.ro, operata de{" "}
           <strong>ARC ROM DIAMONDS SRL</strong>, cu sediul in Calea Baciului 1-3, Cluj-Napoca 400230,
           CUI 13828707, J12/553/2001 (denumita in continuare "Vanzatorul").
         </p>

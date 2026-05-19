@@ -4,7 +4,7 @@ import { SiteFooter } from "@modules/layout/site-footer"
 import { ContactForm } from "./ContactForm"
 
 export const metadata: Metadata = {
-  title: "Contact | ardmag.com",
+  title: "Contact | ARDmag.ro",
   description:
     "Contacteaza-ne: +40 722 155 441, office@ardmag.ro. Calea Baciului 1-3, Cluj-Napoca. Program L-V 08-16.",
 }
