@@ -7,6 +7,11 @@ Format: [date] type: description
 
 ## 2026-05-19 — Ziua de lansare: stabilizare emailuri, catalog cleanup, shipping rework
 
+### Blog: masticuri epoxidice vs poliesterice
+
+- docs(blog): clarificat evoluțiile recente din chimia masticurilor pentru piatră: tixotropie, low-styrene/low-VOC, cartușe bicomponente cu mixer static, compatibilitate cu engineered stone, UV și contact alimentar validate per produs.
+- docs(blog): ton mai prudent juridic/comercial: low-VOC nu înseamnă netoxic, iar certificările se verifică în fișa tehnică/certificat, nu se deduc din familia chimică.
+
 ### Shipping: restore + filtrare la 2 metode (Fan Courier + Ridicare personala)
 
 - fix(shipping): restore complet dupa cascade delete cand user-ul a sters vechiul stock_location "Depozit Cluj" (a luat cu el fulfillment_set "Livrare Romania", service_zone "Romania", geo_zone "ro" si 15 shipping_options)

@@ -42,11 +42,11 @@ Vinilesterul nu „înlocuiește" nici epoxidicul, nici poliestericul. Acoperă 
 
 Chimia masticurilor pentru piatră a evoluat în ultimii ani, dar nu a inversat regula de alegere. Schimbările sunt incrementale și relevante practic.
 
-La poliesterici și vinilesteri, formulele tixotropice țin verticalitatea fără să curgă, iar variantele cu emisii reduse de stiren scad încărcătura din atelier (atenție: low-VOC nu înseamnă inofensiv, doar mai puțin emisiv). La epoxidici, unele formule moderne urmăresc reducerea mirosului, întărirea mai previzibilă și diminuarea fenomenului de „blush" (filmul ceros care apare uneori la suprafață în condiții de umiditate).
+La poliesterici și vinilesteri, formulele tixotropice țin verticalitatea fără să curgă, util pentru lipiri pe muchii și la 45 de grade fără cofraje suplimentare. Variantele low-styrene și low-VOC reduc emisiile din atelier, dar nu sunt netoxice: clasificările de risc și limitele de expunere ocupațională rămân aplicabile, iar ventilația și echipamentul de protecție la fel. La epoxidici, unele formule moderne urmăresc reducerea mirosului, întărirea mai previzibilă și diminuarea fenomenului de „blush" (filmul ceros care apare uneori la suprafață în condiții de umiditate).
 
-Ambalajele bicomponente în cartușe dozează automat raportul A:B, ceea ce reduce greșelile de amestec. Apar formule declarate compatibile cu materiale moderne (engineered stone, ceramică sinterizată) unde formulele vechi nu aveau comportament la fel de previzibil.
+Ambalajele bicomponente în cartușe cu mixer static dozează raportul A:B la aplicare, ceea ce reduce greșelile de amestec față de dozarea manuală a întăritorului. Apar formule declarate compatibile cu aglomerate de quartz, ceramică sinterizată sau alte engineered stone, dar compatibilitatea se verifică per produs în fișa tehnică, nu se deduce din familia chimică.
 
-Reglementarea avansează în paralel. [Materialele în contact cu alimentele sunt acoperite de un cadru european specific](https://food.ec.europa.eu/safety/chemical-safety/food-contact-materials_en), iar pentru blaturile destinate contactului alimentar nu se presupune nimic: se cere certificat per produs, nu se deduce din familia chimică.
+Rezistența UV pentru exterior și absența BPA pentru contact alimentar sunt revendicări care se confirmă tot per produs, prin certificat sau declarație scrisă în fișa tehnică. [Materialele în contact cu alimentele sunt acoperite de un cadru european specific](https://food.ec.europa.eu/safety/chemical-safety/food-contact-materials_en); pentru blaturile destinate contactului alimentar nu se presupune nimic, se cere certificat per produs, nu se deduce din familia chimică sau din ambalaj.
 
 ## Cum alegi în practică
 
