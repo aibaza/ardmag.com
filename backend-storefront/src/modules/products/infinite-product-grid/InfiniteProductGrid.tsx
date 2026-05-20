@@ -112,34 +112,44 @@ export function InfiniteProductGrid({
     })
   }, [storageKey])
 
-  // Persist scroll + visibleCount continuously (throttled via rAF) and one final time on unmount.
+  // Persist scroll on every scroll (throttled), and once at click time. Then freeze: Next.js
+  // scrolls the window to 0 right after a Link click as part of its routing, and we must not
+  // let that scroll-to-0 overwrite the position the user was at when they clicked.
   useEffect(() => {
     if (typeof window === "undefined") return
     let ticking = false
-    const save = () => {
+    let frozen = false
+    const save = (y: number) => {
       try {
         sessionStorage.setItem(
           storageKey,
-          JSON.stringify({ visibleCount, scrollY: window.scrollY })
+          JSON.stringify({ visibleCount, scrollY: y })
         )
       } catch {
         // sessionStorage may be unavailable (private mode, quota); silently ignore.
       }
     }
     const onScroll = () => {
-      if (ticking) return
+      if (frozen || ticking) return
       ticking = true
       requestAnimationFrame(() => {
-        save()
+        save(window.scrollY)
         ticking = false
       })
     }
+    const onClickCapture = (e: Event) => {
+      const t = e.target
+      if (!(t instanceof Element)) return
+      const anchor = t.closest('a[href]')
+      if (!anchor) return
+      save(window.scrollY)
+      frozen = true
+    }
     window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("pagehide", save)
+    document.addEventListener("click", onClickCapture, true)
     return () => {
-      save()
       window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("pagehide", save)
+      document.removeEventListener("click", onClickCapture, true)
     }
   }, [storageKey, visibleCount])
 
