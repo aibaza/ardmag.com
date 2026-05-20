@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { usePathname, useSearchParams } from "next/navigation"
 import { useIntersection } from "@lib/hooks/use-in-view"
 import { ProductGrid } from "@modules/products/product-grid"
 
@@ -29,13 +30,54 @@ interface InfiniteProductGridProps {
   viewMode?: "grid" | "list"
 }
 
+const STORAGE_PREFIX = "ardmag:catalog-state:"
+
+function buildStorageKey(pathname: string, searchString: string): string {
+  const params = new URLSearchParams(searchString)
+  params.delete("page")
+  const entries: Array<[string, string]> = []
+  params.forEach((value, key) => entries.push([key, value]))
+  entries.sort((a, b) => a[0].localeCompare(b[0]))
+  const qs = new URLSearchParams(entries).toString()
+  return `${STORAGE_PREFIX}${pathname}${qs ? "?" + qs : ""}`
+}
+
+interface SavedState {
+  visibleCount: number
+  scrollY: number
+}
+
+function readSaved(key: string): SavedState | null {
+  if (typeof window === "undefined") return null
+  try {
+    const raw = sessionStorage.getItem(key)
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as SavedState
+    if (typeof parsed.visibleCount !== "number" || typeof parsed.scrollY !== "number") return null
+    return parsed
+  } catch {
+    return null
+  }
+}
+
 export function InfiniteProductGrid({
   allFiltered,
   countryCode,
   pageSize = 24,
   viewMode = "grid",
 }: InfiniteProductGridProps) {
-  const [visibleCount, setVisibleCount] = useState(pageSize)
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const storageKey = buildStorageKey(pathname, searchParams.toString())
+
+  // Restore visibleCount on first mount (clamped to current item count).
+  const [visibleCount, setVisibleCount] = useState(() => {
+    const saved = readSaved(storageKey)
+    if (!saved) return pageSize
+    const clamped = Math.min(saved.visibleCount, allFiltered.length || saved.visibleCount)
+    return clamped >= pageSize ? clamped : pageSize
+  })
+
   const sentinelRef = useRef<HTMLDivElement>(null)
   const isSentinelVisible = useIntersection(sentinelRef, "0px")
 
@@ -45,10 +87,61 @@ export function InfiniteProductGrid({
     }
   }, [isSentinelVisible, visibleCount, allFiltered.length, pageSize])
 
-  // Reset visible count when filtered list changes (filter/sort applied)
+  // Reset only when the storage key actually changes (i.e. filters/sort/perPage moved).
+  // Plain back-navigation re-mounts the component with the same key, so we keep the restored count.
+  const prevKey = useRef(storageKey)
   useEffect(() => {
-    setVisibleCount(pageSize)
-  }, [allFiltered, pageSize])
+    if (prevKey.current !== storageKey) {
+      prevKey.current = storageKey
+      setVisibleCount(pageSize)
+    }
+  }, [storageKey, pageSize])
+
+  // Restore scroll position once, after the restored item count has rendered.
+  // Two rAFs ensure layout (grid heights, image placeholders) settles before we scroll.
+  const didRestoreScroll = useRef(false)
+  useEffect(() => {
+    if (didRestoreScroll.current) return
+    didRestoreScroll.current = true
+    const saved = readSaved(storageKey)
+    if (!saved || saved.scrollY < 100) return
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, saved.scrollY)
+      })
+    })
+  }, [storageKey])
+
+  // Persist scroll + visibleCount continuously (throttled via rAF) and one final time on unmount.
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    let ticking = false
+    const save = () => {
+      try {
+        sessionStorage.setItem(
+          storageKey,
+          JSON.stringify({ visibleCount, scrollY: window.scrollY })
+        )
+      } catch {
+        // sessionStorage may be unavailable (private mode, quota); silently ignore.
+      }
+    }
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        save()
+        ticking = false
+      })
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("pagehide", save)
+    return () => {
+      save()
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("pagehide", save)
+    }
+  }, [storageKey, visibleCount])
 
   if (allFiltered.length === 0) {
     return null

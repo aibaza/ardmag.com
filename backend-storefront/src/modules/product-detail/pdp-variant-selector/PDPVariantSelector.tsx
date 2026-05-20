@@ -32,7 +32,7 @@ export function PDPVariantSelector({ groups }: PDPVariantSelectorProps) {
   function handleSelect(variantId: string) {
     const params = new URLSearchParams(searchParams.toString())
     params.set("v_id", variantId)
-    router.push(`${pathname}?${params.toString()}`, { scroll: false })
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
   return (

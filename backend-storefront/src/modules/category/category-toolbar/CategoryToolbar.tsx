@@ -42,12 +42,12 @@ export function CategoryToolbar({
 
   function handleSortChange(value: string) {
     if (!baseUrl) return
-    router.push(buildUrl("sortBy", value))
+    router.replace(buildUrl("sortBy", value))
   }
 
   function handlePerPageChange(value: string) {
     if (!baseUrl) return
-    router.push(buildUrl("perPage", value))
+    router.replace(buildUrl("perPage", value))
   }
 
   const isListView = searchParams.get("view") === "list"
@@ -61,7 +61,7 @@ export function CategoryToolbar({
       params.delete("view")
     }
     const qs = params.toString()
-    router.push(qs ? `${baseUrl}?${qs}` : (baseUrl ?? ""))
+    router.replace(qs ? `${baseUrl}?${qs}` : (baseUrl ?? ""))
   }
 
   return (

@@ -30,7 +30,7 @@ export function MobileFilterBar({
     else params.set("sortBy", value)
     params.delete("page")
     const qs = params.toString()
-    router.push(qs ? `${baseUrl}?${qs}` : baseUrl)
+    router.replace(qs ? `${baseUrl}?${qs}` : baseUrl)
   }
 
   function removeFilter(filter: ActiveFilter) {
@@ -46,7 +46,7 @@ export function MobileFilterBar({
     }
     params.delete("page")
     const qs = params.toString()
-    router.push(qs ? `${baseUrl}?${qs}` : baseUrl)
+    router.replace(qs ? `${baseUrl}?${qs}` : baseUrl)
   }
 
   function clearAllFilters() {
@@ -57,7 +57,7 @@ export function MobileFilterBar({
     params.delete("priceMax")
     params.delete("page")
     const qs = params.toString()
-    router.push(qs ? `${baseUrl}?${qs}` : baseUrl)
+    router.replace(qs ? `${baseUrl}?${qs}` : baseUrl)
   }
 
   return (

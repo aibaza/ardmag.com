@@ -94,7 +94,7 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl, isOpen, o
     params.delete("priceMax")
     params.delete("page")
     const qs = params.toString()
-    router.push(qs ? `${baseUrl}?${qs}` : baseUrl)
+    router.replace(qs ? `${baseUrl}?${qs}` : baseUrl)
   }
 
   return (
@@ -125,7 +125,7 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl, isOpen, o
                       <input
                         type="checkbox"
                         checked={!!option.checked}
-                        onChange={(e) => router.push(buildCheckboxUrl(group.paramKey, option.value, e.target.checked))}
+                        onChange={(e) => router.replace(buildCheckboxUrl(group.paramKey, option.value, e.target.checked))}
                       />
                       {option.label}
                       {option.count !== undefined && <span className="cnt">{option.count}</span>}
@@ -186,7 +186,7 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl, isOpen, o
           <button
             type="button"
             className="btn primary sm"
-            onClick={() => router.push(buildApplyUrl())}
+            onClick={() => router.replace(buildApplyUrl())}
           >
             Aplică ({applyCount})
           </button>
