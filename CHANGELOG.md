@@ -5,6 +5,34 @@ Format: [date] type: description
 
 ---
 
+## 2026-05-20 — Fix navigare browser back/forward in catalog si PDP
+
+### Bug raportat de user
+
+Butoanele de Back/Forward din browser se comportau ciudat pe magazinul online: pe paginile de listare fiecare click pe filtru/sortare adauga o intrare noua in istoric, iar la revenirea de pe o pagina de produs scroll-ul pleca de la zero. Reprodus headless cu Playwright pe ardmag.ro live.
+
+### Cauza identificata
+
+- Filtre, sortare, perPage, view toggle si selectorul de varianta pe PDP foloseau `router.push` care creeaza intrare in browser history la fiecare click. Trei click-uri = trei intrari, Back-ul devenea inutil.
+- InfiniteProductGrid pierdea scroll-ul la revenirea pe categorie pentru ca browser-ul restaura scroll inainte ca layout-ul produselor sa fie aseazat in DOM.
+
+### Fix livrat
+
+- fix(storefront): inlocuit `router.push` cu `router.replace` in `FilterSidebar`, `MobileFilterBar`, `CategoryToolbar`, `PDPVariantSelector` -- toate cele 10 interactiuni care modifica doar query params pe aceeasi pagina. URL ramane deep-linkable; Back sare peste toate modificarile intra-pagina.
+- fix(storefront): persistat `{visibleCount, scrollY}` in sessionStorage in `InfiniteProductGrid`, cu cheie per pathname+filtre (canonicalizat). Restaurat dupa mount cu rAF x2 ca layout-ul sa se aseze inainte de scroll.
+
+### Fix urmator dupa primul deploy
+
+Primul fix salva scrollY in cleanup-ul de unmount, dar Next.js scrolleaza la 0 INAINTE de unmount, asa ca valoarea salvata era 0. Diagnosticat headless: sessionStorage la deschiderea PDP arata `scrollY:0` in loc de 2026.
+
+- fix(storefront): capture scrollY in click handler pe document (capture phase), inainte de scroll-ul programatic al Next.js; "freeze" listener-ul de scroll dupa click pentru a nu fi suprascris.
+
+### Verificare finala
+
+Headless Playwright pe ardmag.ro live: scroll restaurat 2026 -> 2026 (era 2026 -> 94), 30 carduri pastrate, 0 intrari noi in history la 3 click-uri pe filtre, 0 la 3 click-uri pe variantele PDP.
+
+---
+
 ## 2026-05-19 — Ziua de lansare: stabilizare emailuri, catalog cleanup, shipping rework
 
 ### Blog: masticuri epoxidice vs poliesterice

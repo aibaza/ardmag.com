@@ -839,3 +839,48 @@ Pagina admin /orders/1 returna 404 "Stock location with id: sloc_01KPNGVX8TF3T8G
 Fix: `UPDATE fulfillment SET location_id = '<sloc activ>' WHERE id = 'ful_...'`. Pagina admin functioneaza acum.
 
 Magazinul e curat: 1 comanda reala vizibila in admin, configurarea de shipping consistenta, niciun orphan reference de la stock_location-ul sters.
+
+---
+
+## 2026-05-20 16:00 -- Fix navigare browser back/forward in catalog si PDP
+
+Commits: `77589a6`, `e640278`
+Deploy: https://ardmag.ro/ | Vercel: bylm9jhvl (e640278 trigger ulterior auto-deploy)
+Confirmat: DA (verificat headless cu Playwright pe live)
+
+### Problema raportata
+
+User: "cred ca avem probleme cu butoanele de navigare back/forward, de prin magazinul online". Cerinta investigare cu headless chromium.
+
+### Investigare (Playwright pe ardmag.ro live)
+
+Trei bug-uri reproduse:
+1. **Scroll pierdut la Back de pe PDP** -- user scrolleaza la y=2026 pe categorie, click pe produs, Back -> revine la y=94 (top).
+2. **Fiecare filtru click adauga in history** -- 3 click-uri filtre = 3 entries noi. Back parcurge filtrele unul cate unul in loc sa iasa din listare.
+3. **Variant pills pe PDP umfla istoricul** -- la fel, 3 click-uri pe granulatii = 3 entries.
+
+Cauza arhitecturala: 11 locuri foloseau `router.push` pentru modificari de query params pe aceeasi pagina (filtre, sortare, perPage, view toggle, variant pills, reset, sterge filtru, clear all). Plus InfiniteProductGrid nu persista scroll-ul intre navigari.
+
+### Fix livrat
+
+Commit `77589a6`:
+- `router.push` -> `router.replace` in FilterSidebar (3), MobileFilterBar (3), CategoryToolbar (3), PDPVariantSelector (1). URL ramane deep-linkable, Back sare peste toate modificarile intra-pagina.
+- InfiniteProductGrid persista `{visibleCount, scrollY}` in sessionStorage per pathname+filtre, restaureaza dupa mount cu rAF x2.
+
+Commit `e640278` (fix urmator):
+- Listener-ul de scroll salva si scroll-to-0 facut de Next.js dupa Link click, suprascriind scrollY-ul real (2026 -> 0). Fix: capture scrollY in click handler pe document, apoi freeze listener-ul de scroll. Acum la click se salveaza pozitia user-ului inainte de orice scroll programatic.
+
+### Verificare
+
+Playwright pe https://ardmag.ro/categories/slefuire-piatra dupa deploy:
+- Scroll 2026 -> click card -> Back -> y=2026, 30 carduri pastrate (era 2026 -> 94, 30 -> 30 inainte).
+- 3 click-uri pe filtre brand: history.length neschimbat (era +3).
+- 3 click-uri pe variantele unui PDP: history.length neschimbat (era +3).
+
+### Probleme intampinate la deploy
+
+Am facut greseala de a rula `vercel link --yes` din repo root, creand un link gresit catre proiectul `ardmag.com` (nu `ardmag-storefront` care serveste ardmag.ro). Plus ulterior CLI a creat inca un proiect `backend-storefront` din cauza vercel.json de la root cu experimentalServices. Doua proiecte orfan create, sterse manual la finalul sesiunii. Adaugata sectiune in skill-ul `aibaza-deploy-workflow` despre arhitectura specifica monorepo-ului (2 proiecte Vercel) si comanda corecta.
+
+### Documentat in skill
+
+Skill-ul `aibaza-deploy-workflow` a primit sectiune noua "CRITICAL: ardmag.com e monorepo cu 2 proiecte Vercel separate" cu tabel project -> rootDirectory -> URL live si regula corecta de deploy (`cd backend-storefront` inainte de `vercel`).
