@@ -5,7 +5,30 @@ Format: [date] type: description
 
 ---
 
-## 2026-05-20 — Fix navigare browser back/forward in catalog si PDP
+## 2026-05-20 - Fix checkout: adresa implicita pre-selectata si eroare Unauthorized
+
+### Bug raportat de user
+
+La checkout pas Adresa: adresa marcata "LIVRARE IMPLICITA" nu se pre-selecta automat (utilizatorul trebuia sa o aleaga manual de fiecare data), iar dupa selectie click pe "Continua spre livrare" returna eroare "Unauthorized" si flow-ul ramanea blocat la pasul Adresa.
+
+### Cauza identificata
+
+- Pre-selectia adresei implicite era conditionata de starea coșului (`!cartShippingAddress?.address_1`). Daca user-ul mai intrase in checkout anterior, cart-ul avea deja adresa setata si conditia bloca pre-selectia la reintrare.
+- Server Action-ul pentru salvarea adreselor apela `sdk.store.customer.retrieve()` pentru a lua datele adresei salvate dupa ID. Apelul necesita JWT customer valid. JWT-ul Medusa expira la 24h (default), dar cookie-ul tine 7 zile, deci dupa 24h cookie-ul exista dar token-ul dinauntru e respins de backend cu 401. Pagina renderiza normal pentru ca raspunsul vechi era cached (`force-cache`), Server Action-ul facea apel live si primea 401.
+
+### Fix livrat
+
+- fix(checkout): pre-selectie adresa implicita ori de cate ori user-ul are adrese salvate, indiferent de starea coșului. User-ul poate inca schimba selectia, dar default-ul e mereu adresa marcata implicita.
+- fix(checkout): cand user-ul alege o adresa salvata, datele se trimit ca hidden inputs in formular cu prefixele `shipping_address.*` / `billing_address.*`. Server Action-ul citeste totul din formData fara apel customer-dependent. Elimina dependenta de JWT customer in pasul Adresa.
+- refactor(cart): eliminat helperul `addressToCartPayload` (nu mai e folosit dupa simplificare), si un round-trip catre backend per submit.
+
+### Verificare
+
+Test pe https://ardmag.ro/checkout cu user logged in si cart 851 Lei: adresa "Acasa" cu badge "LIVRARE IMPLICITA" preselectata la deschidere, click "Continua spre livrare" duce la pasul Livrare fara eroare. Confirmat de user pe live.
+
+---
+
+## 2026-05-20 - Fix navigare browser back/forward in catalog si PDP
 
 ### Bug raportat de user
 

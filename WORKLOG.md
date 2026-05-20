@@ -884,3 +884,44 @@ Am facut greseala de a rula `vercel link --yes` din repo root, creand un link gr
 ### Documentat in skill
 
 Skill-ul `aibaza-deploy-workflow` a primit sectiune noua "CRITICAL: ardmag.com e monorepo cu 2 proiecte Vercel separate" cu tabel project -> rootDirectory -> URL live si regula corecta de deploy (`cd backend-storefront` inainte de `vercel`).
+
+---
+
+## 2026-05-20 17:00 -- Fix checkout: adresa implicita pre-selectata si eroare Unauthorized
+
+Commits: `cb85a39`
+Deploy: https://ardmag.ro/checkout | Vercel: dpl_4mphfbTSvrFbmKWFxUUV6JAeXU5R
+Confirmat: DA
+
+### Bug raportat
+
+User pe pagina /checkout pas Adresa: (1) adresa marcata "LIVRARE IMPLICITA" nu se pre-selecta automat, trebuia click manual; (2) dupa click pe "Continua spre livrare" apare text "Unauthorized" si nu se trece la pasul Livrare. Server Action POST /checkout returna payload `1:"Unauthorized"`.
+
+### Cauze identificate
+
+Doua bug-uri distincte cu o cauza rădăcină comuna (JWT expirat):
+
+1. `CheckoutAddressForm.tsx` initializa selectedShippingId la `null` cand cart-ul avea deja shipping_address (pattern: user revine in checkout dupa o incercare anterioara). Logica era "daca cart-ul are adresa, lasa user-ul sa aleaga din nou" -- contraintuitiv.
+
+2. Server Action `setAddresses` in `cart.ts` cherma `sdk.store.customer.retrieve()` pentru a lua datele adresei salvate dupa ID. Apelul necesita JWT customer valid. JWT-ul Medusa expira la 24h (default neoverride-uit in `medusa-config.ts`), dar cookie-ul `_medusa_jwt` are maxAge 7 zile. Pagina renderiza cu addresses pentru ca `retrieveCustomer` foloseste `cache: "force-cache"` cu tag -- raspunsul vechi era cached. Server Action-ul facea apel live -> 401 -> mesaj "Unauthorized" propagat catre client (fara punct la final = direct din SDK, nu din `medusaError`).
+
+### Fix livrat
+
+`CheckoutAddressForm.tsx`:
+- Schimb conditie initiala selectedShippingId/Billing la "always pre-select default daca user-ul are adrese salvate", indiferent de cart state.
+- Cand user-ul alege o adresa salvata, embed datele adresei ca hidden inputs cu prefix `shipping_address.*` / `billing_address.*`. Helper-ul `SavedAddressHiddenInputs` populeaza first_name, last_name, phone, address_1, company, city, province, postal_code, country_code.
+
+`cart.ts setAddresses`:
+- Eliminat complet branch-ul `shipping_address_id` / `billing_address_id` cu apel `sdk.store.customer.retrieve()`.
+- Foloseste mereu `addressFromFormData()` pentru ambele adrese (hidden inputs + form fields citite la fel).
+- Eliminat helperul mort `addressToCartPayload`.
+
+Bonus: un round-trip mai putin la backend per submit -> checkout mai rapid.
+
+Cart.update nu cere JWT customer (cart access via cart-id), deci flow-ul nu mai e blocat de JWT expirat in pasul Adresa.
+
+### Verificare
+
+User pe ardmag.ro/checkout (logged in, cart cu 851 Lei):
+- Pre-selectare default address OK
+- Click "Continua spre livrare" -> trece la pas Livrare fara eroare
