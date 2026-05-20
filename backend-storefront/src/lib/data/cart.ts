@@ -335,21 +335,6 @@ export async function submitPromotionForm(
   }
 }
 
-function addressToCartPayload(addr: HttpTypes.StoreCustomerAddress) {
-  return {
-    first_name: addr.first_name ?? "",
-    last_name: addr.last_name ?? "",
-    address_1: addr.address_1 ?? "",
-    address_2: addr.address_2 ?? "",
-    company: addr.company ?? "",
-    postal_code: addr.postal_code ?? "",
-    city: addr.city ?? "",
-    country_code: addr.country_code ?? "ro",
-    province: addr.province ?? "",
-    phone: addr.phone ?? "",
-  }
-}
-
 function addressFromFormData(formData: FormData, prefix: string) {
   return {
     first_name: formData.get(`${prefix}.first_name`) as string,
@@ -376,45 +361,24 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
     }
 
     const headers = { ...(await getAuthHeaders()) }
-    const shippingAddressId = formData.get("shipping_address_id") as string | null
-    const billingAddressId = formData.get("billing_address_id") as string | null
     const sameAsBilling = formData.get("same_as_billing")
     const saveToAccount = formData.get("save_to_account")
     const countryCode = (formData.get("shipping_address.country_code") as string) || "ro"
 
-    let shippingAddr: Record<string, unknown>
-    let billingAddr: Record<string, unknown>
+    const shippingAddr = addressFromFormData(formData, "shipping_address")
+    const billingAddr =
+      sameAsBilling === "on" ? shippingAddr : addressFromFormData(formData, "billing_address")
 
-    if (shippingAddressId) {
-      // User picked a saved address — fetch from customer account
-      const { customer } = await sdk.store.customer.retrieve({ fields: "*addresses" }, headers)
-      const saved = customer?.addresses?.find((a: HttpTypes.StoreCustomerAddress) => a.id === shippingAddressId)
-      if (!saved) throw new Error("Adresa salvata nu a fost gasita")
-      shippingAddr = addressToCartPayload(saved)
-    } else {
-      shippingAddr = addressFromFormData(formData, "shipping_address")
-      // Save to account if requested and user is logged in
-      if (saveToAccount === "on" && headers.authorization) {
-        sdk.store.customer.createAddress(
-          { ...shippingAddr, country_code: countryCode } as any,
-          {},
-          headers
-        ).then(async () => {
+    // Save to account if requested and user is logged in.
+    // Errors are intentionally swallowed - cart update is the primary action.
+    if (saveToAccount === "on" && (headers as { authorization?: string }).authorization) {
+      sdk.store.customer
+        .createAddress({ ...shippingAddr, country_code: countryCode } as any, {}, headers)
+        .then(async () => {
           const tag = await getCacheTag("customers")
           revalidateTag(tag)
-        }).catch(() => {})
-      }
-    }
-
-    if (sameAsBilling === "on") {
-      billingAddr = shippingAddr
-    } else if (billingAddressId) {
-      const { customer } = await sdk.store.customer.retrieve({ fields: "*addresses" }, headers)
-      const saved = customer?.addresses?.find((a: HttpTypes.StoreCustomerAddress) => a.id === billingAddressId)
-      if (!saved) throw new Error("Adresa de facturare nu a fost gasita")
-      billingAddr = addressToCartPayload(saved)
-    } else {
-      billingAddr = addressFromFormData(formData, "billing_address")
+        })
+        .catch(() => {})
     }
 
     await updateCart({

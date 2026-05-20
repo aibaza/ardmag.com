@@ -14,6 +14,30 @@ interface Props {
   cartEmail?: string | null
 }
 
+function SavedAddressHiddenInputs({
+  prefix,
+  address,
+}: {
+  prefix: "shipping_address" | "billing_address"
+  address: HttpTypes.StoreCustomerAddress
+}) {
+  const f = (key: keyof HttpTypes.StoreCustomerAddress) =>
+    (address[key] as string | null | undefined) ?? ""
+  return (
+    <>
+      <input type="hidden" name={`${prefix}.first_name`} value={f("first_name")} />
+      <input type="hidden" name={`${prefix}.last_name`} value={f("last_name")} />
+      <input type="hidden" name={`${prefix}.phone`} value={f("phone")} />
+      <input type="hidden" name={`${prefix}.address_1`} value={f("address_1")} />
+      <input type="hidden" name={`${prefix}.company`} value={f("company")} />
+      <input type="hidden" name={`${prefix}.city`} value={f("city")} />
+      <input type="hidden" name={`${prefix}.province`} value={f("province")} />
+      <input type="hidden" name={`${prefix}.postal_code`} value={f("postal_code")} />
+      <input type="hidden" name={`${prefix}.country_code`} value={f("country_code") || "ro"} />
+    </>
+  )
+}
+
 export function CheckoutAddressForm({
   countryCode,
   customerEmail,
@@ -37,24 +61,37 @@ export function CheckoutAddressForm({
     null
 
   const [selectedShippingId, setSelectedShippingId] = useState<string | null>(
-    hasAddresses && !cartShippingAddress?.address_1 ? (defaultShippingId ?? null) : null
+    hasAddresses ? (defaultShippingId ?? null) : null
   )
   const [selectedBillingId, setSelectedBillingId] = useState<string | null>(
-    hasAddresses && !cartBillingAddress?.address_1 ? (defaultBillingId ?? null) : null
+    hasAddresses ? (defaultBillingId ?? null) : null
   )
   const [sameAsBilling, setSameAsBilling] = useState(true)
   const [error, action] = useActionState(setAddresses, null)
 
-  const useNewShipping = selectedShippingId === null
-  const useNewBilling = selectedBillingId === null
+  const selectedShippingAddress = selectedShippingId
+    ? savedAddresses.find((a) => a.id === selectedShippingId) ?? null
+    : null
+  const selectedBillingAddress = selectedBillingId
+    ? savedAddresses.find((a) => a.id === selectedBillingId) ?? null
+    : null
+
+  const useNewShipping = selectedShippingAddress === null
+  const useNewBilling = selectedBillingAddress === null
   const email = cartEmail || customerEmail || ""
 
   return (
     <form action={action} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <input type="hidden" name="shipping_address.country_code" value="ro" />
-      {!sameAsBilling && <input type="hidden" name="billing_address.country_code" value="ro" />}
-      {!useNewShipping && <input type="hidden" name="shipping_address_id" value={selectedShippingId!} />}
-      {!sameAsBilling && !useNewBilling && <input type="hidden" name="billing_address_id" value={selectedBillingId!} />}
+      {useNewShipping && <input type="hidden" name="shipping_address.country_code" value="ro" />}
+      {!sameAsBilling && useNewBilling && (
+        <input type="hidden" name="billing_address.country_code" value="ro" />
+      )}
+      {!useNewShipping && (
+        <SavedAddressHiddenInputs prefix="shipping_address" address={selectedShippingAddress!} />
+      )}
+      {!sameAsBilling && !useNewBilling && (
+        <SavedAddressHiddenInputs prefix="billing_address" address={selectedBillingAddress!} />
+      )}
 
       <h3 style={{ fontWeight: 600, margin: 0 }}>Adresa de livrare</h3>
 
