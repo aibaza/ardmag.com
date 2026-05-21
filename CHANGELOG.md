@@ -5,6 +5,22 @@ Format: [date] type: description
 
 ---
 
+## 2026-05-21 - Stripe live activat pe ardmag.ro
+
+### Context
+
+Pana acum site-ul folosea un cont Stripe de test pentru plati: comenzile cu cardul mergeau pana la final tehnic, dar banii nu se incasau efectiv. Andrei a dat go-ahead-ul sa trecem pe productie.
+
+### Schimbare livrata
+
+Cardul bancar la checkout foloseste de acum contul real Stripe Arc Rom Diamonds. Cand un client finalizeaza comanda cu cardul, banii ajung direct in cont, comanda apare in admin si email-ul de confirmare se trimite automat.
+
+### Verificare
+
+Trimisa cerere catre Andrei sa faca un order test mic cu card real pentru confirmarea end-to-end (UI checkout -> Stripe -> admin -> email). De finalizat sesiunea urmatoare.
+
+---
+
 ## 2026-05-21 - Curatare descrieri produse: diacritice romanesti + formulari ciudate
 
 ### Probleme raportate de user

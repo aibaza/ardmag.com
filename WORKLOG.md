@@ -987,3 +987,43 @@ Scan post-aplicare:
 1. Backend Railway 502 in mijlocul apply-ului (Postgres disk full pe temp dir). Reluat dupa cateva minute.
 2. Test debug initial accidentally a setat description la "test" pe dischete-de-slefuit-cu-carbura. Restored din backup + reaplicat fixul.
 3. Push initial respins (autentificat ca dc-softex). Schimbat la dobrician via gh auth switch.
+
+
+## 2026-05-21 17:00 - Switch Stripe la productie (cont real Arc Rom Diamonds)
+
+### Context
+
+Pana azi, atat backend Medusa cat si storefront foloseau chei Stripe sandbox (cont test `51R8iFV...`). Comenzile reale dupa lansarea oficiala de pe 19 mai nu se incasau efectiv. Andrei a confirmat azi go-ahead pentru trecerea pe contul Stripe real al ardmag.ro (cont `51S3Eiq...`, Arc Rom Diamonds, co-administrat istoric de Wix).
+
+### Pasi efectuati
+
+1. Stripe Dashboard:
+   - Generat `pk_live_...` si `sk_live_...` (Developers -> API keys)
+   - Creat event destination `api-ardmag-ro-hooks` cu URL `https://api.ardmag.ro/hooks/payment/stripe_stripe`, API version `2025-08-27.basil`, scope "Your account", payload Snapshot
+   - Selectate 4 event-uri: `payment_intent.succeeded`, `payment_intent.payment_failed`, `payment_intent.amount_capturable_updated`, `payment_intent.canceled`
+   - Generat `whsec_...` signing secret
+
+2. Env vars productie:
+   - Vercel `ardmag-storefront`: `NEXT_PUBLIC_STRIPE_KEY` -> pk_live (test removed)
+   - Railway service `medusa`: `STRIPE_API_KEY` = sk_live, `STRIPE_WEBHOOK_SECRET` = whsec
+
+3. Rebuild + redeploy (per lessons learned 19 mai):
+   - `cd backend && npm run build` -> regenereaza `.medusa/server/`
+   - `railway up --service medusa --detach` -> server Ready in ~2 min, no Stripe init errors
+   - `vercel --prod --yes` din repo root (atentie `.vercel/project.json` e la root, nu in `backend-storefront/`)
+   - Deploy ID Vercel: `dpl_65TG31ZajW71UrZMV9sT5Qw5iyCH`
+
+4. Verificare webhook signature:
+   - POST cu signature falsificat la `/hooks/payment/stripe_stripe` -> 200 OK (Medusa face ack rapid Stripe, procesare async via subscriber)
+   - Subscriber `paymentWebhookhandler` -> resolved provider `pp_stripe` -> `StripeSignatureVerificationError` corect ridicat (asteptat pentru fake sig)
+   - Confirmat ca whsec setat pe Railway e folosit la verificarea reala
+
+### Caveats notate
+
+- Banner Stripe Dashboard: "WIX.com helps manage this account". De revocat dupa cateva zile de productie stabila (task #9 ramas).
+- `.vercel/project.json` la repo root in loc de `backend-storefront/`. Linkat corect la `ardmag-storefront`, dar contrar conventiei din CLAUDE.md. Functioneaza, fix-ul = nice to have.
+- Andrei nu a apucat sa faca order-ul test live azi. User a inchis sesiunea cu DA pe procesul de setup (codul live e functional la nivel tehnic, asteptam test real pentru confirmare end-to-end).
+
+### Hand-off
+
+Live merge tehnic. Maine continuam (probabil) cu test order Andrei + revocare access Wix din Stripe.
