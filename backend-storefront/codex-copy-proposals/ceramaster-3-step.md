@@ -20,7 +20,7 @@ Nu apare pe tenax.it sau foxironstone.it cu denumirea exacta. Posibil produs Ten
 ## Descriere propusa (HTML simplu)
 
 <p><strong>Sistem abraziv in 3 trepte</strong> cu liant rasinos pentru lustruirea gresiei portelanate, ceramicii si pietrei naturale dure.</p>
-<p>Cele 4 granulometrii succesive (Step 0, 1, 2, 3) asigura progresiv netezirea suprafetei pana la luciu, fara a deteriora materialul. Dimensiunea K100 corespunde diametrului de 100 mm.</p>
+<p>Cele 4 granulații succesive (Step 0, 1, 2, 3) asigura progresiv netezirea suprafetei pana la luciu, fara a deteriora materialul. Dimensiunea K100 corespunde diametrului de 100 mm.</p>
 <p>Se monteaza pe polizor unghiular cu flansa M14 sau pe suport velcro.</p>
 
 ## Flag

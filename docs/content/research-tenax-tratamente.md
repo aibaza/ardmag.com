@@ -77,7 +77,7 @@ Produsul se numeste "De Graub" (Delta Research) si este listat si pe ardmag.ro l
 ## CERAMASTER 3 STEP
 
 **Descriere RO:**
-Ceramaster 3 Step este un sistem de discuri abrazive cu liant rasinos pentru lustruirea si finisarea gresiei portelanate, ceramicii si pietrei naturale dure. Sistemul consta in 4 granulometrii succesive (Step 0, Step 1, Step 2, Step 3) care asigura progresiv netezirea suprafetei pana la luciu. Dimensiunea K100 indica diametrul de 100 mm. Se monteaza pe polizor unghiular cu flansa M14 sau suport velcro.
+Ceramaster 3 Step este un sistem de discuri abrazive cu liant rasinos pentru lustruirea si finisarea gresiei portelanate, ceramicii si pietrei naturale dure. Sistemul consta in 4 granulații succesive (Step 0, Step 1, Step 2, Step 3) care asigura progresiv netezirea suprafetei pana la luciu. Dimensiunea K100 indica diametrul de 100 mm. Se monteaza pe polizor unghiular cu flansa M14 sau suport velcro.
 
 **Imagini gasite:**
 - https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev/images/ceramaster-3-step/db3b5a_450960efdd5d403883287a13cb751e83-large.png (imagine produs pe ardmag.ro)
