@@ -925,3 +925,65 @@ Cart.update nu cere JWT customer (cart access via cart-id), deci flow-ul nu mai 
 User pe ardmag.ro/checkout (logged in, cart cu 851 Lei):
 - Pre-selectare default address OK
 - Click "Continua spre livrare" -> trece la pas Livrare fara eroare
+
+---
+
+## 2026-05-21 15:20 -- Curatare descrieri produse (diacritice + filler + dash-uri)
+
+Commits: `60ac910` (scripturi + surse)
+DB updates: 74 produse via Medusa Admin API + SQL direct
+Confirmat: DA (live OK pe https://ardmag.ro)
+
+### Probleme raportate de user
+
+User a observat "granulometrii" in loc de "granulații" pe ceramaster 3 step. La cerere extra: "mai sunt cumva si alte formulari ciudate prin aceste descrieri?". Audit complet a dezvaluit:
+- 36 produse cu descrieri ZERO diacritice (generate de Codex/research fara restaurare)
+- 28 produse cu "ideal pentru" (formulare slaba, fara substanta)
+- 5 produse cu "PREMIUM" / "calitate superioara" capitalizat
+- 14 produse cu ghilimele non-romanesti
+- 2 produse cu "--" in text
+- Pattern "PENTRU- " / "PENTRU-&nbsp;" la 5+ produse
+
+### Backup safety
+
+- API snapshot: /home/dc/_backups/ardmag-2026-05-21/products-full.json (1.8MB, toate 91 produse cu fields complete)
+- Full Postgres dump: /home/dc/_backups/ardmag-2026-05-21/full-db.dump (1.2MB, via railway DATABASE_PUBLIC_URL)
+
+### Fix livrat
+
+`scripts/fix-granulometrii.ts`: targeted "granulometr*" -> "granulaț*" preserving suffix (1 hit pe ceramaster-3-step).
+
+`scripts/fix-descriptions-romanian.ts`: dictionar de ~250 cuvinte pentru restaurare diacritice + fix-uri text:
+- Cuvinte ultra-frecvente: "si" -> "și", "in" -> "în", "asa" -> "așa", "atat" -> "atât"
+- Sufixe -ție/-ții (din -tie/-tii): granulatie, concentratie, rotatie, vibratii, etc.
+- Verbe -ează: monteaza, asigura, realizeaza, utilizeaza, etc.
+- î la inceput: inainte, intaritor, intindere, impotriva, etc.
+- â la mijloc: pana, fara, mana, randul, adanc, varful, stanga, etc.
+- ș: masina, flansa, rasinos, portelan, usor, etc.
+- Bigrame contextuale: "piatra naturala" -> "piatră naturală", "in functie" -> "în funcție"
+- Filler removal: "ideal pentru" -> "potrivit pentru", "calitate superioara" -> "fin"
+- Dash-uri: "--" -> "-", "PENTRU- " -> "PENTRU: "
+
+### Applicare
+
+Aplicat 70 produse via Medusa Admin API in primul pass. Backend Railway a picat la 502 in mijloc (Postgres "No space left on device" pe temp dir cauzat de query JOIN masiv pentru produse cu multe variante). Reluat dupa restabilire pentru inca 13 produse.
+
+Pentru `dischete-de-slefuit-cu-carbura` (51 variante) si 4 produse cu diacritice partiale am folosit SQL direct (psql pe DATABASE_PUBLIC_URL), ocolind ORM-ul Medusa care genereaza JOIN-uri ce explodeaza temp file space.
+
+### Curatare suplimentara
+
+- Corectat in surse repo "granulometrii" -> "granulații" la 4 fisiere .md + 1 .sql (research-tenax-tratamente, ceramaster-3-step copy-proposals)
+- Cache Next.js revalidat via /api/revalidate?tag=products
+
+### Verificare finala
+
+Scan post-aplicare:
+- 0 produse cu "granulometr", "ideal pentru", "calitate superioara", "PENTRU-", "--"
+- 4 produse au inca ratio <2.5% diacritice (dar acceptabil pentru lungime/termeni tehnici); hand-rewrite pentru pad-cauciuc, aplicator-fast-glaxs, detergenti, freze-diamantate
+- Sample live OK: granulații pe ceramaster, "mașini" + "piatră naturală" pe abrazivi-anelli, "durată de viață lungă" pe dischete-carbura
+
+### Probleme intampinate
+
+1. Backend Railway 502 in mijlocul apply-ului (Postgres disk full pe temp dir). Reluat dupa cateva minute.
+2. Test debug initial accidentally a setat description la "test" pe dischete-de-slefuit-cu-carbura. Restored din backup + reaplicat fixul.
+3. Push initial respins (autentificat ca dc-softex). Schimbat la dobrician via gh auth switch.

@@ -5,6 +5,28 @@ Format: [date] type: description
 
 ---
 
+## 2026-05-21 - Curatare descrieri produse: diacritice romanesti + formulari ciudate
+
+### Probleme raportate de user
+
+Pe ceramaster 3 step se vedea "granulometrii" in loc de "granulații" (cuvant tehnic incorect, fara diacritice). Audit la cererea user-ului a aratat ca multe descrieri de produse au probleme similare: zero diacritice in 36 produse, formulari fara substanta ca "ideal pentru" (28 produse) si "calitate superioara", separatori vizuali ciudati ("PENTRU- " in loc de "PENTRU: ") si "--" in text.
+
+### Fix livrat
+
+74 descrieri de produse au fost corectate cu:
+- Diacritice romanesti complete (s->ș, t->ț, a->ă/â, i->î) pe cuvinte ca "mașini", "asigură", "piatră naturală", "granulație", "operațiuni", "vibrațiile", "concentrație", "rotație", "specifică", etc.
+- "granulometrii" inlocuit cu "granulații" peste tot in catalog si in surse.
+- Filler eliminat: "ideal pentru" -> "potrivit pentru", "calitate superioara" -> "fin".
+- Separatori curatati: "PENTRU- Ceramică" -> "PENTRU: Ceramică".
+
+Toate paginile de produs afiseaza acum textul in romana corecta, mai potrivit pentru profesionistii care lucreaza cu piatra naturala.
+
+### Verificare
+
+Live pe https://ardmag.ro pentru: ceramaster-3-step, abrazivi-anelli, dischete-de-slefuit-cu-carbura, burghiu, mastic-semisolid, pad-cauciuc, detergenti.
+
+---
+
 ## 2026-05-20 - Fix checkout: adresa implicita pre-selectata si eroare Unauthorized
 
 ### Bug raportat de user
