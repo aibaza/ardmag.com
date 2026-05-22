@@ -5,6 +5,22 @@ Format: [date] type: description
 
 ---
 
+## 2026-05-22 - Email automat la invitatie administrator
+
+### Context
+
+Cand cream un cont nou de administrator pentru cineva din echipa, Medusa crea invitatia in baza de date, dar nu trimitea email. Trebuia sa copiez link-ul si sa-l transmit manual prin alt canal. Daca uitam, persoana nu putea sa intre in admin.
+
+### Schimbare livrata
+
+La crearea unei invitatii noi (Settings -> Team in admin), persoana primeste automat pe email un mesaj cu butonul "Activeaza contul" si link de setare parola valabil 24 de ore. Marca expeditorului: office@ardmag.ro.
+
+### Verificare
+
+Test invite catre o adresa interna pe 22 mai: invitatie creata in admin -> email primit in cateva secunde -> link functional -> activare cont reusita.
+
+---
+
 ## 2026-05-21 - Stripe live activat pe ardmag.ro
 
 ### Context

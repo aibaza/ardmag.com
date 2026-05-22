@@ -1027,3 +1027,40 @@ Pana azi, atat backend Medusa cat si storefront foloseau chei Stripe sandbox (co
 ### Hand-off
 
 Live merge tehnic. Maine continuam (probabil) cu test order Andrei + revocare access Wix din Stripe.
+
+---
+
+## 2026-05-22 15:55 - Email automat la invitatie administrator + Stripe production validat end-to-end
+
+Deploy: Railway service `medusa` (build OK + healthcheck succeeded)
+Confirmat: DA (test invite catre dc@aibaza.ro a aterizat, butonul functional)
+
+### Context
+
+Andrei a cerut acces de administrator pentru Adriana (sotia, gestioneaza office@/contact@ in firma). Am creat invite-ul via API la 10:33 si am observat ca Medusa nu trimite email automat -- doar creeaza intrarea in DB cu un token. Am dat link-ul manual user-ului, care l-a transmis Adrianei. Ea a activat contul la 10:46. Functional, dar gap-ul ramane: orice membru viitor de echipa trebuie sa primeasca email automat, nu printr-un workaround manual.
+
+### Schimbare livrata
+
+Adaugat subscriber pe event-ul `invite.created` din Medusa core-flows + template HTML in branding-ul ardmag.ro pentru email-ul de invitatie. La crearea unei invitatii noi din admin (Settings -> Team), persoana primeste automat un email cu butonul "Activeaza contul" si link de setare parola valabil 24h. Marca expeditorului: office@ardmag.ro (no-reply).
+
+Fisiere:
+- `backend/src/modules/notification-smtp2go/templates/admin-invite.ts` (template nou)
+- `backend/src/modules/notification-smtp2go/service.ts` (wire-up subject + render)
+- `backend/src/subscribers/invite-created.ts` (subscriber nou)
+
+### Validare
+
+Test invite catre `dc@aibaza.ro`. Log-uri Railway dupa POST `/admin/invites`:
+- `Processing invite.created (priority: 100) which has 1 subscribers`
+- `smtp2go: sent "Invitatie administrare ardmag.ro" to dc@aibaza.ro from ardmag.ro <office@ardmag.ro>`
+- `[invite-notify] Sent admin invite email to dc@aibaza.ro`
+
+Email aterizat in inbox in secunde. Butonul si link-ul direct (fallback text) duc la `https://api.ardmag.ro/app/invite?token=...`. Confirmat de user: "totul pare super".
+
+### Bonus zilei: Stripe production validat end-to-end
+
+Andrei a finalizat o comanda cu cardul pe contul real Stripe Arc Rom Diamonds (cel activat ieri, 21 mai). Banii au ajuns corect in Stripe, comanda apare in admin, totul aliniat. Inseamna ca migrarea Stripe test -> productie din 21 mai este validata end-to-end -- caveat-ul "asteptam test real pentru confirmare end-to-end" din worklog-ul de ieri este acum inchis.
+
+### Hand-off
+
+Email-uri tranzactionale aproape complete pentru admin workflow. Mai ramane pe lista (din WORKLOG anterior): revocare acces Wix din Stripe Dashboard (caveat din 21 mai, recomandat dupa cateva zile de productie stabila -- inca nu e timpul).

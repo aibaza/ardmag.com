@@ -9,6 +9,7 @@ import { renderPasswordReset } from "./templates/password-reset"
 import { renderOrderShipped } from "./templates/order-shipped"
 import { renderNewsletterConfirm } from "./templates/newsletter-confirm"
 import { renderCartAbandoned } from "./templates/cart-abandoned"
+import { renderAdminInvite } from "./templates/admin-invite"
 
 type InjectedDependencies = {
   logger: Logger
@@ -191,6 +192,7 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
       "cart.abandoned": "Coșul tău te așteaptă pe ardmag.ro",
       "contact.admin": "Mesaj nou de pe ardmag.ro",
       "contact.autoreply": "Am primit mesajul tău — ardmag.ro",
+      "admin.invite": "Invitație administrare ardmag.ro",
     }
     return map[template] ?? "Notificare ardmag.ro"
   }
@@ -208,6 +210,11 @@ export class Smtp2goNotificationService extends AbstractNotificationProviderServ
     if (template === "newsletter.confirm") return renderNewsletterConfirm(
       data?.confirmUrl as string ?? `${baseUrl}/newsletter/confirmat`,
       data?.unsubscribeUrl as string ?? `${baseUrl}/newsletter/dezabonat`,
+      baseUrl
+    )
+    if (template === "admin.invite") return renderAdminInvite(
+      data?.inviteUrl as string ?? baseUrl,
+      data?.email as string ?? "",
       baseUrl
     )
     return `<p>Notificare: ${template}</p>`
