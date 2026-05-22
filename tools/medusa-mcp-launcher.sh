@@ -30,4 +30,8 @@ if ! ENV_FILE="${MCP_DIR}/.env" bash "${SAFETY_SCRIPT}"; then
 fi
 
 cd "${MCP_DIR}"
-exec node dist/index.js
+# Lansam prin proxy-ul nostru care sanitizeaza tools/list response.
+# Background: schemele OpenAPI Medusa contin chei MongoDB-style ($and, $or, $eq)
+# pe care Anthropic API le respinge (regex ^[a-zA-Z0-9_.-]{1,64}$).
+# Proxy-ul dropeaza recursiv aceste chei din inputSchema fara sa-l atinga pe MCP-ul real.
+exec node "${SCRIPT_DIR}/mcp-proxy.mjs"
