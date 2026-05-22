@@ -163,25 +163,70 @@ chore: configurare ESLint pentru workspace
 
 ## Comenzi utile dev
 
+Toate comenzile pleacă de la rădăcina repo-ului. Detalii complete în [docs/dev-environment.md](docs/dev-environment.md).
+
 ```bash
-# Backend Medusa
-cd backend
-npm run dev          # pornește pe localhost:9000
+# Setup inițial (o singură dată după git clone)
+cp backend/.env.development.template backend/.env.development
+cp backend-storefront/.env.development.template backend-storefront/.env.development
+cd backend && npm install && cd ..
+cd backend-storefront && npm install && cd ..
 
-# Migrații
-npx medusa migrations run
+# Workflow zilnic
+make dev-up                # docker: Postgres :5433 + Redis :6380
+make dev-backend           # terminal A — Medusa pe localhost:9000
+make dev-storefront        # terminal B — Next.js pe localhost:8000
+# sau ambele paralel:
+make dev
 
-# Seed (date de test)
-npx medusa seed --seed-file ./data/seed.json
+# Tear down
+make dev-down              # opreste containerele (DATELE RAMAN in volume)
+make dev-status            # health check rapid
 
-# Storefront Next.js
-cd storefront
-npm run dev          # pornește pe localhost:8000
+# Date
+make dev-clone             # clone prod -> medusa_dev_clone (sanitized)
+make dev-seed-fresh        # alternativ: fresh DB cu seed.ts + RO setup
+make dev-migrate           # rulează migratiile pe DB-ul curent
+make dev-admin             # creează dev@ardmag.local / dev123456
+make dev-publishable-key   # afișează publishable key din DB
 
-# Script de import catalog
-cd scripts
-npx ts-node import-wix-catalog.ts
+# Stripe webhooks (optional)
+make dev-stripe-listen     # forward la localhost:9000/hooks/payment/stripe_stripe
+
+# Toate comenzile
+make                       # listă completă cu descrieri
 ```
+
+**Reguli absolute:**
+
+- Niciun script Make NU șterge DB-uri sau volume. Pentru wipe complet (DESTRUCTIV, manual):
+  ```bash
+  docker compose -f docker-compose.dev.yml down -v
+  ```
+- Backend: `cd backend` (NU `cd storefront` — folder-ul nu există).
+- Storefront: `cd backend-storefront` (NU `cd storefront`).
+- Pentru deploy: vezi skill-ul `aibaza-deploy-workflow` (commit + push + WORKLOG + ClickUp DOAR după confirmarea user pe URL live).
+
+**Echivalente npm (alt mod de a invoca):**
+```bash
+npm run dev:up        # = make dev-up
+npm run dev           # = make dev
+npm run dev:status    # = make dev-status
+```
+
+---
+
+## MCP server (medusa-mcp)
+
+Server MCP comunitar pentru control runtime al magazinului via Claude Code. Hard-wired pe `http://localhost:9000`. Vezi [docs/dev-environment.md secțiunea 6](docs/dev-environment.md#6-working-with-the-mcp-server).
+
+```bash
+make dev-mcp-up        # safety check + reminder restart Claude Code
+make dev-mcp-test      # curl direct la backend (NU prin MCP) — izolează buguri
+make dev-mcp-probe     # dump lista de tools -> tools/.medusa-mcp-tools.txt
+```
+
+**REGULĂ:** Nu invoca tool-uri MCP `Delete*`, `*Cancel*`, `*Refund*` fără confirmare per apel. Pre-1.0 community server, fără teste publice.
 
 ---
 

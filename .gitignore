@@ -14,6 +14,8 @@ build/
 .env.*.local
 .env.production
 .env.production.local
+.env.development
+.env.development.local
 
 # Secrets (never commit)
 docs/deployment/SECRETS.md
@@ -40,6 +42,8 @@ npm-debug.log*
 *.db
 docs/backups/
 *.sql
+# Exception: dev sanitize SQL trebuie committed (parte din scripts/dev/)
+!scripts/dev/sanitize-clone.sql
 
 # Reports and audit outputs (large, generated)
 reports/
@@ -47,6 +51,14 @@ reports/
 # Claude / tool artifacts
 .claude/scheduled_tasks.lock
 .codex
+
+# Local dev tools (community MCP server, gitignored complet)
+tools/medusa-mcp/
+tools/.medusa-mcp.sha
+tools/.medusa-mcp-tools.txt
+
+# Local dev DB dumps (uneori >1MB, mereu local)
+tmp/
 
 # Medusa build cache
 backend/.medusa/

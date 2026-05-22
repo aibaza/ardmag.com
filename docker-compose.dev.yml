@@ -1,0 +1,74 @@
+# docker-compose.dev.yml
+# Local dev infrastructure for ARDmag.ro — Postgres + Redis only.
+# Backend (Medusa v2) si storefront (Next.js) ruleaza nativ via `npm run dev`
+# pentru HMR rapid si logs lizibili.
+#
+# Conventii porturi (NU folosim 5432/6379 ca sa nu intram in conflict cu
+# Postgres-ul nativ deja instalat pe host pe 5432):
+#   Postgres host 5433 -> container 5432
+#   Redis    host 6380 -> container 6379
+#
+# Volume NAMED (NU bind mount): supravietuiesc `docker compose down`,
+# se sterg DOAR cu `docker compose -f docker-compose.dev.yml down -v` (manual).
+#
+# IMPORTANT: nicio comanda din Makefile NU foloseste `down -v`. User-ul tipeaza
+# manual daca vrea wipe complet la volume.
+
+name: ardmag-dev
+
+services:
+  postgres:
+    # 18.3-alpine ca sa potrivim EXACT major.minor cu Railway prod (18.3).
+    image: postgres:18.3-alpine
+    container_name: ardmag-dev-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: medusa
+      POSTGRES_PASSWORD: medusa
+      POSTGRES_DB: medusa_dev_fresh
+      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    ports:
+      # 127.0.0.1 explicit ca sa nu se expuna pe LAN.
+      - "127.0.0.1:5433:5432"
+    volumes:
+      # PG 18+ stores data in version-specific subdir (e.g. /var/lib/postgresql/18/docker).
+      # Mount the PARENT dir, not /var/lib/postgresql/data (legacy PG <=17 convention).
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medusa -d medusa_dev_fresh"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - ardmag-dev-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: ardmag-dev-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "everysec"]
+    ports:
+      - "127.0.0.1:6380:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    networks:
+      - ardmag-dev-net
+
+volumes:
+  postgres_data:
+    name: ardmag-dev-pg
+  redis_data:
+    name: ardmag-dev-redis
+
+networks:
+  ardmag-dev-net:
+    name: ardmag-dev-net
+    driver: bridge

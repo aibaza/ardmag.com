@@ -1064,3 +1064,109 @@ Andrei a finalizat o comanda cu cardul pe contul real Stripe Arc Rom Diamonds (c
 ### Hand-off
 
 Email-uri tranzactionale aproape complete pentru admin workflow. Mai ramane pe lista (din WORKLOG anterior): revocare acces Wix din Stripe Dashboard (caveat din 21 mai, recomandat dupa cateva zile de productie stabila -- inca nu e timpul).
+
+---
+
+## 2026-05-22 -- Sesiune dev infrastructure (NU livrare prod)
+
+Setup mediu dev local izolat de productie, ca sa putem experimenta cu serverul MCP comunitar fara risc. Aceasta sesiune NU schimba nimic in productie -- toate fisierele sunt noi sau editari la artefacte de dev.
+
+### Ce s-a livrat (in repo, ne-deploy-at)
+
+**Docker infra (root)**
+- `docker-compose.dev.yml` -- Postgres 18.3-alpine pe :5433 + Redis 7-alpine pe :6380, named volumes, healthchecks
+- `Makefile` -- orchestration root (~25 targets: dev-up/down/clone/migrate/seed-fresh/admin/backend/storefront/mcp-up/test/probe)
+
+**Scripturi (`scripts/dev/`)**
+- `clone-prod-to-dev.sh` -- pg_dump prod via Railway CLI -> restore in medusa_dev_clone local -> sanitize
+- `sanitize-clone.sql` -- anonimizare PII (customer, addresses, account_holder Stripe IDs, provider_identity, user, api_key -> pk_dev_*); ruleaza in --single-transaction
+- `up.sh` + `wait-for-db.sh` -- bootstrap docker cu wait-for-healthy + report status
+- `print-publishable-key.sh` -- helper query api_key
+- `check-publishable-key-in-storefront.sh` -- detect placeholder in env
+- `check-mcp-safety.sh` -- refuza .env-uri cu prod refs (ardmag.ro, api.ardmag, railway.app, sk_live_, pk_live_)
+- `probe-mcp-tools.mjs` -- JSON-RPC client care dump-uieste lista tools
+
+**Env templates**
+- `backend/.env.development.template` -- safe defaults dev (Stripe/R2/SMTP UNSET, NOTIFICATION_BCC explicit empty)
+- `backend-storefront/.env.development.template` -- publishable key placeholder + analytics commented out
+
+**MCP integration**
+- `tools/medusa-mcp/` -- clonat SGFGOV/medusa-mcp @ SHA d1ce4896b456e5ee85273db79ba4d250045c6965 (gitignored)
+- `tools/medusa-mcp-launcher.sh` -- wrapper care cd in dir si exec node + safety check
+- `tools/.medusa-mcp.sha` -- SHA pinned
+- `tools/.medusa-mcp-tools.txt` -- 273 tools (~245 admin + ~28 store)
+- `.claude/settings.json` -- bloc mcpServers.medusa-dev + permissions extra (Bash make dev-*)
+
+**Documentatie**
+- `README.md` (root, nou) -- quickstart 5 comenzi + link la docs/dev-environment.md
+- `docs/dev-environment.md` -- 9 sectiuni: prerequisites, setup, daily, refresh DB, env vars, MCP, troubleshooting, teardown, what NOT to do
+- `scripts/dev/README.md` -- runbook scurt
+- `CLAUDE.md` -- rescris sectiunea "Comenzi utile dev" (fix typo `cd storefront` -> `cd backend-storefront`, adaugat sectiune MCP)
+- `.gitignore` -- adaugat `tools/medusa-mcp/`, `tmp/`, `.env.development*`
+- `package.json` (root) -- scripts block cu aliases npm run dev:* -> make dev-*
+
+### Decizii arhitecturale notabile
+
+1. **Postgres 18.3-alpine** -- match exact major.minor cu prod (din SQL dump header).
+2. **PG 18 mount convention** -- mount la `/var/lib/postgresql` (parent), NU `/var/lib/postgresql/data` (legacy). Initdb failed cu mount-ul legacy.
+3. **Porturi non-default** -- 5433/6380 ca sa nu conflict cu native PG 18.3 deja instalat pe :5432.
+4. **Backend/storefront ruleaza NATIV** (NU in docker) -- HMR rapid, logs lizibili in terminale separate. Doar Postgres/Redis in containere.
+5. **Doua DB-uri paralele** -- `medusa_dev_fresh` (seed) + `medusa_dev_clone` (sanitized prod). Switch instant prin DATABASE_URL.
+6. **Sanitize cu `--single-transaction`** -- failure -> rollback complet, NU lasa DB in stare half-clean.
+7. **Niciodata DROP DATABASE in scripturi** -- regula absoluta user. Wipe = manual.
+8. **MCP launcher wrapper** (`tools/medusa-mcp-launcher.sh`) -- dotenv din MCP cauta `.env` in process.cwd(); Claude Code spawneaza din repo root, deci wrapper-ul face `cd` in dir MCP inainte de exec.
+
+### Lesson learned: Medusa loadEnv NU urmeaza Next.js convention
+
+`@medusajs/utils/dist/common/load-env.js` pentru NODE_ENV=development citeste DOAR `.env` (NU `.env.development`). KNOWN_ENVIRONMENTS = [staging, production, test] -- development NU e in lista.
+
+Compensare in Makefile: `set -a && source backend/.env.development && set +a` inainte de fiecare comanda backend. Asa pastram `backend/.env` intact (config vechi) si dam prioritate explicita la `.env.development` doar cand rulam via make.
+
+### Lesson learned: schema prod are PII intr-un loc neasteptat
+
+`account_holder.external_id` cu `provider_id='pp_stripe_stripe'` stocheaza Stripe customer IDs reale (cus_*). `provider_identity.entity_id` cu `provider='emailpass'` stocheaza emailurile de login plaintext. Astea NU sunt evidente din browsing-ul admin Medusa -- numai SQL direct le scoate.
+
+Sanitize SQL le anonimizeaza explicit (toate randurile updated: 117 customer, 73 customer_address, 49 order_address, 515 cart_address, 6 order, 8 cart, 6 payment, 6 payment_session, 2 account_holder, 114 provider_identity, 114 auth_identity, 3 user, 1 api_key publishable).
+
+### Verificare locala
+
+- `make dev-up`: Postgres + Redis healthy in <15s
+- `make dev-clone`: dump 830 KB, restore + sanitize OK in ~25s
+- `make dev-admin DB=medusa_dev_clone`: "User created successfully"
+- `make dev-publishable-key DB=medusa_dev_clone`: pk_dev_fac2fbe...
+- `make dev-backend`: "Server is ready on port: 9000" in 2.2s
+- `make dev-storefront`: "Ready in 1305ms", GET / 200 in 4.3s, products fetched OK
+- `make dev-mcp-test`: backend reachable, publishable key valid, admin login OK
+- `make dev-mcp-probe`: 273 tools enumerate (245 admin + 28 store)
+- Negative test safety: `ENV_FILE=/tmp/bad.env bash scripts/dev/check-mcp-safety.sh` cu `MEDUSA_BACKEND_URL=https://api.ardmag.ro` -> exit 2 (fail by design)
+
+### Codex critical review + 4 fixuri aplicate
+
+Cerut Codex (CLI) parere critica pe setup. A flag-uit 5 HIGH-severity findings (4 actionable la noi):
+
+1. **Dump prod cu PII raman pe disc** in `tmp/db-dumps/*.dump` (necriptat, world-readable). FIX: `umask 077`, `chmod 700` pe dir, default `KEEP_PROD_DUMP=0` cu cleanup automat dupa sanitize succes.
+2. **`pg_restore` non-fatal** (`|| { warn... }`) - sanitize putea rula pe DB partial. FIX: parse log, FAIL HARD pe orice eroare alta decat `newsletter_subscriber` lipsa (whitelist explicit via `RESTORE_ALLOW_MISSING_NEWSLETTER=1`).
+3. **PII soft-deleted nesanitizat** - toate UPDATE-urile aveau `WHERE deleted_at IS NULL`. FIX: schimbat la `WHERE TRUE` (sanitize si rows soft-deleted; riscul GDPR e pe disc, nu pe UI).
+4. **MCP launcher cu safety check duplicat** - lista regex-uri mai mica decat in `check-mcp-safety.sh` (lipsa `ardmag.com`, `admin.ardmag`, `.up.railway`, `shinkansen.proxy.rlwy`). FIX: launcher acum invoca DIRECT scriptul central; zero duplicare.
+
+(Finding #4 din Codex despre cum MCP-ul comunitar construieste body/path = upstream issue, nu actionable la noi.)
+
+Codex a livrat si `scripts/dev/smoke-test.sh` (19 checks, mai complet decat playwright-smoke.mjs al meu) - integrat in repo.
+
+### Verificare finala dupa fixuri
+
+Re-clone full pipeline cu noile scripturi:
+- Dump cleanup: dir-ul `tmp/db-dumps/` are perms 700, fisiere noi 600, dump-ul .dump sters automat dupa sanitize ✓
+- Sanitize completness: 0 customers cu prod email (din 117 total), 0 provider_identity cu prod email, 0 account_holder cu Stripe `cus_*`, 0 user (admin) cu prod email, 0 api_key non-pk_dev_*
+- Codex smoke-test.sh: **20/20 PASS** (inclusiv MCP enumerate 299 tools, AdminGetProducts + Store GetProducts present)
+- Playwright smoke (scripts/dev/playwright-smoke.mjs): **12/12 PASS** (backend health, store API, admin login API, storefront /, /produse, PDP, admin /app/login, zero console errors, sanitize integrity)
+- Safety negative test: `ENV_FILE=/tmp/bad.env` cu `MEDUSA_BACKEND_URL=https://api.ardmag.ro` -> safety guard exit 2 ✓
+
+**Total verificat: 32/32 checks PASS.**
+
+### Ce ramane de facut DUPA ce te intorci
+
+1. Restart Claude Code ca sa incarce MCP `medusa-dev` (refresh la `.claude/settings.json`)
+2. Test in chat: "Listeaza 3 produse din medusa-dev MCP" -> trebuie sa primesti lista cu produse din DB-ul local
+3. ClickUp time entry pentru sesiunea asta (~4-5h) per `client-email-writer` skill (limbaj non-tehnic) -- amanat pana revii
+

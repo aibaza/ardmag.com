@@ -11,7 +11,20 @@
       "Bash(grep:*)",
       "Bash(mkdir:*)",
       "Bash(ls:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(make dev-:*)",
+      "Bash(make dev*)"
     ]
+  },
+  "mcpServers": {
+    "medusa-dev": {
+      "type": "stdio",
+      "command": "bash",
+      "args": ["./tools/medusa-mcp-launcher.sh"],
+      "env": {
+        "MEDUSA_BACKEND_URL": "http://localhost:9000",
+        "NODE_ENV": "development"
+      }
+    }
   }
 }

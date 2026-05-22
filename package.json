@@ -1,4 +1,22 @@
 {
+  "scripts": {
+    "dev": "make dev",
+    "dev:up": "make dev-up",
+    "dev:down": "make dev-down",
+    "dev:status": "make dev-status",
+    "dev:logs": "make dev-logs",
+    "dev:clone": "make dev-clone",
+    "dev:seed-fresh": "make dev-seed-fresh",
+    "dev:migrate": "make dev-migrate",
+    "dev:admin": "make dev-admin",
+    "dev:publishable-key": "make dev-publishable-key",
+    "dev:backend": "make dev-backend",
+    "dev:storefront": "make dev-storefront",
+    "dev:stripe-listen": "make dev-stripe-listen",
+    "dev:mcp-up": "make dev-mcp-up",
+    "dev:mcp-test": "make dev-mcp-test",
+    "dev:mcp-probe": "make dev-mcp-probe"
+  },
   "devDependencies": {
     "pixelmatch": "^7.1.0",
     "pngjs": "^7.0.0"
