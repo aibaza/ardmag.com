@@ -1164,9 +1164,43 @@ Re-clone full pipeline cu noile scripturi:
 
 **Total verificat: 32/32 checks PASS.**
 
-### Ce ramane de facut DUPA ce te intorci
+### Fix-uri suplimentare descoperite la test cu sesiune fresh
 
-1. Restart Claude Code ca sa incarce MCP `medusa-dev` (refresh la `.claude/settings.json`)
-2. Test in chat: "Listeaza 3 produse din medusa-dev MCP" -> trebuie sa primesti lista cu produse din DB-ul local
-3. ClickUp time entry pentru sesiunea asta (~4-5h) per `client-email-writer` skill (limbaj non-tehnic) -- amanat pana revii
+Doua probleme reale identificate la incercarea de incarcare a MCP-ului intr-o sesiune fresh:
+
+**Fix 5 -- locatie config MCP** (commit `a11700d`):
+- CLI-ul nostru NU citeste `mcpServers` din `.claude/settings.json`. Locatia corecta e `.mcp.json` la root (scope project) sau dotfile global (scope user).
+- Fix: rulat `mcp add medusa-dev --scope project bash ./tools/medusa-mcp-launcher.sh` care creeaza `.mcp.json`. Curatat blocul (acum neutilizat) din `.claude/settings.json`.
+- Verificare: `mcp list` afiseaza `medusa-dev: connected`.
+
+**Fix 6 -- schema tools incompatibila cu API-ul nostru** (commit `ff6e7df`):
+- 60 din cele 299 tools generate de medusa-mcp aveau property keys MongoDB-style (`$and`, `$or`, `$eq`) in input schemas (toate GET cu filter queries).
+- API-ul tool-ului nostru valideaza property names cu regex `^[a-zA-Z0-9_.-]{1,64}$`. Dolarul refuzat. Rezultat: response API 400 la `tools.NN.custom.input_schema.properties`, tot tool-list-ul respins, MCP-ul inutilizabil.
+- Fix: scris `tools/mcp-proxy.mjs` -- stdio proxy care intercepteaza `tools/list` response si dropeaza recursiv chei invalide din `inputSchema.properties` si `required` arrays. Pastreaza toate cele 299 tools, doar elimina query operators.
+- Launcher updated sa lanseze proxy in loc de exec direct la `dist/index.js`.
+
+### Test final end-to-end
+
+Headless via `claude -p --output-format json "...listeaza 3 produse din medusa-dev MCP..."`:
+
+```
+3 produse din magazin:
+1. MASTIC LICHID -- mastic-lichid
+2. MASTIC SEMISOLID WET -- mastic-semisolid-wet
+3. MASTIC SEMISOLID -- mastic-semisolid
+```
+
+Identice cu rezultatul curl direct la `localhost:9000/store/products?limit=3`. Confirmat: MCP-ul e functional in sesiune fresh, schema accepta, tool-urile sunt invocabile, backend raspunde, sanitize-ul nu rupe nimic. Total: 4 turns, 19s, cost ~$1 (Opus 4.7 cu 150k cache).
+
+### Lessons learned
+
+1. **`.claude/settings.json` nu suporta `mcpServers`** -- locatia e `.mcp.json` la root sau dotfile global. Atunci cand un MCP "nu apare", primul check e `mcp list` -- nu console errors, fail-ul e tacut.
+
+2. **OpenAPI schemas auto-generate au often-invalid property keys** -- MCP-urile comunitare care wrap-uiesc OpenAPI specs trebuie sanitizate la output. Proxy-ul nostru e patternul reutilizabil.
+
+3. **`resume` nu reincarca MCP servers** -- restart-ul trebuie complet (sesiune fresh), nu `--resume` si nici `--continue`. Documentat in `docs/dev-environment.md`.
+
+### Ce ramane de facut
+
+Nimic blocant. ClickUp time entry pentru sesiunea asta (~5-6h total cu fix-urile post-confirmare) ramane sa-l adaug la urmatoarea sesiune sync cu Andrei/Cristian.
 
