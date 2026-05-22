@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "medusa-dev": {
+      "type": "stdio",
+      "command": "bash",
+      "args": [
+        "./tools/medusa-mcp-launcher.sh"
+      ],
+      "env": {}
+    }
+  }
+}

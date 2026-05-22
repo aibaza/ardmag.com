@@ -217,7 +217,7 @@ NODE_ENV=development
 
 ### 6.3 Activare in Claude Code
 
-`.claude/settings.json` are deja blocul `mcpServers.medusa-dev`. **Restart Claude Code** ca sa-l incarce.
+`.mcp.json` la root contine config-ul `mcpServers.medusa-dev` (citit DOAR la pornire). **Restart Claude Code complet** (NU resume) ca sa-l incarce — resume reuseaza MCP-urile din sesiunea originala. Verificare: `claude mcp list` trebuie sa afiseze `medusa-dev: ✓ Connected`.
 
 Apoi in chat:
 - "Listeaza primele 5 produse din medusa-dev MCP" → calls `StoreGetProducts`
