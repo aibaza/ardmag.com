@@ -26,6 +26,8 @@ import { MetaPixel } from "@components/cookie-consent/MetaPixel"
 import { FastNav } from "@components/nav/FastNav"
 import { Providers } from "./providers"
 
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
+
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
   title: {
@@ -65,6 +67,17 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <link rel="dns-prefetch" href="https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev" />
       </head>
       <body>
+        {GTM_ID ? (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+              title="Google Tag Manager"
+            />
+          </noscript>
+        ) : null}
         <Providers>
           <OrganizationJsonLd />
           <WebSiteJsonLd />
