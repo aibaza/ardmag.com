@@ -39,7 +39,7 @@ function bestMatchingVariant(
   let bestScore = -1
   for (const v of candidates) {
     let score = 0
-    for (const [dim, val] of activeOpts) {
+    for (const [dim, val] of Array.from(activeOpts.entries())) {
       if ((v.options ?? []).some((o) => o.option?.title === dim && o.value === val)) score++
     }
     if (score > bestScore) { bestScore = score; best = v }

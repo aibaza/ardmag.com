@@ -143,7 +143,7 @@ export function productToCard(
     }
   }
   const specs: string[] = []
-  for (const [title, values] of axisValues) {
+  for (const [title, values] of Array.from(axisValues.entries())) {
     if (values.size <= 1) continue
     if (specs.length >= 3) break
     specs.push(axisLabel(title, values.size))
