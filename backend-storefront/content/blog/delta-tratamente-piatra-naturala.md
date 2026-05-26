@@ -1,6 +1,6 @@
 ---
-title: "Cum alegi tratamentul potrivit pentru piatră naturală: impregnare, protecție și efect"
-description: "Tipul pietrei, locul de montaj și efectul dorit dictează tratamentul. Ghid practic peste gama Delta Research, fără promisiuni de protecție permanentă."
+title: "Tratamente pentru piatră naturală: cum alegi soluția potrivită"
+description: "Ghid practic Delta Research: alege tratamentul pentru piatră naturală după suport, montaj, trafic, bază apă/solvent și efect natural sau umed."
 kicker: "Ghid tehnic · Delta Research"
 publishedAt: "2026-05-26"
 author: "Echipa ardmag"
