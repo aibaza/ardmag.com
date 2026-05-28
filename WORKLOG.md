@@ -65,6 +65,16 @@ Confirmat: DA / NU
 
 -->
 
+## 2026-05-28 06:37 -- Blog Delta Research: aplicare tratamente + social media publică
+
+Commits: `30e387b`, `0b3a3e9`
+Deploy: https://ardmag.ro/ro/blog/aplicare-tratamente-piatra-naturala | Vercel: `8np7SmTD5iX8cHDRZfDeuTsDxU7U`, `9TEMiNDAtC1Drg6qPQEtm5g2CJCk`
+Confirmat: DA (live verify 200)
+
+Publicat articolul `aplicare-tratamente-piatra-naturala` cu hero WebP și prompt record. Apoi publicate asset-urile social pentru Metricool la `/assets/articles/aplicare-tratamente-piatra-naturala/2026-05-28/`.
+
+Verificări: articol live 200, media publică `image/jpeg` (`facebook.jpg` 170176 bytes, `story.jpg` 196020 bytes). Metricool ARDmag: Facebook Story programat 2026-05-28 08:00 Europe/Bucharest, Facebook feed programat 2026-05-28 10:00 Europe/Bucharest. Nu au fost modificate postări PUBLISHED.
+
 ## 2026-05-17 14:00 -- Format preturi: Lei + decimal low-contrast + right-align + fix factor 100
 
 Commits: `<pending>` (consolidat post-`0cd830b`)
@@ -1203,4 +1213,3 @@ Identice cu rezultatul curl direct la `localhost:9000/store/products?limit=3`. C
 ### Ce ramane de facut
 
 Nimic blocant. ClickUp time entry pentru sesiunea asta (~5-6h total cu fix-urile post-confirmare) ramane sa-l adaug la urmatoarea sesiune sync cu Andrei/Cristian.
-
