@@ -1229,3 +1229,30 @@ A doua iteratie (v3, generata local prin `codex exec` cu referinta packshot `/tm
 
 Confirmare user: aprobat pe 2026-05-28 ~04:45 UTC pentru publish. Deploy: push pe master, Vercel storefront auto-deploy.
 
+
+---
+
+## 2026-05-28 (continuat) -- Refacere social waves cu imagini dedicate + product placement
+
+Problemă (raportată de DC): social pipeline ARDmag livra doar 1 wave per articol (wave_count=1 in content-policy.json), iar wave-ul 1 al articolului `aplicare-tratamente-piatra-naturala` reutiliza hero-ul articolului ca source-bg (md5 identic), nu o imagine dedicată 1:1. În plus, wave-urile 06-09 si 06-23 pentru `delta-tratamente-piatra-naturala` foloseau scene de tip "lineup" cu 3 produse, contra cerintei single-product placement.
+
+Refacere completă a 5 wave-uri:
+
+**aplicare-tratamente-piatra-naturala** (wave_count bumpat 1 -> 3):
+- 2026-05-28 (W1, "Surplusul lăsat pe piatră devine pată"): SEAL + microfiber cloth pe banc workshop.
+- 2026-06-11 (W2, "Testul mic decide câte straturi"): SEAL + test patch pe travertin.
+- 2026-06-25 (W3, "Vermorel și produs gata, suprafața uscată"): SEAL + vermorel sprayer.
+
+**delta-tratamente-piatra-naturala**:
+- 2026-06-09 (W2 round, "Exteriorul schimbă tratamentul"): IDROREP pe wet exterior terrace (single product).
+- 2026-06-23 (W3 round, "Efect natural sau efect umed?"): WET SEAL pe marble slab cu wet/dry split (single product).
+
+Pipeline: codex CLI `$imagegen` cu `--image` ref packshot real per produs Delta + prompt single-scene + 1:1 aspect. Conversie PNG -> WebP 1080x1080 via magick. `generate-images.js --text=<overrides>` pentru template overlay (ARDmag header, title/subtitle bottom, GHID TEHNIC footer).
+
+Cache-busting: noile asseturi salvate ca `facebook-v2.jpg` + `story-v2.jpg` la URL existent pentru wave-urile cu Metricool PENDING (Vercel are immutable cache pe path-ul vechi). Noile wave-uri 06-11 + 06-25 folosesc default `facebook.jpg`/`story.jpg`.
+
+Metricool: PUT pe PENDING posts produce duplicate (verificat); strategia corectă e DELETE old + POST new cu noul URL. DELETE confirmat funcțional via API directly (HTTP 200 + 404 după). Story aplicare-W1 (post 330700219) deja PUBLISHED inainte ca fix-ul sa ajunga -- imaginea hero-reuse a apucat sa apara live. Restul (feed W1, ambele delta) inca PENDING si vor fi inlocuite.
+
+Pipeline gaps documentate: `tools/social/scripts/lib/metricool-api.js` `updateScheduledPost`/`deleteScheduledPost` ramân stub-uite în wrapper-ul Node; au fost apelate direct via curl pentru acest fix.
+
+Confirmare user: aprobat 2026-05-28 ~07:00 UTC pentru fixul autonom; user plecat azi.
