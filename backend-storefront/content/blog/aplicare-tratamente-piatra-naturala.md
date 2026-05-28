@@ -5,7 +5,7 @@ kicker: "Ghid tehnic · Delta Research"
 publishedAt: "2026-05-28"
 author: "Echipa ardmag"
 tags: ["delta research", "tratamente", "aplicare", "piatra naturala", "ghid"]
-heroImage: "/blog/aplicare-tratamente-piatra-naturala/hero.webp"
+heroImage: "/blog/aplicare-tratamente-piatra-naturala/hero-delta-research-seal-organic-20260528.webp"
 ---
 
 Petele și aspectul neuniform de pe o piatră tratată recent pot apărea din modul de aplicare, nu din produsul ales. Tratamentele Delta Research pentru piatră naturală funcționează doar dacă suprafața este pregătită corect, surplusul este îndepărtat la timp și scula folosită distribuie produsul uniform. Restul articolului grupează regulile de aplicare așa cum sunt formulate în materialul tehnic Delta Research, fără simplificări care ar schimba rezultatul pe șantier.

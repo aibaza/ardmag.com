@@ -1213,3 +1213,19 @@ Identice cu rezultatul curl direct la `localhost:9000/store/products?limit=3`. C
 ### Ce ramane de facut
 
 Nimic blocant. ClickUp time entry pentru sesiunea asta (~5-6h total cu fix-urile post-confirmare) ramane sa-l adaug la urmatoarea sesiune sync cu Andrei/Cristian.
+
+---
+
+## 2026-05-28 -- Hero image fix pentru `aplicare-tratamente-piatra-naturala`
+
+Refacere hero pentru articolul "Cum se aplica tratamentele Delta Research..." (publicat pe 2026-05-28). Hero-ul anterior (`hero.webp` din 2026-05-27) avea un container generic, nelabelat, desi articolul referenseaza explicit Delta Research. Atelierul Hermes a livrat o prima iteratie (v2, `hero-delta-research-seal-20260528.webp`) cu eticheta compositata mecanic peste un tin generat -- arata lipita.
+
+A doua iteratie (v3, generata local prin `codex exec` cu referinta packshot `/tmp/delta-seal-reference.jpg` atasata si fara directive de eticheta) integreaza tinul SEAL organic in scena. Pastreaza compozitia originala (muncitor + vermorel + travertin + lavetă + atelier).
+
+- WebP final: `backend-storefront/public/blog/aplicare-tratamente-piatra-naturala/hero-delta-research-seal-organic-20260528.webp`
+- Vechiul `hero.webp` si v2 ramân pe disc pentru rollback rapid
+- Frontmatter `heroImage` updated; OG se reuseaza automatic (storefront blog page paseaza heroImage ca ogImage)
+- Caveat: imagegen a redat usor incorrect textul label-ului ("OLZOHIDROPUG" in loc de "OLEOHIDROFUG") -- cost-ul integrarii organice fara compositing. De evaluat daca ramane sau se reface.
+
+Confirmare user: aprobat pe 2026-05-28 ~04:45 UTC pentru publish. Deploy: push pe master, Vercel storefront auto-deploy.
+

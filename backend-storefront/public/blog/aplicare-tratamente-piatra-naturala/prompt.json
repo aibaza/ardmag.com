@@ -1,15 +1,15 @@
 {
-  "prompt": "Wide editorial industrial photography, 16:9 aspect ratio. A Romanian stoneworker in a navy work apron is applying a clear impregnation treatment to a horizontal slab of polished beige travertine on a workshop bench, using a manual pressurized hand pump sprayer (vermorel) held in the right side of the frame, fine even mist landing on the dry stone surface. A folded grey microfiber cloth and a small unbranded plastic jug of treatment liquid sit on the workshop bench in the mid-right area. The left third of the frame shows the empty stone surface and an out-of-focus industrial workshop background with concrete floor and stacked stone slabs. Natural overcast daylight from a large workshop window, no harsh shadows, no dramatic lighting, neutral colour balance, realistic textures, professional B2B trade catalogue aesthetic, warm earth tones with terracotta accents. Photorealistic, no logos, no watermarks, no text overlays, no brand names on bottles, no UI elements.",
-  "generatedAt": "2026-05-27",
+  "prompt": "Wide editorial industrial photography, 16:9 aspect ratio. A Romanian stoneworker in a navy work apron is applying a clear impregnation treatment to a horizontal slab of polished beige travertine on a workshop bench, using a manual pressurized hand pump sprayer (vermorel) held in the right side of the frame, fine even mist landing on the dry stone surface. A folded grey microfiber cloth and a small 1-litre Delta Research SEAL tin (the actual product shown in the attached reference image) sit on the workshop bench in the mid-right area, exactly as they would appear in a real workshop — naturally placed, realistic lighting and shadows matching the rest of the scene, slight wear/dust as expected on working equipment. The left third of the frame shows the empty stone surface and an out-of-focus industrial workshop background with concrete floor and stacked stone slabs. Natural overcast daylight from a large workshop window, no harsh shadows, no dramatic lighting, neutral colour balance, realistic textures, professional B2B trade catalogue aesthetic, warm earth tones with terracotta accents. Photorealistic.",
+  "referenceImage": "/tmp/delta-seal-reference.jpg",
+  "generatedAt": "2026-05-28",
   "provider": "codex-cli",
-  "providerVersion": "codex-cli 0.134.0",
-  "model": "imagegen (Codex CLI)",
-  "geminiUsed": false,
-  "sourcePng": "/tmp/aplicare-tratamente-piatra-naturala-hero-1.png",
+  "model": "imagegen (Codex CLI built-in)",
+  "sourcePng": "/tmp/aplicare-tratamente-hero-v3-20260528043943.png",
   "sourceDimensions": "1672x941",
-  "finalWebp": "public/blog/aplicare-tratamente-piatra-naturala/hero.webp",
+  "postProcessing": "none — imagegen organic integration only",
+  "finalWebp": "public/blog/aplicare-tratamente-piatra-naturala/hero-delta-research-seal-organic-20260528.webp",
   "finalDimensions": "1376x768",
-  "ogReuse": true,
-  "ogReuseNote": "blog/[slug]/page.tsx:31 sets ogImage = article.heroImage ?? '/opengraph-image.jpg' — same file serves both hero background and OG metadata.",
-  "ideaId": "ardmag-2026w22-delta-002"
+  "retries": 0,
+  "selectedAttempt": 1,
+  "ideaId": "ardmag-2026w22-delta-002-seal-v3-organic"
 }
