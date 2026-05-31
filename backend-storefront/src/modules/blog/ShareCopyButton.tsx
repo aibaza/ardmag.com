@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { getPublicShareURL } from "@lib/util/env"
 
 const ShareIcon = () => (
   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75">
@@ -15,7 +16,7 @@ export function ShareCopyButton({ variant = "full" }: { variant?: "icon" | "full
   const [copied, setCopied] = useState(false)
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(window.location.href).then(() => {
+    navigator.clipboard.writeText(getPublicShareURL(window.location.href)).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     })
