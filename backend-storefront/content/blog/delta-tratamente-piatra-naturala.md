@@ -5,7 +5,7 @@ kicker: "Ghid tehnic · Delta Research"
 publishedAt: "2026-05-26"
 author: "Echipa ardmag"
 tags: ["delta research", "tratamente", "impregnare", "piatra naturala", "ghid"]
-heroImage: "/blog/delta-tratamente-piatra-naturala/hero-delta-research-seal-real-label-20260528.webp"
+heroImage: "/blog/delta-tratamente-piatra-naturala/hero-delta-research-selection-20260603.webp"
 ---
 
 Nu există un tratament universal pentru piatra naturală. Alegerea corectă depinde de tipul pietrei, modul în care a fost prelucrată, locul de montaj, destinația suprafeței și efectul vizual pe care îl urmărești. Aceleași criterii sunt cele care separă un produs de impregnare pe bază de solvent de unul pe bază de apă, sau o soluție pentru pavaj de una pentru fațadă.
