@@ -29,6 +29,10 @@ Metricool:
 - Sters doar feed-ul PENDING `333542988`; recreat feed Facebook `333597950` la `2026-06-04T17:00:00` Europe/Bucharest cu text corectat. Story ramane `333542990`.
 - Readback dupa resync: feed `333597950` PENDING contine `suprafata` si `Derux`; story `333542990` PENDING fara caption.
 
+Live dupa push:
+- Site commit `153feb2fbb3234596a32ae9980d3c5a002f83043` push-uit pe `master`; Vercel a servit build nou la `https://ardmag.ro/blog/delta-research-detergenti-acid-neutru-alcalin` cu `x-vercel-cache: PRERENDER`, etag `W/"0ca7425342a7f1561a53d482f4309c07"`.
+- HTTP 200; continut live verificat cu `Delta Research este brand al Arc Rom Diamonds`, `Derux`, `detergent slab alcalin`; termenii vechi cautati (`De Rux`, `suportul`, `low alkalinity`) nu mai apar in HTML-ul live.
+
 ## 2026-05-16 -- Sesiune full (mai multe livrari)
 
 Detalii in memory entries `project_session_16mai2026.md`. Highlights:
