@@ -5,6 +5,30 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-06-04 10:40 UTC -- Corectii editoriale Delta detergenti + resync feed Metricool
+
+Deploy: `vercel --prod --yes` incercat din root-ul site, blocat de Vercel CLI cu `The specified token is not valid`; publicarea continua prin `git push` pe master si verificare live.
+
+Articol: `backend-storefront/content/blog/delta-research-detergenti-acid-neutru-alcalin.md`
+
+Corectii aplicate:
+- Delta Research formulat explicit ca brand al Arc Rom Diamonds.
+- `suport` in context de piatra/suprafata inlocuit cu `suprafata`.
+- Clean Stone formulat ca detergent Delta Research non-acid si non-abraziv, cu mentiunea ca nu afecteaza luciul pe suprafete lustruite sau sensibile la acid cand e folosit conform instructiunilor.
+- Derux formulat ca solutia noastra acida pentru indepartarea petelor de rugina.
+- Tergon formulat ca detergent intensiv Delta Research pentru murdarie grea, grasimi, alge, mucegai si restaurare generala, cu clatire abundenta si repetata; `low alkalinity` inlocuit cu `detergent slab alcalin`.
+- Formule tehnice aliniate: `detergent intensiv potrivit suprafetei`, `permite pentru suprafata respectiva`, `profil alcalin potrivit suprafetei`, `Respecta dilutia indicata in fisa tehnica`.
+
+Validari locale:
+- `bun tools/content-quality/validate-public-copy.js --channel=article ...` PASS.
+- Social wave public-copy PASS pentru Facebook feed, Story si overlay.
+- `npm run build` PASS cu env minim local (`NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_build_validation`, `MEDUSA_BACKEND_URL=https://api.ardmag.ro`).
+
+Metricool:
+- Readback initial: feed PENDING `333542988` continea text vechi (`suportul`, `De Rux`); Story PENDING `333542990` avea caption gol si a fost lasat neatins.
+- Sters doar feed-ul PENDING `333542988`; recreat feed Facebook `333597950` la `2026-06-04T17:00:00` Europe/Bucharest cu text corectat. Story ramane `333542990`.
+- Readback dupa resync: feed `333597950` PENDING contine `suprafata` si `Derux`; story `333542990` PENDING fara caption.
+
 ## 2026-05-16 -- Sesiune full (mai multe livrari)
 
 Detalii in memory entries `project_session_16mai2026.md`. Highlights:
