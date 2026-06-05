@@ -1,0 +1,8 @@
+{
+  "prompt": "Real product still-life photograph on a dark granite workbench: four blue Tenax adhesive cans arranged in a row right of center - polyester Mastice, two-component epoxy Domo10 A and B, and Gravity extra-clear vinylester glue - with their original blue-red labels visible. In front of them small stone samples of white Carrara marble, speckled grey granite and white quartz, plus a steel putty knife with black handle smeared with white mastic. Blurred stone warehouse background with slabs on racks and machinery, cool neutral lighting with soft reflections on the dark stone counter, left third of frame empty dark surface, technical product photography, no people.",
+  "provider": "retro-extracted (codex vision)",
+  "reconstructed": true,
+  "extractedAt": "2026-06-05",
+  "pipeline": "retro-backfill prompt extraction (vezi wiki ops-social-and-metricool-pipeline)",
+  "sourceImage": "hero.webp"
+}

@@ -1,0 +1,8 @@
+{
+  "prompt": "Industrial product photograph in a stone fabrication hall: a fan of seven round velcro sanding pads arranged in a gradient from coarse black silicon-carbide grit through medium grey to fine cream and translucent polishing pads, laid on the polished edge of a dark grey marble table with white veining. Wide blurred workshop background with steel beams, work benches, a bridge saw machine and coiled black cable hanging at right, cool blue-grey industrial lighting, sharp focus on the pad textures, low side angle, technical expert mood, no people, no readable text.",
+  "provider": "retro-extracted (codex vision)",
+  "reconstructed": true,
+  "extractedAt": "2026-06-05",
+  "pipeline": "retro-backfill prompt extraction (vezi wiki ops-social-and-metricool-pipeline)",
+  "sourceImage": "hero.webp"
+}

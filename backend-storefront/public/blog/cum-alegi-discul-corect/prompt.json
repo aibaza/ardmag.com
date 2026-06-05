@@ -1,0 +1,8 @@
+{
+  "prompt": "Dramatic industrial workshop photograph: an angle grinder fitted with a segmented diamond cutting disc slicing into a thick slab of grey speckled granite at right, a fine spray of water and stone dust bursting from the cut toward the left, a gloved worker hand gripping the tool at the right edge. Dark stone-fabrication workshop background with blurred machinery and tool racks, cold steel-blue color grade with warm highlights on the spray, sharp focus on the disc segments, shallow depth of field, gritty technical mood, no faces, no readable text.",
+  "provider": "retro-extracted (codex vision)",
+  "reconstructed": true,
+  "extractedAt": "2026-06-05",
+  "pipeline": "retro-backfill prompt extraction (vezi wiki ops-social-and-metricool-pipeline)",
+  "sourceImage": "hero.webp"
+}
