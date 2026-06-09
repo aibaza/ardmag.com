@@ -30,6 +30,7 @@ interface PDPSummaryProps {
   brand: string
   brandHref: string
   title: string
+  subtitle?: string
   ean: string
   rating: { score: number; reviewCount: number }
   price: string
@@ -49,12 +50,13 @@ interface PDPSummaryProps {
   contactToOrder?: boolean
 }
 
-export function PDPSummary({ brand, brandHref, title, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, perks, contactToOrder }: PDPSummaryProps) {
+export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, perks, contactToOrder }: PDPSummaryProps) {
   return (
     <aside className="pdp-summary">
 
       <div className="pdp-brand"><a href={brandHref} style={{ color: "inherit", textDecoration: "none" }}>{brand}</a></div>
       <h1 className="pdp-title">{title}</h1>
+      {subtitle ? <p className="pdp-subtitle">{subtitle}</p> : null}
       <div className="pdp-sku">
         <span>EAN <strong>{ean}</strong></span>
       </div>

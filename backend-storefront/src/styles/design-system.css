@@ -572,6 +572,8 @@
 @media(max-width:1060px){.pdp-summary{position:static}}
 .pdp-brand{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-700);font-weight:500}
 .pdp-title{font-size:28px;line-height:1.15;letter-spacing:-0.015em;font-weight:600;margin:0}
+/* DESIGN PENDING: pdp-subtitle — confirmare tip/size/color in track B (current: ink-700, 15px, regular) */
+.pdp-subtitle{font-family:var(--f-sans);font-size:15px;line-height:1.4;color:var(--stone-700);font-weight:400;margin:4px 0 0}
 .pdp-sku{display:flex;gap:16px;font-family:var(--f-mono);font-size:12px;color:var(--fg-muted);padding-bottom:14px;border-bottom:1px solid var(--rule)}
 .pdp-sku strong{color:var(--fg);font-weight:500}
 

@@ -177,6 +177,7 @@ export default async function ProductPage(props: Props) {
             brand={brand}
             brandHref={brandHref}
             title={product.title ?? ""}
+            subtitle={(product as any).subtitle ?? ""}
             ean={(firstVariant as any).ean ?? ""}
             rating={{ score: 0, reviewCount: 0 }}
             {...priceCardProps}
