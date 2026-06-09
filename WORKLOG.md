@@ -1311,3 +1311,27 @@ Confirmat: DA (DC a aprobat feature-ul pe hermes-vm; testare finala vizuala facu
 - `docs/plan-lansare-3-zile/README.md`: `admin.ardmag.ro` inlocuit cu `api.ardmag.ro/app`.
 
 URL admin real confirmat: **https://api.ardmag.ro/app** (corecteaza confuziile `admin.ardmag.surmont.co` / `admin.ardmag.ro` din docs vechi).
+
+
+---
+
+## 2026-06-09 14:35 UTC -- Populare subtitluri 18 produse DELTA din LISTA DELTA SCURT 2026.docx
+
+Deploy: subtitluri live pe ardmag.ro (ex: /products/idrorep, /products/mac-mud, /products/seal)
+Confirmat: DA (DC a aprobat aplicarea celor 18 via AskUserQuestion; DC plecat, lucru autonom)
+
+**Context:** Andrei a trimis 3 fisiere (LISTA DELTA SCURT 2026.docx, Lista pret TENAX + Diverse.xls, Liste de preturi Solutii DELTA - UPDATED.xls). Ipoteza initiala: nume sheet = subtitlu.
+
+**Decizie sursa:** numele sheet-urilor sunt categorii prea generice (Detergenti, Diverse). Sursa corecta = coloana DESCRIERE per-produs din `.docx` (scurta, descriptiva, SEO-friendly). Confirmat: DE GRAUB in docx = "Detergent acid pentru chit de rost si ciment", identic cu ce setase DC manual. Zero copy inventat -- text preluat verbatim.
+
+**Aplicat:** 18 produse DELTA care aveau subtitle gol si match exact pe nume cu docx. Set via admin API (POST /admin/products/{id}), apoi revalidateTag products. 18/18 OK, verificat live 3 pagini.
+- CLEAN STONE, IDROREP, MAC MUD, NANO WET, QUASAR, SEAL, WET SEAL, TERGON, STONE WET, TOTAL BLACK, PROLUX, RES 1001, SILWAX, SOLVENTE GAMMA, SABBIATORE AX/F, ECO DRY+, ECO STONE PRO, ECO TONER.
+
+**Nu s-a aplicat:**
+- TENAX (mastic, tratamente): `.xls` TENAX nu are coloana descriere, doar nume sheet generic. Decizie DC: raman fara subtitlu pana primim descrieri per-produs de la Andrei.
+- Produse-categorie publicate (DETERGENTI, IMPERMEABILIZANTI..., etc.): par intrari de navigatie, neatinse.
+- Abrazive/discuri/scule: neacoperite de fisiere.
+
+**Caveat tehnic:** POST pe admin API prin python urllib -> 403 (WAF blocheaza UA Python-urllib pe metode write). Curl trece. De folosit curl pentru scrieri pe api.ardmag.ro.
+
+Audit complet: `docs/copy-proposals/subtitle-audit-2026-06-09.md`.
