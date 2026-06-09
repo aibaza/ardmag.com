@@ -1356,3 +1356,23 @@ Confirmat: DA (DC a cerut explicit: "pentru fiecare produs tenax analizezi descr
 **Probleme tehnice:** backend Railway a dat ~18 erori 502 sub rafala de POST-uri rapide -> rezolvat cu retry + delay 1.2s. 2 produse (abrazivi-si-perii-frankfurt, dischete-de-slefuit-cu-carbura) au dat 500 unknown_error dar subtitlul s-a persistat (eroare in pas post-scriere, confirmat la verificare).
 
 Audit batch 2: `docs/copy-proposals/subtitle-audit-batch2-2026-06-09.md`.
+
+
+---
+
+## 2026-06-09 16:00 UTC -- SEO meta produs cu subtitle + pixel Metricool pe toate paginile
+
+Commits: `e24cb81`
+Deploy: Vercel ardmag-storefront-40n9u4mei (Ready). Live pe ardmag.ro.
+Confirmat: DA (DC: "designul arata bine"; a cerut verificare metadata SEO + adaugare pixel Metricool)
+
+**SEO produs (`generateMetadata` in products/[handle]/page.tsx):**
+- meta title acum include subtitle: `${title} - ${subtitle}` (ex: "DE GRAUB - Detergent acid pentru chit de rost si ciment · ARDMAG"). Keyword-rich.
+- meta description: lead cu subtitle, apoi descrierea curatata. Reparat bug-ul de lipire a tag-urilor (`<[^>]+>` inlocuit cu spatiu in loc de gol, apoi colapsare spatii) -- inainte iesea "DETERGENTDE GRAUB...".
+- openGraph + twitter aliniate la noul title/description.
+- Confirmare ca infrastructura SEO exista deja: root layout are title template, keywords, openGraph, twitter, robots, JSON-LD Organization + WebSite; fiecare produs are generateMetadata cu canonical.
+
+**Pixel Metricool:** adaugat `<img src="https://tracker.metricool.com/c3po.jpg?hash=bab49d7c00dc8f48c6e6eabd19ba8b6a">` in root layout (`src/app/layout.tsx`), deci apare pe TOATE paginile. Verificat live pe home, produs, /produse, /promotii, /categories/*, despre-noi, contact, blog, cart -- prezent peste tot. Randat hidden (display:none, aria-hidden), pixelul se incarca oricum.
+- Nota: pixelul se incarca neconditionat (nu e gated de cookie consent ca GA/MetaPixel). De reconsiderat daca politica GDPR a site-ului cere consimtamant si pentru el.
+
+**Subtitluri finalizate (decizie DC "doar produsele la care e clar"):** cele 10 ramase fara subtitlu (8 pagini de categorie + fir-diamantat + poten) RAMAN ca atare, conform deciziei. Catalog final: 81/91 cu subtitle.
