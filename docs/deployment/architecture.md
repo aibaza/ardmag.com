@@ -2,6 +2,15 @@
 
 Brand: ARDmag.ro (Arc Rom Diamonds). Domeniu principal: `ardmag.ro`. Domeniul `ardmag.com` redirectează 308 la `ardmag.ro` (Vercel apex aliases).
 
+> **LEGACY (iunie 2026).** Acest document descrie setup-ul vechi self-hosted pe zona `surmont.co`. Acel setup nu mai este productia. Domeniile `ardmag.surmont.co` si `admin.ardmag.surmont.co` nu mai rezolva si nu mai trebuie folosite.
+>
+> **Productia curenta:**
+> - Storefront (Next.js): Vercel, proiect `ardmag-storefront`, live pe `https://ardmag.ro`
+> - Backend Medusa (API + admin): Railway, live pe `https://api.ardmag.ro`
+> - **Admin panel: `https://api.ardmag.ro/app`** (Medusa v2 serveste admin pe acelasi host ca API, sub `/app`; NU exista subdomeniu `admin.*` functional)
+>
+> Sectiunile de mai jos raman ca referinta istorica pentru arhitectura self-hosted.
+
 ## Stack
 
 | Component | Versiune / Tehnologie |

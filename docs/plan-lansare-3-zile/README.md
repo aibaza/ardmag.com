@@ -23,7 +23,7 @@ api.ardmag.ro    -> Railway (Medusa v2 backend)
 DB               -> Railway Postgres (postgres.railway.internal:5432)
 Redis            -> Railway Redis (activ, folosit de Medusa)
 Imagini          -> Cloudflare R2 (pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev)
-Admin            -> https://admin.ardmag.ro (pe Railway)
+Admin            -> https://api.ardmag.ro/app (Medusa serveste admin sub /app, pe Railway)
 ```
 
 IMPORTANT: localhost:5432/ardmag este DB de DEV local, nu productie.

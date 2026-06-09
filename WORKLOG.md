@@ -1284,3 +1284,30 @@ Metricool: PUT pe PENDING posts produce duplicate (verificat); strategia corect�
 Pipeline gaps documentate: `tools/social/scripts/lib/metricool-api.js` `updateScheduledPost`/`deleteScheduledPost` ramân stub-uite în wrapper-ul Node; au fost apelate direct via curl pentru acest fix.
 
 Confirmare user: aprobat 2026-05-28 ~07:00 UTC pentru fixul autonom; user plecat azi.
+
+
+---
+
+## 2026-06-09 14:10 UTC -- Subtitlu produs Medusa pe PDP (DE GRAUB) + revalidare cache + curatare docs admin URL
+
+Commits: `1cc2d0f` (feature, deja livrat de pe hermes-vm), plus acest commit pentru docs + WORKLOG
+Deploy: https://ardmag.ro/products/de-graub | Vercel: ardmag-storefront-nd3o222dk
+Confirmat: DA (DC a aprobat feature-ul pe hermes-vm; testare finala vizuala facuta autonom azi la cererea explicita a lui DC, plecat 1-2 ore)
+
+**Ce s-a livrat (cod, commit 1cc2d0f de pe hermes-vm):**
+- `PDPSummary.tsx`: prop nou `subtitle?: string`, render `<p className="pdp-subtitle">` intre `<h1>` si `.pdp-sku`, conditional (lipsa subtitle = zero DOM)
+- `products/[handle]/page.tsx`: paseaza `subtitle={(product as any).subtitle ?? ""}`
+- `design-system.css`: clasa `.pdp-subtitle` (15px, var(--stone-700), regular). **DESIGN PENDING**: nu exista referinta in Design System pentru subtitlu PDP, stilul actual e provizoriu pana la input track B.
+- Backend Medusa NU a fost atins; `subtitle` e camp nativ in schema produsului v2.
+
+**Sursa textului (zero copy inventat):** primul `<strong>...</strong>` non-vid din campul `description` (CSV Wix legacy) dupa repetarea numelui produsului. Setat manual din admin pe DE GRAUB. Valoarea live confirmata: "Detergent acid pentru chit de rost si ciment".
+
+**Problema gasita la testare si rezolvata azi:** subtitlul nu aparea pe pagina live desi era setat in Medusa si codul era deployat. Cauza NU a fost ISR/CDN cache (cum se presupunea), ci **Next.js Data Cache** (`listProducts` foloseste `cache: "force-cache"` cu tag `products`, fara TTL). Data Cache-ul persista peste deploy-uri pe Vercel -- un redeploy NU il goleste. Fix: apel la `GET /api/revalidate?secret=...&tag=products` (revalidateTag). Dupa revalidare, subtitlul apare imediat. Lectie: pentru schimbari de date facute in admin Medusa dupa build, redeploy-ul nu ajunge; trebuie revalidat tag-ul.
+
+**Verificare finala (autonoma):** screenshot 1280px + computed style. Subtitlul randeaza intre titlu si EAN, font-size 15px, color stone-700 (oklch 0.33), weight 400. Vizual corect.
+
+**Curatare docs (corectie URL admin real):**
+- `docs/deployment/architecture.md`: banner LEGACY la inceput -- setup-ul self-hosted `surmont.co` nu mai e productie; admin real = `https://api.ardmag.ro/app` (Medusa serveste admin sub `/app`, NU exista subdomeniu `admin.*` functional).
+- `docs/plan-lansare-3-zile/README.md`: `admin.ardmag.ro` inlocuit cu `api.ardmag.ro/app`.
+
+URL admin real confirmat: **https://api.ardmag.ro/app** (corecteaza confuziile `admin.ardmag.surmont.co` / `admin.ardmag.ro` din docs vechi).
