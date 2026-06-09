@@ -1376,3 +1376,19 @@ Confirmat: DA (DC: "designul arata bine"; a cerut verificare metadata SEO + adau
 - Nota: pixelul se incarca neconditionat (nu e gated de cookie consent ca GA/MetaPixel). De reconsiderat daca politica GDPR a site-ului cere consimtamant si pentru el.
 
 **Subtitluri finalizate (decizie DC "doar produsele la care e clar"):** cele 10 ramase fara subtitlu (8 pagini de categorie + fir-diamantat + poten) RAMAN ca atare, conform deciziei. Catalog final: 81/91 cu subtitle.
+
+
+---
+
+## 2026-06-09 16:25 UTC -- Activare Meta Pixel pe toate paginile (ID 1362574249046780)
+
+Deploy: Vercel ardmag-storefront-rk5elylwl (Ready, via `vercel --prod`). Live pe ardmag.ro.
+Confirmat: DA (DC a furnizat codul Meta Pixel si a cerut activare pe toate paginile frontend)
+
+**Fara cod nou.** Componenta `MetaPixel` (src/components/cookie-consent/MetaPixel.tsx) exista deja in root layout, deci pe TOATE paginile. Era inactiva pentru ca lipsea env var `NEXT_PUBLIC_META_PIXEL_ID`.
+
+**Actiune:** setat `NEXT_PUBLIC_META_PIXEL_ID=1362574249046780` in Vercel production env + redeploy (necesar fiindca e NEXT_PUBLIC_, inline la build).
+
+**Verificat live (browser real, fbq executat client-side):** pe home, produs, blog, contact -> `typeof window.fbq === "function"`, script `fbevents.js` + `meta-pixel-init` incarcate, init cu ID-ul corect 1362574249046780, request catre connect.facebook.net confirmat. NU apare in HTML-ul curl pentru ca `next/script afterInteractive` injecteaza client-side.
+
+**Comportament consent (GDPR):** spre deosebire de pixelul Metricool (neconditionat), Meta Pixel respecta cookie consent -- `fbq('consent','revoke')` la init, iar `PageView` se trimite doar cand userul accepta marketing cookies (eveniment ardmag-consent-update). Comportament corect GDPR, consistent cu GoogleAnalytics. Daca DC vrea tracking neconditionat, e alta decizie.
