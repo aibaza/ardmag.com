@@ -1335,3 +1335,24 @@ Confirmat: DA (DC a aprobat aplicarea celor 18 via AskUserQuestion; DC plecat, l
 **Caveat tehnic:** POST pe admin API prin python urllib -> 403 (WAF blocheaza UA Python-urllib pe metode write). Curl trece. De folosit curl pentru scrieri pe api.ardmag.ro.
 
 Audit complet: `docs/copy-proposals/subtitle-audit-2026-06-09.md`.
+
+
+---
+
+## 2026-06-09 15:30 UTC -- Subtitluri restul catalogului (62 produse Tenax/abrazivi/epoxy) compuse din descrieri + aliniere styling la design2
+
+Deploy: subtitluri live pe ardmag.ro (ex: /products/ager, /products/mastic-solid, /products/discuri-marmura). Styling: commit cod (CSS).
+Confirmat: DA (DC a cerut explicit: "pentru fiecare produs tenax analizezi descrierea si ii definesti un subtitlu descriptiv, lungime decenta, optimizat SEO"; lucru autonom)
+
+**Metoda subtitluri:** subtitlu descriptiv scurt (3-8 cuvinte, sub 65 caractere), SEO-friendly (incepe cu tipul produsului ca keyword), COMPUS per-produs din campul `description` existent in Medusa (copy aprobat din Wix legacy). Ancorat 100% in descriere -- zero claim inventat. Spot-check pe 6 produse a confirmat ancorarea. Fara diacritice (consistent cu batch-ul DELTA live). Compunere delegata unui subagent cu reguli stricte; output verificat manual inainte de aplicare.
+
+**Aplicat: 62 produse** (57 high + 5 medium confidence). Total catalog acum: 81/91 cu subtitle.
+- Mastic Tenax (LICHID, SOLID, SEMISOLID, SEMISOLID WET, THASSOS, POLIESTERIC, TIXO XE), tratamente Tenax (AGER, HYDREX, PROSEAL, PROSEAL FS, SKUDO, TONER BLACK), adezivi epoxy (GLAXS EASY, GRAVITY, RIVO, FIXTOP, TITANIUM, ELIOX, DOMO, STRONGEDGE, FAST GLAXS, KIT COLLA), abrazivi/discuri/scule (toate discurile pe material, freze, burghie, carote, pasla, baton, abrazivi Frankfurt/Anelli/tangentiali/oala, etc.).
+
+**Lasat fara subtitlu (10):** 8 pagini de categorie (solutii-tenax, solutii-delta, detergenti, detergenti-acizi, tratamente-specifice, impermeabilizanti-*, discuri-speciale -- par listing-uri, nu produse; de confirmat cu DC) + 2 skip (fir-diamantat = doar "solicitare telefonica"; poten = doar pret/cantitate, fara descriere de produs).
+
+**Styling (raspuns la cerinta DC despre design2):** `.pdp-subtitle` aliniat la conventia de lead-text din `resources/design2/` (`.canvas-head p` = 15px / `--fg-muted`). Schimbat color din `--stone-700` in `--fg-muted` (= stone-500, culoarea standard de text secundar). Flag DESIGN PENDING rezolvat -- deriva dintr-o conventie reala de design, nu mai e invent. design2 nu are componenta subtitlu PDP explicita; pozitionarea (intre titlu si SKU) si stilul de lead-text sunt cea mai fidela incadrare.
+
+**Probleme tehnice:** backend Railway a dat ~18 erori 502 sub rafala de POST-uri rapide -> rezolvat cu retry + delay 1.2s. 2 produse (abrazivi-si-perii-frankfurt, dischete-de-slefuit-cu-carbura) au dat 500 unknown_error dar subtitlul s-a persistat (eroare in pas post-scriere, confirmat la verificare).
+
+Audit batch 2: `docs/copy-proposals/subtitle-audit-batch2-2026-06-09.md`.
