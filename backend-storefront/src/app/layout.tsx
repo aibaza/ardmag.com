@@ -87,6 +87,16 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <MetaPixel />
           <FastNav />
         </Providers>
+        {/* Metricool tracking pixel (toate paginile) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://tracker.metricool.com/c3po.jpg?hash=bab49d7c00dc8f48c6e6eabd19ba8b6a"
+          alt=""
+          width={0}
+          height={0}
+          style={{ display: "none" }}
+          aria-hidden="true"
+        />
       </body>
     </html>
   )

@@ -57,19 +57,24 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     const product = response.products[0]
     if (!product) return {}
     const canonical = `/${params.countryCode}/products/${params.handle}`
+    // strip tags inserting a space, so adjacent <p> blocks nu se lipesc ("DETERGENTDE GRAUB...")
+    const cleanDesc = (product.description ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+    const subtitle = ((product as any).subtitle ?? "").trim()
+    const metaTitle = subtitle ? `${product.title} - ${subtitle}` : (product.title ?? params.handle)
+    const metaDesc = (subtitle ? `${subtitle}. ${cleanDesc}` : (cleanDesc || product.title || "")).slice(0, 160)
     return {
-      title: product.title ?? params.handle,
-      description: product.description?.replace(/<[^>]+>/g, '').slice(0, 160) ?? product.title ?? '',
+      title: metaTitle,
+      description: metaDesc,
       alternates: { canonical },
       openGraph: {
-        title: product.title ?? params.handle,
-        description: product.description?.replace(/<[^>]+>/g, '').slice(0, 160) ?? '',
+        title: metaTitle,
+        description: metaDesc,
         images: product.thumbnail ? [product.thumbnail] : [],
         url: canonical,
       },
       twitter: {
         card: "summary_large_image",
-        title: product.title ?? params.handle,
+        title: metaTitle,
         images: product.thumbnail ? [product.thumbnail] : [],
       },
     }
