@@ -28,11 +28,11 @@ Discurile universale sunt compromisuri. Pot fi acceptabile pentru lucrări ocazi
 
 ## Diametru, turație și ce scrie pe etichetă
 
-Fiecare disc are marcat `n_max`, adică turația maximă admisă. Un disc de 115 mm merge la 11.000 rpm. Dacă montezi un disc de 230 mm pe același ax, viteza periferică depășește limita de [siguranță conform EN 13236](https://www.en-standard.eu/bs-en-13236-2015-safety-requirements-for-superabrasives/), standardul european pentru scule superabrazive.
+Fiecare disc are marcat `n_max`, adică turația maximă admisă. Cu cât diametrul e mai mare, cu atât `n_max` admis scade: la aceeași turație a sculei, un disc mai mare atinge o viteză periferică mai mare. Dacă montezi un disc de diametru mai mare pe un ax reglat pentru unul mic, viteza periferică poate depăși limita de [siguranță conform EN 13236](https://www.en-standard.eu/bs-en-13236-2015-safety-requirements-for-superabrasives/), standardul european pentru scule superabrazive.
 
 Verifici `n_max` înainte de prima utilizare.
 
-Pe etichetă cauți în ordine: materialul recomandat, diametrul (mm), alezajul (mm), `n_max` (rpm), viteza periferică maximă (m/s).
+Pe etichetă cauți, în măsura în care sunt marcate: materialul recomandat, diametrul (mm), alezajul (mm), `n_max` (rpm) și viteza periferică maximă (m/s). Nu toate discurile trec toate aceste date, dar `n_max` și diametrul sunt minimul pe care îl verifici.
 
 Alegerea corectă a discului se face în funcție de material, turație și, eventual, puterea sculei de debitat. Data viitoare când cumperi un disc, întoarce cutia și citești `n_max` înainte de preț. Le găsești la [Discuri diamantate](/categories/discuri-de-taiere).
 
