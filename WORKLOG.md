@@ -1315,6 +1315,32 @@ URL admin real confirmat: **https://api.ardmag.ro/app** (corecteaza confuziile `
 
 ---
 
+## 2026-06-16 07:20 UTC -- Articol Mastici Tenax pregătit pentru release GitHub/Vercel
+
+Deploy: în curs prin GitHub/Vercel după push pe `master`.
+Confirmat: build local PASS înainte de commit.
+
+**Aplicat:** articolul `mastici-tenax-culori-cantitati` rămâne integrat în `backend-storefront/content/blog/`, cu hero WebP, prompt sidecar, OG PNG și bg WebP.
+
+**Validare:** `npm run build` PASS în `backend-storefront` cu env de verificare (`NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_build_validation`, `MEDUSA_BACKEND_URL=https://api.ardmag.ro`, `NEXT_PUBLIC_BASE_URL=https://ardmag.ro`). Ruta SSG generată include `/ro/blog/mastici-tenax-culori-cantitati`.
+
+**Social:** Metricool nu a fost programat; policy/artifact-ul existent nu autorizează clar acțiuni Metricool pentru acest articol.
+
+---
+
+## 2026-06-16 06:40 UTC -- Articol Mastici Tenax integrat local, deploy blocat de auth
+
+Deploy: NU. Preview/prod deploy blocat de Vercel CLI device auth (`vercel deploy --yes` cere login; nu există credențiale în sesiune).
+Confirmat: NU există confirmare user pe URL live/preview; doar verificare locală.
+
+**Aplicat local:** articolul `mastici-tenax-culori-cantitati` a fost adăugat în `backend-storefront/content/blog/`, cu hero `public/blog/mastici-tenax-culori-cantitati/hero.webp`, prompt sidecar, OG `public/assets/articles/mastici-tenax-culori-cantitati/og.png` și `bg.webp`.
+
+**Validare:** `npm run build` PASS cu env valid de verificare. Ruta locală canonicală `http://localhost:8000/blog/mastici-tenax-culori-cantitati` răspunde 200 și conține titlu, descriere, hero și surse. Asset-urile hero/OG răspund 200 local.
+
+**Live:** `https://ardmag.ro/blog/mastici-tenax-culori-cantitati` răspunde 404 înainte de deploy. Nu s-a făcut push, nu s-a făcut Metricool, nu s-au modificat postări publicate.
+
+---
+
 ## 2026-06-09 14:35 UTC -- Populare subtitluri 18 produse DELTA din LISTA DELTA SCURT 2026.docx
 
 Deploy: subtitluri live pe ardmag.ro (ex: /products/idrorep, /products/mac-mud, /products/seal)
