@@ -16,6 +16,7 @@ export type BlogFrontmatter = {
   author?: string
   tags?: string[]
   heroImage?: string
+  ogImage?: string
 }
 
 export type BlogListItem = BlogFrontmatter & { slug: string }

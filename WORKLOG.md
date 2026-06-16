@@ -12,6 +12,7 @@ Articol: `https://ardmag.ro/blog/mastici-tenax-culori-cantitati`
 Corectii aplicate:
 - Hero-ul articolului a fost recompozit cu produs Tenax real din catalogul local, nu cu ambalaje generice.
 - OG-ul a fost regenerat din aceeasi sursa vizuala la `1200x630`.
+- Metadata articolului foloseste `ogImage` dedicat pentru Open Graph/Twitter, separat de `heroImage`.
 - `bg.webp` a fost sincronizat cu hero-ul nou pentru consistenta intre articol si asset-urile derivate.
 - `prompt.json` documenteaza sursele reale folosite si regulile vizuale: fara etichete inventate, fara ambalaj fals, fara clipping.
 

@@ -28,7 +28,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const article = await getArticle(slug)
   if (!article) return {}
-  const ogImage = article.heroImage ?? "/opengraph-image.jpg"
+  const ogImage = article.ogImage ?? article.heroImage ?? "/opengraph-image.jpg"
+  const ogImageSize = article.ogImage
+    ? { width: 1200, height: 630 }
+    : { width: 1376, height: 768 }
   const articleUrl = `/blog/${slug}`
   return {
     title: `${article.title} | Ardmag`,
@@ -46,8 +49,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: ogImage,
-          width: 1376,
-          height: 768,
+          width: ogImageSize.width,
+          height: ogImageSize.height,
           alt: article.title,
         },
       ],

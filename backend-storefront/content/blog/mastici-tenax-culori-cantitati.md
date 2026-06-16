@@ -6,6 +6,7 @@ publishedAt: "2026-06-16"
 author: "Echipa ardmag"
 tags: ["mastici", "Tenax", "piatra naturala", "atelier", "Solido", "Domo 10"]
 heroImage: "/blog/mastici-tenax-culori-cantitati/hero.webp"
+ogImage: "/assets/articles/mastici-tenax-culori-cantitati/og.png"
 ---
 
 O comandă greșită de mastic nu se vede în factură, ci o săptămână mai târziu, când stă tubul nefolosit pe raft și lucrarea așteaptă culoarea potrivită. Alegerea corectă pornește de la trei întrebări simple: ce lucrare faci, ce consistență îți trebuie și ce culoare se apropie de piatră.
