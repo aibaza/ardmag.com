@@ -1315,7 +1315,22 @@ URL admin real confirmat: **https://api.ardmag.ro/app** (corecteaza confuziile `
 
 ---
 
-## 2026-06-16 07:20 UTC -- Articol Mastici Tenax pregătit pentru release GitHub/Vercel
+## 2026-06-16 06:51 UTC -- Articol Mastici Tenax live pe ardmag.ro
+
+Deploy: DA, prin GitHub/Vercel după push pe `master`.
+Confirmat: DA, URL live răspunde 200 și conține titlul articolului.
+
+**Commit site:** `d8db3fc61d5e19cb6fe64aa8369485bcd98f21da` (`feat(blog): publica ghid mastici Tenax`) a fost împins pe `origin/master`.
+
+**Live:** `https://ardmag.ro/blog/mastici-tenax-culori-cantitati` răspunde 200 după propagare.
+
+**CI:** GitHub Actions pentru commit-ul de articol are jobul `Storefront lint + tsc` PASS; jobul backend era încă în progres la verificare, fără impact pe articolul static.
+
+**Social:** Metricool nu a fost programat; policy/artifact-ul existent nu autorizează clar acțiuni Metricool pentru acest articol.
+
+---
+
+## 2026-06-16 06:47 UTC -- Articol Mastici Tenax pregătit pentru release GitHub/Vercel
 
 Deploy: în curs prin GitHub/Vercel după push pe `master`.
 Confirmat: build local PASS înainte de commit.
