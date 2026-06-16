@@ -5,6 +5,25 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-06-16 07:05 UTC -- Corectie vizual hero/OG Mastici Tenax
+
+Articol: `https://ardmag.ro/blog/mastici-tenax-culori-cantitati`
+
+Corectii aplicate:
+- Hero-ul articolului a fost recompozit cu produs Tenax real din catalogul local, nu cu ambalaje generice.
+- OG-ul a fost regenerat din aceeasi sursa vizuala la `1200x630`.
+- `bg.webp` a fost sincronizat cu hero-ul nou pentru consistenta intre articol si asset-urile derivate.
+- `prompt.json` documenteaza sursele reale folosite si regulile vizuale: fara etichete inventate, fara ambalaj fals, fara clipping.
+
+Validari locale:
+- Dimensiuni verificate: hero `1376x768`, OG `1200x630`.
+- Hash local: hero/bg `e2c8a2be4339cac77766a95ab9ec53548b18ac15b693da2adcd23fdddc577d64`, OG `cf3bed26d26da299b1084e6dc30d466d89b7023bd0c6c2f590120910cf06e989`.
+- Contact sheet vizual local: `tmp/ardmag-tenax-visuals/final-contact-sheet.jpg`.
+- `npm run build` PASS cu env minim local (`NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_build_validation`, `MEDUSA_BACKEND_URL=https://api.ardmag.ro`, `NEXT_PUBLIC_BASE_URL=https://ardmag.ro`); ruta SSG include `/ro/blog/mastici-tenax-culori-cantitati`.
+
+Metricool:
+- Neatins. Nu s-au facut citiri, scrieri, resync-uri sau programari Metricool.
+
 ## 2026-06-04 10:40 UTC -- Corectii editoriale Delta detergenti + resync feed Metricool
 
 Deploy: `vercel --prod --yes` incercat din root-ul site, blocat de Vercel CLI cu `The specified token is not valid`; publicarea continua prin `git push` pe master si verificare live.
