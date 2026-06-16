@@ -18,6 +18,9 @@ Validari locale:
 - Verificare editoriala romana efectuata pe frazele corectate.
 - `npm run build` PASS cu env minim local (`NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_build_validation`, `MEDUSA_BACKEND_URL=https://api.ardmag.ro`, `NEXT_PUBLIC_BASE_URL=https://ardmag.ro`); ruta SSG include `/ro/blog/mastici-tenax-culori-cantitati`.
 
+Verificare live:
+- `https://ardmag.ro/blog/mastici-tenax-culori-cantitati` raspunde 200 pe build nou Vercel si contine `cel mai mare distribuitor Tenax`, `mostră`, `Gravity, Glaxs, Eliox`.
+
 Metricool:
 - Neatins. Nu s-au facut citiri, scrieri, resync-uri sau programari Metricool.
 
