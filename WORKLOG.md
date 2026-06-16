@@ -5,6 +5,22 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-06-16 14:01 UTC -- Corectii client articol Mastici Tenax
+
+Articol: `https://ardmag.ro/blog/mastici-tenax-culori-cantitati`
+
+Corectii aplicate:
+- Textul articolului a fost ajustat conform corectiilor DC/client: formulari mai naturale, diacritice, `mostra`, `Pe acestea`, `acesta`, pozitionare ARDmag.ro ca cel mai mare distribuitor Tenax in Romania si CTA cu sfat pentru tipul de mastic si cantitate.
+- Grila de decizie include variantele transparente pentru lipiri la 45 de grade si randul `Lucrare transparenta stabila la lumina` cu `Gravity, Glaxs, Eliox`.
+- Referintele Tenax pentru Glaxs si Eliox au fost adaugate in sectiunea de surse.
+
+Validari locale:
+- Verificare editoriala romana efectuata pe frazele corectate.
+- `npm run build` PASS cu env minim local (`NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_build_validation`, `MEDUSA_BACKEND_URL=https://api.ardmag.ro`, `NEXT_PUBLIC_BASE_URL=https://ardmag.ro`); ruta SSG include `/ro/blog/mastici-tenax-culori-cantitati`.
+
+Metricool:
+- Neatins. Nu s-au facut citiri, scrieri, resync-uri sau programari Metricool.
+
 ## 2026-06-16 07:05 UTC -- Corectie vizual hero/OG Mastici Tenax
 
 Articol: `https://ardmag.ro/blog/mastici-tenax-culori-cantitati`
