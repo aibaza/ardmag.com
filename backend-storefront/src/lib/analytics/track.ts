@@ -23,9 +23,25 @@ function hasMarketingConsent(): boolean {
 
 function fbqTrack(event: string, params: Record<string, unknown>): void {
   if (typeof window === "undefined") return
-  const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq
-  if (typeof fbq !== "function" || !hasMarketingConsent()) return
-  fbq("track", event, params)
+  // ViewContent / Purchase fire on page mount, which can happen before the Meta
+  // Pixel script (loaded afterInteractive) has defined window.fbq -- without a
+  // retry the call is silently dropped by that race. Poll briefly (~10s) for
+  // both consent and fbq readiness so the event is not lost. Once consent is
+  // present and fbq exists, fire and stop.
+  let tries = 0
+  const attempt = () => {
+    if (!hasMarketingConsent()) {
+      if (tries++ < 40) setTimeout(attempt, 250)
+      return
+    }
+    const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq
+    if (typeof fbq === "function") {
+      fbq("track", event, params)
+      return
+    }
+    if (tries++ < 40) setTimeout(attempt, 250)
+  }
+  attempt()
 }
 
 function pushDataLayer(payload: Record<string, unknown>): void {
