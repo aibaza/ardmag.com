@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { addToCart } from "@lib/data/cart"
+import { trackAddToCart } from "@lib/analytics/track"
 
 interface Props {
   href: string
@@ -52,6 +53,7 @@ export function ProductCardAddButton({
       try {
         await addToCart({ variantId: defaultVariantId, quantity: 1, countryCode })
         setStatus("success")
+        trackAddToCart({ id: defaultVariantId, quantity: 1 })
         window.dispatchEvent(new CustomEvent("cartupdate"))
         window.dispatchEvent(new CustomEvent("cartadded"))
         router.refresh()

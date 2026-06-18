@@ -6,6 +6,7 @@ import { Breadcrumb } from "@modules/@shared/components/breadcrumb/Breadcrumb"
 import { OrderSummary } from "@modules/order/components/OrderSummary"
 import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { formatPrice } from "@lib/util/adapters/format-price"
+import { PurchaseTracker } from "@modules/analytics/PurchaseTracker"
 import { notFound } from "next/navigation"
 
 export const metadata: Metadata = {
@@ -38,8 +39,21 @@ export default async function OrderConfirmedPage({ params }: Props) {
 
   const currency = order.currency_code?.toUpperCase() ?? "RON"
 
+  const purchaseContents = (order.items ?? []).map((item) => ({
+    id: String(item.product_id ?? (item as any).variant_id ?? item.id),
+    quantity: item.quantity,
+    price: item.unit_price,
+    name: item.product_title ?? item.title,
+  }))
+
   return (
     <>
+      <PurchaseTracker
+        orderId={String(order.id)}
+        value={order.total ?? 0}
+        currency={currency}
+        contents={purchaseContents}
+      />
       <SiteHeaderShell countryCode={countryCode} drawerId="confDrawer" drawerClosedAttr />
       <main className="page-inner">
         <Breadcrumb

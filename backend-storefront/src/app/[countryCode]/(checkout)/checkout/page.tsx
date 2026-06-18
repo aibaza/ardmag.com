@@ -7,6 +7,7 @@ import { CheckoutAddressForm } from "@modules/checkout/components/CheckoutAddres
 import { CheckoutShipping } from "@modules/checkout/components/CheckoutShipping"
 import { CheckoutPayment } from "@modules/checkout/components/CheckoutPayment"
 import { CheckoutReview } from "@modules/checkout/components/CheckoutReview"
+import { CheckoutTracker } from "@modules/analytics/CheckoutTracker"
 import { redirect } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 
@@ -85,6 +86,13 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
 
   return (
     <div className="checkout-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 320px', gap: 40, alignItems: 'flex-start' }}>
+      <CheckoutTracker
+        cartId={cart.id}
+        value={cart.total ?? 0}
+        currency={(cart.currency_code ?? 'ron').toUpperCase()}
+        numItems={(cart.items ?? []).reduce((s, it) => s + (it.quantity ?? 0), 0)}
+        contentIds={(cart.items ?? []).map((it) => String(it.product_id ?? (it as any).variant_id ?? it.id))}
+      />
       <div style={{ minWidth: 0 }}>
         <StepIndicator current={step} />
 

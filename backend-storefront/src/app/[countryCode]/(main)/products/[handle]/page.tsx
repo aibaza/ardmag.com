@@ -16,6 +16,7 @@ import { productToPdpPriceCard } from "@lib/util/adapters/product-to-pdp-price-c
 import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
 import { ProductJsonLd } from "@lib/util/json-ld"
+import { ViewContentTracker } from "@modules/analytics/ViewContentTracker"
 
 export const revalidate = 300
 
@@ -154,8 +155,16 @@ export default async function ProductPage(props: Props) {
   const rawPrice = (selectedVariant as any)?.calculated_price?.calculated_amount ?? undefined
   const contactToOrder = (selectedVariant?.metadata as any)?.contact_to_order === true
 
+  const viewCurrency = ((selectedVariant as any)?.calculated_price?.currency_code ?? "ron").toUpperCase()
+
   return (
     <>
+      <ViewContentTracker
+        id={String(product.id)}
+        value={rawPrice}
+        currency={viewCurrency}
+        name={product.title ?? handle}
+      />
       <ProductJsonLd
         name={product.title ?? handle}
         description={product.description?.replace(/<[^>]+>/g, '').slice(0, 300)}
