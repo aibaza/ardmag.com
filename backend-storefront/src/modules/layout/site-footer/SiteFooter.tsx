@@ -69,7 +69,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
       <div className="footer-top">
         <div className="brand-col">
           <a className="logo" href="/"><Image src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} loading="lazy" sizes="200px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
-          <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
+          <p>ARDmag.ro este magazinul online al <strong>Arc Rom Diamonds</strong>, cel mai mare distribuitor Tenax din România, pe piață din 2001. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
           <div className="contact"><div className="phone">Tel. <strong>+40 722 155 441</strong></div><div>office@ardmag.ro</div><div>Calea Baciului 1-3 · Cluj-Napoca</div></div>
         </div>
         <div><h3>Magazin</h3><ul><li><a href={allHref}>Toate produsele</a></li><li><a href="/promotii">Promoții</a></li></ul></div>

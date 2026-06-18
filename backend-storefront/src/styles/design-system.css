@@ -93,6 +93,7 @@
   .util-bar .promo{display:inline-flex;align-items:center;gap:6px}
   .util-bar .promo::before{content:"";width:6px;height:6px;background:var(--brand-500);border-radius:50%}
   .util-bar .promo strong{color:#fff;font-weight:500}
+  .util-bar .parent-brand strong{color:#fff;font-weight:500}
   .util-bar .divider{color:var(--stone-600)}
   .util-bar .right{margin-left:auto;display:flex;gap:16px;align-items:center}
   .util-bar a{color:var(--stone-200);text-decoration:none}
