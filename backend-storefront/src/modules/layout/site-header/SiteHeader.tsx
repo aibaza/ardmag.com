@@ -62,8 +62,6 @@ export function SiteHeader({
       <header className="site-header">
         {/* Desktop: utility bar */}
         <div className="util-bar"><div className="wrap">
-          <a className="parent-brand" href="/despre-noi">Magazinul oficial <strong>Arc Rom Diamonds</strong> · pe piață din 2001</a>
-          <span className="divider">·</span>
           <span className="promo"><strong>Transport gratuit</strong> peste 500 Lei</span>
           <span className="divider">·</span>
           <a href="tel:+40722155441">Tel. +40 722 155 441</a>
