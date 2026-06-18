@@ -21,7 +21,11 @@ function hasMarketingConsent(): boolean {
   }
 }
 
-function fbqTrack(event: string, params: Record<string, unknown>): void {
+function fbqTrack(
+  event: string,
+  params: Record<string, unknown>,
+  options?: { eventID?: string }
+): void {
   if (typeof window === "undefined") return
   // ViewContent / Purchase fire on page mount, which can happen before the Meta
   // Pixel script (loaded afterInteractive) has defined window.fbq -- without a
@@ -36,7 +40,13 @@ function fbqTrack(event: string, params: Record<string, unknown>): void {
     }
     const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq
     if (typeof fbq === "function") {
-      fbq("track", event, params)
+      if (options?.eventID) {
+        // eventID lets Meta deduplicate this browser event against the
+        // server-side Conversions API event that carries the same id.
+        fbq("track", event, params, { eventID: options.eventID })
+      } else {
+        fbq("track", event, params)
+      }
       return
     }
     if (tries++ < 40) setTimeout(attempt, 250)
@@ -155,14 +165,18 @@ export function trackPurchase(i: {
   if (!firstTimeInSession(`purchase:${i.orderId}`)) return
   const currency = (i.currency ?? "RON").toUpperCase()
   const contents = i.contents ?? []
-  fbqTrack("Purchase", {
-    content_type: "product",
-    content_ids: contents.map((c) => c.id),
-    contents: contents.map((c) => ({ id: c.id, quantity: c.quantity })),
-    num_items: contents.reduce((s, c) => s + (c.quantity ?? 0), 0),
-    value: i.value,
-    currency,
-  })
+  fbqTrack(
+    "Purchase",
+    {
+      content_type: "product",
+      content_ids: contents.map((c) => c.id),
+      contents: contents.map((c) => ({ id: c.id, quantity: c.quantity })),
+      num_items: contents.reduce((s, c) => s + (c.quantity ?? 0), 0),
+      value: i.value,
+      currency,
+    },
+    { eventID: i.orderId }
+  )
   pushDataLayer({
     event: "purchase",
     ecommerce: {
