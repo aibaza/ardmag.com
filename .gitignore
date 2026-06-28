@@ -83,3 +83,4 @@ backend/public/
 scripts/enrich-run.jsonl
 scripts/.enrichment-state.jsonl
 .vercel
+.env*
