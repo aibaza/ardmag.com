@@ -1472,3 +1472,6 @@ Confirmat: DA (DC a furnizat codul Meta Pixel si a cerut activare pe toate pagin
 **Verificat live (browser real, fbq executat client-side):** pe home, produs, blog, contact -> `typeof window.fbq === "function"`, script `fbevents.js` + `meta-pixel-init` incarcate, init cu ID-ul corect 1362574249046780, request catre connect.facebook.net confirmat. NU apare in HTML-ul curl pentru ca `next/script afterInteractive` injecteaza client-side.
 
 **Comportament consent (GDPR):** spre deosebire de pixelul Metricool (neconditionat), Meta Pixel respecta cookie consent -- `fbq('consent','revoke')` la init, iar `PageView` se trimite doar cand userul accepta marketing cookies (eveniment ardmag-consent-update). Comportament corect GDPR, consistent cu GoogleAnalytics. Daca DC vrea tracking neconditionat, e alta decizie.
+
+## 2026-06-28 — CAPI mid-funnel (B1)
+Server-side CAPI pentru ViewContent/AddToCart/InitiateCheckout via ruta Next.js /api/meta-capi/track (same-origin, dedup prin event_id comun cu pixelul, GDPR-gated). Recupereaza semnalul pierdut de pixel (iOS/adblock). Env-gated: no-op pana se seteaza META_PIXEL_ID + META_CAPI_ACCESS_TOKEN pe storefront (Vercel). Implementat Codex, review comun Claude+Codex.

@@ -21,6 +21,23 @@ function hasMarketingConsent(): boolean {
   }
 }
 
+function createEventId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID()
+  }
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`
+}
+
+function getCookie(name: string): string | undefined {
+  if (typeof document === "undefined") return undefined
+  const prefix = `${encodeURIComponent(name)}=`
+  return document.cookie
+    .split(";")
+    .map((cookie) => cookie.trim())
+    .find((cookie) => cookie.startsWith(prefix))
+    ?.slice(prefix.length)
+}
+
 function fbqTrack(
   event: string,
   params: Record<string, unknown>,
@@ -51,6 +68,50 @@ function fbqTrack(
     }
     if (tries++ < 40) setTimeout(attempt, 250)
   }
+  attempt()
+}
+
+type MetaCapiContent = { id: string; quantity?: number; item_price?: number }
+
+function metaCapiTrackWhenConsented(payload: {
+  event_name: "ViewContent" | "AddToCart" | "InitiateCheckout"
+  event_id: string
+  contents?: MetaCapiContent[]
+  value?: number
+  currency?: string
+}): void {
+  if (typeof window === "undefined") return
+
+  let tries = 0
+  const attempt = () => {
+    if (!hasMarketingConsent()) {
+      if (tries++ < 40) setTimeout(attempt, 250)
+      return
+    }
+
+    const body = JSON.stringify({
+      ...payload,
+      event_source_url: window.location.href,
+      fbp: getCookie("_fbp"),
+      fbc: getCookie("_fbc"),
+    })
+
+    if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+      const sent = navigator.sendBeacon(
+        "/api/meta-capi/track",
+        new Blob([body], { type: "application/json" })
+      )
+      if (sent) return
+    }
+
+    fetch("/api/meta-capi/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => undefined)
+  }
+
   attempt()
 }
 
@@ -86,10 +147,24 @@ export function trackViewContent(i: {
   name?: string
 }): void {
   const currency = (i.currency ?? "RON").toUpperCase()
-  fbqTrack("ViewContent", {
-    content_type: "product",
-    content_ids: [i.id],
-    content_name: i.name,
+  const eventId = createEventId()
+  fbqTrack(
+    "ViewContent",
+    {
+      content_type: "product",
+      content_ids: [i.id],
+      content_name: i.name,
+      value: i.value,
+      currency,
+    },
+    { eventID: eventId }
+  )
+  metaCapiTrackWhenConsented({
+    event_name: "ViewContent",
+    event_id: eventId,
+    contents: [
+      { id: i.id, quantity: 1, ...(i.value !== undefined ? { item_price: i.value } : {}) },
+    ],
     value: i.value,
     currency,
   })
@@ -112,11 +187,25 @@ export function trackAddToCart(i: {
 }): void {
   const currency = (i.currency ?? "RON").toUpperCase()
   const quantity = i.quantity ?? 1
-  fbqTrack("AddToCart", {
-    content_type: "product",
-    content_ids: [i.id],
-    content_name: i.name,
-    contents: [{ id: i.id, quantity }],
+  const eventId = createEventId()
+  fbqTrack(
+    "AddToCart",
+    {
+      content_type: "product",
+      content_ids: [i.id],
+      content_name: i.name,
+      contents: [{ id: i.id, quantity }],
+      value: i.value,
+      currency,
+    },
+    { eventID: eventId }
+  )
+  metaCapiTrackWhenConsented({
+    event_name: "AddToCart",
+    event_id: eventId,
+    contents: [
+      { id: i.id, quantity, ...(i.value !== undefined ? { item_price: i.value } : {}) },
+    ],
     value: i.value,
     currency,
   })
@@ -139,10 +228,22 @@ export function trackInitiateCheckout(i: {
 }): void {
   if (i.cartId && !firstTimeInSession(`ic:${i.cartId}`)) return
   const currency = (i.currency ?? "RON").toUpperCase()
-  fbqTrack("InitiateCheckout", {
-    content_type: "product",
-    content_ids: i.contentIds,
-    num_items: i.numItems,
+  const eventId = createEventId()
+  fbqTrack(
+    "InitiateCheckout",
+    {
+      content_type: "product",
+      content_ids: i.contentIds,
+      num_items: i.numItems,
+      value: i.value,
+      currency,
+    },
+    { eventID: eventId }
+  )
+  metaCapiTrackWhenConsented({
+    event_name: "InitiateCheckout",
+    event_id: eventId,
+    contents: i.contentIds?.map((id) => ({ id })),
     value: i.value,
     currency,
   })
