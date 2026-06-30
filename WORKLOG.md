@@ -1475,3 +1475,6 @@ Confirmat: DA (DC a furnizat codul Meta Pixel si a cerut activare pe toate pagin
 
 ## 2026-06-28 — CAPI mid-funnel (B1)
 Server-side CAPI pentru ViewContent/AddToCart/InitiateCheckout via ruta Next.js /api/meta-capi/track (same-origin, dedup prin event_id comun cu pixelul, GDPR-gated). Recupereaza semnalul pierdut de pixel (iOS/adblock). Env-gated: no-op pana se seteaza META_PIXEL_ID + META_CAPI_ACCESS_TOKEN pe storefront (Vercel). Implementat Codex, review comun Claude+Codex.
+
+## 2026-06-30 — Integrare brand parinte ARC ROM diamonds in header
+Logo vector ARC ROM (inline SVG, currentColor = urmeaza tema light/dark) ca endorsement sub tagline pe desktop ("PARTE DIN GRUPUL") + langa logo compact pe mobil. Logo extras/stilizat. Var3 aprobata DC. typecheck curat; build local pica doar pe env (Vercel are env).

@@ -16,6 +16,45 @@ interface SiteHeaderProps {
   categories?: Array<{ name: string; handle: string; count: number }>
 }
 
+function ArcRomLogo() {
+  return (
+    <svg className="arc-logo" viewBox="12 10 602 210" role="img" aria-label="ARC ROM diamonds">
+      <g fill="currentColor">
+        <path d="M 32.5 137.2 A 118 118 0 0 1 36.4 116.3 L 61.4 123.2 A 92 92 0 0 0 58.4 139.6 Z" />
+        <path d="M 37.8 111.3 A 118 118 0 0 1 46.3 91.8 L 69.1 104.2 A 92 92 0 0 0 62.6 119.4 Z" />
+        <path d="M 48.8 87.3 A 118 118 0 0 1 61.4 70.1 L 80.9 87.3 A 92 92 0 0 0 71.1 100.7 Z" />
+        <path d="M 64.9 66.3 A 118 118 0 0 1 80.9 52.3 L 96.2 73.4 A 92 92 0 0 0 83.6 84.3 Z" />
+        <path d="M 85.2 49.4 A 118 118 0 0 1 104 39.4 L 114.1 63.3 A 92 92 0 0 0 99.5 71.1 Z" />
+        <path d="M 108.7 37.4 A 118 118 0 0 1 129.3 31.8 L 133.9 57.4 A 92 92 0 0 0 117.8 61.8 Z" />
+        <path d="M 134.4 31 A 118 118 0 0 1 155.7 30.1 L 154.4 56.1 A 92 92 0 0 0 137.8 56.8 Z" />
+        <text
+          x="84"
+          y="154"
+          fontFamily='"Arial Narrow", "Helvetica Neue Condensed Bold", "Roboto Condensed", "Arial Black", Arial, sans-serif'
+          fontSize="104"
+          fontWeight="900"
+          fontStretch="condensed"
+          fontStyle="italic"
+          letterSpacing="-8"
+        >
+          ARC ROM
+        </text>
+        <text
+          x="436"
+          y="199"
+          fontFamily='"Arial Rounded MT Bold", "Helvetica Neue", Arial, sans-serif'
+          fontSize="38"
+          fontWeight="500"
+          fontStyle="italic"
+          letterSpacing="-1"
+        >
+          diamonds
+        </text>
+      </g>
+    </svg>
+  )
+}
+
 export function SiteHeader({
   countryCode,
   categoriesHref: categoriesHrefProp,
@@ -75,7 +114,14 @@ export function SiteHeader({
 
         {/* Desktop: main bar */}
         <div className="main-bar">
-          <a className="logo" href="/"><Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
+          <a className="logo" href="/">
+            <Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" />
+            <div className="tag">Experți în piatră de peste 25 de ani</div>
+            <div className="parent-group">
+              <span>PARTE DIN GRUPUL</span>
+              <ArcRomLogo />
+            </div>
+          </a>
           <form className="search-combo" role="search" onSubmit={handleSearchSubmit}>
             <input type="search" name="q" placeholder="Cauta produs sau brand..." aria-label="cautare" suppressHydrationWarning />
             <button type="submit"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg><span>Cauta</span></button>
@@ -104,7 +150,10 @@ export function SiteHeader({
         {/* Mobile: compact bar */}
         <div className="mobile-header">
           <button className="burger" aria-label="meniu" onClick={() => setDrawerOpen(true)}><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
-          <a className="logo logo-compact" href="/"><Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="150px" /></a>
+          <a className="logo logo-compact" href="/">
+            <Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="150px" />
+            <ArcRomLogo />
+          </a>
           <div className="spacer"></div>
           <a className="icon-btn" href={`/cart`} aria-label="cos"><svg viewBox="0 0 20 20"><path d="M3 4h2l1.5 9h9l1.5-6H6"/><circle cx="8" cy="16" r="1"/><circle cx="15" cy="16" r="1"/></svg>{liveCartCount === undefined ? <span className="count count-skeleton" aria-hidden="true" /> : liveCartCount > 0 && <span className="count">{liveCartCount}</span>}</a>
         </div>
