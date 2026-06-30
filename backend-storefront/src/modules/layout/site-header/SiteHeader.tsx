@@ -200,7 +200,7 @@ export function SiteHeader({
             <a href={`/account/orders`}>Comanda mea <span className="chev">›</span></a>
           </nav>
           <div className="mm-foot">
-            <div className="phone"><strong>+40 722 155 441</strong></div>
+            <div className="phone"><a href="tel:+40722155441"><strong>+40 722 155 441</strong></a></div>
             <div className="sub">L-V 08:00-16:00 · Cluj-Napoca</div>
             <ThemeToggle />
           </div>
