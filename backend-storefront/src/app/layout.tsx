@@ -1,6 +1,7 @@
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import "styles/globals.css"
 
 const plexSans = IBM_Plex_Sans({
@@ -101,6 +102,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
             aria-hidden="true"
           />
         </noscript>
+        <Analytics />
       </body>
     </html>
   )
