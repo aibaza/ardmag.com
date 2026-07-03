@@ -5,6 +5,7 @@ import { calculatePriceForShippingOption } from "@lib/data/fulfillment"
 import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { formatPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
+import { SHIPPING_PHONE_REQUIRED_MESSAGE } from "@lib/util/checkout-shipping-phone"
 
 const FREE_SHIPPING_THRESHOLD = 500
 
@@ -21,6 +22,7 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
   const [selected, setSelected] = useState<string | null>(currentShippingMethodId ?? shippingOptions[0]?.id ?? null)
   const [isPending, startTransition] = useTransition()
   const [updatingId, setUpdatingId] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
   // Initializeaza cu preturile pre-calculate de pe server; fallback async pentru cele lipsa
   const [calc, setCalc] = useState<Record<string, number | "loading" | "error">>(() => {
     const init: Record<string, number | "loading"> = {}
@@ -78,11 +80,17 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
   }
 
   async function selectAndPersist(optId: string) {
+    const previousSelected = selected
     setSelected(optId)
     setUpdatingId(optId)
+    setError(null)
     startTransition(async () => {
       try {
-        await setShippingMethod({ cartId, shippingMethodId: optId })
+        const result = await setShippingMethod({ cartId, shippingMethodId: optId })
+        if (typeof result === "string") {
+          setSelected(previousSelected)
+          setError(result)
+        }
       } finally {
         setUpdatingId(null)
       }
@@ -91,9 +99,13 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
 
   function handleContinue() {
     if (!selected) return
+    setError(null)
     // Asigura ca shipping_method e setat inainte de navigare
     startTransition(async () => {
-      await setShippingMethod({ cartId, shippingMethodId: selected })
+      const result = await setShippingMethod({ cartId, shippingMethodId: selected })
+      if (typeof result === "string") {
+        setError(result || SHIPPING_PHONE_REQUIRED_MESSAGE)
+      }
     })
   }
 
@@ -127,6 +139,12 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
             </label>
           ))}
         </div>
+      )}
+
+      {error && (
+        <p style={{ color: "var(--brand-600)", fontSize: 13, marginBottom: 12, fontFamily: "var(--f-sans)" }}>
+          {error}
+        </p>
       )}
 
       <button

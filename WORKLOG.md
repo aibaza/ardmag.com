@@ -1484,3 +1484,21 @@ Logo vector ARC ROM (inline SVG, currentColor = urmeaza tema light/dark) ca endo
 - Livrat: beacon /a-b.js (cookieless, fail-open) + route /a (forward la colectorul central) + subscriber backend order-placed-analytics (purchase server-side; inert pana la urmatorul deploy Railway).
 - Env: COLLECTOR_URL setat pe Vercel (ardmag-storefront) si Railway (medusa).
 - Verificare live: POST https://ardmag.ro/a -> 202; beacon 200. Aprobare DC in sesiunea Claude 2026-07-03 (gate F3.4 partial).
+
+## 2026-07-03 ~17:15 UTC -- Telefon livrare obligatoriu + email intern
+
+Commit: acest commit.
+Deploy: facut anterior; nu s-a redeploy-uit in consemnarea finala.
+Confirmat: DA - userul a confirmat ca fluxul live ARDmag arata ok dupa deploy.
+
+Livrat:
+- Storefront checkout cere telefon de livrare in pasul de adresa, blocheaza continuarea pentru adrese salvate fara telefon si revalideaza in pasii delivery/payment/review/place order.
+- Backend Medusa respinge update-urile Store API de cart care ating `shipping_address` fara `phone`, plus ruta custom pentru `/store/carts/:id` si includere `src/api` in Dockerfile pentru containerul Railway.
+- Emailul intern de comanda afiseaza `Telefon livrare` din `shipping_address.phone`.
+
+Validari:
+- `backend-storefront`: `npx vitest run src/lib/util/checkout-shipping-phone.test.ts` PASS.
+- `backend`: `npm run test:unit -- src/api/utils/__tests__/require-shipping-phone.unit.spec.ts src/modules/notification-smtp2go/templates/__tests__/order-admin.unit.spec.ts` PASS.
+
+ClickUp/time entry:
+- Blocat in aceasta sesiune: exista doar obligatia generica din `CLAUDE.md`, fara credentiale, task ID sau procedura executabila disponibila local.

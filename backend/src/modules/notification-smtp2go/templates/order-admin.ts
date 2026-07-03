@@ -21,6 +21,7 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
   const email = order.email ?? ""
   const items = (order.items as Array<Record<string, unknown>>) ?? []
   const addr = order.shipping_address as Record<string, unknown> | undefined
+  const shippingPhone = typeof addr?.phone === "string" ? addr.phone.trim() : ""
   const address = addr
     ? `${addr.first_name ?? ""} ${addr.last_name ?? ""}, ${addr.address_1 ?? ""}, ${addr.city ?? ""}`
     : "N/A"
@@ -51,6 +52,7 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
   <table cellpadding="0" cellspacing="0" style="margin-bottom:16px">
     <tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Client:</td><td><strong>${email}</strong></td></tr>
     <tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Adresă:</td><td>${address}</td></tr>
+    <tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Telefon livrare:</td><td><strong>${shippingPhone || "N/A"}</strong></td></tr>
     <tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Plată:</td><td><strong>${paymentMethod}</strong></td></tr>
   </table>
 

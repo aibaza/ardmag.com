@@ -8,6 +8,9 @@ RUN npm install sharp --no-save --legacy-peer-deps
 # Copiaza toate modulele custom compilate
 COPY .medusa/server/src/modules/ ./src/modules/
 
+# Copiaza API routes si middleware custom compilate
+COPY .medusa/server/src/api/ ./src/api/
+
 # Copiaza subscribers compilate (event handlers pe order.placed, customer.created, etc)
 COPY .medusa/server/src/subscribers/ ./src/subscribers/
 

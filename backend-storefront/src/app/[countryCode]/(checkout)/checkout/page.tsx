@@ -10,6 +10,7 @@ import { CheckoutReview } from "@modules/checkout/components/CheckoutReview"
 import { CheckoutTracker } from "@modules/analytics/CheckoutTracker"
 import { redirect } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
+import { hasShippingPhone } from "@lib/util/checkout-shipping-phone"
 
 type Props = {
   params: Promise<{ countryCode: string }>
@@ -54,11 +55,17 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
   const customer = await retrieveCustomer()
 
   // Step guards -- redirect to earliest incomplete step
-  if (step === 'delivery' && !cart.shipping_address?.address_1) {
+  if (step === 'delivery' && (!cart.shipping_address?.address_1 || !hasShippingPhone(cart.shipping_address))) {
+    redirect(`/checkout?step=address`)
+  }
+  if (step === 'payment' && !hasShippingPhone(cart.shipping_address)) {
     redirect(`/checkout?step=address`)
   }
   if (step === 'payment' && !(cart.shipping_methods && cart.shipping_methods.length > 0)) {
     redirect(`/checkout?step=delivery`)
+  }
+  if (step === 'review' && !hasShippingPhone(cart.shipping_address)) {
+    redirect(`/checkout?step=address`)
   }
   if (step === 'review' && !(cart.payment_collection?.payment_sessions && cart.payment_collection.payment_sessions.length > 0)) {
     redirect(`/checkout?step=payment`)

@@ -15,6 +15,11 @@ import {
 } from "./cookies"
 import { getRegion } from "./regions"
 import { getLocale } from "@lib/data/locale-actions"
+import {
+  assertShippingPhone,
+  hasShippingPhone,
+  SHIPPING_PHONE_REQUIRED_MESSAGE,
+} from "@lib/util/checkout-shipping-phone"
 
 /**
  * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.
@@ -229,10 +234,17 @@ export async function setShippingMethod({
   }
 
   try {
+    const cart = await retrieveCart(cartId, "id,*shipping_address")
+    assertShippingPhone(cart?.shipping_address)
+
     await sdk.store.cart.addShippingMethod(cartId, { option_id: shippingMethodId }, {}, headers)
     const cartCacheTag = await getCacheTag("carts")
     revalidateTag(cartCacheTag)
   } catch (e: any) {
+    if (e?.message === SHIPPING_PHONE_REQUIRED_MESSAGE) {
+      return SHIPPING_PHONE_REQUIRED_MESSAGE
+    }
+
     return medusaError(e)
   }
 
@@ -346,7 +358,7 @@ function addressFromFormData(formData: FormData, prefix: string) {
     city: formData.get(`${prefix}.city`) as string,
     country_code: (formData.get(`${prefix}.country_code`) as string) || "ro",
     province: formData.get(`${prefix}.province`) as string,
-    phone: formData.get(`${prefix}.phone`) as string,
+    phone: ((formData.get(`${prefix}.phone`) as string) || "").trim(),
   }
 }
 
@@ -366,6 +378,8 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
     const countryCode = (formData.get("shipping_address.country_code") as string) || "ro"
 
     const shippingAddr = addressFromFormData(formData, "shipping_address")
+    assertShippingPhone(shippingAddr)
+
     const billingAddr =
       sameAsBilling === "on" ? shippingAddr : addressFromFormData(formData, "billing_address")
 
@@ -407,6 +421,11 @@ export async function placeOrder(cartId?: string) {
 
   const headers = {
     ...(await getAuthHeaders()),
+  }
+
+  const cart = await retrieveCart(id, "id,*shipping_address")
+  if (!hasShippingPhone(cart?.shipping_address)) {
+    return SHIPPING_PHONE_REQUIRED_MESSAGE
   }
 
   const cartRes = await sdk.store.cart

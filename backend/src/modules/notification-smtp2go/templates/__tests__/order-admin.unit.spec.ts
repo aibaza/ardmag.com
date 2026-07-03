@@ -16,7 +16,13 @@ const mockBaseOrder = {
       unit_price: 80,
     },
   ],
-  shipping_address: { first_name: "Ciprian", last_name: "Dobrea", address_1: "Vanatorului 6", city: "Baciu" },
+  shipping_address: {
+    first_name: "Ciprian",
+    last_name: "Dobrea",
+    address_1: "Vanatorului 6",
+    city: "Baciu",
+    phone: "0722155441",
+  },
 }
 
 describe("renderOrderAdmin - metoda de plata", () => {
@@ -60,5 +66,11 @@ describe("renderOrderAdmin - metoda de plata", () => {
     const html = renderOrderAdmin(order as any)
     expect(html).not.toContain("Card (Stripe)")
     expect(html).not.toContain("Ramburs")
+  })
+
+  it("afiseaza telefonul de livrare din shipping_address.phone", () => {
+    const html = renderOrderAdmin(mockBaseOrder as any)
+    expect(html).toContain("Telefon livrare:")
+    expect(html).toContain("0722155441")
   })
 })

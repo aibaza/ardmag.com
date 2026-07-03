@@ -2,6 +2,7 @@ import { defineMiddlewares } from "@medusajs/framework/http"
 import * as fs from "fs"
 import * as path from "path"
 import type { Request, Response, NextFunction } from "express"
+import { requireShippingPhoneOnCartUpdate } from "./utils/require-shipping-phone"
 
 const IMAGES_DIR = path.join(process.cwd(), "..", "resources", "images")
 const STATIC_PREFIX = "/static/images/"
@@ -19,6 +20,10 @@ export default defineMiddlewares({
     {
       matcher: "/static/images/**",
       middlewares: [serveStaticImages],
+    },
+    {
+      matcher: "/store",
+      middlewares: [requireShippingPhoneOnCartUpdate],
     },
   ],
 })

@@ -4,6 +4,10 @@ import { setAddresses } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { AddressFields } from "./AddressFieldsShared"
 import { SavedAddressPicker } from "./SavedAddressPicker"
+import {
+  hasShippingPhone,
+  SHIPPING_PHONE_REQUIRED_MESSAGE,
+} from "@lib/util/checkout-shipping-phone"
 
 interface Props {
   countryCode: string
@@ -78,6 +82,8 @@ export function CheckoutAddressForm({
 
   const useNewShipping = selectedShippingAddress === null
   const useNewBilling = selectedBillingAddress === null
+  const selectedShippingMissingPhone =
+    !useNewShipping && !hasShippingPhone(selectedShippingAddress as any)
   const email = cartEmail || customerEmail || ""
 
   return (
@@ -113,6 +119,9 @@ export function CheckoutAddressForm({
             onSelect={setSelectedShippingId}
             mode="shipping"
           />
+          {selectedShippingMissingPhone && (
+            <p className="hint error">{SHIPPING_PHONE_REQUIRED_MESSAGE}</p>
+          )}
           {useNewShipping && (
             <>
               <AddressFields prefix="shipping_address" defaults={cartShippingAddress ?? undefined} />
@@ -174,7 +183,12 @@ export function CheckoutAddressForm({
 
       {error && <p className="hint error">{error as string}</p>}
 
-      <button type="submit" className="btn primary lg" style={{ width: "100%" }}>
+      <button
+        type="submit"
+        className="btn primary lg"
+        style={{ width: "100%" }}
+        disabled={selectedShippingMissingPhone}
+      >
         Continua spre livrare
       </button>
     </form>
