@@ -1,3 +1,4 @@
+import Script from "next/script"
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
@@ -69,6 +70,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <link rel="dns-prefetch" href="https://pub-28d7a4f80d924560ae8c2fe111240e4a.r2.dev" />
       </head>
       <body>
+        {/* First-party portfolio measurement: cookieless, fail-open, same-origin
+            POSTs to /a (src/app/a/route.ts) - adblock-resistant by design. */}
+        <Script src="/a-b.js" data-site="ardmag.ro" strategy="afterInteractive" />
         {GTM_ID ? (
           <noscript>
             <iframe
