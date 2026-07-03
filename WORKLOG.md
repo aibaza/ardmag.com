@@ -1478,3 +1478,9 @@ Server-side CAPI pentru ViewContent/AddToCart/InitiateCheckout via ruta Next.js 
 
 ## 2026-06-30 — Integrare brand parinte ARC ROM diamonds in header
 Logo vector ARC ROM (inline SVG, currentColor = urmeaza tema light/dark) ca endorsement sub tagline pe desktop ("PARTE DIN GRUPUL") + langa logo compact pe mobil. Logo extras/stilizat. Var3 aprobata DC. typecheck curat; build local pica doar pe env (Vercel are env).
+
+## 2026-07-03 ~14:40 UTC -- First-party analytics live (colector central aiBaza)
+- Commits: 9c429e1 (merge analytics-first-party), 85625e3 (fix middleware: exclude /a din matcher regiune).
+- Livrat: beacon /a-b.js (cookieless, fail-open) + route /a (forward la colectorul central) + subscriber backend order-placed-analytics (purchase server-side; inert pana la urmatorul deploy Railway).
+- Env: COLLECTOR_URL setat pe Vercel (ardmag-storefront) si Railway (medusa).
+- Verificare live: POST https://ardmag.ro/a -> 202; beacon 200. Aprobare DC in sesiunea Claude 2026-07-03 (gate F3.4 partial).
