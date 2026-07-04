@@ -1508,3 +1508,10 @@ ClickUp/time entry:
 - Activat: validarea telefonului la checkout (97ef56a, backend+storefront aliniate) + subscriber order-placed-analytics (purchase server-side -> colectorul central; COLLECTOR_URL era setat din 07-03).
 - Verificat: api.ardmag.ro/health 200, storefront 200, continut produse ok. Purchase->colector se confirma la prima comanda reala.
 - Aprobare DC in sesiune (gate deploy backend).
+
+## 2026-07-04 ~14:30 UTC -- Atribuire comenzi->sursa (last-non-direct 90z) LIVE
+- Commits: 0f7eeda (atribuire storefront+backend), fix Dockerfile copie src/lib/ (boot crash), pointer submodul.
+- Livrat: captare server-side fbclid/gclid/UTM la primul landing -> cookie ard_attr 90z (first-touch inghetat, direct nu suprascrie) -> snapshot pe cart.metadata -> copiat pe order -> event purchase catre colector cu sursa rezolvata + fbc/fbp la CAPI.
+- Deploy: colector Cloudflare (wrangler), storefront Vercel (auto push), backend Railway (build+up, deployment 7a9aa5da SUCCESS dupa fix Dockerfile).
+- Verificat live: click FB -> cookie facebook/cpc/campanie via fbclid; vizita directa ulterioara NU suprascrie (zero corupere). E2E OK.
+- Decizii DC: fereastra 90 zile, ROAS last-non-direct, GA4 nefolosit (doar reper research).
