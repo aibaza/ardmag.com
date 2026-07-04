@@ -1502,3 +1502,9 @@ Validari:
 
 ClickUp/time entry:
 - Blocat in aceasta sesiune: exista doar obligatia generica din `CLAUDE.md`, fara credentiale, task ID sau procedura executabila disponibila local.
+
+## 2026-07-04 ~06:50 UTC -- Deploy backend Railway (checkout phone + purchase->colector)
+- Deployment ae6673f0 SUCCESS (build local din master curat, railway up --service medusa).
+- Activat: validarea telefonului la checkout (97ef56a, backend+storefront aliniate) + subscriber order-placed-analytics (purchase server-side -> colectorul central; COLLECTOR_URL era setat din 07-03).
+- Verificat: api.ardmag.ro/health 200, storefront 200, continut produse ok. Purchase->colector se confirma la prima comanda reala.
+- Aprobare DC in sesiune (gate deploy backend).
