@@ -12,6 +12,8 @@ Fără respectarea acestui flow, munca devine invizibilă: nu apare în istoric,
 
 **Lesson learned (19 mai 2026):** pentru deploy pe Railway nu e suficient `git push`. Backend-ul folosește Dockerfile care copiază din `.medusa/server/` (gitignored). Trebuie ÎNTOTDEAUNA: `cd backend && npm run build` (regenerează `.medusa/server/`) → `railway up --service medusa --detach`. Doar push pe master nu propagă schimbările de cod în container — vezi explicație în WORKLOG sesiunea 19 mai.
 
+**Lesson learned (4 iul 2026):** `backend/Dockerfile` copiază DOAR anumite directoare compilate (`src/modules`, `src/api`, `src/subscribers`, `src/jobs`, `src/lib`, `medusa-config.js`). **Orice cod partajat nou (folder nou sub `backend/src/`) trebuie adăugat ca linie `COPY` în Dockerfile**, altfel `npm run build` reușește local dar containerul crapă la boot cu `Cannot find module`. Simptom: deploy Railway = FAILED, health rămâne 200 pe containerul vechi. Debug: `railway logs --service medusa --deployment <id> | grep -i 'cannot find module'`. Query rapid pe DB (comenzi etc.): `DATABASE_PUBLIC_URL` de pe serviciul `postgres` (NU `DATABASE_URL` intern `.railway.internal`, nereachable din VM).
+
 ---
 
 ## Context proiect
