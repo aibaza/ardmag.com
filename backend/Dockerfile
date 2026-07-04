@@ -14,6 +14,9 @@ COPY .medusa/server/src/api/ ./src/api/
 # Copiaza subscribers compilate (event handlers pe order.placed, customer.created, etc)
 COPY .medusa/server/src/subscribers/ ./src/subscribers/
 
+# Copiaza cod partajat compilat (ex. src/lib/attribution folosit de subscribers)
+COPY .medusa/server/src/lib/ ./src/lib/
+
 # Copiaza jobs compilate (cron-uri pentru abandoned-cart-reminder etc)
 COPY .medusa/server/src/jobs/ ./src/jobs/
 
