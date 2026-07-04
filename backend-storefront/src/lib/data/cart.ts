@@ -7,6 +7,7 @@ import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import {
   getAuthHeaders,
+  getAttributionSnapshot,
   getCacheOptions,
   getCacheTag,
   getCartId,
@@ -72,8 +73,13 @@ export async function getOrSetCart(countryCode: string) {
 
   if (!cart) {
     const locale = await getLocale()
+    const attribution = await getAttributionSnapshot()
     const cartResp = await sdk.store.cart.create(
-      { region_id: region.id, locale: locale || undefined },
+      {
+        region_id: region.id,
+        locale: locale || undefined,
+        metadata: { attribution },
+      } as any,
       {},
       headers
     )

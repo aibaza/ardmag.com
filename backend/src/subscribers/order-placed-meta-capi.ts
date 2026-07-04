@@ -1,6 +1,7 @@
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import crypto from "crypto"
+import { attributionFromMetadata } from "../lib/attribution/purchase-payload"
 
 // Meta Conversions API (server-side Purchase).
 //
@@ -48,7 +49,7 @@ export default async function orderPlacedMetaCapi({
 
   if (!PIXEL_ID || !ACCESS_TOKEN) {
     logger.debug?.(
-      "[meta-capi] Skipped — set META_PIXEL_ID and META_CAPI_ACCESS_TOKEN to enable server-side Purchase"
+      "[meta-capi] Skipped - set META_PIXEL_ID and META_CAPI_ACCESS_TOKEN to enable server-side Purchase"
     )
     return
   }
@@ -62,6 +63,8 @@ export default async function orderPlacedMetaCapi({
         "email",
         "total",
         "currency_code",
+        "metadata",
+        "cart.metadata",
         "items.product_id",
         "items.variant_id",
         "items.quantity",
@@ -98,6 +101,12 @@ export default async function orderPlacedMetaCapi({
     if (ct) userData.ct = [ct]
     if (zp) userData.zp = [zp]
     if (country) userData.country = [country]
+
+    const attribution =
+      attributionFromMetadata((order as any).metadata) ||
+      attributionFromMetadata((order as any).cart?.metadata)
+    if (attribution?.fbc) userData.fbc = attribution.fbc
+    if (attribution?.fbp) userData.fbp = attribution.fbp
 
     const items = (order.items ?? []) as any[]
     const contents = items.map((it) => ({

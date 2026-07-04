@@ -1,5 +1,10 @@
 import "server-only"
 import { cookies as nextCookies } from "next/headers"
+import {
+  ATTRIBUTION_COOKIE,
+  parseAttributionCookie,
+  resolveAttributionSnapshot,
+} from "@lib/attribution/attribution"
 
 export const getAuthHeaders = async (): Promise<
   { authorization: string } | {}
@@ -94,4 +99,18 @@ export const removeCartId = async () => {
   cookies.set("_medusa_cart_id", "", {
     maxAge: -1,
   })
+}
+
+export const getAttributionSnapshot = async () => {
+  try {
+    const cookies = await nextCookies()
+    const attr = parseAttributionCookie(cookies.get(ATTRIBUTION_COOKIE)?.value)
+    return resolveAttributionSnapshot({
+      cookie: attr,
+      fbc: cookies.get("_fbc")?.value,
+      fbp: cookies.get("_fbp")?.value,
+    })
+  } catch {
+    return resolveAttributionSnapshot({})
+  }
 }

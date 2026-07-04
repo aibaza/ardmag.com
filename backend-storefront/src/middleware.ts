@@ -1,5 +1,13 @@
 import { HttpTypes } from "@medusajs/types"
 import { NextRequest, NextResponse } from "next/server"
+import {
+  ATTRIBUTION_COOKIE,
+  ATTRIBUTION_MAX_AGE,
+  buildFbc,
+  parseAttributionCookie,
+  serializeAttributionCookie,
+  updateAttributionCookie,
+} from "./lib/attribution/attribution"
 
 const BACKEND_URL = process.env.MEDUSA_BACKEND_URL
 const PUBLISHABLE_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
@@ -68,6 +76,45 @@ async function getCountryCode(
   }
 }
 
+function attachAttributionCookies(request: NextRequest, response: NextResponse) {
+  try {
+    const current = parseAttributionCookie(request.cookies.get(ATTRIBUTION_COOKIE)?.value)
+    const now = new Date()
+    const next = updateAttributionCookie({
+      current,
+      url: request.nextUrl,
+      referrer: request.headers.get("referer"),
+      now,
+    })
+
+    if (next === current) {
+      return response
+    }
+
+    response.cookies.set(ATTRIBUTION_COOKIE, serializeAttributionCookie(next), {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      maxAge: ATTRIBUTION_MAX_AGE,
+      path: "/",
+    })
+
+    const fbclid = request.nextUrl.searchParams.get("fbclid")?.trim()
+    if (fbclid) {
+      response.cookies.set("_fbc", buildFbc(fbclid, now), {
+        secure: true,
+        sameSite: "lax",
+        maxAge: ATTRIBUTION_MAX_AGE,
+        path: "/",
+      })
+    }
+  } catch {
+    return response
+  }
+
+  return response
+}
+
 export async function middleware(request: NextRequest) {
   const cacheIdCookie = request.cookies.get("_medusa_cache_id")
   const cacheId = cacheIdCookie?.value || crypto.randomUUID()
@@ -86,7 +133,7 @@ export async function middleware(request: NextRequest) {
 
   // pass through static file requests (by extension) - e.g. _next/image origin fetches
   if (pathname.includes(".")) {
-    return NextResponse.next()
+    return attachAttributionCookies(request, NextResponse.next())
   }
 
   // Routes that need per-user cache cookie (cart, account, checkout, orders)
@@ -104,14 +151,14 @@ export async function middleware(request: NextRequest) {
     if (countryCode === DEFAULT_REGION && request.method === "GET") {
       const cleanPath = pathname.replace(`/${countryCode}`, "") || "/"
       const cleanUrl = `${request.nextUrl.origin}${cleanPath}${request.nextUrl.search}`
-      return NextResponse.redirect(cleanUrl, 301)
+      return attachAttributionCookies(request, NextResponse.redirect(cleanUrl, 301))
     }
 
     const response = NextResponse.next()
     if (!cacheIdCookie && isUserRoute) {
       response.cookies.set("_medusa_cache_id", cacheId, { maxAge: 60 * 60 * 24 })
     }
-    return response
+    return attachAttributionCookies(request, response)
   }
 
   // No country code in URL - rewrite internally to /{countryCode}/path so Next.js
@@ -124,7 +171,7 @@ export async function middleware(request: NextRequest) {
     response.cookies.set("_medusa_cache_id", cacheId, { maxAge: 60 * 60 * 24 })
   }
 
-  return response
+  return attachAttributionCookies(request, response)
 }
 
 export const config = {
