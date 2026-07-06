@@ -18,7 +18,7 @@ Fără respectarea acestui flow, munca devine invizibilă: nu apare în istoric,
 
 ## Context proiect
 
-ardmag.ro este magazinul propriu al aiBaza pentru scule și consumabile destinate prelucrării pietrei naturale. Site-ul vechi rula pe Wix (domeniu istoric ardmag.com, acum redirect 308). Proiectul migrează pe **Medusa v2** (backend) + **Next.js** (storefront), self-hosted, cu dev inițial pe localhost.
+ardmag.ro este magazinul propriu al aiBaza pentru scule și consumabile destinate prelucrării pietrei naturale. Migrarea de pe Wix este finalizată: ardmag.ro rulează live pe **Medusa v2** (backend Railway) + **Next.js** (storefront Vercel) din aprilie 2026. Domeniul istoric ardmag.com păstrează doar redirect 308 către ardmag.ro.
 
 Companie: prezentă pe piață din 2001, cel mai mare distribuitor Tenax din România. Contact: +40 722 155 441, office@arcromdiamonds.ro, Calea Baciului 1-3, Cluj-Napoca 400230.
 
@@ -115,7 +115,7 @@ Ori de câte ori o decizie de UI/UX nu are încă input din track-ul B:
 
 Zero copy inventat pe ardmag.ro. Toate textele afișate utilizatorului vin din surse autorizate:
 1. Medusa API (date dinamice)
-2. ardmag.ro / ardmag.com (legacy Wix) -- copy verificat
+2. exporturi/snapshot-uri legacy Wix -- copy verificat istoric
 3. Date business confirmate (vezi secțiunea dedicată mai jos)
 4. Labels UI standard
 
