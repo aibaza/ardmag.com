@@ -1613,3 +1613,6 @@ ClickUp/time entry:
 - STARE FINALA tracking ardmag.ro: GA4 (direct), Meta Pixel + CAPI, colector first-party.
   Scoase in aceasta sesiune: Metricool web (404), Vercel Analytics, GTM.
 - De verificat post-deploy cu browser real: page_view + add_to_cart ajung la GA4 prin gtag.
+
+## 2026-07-07 (fix logo ARC ROM diamonds)
+- SiteHeader ArcRomLogo: textLength + lengthAdjust pe ambele texte SVG - fara ele, fallback-ul de font (sisteme fara Arial Rounded/Narrow) randa textul mai lat decat viewBox si il taia ("diamonds" aparea "DIAMOND"). Raportat de DC, verificat headless fara fonturi brand.

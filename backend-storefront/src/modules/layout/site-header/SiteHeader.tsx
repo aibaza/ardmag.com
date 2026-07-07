@@ -27,6 +27,9 @@ function ArcRomLogo() {
         <path d="M 85.2 49.4 A 118 118 0 0 1 104 39.4 L 114.1 63.3 A 92 92 0 0 0 99.5 71.1 Z" />
         <path d="M 108.7 37.4 A 118 118 0 0 1 129.3 31.8 L 133.9 57.4 A 92 92 0 0 0 117.8 61.8 Z" />
         <path d="M 134.4 31 A 118 118 0 0 1 155.7 30.1 L 154.4 56.1 A 92 92 0 0 0 137.8 56.8 Z" />
+        {/* textLength fixeaza latimea randata indiferent de fontul de pe sistemul
+            vizitatorului - fara el, fallback-ul (fara Arial Rounded/Narrow) randa
+            textul mai lat si iesea din viewBox, taiat ("diamonds" -> "DIAMOND") */}
         <text
           x="84"
           y="154"
@@ -36,6 +39,8 @@ function ArcRomLogo() {
           fontStretch="condensed"
           fontStyle="italic"
           letterSpacing="-8"
+          textLength="330"
+          lengthAdjust="spacingAndGlyphs"
         >
           ARC ROM
         </text>
@@ -47,6 +52,8 @@ function ArcRomLogo() {
           fontWeight="500"
           fontStyle="italic"
           letterSpacing="-1"
+          textLength="158"
+          lengthAdjust="spacingAndGlyphs"
         >
           diamonds
         </text>
