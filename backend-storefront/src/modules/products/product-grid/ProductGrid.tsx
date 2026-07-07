@@ -23,16 +23,19 @@ interface ProductGridProps {
   products: ProductGridItem[]
   countryCode: string
   viewMode?: 'grid' | 'list'
+  // cate carduri din capul grilei se incarca eager (LCP); 0 = toate lazy.
+  // Grila principala a paginii (above the fold) trebuie sa dea 4.
+  priorityCount?: number
 }
 
-export function ProductGrid({ variant, products, countryCode, viewMode = 'grid' }: ProductGridProps) {
+export function ProductGrid({ variant, products, countryCode, viewMode = 'grid', priorityCount = 0 }: ProductGridProps) {
   const cls = variant === 'cat'
     ? `cat-grid${viewMode === 'list' ? ' cat-grid--list' : ''}`
     : 'mini-grid'
   return (
     <div className={cls}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} countryCode={countryCode} />
+      {products.map((product, index) => (
+        <ProductCard key={product.id} product={product} countryCode={countryCode} imagePriority={index < priorityCount} />
       ))}
     </div>
   )

@@ -1528,3 +1528,12 @@ ClickUp/time entry:
 - Securitate: scoase credentialele admin hardcodate (`Admin1234!`) din 13 scripturi (repo PUBLIC);
   parola era deja invalida pe productie (verificat 401) - acum scripturile citesc din env.
 - Deploy: push pe master (Vercel auto-deploy storefront). Backend neatins.
+
+## 2026-07-07 — Fix LCP grile de produse (W2026-07-05-1)
+
+- Diagnostic Lighthouse mobil /promotii: LCP 5,6s, din care 3,84s resource load delay -
+  prima imagine de card (`img.pimg`) era `loading=lazy`, descoperita tarziu.
+- Fix: `ProductCard` primeste `imagePriority` (eager + fetchPriority=high);
+  `ProductGrid` are `priorityCount`; `InfiniteProductGrid` (grila principala pe
+  /promotii, /produse, categorii) da priority primelor 4 carduri. Restul raman lazy.
+- Build verde (React 19, fetchPriority nativ). Tinta: LCP sub ~2,5s, LPV/link-click 26% -> 50%+.

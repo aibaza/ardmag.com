@@ -162,7 +162,7 @@ export function InfiniteProductGrid({
 
   return (
     <div aria-live="polite">
-      <ProductGrid variant="cat" products={visibleProducts} countryCode={countryCode} viewMode={viewMode} />
+      <ProductGrid variant="cat" products={visibleProducts} countryCode={countryCode} viewMode={viewMode} priorityCount={4} />
       {hasMore && (
         <>
           <div ref={sentinelRef} style={{ height: 1 }} aria-hidden="true" />
