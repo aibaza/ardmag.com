@@ -31,6 +31,30 @@ type Props = {
   params: Promise<{ countryCode: string; id: string }>
 }
 
+function getPurchaseValue(order: {
+  total?: number | null
+  item_total?: number | null
+  shipping_total?: number | null
+  items?: { unit_price?: number | null; quantity?: number | null }[] | null
+}): number {
+  const total = Number(order.total ?? 0)
+  const itemTotal = Number(
+    order.item_total ??
+      order.items?.reduce(
+        (sum, item) => sum + Number(item.unit_price ?? 0) * Number(item.quantity ?? 0),
+        0
+      ) ??
+      0
+  )
+  const shippingTotal = Number(order.shipping_total ?? 0)
+
+  if (itemTotal > 0 && shippingTotal > 0 && total === shippingTotal) {
+    return itemTotal + shippingTotal
+  }
+
+  return total
+}
+
 export default async function OrderConfirmedPage({ params }: Props) {
   const { countryCode, id } = await params
   const order = await retrieveOrder(id).catch(() => null)
@@ -38,6 +62,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
   if (!order) notFound()
 
   const currency = order.currency_code?.toUpperCase() ?? "RON"
+  const purchaseValue = getPurchaseValue(order)
 
   const purchaseContents = (order.items ?? []).map((item) => ({
     id: String(item.product_id ?? (item as any).variant_id ?? item.id),
@@ -50,7 +75,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
     <>
       <PurchaseTracker
         orderId={String(order.id)}
-        value={order.total ?? 0}
+        value={purchaseValue}
         currency={currency}
         contents={purchaseContents}
       />

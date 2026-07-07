@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { preload } from "react-dom"
 import { Suspense } from "react"
 import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
@@ -93,6 +94,13 @@ export default async function PromotiiPage({ params }: Props) {
       },
     }
   })
+
+  // LCP: primele imagini din grila sunt randate client-side (CatalogClient),
+  // deci browserul le-ar descoperi abia dupa hidratare; preload-ul din server
+  // le porneste imediat (incident LCP 5,6s - resource load delay 3,8s).
+  for (const { card } of items.slice(0, 4)) {
+    if (card.image) preload(card.image, { as: "image", fetchPriority: "high" })
+  }
 
   return (
     <>

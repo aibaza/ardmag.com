@@ -38,6 +38,39 @@ function hashPhone(value?: string | null): string | undefined {
   return crypto.createHash("sha256").update(digits).digest("hex")
 }
 
+function toFiniteNumber(value: unknown): number {
+  const number = Number(value ?? 0)
+  return Number.isFinite(number) ? number : 0
+}
+
+function amountsEqual(left: number, right: number): boolean {
+  return Math.round(left * 100) === Math.round(right * 100)
+}
+
+function getPurchaseValue(order: {
+  total?: unknown
+  item_total?: unknown
+  shipping_total?: unknown
+  items?: { unit_price?: unknown; quantity?: unknown }[] | null
+}): number {
+  const total = toFiniteNumber(order.total)
+  const itemTotal = toFiniteNumber(
+    order.item_total ??
+      order.items?.reduce(
+        (sum, item) =>
+          sum + toFiniteNumber(item.unit_price) * toFiniteNumber(item.quantity),
+        0
+      )
+  )
+  const shippingTotal = toFiniteNumber(order.shipping_total)
+
+  if (itemTotal > 0 && shippingTotal > 0 && amountsEqual(total, shippingTotal)) {
+    return itemTotal + shippingTotal
+  }
+
+  return total
+}
+
 export default async function orderPlacedMetaCapi({
   event,
   container,
@@ -62,6 +95,8 @@ export default async function orderPlacedMetaCapi({
         "id",
         "email",
         "total",
+        "item_total",
+        "shipping_total",
         "currency_code",
         "metadata",
         "cart.metadata",
@@ -114,6 +149,7 @@ export default async function orderPlacedMetaCapi({
       quantity: it.quantity,
       item_price: it.unit_price,
     }))
+    const purchaseValue = getPurchaseValue(order as any)
 
     const payload = {
       data: [
@@ -126,7 +162,7 @@ export default async function orderPlacedMetaCapi({
           user_data: userData,
           custom_data: {
             currency: (order.currency_code ?? "ron").toUpperCase(),
-            value: order.total ?? 0,
+            value: purchaseValue,
             content_type: "product",
             content_ids: contents.map((c) => c.id),
             contents,
@@ -152,7 +188,7 @@ export default async function orderPlacedMetaCapi({
       return
     }
 
-    logger.info(`[meta-capi] Sent server-side Purchase for order ${order.id} (value ${order.total})`)
+    logger.info(`[meta-capi] Sent server-side Purchase for order ${order.id} (value ${purchaseValue})`)
   } catch (err) {
     logger.error(`[meta-capi] Error sending Purchase for ${orderId}: ${err}`)
   }

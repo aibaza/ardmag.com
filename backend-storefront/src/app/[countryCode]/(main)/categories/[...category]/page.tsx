@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { preload } from "react-dom"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import { SiteHeaderShell } from '@modules/layout/site-header'
@@ -134,6 +135,11 @@ export default async function CategoryPage(props: Props) {
   })
   const heroProps = categoryToHero(productCategory, allCategoryProducts)
   const productCards = sortedProducts.map((p) => productToCard(p, countryCode))
+
+  // LCP: grila e client-side - preload din server pentru primele imagini
+  for (const card of productCards.slice(0, 4)) {
+    if (card.image) preload(card.image, { as: "image", fetchPriority: "high" })
+  }
 
   const baseUrl = `/categories/${categoryHandle.join("/")}`
   const breadcrumbItems = [{ label: "Acasa", href: `/${countryCode}` }]

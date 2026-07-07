@@ -1537,3 +1537,14 @@ ClickUp/time entry:
   `ProductGrid` are `priorityCount`; `InfiniteProductGrid` (grila principala pe
   /promotii, /produse, categorii) da priority primelor 4 carduri. Restul raman lazy.
 - Build verde (React 19, fetchPriority nativ). Tinta: LCP sub ~2,5s, LPV/link-click 26% -> 50%+.
+
+## 2026-07-07 — Fix valoare Purchase (incident #7) + preload LCP
+
+- CAPI/pixel Purchase: comanda #12 a ajuns la Meta cu value=54,73 (= shipping_total) in loc
+  de 130,73. Fix defensiv pe AMBELE fire (Codex, review Claude): subscriber-ul CAPI cere
+  item_total+shipping_total si corecteaza cand total==shipping; acelasi guard pe confirmed
+  page (browser); retrieveOrder cere explicit campurile de total. Verificare la urmatoarea
+  comanda in Events Manager (event_id=order.id, value=totalul comenzii).
+- LCP: eager+fetchpriority pe primele 4 carduri nu a miscat LCP-ul (grila e client-side,
+  imaginea nu exista in HTML pana la hidratare). Fix decisiv: preload(as=image,
+  fetchPriority=high) din SERVER pentru primele 4 imagini pe /promotii si /categories/*.
