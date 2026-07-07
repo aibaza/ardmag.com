@@ -8,7 +8,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "../resources/images")
 const DELAY_MS = 400
 const BACKEND_URL = "http://localhost:9000"
 const ADMIN_EMAIL = "admin@ardmag.ro"
-const ADMIN_PASSWORD = "Admin1234!"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? ""
 
 interface WixRow {
   handleId: string

@@ -20,7 +20,7 @@ if (fs.existsSync(envPath)) {
 
 const BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
 const ADMIN_EMAIL = "admin@ardmag.ro"
-const ADMIN_PASSWORD = "Admin1234!"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? ""
 const DRY_RUN = !process.argv.includes("--apply")
 
 async function getAuthToken(): Promise<string> {

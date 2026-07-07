@@ -7,7 +7,7 @@
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:9000"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@ardmag.ro"
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Admin1234!"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? ""
 const DRY_RUN = !process.argv.includes("--apply")
 
 const DELTA_PRODUCT_TITLES = [

@@ -6,7 +6,7 @@ import * as path from "path"
 
 const BACKEND_URL = "http://localhost:9000"
 const ADMIN_EMAIL = "admin@ardmag.ro"
-const ADMIN_PASSWORD = "Admin1234!"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? ""
 const CSV_PATH = path.resolve(__dirname, "../resources/Wix Products Catalog.csv")
 const AUDIT_LOG_PATH = path.resolve(__dirname, "enrichment-audit.jsonl")
 const DELAY_MS = 200

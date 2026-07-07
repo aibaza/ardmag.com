@@ -5,7 +5,7 @@
 
 const BACKEND_URL = "https://admin.ardmag.surmont.co"
 const ADMIN_EMAIL = "admin@ardmag.ro"
-const ADMIN_PASSWORD = "Admin1234!"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? ""
 const CURRENCY = "ron"
 const CONCURRENCY = 20
 const TIMEOUT_MS = 15000

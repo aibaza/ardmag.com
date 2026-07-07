@@ -1515,3 +1515,16 @@ ClickUp/time entry:
 - Deploy: colector Cloudflare (wrangler), storefront Vercel (auto push), backend Railway (build+up, deployment 7a9aa5da SUCCESS dupa fix Dockerfile).
 - Verificat live: click FB -> cookie facebook/cpc/campanie via fbclid; vizita directa ulterioara NU suprascrie (zero corupere). E2E OK.
 - Decizii DC: fereastra 90 zile, ROAS last-non-direct, GA4 nefolosit (doar reper research).
+
+## 2026-07-07 — Prelungire promo Tenax -30% pana pe 31 iulie (decizie Andrei + DC)
+
+- Price list `Mastici Tenax -30% (aprilie 2026)` (plist_01KPKMDRGT1EHY1PYGPMCPV67Q): `ends_at`
+  2026-05-31 -> **2026-07-31T20:59:59Z** (23:59:59 EEST), setat prin unealta noua sistematizata
+  `ops:tools/shop/medusa-promo.js set-end` (admin API, user dedicat `ops@aibaza.ro` creat azi;
+  credentiale doar in `~/.hermes/.env`). Nota: lista aplicase reducerea si dupa 31 mai (overrun);
+  acum termenul e oficial.
+- Homepage hero (`hero-fallback.ts`): kicker `Promo luna mai · până pe 31` -> `Promo prelungit ·
+  până pe 31 iulie`.
+- Securitate: scoase credentialele admin hardcodate (`Admin1234!`) din 13 scripturi (repo PUBLIC);
+  parola era deja invalida pe productie (verificat 401) - acum scripturile citesc din env.
+- Deploy: push pe master (Vercel auto-deploy storefront). Backend neatins.

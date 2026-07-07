@@ -26,7 +26,7 @@ import * as path from "path"
 
 const BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@ardmag.ro"
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Admin1234!"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? ""
 const CODEX_DIR = path.resolve(__dirname, "../backend-storefront/codex-copy-proposals")
 const AUDIT_LOG_PATH = path.resolve(__dirname, "apply-descriptions-audit.jsonl")
 const DELAY_MS = 150
