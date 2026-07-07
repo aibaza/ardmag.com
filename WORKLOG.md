@@ -1564,3 +1564,14 @@ ClickUp/time entry:
 - ENV setate: Railway (medusa) REVALIDATE_SECRET + STOREFRONT_REVALIDATE_URL;
   Vercel production REVALIDATE_SECRET (aceeasi valoare). Test invalidare: schimba un pret
   in admin -> /promotii se reimprospateaza automat.
+
+## 2026-07-07 — SSR shell prima grila + next/image (LCP)
+
+- ProductCard: <img> -> next/image (AVIF/WebP optimizat, sizes responsive, priority pe
+  cardurile above-the-fold). next.config: media.ardmag.ro adaugat in remotePatterns
+  (altfel Image Optimizer refuza imaginile de produs).
+- CatalogGridShell (server component nou): randeaza primele 8 carduri ca HTML static,
+  folosit ca fallback <Suspense> in jurul CatalogClient pe /produse si /promotii ->
+  imaginea LCP e acum in HTML-ul prerandat (nu doar dupa hidratare). Primele 4 = priority.
+  categories/[...category] neatins (grila deja server-side acolo).
+- Build verde, /produse + /promotii raman ● SSG (1h). Implementare: agent Sonnet + Claude.

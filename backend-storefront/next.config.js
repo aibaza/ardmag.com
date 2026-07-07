@@ -71,6 +71,11 @@ const nextConfig = {
         hostname: R2_HOSTNAME,
       },
       {
+        // Domeniul custom sub care sunt servite imaginile de produs (R2)
+        protocol: "https",
+        hostname: "media.ardmag.ro",
+      },
+      {
         protocol: "https",
         hostname: RAILWAY_HOSTNAME,
       },

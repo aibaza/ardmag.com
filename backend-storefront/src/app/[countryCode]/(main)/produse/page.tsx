@@ -4,7 +4,7 @@ import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 import { Breadcrumb } from "@modules/@shared/components/breadcrumb/Breadcrumb"
 import { CategoryHero } from "@modules/category/category-hero"
-import { CatalogClient, type CatalogItem } from "@modules/products/catalog-client"
+import { CatalogClient, CatalogGridShell, type CatalogItem } from "@modules/products/catalog-client"
 import { listProducts } from "@lib/data/products"
 import { productsToFilterGroups } from "@lib/util/adapters/products-to-filter-groups"
 import { productToCard } from "@lib/util/adapters/product-to-card"
@@ -88,7 +88,7 @@ export default async function ProdusePage({ params }: Props) {
 
         <h2 className="sr-only">Catalog produse</h2>
 
-        <Suspense fallback={<div style={{ minHeight: 400 }} />}>
+        <Suspense fallback={<CatalogGridShell items={items} countryCode={countryCode} />}>
           <CatalogClient
             items={items}
             filterGroups={filterGroups as any}
