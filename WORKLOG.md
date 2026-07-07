@@ -1548,3 +1548,19 @@ ClickUp/time entry:
 - LCP: eager+fetchpriority pe primele 4 carduri nu a miscat LCP-ul (grila e client-side,
   imaginea nu exista in HTML pana la hidratare). Fix decisiv: preload(as=image,
   fetchPriority=high) din SERVER pentru primele 4 imagini pe /promotii si /categories/*.
+
+## 2026-07-07 — Cache listari produse in Vercel + invalidare automata din Medusa (cerinta DC)
+
+- DIAGNOSTIC (de ce nu se cache-uia): getCacheOptions citea cookies() (_medusa_cache_id)
+  in fetch-urile de listare -> Next scotea automat paginile din Data Cache (dynamic).
+  /produse, /promotii, categoriile erau toate ƒ Dynamic.
+- FIX (Codex, review Claude): getCacheOptions/Static adauga revalidate:3600 + tags;
+  paginile de listare revalidate=3600; getCategoryByHandle are varianta staticCache
+  (fara cookies) pentru rutele statice. Rezultat build: /produse, /promotii = ● SSG (1h).
+- INVALIDARE AUTOMATA: subscriber nou backend/src/subscribers/storefront-revalidate-products.ts
+  pe product.*/product-variant.*/price-list.* -> POST la STOREFRONT_REVALIDATE_URL cu
+  REVALIDATE_SECRET; /api/revalidate acum POST cu secret -> revalidateTag(products/categories).
+  ATENTIE: subscriber e in folder existent (subscribers/), deja in Dockerfile COPY.
+- ENV setate: Railway (medusa) REVALIDATE_SECRET + STOREFRONT_REVALIDATE_URL;
+  Vercel production REVALIDATE_SECRET (aceeasi valoare). Test invalidare: schimba un pret
+  in admin -> /promotii se reimprospateaza automat.

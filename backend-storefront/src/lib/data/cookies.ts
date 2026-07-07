@@ -40,7 +40,7 @@ export const getCacheTag = async (tag: string): Promise<string> => {
 
 export const getCacheOptions = async (
   tag: string
-): Promise<{ tags: string[] } | {}> => {
+): Promise<{ tags: string[]; revalidate: number } | {}> => {
   if (typeof window !== "undefined") {
     return {}
   }
@@ -51,15 +51,16 @@ export const getCacheOptions = async (
   // can invalidate caches even for anonymous requests (no _medusa_cache_id cookie).
   // For logged-in users the per-user tag still allows scoped invalidation.
   if (!cacheTag) {
-    return { tags: [tag] }
+    return { tags: [tag], revalidate: 3600 }
   }
 
-  return { tags: [cacheTag, tag] }
+  return { tags: [cacheTag, tag], revalidate: 3600 }
 }
 
 /** Static variant - no cookies() read, uses a global tag for CDN/ISR cache. */
-export const getCacheOptionsStatic = (tag: string): { tags: string[] } => ({
+export const getCacheOptionsStatic = (tag: string): { tags: string[]; revalidate: number } => ({
   tags: [tag],
+  revalidate: 3600,
 })
 
 export const setAuthToken = async (token: string) => {

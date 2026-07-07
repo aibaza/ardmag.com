@@ -20,7 +20,7 @@ import { getProductMinPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes, StoreRegion } from "@medusajs/types"
 
 export const maxDuration = 60
-export const revalidate = 300
+export const revalidate = 3600
 
 const VALID_PAGE_SIZES = [20, 40, 60]
 const DEFAULT_PAGE_SIZE = 20
@@ -38,8 +38,8 @@ type Props = {
 
 export async function generateStaticParams() {
   const [categories, regions] = await Promise.all([
-    listCategories().catch(() => [] as HttpTypes.StoreProductCategory[]),
-    listRegions().catch(() => [] as StoreRegion[]),
+    listCategories(undefined, { staticCache: true }).catch(() => [] as HttpTypes.StoreProductCategory[]),
+    listRegions({ staticCache: true }).catch(() => [] as StoreRegion[]),
   ])
 
   const countryCodes = regions.flatMap((r) => (r.countries ?? []).map((c) => c.iso_2).filter(Boolean))
@@ -51,7 +51,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
   try {
-    const category = await getCategoryByHandle(params.category)
+    const category = await getCategoryByHandle(params.category, { staticCache: true })
     if (!category) return {}
     const canonical = `/${params.countryCode}/categories/${params.category.join("/")}`
     return {
@@ -86,7 +86,7 @@ export default async function CategoryPage(props: Props) {
   const activePriceMin = parseInt((searchParams.priceMin as string) ?? "", 10)
   const activePriceMax = parseInt((searchParams.priceMax as string) ?? "", 10)
 
-  const productCategory = await getCategoryByHandle(categoryHandle).catch(() => null)
+  const productCategory = await getCategoryByHandle(categoryHandle, { staticCache: true }).catch(() => null)
   if (!productCategory) notFound()
 
   const { response: { products: allCategoryProducts } } = await listProducts({

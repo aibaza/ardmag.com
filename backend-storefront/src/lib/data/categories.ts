@@ -30,14 +30,17 @@ export const listCategories = async (
     .then(({ product_categories }) => product_categories)
 }
 
-export const getCategoryByHandle = async (categoryHandle: string[]) => {
+export const getCategoryByHandle = async (
+  categoryHandle: string[],
+  { staticCache = false }: { staticCache?: boolean } = {}
+) => {
   const handle = `${categoryHandle.join("/")}`
 
-  const next = {
-    ...(await getCacheOptions("categories")),
-  }
+  const next = staticCache
+    ? getCacheOptionsStatic("categories")
+    : { ...(await getCacheOptions("categories")) }
 
-  return sdk.client
+  return (staticCache ? staticSdk : sdk).client
     .fetch<HttpTypes.StoreProductCategoryListResponse>(
       `/store/product-categories`,
       {
