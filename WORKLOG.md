@@ -1602,3 +1602,14 @@ ClickUp/time entry:
   Analytics (redundant). GTM ramane pana migram GA4 ecommerce de pe dataLayer pe gtag
   direct (`gtag('event', name, params)`) - task viitor, atunci GTM iese curat.
 - Rezultat net curatenie: 5 -> 4 sisteme (scos Metricool + Vercel Analytics), GTM ramane.
+
+## 2026-07-07 — GTM SCOS (GA4 pe gtag direct). 5 -> 3 sisteme de tracking
+
+- Decizie DC: pastram GA4, scoatem GTM (357KB). Precondtie rezolvata: track.ts trimite
+  ecommerce prin gtag('event') direct (commit 7d9c110), deci GA4 add_to_cart/purchase
+  merg si fara GTM.
+- NEXT_PUBLIC_GTM_ID scos din env Vercel -> GoogleAnalytics.tsx incarca gtag.js direct
+  (~60KB) in loc de gtm.js (357KB). GA4 config + consent mode raman.
+- STARE FINALA tracking ardmag.ro: GA4 (direct), Meta Pixel + CAPI, colector first-party.
+  Scoase in aceasta sesiune: Metricool web (404), Vercel Analytics, GTM.
+- De verificat post-deploy cu browser real: page_view + add_to_cart ajung la GA4 prin gtag.
