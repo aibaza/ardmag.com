@@ -1589,3 +1589,16 @@ ClickUp/time entry:
 - PASTRAT: GA4 (direct), Meta Pixel+CAPI, colector first-party a-b.js.
 - Metricool ramane platforma de social scheduling - doar web-analytics de pe site a iesit.
 - Build verde. Masurare before/after in sesiune.
+
+## 2026-07-07 (revert partial) — GTM REPUS: GA4 ecommerce depinde de el
+
+- REGRESIE prinsa la verificare (test browser real): scoaterea GTM rupea evenimentele
+  de ecommerce GA4. Cauza: src/lib/analytics/track.ts trimite add_to_cart/purchase/
+  view_item prin `dataLayer.push({ecommerce})` (format GTM Enhanced Ecommerce) - GTM le
+  traducea la GA4. Fara GTM, gtag.js nu proceseaza aceste push-uri -> doar page_view
+  ramanea la GA4. (Meta Pixel + CAPI + colector NEAFECTATE.)
+- FIX: NEXT_PUBLIC_GTM_ID repus pe Vercel. GA4 ecommerce merge din nou.
+- RAMAN SCOASE (sigur, verificat): Metricool web (be.js, 404 + redundant), Vercel
+  Analytics (redundant). GTM ramane pana migram GA4 ecommerce de pe dataLayer pe gtag
+  direct (`gtag('event', name, params)`) - task viitor, atunci GTM iese curat.
+- Rezultat net curatenie: 5 -> 4 sisteme (scos Metricool + Vercel Analytics), GTM ramane.
