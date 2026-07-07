@@ -1575,3 +1575,17 @@ ClickUp/time entry:
   imaginea LCP e acum in HTML-ul prerandat (nu doar dupa hidratare). Primele 4 = priority.
   categories/[...category] neatins (grila deja server-side acolo).
 - Build verde, /produse + /promotii raman ● SSG (1h). Implementare: agent Sonnet + Claude.
+
+## 2026-07-07 — Curatenie scripturi de tracking (5 -> 3 sisteme)
+
+- Analiza: 5 sisteme de metering (GTM->GA4, Meta Pixel+CAPI, Metricool be.js, colector
+  a-b.js, Vercel Analytics). 4 masurau acelasi trafic web. GTM (357KB) continea DOAR GA4
+  + un conversion linker Google Ads nefolosit (rulam doar Meta). Meta Pixel NU era in GTM
+  (verificat container public - fara dubla numarare).
+- SCOS: MetricoolTracker (be.js, cauza 404 /[hash]/script.js + redundant) - componenta
+  stearsa, import + noscript scoase. Vercel Analytics (@vercel/analytics, redundant cu
+  colectorul propriu). GTM (NEXT_PUBLIC_GTM_ID scos din env Vercel -> GoogleAnalytics.tsx
+  cade automat pe GA4 direct via gtag, ~60KB in loc de 357KB gtm.js).
+- PASTRAT: GA4 (direct), Meta Pixel+CAPI, colector first-party a-b.js.
+- Metricool ramane platforma de social scheduling - doar web-analytics de pe site a iesit.
+- Build verde. Masurare before/after in sesiune.

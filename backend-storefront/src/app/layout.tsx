@@ -2,7 +2,6 @@ import Script from "next/script"
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
 import "styles/globals.css"
 
 const plexSans = IBM_Plex_Sans({
@@ -25,7 +24,6 @@ import { OrganizationJsonLd, WebSiteJsonLd } from "@lib/util/json-ld"
 import { CookieConsentBanner } from "@components/cookie-consent/CookieConsent"
 import { GoogleAnalytics } from "@components/cookie-consent/GoogleAnalytics"
 import { MetaPixel } from "@components/cookie-consent/MetaPixel"
-import { MetricoolTracker } from "@components/cookie-consent/MetricoolTracker"
 import { FastNav } from "@components/nav/FastNav"
 import { Providers } from "./providers"
 
@@ -91,22 +89,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           <CookieConsentBanner />
           <GoogleAnalytics />
           <MetaPixel />
-          <MetricoolTracker />
           <FastNav />
         </Providers>
-        {/* Metricool no-JS fallback (tracker-ul real e in MetricoolTracker, gated pe consimtamant) */}
-        <noscript>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://tracker.metricool.com/c3po.jpg?hash=bab49d7c00dc8f48c6e6eabd19ba8b6a"
-            alt=""
-            width={0}
-            height={0}
-            style={{ display: "none" }}
-            aria-hidden="true"
-          />
-        </noscript>
-        <Analytics />
       </body>
     </html>
   )
