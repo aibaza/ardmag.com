@@ -1,8 +1,13 @@
-// Conversion tracking helper: Meta Pixel (fbq) + GA4 dataLayer (via GTM).
+// Conversion tracking helper: Meta Pixel (fbq) + GA4 (direct gtag.js).
 //
 // Meta events are gated on marketing consent, mirroring the PageView gating in
-// MetaPixel.tsx. GA4 ecommerce events are pushed to the dataLayer; GA Consent
-// Mode v2 (configured in GoogleAnalytics.tsx) governs storage downstream.
+// MetaPixel.tsx. GA4 ecommerce events are sent via window.gtag("event", ...)
+// -- GoogleAnalytics.tsx loads gtag.js directly (no GTM in between), so the
+// GTM-shaped `dataLayer.push({ event, ecommerce })` call is not translated
+// into GA4 hits on its own. A dataLayer.push fallback is kept only for the
+// case where window.gtag is not present (e.g. a GTM container reinstated).
+// GA Consent Mode v2 (configured in GoogleAnalytics.tsx) governs storage
+// downstream either way.
 //
 // Money values are raw decimal RON (major units), matching formatPrice -- the
 // catalog/order amounts are NOT in bani, so they are sent to the pixel as-is.
@@ -115,9 +120,24 @@ function metaCapiTrackWhenConsented(payload: {
   attempt()
 }
 
-function pushDataLayer(payload: Record<string, unknown>): void {
+function pushDataLayer(payload: { event: string; ecommerce?: Record<string, unknown> }): void {
   if (typeof window === "undefined") return
-  const w = window as unknown as { dataLayer?: unknown[] }
+  const w = window as unknown as {
+    dataLayer?: unknown[]
+    gtag?: (...args: unknown[]) => void
+  }
+
+  if (typeof w.gtag === "function") {
+    // Direct GA4 path (no GTM in between): gtag expects the ecommerce fields
+    // unwrapped as the event params, e.g.
+    // gtag("event", "add_to_cart", { currency, value, items }).
+    w.gtag("event", payload.event, payload.ecommerce ?? {})
+    return
+  }
+
+  // Fallback for a GTM-shaped setup (kept defensively in case GTM is ever
+  // reinstated). Only reached when window.gtag is not present, so this
+  // cannot double-count alongside the gtag call above.
   w.dataLayer = w.dataLayer || []
   // GA4 best practice: clear the previous ecommerce object before each event.
   w.dataLayer.push({ ecommerce: null })
