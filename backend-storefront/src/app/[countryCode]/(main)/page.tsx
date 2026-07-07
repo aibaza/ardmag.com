@@ -144,6 +144,7 @@ export default async function HomePage({ params }: Props) {
               variant="mini"
               products={promoProducts.map((p) => productToCard(p, countryCode))}
               countryCode={countryCode}
+              priorityCount={2}
             />
           </>
         )}
