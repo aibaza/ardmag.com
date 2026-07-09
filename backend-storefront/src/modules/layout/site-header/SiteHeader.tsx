@@ -18,7 +18,7 @@ interface SiteHeaderProps {
 
 function ArcRomLogo() {
   return (
-    <svg className="arc-logo" viewBox="12 10 602 210" role="img" aria-label="ARC ROM diamonds">
+    <svg className="arc-logo" viewBox="29 26 422 212" role="img" aria-label="ARC ROM diamonds">
       <g fill="currentColor">
         <path d="M 32.5 137.2 A 118 118 0 0 1 36.4 116.3 L 61.4 123.2 A 92 92 0 0 0 58.4 139.6 Z" />
         <path d="M 37.8 111.3 A 118 118 0 0 1 46.3 91.8 L 69.1 104.2 A 92 92 0 0 0 62.6 119.4 Z" />
@@ -27,9 +27,12 @@ function ArcRomLogo() {
         <path d="M 85.2 49.4 A 118 118 0 0 1 104 39.4 L 114.1 63.3 A 92 92 0 0 0 99.5 71.1 Z" />
         <path d="M 108.7 37.4 A 118 118 0 0 1 129.3 31.8 L 133.9 57.4 A 92 92 0 0 0 117.8 61.8 Z" />
         <path d="M 134.4 31 A 118 118 0 0 1 155.7 30.1 L 154.4 56.1 A 92 92 0 0 0 137.8 56.8 Z" />
-        {/* textLength fixeaza latimea randata indiferent de fontul de pe sistemul
-            vizitatorului - fara el, fallback-ul (fara Arial Rounded/Narrow) randa
-            textul mai lat si iesea din viewBox, taiat ("diamonds" -> "DIAMOND") */}
+        {/* Layout-ul si proportiile vin din referinta resources/arc-rom-logo/ (sigla
+            fizica de la intrare): diamonds sub wordmark, acelasi font greu, marginea
+            dreapta la fix cu ROM. textLength fixeaza latimea randata indiferent de
+            fontul de pe sistemul vizitatorului - fara el, fallback-ul randa textul
+            mai lat si iesea din viewBox, taiat ("diamonds" -> "DIAMOND"). Stroke-ul
+            ingroasa literele ca pe sigla reala, indiferent de weight-urile disponibile. */}
         <text
           x="84"
           y="154"
@@ -39,20 +42,26 @@ function ArcRomLogo() {
           fontStretch="condensed"
           fontStyle="italic"
           letterSpacing="-8"
-          textLength="330"
+          stroke="currentColor"
+          strokeWidth="3.2"
+          textLength="358"
           lengthAdjust="spacingAndGlyphs"
         >
           ARC ROM
         </text>
         <text
-          x="436"
-          y="199"
-          fontFamily='"Arial Rounded MT Bold", "Helvetica Neue", Arial, sans-serif'
-          fontSize="38"
-          fontWeight="500"
+          x="446"
+          y="232"
+          textAnchor="end"
+          fontFamily='"Arial Narrow", "Helvetica Neue Condensed Bold", "Roboto Condensed", "Arial Black", Arial, sans-serif'
+          fontSize="76"
+          fontWeight="900"
+          fontStretch="condensed"
           fontStyle="italic"
-          letterSpacing="-1"
-          textLength="158"
+          letterSpacing="-3"
+          stroke="currentColor"
+          strokeWidth="3.2"
+          textLength="269"
           lengthAdjust="spacingAndGlyphs"
         >
           diamonds

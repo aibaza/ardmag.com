@@ -1616,3 +1616,17 @@ ClickUp/time entry:
 
 ## 2026-07-07 (fix logo ARC ROM diamonds)
 - SiteHeader ArcRomLogo: textLength + lengthAdjust pe ambele texte SVG - fara ele, fallback-ul de font (sisteme fara Arial Rounded/Narrow) randa textul mai lat decat viewBox si il taia ("diamonds" aparea "DIAMOND"). Raportat de DC, verificat headless fara fonturi brand.
+
+## 2026-07-09 — Sigla ARC ROM diamonds corectata (referinta = firma fizica de la intrare)
+
+- Referinta actualizata in resources/arc-rom-logo/ (black/white SVG + preview-uri PNG):
+  "diamonds" mutat SUB wordmark, marit la 76px (~73% din capitale), acelasi font greu
+  italic condensat, marginea dreapta aliniata la fix cu ROM (verificat pe pixeli, delta
+  1px la 1200px). Litere ingrosate cu stroke (tine greutatea pe orice renderer),
+  viewBox strans pe continut (29 26 422 212).
+- Componenta ArcRomLogo din SiteHeader.tsx rescrisa pe noul layout: currentColor
+  (dark/light mode automat), textLength pastrat pe ambele texte (fix latime indiferent
+  de fonturile vizitatorului), stroke pentru greutate. Verificat in browser real
+  (Playwright) la 120/40/22px pe fundal deschis si inchis.
+- backend-storefront/public/arc-rom-diamonds.svg sincronizat cu referinta.
+- Deploy: push pe master (Vercel auto-deploy storefront). Backend neatins.
