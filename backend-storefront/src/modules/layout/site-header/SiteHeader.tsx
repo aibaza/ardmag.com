@@ -18,7 +18,9 @@ interface SiteHeaderProps {
 
 function ArcRomLogo() {
   return (
-    <svg className="arc-logo" viewBox="29 26 422 212" role="img" aria-label="ARC ROM diamonds">
+    {/* textTransform none: .parent-group are text-transform:uppercase in CSS si se
+        mosteneste in <text>-ul SVG - "diamonds" trebuie sa ramana lowercase ca pe sigla */}
+    <svg className="arc-logo" viewBox="29 26 422 212" role="img" aria-label="ARC ROM diamonds" style={{ textTransform: "none" }}>
       <g fill="currentColor">
         <path d="M 32.5 137.2 A 118 118 0 0 1 36.4 116.3 L 61.4 123.2 A 92 92 0 0 0 58.4 139.6 Z" />
         <path d="M 37.8 111.3 A 118 118 0 0 1 46.3 91.8 L 69.1 104.2 A 92 92 0 0 0 62.6 119.4 Z" />
