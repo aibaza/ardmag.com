@@ -1630,3 +1630,12 @@ ClickUp/time entry:
   (Playwright) la 120/40/22px pe fundal deschis si inchis.
 - backend-storefront/public/arc-rom-diamonds.svg sincronizat cu referinta.
 - Deploy: push pe master (Vercel auto-deploy storefront). Backend neatins.
+
+## 2026-07-09 (continuare) — Header desktop: sigle pe un singur rand
+
+- Feedback DC: header-ul se inaltase (logo + tag + parent-group stivuite ~100px).
+- Restructurat: ARDMAG + ARC ROM diamonds pe acelasi rand (.logo-row, ambele 40px,
+  gap 16px), tagline sub, textul "PARTE DIN GRUPUL" eliminat. CSS parent-group scos,
+  regula de ascundere pe mobil rescrisa pe .logo-row .arc-logo (mobilul neatins).
+- Fix pe drum: comentariu JSX invalid in return() a picat build-ul Vercel (4ce6481),
+  corectat in 8fec205. Verificat live post-deploy (e7486c8): un rand, lowercase ok.
