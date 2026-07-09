@@ -17,8 +17,8 @@ interface SiteHeaderProps {
 }
 
 function ArcRomLogo() {
-  // textTransform none: .parent-group are text-transform:uppercase in CSS si se
-  // mosteneste in <text>-ul SVG - "diamonds" trebuie sa ramana lowercase ca pe sigla
+  // textTransform none: plasa de siguranta - "diamonds" trebuie sa ramana lowercase
+  // chiar daca un container primeste text-transform:uppercase (istoric: .parent-group)
   return (
     <svg className="arc-logo" viewBox="29 26 422 212" role="img" aria-label="ARC ROM diamonds" style={{ textTransform: "none" }}>
       <g fill="currentColor">
@@ -133,12 +133,11 @@ export function SiteHeader({
         {/* Desktop: main bar */}
         <div className="main-bar">
           <a className="logo" href="/">
-            <Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" />
-            <div className="tag">Experți în piatră de peste 25 de ani</div>
-            <div className="parent-group">
-              <span>PARTE DIN GRUPUL</span>
+            <div className="logo-row">
+              <Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" />
               <ArcRomLogo />
             </div>
+            <div className="tag">Experți în piatră de peste 25 de ani</div>
           </a>
           <form className="search-combo" role="search" onSubmit={handleSearchSubmit}>
             <input type="search" name="q" placeholder="Cauta produs sau brand..." aria-label="cautare" suppressHydrationWarning />

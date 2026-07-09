@@ -104,9 +104,8 @@
   .logo{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-decoration:none;color:var(--fg)}
   .logo-img{height:40px;width:auto;display:block}
   .logo .tag{font-family:var(--f-mono);font-size:10px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:0.08em;margin:0}
-  .logo .parent-group{display:flex;align-items:center;gap:6px;margin-top:1px;font-family:var(--f-mono);font-size:10px;line-height:1;color:var(--fg-muted);text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap}
-  .logo .parent-group span{opacity:0.78}
-  .logo .parent-group .arc-logo{display:block;width:auto;height:40px;color:var(--fg-muted);flex-shrink:0}
+  .logo .logo-row{display:flex;align-items:center;gap:16px}
+  .logo .logo-row .arc-logo{display:block;width:auto;height:40px;color:var(--fg-muted);flex-shrink:0}
 
   /* Search combobox — input + category select + submit */
   .search-combo{display:flex;height:44px;border:1.5px solid var(--stone-300);border-radius:var(--r-sm);background:var(--surface);max-width:700px;width:100%;justify-self:center;transition:border-color 80ms}
@@ -945,7 +944,7 @@ a.badge:hover{transform:translateY(-1px)}
   .site-header > .util-bar,
   .site-header > .main-bar,
   .site-header > .cat-nav{display:none}
-  .site-header .parent-group{display:none}
+  .site-header .main-bar .logo-row .arc-logo{display:none}
   .site-header > .mobile-header{display:flex}
   .site-header > .mobile-search{display:block}
   .site-header > .mobile-search .search-combo{height:40px;max-width:none}
