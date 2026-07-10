@@ -1646,3 +1646,16 @@ ClickUp/time entry:
   si sa fie mai spatiata de blocul principal.
 - Restructurat .logo (scoped .main-bar, footer-ul neatins): coloana .logo-main
   (ARDMAG + tagline) + arc-logo la 59px inaltime, gap 24px. Verificat live (d051786).
+
+## 2026-07-10 - P0: produsul Tenax inventat din articolul despre efectul burete
+
+- Hero-ul, OG-ul si media Facebook/Story generate AI redesenau recipientele Proseal
+  si SEAL, desi pipeline-ul declarase vizual ca ar fi fidele referintelor.
+- Produsul corect din articol si catalog este Tenax Proseal 1 L,
+  `product_cb5fbe1d-d215-90c1-4e27-d218a12716ef`. Proseal FS nu a fost folosit;
+  lista de probleme a clientului cere explicit scoaterea lui din site.
+- Toate formatele au fost refacute prin compozitie raster determinista din fotografia
+  reala de catalog `db3b5a_889a7c59a1e2437089d44b3e5b0313b6.jpg`, fara generarea
+  sau redesenarea produsului. Regiunea de 800x600 pixeli este copiata 1:1.
+- QA: build Next.js verde; verificarea asset-grounding compara efectiv pixelii sursa
+  cu fiecare output si cere AE=0, pe langa SHA-256-ul sursei.
