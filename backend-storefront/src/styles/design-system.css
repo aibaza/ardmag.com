@@ -314,7 +314,12 @@
     transition:opacity 240ms ease;
   }
   @media(max-width:1200px){.hero-promo-img{width:320px;opacity:.9}}
-  @media(max-width:700px){.hero-promo-img{display:none}}
+  /* mobil: imaginea ramane vizibila, mai mica, jos-dreapta; hero-ul isi
+     rezerva spatiu sub stats ca produsul sa nu calce peste text */
+  @media(max-width:700px){
+    .hero-main.has-promo-img{padding-bottom:150px}
+    .hero-promo-img{width:240px;right:-20px;bottom:-30px;opacity:.95}
+  }
   /* tranzitie carusel in doua faze: iesire scurta (is-leaving pe varianta
      curenta + imaginea alaturata), apoi intrare cu stagger pe copii */
   .hero-variant.is-leaving{opacity:0;transform:translateY(-6px)}
