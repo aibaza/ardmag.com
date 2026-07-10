@@ -1670,8 +1670,9 @@ ClickUp/time entry:
 
 ## 2026-07-10 - Rollback complet incident vizual P0 fals pozitiv
 
-- La cererea lui Ciprian, `bg.webp` a fost restaurat exact din commitul initial
-  `b2f2a71`; `prompt.json` era deja identic cu acel commit si nu a necesitat editare.
+- La cererea lui Ciprian, `bg.webp` si `prompt.json` au fost restaurate exact din
+  commitul initial `b2f2a71` pe ramura de productie. Pe `staging`, `prompt.json` era
+  deja identic cu acel commit.
 - Hero, OG, Facebook si Story au ramas imaginile originale validate. Textul articolului
   si modificarile ulterioare nelegate de incident nu au fost atinse.
 - Build Next.js complet: PASS. Programarea Metricool a fost verificata read-only si a
