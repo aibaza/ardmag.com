@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact": "hero.webp",
+  "creative_tags": {
+    "hook": "myth_bust",
+    "format": "hero_image",
+    "angle": "process",
+    "cta": "contact",
+    "vibe": "premium"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "efectul-burete-blaturi-cuart-impregnant-corect",
+    "roundDate": "2026-07-10",
+    "template": "hero",
+    "aspectRatio": "16:9",
+    "provider": "codex-cli"
+  }
+}
