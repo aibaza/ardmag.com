@@ -1667,3 +1667,12 @@ ClickUp/time entry:
 - Restaurate exact din parintele commitului `e2ff69e`: hero, OG, Facebook si Story.
 - Textul articolului si celelalte articole nu au fost modificate.
 - Build Next.js complet: PASS.
+
+## 2026-07-10 - Rollback complet incident vizual P0 fals pozitiv
+
+- La cererea lui Ciprian, `bg.webp` a fost restaurat exact din commitul initial
+  `b2f2a71`; `prompt.json` era deja identic cu acel commit si nu a necesitat editare.
+- Hero, OG, Facebook si Story au ramas imaginile originale validate. Textul articolului
+  si modificarile ulterioare nelegate de incident nu au fost atinse.
+- Build Next.js complet: PASS. Programarea Metricool a fost verificata read-only si a
+  ramas Story 08:00 / Feed 10:00 pe 2026-07-14, cu media cached byte-identica.
