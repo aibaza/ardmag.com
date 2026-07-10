@@ -1677,3 +1677,26 @@ ClickUp/time entry:
   si modificarile ulterioare nelegate de incident nu au fost atinse.
 - Build Next.js complet: PASS. Programarea Metricool a fost verificata read-only si a
   ramas Story 08:00 / Feed 10:00 pe 2026-07-14, cu media cached byte-identica.
+
+## 2026-07-10 - Experiment A/B hero + ticker articole LIVE in productie
+
+- Hero-ul homepage e acum experimentul `hero_tenax30_v1`: 4 variante de copy
+  (stoc / calcul / sezon / expert) rotite la 10s cu tranzitie in doua faze
+  (iesire 240ms + intrare cu stagger), varianta initiala aleasa round-robin
+  pe minutul curent (distributie garantat egala a impresiilor initiale).
+- Packshot-uri Tenax integrate low-key pe fundalul hero (generate din
+  referinte reale, fade radial de alpha, fara decupaje colaj), cate una per
+  varianta, in locul liniilor decorative portocalii.
+- Cardurile de articole au devenit ticker vertical: pool ultimele 6 articole,
+  la 10s cardul de sus iese in sus si urmatorul intra de jos; programat pe
+  grila ceasului in contratimp exact cu rotatia hero (hero sec 0, articole
+  sec 5). Inaltime .hero-main stabila prin stack de sizere invizibile.
+- Masurare prin beacon-ul first-party -> colectorul central: hero_view
+  (mode initial/rotate, dedupe per pageload), hero_cta_click, hero_side_click;
+  traficul non-productie taguit env:test. Metrica primara: CTR pe impresiile
+  initiale. Verificat live post-deploy: slot round-robin corect, evenimente
+  in colector, un singur h1, inaltime constanta 486px.
+- Infra: mediu de test permanent test.ardmag.ro (branch staging, env preview
+  cu valorile de productie, sub SSO Vercel), DNS automatizat prin
+  tools/dns/cf-dns.js (token Cloudflare extins cu Zone.DNS.Edit).
+- Deploy: merge staging -> master 319a1c5, Vercel production READY.
