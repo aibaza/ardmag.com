@@ -334,7 +334,7 @@
   /* mobil: hero compact, imaginea mare pe fundal in coltul dreapta-jos,
      SUB texte; textele primesc un dark glow pentru lizibilitate */
   @media(max-width:700px){
-    .hero-promo-img{width:600px;right:-150px;bottom:-170px;opacity:1}
+    .hero-promo-img{width:600px;left:96px;right:auto;bottom:-86px;opacity:1}
     /* scrim diagonal peste imagine, sub texte: imaginea devine fundal,
        textele raman pe zona intunecata */
     .hero-main.has-promo-img::after{
