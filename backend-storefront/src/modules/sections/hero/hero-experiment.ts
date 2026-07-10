@@ -17,7 +17,7 @@ export interface HeroExperimentVariant {
 
 export const HERO_EXPERIMENT = {
   name: 'hero_tenax30_v1',
-  rotateMs: 8000,
+  rotateMs: 10000,
   variants: [
     {
       id: 'stoc',

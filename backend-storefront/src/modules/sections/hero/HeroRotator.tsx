@@ -2,14 +2,20 @@
 
 // Blocul .hero-main rotativ pentru experimentul A/B hero_tenax30_v1.
 // SSR si primul render client afiseaza variants[0] (zero hydration mismatch);
-// la mount se face Fisher-Yates shuffle si se trece la varianta initiala
-// random, mascata de acelasi fade de 400ms folosit la rotatie. Impresia SSR
-// nu se masoara: doar varianta aleasa random emite hero_view mode:'initial'.
-// Rotatie la rotateMs, pauza la hover si la tab ascuns; prefers-reduced-motion
-// dezactiveaza rotatia (varianta initiala random ramane si e masurata).
+// la mount se alege varianta initiala prin round-robin pe minutul curent
+// (distributie garantat egala a impresiilor initiale), restul ordinii de
+// rotatie fiind amestecat aleator per pageload.
+// Rotatia e programata pe grila ceasului de perete (scheduleOnWallClockGrid,
+// offset 0) ca sa comute exact in contratimp cu ticker-ul de articole
+// (aceeasi perioada, offset jumatate). Pauza la hover si tab ascuns;
+// prefers-reduced-motion dezactiveaza rotatia (varianta initiala ramane).
+// Inaltime stabila: toate variantele se randeaza ca sizere invizibile intr-un
+// stack de grid (aceeasi celula), deci .hero-main are mereu inaltimea celei
+// mai inalte variante - fara salturi de layout intre variante.
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { abTrack } from '@lib/util/ab-track'
+import { scheduleOnWallClockGrid } from '@lib/util/grid-timer'
 import type { HeroExperimentVariant } from './hero-experiment'
 
 interface HeroRotatorProps {
@@ -21,6 +27,44 @@ interface HeroRotatorProps {
 const GHOST_STYLE: CSSProperties = { color: '#fff', borderColor: 'var(--stone-700)' }
 
 const LEAVE_MS = 240
+
+interface VariantBodyProps {
+  v: HeroExperimentVariant
+  sizer?: boolean
+  onCtaClick?: (cta: 'primary' | 'ghost') => void
+}
+
+function VariantBody({ v, sizer, onCtaClick }: VariantBodyProps) {
+  return (
+    <>
+      <span className="kicker">{v.kicker}</span>
+      {sizer ? <div className="hv-title">{v.title}</div> : <h1 className="hv-title">{v.title}</h1>}
+      <p>{v.description}</p>
+      <div className="hactions">
+        {sizer ? (
+          <>
+            <span className="btn primary lg">{v.primaryCta.label}</span>
+            <span className="btn ghost lg hero-ghost" style={GHOST_STYLE}>{v.ghostCta.label}</span>
+          </>
+        ) : (
+          <>
+            <a className="btn primary lg" href={v.primaryCta.href} onClick={() => onCtaClick?.('primary')}>
+              {v.primaryCta.label}
+            </a>
+            <a className="btn ghost lg hero-ghost" href={v.ghostCta.href} style={GHOST_STYLE} onClick={() => onCtaClick?.('ghost')}>
+              {v.ghostCta.label}
+            </a>
+          </>
+        )}
+      </div>
+      <div className="stats">
+        {v.stats.map((s, i) => (
+          <div key={i}><strong>{s.value}</strong><span>{s.label}</span></div>
+        ))}
+      </div>
+    </>
+  )
+}
 
 export function HeroRotator({ experiment, rotateMs, variants }: HeroRotatorProps) {
   const [order, setOrder] = useState<number[] | null>(null)
@@ -48,21 +92,22 @@ export function HeroRotator({ experiment, rotateMs, variants }: HeroRotatorProps
     setOrder([initialIdx, ...rest])
   }, [variants])
 
-  // tranzitie in doua faze: continutul curent iese subtil (fade + 6px in sus,
-  // LEAVE_MS), apoi varianta urmatoare intra cu stagger (CSS .hero-variant)
+  // tranzitie in doua faze pe grila ceasului de perete (offset 0): continutul
+  // curent iese subtil (fade + 6px in sus, LEAVE_MS), apoi urmatoarea varianta
+  // intra cu stagger (CSS .hero-variant)
   useEffect(() => {
     if (!order || reducedMotionRef.current) return
     let leaveTimer: ReturnType<typeof setTimeout> | null = null
-    const timer = setInterval(() => {
+    const cancel = scheduleOnWallClockGrid(rotateMs, 0, () => {
       if (pausedRef.current || document.hidden) return
       setLeaving(true)
       leaveTimer = setTimeout(() => {
         setPos((p) => (p + 1) % order.length)
         setLeaving(false)
       }, LEAVE_MS)
-    }, rotateMs)
+    })
     return () => {
-      clearInterval(timer)
+      cancel()
       if (leaveTimer) clearTimeout(leaveTimer)
     }
   }, [order, rotateMs])
@@ -107,23 +152,15 @@ export function HeroRotator({ experiment, rotateMs, variants }: HeroRotatorProps
       onMouseEnter={() => { pausedRef.current = true }}
       onMouseLeave={() => { pausedRef.current = false }}
     >
-      <div className={`hero-variant${leaving ? ' is-leaving' : ''}`} key={active.id}>
-        <span className="kicker">{active.kicker}</span>
-        <h1>{active.title}</h1>
-        <p>{active.description}</p>
-        <div className="hactions">
-          <a className="btn primary lg" href={active.primaryCta.href} onClick={() => onCtaClick('primary')}>
-            {active.primaryCta.label}
-          </a>
-          <a className="btn ghost lg hero-ghost" href={active.ghostCta.href} style={GHOST_STYLE} onClick={() => onCtaClick('ghost')}>
-            {active.ghostCta.label}
-          </a>
-        </div>
-        <style>{`.hero-ghost:hover{background:var(--stone-700)!important;color:#fff!important}`}</style>
-        <div className="stats">
-          {active.stats.map((s, i) => (
-            <div key={i}><strong>{s.value}</strong><span>{s.label}</span></div>
-          ))}
+      <div className="hero-variant-stack">
+        {variants.map((v) => (
+          <div key={`sizer-${v.id}`} className="hero-variant hv-sizer" aria-hidden="true">
+            <VariantBody v={v} sizer />
+          </div>
+        ))}
+        <div className={`hero-variant${leaving ? ' is-leaving' : ''}`} key={active.id}>
+          <VariantBody v={active} onCtaClick={onCtaClick} />
+          <style>{`.hero-ghost:hover{background:var(--stone-700)!important;color:#fff!important}`}</style>
         </div>
       </div>
       <img

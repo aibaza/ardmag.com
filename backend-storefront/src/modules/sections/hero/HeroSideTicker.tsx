@@ -12,6 +12,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { abTrack } from '@lib/util/ab-track'
+import { scheduleOnWallClockGrid } from '@lib/util/grid-timer'
 
 interface HeroSideCard {
   kicker: string
@@ -31,7 +32,7 @@ interface HeroSideTickerProps {
 const GAP = 16
 const SLIDE_MS = 650
 
-export function HeroSideTicker({ cards, tickMs = 20000 }: HeroSideTickerProps) {
+export function HeroSideTicker({ cards, tickMs = 10000 }: HeroSideTickerProps) {
   const [start, setStart] = useState(0)
   const [sliding, setSliding] = useState(false)
   const [cardH, setCardH] = useState<number | null>(null)
@@ -50,13 +51,14 @@ export function HeroSideTicker({ cards, tickMs = 20000 }: HeroSideTickerProps) {
     return () => ro.disconnect()
   }, [])
 
+  // programat pe grila ceasului cu offset de JUMATATE de perioada: comuta
+  // exact in contratimp cu rotatia variantelor de hero (offset 0)
   useEffect(() => {
     if (cards.length < 3 || reducedMotionRef.current) return
-    const timer = setInterval(() => {
+    return scheduleOnWallClockGrid(tickMs, tickMs / 2, () => {
       if (pausedRef.current || document.hidden) return
       setSliding(true)
-    }, tickMs)
-    return () => clearInterval(timer)
+    })
   }, [cards.length, tickMs])
 
   const onSlideEnd = () => {

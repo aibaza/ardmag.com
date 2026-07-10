@@ -293,7 +293,20 @@
   /* Experiment A/B hero_tenax30_v1: packshot promo transparent in coltul
      dreapta-jos inlocuieste liniile decorative cat timp exista imagine */
   .hero-main.has-promo-img::after{display:none}
-  .hero-variant{display:flex;flex-direction:column;gap:18px;flex:1;min-width:0;position:relative;z-index:1;transition:opacity 240ms ease,transform 240ms ease}
+  /* Stack de sizere: toate variantele ocupa aceeasi celula de grid, cele
+     inactive invizibile - inaltimea .hero-main = varianta cea mai inalta,
+     fara salturi de layout intre variante */
+  .hero-variant-stack{display:grid;flex:1;min-width:0;position:relative;z-index:1}
+  .hero-variant-stack>.hero-variant{grid-area:1/1}
+  .hero-variant.hv-sizer{visibility:hidden;pointer-events:none}
+  .hero-variant.hv-sizer>*{animation:none!important;transition:none!important}
+  .hero-variant{display:flex;flex-direction:column;gap:18px;min-width:0;transition:opacity 240ms ease,transform 240ms ease}
+  /* Titlul variantei: metricile h2-ului de design pe toate breakpointurile,
+     identice pentru h1-ul real si sizerele div (invinge h1{26px!important}
+     din blocul mobil prin specificitate mai mare) */
+  .hero-main .hero-variant .hv-title{font-size:44px!important;line-height:1.05!important;letter-spacing:-0.025em;font-weight:600;margin:0;max-width:560px}
+  @media(max-width:860px){.hero-main .hero-variant .hv-title{font-size:28px!important;line-height:1.1!important}}
+  @media(max-width:520px){.hero-main .hero-variant .hv-title{font-size:24px!important}}
   .hero-promo-img{
     position:absolute;right:-36px;bottom:-48px;width:420px;height:auto;
     pointer-events:none;user-select:none;z-index:0;
@@ -305,12 +318,12 @@
   /* tranzitie carusel in doua faze: iesire scurta (is-leaving pe varianta
      curenta + imaginea alaturata), apoi intrare cu stagger pe copii */
   .hero-variant.is-leaving{opacity:0;transform:translateY(-6px)}
-  .hero-variant.is-leaving~.hero-promo-img{opacity:0}
-  .hero-variant>.kicker,.hero-variant>h1,.hero-variant>h2,.hero-variant>p,
+  .hero-main:has(.hero-variant.is-leaving) .hero-promo-img{opacity:0}
+  .hero-variant>.kicker,.hero-variant>.hv-title,.hero-variant>h1,.hero-variant>h2,.hero-variant>p,
   .hero-variant>.hactions,.hero-variant>.stats{
     animation:heroRise 460ms cubic-bezier(.22,.61,.36,1) backwards;
   }
-  .hero-variant>h1,.hero-variant>h2{animation-delay:60ms}
+  .hero-variant>.hv-title,.hero-variant>h1,.hero-variant>h2{animation-delay:60ms}
   .hero-variant>p{animation-delay:120ms}
   .hero-variant>.hactions{animation-delay:180ms}
   .hero-variant>.stats{animation-delay:240ms}
@@ -335,6 +348,9 @@
   .hero-side-ticker{display:block;position:relative;overflow:hidden}
   .hero-side-ticker .hst-track{position:absolute;inset:0;display:flex;flex-direction:column;gap:16px;will-change:transform}
   .hero-side-ticker .hero-card{flex:0 0 calc(50% - 8px);min-height:0}
+  /* inaltime fixa per card => textul lung se taie curat, nu impinge layoutul */
+  .hero-side-ticker .hero-card h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .hero-side-ticker .hero-card p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
   @media(max-width:900px){.hero-side-ticker{height:440px}}
   @media(prefers-reduced-motion:reduce){.hero-side-ticker .hst-track{transition:none!important;transform:none!important}}
   .hero-card{
