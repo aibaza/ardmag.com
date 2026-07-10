@@ -1700,3 +1700,16 @@ ClickUp/time entry:
   cu valorile de productie, sub SSO Vercel), DNS automatizat prin
   tools/dns/cf-dns.js (token Cloudflare extins cu Zone.DNS.Edit).
 - Deploy: merge staging -> master 319a1c5, Vercel production READY.
+
+## 2026-07-10 seara - Rafinare mobila hero A/B + inchidere dezvoltare
+
+- Mobil: packshot vizibil (regula display:none eliminata), dublat la 600px,
+  opacity 1, crop in coltul dreapta-jos, pozitionare finala reglata de DC
+  (left:96px, bottom:-86px); hero compact (fara spatiu rezervat).
+- Lizibilitate: halo pe glife (text-shadow 7 straturi, raze 1-48px) care
+  urmareste exact forma literelor; panourile frosted (backdrop-blur) au fost
+  respinse de DC pentru ca obscurau zone fara text. Scrim usor pe zona stats;
+  butonul ghost cu fundal translucid + blur.
+- Toate iteratiile au trecut prin preview pe test.ardmag.ro inainte de merge.
+- Deploy final: merge staging -> master 285c03c, production READY, CSS mobil
+  verificat in bundle-ul live. Dezvoltarea inchisa cu aprobarea DC.
