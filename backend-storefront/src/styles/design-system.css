@@ -314,11 +314,25 @@
     transition:opacity 240ms ease;
   }
   @media(max-width:1200px){.hero-promo-img{width:320px;opacity:.9}}
-  /* mobil: imaginea ramane vizibila, mai mica, jos-dreapta; hero-ul isi
-     rezerva spatiu sub stats ca produsul sa nu calce peste text */
+  /* mobil: hero compact, imaginea mare pe fundal in coltul dreapta-jos,
+     SUB texte; textele primesc un dark glow pentru lizibilitate */
   @media(max-width:700px){
-    .hero-main.has-promo-img{padding-bottom:150px}
-    .hero-promo-img{width:240px;right:-20px;bottom:-30px;opacity:.95}
+    .hero-promo-img{width:300px;right:-56px;bottom:-64px;opacity:.85}
+    /* scrim diagonal peste imagine, sub texte: imaginea devine fundal,
+       textele raman pe zona intunecata */
+    .hero-main.has-promo-img::after{
+      content:"";display:block;position:absolute;inset:0;width:auto;height:auto;
+      background:linear-gradient(105deg,rgb(28 25 23/.94) 42%,rgb(28 25 23/.55) 66%,rgb(28 25 23/.12) 88%),linear-gradient(0deg,rgb(28 25 23/.5),transparent 45%);
+      opacity:1;transform:none;z-index:0;pointer-events:none;
+    }
+    .hero-variant .kicker,.hero-variant .hv-title,.hero-variant p{
+      text-shadow:0 1px 2px rgb(10 9 8/.95),0 0 12px rgb(10 9 8/.8),0 0 26px rgb(10 9 8/.6);
+    }
+    .hero-variant .stats strong,.hero-variant .stats span{
+      text-shadow:0 1px 2px rgb(10 9 8/.95),0 0 10px rgb(10 9 8/.85),0 0 22px rgb(10 9 8/.65);
+    }
+    /* butonul ghost primeste fundal translucid ca sa ramana lizibil peste imagine */
+    .hero-variant .hactions .hero-ghost{background:rgb(28 25 23/.6)!important;backdrop-filter:blur(3px)}
   }
   /* tranzitie carusel in doua faze: iesire scurta (is-leaving pe varianta
      curenta + imaginea alaturata), apoi intrare cu stagger pe copii */
