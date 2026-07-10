@@ -1,1 +1,5 @@
 export { Hero } from './Hero'
+export { HeroRotator } from './HeroRotator'
+export { HeroSide } from './HeroSide'
+export { HERO_EXPERIMENT } from './hero-experiment'
+export { HeroSideTicker } from './HeroSideTicker'
