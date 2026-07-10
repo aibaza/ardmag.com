@@ -1639,3 +1639,10 @@ ClickUp/time entry:
   regula de ascundere pe mobil rescrisa pe .logo-row .arc-logo (mobilul neatins).
 - Fix pe drum: comentariu JSX invalid in return() a picat build-ul Vercel (4ce6481),
   corectat in 8fec205. Verificat live post-deploy (e7486c8): un rand, lowercase ok.
+
+## 2026-07-10 — Sigla ARC ROM pe inaltimea blocului ARDMAG+tagline
+
+- Feedback DC: ARDMAG + tagline = tot unitar; sigla ARC ROM sa acopere ambele randuri
+  si sa fie mai spatiata de blocul principal.
+- Restructurat .logo (scoped .main-bar, footer-ul neatins): coloana .logo-main
+  (ARDMAG + tagline) + arc-logo la 59px inaltime, gap 24px. Verificat live (d051786).
