@@ -1,15 +1,14 @@
 {
-  "prompt": "a quiet working-day moment in a stone atelier - the attached Delta products sit naturally beside a stone sample, brush, or cloth on a polished workbench; let the framing feel observed, not staged. Wide 16:9 hero, product/action right-of-center, left third open as continuous stone/workshop context. Documentary product photo, Romanian stone atelier or stone setting, natural daylight, true material texture. Must read as a real photograph, not a CGI/AI render: coherent directional light, true contact shadows, shallow depth of field with lens softness, uneven reflections, fine micro-texture - premium but never artificially perfect. Stone keeps natural veining and saw marks; packaging shows real plastic, curved labels and edge shadows; any wet or polished surface keeps uneven streaks and real specular highlights, never mirror gloss. ARDmag: packaging follows references; workwear says \"ARC-ROM Diamonds\", never ARDmag on clothes. Avoid: CGI/3D-render or AI-plastic look, waxy skin, impossible mirror reflections, over-clean symmetry, glossy mockup polish, flat uniform studio lighting. Avoid fake labels, packshots, white halo, floating products, SaaS wallpaper, clipping. one continuous photographic scene - no montage, no collage, no split panels, no pasted cutouts or scissor edges; no fine text in image; any in-image text: no Romanian diacritics; packaging faithful to reference, integrated naturally in scene, never pasted.",
+  "prompt": null,
   "references": [
-    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/proseal/db3b5a_889a7c59a1e2437089d44b3e5b0313b6/hero.jpg",
-    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/seal/db3b5a_0f7892d2bbc0476094359882547a2e4b/hero.jpg"
+    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/proseal/db3b5a_889a7c59a1e2437089d44b3e5b0313b6.jpg"
   ],
   "format": "hero",
   "aspectRatio": "16:9",
-  "technique": "workshop-bench",
+  "technique": "direct-raster-1to1",
   "generatedAt": "2026-07-10",
-  "provider": "codex-cli",
-  "pipeline": "tools/social/scripts/generate-images.js --hero",
+  "provider": "catalog-asset",
+  "pipeline": "deterministic-raster-composition; no AI product rendering",
   "finalWebp": "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend-storefront/public/blog/efectul-burete-blaturi-cuart-impregnant-corect/hero.webp",
   "finalDimensions": "1376x768"
 }
