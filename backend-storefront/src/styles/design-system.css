@@ -334,12 +334,12 @@
   /* mobil: hero compact, imaginea mare pe fundal in coltul dreapta-jos,
      SUB texte; textele primesc un dark glow pentru lizibilitate */
   @media(max-width:700px){
-    .hero-promo-img{width:300px;right:-56px;bottom:-64px;opacity:.85}
+    .hero-promo-img{width:600px;right:-150px;bottom:-170px;opacity:1}
     /* scrim diagonal peste imagine, sub texte: imaginea devine fundal,
        textele raman pe zona intunecata */
     .hero-main.has-promo-img::after{
       content:"";display:block;position:absolute;inset:0;width:auto;height:auto;
-      background:linear-gradient(105deg,rgb(28 25 23/.94) 42%,rgb(28 25 23/.55) 66%,rgb(28 25 23/.12) 88%),linear-gradient(0deg,rgb(28 25 23/.5),transparent 45%);
+      background:linear-gradient(105deg,rgb(28 25 23/.88) 30%,rgb(28 25 23/.4) 55%,transparent 80%),linear-gradient(0deg,rgb(28 25 23/.35),transparent 38%);
       opacity:1;transform:none;z-index:0;pointer-events:none;
     }
     /* butonul ghost primeste fundal translucid ca sa ramana lizibil peste imagine */
