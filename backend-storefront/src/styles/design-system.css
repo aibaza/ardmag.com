@@ -290,6 +290,20 @@
     background:repeating-linear-gradient(45deg, var(--brand-500) 0 2px, transparent 2px 14px);
     opacity:0.35;transform:rotate(-6deg);pointer-events:none;
   }
+  /* Experiment A/B hero_tenax30_v1: packshot promo transparent in coltul
+     dreapta-jos inlocuieste liniile decorative cat timp exista imagine */
+  .hero-main.has-promo-img::after{display:none}
+  .hero-variant{display:flex;flex-direction:column;gap:18px;flex:1;min-width:0;animation:heroFade 400ms ease}
+  .hero-variant .stats{position:relative;z-index:1}
+  .hero-promo-img{
+    position:absolute;right:-36px;bottom:-48px;width:420px;height:auto;
+    pointer-events:none;user-select:none;z-index:0;
+    animation:heroFade 400ms ease;
+  }
+  @media(max-width:1200px){.hero-promo-img{width:320px;opacity:.9}}
+  @media(max-width:700px){.hero-promo-img{display:none}}
+  @keyframes heroFade{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){.hero-variant,.hero-promo-img{animation:none}}
   .hero-main .kicker{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-400)}
   .hero-main h2{font-size:44px;line-height:1.05;letter-spacing:-0.025em;font-weight:600;margin:0;max-width:560px}
   .hero-main p{color:var(--stone-300);max-width:480px;margin:0;font-size:15px}

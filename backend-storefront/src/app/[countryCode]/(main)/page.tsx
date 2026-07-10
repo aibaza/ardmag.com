@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
-import { Hero } from '@modules/sections/hero'
+import { Hero, HeroRotator, HeroSide, HERO_EXPERIMENT } from '@modules/sections/hero'
 import { getHeroFallback } from '@modules/sections/hero/hero-fallback'
 import { productToHero } from '@modules/sections/hero/product-to-hero'
 import { QuickCategories } from '@modules/sections/quick-categories'
@@ -125,8 +125,20 @@ export default async function HomePage({ params }: Props) {
 
       <main className="page-inner">
 
-        {/* HERO -- driven by featured-tagged product; falls back to static copy */}
-        <Hero {...heroProps} headingLevel="h1" />
+        {/* HERO -- experiment A/B hero_tenax30_v1 (rotatie client-side, 4 variante);
+            kill-switch: goleste HERO_EXPERIMENT.variants pentru a reveni la Hero clasic */}
+        {HERO_EXPERIMENT.variants.length > 0 ? (
+          <div className="hero">
+            <HeroRotator
+              experiment={HERO_EXPERIMENT.name}
+              rotateMs={HERO_EXPERIMENT.rotateMs}
+              variants={HERO_EXPERIMENT.variants}
+            />
+            <HeroSide cards={heroProps.sideCards} />
+          </div>
+        ) : (
+          <Hero {...heroProps} headingLevel="h1" />
+        )}
 
         {/* Quick categories -- real Medusa categories, ordered by admin rank */}
         <QuickCategories items={quickCatItems} />
