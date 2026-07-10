@@ -301,27 +301,22 @@
   .hero-variant.hv-sizer{visibility:hidden;pointer-events:none}
   .hero-variant.hv-sizer>*{animation:none!important;transition:none!important}
   .hero-variant{display:flex;flex-direction:column;gap:18px;min-width:0;transition:opacity 240ms ease,transform 240ms ease}
-  /* Panouri frosted locale: fiecare bloc de text isi blureaza fundalul
-     strict in dreptunghiul lui (invizibil pe fundal plat, sticla mata peste
-     packshot). Marginile negative compenseaza padding-ul, deci pozitia
-     textului ramane neschimbata. Nu se aplica pe sizere (invizibile). */
+  /* Halo intunecat pe glife (text-shadow stratificat): efectul urmareste
+     exact forma literelor - texte scurte afecteaza zone mici din imagine.
+     Fara panouri, fara zone predefinite. */
   .hero-variant:not(.hv-sizer)>.kicker,
   .hero-variant:not(.hv-sizer)>.hv-title,
   .hero-variant:not(.hv-sizer)>p,
-  .hero-variant:not(.hv-sizer) .stats>div{
-    width:fit-content;
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-    background:rgb(28 25 23/.34);
-    border-radius:10px;
-    padding:6px 12px;margin:-6px -12px;
-    transition:background 160ms ease;
-  }
-  .hero-variant:not(.hv-sizer) .stats>div{padding:5px 10px;margin:-5px -10px}
-  @media(hover:hover){
-    .hero-main:hover .hero-variant:not(.hv-sizer)>.hv-title,
-    .hero-main:hover .hero-variant:not(.hv-sizer)>p,
-    .hero-main:hover .hero-variant:not(.hv-sizer) .stats>div{background:rgb(28 25 23/.52)}
+  .hero-variant:not(.hv-sizer) .stats strong,
+  .hero-variant:not(.hv-sizer) .stats span{
+    text-shadow:
+      0 0 1px rgb(15 13 12/.95),
+      0 1px 2px rgb(15 13 12/.95),
+      0 0 6px rgb(15 13 12/.9),
+      0 0 12px rgb(15 13 12/.85),
+      0 0 20px rgb(15 13 12/.75),
+      0 0 32px rgb(15 13 12/.6),
+      0 0 48px rgb(15 13 12/.45);
   }
   /* Titlul variantei: metricile h2-ului de design pe toate breakpointurile,
      identice pentru h1-ul real si sizerele div (invinge h1{26px!important}
@@ -346,12 +341,6 @@
       content:"";display:block;position:absolute;inset:0;width:auto;height:auto;
       background:linear-gradient(105deg,rgb(28 25 23/.94) 42%,rgb(28 25 23/.55) 66%,rgb(28 25 23/.12) 88%),linear-gradient(0deg,rgb(28 25 23/.5),transparent 45%);
       opacity:1;transform:none;z-index:0;pointer-events:none;
-    }
-    .hero-variant .kicker,.hero-variant .hv-title,.hero-variant p{
-      text-shadow:0 1px 2px rgb(10 9 8/.95),0 0 12px rgb(10 9 8/.8),0 0 26px rgb(10 9 8/.6);
-    }
-    .hero-variant .stats strong,.hero-variant .stats span{
-      text-shadow:0 1px 2px rgb(10 9 8/.95),0 0 10px rgb(10 9 8/.85),0 0 22px rgb(10 9 8/.65);
     }
     /* butonul ghost primeste fundal translucid ca sa ramana lizibil peste imagine */
     .hero-variant .hactions .hero-ghost{background:rgb(28 25 23/.6)!important;backdrop-filter:blur(3px)}
