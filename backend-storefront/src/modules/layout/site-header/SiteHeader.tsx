@@ -133,11 +133,11 @@ export function SiteHeader({
         {/* Desktop: main bar */}
         <div className="main-bar">
           <a className="logo" href="/">
-            <div className="logo-row">
+            <div className="logo-main">
               <Image src="/logo.png" alt="ARDmag.ro" className="logo-img" width={1367} height={208} priority sizes="(max-width: 768px) 0px, 220px" />
-              <ArcRomLogo />
+              <div className="tag">Experți în piatră de peste 25 de ani</div>
             </div>
-            <div className="tag">Experți în piatră de peste 25 de ani</div>
+            <ArcRomLogo />
           </a>
           <form className="search-combo" role="search" onSubmit={handleSearchSubmit}>
             <input type="search" name="q" placeholder="Cauta produs sau brand..." aria-label="cautare" suppressHydrationWarning />
