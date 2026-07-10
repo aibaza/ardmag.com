@@ -293,8 +293,7 @@
   /* Experiment A/B hero_tenax30_v1: packshot promo transparent in coltul
      dreapta-jos inlocuieste liniile decorative cat timp exista imagine */
   .hero-main.has-promo-img::after{display:none}
-  .hero-variant{display:flex;flex-direction:column;gap:18px;flex:1;min-width:0;transition:opacity 240ms ease,transform 240ms ease}
-  .hero-variant .stats{position:relative;z-index:1}
+  .hero-variant{display:flex;flex-direction:column;gap:18px;flex:1;min-width:0;position:relative;z-index:1;transition:opacity 240ms ease,transform 240ms ease}
   .hero-promo-img{
     position:absolute;right:-36px;bottom:-48px;width:420px;height:auto;
     pointer-events:none;user-select:none;z-index:0;
@@ -331,6 +330,13 @@
   .hero-main .stats span{font-family:var(--f-mono);font-size:10px;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
 
   .hero-side{display:grid;grid-template-rows:1fr 1fr;gap:16px}
+  /* Ticker vertical articole (experiment hero): 3 carduri in track flex,
+     al treilea clipuit sub marginea de jos; glisarea = translateY pe track */
+  .hero-side-ticker{display:block;position:relative;overflow:hidden}
+  .hero-side-ticker .hst-track{position:absolute;inset:0;display:flex;flex-direction:column;gap:16px;will-change:transform}
+  .hero-side-ticker .hero-card{flex:0 0 calc(50% - 8px);min-height:0}
+  @media(max-width:900px){.hero-side-ticker{height:440px}}
+  @media(prefers-reduced-motion:reduce){.hero-side-ticker .hst-track{transition:none!important;transform:none!important}}
   .hero-card{
     background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-sm);
     padding:22px;display:flex;flex-direction:column;gap:8px;
