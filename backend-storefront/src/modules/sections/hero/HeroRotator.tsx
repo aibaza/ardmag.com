@@ -20,32 +20,51 @@ interface HeroRotatorProps {
 
 const GHOST_STYLE: CSSProperties = { color: '#fff', borderColor: 'var(--stone-700)' }
 
+const LEAVE_MS = 240
+
 export function HeroRotator({ experiment, rotateMs, variants }: HeroRotatorProps) {
   const [order, setOrder] = useState<number[] | null>(null)
   const [pos, setPos] = useState(0)
+  const [leaving, setLeaving] = useState(false)
   const pausedRef = useRef(false)
   const reducedMotionRef = useRef(false)
   const viewedRef = useRef<Map<string, 'initial' | 'rotate'>>(new Map())
 
   const active = order ? variants[order[pos % order.length]] : variants[0]
 
+  // Varianta initiala = round-robin pe felii de timp (minutul curent mod N):
+  // distributie garantat egala a impresiilor initiale la nivel de campanie
+  // (fiecare varianta primeste acelasi numar de minute din fiecare ora,
+  // intercalate uniform), fara stare partajata intre vizitatori. Restul
+  // ordinii de rotatie ramane amestecat aleator per pageload.
   useEffect(() => {
     reducedMotionRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const idx = variants.map((_, i) => i)
-    for (let i = idx.length - 1; i > 0; i--) {
+    const initialIdx = Math.floor(Date.now() / 60000) % variants.length
+    const rest = variants.map((_, i) => i).filter((i) => i !== initialIdx)
+    for (let i = rest.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      ;[idx[i], idx[j]] = [idx[j], idx[i]]
+      ;[rest[i], rest[j]] = [rest[j], rest[i]]
     }
-    setOrder(idx)
+    setOrder([initialIdx, ...rest])
   }, [variants])
 
+  // tranzitie in doua faze: continutul curent iese subtil (fade + 6px in sus,
+  // LEAVE_MS), apoi varianta urmatoare intra cu stagger (CSS .hero-variant)
   useEffect(() => {
     if (!order || reducedMotionRef.current) return
+    let leaveTimer: ReturnType<typeof setTimeout> | null = null
     const timer = setInterval(() => {
       if (pausedRef.current || document.hidden) return
-      setPos((p) => (p + 1) % order.length)
+      setLeaving(true)
+      leaveTimer = setTimeout(() => {
+        setPos((p) => (p + 1) % order.length)
+        setLeaving(false)
+      }, LEAVE_MS)
     }, rotateMs)
-    return () => clearInterval(timer)
+    return () => {
+      clearInterval(timer)
+      if (leaveTimer) clearTimeout(leaveTimer)
+    }
   }, [order, rotateMs])
 
   // hero_view: o data per varianta per pageload, doar cu pagina vizibila
@@ -88,7 +107,7 @@ export function HeroRotator({ experiment, rotateMs, variants }: HeroRotatorProps
       onMouseEnter={() => { pausedRef.current = true }}
       onMouseLeave={() => { pausedRef.current = false }}
     >
-      <div className="hero-variant" key={active.id}>
+      <div className={`hero-variant${leaving ? ' is-leaving' : ''}`} key={active.id}>
         <span className="kicker">{active.kicker}</span>
         <h1>{active.title}</h1>
         <p>{active.description}</p>

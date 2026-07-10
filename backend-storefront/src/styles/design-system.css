@@ -293,17 +293,34 @@
   /* Experiment A/B hero_tenax30_v1: packshot promo transparent in coltul
      dreapta-jos inlocuieste liniile decorative cat timp exista imagine */
   .hero-main.has-promo-img::after{display:none}
-  .hero-variant{display:flex;flex-direction:column;gap:18px;flex:1;min-width:0;animation:heroFade 400ms ease}
+  .hero-variant{display:flex;flex-direction:column;gap:18px;flex:1;min-width:0;transition:opacity 240ms ease,transform 240ms ease}
   .hero-variant .stats{position:relative;z-index:1}
   .hero-promo-img{
     position:absolute;right:-36px;bottom:-48px;width:420px;height:auto;
     pointer-events:none;user-select:none;z-index:0;
-    animation:heroFade 400ms ease;
+    animation:heroImgIn 560ms cubic-bezier(.22,.61,.36,1) 140ms backwards;
+    transition:opacity 240ms ease;
   }
   @media(max-width:1200px){.hero-promo-img{width:320px;opacity:.9}}
   @media(max-width:700px){.hero-promo-img{display:none}}
+  /* tranzitie carusel in doua faze: iesire scurta (is-leaving pe varianta
+     curenta + imaginea alaturata), apoi intrare cu stagger pe copii */
+  .hero-variant.is-leaving{opacity:0;transform:translateY(-6px)}
+  .hero-variant.is-leaving~.hero-promo-img{opacity:0}
+  .hero-variant>.kicker,.hero-variant>h1,.hero-variant>h2,.hero-variant>p,
+  .hero-variant>.hactions,.hero-variant>.stats{
+    animation:heroRise 460ms cubic-bezier(.22,.61,.36,1) backwards;
+  }
+  .hero-variant>h1,.hero-variant>h2{animation-delay:60ms}
+  .hero-variant>p{animation-delay:120ms}
+  .hero-variant>.hactions{animation-delay:180ms}
+  .hero-variant>.stats{animation-delay:240ms}
+  @keyframes heroRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes heroImgIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
   @keyframes heroFade{from{opacity:0}to{opacity:1}}
-  @media(prefers-reduced-motion:reduce){.hero-variant,.hero-promo-img{animation:none}}
+  @media(prefers-reduced-motion:reduce){
+    .hero-variant,.hero-promo-img,.hero-variant>*{animation:none!important;transition:none!important}
+  }
   .hero-main .kicker{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--brand-400)}
   .hero-main h2{font-size:44px;line-height:1.05;letter-spacing:-0.025em;font-weight:600;margin:0;max-width:560px}
   .hero-main p{color:var(--stone-300);max-width:480px;margin:0;font-size:15px}
