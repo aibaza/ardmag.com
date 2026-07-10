@@ -1659,3 +1659,11 @@ ClickUp/time entry:
   sau redesenarea produsului. Regiunea de 800x600 pixeli este copiata 1:1.
 - QA: build Next.js verde; verificarea asset-grounding compara efectiv pixelii sursa
   cu fiecare output si cere AE=0, pe langa SHA-256-ul sursei.
+
+## 2026-07-10 - P0 rollback imagini articol efectul burete
+
+- Ciprian a confirmat ca imaginile originale publicate pentru articol erau corecte si
+  a cerut restaurarea lor.
+- Restaurate exact din parintele commitului `e2ff69e`: hero, OG, Facebook si Story.
+- Textul articolului si celelalte articole nu au fost modificate.
+- Build Next.js complet: PASS.
