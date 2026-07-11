@@ -11,7 +11,7 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 - Livrat: subscriber `order-placed-discord.ts` pe `order.placed` - ping automat pe webhook-ul Discord "Medusa" cu cine (nume/telefon/email), cat (total + moneda + metoda plata), ce (produse + cantitati), de unde (oras/judet + sursa atributie + campanie). Fail-open; URL-ul webhook DOAR in env Railway (`DISCORD_ORDER_WEBHOOK_URL`) - repo public, nu intra in cod.
 - Deploy: Railway deployment ee77d94e SUCCESS (build local + railway up --service medusa), api.ardmag.ro/health 200. Aprobare DC in sesiune (gate deploy backend).
 - Verificat: builder testat pe forma reala a comenzii #13 (citire read-only din DB prod, aprobata de DC); ping de test + ping retroactiv comanda #13 trimise pe webhook, HTTP 204. Comanda #13 venise din campania FB `tenax-portfolio-2026-07` (fbclid/cpc).
-- ClickUp: task + time entry in lista "ardmag.ro - Work Log".
+- ClickUp: creare task blocata de clasificatorul de permisiuni in sesiune; de adaugat manual sau la urmatoarea sesiune (lista "ardmag.ro - Work Log", ~30m).
 
 ## 2026-06-16 14:01 UTC -- Corectii client articol Mastici Tenax
 
