@@ -12,10 +12,10 @@ function formatMoney(amount: unknown, currency: string): string {
   return `${n.toFixed(2)} ${currency.toUpperCase()}`
 }
 
-export function buildOrderDiscordMessage(order: any): { content: string } {
+export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
   const addr = order.shipping_address ?? order.billing_address ?? {}
   const name = [addr.first_name, addr.last_name].filter(Boolean).join(" ") || "necunoscut"
-  const who = [name, addr.phone, order.email].filter(Boolean).join(" · ")
+  const who = [name, addr.phone, order.email].filter(Boolean).join("\n")
 
   const items = (order.items ?? [])
     .map((it: any) => {
@@ -27,26 +27,36 @@ export function buildOrderDiscordMessage(order: any): { content: string } {
 
   const place = [addr.city, addr.province].filter(Boolean).join(", ") || "necunoscut"
   const attribution = attributionFromMetadata(order.metadata ?? {})
-  let source = attribution?.resolved_source
+  const source = attribution?.resolved_source
     ? [attribution.resolved_source, attribution.resolved_medium].filter((v) => v && v !== "none").join(" / ")
     : "direct"
-  if (attribution?.resolved_campaign) source += ` (${attribution.resolved_campaign})`
+  const from = [place, source, attribution?.resolved_campaign].filter(Boolean).join("\n")
 
   const isCod = order.payment_collections?.some((pc: any) =>
     pc.payments?.some((p: any) => p.provider_id?.includes("pp_system_default"))
   )
   const payment = isCod ? "ramburs" : "card"
 
-  const ts = Math.floor(new Date(order.created_at ?? Date.now()).getTime() / 1000)
+  const mention = process.env.DISCORD_ORDER_MENTION || ""
+  const headline = `Comanda noua **#${order.display_id}** - **${formatMoney(order.total, order.currency_code)}**`
 
-  const content = [
-    `**Comanda #${order.display_id}** - **${formatMoney(order.total, order.currency_code)}** (${payment}) - <t:${ts}:f>`,
-    `**Cine:** ${who}`,
-    `**Ce:**\n${items || "necunoscut"}`,
-    `**De unde:** ${place} · sursa: ${source}`,
-  ].join("\n")
-
-  return { content }
+  return {
+    content: [mention, headline].filter(Boolean).join(" "),
+    embeds: [
+      {
+        title: `#${order.display_id} · ${formatMoney(order.total, order.currency_code)} · ${payment}`,
+        description: items || "necunoscut",
+        color: 0x2f9e44,
+        fields: [
+          { name: "Cine", value: who, inline: true },
+          { name: "De unde", value: from, inline: true },
+        ],
+        timestamp: order.created_at
+          ? new Date(order.created_at).toISOString()
+          : undefined,
+      },
+    ],
+  }
 }
 
 export default async function orderPlacedDiscord({
