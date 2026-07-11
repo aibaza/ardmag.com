@@ -12,6 +12,7 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 - Deploy: Railway deployment ee77d94e SUCCESS (build local + railway up --service medusa), api.ardmag.ro/health 200. Aprobare DC in sesiune (gate deploy backend).
 - Verificat: builder testat pe forma reala a comenzii #13 (citire read-only din DB prod, aprobata de DC); ping de test + ping retroactiv comanda #13 trimise pe webhook, HTTP 204. Comanda #13 venise din campania FB `tenax-portfolio-2026-07` (fbclid/cpc).
 - ClickUp: creare task blocata de clasificatorul de permisiuni in sesiune; de adaugat manual sau la urmatoarea sesiune (lista "ardmag.ro - Work Log", ~30m).
+- Iteratie ~18:45 UTC (feedback DC: mesaj incarcat + fara highlight): commit e9d7172 - format embed compact (titlu #id/total/plata, produse in descriere, campuri inline Cine / De unde) + mentiune `<@98845750523355136>` din env `DISCORD_ORDER_MENTION` (Railway). Preview validat de DC (ping primit), redeploy da2bcc35 SUCCESS, health 200.
 
 ## 2026-06-16 14:01 UTC -- Corectii client articol Mastici Tenax
 
