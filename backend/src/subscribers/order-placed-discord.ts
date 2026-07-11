@@ -19,18 +19,18 @@ export function buildOrderDiscordMessage(order: any): { content: string } {
 
   const items = (order.items ?? [])
     .map((it: any) => {
-      const title = [it.product_title || it.title, it.variant_title && it.variant_title !== "Default" ? it.variant_title : ""]
-        .filter(Boolean)
-        .join(" - ")
+      const variant = it.variant_title && !/^default( title)?$/i.test(it.variant_title) ? it.variant_title : ""
+      const title = [it.product_title || it.title, variant].filter(Boolean).join(" - ")
       return `${it.quantity}x ${title}`
     })
     .join("\n")
 
   const place = [addr.city, addr.province].filter(Boolean).join(", ") || "necunoscut"
   const attribution = attributionFromMetadata(order.metadata ?? {})
-  const source = attribution?.resolved_source
+  let source = attribution?.resolved_source
     ? [attribution.resolved_source, attribution.resolved_medium].filter((v) => v && v !== "none").join(" / ")
     : "direct"
+  if (attribution?.resolved_campaign) source += ` (${attribution.resolved_campaign})`
 
   const isCod = order.payment_collections?.some((pc: any) =>
     pc.payments?.some((p: any) => p.provider_id?.includes("pp_system_default"))
