@@ -5,6 +5,16 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-13 ~09:02 UTC -- Total canonic Medusa pentru ping-ul Discord
+
+- Commit cod: `467abb7`.
+- Cauza precisa: proiecția îngustă Medusa 2.13.6 Graph Query calcula greșit agregatele comenzii la `order.placed`: pentru #14/#15 întorcea `total` egal cu transportul și `item_total: 0`. Euristica `total == shipping_total` coliziona cu reducerea validă de 100%, nu putea recupera transportul gratuit și ignora taxe, discounturi, gift cards/credit lines și ajustări.
+- Validare read-only pe forma reală: `order_summary.totals.current_order_total` este 102,00 pentru #14 și 232,13 pentru #15. În Graph Query, calea canonică este serializată ca `summary.current_order_total` numai prin proiecția `summary.*`.
+- Fix: subscriber-ul proiectează `summary.*` și folosește prioritar `summary.current_order_total`, cu fallback la `total` doar pentru payload-uri fără summary. Cantitatea este proiectată și din `items.detail.quantity`, cu fallback defensiv la `1x`; payload-ul nu conține `undefined`.
+- Regresie extinsă: #14, #15, reducere 100%, transport gratuit, taxe/discounturi/ajustări, payload normal și ambele forme de cantitate. Test dedicat 10/10 PASS; toate testele unitare backend 25/25 PASS (5 suite); build Medusa backend + admin PASS.
+- Deploy: Railway `32029542-d369-448a-96bb-49f0f2b40c41` SUCCESS; `https://api.ardmag.ro/health` HTTP 200 (`OK`).
+- Siguranță: verificările producției au fost strict read-only; nu s-a apelat webhook-ul Discord și nu s-a retrimis nicio comandă.
+
 ## 2026-07-13 ~08:52 UTC -- Fix total si cantitate in ping-ul Discord pentru comenzi
 
 - Commit: `7a4df7a`.
