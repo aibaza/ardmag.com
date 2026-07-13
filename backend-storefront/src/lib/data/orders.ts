@@ -4,6 +4,7 @@ import { sdk } from "@lib/config"
 import medusaError from "@lib/util/medusa-error"
 import { getAuthHeaders, getCacheOptions } from "./cookies"
 import { HttpTypes } from "@medusajs/types"
+import { ORDER_SUMMARY_FIELD } from "@lib/order/purchase-total"
 
 export const retrieveOrder = async (id: string) => {
   const headers = {
@@ -18,8 +19,7 @@ export const retrieveOrder = async (id: string) => {
     .fetch<HttpTypes.StoreOrderResponse>(`/store/orders/${id}`, {
       method: "GET",
       query: {
-        fields:
-          "id,display_id,email,total,subtotal,tax_total,discount_total,item_total,shipping_total,currency_code,created_at,*payment_collections.payments,*items,*items.metadata,*items.variant,*items.product,*shipping_methods,*shipping_address,*billing_address",
+        fields: `id,display_id,email,total,subtotal,tax_total,discount_total,item_total,shipping_total,currency_code,created_at,${ORDER_SUMMARY_FIELD},*payment_collections.payments,*items,*items.metadata,*items.variant,*items.product,*shipping_methods,*shipping_address,*billing_address`,
       },
       headers,
       next,

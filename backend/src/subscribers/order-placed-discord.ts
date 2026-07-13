@@ -1,6 +1,7 @@
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import { attributionFromMetadata } from "../lib/attribution/purchase-payload"
+import { getCanonicalOrderTotal } from "../lib/order-total"
 
 // Ping minimalist pe Discord (#ardmag, webhook "Medusa") la fiecare comanda:
 // cine, cat, ce, de unde. Fail-open: DISCORD_ORDER_WEBHOOK_URL unset = no-op,
@@ -12,17 +13,11 @@ function formatMoney(amount: unknown, currency: string): string {
   return `${n.toFixed(2)} ${currency.toUpperCase()}`
 }
 
-function finiteNumber(value: unknown): number | undefined {
-  if (value == null || value === "") return undefined
-  const number = Number(value)
-  return Number.isFinite(number) ? number : undefined
-}
-
 export function getOrderDiscordTotal(order: {
   total?: unknown
   summary?: { current_order_total?: unknown } | null
 }): number {
-  return finiteNumber(order.summary?.current_order_total) ?? finiteNumber(order.total) ?? 0
+  return getCanonicalOrderTotal(order)
 }
 
 export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
@@ -32,7 +27,8 @@ export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
 
   const items = (order.items ?? [])
     .map((it: any) => {
-      const variant = it.variant_title && !/^default( title)?$/i.test(it.variant_title) ? it.variant_title : ""
+      const variant =
+        it.variant_title && !/^default( title)?$/i.test(it.variant_title) ? it.variant_title : ""
       const title = [it.product_title || it.title, variant].filter(Boolean).join(" - ")
       const quantity = it.quantity ?? it.detail?.quantity ?? 1
       return `${quantity}x ${title || "necunoscut"}`
@@ -42,7 +38,9 @@ export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
   const place = [addr.city, addr.province].filter(Boolean).join(", ") || "necunoscut"
   const attribution = attributionFromMetadata(order.metadata ?? {})
   const source = attribution?.resolved_source
-    ? [attribution.resolved_source, attribution.resolved_medium].filter((v) => v && v !== "none").join(" / ")
+    ? [attribution.resolved_source, attribution.resolved_medium]
+        .filter((v) => v && v !== "none")
+        .join(" / ")
     : "direct"
   const from = [place, source, attribution?.resolved_campaign].filter(Boolean).join("\n")
 
@@ -66,9 +64,7 @@ export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
           { name: "Cine", value: who, inline: true },
           { name: "De unde", value: from, inline: true },
         ],
-        timestamp: order.created_at
-          ? new Date(order.created_at).toISOString()
-          : undefined,
+        timestamp: order.created_at ? new Date(order.created_at).toISOString() : undefined,
       },
     ],
   }
@@ -120,7 +116,9 @@ export default async function orderPlacedDiscord({
       signal: AbortSignal.timeout(5000),
     })
     if (!res.ok) {
-      logger.warn(`[order-discord] Discord webhook returned ${res.status} for order ${order.display_id}`)
+      logger.warn(
+        `[order-discord] Discord webhook returned ${res.status} for order ${order.display_id}`
+      )
       return
     }
     logger.info(`[order-discord] Pinged Discord for order ${order.display_id}`)

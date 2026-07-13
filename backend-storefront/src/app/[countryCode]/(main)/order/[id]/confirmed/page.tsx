@@ -8,6 +8,7 @@ import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { formatPrice } from "@lib/util/adapters/format-price"
 import { PurchaseTracker } from "@modules/analytics/PurchaseTracker"
 import { notFound } from "next/navigation"
+import { getCanonicalOrderTotal } from "@lib/order/purchase-total"
 
 export const metadata: Metadata = {
   title: "Comanda confirmata | ARDmag.ro",
@@ -31,30 +32,6 @@ type Props = {
   params: Promise<{ countryCode: string; id: string }>
 }
 
-function getPurchaseValue(order: {
-  total?: number | null
-  item_total?: number | null
-  shipping_total?: number | null
-  items?: { unit_price?: number | null; quantity?: number | null }[] | null
-}): number {
-  const total = Number(order.total ?? 0)
-  const itemTotal = Number(
-    order.item_total ??
-      order.items?.reduce(
-        (sum, item) => sum + Number(item.unit_price ?? 0) * Number(item.quantity ?? 0),
-        0
-      ) ??
-      0
-  )
-  const shippingTotal = Number(order.shipping_total ?? 0)
-
-  if (itemTotal > 0 && shippingTotal > 0 && total === shippingTotal) {
-    return itemTotal + shippingTotal
-  }
-
-  return total
-}
-
 export default async function OrderConfirmedPage({ params }: Props) {
   const { countryCode, id } = await params
   const order = await retrieveOrder(id).catch(() => null)
@@ -62,7 +39,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
   if (!order) notFound()
 
   const currency = order.currency_code?.toUpperCase() ?? "RON"
-  const purchaseValue = getPurchaseValue(order)
+  const purchaseValue = getCanonicalOrderTotal(order)
 
   const purchaseContents = (order.items ?? []).map((item) => ({
     id: String(item.product_id ?? (item as any).variant_id ?? item.id),
@@ -98,7 +75,12 @@ export default async function OrderConfirmedPage({ params }: Props) {
           }}
         >
           <div
-            style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              marginBottom: 8,
+            }}
           >
             <span style={{ fontSize: 24 }}>&#10003;</span>
             <h1
@@ -121,8 +103,8 @@ export default async function OrderConfirmedPage({ params }: Props) {
               margin: 0,
             }}
           >
-            Comanda #{order.display_id} a fost inregistrata. Vei primi un email de
-            confirmare la {order.email}.
+            Comanda #{order.display_id} a fost inregistrata. Vei primi un email de confirmare la{" "}
+            {order.email}.
           </p>
         </div>
 
@@ -169,7 +151,11 @@ export default async function OrderConfirmedPage({ params }: Props) {
                     )}
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div
-                        style={{ fontFamily: "var(--f-sans)", fontWeight: 500, fontSize: 14 }}
+                        style={{
+                          fontFamily: "var(--f-sans)",
+                          fontWeight: 500,
+                          fontSize: 14,
+                        }}
                       >
                         {item.product_title ?? item.title}
                       </div>
@@ -207,7 +193,9 @@ export default async function OrderConfirmedPage({ params }: Props) {
                         textAlign: "right",
                       }}
                     >
-                      <FormattedPrice value={formatPrice(item.unit_price * item.quantity, currency)} />
+                      <FormattedPrice
+                        value={formatPrice(item.unit_price * item.quantity, currency)}
+                      />
                     </div>
                   </div>
                 ))}
@@ -219,9 +207,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
               <div className="panel" style={{ marginBottom: 0 }}>
                 <div className="panel-head">
                   <h3>Detalii livrare</h3>
-                  <span className="note">
-                    Plasată pe {formatRoDateTime(order.created_at)}
-                  </span>
+                  <span className="note">Plasată pe {formatRoDateTime(order.created_at)}</span>
                 </div>
                 <div className="panel-body padded">
                   <div className="form-row-2">
@@ -234,16 +220,25 @@ export default async function OrderConfirmedPage({ params }: Props) {
                           {order.shipping_address.first_name} {order.shipping_address.last_name}
                           <br />
                           {order.shipping_address.address_1}
-                          {order.shipping_address.address_2 ? `, ${order.shipping_address.address_2}` : ""}
+                          {order.shipping_address.address_2
+                            ? `, ${order.shipping_address.address_2}`
+                            : ""}
                           <br />
                           {order.shipping_address.postal_code} {order.shipping_address.city}
                           <br />
-                          {order.shipping_address.province ? `${order.shipping_address.province}, ` : ""}
+                          {order.shipping_address.province
+                            ? `${order.shipping_address.province}, `
+                            : ""}
                           {order.shipping_address.country_code?.toUpperCase()}
                           {order.shipping_address.phone && (
                             <>
                               <br />
-                              <span style={{ fontFamily: "var(--f-mono)", fontSize: 13 }}>
+                              <span
+                                style={{
+                                  fontFamily: "var(--f-mono)",
+                                  fontSize: 13,
+                                }}
+                              >
                                 {order.shipping_address.phone}
                               </span>
                             </>
@@ -284,7 +279,9 @@ export default async function OrderConfirmedPage({ params }: Props) {
 
           <div style={{ position: "sticky", top: 24 }}>
             <OrderSummary
-              subtotal={(order as any).item_total ?? ((order.subtotal ?? 0) - (order.shipping_total ?? 0))}
+              subtotal={
+                (order as any).item_total ?? (order.subtotal ?? 0) - (order.shipping_total ?? 0)
+              }
               discount_total={order.discount_total}
               shipping_total={order.shipping_total}
               tax_total={order.tax_total}
@@ -292,7 +289,12 @@ export default async function OrderConfirmedPage({ params }: Props) {
               currency_code={order.currency_code}
             />
             <div
-              style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}
+              style={{
+                marginTop: 12,
+                display: "flex",
+                flexDirection: "column",
+                gap: 8,
+              }}
             >
               <a
                 href={`/account/orders`}

@@ -12,7 +12,11 @@ describe("buildPurchasePayload", () => {
           resolved_medium: "cpc",
           resolved_campaign: "summer",
           resolved_via: "fbclid",
-          first_touch: { source: "facebook", medium: "cpc", campaign: "summer" },
+          first_touch: {
+            source: "facebook",
+            medium: "cpc",
+            campaign: "summer",
+          },
           last_touch: { source: "facebook", medium: "cpc", campaign: "summer" },
           fbclid: "fb123",
           gclid: "g123",
@@ -48,5 +52,36 @@ describe("buildPurchasePayload", () => {
         },
       },
     })
+  })
+
+  it.each([
+    ["#12", 54.73, 130.73],
+    ["#14", 22, 102],
+    ["#15", 18.13, 232.13],
+    ["reducere 100%", 20, 20],
+    ["transport gratuit", 0, 600],
+    ["taxe si ajustari", 10, 130.9],
+  ])("foloseste totalul canonic pentru %s", (_, projectedTotal, canonicalTotal) => {
+    const payload = buildPurchasePayload({
+      id: "order_anonymized",
+      total: projectedTotal,
+      summary: { current_order_total: canonicalTotal },
+      currency_code: "ron",
+    })
+
+    expect(payload.value).toBe(canonicalTotal)
+    expect(payload.currency).toBe("ron")
+    expect(payload.event_id).toBe("order_anonymized")
+  })
+
+  it("pastreaza fallback-ul legitim pentru collectorul legacy", () => {
+    const payload = buildPurchasePayload({
+      id: "order_legacy",
+      total: 75,
+      currency_code: "eur",
+    })
+
+    expect(payload.value).toBe(75)
+    expect(payload.currency).toBe("eur")
   })
 })

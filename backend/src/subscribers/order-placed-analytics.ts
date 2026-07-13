@@ -1,9 +1,6 @@
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
-import {
-  attributionFromMetadata,
-  buildPurchasePayload,
-} from "../lib/attribution/purchase-payload"
+import { attributionFromMetadata, buildPurchasePayload } from "../lib/attribution/purchase-payload"
 
 // Server-to-server purchase event into the central portfolio collector
 // (Cloudflare Worker + Analytics Engine). Runs on order.placed in the
@@ -28,14 +25,7 @@ export default async function orderPlacedAnalytics({
     const query = container.resolve(ContainerRegistrationKeys.QUERY)
     const { data: orders } = await query.graph({
       entity: "order",
-      fields: [
-        "id",
-        "total",
-        "currency_code",
-        "metadata",
-        "cart.id",
-        "cart.metadata",
-      ],
+      fields: ["id", "total", "summary.*", "currency_code", "metadata", "cart.id", "cart.metadata"],
       filters: { id: orderId },
     })
 

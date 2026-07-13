@@ -2,6 +2,7 @@ import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import crypto from "crypto"
 import { attributionFromMetadata } from "../lib/attribution/purchase-payload"
+import { buildMetaPurchaseEvent } from "../lib/attribution/meta-purchase"
 
 // Meta Conversions API (server-side Purchase).
 //
@@ -38,39 +39,6 @@ function hashPhone(value?: string | null): string | undefined {
   return crypto.createHash("sha256").update(digits).digest("hex")
 }
 
-function toFiniteNumber(value: unknown): number {
-  const number = Number(value ?? 0)
-  return Number.isFinite(number) ? number : 0
-}
-
-function amountsEqual(left: number, right: number): boolean {
-  return Math.round(left * 100) === Math.round(right * 100)
-}
-
-function getPurchaseValue(order: {
-  total?: unknown
-  item_total?: unknown
-  shipping_total?: unknown
-  items?: { unit_price?: unknown; quantity?: unknown }[] | null
-}): number {
-  const total = toFiniteNumber(order.total)
-  const itemTotal = toFiniteNumber(
-    order.item_total ??
-      order.items?.reduce(
-        (sum, item) =>
-          sum + toFiniteNumber(item.unit_price) * toFiniteNumber(item.quantity),
-        0
-      )
-  )
-  const shippingTotal = toFiniteNumber(order.shipping_total)
-
-  if (itemTotal > 0 && shippingTotal > 0 && amountsEqual(total, shippingTotal)) {
-    return itemTotal + shippingTotal
-  }
-
-  return total
-}
-
 export default async function orderPlacedMetaCapi({
   event,
   container,
@@ -95,8 +63,7 @@ export default async function orderPlacedMetaCapi({
         "id",
         "email",
         "total",
-        "item_total",
-        "shipping_total",
+        "summary.*",
         "currency_code",
         "metadata",
         "cart.metadata",
@@ -143,33 +110,10 @@ export default async function orderPlacedMetaCapi({
     if (attribution?.fbc) userData.fbc = attribution.fbc
     if (attribution?.fbp) userData.fbp = attribution.fbp
 
-    const items = (order.items ?? []) as any[]
-    const contents = items.map((it) => ({
-      id: String(it.product_id ?? it.variant_id ?? ""),
-      quantity: it.quantity,
-      item_price: it.unit_price,
-    }))
-    const purchaseValue = getPurchaseValue(order as any)
+    const purchaseEvent = buildMetaPurchaseEvent(order as any, userData, SOURCE_URL)
 
     const payload = {
-      data: [
-        {
-          event_name: "Purchase",
-          event_time: Math.floor(Date.now() / 1000),
-          event_id: String(order.id),
-          action_source: "website",
-          event_source_url: SOURCE_URL,
-          user_data: userData,
-          custom_data: {
-            currency: (order.currency_code ?? "ron").toUpperCase(),
-            value: purchaseValue,
-            content_type: "product",
-            content_ids: contents.map((c) => c.id),
-            contents,
-            num_items: contents.reduce((s, c) => s + (c.quantity ?? 0), 0),
-          },
-        },
-      ],
+      data: [purchaseEvent],
       ...(TEST_EVENT_CODE ? { test_event_code: TEST_EVENT_CODE } : {}),
     }
 
@@ -184,11 +128,15 @@ export default async function orderPlacedMetaCapi({
 
     if (!res.ok) {
       const text = await res.text().catch(() => "")
-      logger.error(`[meta-capi] Purchase for ${order.id} failed: HTTP ${res.status} ${text.slice(0, 300)}`)
+      logger.error(
+        `[meta-capi] Purchase for ${order.id} failed: HTTP ${res.status} ${text.slice(0, 300)}`
+      )
       return
     }
 
-    logger.info(`[meta-capi] Sent server-side Purchase for order ${order.id} (value ${purchaseValue})`)
+    logger.info(
+      `[meta-capi] Sent server-side Purchase for order ${order.id} (value ${purchaseEvent.custom_data.value})`
+    )
   } catch (err) {
     logger.error(`[meta-capi] Error sending Purchase for ${orderId}: ${err}`)
   }

@@ -1,3 +1,6 @@
+import { getCanonicalOrderTotal } from "../order-total"
+import type { OrderWithCanonicalTotal } from "../order-total"
+
 export type AttributionVia = "fbclid" | "gclid" | "utm" | "referral" | "direct"
 
 export type PurchaseAttribution = {
@@ -24,12 +27,13 @@ export function attributionFromMetadata(
   return attribution as PurchaseAttribution
 }
 
-export function buildPurchasePayload(order: {
-  id: string
-  total?: number | null
-  currency_code?: string | null
-  metadata?: Record<string, unknown> | null
-}) {
+export function buildPurchasePayload(
+  order: OrderWithCanonicalTotal & {
+    id: string
+    currency_code?: string | null
+    metadata?: Record<string, unknown> | null
+  }
+) {
   const attribution = attributionFromMetadata(order.metadata)
   const resolvedSource = attribution?.resolved_source || "direct"
   const resolvedMedium = attribution?.resolved_medium || "none"
@@ -41,7 +45,7 @@ export function buildPurchasePayload(order: {
     event: "purchase",
     event_id: order.id,
     order_id: order.id,
-    value: Number(order.total ?? 0),
+    value: getCanonicalOrderTotal(order),
     currency: order.currency_code || "ron",
     utm_source: resolvedSource,
     utm_medium: resolvedMedium,
