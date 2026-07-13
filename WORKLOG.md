@@ -5,6 +5,39 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-13 ~20:05 UTC -- Incident #7 Purchase value complet, status monitoring
+
+- Commit cod: `0115c8f` (`fix: unifica valoarea Purchase cu totalul canonic`).
+- Cauza: subscriberii Medusa bazati pe o proiectie Graph Query ingusta primeau `total`
+  corupt (transportul) si `item_total: 0`. CAPI si browser confirmation incercau sa repare
+  forma prin euristica `total == shipping_total`, iar collectorul folosea direct `total`.
+  Euristica suprascria cazuri valide cu reducere 100% si nu putea reconstrui corect
+  transport gratuit, taxe, discounturi, credit lines sau ajustari.
+- Fix backend: helper unic `getCanonicalOrderTotal` cu prioritate stricta pentru
+  `summary.current_order_total`; fallback la `total` numai cand `summary` lipseste sau este
+  incomplet, pentru payload-uri legacy. Discord, Meta CAPI si collectorul cer `summary.*` si
+  folosesc acelasi helper. CAPI pastreaza moneda comenzii si `event_id = order.id` pentru
+  deduplicarea cu Pixel.
+- Fix storefront: `retrieveOrder` cere explicit `+summary`; confirmation foloseste
+  `summary.current_order_total` pentru Pixel si GA4. Browser Pixel pastreaza
+  `eventID = order.id`, identic cu CAPI.
+- Regresie: comenzile reale anonimizate #12 (130,73 RON), #14 (102,00 RON), #15
+  (232,13 RON), reducere 100%, reducere 100% + transport gratuit, transport gratuit,
+  taxe/ajustari si fallback legacy. Backend: 7 suite / 48 teste PASS. Storefront Purchase:
+  10/10 PASS si `tsc --noEmit` PASS. Build Medusa PASS. Build Next.js production PASS.
+  Suita Vitest storefront completa are 113/125 PASS si 12 esecuri preexistente, fara
+  legatura cu Purchase, in adaptoarele de pret si placeholder.
+- Validare live read-only: DB si Store API confirma pentru #12/#14/#15 valorile canonice
+  130,73 / 102,00 / 232,13 RON si moneda `ron`; nu s-a accesat UI-ul confirmation.
+- Deploy backend: Railway `2d734fee-a81f-4a22-a355-d66a728c10d0` SUCCESS; runtime pornit
+  fara module lipsa; `https://api.ardmag.ro/health` HTTP 200 (`OK`).
+- Deploy storefront: Vercel `dpl_3KZ4yu6HMm6Jr64RqaV7SYWjYnCT` Ready din commitul
+  `0115c8f`, cu alias `https://ardmag.ro`; homepage si `/ro/produse` HTTP 200.
+- Siguranta: nu s-au trimis evenimente Purchase reale/de test la Meta, nu s-au apelat
+  webhook-uri si nu s-au modificat campania sau bugetul.
+- Status incident #7: `monitoring`, nu `resolved`. Ramane confirmarea la urmatoarea comanda
+  reala ca Pixel si CAPI deduplicate raporteaza aceeasi valoare canonica in Events Manager.
+
 ## 2026-07-13 ~09:02 UTC -- Total canonic Medusa pentru ping-ul Discord
 
 - Commit cod: `467abb7`.
