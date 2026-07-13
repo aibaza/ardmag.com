@@ -12,6 +12,33 @@ function formatMoney(amount: unknown, currency: string): string {
   return `${n.toFixed(2)} ${currency.toUpperCase()}`
 }
 
+function toFiniteNumber(value: unknown): number {
+  const number = Number(value ?? 0)
+  return Number.isFinite(number) ? number : 0
+}
+
+function amountsEqual(left: number, right: number): boolean {
+  return Math.round(left * 100) === Math.round(right * 100)
+}
+
+export function getOrderDiscordTotal(order: {
+  total?: unknown
+  item_total?: unknown
+  shipping_total?: unknown
+}): number {
+  const total = toFiniteNumber(order.total)
+  const itemTotal = toFiniteNumber(order.item_total)
+  const shippingTotal = toFiniteNumber(order.shipping_total)
+
+  // Medusa Graph Query can expose shipping_total as total on order.placed.
+  // The explicit component totals let the notification recover safely.
+  if (itemTotal > 0 && shippingTotal > 0 && amountsEqual(total, shippingTotal)) {
+    return itemTotal + shippingTotal
+  }
+
+  return total
+}
+
 export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
   const addr = order.shipping_address ?? order.billing_address ?? {}
   const name = [addr.first_name, addr.last_name].filter(Boolean).join(" ") || "necunoscut"
@@ -21,7 +48,8 @@ export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
     .map((it: any) => {
       const variant = it.variant_title && !/^default( title)?$/i.test(it.variant_title) ? it.variant_title : ""
       const title = [it.product_title || it.title, variant].filter(Boolean).join(" - ")
-      return `${it.quantity}x ${title}`
+      const quantity = it.quantity ?? it.detail?.quantity
+      return [quantity != null ? `${quantity}x` : "", title].filter(Boolean).join(" ")
     })
     .join("\n")
 
@@ -38,13 +66,14 @@ export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
   const payment = isCod ? "ramburs" : "card"
 
   const mention = process.env.DISCORD_ORDER_MENTION || ""
-  const headline = `Comanda noua **#${order.display_id}** - **${formatMoney(order.total, order.currency_code)}**`
+  const total = getOrderDiscordTotal(order)
+  const headline = `Comanda noua **#${order.display_id}** - **${formatMoney(total, order.currency_code)}**`
 
   return {
     content: [mention, headline].filter(Boolean).join(" "),
     embeds: [
       {
-        title: `#${order.display_id} · ${formatMoney(order.total, order.currency_code)} · ${payment}`,
+        title: `#${order.display_id} · ${formatMoney(total, order.currency_code)} · ${payment}`,
         description: items || "necunoscut",
         color: 0x2f9e44,
         fields: [
@@ -80,13 +109,12 @@ export default async function orderPlacedDiscord({
         "display_id",
         "email",
         "total",
+        "item_total",
+        "shipping_total",
         "currency_code",
         "created_at",
         "metadata",
-        "items.quantity",
-        "items.title",
-        "items.product_title",
-        "items.variant_title",
+        "items.*",
         "shipping_address.*",
         "billing_address.*",
         "payment_collections.payments.provider_id",
