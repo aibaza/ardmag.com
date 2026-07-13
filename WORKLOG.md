@@ -5,6 +5,16 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-13 ~08:52 UTC -- Fix total si cantitate in ping-ul Discord pentru comenzi
+
+- Commit: `7a4df7a`.
+- Cauza: proiecția îngustă Medusa Graph Query din subscriber întorcea `shipping_total` în `total` la `order.placed`, iar `items.quantity` nu includea cantitatea din relația internă `item.detail`.
+- Fix: query cu `item_total`, `shipping_total` și `items.*`; guard defensiv când `total == shipping_total`; fallback pentru cantitate din `detail.quantity`.
+- Regresie: cazurile comenzilor #14 (80,00 + 22,00 = 102,00 RON) și #15 (214,00 + 18,13 = 232,13 RON), ambele cu `1x` și fără `undefinedx`.
+- Validări: test dedicat 2/2 PASS; toate testele unitare backend 17/17 PASS; build Medusa backend + admin PASS.
+- Deploy: Railway `43690af8-6932-4015-ae9a-0dd5c2dc3495` SUCCESS, image digest `sha256:1d47b1444d6517ebc31a07f2923ea8a7435463c20e3b1ed21fba27ce99782ae2`; `https://api.ardmag.ro/health` HTTP 200.
+- Siguranță: nu s-a apelat webhook-ul Discord și nu s-a retrimis nicio comandă reală.
+
 ## 2026-07-11 ~18:10 UTC -- Ping Discord comenzi noi (webhook "Medusa" pe #ardmag)
 
 - Commits: 3f7f7bd (subscriber nou), 2ccda9a (fix Default Title + campanie in sursa).
