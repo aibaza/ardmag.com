@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact": "og-1.png",
+  "creative_tags": {
+    "hook": "question",
+    "format": "og_image",
+    "angle": "product_selection",
+    "cta": "read_article",
+    "vibe": "technical"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "lipire-invizibila-marmura-colorare-mastice-ton-vena",
+    "roundDate": "2026-07-14",
+    "template": "og-image",
+    "platform": "og",
+    "applied_learning_ids": [],
+    "experiment_bucket": "explore"
+  }
+}
