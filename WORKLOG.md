@@ -5,6 +5,40 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-15 12:55 UTC -- Contor de aterizare la edge (masurare trafic platit)
+
+- Commit: `12179d8` (`feat(analytics): contor de aterizare la edge, inainte de JS si consent`).
+- Context: raportul Meta "link clicks -> landing page views" (28%) era tratat in planul
+  saptamanal ca pierdere reala de utilizatori pe pagina. Nu este: `link click` numara tap-uri
+  pe reclama, iar `landing page view` cere ca pixelul sa trimita PageView, care pe ardmag.ro
+  e consent-gated (`MetaPixel.tsx`: `fbq('consent','revoke')` la init). LPV nu poate depasi
+  structural rata de accept a consimtamantului. Contorul adauga veriga lipsa si neutra fata
+  de consent: cate cereri ajung efectiv la server.
+- Implementare: `src/lib/analytics/edge-landing.ts` (functii pure) + apel din `src/middleware.ts`.
+  Fail-open (try/catch + `event.waitUntil`, deci in afara drumului critic; fara `COLLECTOR_URL`
+  nu face nimic). Fara PII: nu citeste/scrie cookies sau storage, nu trimite IP, user-agent sau
+  `fbclid` - doar faptul ca markerul a existat, utm-urile de campanie si tara coarse. Nu se
+  numara pe redirectul 301 de curatare a prefixului de tara (ar dubla aterizarea), pe prefetch,
+  pe non-GET sau pe crawlere.
+- Quality gates: `tsc --noEmit` PASS; vitest 18 teste noi PASS (143 total, aceleasi 12 esecuri
+  preexistente pe adaptoarele de produs, verificate pe arbore curat, fara legatura cu aceasta
+  schimbare). Lint-ul separat ramane blocat de eroarea preexistenta
+  `@next/next/no-html-link-for-pages` pe `_archive`. Build-ul de productie a trecut pe Vercel.
+- Deploy Vercel: `ardmag-storefront-qnb98qw9a-surcod.vercel.app`, stare Ready, Production
+  (auto-deploy pe push master).
+- Verificare live pe `https://ardmag.ro`: homepage 200; `/ro/promotii` -> 301 -> `/promotii`
+  (curatarea prefixului de tara intacta); `ardmag.com` -> 301 -> `ardmag.ro` (apex intact);
+  aterizare cu `fbclid` -> 200. Evenimentele ajung in colector cu
+  `resolved_via=edge_middleware`, `extra={"marker":"fbclid","country":"RO"}`, fara urma de
+  `fbclid`. Cererea cu user-agent de bot NU a fost numarata (filtrul functioneaza).
+- Consent/GDPR: neatins. Contorul nu citeste si nu scrie cookies sau storage, deci nu intra
+  sub art. 5(3) ePrivacy si nu are nevoie de consent; bannerul si comportamentul pixelului
+  raman exact cum erau.
+- Masurare: fereastra `monitoring` 24-48h pornita 15 iul. Citire:
+  `bun tools/analytics/scripts/paid-landing-readback.js --days=2`.
+
+---
+
 ## 2026-07-15 10:36 UTC -- Corecturi expert lipire invizibila la marmura
 
 - Commit continut: `3732ac1` (`fix(content): corectează articolul despre lipirea marmurei`).
