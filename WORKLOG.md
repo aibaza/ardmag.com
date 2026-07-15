@@ -5,6 +5,27 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-15 10:36 UTC -- Corecturi expert lipire invizibila la marmura
+
+- Commit continut: `3732ac1` (`fix(content): corectează articolul despre lipirea marmurei`).
+- Aplicate strict cele sase formulari aprobate de DC din feedbackul autoritar al lui
+  Andrei, fara alte rescrieri si fara modificarea metadata articolului.
+- Quality gates: validarea public copy pentru articol si social PASS; audit Facebook si
+  Story pentru valul 3 PASS; build Next.js production PASS. Lint-ul separat ramane blocat
+  de eroarea preexistenta `@next/next/no-html-link-for-pages` pe `_archive`, fara legatura
+  cu articolul.
+- Deploy Vercel: `dpl_Ce7epdEJp6z1h21UkdNePYbjEqPx` / `ardmag-storefront-gcoehojzj-surcod.vercel.app`,
+  stare Ready; aliasul `https://ardmag.ro` serveste versiunea noua.
+- Verificare live: URL canonical HTTP 200; toate cele sase formulari noi sunt prezente,
+  cele vechi sunt absente; title, description, canonical si `og:url` sunt corecte.
+- Metricool: valul Facebook din 2026-08-11 14:00 Europe/Bucharest continea corectiile 4
+  si 5 in forma veche si a fost actualizat in loc. Read-back: un singur post PENDING,
+  ID `349662299`, aceeasi data, imagine, auto-publish si UTM-uri. Nu s-a publicat si nu
+  s-a retrimis nimic social.
+- Confirmat: DA (cerere explicita DC si feedback autoritar Andrei).
+- ClickUp/time entry: conectorul si skill-ul local de deploy nu sunt disponibile in
+  aceasta sesiune; consemnarea ramane explicit marcata pentru completare operationala.
+
 ## 2026-07-13 ~20:05 UTC -- Incident #7 Purchase value complet, status monitoring
 
 - Commit cod: `0115c8f` (`fix: unifica valoarea Purchase cu totalul canonic`).
