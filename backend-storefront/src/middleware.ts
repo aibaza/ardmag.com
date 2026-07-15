@@ -1,5 +1,5 @@
 import { HttpTypes } from "@medusajs/types"
-import { NextRequest, NextResponse } from "next/server"
+import { NextFetchEvent, NextRequest, NextResponse } from "next/server"
 import {
   ATTRIBUTION_COOKIE,
   ATTRIBUTION_MAX_AGE,
@@ -8,6 +8,11 @@ import {
   serializeAttributionCookie,
   updateAttributionCookie,
 } from "./lib/attribution/attribution"
+import {
+  buildEdgeLandingEvent,
+  detectLandingMarker,
+  isCountableLanding,
+} from "./lib/analytics/edge-landing"
 
 const BACKEND_URL = process.env.MEDUSA_BACKEND_URL
 const PUBLISHABLE_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
@@ -115,7 +120,54 @@ function attachAttributionCookies(request: NextRequest, response: NextResponse) 
   return response
 }
 
-export async function middleware(request: NextRequest) {
+// Numara aterizarile de campanie la edge, inainte de JS/consent/bounce.
+//
+// Fail-open absolut: orice eroare aici e inghitita, iar POST-ul pleaca prin
+// event.waitUntil, deci nu intra niciodata pe drumul critic al raspunsului.
+// Daca COLLECTOR_URL lipseste sau colectorul e mort, pagina nu simte nimic.
+//
+// Se cheama DOAR pe raspunsurile terminale (rewrite / next), niciodata pe
+// redirectul 301 de curatare a prefixului de tara: acel redirect pastreaza
+// query-ul, deci cererea urmatoare poarta acelasi fbclid si ar fi numarata de
+// doua ori pentru o singura aterizare.
+function countPaidLanding(request: NextRequest, event: NextFetchEvent): void {
+  try {
+    const collectorUrl = process.env.COLLECTOR_URL
+    if (!collectorUrl) return
+
+    const marker = detectLandingMarker(request.nextUrl)
+    if (!marker) return
+
+    const countable = isCountableLanding({
+      method: request.method,
+      userAgent: request.headers.get("user-agent"),
+      isPrefetch:
+        request.headers.get("next-router-prefetch") === "1" ||
+        request.headers.get("purpose") === "prefetch",
+    })
+    if (!countable) return
+
+    const payload = buildEdgeLandingEvent({
+      url: request.nextUrl,
+      marker,
+      referrer: request.headers.get("referer"),
+      country: request.headers.get("x-vercel-ip-country"),
+    })
+
+    event.waitUntil(
+      fetch(`${collectorUrl.replace(/\/$/, "")}/a`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(2000),
+      }).catch(() => undefined)
+    )
+  } catch {
+    // fail-open: masurarea nu are voie sa strice o cerere de pagina
+  }
+}
+
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
   const cacheIdCookie = request.cookies.get("_medusa_cache_id")
   const cacheId = cacheIdCookie?.value || crypto.randomUUID()
 
@@ -158,6 +210,7 @@ export async function middleware(request: NextRequest) {
     if (!cacheIdCookie && isUserRoute) {
       response.cookies.set("_medusa_cache_id", cacheId, { maxAge: 60 * 60 * 24 })
     }
+    countPaidLanding(request, event)
     return attachAttributionCookies(request, response)
   }
 
@@ -171,6 +224,7 @@ export async function middleware(request: NextRequest) {
     response.cookies.set("_medusa_cache_id", cacheId, { maxAge: 60 * 60 * 24 })
   }
 
+  countPaidLanding(request, event)
   return attachAttributionCookies(request, response)
 }
 
