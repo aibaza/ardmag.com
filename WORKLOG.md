@@ -5,6 +5,28 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-15 13:30 UTC -- Corectie la citirea contorului de edge (fara schimbare pe site)
+
+- Nicio modificare de cod pe acest repo. Contorul livrat mai jos ramane exact cum a fost
+  deployat (`12179d8`); intrarea exista pentru ca verificarea lui a schimbat concluzia.
+- Contorul e viu in productie, reverificat live la 13:15 UTC: aterizare cu UA de iPhone si
+  `fbclid` -> numarata; aceeasi cerere cu UA `facebookexternalhit` -> NU numarata (filtrul
+  de crawlere functioneaza); in colector fara urma de `fbclid`. `tsc --noEmit` curat,
+  18/18 teste `edge-landing` trec.
+- **Corectat in ops (nu aici):** readback-ul cerea Meta pe `last_7d` indiferent de `--days`
+  si contorul propriu pe `--days`, apoi imparetea una la alta. Pe 15 iul a raportat "1%" si
+  verdict "ABANDON INAINTE DE SERVER" din 3 aterizari (90 de secunde) supra 491 de tap-uri
+  (7 zile) - adica exact KPI-ul fantoma pe care lucrarea il combate. Acum compara doar zile
+  pline incheiate de dupa nasterea contorului si refuza sa calculeze pana pe 17 iul.
+- **Cele 4 aterizari din depozit sunt probe de verificare**, nu trafic
+  (`utm_campaign` = `verificare-contor-edge` / `verificare-dedup` / `verificare_contor`).
+  Aterizari reale de la deploy incoace: **0**. Masuratoarea exclude acum probele prin
+  conventie (`utm_campaign` care incepe cu `verificare`).
+- Fereastra de monitoring 24-48h e pornita din 15 iul 12:58 UTC. Prima citire cu sens:
+  **17 iul** (prima zi plina acoperita de contor = 16 iul).
+
+---
+
 ## 2026-07-15 12:55 UTC -- Contor de aterizare la edge (masurare trafic platit)
 
 - Commit: `12179d8` (`feat(analytics): contor de aterizare la edge, inainte de JS si consent`).
