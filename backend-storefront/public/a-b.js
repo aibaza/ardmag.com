@@ -53,6 +53,17 @@
     history.pushState = function () { push.apply(this, arguments); send('pageview') }
     addEventListener('popstate', function () { send('pageview') })
 
+    // contor tel: site-wide (contractul de masurare, sursa site_tel_click):
+    // orice click pe a[href^="tel:"], pe orice pagina, delegat in capture-phase
+    // ca sa prinda si linkuri adaugate dinamic. Cookieless, fail-open.
+    addEventListener('click', function (e) {
+      try {
+        var t = e.target
+        var a = t && t.closest ? t.closest('a[href^="tel:"]') : null
+        if (a) send('tel_click', { extra: { href: a.getAttribute('href') || '' } })
+      } catch (err) {}
+    }, true)
+
     // expune pentru evenimente custom (ex: aB.track('cta_click'))
     window.aB = { track: send }
   } catch (e) { /* fail-open total */ }
