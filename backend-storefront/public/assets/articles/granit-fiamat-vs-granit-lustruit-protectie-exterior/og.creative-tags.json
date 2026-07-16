@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact": "og-1.png",
+  "creative_tags": {
+    "hook": "question",
+    "format": "og_image",
+    "angle": "product_selection",
+    "cta": "read_article",
+    "vibe": "premium"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "granit-fiamat-vs-granit-lustruit-protectie-exterior",
+    "roundDate": "2026-07-16",
+    "template": "og-image",
+    "platform": "og",
+    "applied_learning_ids": [],
+    "experiment_bucket": "explore"
+  }
+}

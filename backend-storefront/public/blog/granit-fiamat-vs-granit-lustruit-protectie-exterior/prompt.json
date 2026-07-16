@@ -1,0 +1,22 @@
+{
+  "prompt": "Documentary product-in-context photograph for ARDmag.ro, a Romanian stone-processing supplier. Outdoor architectural scene, no workshop: the corner of a real building facade clad in grey speckled granite, shot in soft natural morning daylight from a low three-quarter angle. Two finishes of the same stone meet along a clean vertical joint running through the frame: on the left, large flamed granite panels with a rough, matte, crystalline texture that scatters light and reads as dry; on the right, polished panels of the identical stone, dark and mirror-like, reflecting the pale sky and a blurred hint of the street. A white metal one-litre Delta Research IDROREP tin with a red plastic cap stands on the granite plinth ledge in the right half of the frame, at the foot of the flamed panels, set down as if by the applicator mid-job, with a folded grey cloth crumpled beside it; further back along the same ledge, slightly out of focus at the edge of the polished section, a second identical white tin with a red cap. The attached product reference images are visual truth for label identity and package shape - render them organically inside one single cohesive photograph with realistic lighting, true contact shadows, correct perspective and scale, never as cutouts, stickers, collage, a pasted group, or floating elements, and never aligned as a staged product pair. Wide editorial 16:9 landscape composition, the tin and the finish joint right-of-center, the lower-left third left open as continuous flamed granite surface for a title overlay. Must read as a real photograph, not a CGI or AI render: coherent directional light, shallow depth of field with lens softness, uneven reflections, fine micro-texture, faint dust and weathering on the stone, imperfect mortar joints. No people, no faces, no hands, no invented brand lettering, no readable signage.",
+  "generatedAt": "2026-07-16",
+  "provider": "codex-cli",
+  "productReferences": [
+    "idrorep",
+    "quasar"
+  ],
+  "focusPoint": {
+    "x": 0.513,
+    "y": 0.555
+  },
+  "storyFocusX": 0.643,
+  "subjectBbox": {
+    "x1": 0.541,
+    "y1": 0.271,
+    "x2": 0.745,
+    "y2": 0.84
+  },
+  "variantChosen": 1,
+  "variantScore": "7/7"
+}
