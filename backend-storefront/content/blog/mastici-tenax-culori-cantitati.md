@@ -19,17 +19,17 @@ Masticul nu se alege după nume, ci după lucrarea pe care trebuie să o facă. 
 
 Gama Tenax e construită exact pe logica asta. Familia poliesterică acoperă reparațiile, umplerile și lipirile necritice, iar cea epoxidică intră acolo unde contează aderența și rezistența. Diferența tehnică între cele două, cu limite și cazuri de folosire, am detaliat-o separat în [ghidul epoxidic vs poliesteric pentru piatră](/blog/mastici-epoxidici-poliesterici-piatra). Aici ne uităm la pasul următor: dintr-o familie, cum alegi varianta corectă de culoare și ambalaj.
 
-## Consistența: solid, lichid sau transparent vertical
+## Consistența: solid, lichid sau tixotropic
 
 Aceeași familie de mastic vine în mai multe consistențe, iar asta schimbă complet modul de lucru.
 
-[Solido](https://www.tenax.it/en/products/professional/solido/) este masticul poliesteric solid, colorat, pentru reparare, chituire și lipire pe orizontală. Se șlefuiește și se lustruiește ușor, se colorează predictibil. E alegerea curentă pentru atelier.
+[Solido](https://www.tenax.it/en/products/professional/solido/) este masticul poliesteric solid, colorat, pentru reparare, chituire, umplere și lipiri uzuale. Se șlefuiește și se lustruiește ușor, se colorează predictibil. E alegerea curentă pentru atelier. Pe verticală sau pe muchii, unde materialul nu are voie să curgă, treci la un produs tixotropic.
 
 [Liquido](https://www.tenax.it/en/products/professional/liquido/) este varianta lichidă, cu vâscozitate redusă. Intră în pori fini și fisuri subțiri unde un mastic solid n-ar pătrunde.
 
-[Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/) este poliestericul transparent tixotropic. Nu curge de pe suprafețe verticale, așa că ține o lipire la 45 de grade sau o muchie fără să se scurgă.
+[Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/) este poliestericul transparent tixotropic. Stă unde îl pui: pe o muchie, pe verticală sau într-o îmbinare la 45 de grade, nu curge înainte să se întărească. Rezistența finală a îmbinării o dau produsul, suportul și pregătirea suprafeței, nu consistența.
 
-Pentru lipiri mai solicitate sau pe materiale moderne ca aglomeratele de quartz, [Domo 10 A+B](https://www.tenax.it/en/products/professional/domo-10/) este epoxidicul colorat cu raport de amestec 1:1, declarat și pentru suprafețe ușor umede. [Gravity](https://www.tenax.it/en/products/professional/gravity/) este un adeziv vinilester transparent vertical, cu stabilitate bună la lumină, pentru lucrări transparente care trebuie să rămână clare în timp.
+Pentru lipiri mai solicitate sau pe materiale moderne ca aglomeratele de cuarț, [Domo 10 A+B](https://www.tenax.it/en/products/professional/domo-10/) este epoxidicul colorat cu raport de amestec 1:1, declarat de producător și pentru suprafețe ușor umede - detaliile și limitele le găsești în fișa tehnică. [Gravity](https://www.tenax.it/en/products/professional/gravity/) este un adeziv vinilester transparent tixotropic, cu stabilitate bună la lumină, pentru lucrări transparente care trebuie să rămână clare în timp.
 
 Regula scurtă: alegi consistența după cum curge produsul pe lucrarea ta, nu după preferință.
 
@@ -39,7 +39,7 @@ La poliestericele colorate, culoarea de bază acoperă majoritatea lucrărilor: 
 
 Aici e cea mai frecventă greșeală de comandă. Culoarea masticului arată altfel în tub decât după întărire și lustruire, iar piatra naturală variază de la placă la placă. Înainte să comanzi o cantitate mare dintr-o nuanță, fă un test pe o bucată ascunsă sau pe o mostră din aceeași piatră.
 
-Dacă lucrarea cere ca îmbinarea să nu se vadă deloc, mergi pe transparent, de exemplu Tixo XE sau Gravity. Transparentul lasă culoarea pietrei să treacă, iar coloratul face lipitura vizibilă.
+Dacă lucrarea cere ca îmbinarea să se piardă în piatră, nu există o regulă universală. Un transparent ca Tixo XE sau Gravity preia nuanța și textura pietrei, dar nu face rostul invizibil de la sine. Pe unele pietre, un mastic colorat adus bine la ton ascunde lipitura chiar mai bine decât transparentul - tehnica am detaliat-o în [ghidul de colorare pe ton de venă](/blog/lipire-invizibila-marmura-colorare-mastice-ton-vena). Decizia corectă iese din testul pe mostră, nu din etichetă.
 
 Culorile și nuanțele disponibile efectiv pe fiecare produs și ambalaj se schimbă în timp. Pe acestea le confirmi la comandă, nu le presupui din articol.
 
@@ -47,7 +47,7 @@ Culorile și nuanțele disponibile efectiv pe fiecare produs și ambalaj se schi
 
 Cantitatea se alege după ritmul tău de consum, nu după economia făcută cu un ambalaj mai mare.
 
-- **1L** pentru intervenții ocazionale și reparații punctuale. Dacă folosești masticul rar, acesta e ambalajul care nu se întărește pe raft înainte să-l termini.
+- **1L** pentru intervenții ocazionale și reparații punctuale. Dacă folosești masticul rar, la volumul ăsta riscul să rămâi cu produs neconsumat înainte de termen e cel mai mic.
 - **4L** pentru atelierul cu consum curent, care lucrează săptămânal cu aceeași nuanță.
 - **18L** în variantele semisolide, pentru consum repetitiv mare pe aceeași culoare.
 
@@ -59,11 +59,12 @@ Poliestericul are termen de valabilitate și, odată catalizat, nu se mai întoa
 |:-|:-|:-|
 | Reparație estetică, chituire pori | Solido solid sau Liquido fin | nuanță apropiată de piatră, 1L-4L |
 | Lipire pe verticală, muchii, 45° | Tixo XE transparent tixotropic; pentru epoxidic transparent, Glaxs sau Eliox | transparent, 1L-4L |
-| Lipire solicitată, quartz, zonă umedă | Domo 10 A+B epoxidic | colorat, ambalaj A+B după volum |
+| Lipire solicitată mecanic sau aglomerat de cuarț | Domo 10 A+B epoxidic | colorat, ambalaj A+B după volum |
+| Lipire în zonă cu umezeală | Domo 10 A+B, declarat pentru suprafețe ușor umede; confirmă limitele în fișa tehnică | colorat, A+B |
 | Lucrare transparentă stabilă la lumină | Gravity, Glaxs, Eliox | transparent |
 | Consum mare, repetitiv, aceeași culoare | variantă semisolidă 18L | doar dacă rotești stocul |
 
-Grila te duce în familia corectă. Specificațiile exacte, raportul de amestec și timpii de lucru sunt pe fișa tehnică a fiecărui produs, și merită citite înainte de prima comandă pe un produs nou.
+Grila te duce în familia corectă, nu la un produs universal. Nici măcar transparentele nu sunt interschimbabile între ele: chimia, raportul de amestec și timpii de lucru diferă de la produs la produs. Specificațiile exacte sunt în fișa tehnică a fiecăruia și merită citite înainte de prima comandă pe un produs nou.
 
 ## Înainte să dai comanda
 
@@ -73,7 +74,7 @@ Confirmă nuanța pe o mostră din piatra reală, nu din memorie. Confirmă că 
 
 Dacă ai o piatră pe care n-ai mai lucrat-o sau o lucrare la care nu ești sigur ce mastic ține, spune-ne tipul pietrei și operația. E mai ieftin un telefon decât un bidon greșit.
 
-ARDmag.ro este cel mai mare distribuitor Tenax în România, așa că vă putem sfătui ce tip de mastic și ce cantitate se potrivește cu lucrarea dumneavoastră înainte să comandați.
+ARDmag.ro este distribuitor autorizat Tenax în România, așa că te putem sfătui ce tip de mastic și ce cantitate se potrivesc cu lucrarea ta, înainte să comanzi.
 
 ---
 
