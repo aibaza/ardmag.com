@@ -5,6 +5,18 @@ Format: [date] type: description
 
 ---
 
+## 2026-07-20 - Prioritate de rețea pentru imaginea principală de produs
+
+### Schimbare livrată
+
+Imaginea principală de pe pagina de produs este cerută explicit cu prioritate ridicată și încărcare imediată. Fișierul și dimensiunile vizuale rămân neschimbate; optimizarea nu atinge coșul, SEO sau analytics.
+
+### Verificare
+
+Baseline Lighthouse mobil pe `/products/mastic-lichid`: mediană din trei probe, LCP 5,42 s, TBT 282 ms, CLS 0, scor 74. Runner-ul acceptă acum un URL explicit și folosește implicit un produs existent.
+
+---
+
 ## 2026-07-20 - Formulare naturală în grila articolului despre mastici Tenax
 
 ### Schimbare livrată

@@ -5,6 +5,25 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-20 10:36 UTC -- Optimizare mobilă imagine principală produs
+
+- URL de control: `https://ardmag.ro/products/mastic-lichid`.
+- Baseline Lighthouse mobil, 3 probe identice (simulate, RTT 150 ms, 1.600 Kbps):
+  mediană scor 74, FCP 1.242 ms, LCP 5.422 ms, TBT 282 ms, CLS 0; LCP a variat
+  între 5.271 și 7.064 ms.
+- Bottleneck: imaginea principală era elementul LCP și nu avea `fetchpriority=high`.
+  Lighthouse a indicat explicit criteriul de prioritate ca eșuat. Varianta de imagine
+  de 400 px nu a fost folosită pentru a evita pierderea de claritate pe ecrane retina.
+- Schimbare: `loading=eager` și `fetchPriority=high` doar pe imaginea principală;
+  runner-ul Lighthouse are URL de produs valid și suport `--url` pentru pre/post identic.
+- Teste: 140/152 trec; cele 12 eșecuri existente sunt în adaptoarele de preț,
+  specificații și placeholder, fără legătură cu galeria. Compilarea Next.js trece;
+  build-ul local se oprește ulterior la sitemap din valorile URL mascate/invalide ale
+  `.env.production.local`.
+- Deploy/QA/rezultat post-deploy: în curs; de completat după verificarea live.
+
+---
+
 ## 2026-07-20 09:42 UTC -- Corecție expert în grila articolului despre mastici Tenax
 
 - Feedback Andrei: „Solido solid sau Liquido fin” a fost înlocuit cu „Solido sau

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Lighthouse perf audit runner for ardmag.com Faza 2
- * Usage: node scripts/lighthouse-runner.mjs --page=homepage|category|product
+ * Usage: node scripts/lighthouse-runner.mjs --page=homepage|category|product [--url=https://...]
  *
  * Budget: LCP<2.5s, CLS<0.1, TBT<200ms (mobile + 3G simulated)
  */
@@ -17,7 +17,7 @@ const ROOT = resolve(__dirname, "../backend-storefront")
 const PAGE_MAP = {
   homepage: "http://localhost:8000/ro",
   category: "http://localhost:8000/ro/categories/discuri-diamantate",
-  product:  "http://localhost:8000/ro/products/disc-diamantat-delta-turbo-ul115",
+  product:  "http://localhost:8000/products/mastic-lichid",
 }
 
 const BUDGET = {
@@ -28,7 +28,8 @@ const BUDGET = {
 
 const args = process.argv.slice(2)
 const pageArg = args.find(a => a.startsWith("--page="))?.split("=")[1] ?? "homepage"
-const url = PAGE_MAP[pageArg]
+const urlArg = args.find(a => a.startsWith("--url="))?.slice("--url=".length)
+const url = urlArg || PAGE_MAP[pageArg]
 
 if (!url) {
   console.error(`Unknown page: ${pageArg}. Valid: ${Object.keys(PAGE_MAP).join(", ")}`)
