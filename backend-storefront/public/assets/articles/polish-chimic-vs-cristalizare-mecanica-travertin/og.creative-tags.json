@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "artifact": "og.png",
+  "creative_tags": {
+    "hook": "question",
+    "format": "og_image",
+    "angle": "maintenance",
+    "cta": "read_article",
+    "vibe": "technical"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "polish-chimic-vs-cristalizare-mecanica-travertin",
+    "roundDate": "2026-07-23",
+    "template": "og-image",
+    "platform": "og",
+    "applied_learning_ids": [],
+    "experiment_bucket": "explore"
+  }
+}

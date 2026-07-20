@@ -1,0 +1,10 @@
+{
+  "prompt": "Documentary product photograph on polished light-beige travertine in a Romanian stone workshop: authentic SILWAX can and authentic POLIMASTER pads, naturally grounded in the right half, calm stone space on the left, no application process, no invented branding.",
+  "generatedAt": "2026-07-20",
+  "provider": "codex-imagegen",
+  "references": [
+    "backend/static/images/silwax/db3b5a_27e35b8911f74146abe96ced5a69ffad/detail-2x.jpg",
+    "backend/static/images/pad-polimaster-hex/db3b5a_82e4936dfc004a1482d995bb6ba272ad/detail-2x.png"
+  ],
+  "finalWebp": "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend-storefront/public/blog/polish-chimic-vs-cristalizare-mecanica-travertin/hero.webp"
+}
