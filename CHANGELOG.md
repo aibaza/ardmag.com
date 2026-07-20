@@ -13,7 +13,7 @@ Imaginea principală de pe pagina de produs este cerută explicit cu prioritate 
 
 ### Verificare
 
-Baseline Lighthouse mobil pe `/products/mastic-lichid`: mediană din trei probe, LCP 5,42 s, TBT 282 ms, CLS 0, scor 74. Runner-ul acceptă acum un URL explicit și folosește implicit un produs existent.
+Baseline Lighthouse mobil pe `/products/mastic-lichid`: mediană din trei probe, LCP 5,42 s, TBT 282 ms, CLS 0, scor 74. După deploy, aceeași măsurare a avut LCP 7,04 s, TBT 393 ms, CLS 0 și scor 65; îmbunătățirea nu este confirmată. Runner-ul acceptă acum un URL explicit și folosește implicit un produs existent.
 
 ---
 

@@ -20,7 +20,14 @@ Format: data + commits + descriere + deploy URL + confirmare user.
   specificații și placeholder, fără legătură cu galeria. Compilarea Next.js trece;
   build-ul local se oprește ulterior la sitemap din valorile URL mascate/invalide ale
   `.env.production.local`.
-- Deploy/QA/rezultat post-deploy: în curs; de completat după verificarea live.
+- Deploy: commit `84da241`, Vercel `dpl_CsCDk58kQk8E9QWjDiFrr7ZNpKk2`, Ready în
+  producție. QA mobil 390×844: fără overflow, imagine 1033×1246 fără schimbare
+  vizuală, title/canonical/4 JSON-LD, GA4 și Meta prezente, zero erori console,
+  add-to-cart deschide sheet-ul. Screenshot: `backend-storefront/reports/perf/product/post-deploy-mobile.png`.
+- Post-deploy, aceleași 3 probe: mediană scor 65, FCP 1.255 ms, LCP 7.041 ms,
+  TBT 393 ms, CLS 0. Criteriul `priorityHinted` este acum valid, dar rezultatul nu
+  confirmă o îmbunătățire. Punctul D-0050 rămâne `neaplicat`; tentativa și riscul
+  rămas (LCP/TBT variabile și peste buget) au fost documentate, fără trimitere/aprobare.
 
 ---
 
