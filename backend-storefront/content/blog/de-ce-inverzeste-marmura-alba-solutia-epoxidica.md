@@ -6,6 +6,7 @@ publishedAt: "2026-07-21"
 author: "Echipa ardmag"
 tags: ["marmura", "armare piatra", "coroziune", "epoxidic", "Tenax"]
 heroImage: "/blog/de-ce-inverzeste-marmura-alba-solutia-epoxidica/hero.webp"
+ogImage: "/assets/articles/de-ce-inverzeste-marmura-alba-solutia-epoxidica/og.png"
 ---
 
 O pată verzuie sau ruginie care apare pe o placă de marmură albă, de obicei lângă o muchie tăiată sau lângă un rost, nu are legătură cu piatra în sine. Sursa e sub suprafață: o armătură metalică ascunsă în interiorul plăcii, care corodează și își împinge produșii de coroziune afară, prin porii pietrei.
@@ -40,7 +41,7 @@ Distanța dintre metal și fața vizibilă a piatrei contează direct: ghidul HR
 
 Aici intervine rășina. Fibra de sticlă în sine nu ruginește niciodată, ceea ce o face materialul corect pentru armarea de fabrică. Dar acolo unde tot mai apare metal, la tije de consolidare, la elemente de fixare sau la muchii tăiate ulterior în atelier, unde plasa rămâne parțial expusă, singura protecție reală e o barieră continuă care oprește accesul apei și al aerului la metal.
 
-Rășina epoxidică se pretează mai bine la acest rol decât cea poliesterică. Epoxidicul nu se contractă la întărire, deci lasă mai puține microfisuri prin care ar putea pătrunde ulterior umezeala, iar aderența ajunge până la 2000 psi, față de sub 500 psi la poliesteric, [conform AeroMarine Products](https://www.aeromarineproducts.com/polyester-resin-vs-epoxy-resin/). [Domo 10 A+B](https://www.tenax.it/en/products/professional/domo-10/), adezivul epoxidic bicomponent din gama Tenax, e declarat de producător compatibil inclusiv cu suprafețe ușor umede, exact tipul de aplicație unde un poliesteric obișnuit pierde aderență.
+Rășina epoxidică se pretează mai bine la acest rol decât cea poliesterică. Epoxidicul nu se contractă la întărire, deci lasă mai puține microfisuri prin care ar putea pătrunde ulterior umezeala, iar aderența ajunge până la 2000 psi, față de sub 500 psi la poliesteric, [conform AeroMarine Products](https://www.aeromarineproducts.com/polyester-resin-vs-epoxy-resin/). [Domo 10 A+B](https://ardmag.ro/products/domo-10-epoxy-solid), adezivul epoxidic bicomponent din gama Tenax, e declarat de producător compatibil inclusiv cu suprafețe ușor umede, exact tipul de aplicație unde un poliesteric obișnuit pierde aderență. Pentru diferențele de utilizare față de masticele poliesterice, vezi și [comparația dintre mastice epoxidice și poliesterice](https://ardmag.ro/blog/mastici-epoxidici-poliesterici-piatra).
 
 ## Ce înseamnă asta pentru atelier
 

@@ -1,0 +1,14 @@
+{
+  "prompt": "One coherent documentary photograph in a Romanian stone workshop: real Domo 10 A+B cans, grounded on the right side of a workbench beside a white marble slab whose cut edge shows an irregular green-brown corrosion stain; quiet clean marble and workshop negative space on the left; natural mixed workshop light; authentic packaging from the on-disk catalog reference; no collage, cutout, halo, invented label or glossy studio polish.",
+  "generatedAt": "2026-07-20",
+  "provider": "codex-imagegen",
+  "referenceAssets": [
+    "backend/static/images/domo-10-epoxy-solid/db3b5a_900b465c3e4840aaaac3ebc041b6371e.jpg"
+  ],
+  "visualQa": {
+    "productPresent": true,
+    "packagingMatchesReference": true,
+    "coherentSingleScene": true,
+    "pastedOrFloating": false
+  }
+}
