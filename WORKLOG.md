@@ -13,7 +13,13 @@ Format: data + commits + descriere + deploy URL + confirmare user.
   produsele sunt „Solido mastic” și „Liquido mastic”.
 - Artefactele sociale și metadata au fost căutate separat și nu conțineau formularea
   greșită, deci nu au necesitat modificări.
-- Deploy și verificare live: de completat după rularea quality gates și publicare.
+- Quality gates: copy-ul public fără delimitatoarele structurale Markdown PASS; build-ul
+  Vercel de producție PASS. Build-ul local a compilat, dar prerandarea sitemap-ului nu
+  poate folosi valorile protejate mascate de Vercel în exportul local.
+- Deploy Vercel: `dpl_CgLMAai9XXWcgS2bPfKxGawKfDN3` /
+  `ardmag-storefront-7xplpbkwq-surcod.vercel.app`, stare Ready, Production.
+- Verificare live pe URL-ul canonical: HTTP 200, `x-vercel-cache: PRERENDER`, expresia
+  veche apare de 0 ori, iar „Solido sau Liquido” apare de 2 ori în HTML-ul randat.
 - Confirmat: DA (cerere explicită DC și feedback autoritar Andrei).
 - ClickUp/time entry: conectorul și skill-ul local de deploy nu sunt disponibile în
   această sesiune; consemnarea rămâne explicit marcată pentru completare operațională.
