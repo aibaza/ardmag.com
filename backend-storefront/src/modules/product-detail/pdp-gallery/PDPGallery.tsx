@@ -47,15 +47,7 @@ export function PDPGallery({ thumbs, mainImage, badges }: PDPGalleryProps) {
         </div>
 
         <div className="pdp-main-img with-real">
-          <img
-            className="main"
-            src={currentLarge}
-            alt={currentAlt}
-            width={1200}
-            height={1200}
-            loading="eager"
-            fetchPriority="high"
-          />
+          <img className="main" src={currentLarge} alt={currentAlt} width={1200} height={1200} />
           <div className="badges">
             {badges.map((b, i) => <Badge key={i} type={b.type} label={b.label} />)}
           </div>
