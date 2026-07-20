@@ -5,11 +5,29 @@ Format: [date] type: description
 
 ---
 
+## 2026-07-20 - Rollback prioritate imagine principală de produs
+
+### Schimbare livrată
+
+Experimentul `loading=eager` și `fetchPriority=high` pe imaginea principală a fost
+retras strict din runtime deoarece măsurarea post-deploy nu a confirmat un câștig.
+Runner-ul, raportul, măsurătorile și jurnalul experimentului au fost păstrate.
+
+### Verificare
+
+Deploy-ul de rollback `dpl_F41JasLD4TCVDXX7LqKCveiJkjmA` este Ready pe producție.
+QA mobil 390×844: render și add-to-cart funcționale, overflow 0, canonical și 4
+blocuri JSON-LD prezente, GA4 și Meta prezente, zero erori console/page. Trei probe
+Lighthouse identice post-rollback au avut mediană LCP 7,078 s, TBT 399 ms, CLS 0 și
+scor 64. Rezultatul rămâne peste buget și nu schimbă concluzia experimentului.
+
+---
+
 ## 2026-07-20 - Prioritate de rețea pentru imaginea principală de produs
 
 ### Schimbare livrată
 
-Imaginea principală de pe pagina de produs este cerută explicit cu prioritate ridicată și încărcare imediată. Fișierul și dimensiunile vizuale rămân neschimbate; optimizarea nu atinge coșul, SEO sau analytics.
+Imaginea principală de pe pagina de produs a fost cerută experimental cu prioritate ridicată și încărcare imediată. Fișierul și dimensiunile vizuale au rămas neschimbate; experimentul a fost ulterior retras.
 
 ### Verificare
 

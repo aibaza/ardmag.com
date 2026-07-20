@@ -5,6 +5,28 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-20 11:01 UTC -- Rollback experiment prioritate imagine produs
+
+- Motiv: mediana măsurată după experiment a regresat față de baseline; nu lăsăm în
+  producție o modificare runtime fără câștig confirmat.
+- Rollback strict: eliminate doar `loading=eager` și `fetchPriority=high` de pe
+  imaginea principală din `PDPGallery`; runner-ul, raportul, măsurătorile și intrarea
+  originală din jurnal au rămas ca dovadă.
+- Commit/deploy: `7252af3`; Vercel `dpl_F41JasLD4TCVDXX7LqKCveiJkjmA`, Ready și
+  aliasat pe `ardmag.ro`.
+- QA mobil 390×844 pe `/products/mastic-lichid`: HTTP 200, render complet, overflow 0,
+  imagine 1033×1246 fără atributele experimentale, add-to-cart reușit și sheet deschis,
+  canonical + 4 JSON-LD, GA4 + Meta prezente, zero erori console/page. Screenshot:
+  `backend-storefront/reports/perf/product/post-rollback-mobile.png`.
+- Lighthouse sanity check, aceleași 3 probe simulate (RTT 150 ms, 1.600 Kbps):
+  LCP 7.099 / 5.256 / 7.078 ms, scor 64 / 76 / 64, TBT 399 / 236 / 419 ms,
+  CLS 0 / 0 / 0; mediană LCP 7.078 ms, scor 64, TBT 399 ms, CLS 0. Fișiere:
+  `post-rollback-1.json` ... `post-rollback-3.json`.
+- Concluzie: experiment încercat și retras, fără câștig măsurabil. D-0050 rămâne
+  pending și nu a fost trimis sau aprobat.
+
+---
+
 ## 2026-07-20 10:36 UTC -- Optimizare mobilă imagine principală produs
 
 - URL de control: `https://ardmag.ro/products/mastic-lichid`.
