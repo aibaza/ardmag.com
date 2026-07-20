@@ -5,6 +5,21 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-20 09:42 UTC -- Corecție expert în grila articolului despre mastici Tenax
+
+- Feedback Andrei: „Solido solid sau Liquido fin” a fost înlocuit cu „Solido sau
+  Liquido” în articol și în draftul-sursă, fără alte schimbări editoriale.
+- Nomenclatura a fost verificată în catalogul ARDmag și pe paginile oficiale Tenax:
+  produsele sunt „Solido mastic” și „Liquido mastic”.
+- Artefactele sociale și metadata au fost căutate separat și nu conțineau formularea
+  greșită, deci nu au necesitat modificări.
+- Deploy și verificare live: de completat după rularea quality gates și publicare.
+- Confirmat: DA (cerere explicită DC și feedback autoritar Andrei).
+- ClickUp/time entry: conectorul și skill-ul local de deploy nu sunt disponibile în
+  această sesiune; consemnarea rămâne explicit marcată pentru completare operațională.
+
+---
+
 ## 2026-07-15 13:30 UTC -- Corectie la citirea contorului de edge (fara schimbare pe site)
 
 - Nicio modificare de cod pe acest repo. Contorul livrat mai jos ramane exact cum a fost

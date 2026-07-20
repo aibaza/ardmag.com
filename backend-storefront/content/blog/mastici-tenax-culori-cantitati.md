@@ -57,7 +57,7 @@ Poliestericul are termen de valabilitate și, odată catalizat, nu se mai întoa
 
 | Ai de făcut | Pornește de la | Culoare / ambalaj |
 |:-|:-|:-|
-| Reparație estetică, chituire pori | Solido solid sau Liquido fin | nuanță apropiată de piatră, 1L-4L |
+| Reparație estetică, chituire pori | Solido sau Liquido | nuanță apropiată de piatră, 1L-4L |
 | Lipire pe verticală, muchii, 45° | Tixo XE transparent tixotropic; pentru epoxidic transparent, Glaxs sau Eliox | transparent, 1L-4L |
 | Lipire solicitată mecanic sau aglomerat de cuarț | Domo 10 A+B epoxidic | colorat, ambalaj A+B după volum |
 | Lipire în zonă cu umezeală | Domo 10 A+B, declarat pentru suprafețe ușor umede; confirmă limitele în fișa tehnică | colorat, A+B |

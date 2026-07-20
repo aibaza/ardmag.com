@@ -5,6 +5,18 @@ Format: [date] type: description
 
 ---
 
+## 2026-07-20 - Formulare naturală în grila articolului despre mastici Tenax
+
+### Schimbare livrată
+
+În grila de decizie din articolul „Mastici Tenax: cum alegi culoarea și cantitatea corectă”, formularea „Solido solid sau Liquido fin” a fost corectată la „Solido sau Liquido”, conform feedbackului expertului Andrei și nomenclaturii Tenax.
+
+### Verificare
+
+Articolul și draftul-sursă folosesc aceeași formulare; metadata și materialele sociale nu conțineau textul greșit.
+
+---
+
 ## 2026-05-22 - Email automat la invitatie administrator
 
 ### Context
