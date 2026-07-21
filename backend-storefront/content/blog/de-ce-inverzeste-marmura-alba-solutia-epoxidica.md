@@ -1,7 +1,7 @@
 ---
-title: "De ce „înverzește” marmura albă: oxidarea armăturilor metalice și soluția epoxidică"
-description: "Pata verde sau ruginie de lângă o muchie de marmură albă nu vine din piatră. Vine din armătura metalică ascunsă dedesubt, care corodează și migrează prin porii pietrei."
-kicker: "Explicație tehnică · Piatră naturală"
+title: "De ce poate înverzi marmura albă: armătura metalică și lipirea epoxidică"
+description: "O pată verde sau brună pe marmură albă poate indica o sursă metalică și umezeală în spatele pietrei. Diagnosticul corect vine înaintea curățării sau reparației."
+kicker: "Diagnostic de atelier · Piatră naturală"
 publishedAt: "2026-07-21"
 author: "Echipa ardmag"
 tags: ["marmura", "armare piatra", "coroziune", "epoxidic", "Tenax"]
@@ -9,48 +9,46 @@ heroImage: "/blog/de-ce-inverzeste-marmura-alba-solutia-epoxidica/hero.webp"
 ogImage: "/assets/articles/de-ce-inverzeste-marmura-alba-solutia-epoxidica/og.png"
 ---
 
-O pată verzuie sau ruginie care apare pe o placă de marmură albă, de obicei lângă o muchie tăiată sau lângă un rost, nu are legătură cu piatra în sine. Sursa e sub suprafață: o armătură metalică ascunsă în interiorul plăcii, care corodează și își împinge produșii de coroziune afară, prin porii pietrei.
+O urmă verde sau brună pe marmură albă nu are o singură explicație. Când apare lângă un decupaj, o muchie ori o prindere, una dintre ipotezele de verificat este coroziunea unei armături sau a unei piese metalice aflate în spatele pietrei. Culoarea singură nu identifică sigur metalul și nici sursa petei.
 
-Fenomenul nu e o curiozitate rară. E o consecință directă a felului în care sunt fabricate plăcile subțiri și fragile din marmură, și a materialului folosit la armare.
+Pentru atelier, ordinea corectă este simplă: localizezi metalul și traseul umezelii, apoi alegi reparația. Un detergent aplicat pe fața plăcii nu poate opri o sursă activă din spate.
 
-## De ce marmura are nevoie de armătură
+## Unde poate exista metal în placă
 
-Marmura subțire (foile folosite la blaturi, plăci de finisaj sau onix decorativ) e fragilă la manipulare și transport. Ca să reziste, producătorii lipesc pe spatele plăcii un strat de armare, cel mai adesea o plasă din fibră de sticlă încorporată în rășină, întinsă uniform pe toată suprafața din spate. Onixul, de exemplu, ajunge pe piață aproape exclusiv armat din fabrică, exact din acest motiv, [conform ABC Stone](https://www.marblerestoration.us/reinforcement.htm).
+Plăcile fragile pot fi întărite pe spate cu plasă din fibră de sticlă și rășină. În jurul decupajelor, unele lucrări folosesc și tije introduse în șanțuri pentru consolidare. Ghidul pentru blaturi al Natural Stone Institute tratează separat plasa, inserțiile și armarea cu tije; metoda concretă trebuie verificată pe piesa aflată în lucru.
 
-Există și o a doua metodă, folosită punctual, nu pe toată suprafața: introducerea unor tije în șanțuri tăiate în piatră, în zonele solicitate mecanic, cum sunt marginile din jurul unei chiuvete montate sub blat. Aici apare problema, pentru că unele tije sunt metalice, nu din fibră de sticlă.
+Riscul nu vine de la fibra de sticlă, ci de la o componentă metalică expusă la apă. Zona critică este adesea un capăt de tijă, o tăietură făcută după armare sau o porțiune unde adezivul nu acoperă continuu ansamblul.
 
-## Mecanismul: piatra e poroasă, metalul nu e inert
+## Ce spune culoarea și ce nu spune
 
-Marmura absoarbe și lasă să treacă umezeala prin capilaritate, chiar dacă la suprafață pare compactă. Când sub ea stă un metal care nu e protejat complet de rășină, apa ajunge la el mai devreme sau mai târziu. Umezeala din timpul fabricației, umiditatea din mediu sau apa de la o chiuvetă montată alături fac diferența dintre o placă stabilă și una care pătează.
+Natural Stone Institute descrie petele de fier sau rugină ca portocalii până la brune și avertizează că petele metalice adânci pot fi foarte greu de scos. O nuanță verde poate fi compatibilă cu produși de coroziune ai cuprului sau ai aliajelor sale, dar poate avea și alte cauze. Fără identificarea piesei din spate, formularea corectă este „posibilă pată metalică”, nu un diagnostic cert după culoare.
 
-Tijele metalice montate lângă o chiuvetă „reacționează cu umezeala, ruginesc și își măresc volumul", scrie [ABC Stone](https://www.marblerestoration.us/reinforcement.htm). Expansiunea poate produce fisuri suplimentare în piatră, pornind din interior, dincolo de simpla pată la suprafață.
+Umezeala este calea comună. Dacă apa ajunge repetat la metal, curățarea feței vizibile tratează efectul, nu cauza. Mai întâi se verifică infiltrația, rostul, decupajul și spatele piesei. Pentru o pată deja instalată, Natural Stone Institute recomandă identificarea tipului de pată și arată că tratamentul se alege după cauză; acizii și produsele improvizate pot ataca piatra.
 
-## Verde sau maro: depinde de metal
+## Ce poate face, concret, un epoxidic
 
-Culoarea petei spune ce metal e dedesubt. Fierul și oțelul obișnuit corodează în oxizi de culoare galben-brună spre roșcată, adică rugina clasică. Migrarea are loc prin aceleași capilare prin care circulă apa: „pigmenții de oxidare a fierului migrează în sus prin capilarele pietrei, producând pete galben-maronii ireversibile", conform [ghidului HRST Stone despre armare și rugină](https://www.hrststone.com/news/stone-backing-rebar-rust-guide-for-marble-r-85134398.html).
+Un epoxidic nu este automat „barieră anticoroziune”, iar orice produs trebuie folosit numai în aplicațiile declarate de producător. Fișa oficială Tenax pentru Domo 10 A+B îl descrie ca mastic epoxidic bicomponent pentru lipiri și cuplări multimaterial, inclusiv metal-piatră. Pentru astfel de lipiri cere șlefuirea metalului, suport curat și distribuirea omogenă a produsului, cu acoperire totală a suprafeței.
 
-Pata verde vine dintr-un alt metal: cupru sau bronz, folosite uneori la elemente de fixare sau la componentele de armare placate. În contact cu umezeala și aerul, cuprul nu ruginește, ci formează carbonat bazic de cupru, cunoscut ca patină sau verdigris, aceeași reacție care înverzește acoperișurile și țevile de cupru expuse afară, [explică Make It From Metal](https://makeitfrommetal.com/why-do-brass-bronze-and-copper-turn-green/). Fierul dă maro, cuprul dă verde. Ambele sunt semnul aceluiași mecanism: metal neprotejat, sub o piatră poroasă.
+Aceste instrucțiuni susțin folosirea lui ca adeziv de cuplare, nu afirmația că repară orice armătură corodată sau că impermeabilizează singur placa. Fișa mai cere raport 1:1 în greutate și indică aproximativ 24 de ore până la tăiere sau lustruire la 25°C. Deși produsul este prezentat ca aplicabil și pe suprafețe umede, instrucțiunile din fișa tehnică cer piatra curată și complet uscată înainte de aplicare. În atelier se urmează condiția mai prudentă din instrucțiunile de utilizare.
 
-## Curățarea nu rezolvă nimic
+## Verificarea înainte de lipire
 
-O pată apărută așa nu cedează la curățare de suprafață, pentru că sursa continuă să corodeze dedesubt. Curățarea temporar estompează pata, dar coroziunea își reia migrarea prin capilarele pietrei, iar remedierea completă, fără să înlocuiești placa sau armătura, e aproape imposibilă odată ce fenomenul a pornit, [notează HRST Stone](https://www.hrststone.com/news/stone-backing-rebar-rust-guide-for-marble-r-85134398.html). De aceea contează prevenția la fabricație și la fasonare, nu tratamentul după ce pata a apărut.
+| Punct de control | Ce urmărești |
+|---|---|
+| Decupaje și muchii | capete de tijă, metal descoperit, rășină întreruptă |
+| Spatele plăcii | plasă desprinsă, goluri, trasee de umezeală |
+| Piesa metalică | coroziune existentă și suprafață care poate fi pregătită corect |
+| Suportul | curat, uscat și fără praf sau grăsime |
+| Amestecul | raportul și timpii din fișa tehnică a produsului ales |
+| După fasonare | orice tăietură nouă care a redeschis zona armată |
 
-Distanța dintre metal și fața vizibilă a piatrei contează direct: ghidul HRST Stone recomandă cel puțin 10 mm de piatră între armătură și suprafață, exact ca să blocheze migrarea vizibilă a coroziunii înainte să ajungă la fața plăcii.
+Dacă metalul este deja corodat sau umezeala continuă să intre, simpla acoperire a petei nu este o reparație. Se elimină cauza apei și se stabilește dacă piesa poate fi refăcută în siguranță ori trebuie înlocuită.
 
-## Bariera potrivită: epoxidic, nu poliesteric
-
-Aici intervine rășina. Fibra de sticlă în sine nu ruginește niciodată, ceea ce o face materialul corect pentru armarea de fabrică. Dar acolo unde tot mai apare metal, la tije de consolidare, la elemente de fixare sau la muchii tăiate ulterior în atelier, unde plasa rămâne parțial expusă, singura protecție reală e o barieră continuă care oprește accesul apei și al aerului la metal.
-
-Rășina epoxidică se pretează mai bine la acest rol decât cea poliesterică. Epoxidicul nu se contractă la întărire, deci lasă mai puține microfisuri prin care ar putea pătrunde ulterior umezeala, iar aderența ajunge până la 2000 psi, față de sub 500 psi la poliesteric, [conform AeroMarine Products](https://www.aeromarineproducts.com/polyester-resin-vs-epoxy-resin/). [Domo 10 A+B](https://ardmag.ro/products/domo-10-epoxy-solid), adezivul epoxidic bicomponent din gama Tenax, e declarat de producător compatibil inclusiv cu suprafețe ușor umede, exact tipul de aplicație unde un poliesteric obișnuit pierde aderență. Pentru diferențele de utilizare față de masticele poliesterice, vezi și [comparația dintre mastice epoxidice și poliesterice](https://ardmag.ro/blog/mastici-epoxidici-poliesterici-piatra).
-
-## Ce înseamnă asta pentru atelier
-
-La recepția unei plăci armate, punctele de urmărit sunt muchiile tăiate și zonele din jurul oricărei prinderi metalice, acolo unde plasa sau tija ar putea rămâne fără protecție completă. O pată care apare abia după montaj, lângă un rost sau o prindere, nu e o problemă de suprafață. Sursa e sub piatră, iar curățarea de acolo nu ajunge.
+Spune-ne tipul piesei, zona în care apare pata și ce armare ai găsit. Verificăm împreună aplicația din fișa tehnică înainte să alegi adezivul.
 
 ## Surse și referințe
 
-- [ABC Stone, cele trei metode de armare a plăcilor de marmură (meshing, rodding, plate supporting)](https://www.marblerestoration.us/reinforcement.htm)
-- [HRST Stone, ghid despre armătură și rugină la marmură](https://www.hrststone.com/news/stone-backing-rebar-rust-guide-for-marble-r-85134398.html)
-- [Make It From Metal, de ce alamă, bronz și cupru se înverzesc](https://makeitfrommetal.com/why-do-brass-bronze-and-copper-turn-green/)
-- [Tenax Domo 10 A+B, adeziv epoxidic bicomponent](https://www.tenax.it/en/products/professional/domo-10/)
-- [AeroMarine Products, comparație contracție și aderență epoxidic vs. poliesteric](https://www.aeromarineproducts.com/polyester-resin-vs-epoxy-resin/)
+- [Tenax, fișa tehnică Domo 10 A+B](https://www.tenax.it/wp-content/uploads/2023/06/Technical-sheet-IT_EN-Domo10.pdf) - aplicații metal-piatră, pregătirea suportului, acoperire totală, raport și timpi.
+- [Tenax, pagina oficială Domo 10 A+B](https://www.tenax.it/en/products/professional/domo-10-ab/) - mastic epoxidic pentru piatră naturală și cuplări multimaterial.
+- [Natural Stone Institute, îngrijirea pietrei naturale](https://www.naturalstoneinstitute.org/consumers/care/) - sensibilitatea pietrei calcaroase la acizi și identificarea petelor de rugină.
+- [Natural Stone Institute, îndepărtarea petelor](https://www.naturalstoneinstitute.org/consumers/stains/) - pete metalice și limitele remedierii petelor adânci.

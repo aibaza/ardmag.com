@@ -1921,3 +1921,13 @@ ClickUp/time entry:
 - Toate iteratiile au trecut prin preview pe test.ardmag.ro inainte de merge.
 - Deploy final: merge staging -> master 285c03c, production READY, CSS mobil
   verificat in bundle-ul live. Dezvoltarea inchisa cu aprobarea DC.
+## 2026-07-21 - Audit factual și corecții articole ARDmag
+
+- Rescrise articolele `de-ce-inverzeste-marmura-alba-solutia-epoxidica` și
+  `polish-chimic-vs-cristalizare-mecanica-travertin`, fără schimbarea URL-urilor.
+- Claims majore verificate față de fișele oficiale Tenax Domo 10, Delta Research
+  Prolux, Silwax, Crystal P și Crystalux, plus ghidurile Natural Stone Institute.
+- Regenerate imaginile Facebook și Story pentru wave 0 din fundalurile existente,
+  cu overlay-urile factuale corectate.
+- Build local: compilare PASS; prerandare sitemap blocată de cheia publicabilă
+  Medusa invalidă în snapshot-ul local de env. Gate-ul complet rulează în Vercel.

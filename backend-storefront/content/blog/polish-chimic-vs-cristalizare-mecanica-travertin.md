@@ -1,68 +1,68 @@
 ---
-title: "Polish chimic vs. polish mecanic pe piatra calcaroasă: ce rezistă mai mult în trafic intens"
-description: "Ceara și lacul adaugă un strat pe piatră. Abraziunea diamantată schimbă suprafața însăși. În trafic comercial intens, diferența se vede în cât de des refaci lucrarea."
-kicker: "Ghid tehnic · Delta Research"
+title: "Polish chimic vs. cristalizare mecanizată pentru travertin: ce alegi"
+description: "Ceara, pulberea de lustruire și cristalizarea nu sunt aceeași operație. Compară mecanismul, pregătirea și limitele fiecărei rute pentru travertin."
+kicker: "Comparație tehnică · Delta Research"
 publishedAt: "2026-07-23"
 author: "Echipa ardmag"
-tags: ["delta research", "piatra calcaroasa", "marmura", "travertin", "lustruire", "intretinere"]
+tags: ["delta research", "piatra calcaroasa", "marmura", "travertin", "lustruire", "cristalizare"]
 heroImage: "/blog/polish-chimic-vs-cristalizare-mecanica-travertin/hero.webp"
 ogImage: "/assets/articles/polish-chimic-vs-cristalizare-mecanica-travertin/og.png"
 ---
 
-Marmura, travertinul și calcarul se lustruiesc în două moduri complet diferite. Unul adaugă un strat pe suprafață. Celălalt o șlefuiește și îi schimbă efectiv topografia. În trafic pietonal intens (hol comercial, spațiu de expunere, orice zonă cu flux mare), diferența asta decide cât de des refaci lucrarea, nu doar cât de lucios iese rezultatul.
+În atelier, expresia „polish chimic” ajunge să acopere produse și operații diferite. O ceară lasă ingrediente de finisare pe suprafață. O pulbere de lustruire combină chimia cu microabraziunea. Cristalizarea folosește un produs acid împreună cu o monoperie și un pad. Dacă le pui în aceeași categorie, alegerea pentru travertin pornește greșit.
 
-## De ce piatra calcaroasă e un caz separat
+## Mai întâi: ce suprafață ai în față
 
-Pe granit sau cuarț dur poți folosi un polish acid fără riscuri mari. Pe calcaroase, nu. Marmura, travertinul și calcarul reacționează la acid, mai ales pe finisaj lustruit, așa cum am explicat deja în [ghidul de detergenți Delta Research](/blog/delta-research-detergenti-acid-neutru-alcalin). Chiar în catalogul ARDmag, DE GRAUB (detergent acid pentru reziduuri de montaj) vine cu o restricție explicită: nu se folosește pe marmură, travertin sau calcar.
+Travertinul, marmura și calcarul sunt pietre calcaroase, sensibile la produse acide nepotrivite. Asta nu înseamnă că orice produs acid este interzis în orice proces profesional de lustruire; înseamnă că se folosește numai un sistem declarat de producător pentru materialul și finisajul respectiv.
 
-Consecința pentru refacerea luciului: pe piatră calcaroasă, "polish chimic" nu înseamnă un atac acid controlat, ca pe alte materiale. Înseamnă ceară, lac sau o soluție care penetrează superficial, fără să corodeze carbonatul de calciu din structura pietrei.
+Afirmația „un polish acid este sigur pe granit sau cuarț dur” nu este o regulă de atelier. „Cuarț” poate însemna cuarț mineral, cuarțit sau blat compozit cu rășină, materiale cu reacții și instrucțiuni diferite. În plus, Natural Stone Institute avertizează că acidul fluorhidric atacă inclusiv granitele și cuarțitele. Compatibilitatea se citește în fișa produsului, nu se deduce din duritatea aparentă.
 
-## Polish chimic: o peliculă sau o penetrare, nu o șlefuire
+## Ceară sau lac: luciu adăugat la suprafață
 
-Trei produse din gama Delta Research, toate confirmate în catalogul ARDmag, ilustrează ruta chimică.
+[Prolux](https://deltaresearch.it/product.php?id=27&lb=en) este un lac auto-lustruitor pe bază de solvenți, rășini și ceruri. Producătorul îl indică pentru marmură și granit, mai ales pe canturi, muchii, trepte și alte zone greu de lustruit mecanic. Se aplică pe suport curat și uscat, iar timpul indicativ de întărire este de aproximativ 30 de minute de la primul strat. Fișa spune explicit că produsul nu protejează împotriva substanțelor acide.
 
-[Prolux](https://deltaresearch.it/product.php?lb=en&id=27) este, în fișa producătorului, "a solvent based, liquid, self-polishing varnish" pe bază de rășini și ceruri. Se aplică cu o lavetă, în mișcări circulare, și usucă în aproximativ 30 de minute pentru două straturi. Rezultatul e un efect "wet look" pronunțat. Fișa spune direct: Prolux nu protejează împotriva substanțelor acide.
+[Silwax](https://deltaresearch.it/product.php?id=68&lb=en) este o ceară siliconică pentru întreținerea marmurei, granitului și a blaturilor din piatră naturală, în special a pietrelor închise la culoare. Producătorul declară acțiune de curățare, finisare și protecție, păstrarea permeabilității la vapori și o pătrundere de până la 4 mm.
 
-[Silwax](https://deltaresearch.it/product.php?lb=en&id=68) e o ceară siliconică lichidă cu, spune fișa, "a three fold cleaning, sealing and finishing effect". Penetrează până la 4 mm în material, rămâne permeabilă la vapori și nu creează peliculă vizibilă. Se aplică prin pulverizare la presiune joasă, pensulă sau lavetă.
+Randamentul Silwax nu se rezumă corect la „20-50 m²/l”. Fișa îl separă după absorbție: 20-30 m²/l pe suprafețe cu absorbție medie și până la 50 m²/l pe suprafețe slab absorbante. Este un randament orientativ, nu o promisiune pentru orice travertin.
 
-[Reflex](http://deltaresearch.it/product.php?lb=en&id=67), disponibil în variantă neutră și neagră, e o ceară solidă pe bază de solvenți, gândită special pentru suprafețe deja lustruite. Se șterge cu lână de oțel fină și se lustruiește cu un pad de nailon alb. Delta Research recomandă aplicarea unui tratament anti-pată înaintea cerii.
+Aceste produse pot reîmprospăta aspectul, dar nu elimină zgârieturi din piatră. Sunt potrivite când suportul este sănătos și urmărești întreținerea ori finisarea unor zone greu accesibile, în limitele fișei tehnice.
 
-Ca mecanism, toate trei fac același lucru: adaugă ceva pe suprafața pietrei (ceară, rășină, un strat penetrant) în loc să elimine material din ea. Aplicarea e rapidă, nu cere echipament de șlefuire, dar exact fiindcă e un strat de suprafață, traficul și curățarea repetată îl consumă. De asta gama Delta Research include produse dedicate exclusiv reînnoirii acestui strat, nu doar aplicării inițiale.
+## Pulbere de lustruire: chimie și microabraziune
 
-## Polish mecanic, inclusiv ce se cheamă "cristalizare"
+[Crystal P](https://deltaresearch.it/product.php?id=62&lb=en) este descris de Delta Research ca pulbere pe bază de oxalați și aditivi microabrazivi. Este declarată pentru marmură lustruită, travertin, calcar și terrazzo pe bază de ciment, nu pentru granit sau gnais.
 
-Ruta mecanică lucrează invers: elimină material fin de pe suprafață, prin frecare, până obține luciul dorit.
+Procesul cere o monoperie de aproximativ 150 rpm, pad alb, apă și clătire după lucru. Suprafața trebuie să fie curată și fără polimeri, acrilați sau straturi de ceară. Randamentul oficial este aproximativ 50 m²/kg, dar consumul real depinde de starea pietrei și de numărul de treceri.
 
-Catalogul ARDmag descrie sistemul [PAD POLIMASTER + HEX](/categories/slefuire-piatra) direct în acești termeni: "acest sistem lustruiește pardoseala mecanic, îndepărtând zgârieturile și restaurând-o fără a lăsa urme de rășină și efectul coajă de portocală". E gândit pentru marmură, terrazzo și beton lustruit uzat, nu doar pentru o suprafață care și-a pierdut strălucirea.
+Aici nu se adaugă pur și simplu o peliculă lucioasă. Produsul lucrează chimic și microabraziv asupra stratului superficial, motiv pentru care poate corecta urme fine și zone ușor mătuite, în limitele declarate de producător.
 
-Discurile SAITPOL 430 acoperă etape diferite ale aceleiași rute: varianta albă pentru lustruire uscată, roșie pentru întreținere și îndepărtarea zgârieturilor, verde pentru scos ceară, neagră pentru curățare profundă a stratului de ceară cu detergent. Discul verde și cel negru există tocmai ca să scoată ceara aplicată prin ruta chimică. Cele două rute nu se adună automat, una peste alta.
+## Cristalizare: proces chimico-mecanic, nu doar „mecanic”
 
-Pentru granit dur sau pregătire de suprafață înainte de lustruirea finală, catalogul mai listează abrazivii Frankfurt (magnezit, sintetic Velox, perii cu carbură sau diamant), fiecare cu un grad diferit de agresivitate. Mecanismul de granulație, în șapte trepte, e deja detaliat în [ghidul pentru pad-uri Velcro](/blog/pad-uri-velcro-7-gradatii) și nu se repetă aici.
+[Crystalux](https://deltaresearch.it/product.php?id=57&lb=en) este un tratament de cristalizare pentru suprafețe mate din marmură, aglomerat, piatră naturală și ciment. Producătorul descrie o reacție între componentele acide și suprafața pietrei, executată imediat cu monoperie lentă de 150-175 rpm și pad din lână de oțel nr. 0-3 sau pad gri din nailon.
 
-Aici intră și termenul care creează confuzie: cristalizarea. În industrie, procesul combină un compus chimic pe bază de fluorosilicat, care [reacționează cu carbonatul de calciu din piatră](https://www.surfacesgalore.com/blogs/news/marble-crystallization-benefits-process-risks), cu [frecarea și căldura generate de mașină și pad-urile din lână de oțel](https://marbledoctors.net/2023/09/crystallization-marble-floor/). Pentru comparația practică din acest articol, o tratăm în familia intervențiilor mecanizate: nu este o simplă ceară aplicată la suprafață și nici o a treia rută complet separată. Delta Research vinde propriile produse de cristalizare, dar niciunul nu e confirmat în catalogul ARDmag, așa că articolul nu le recomandă ca opțiune disponibilă aici.
+Prin urmare, „cristalizare mecanică” este o prescurtare imprecisă. Mașina, frecarea și padul sunt indispensabile, dar procesul rămâne chimico-mecanic. Pentru travertin, compatibilitatea nu trebuie presupusă doar fiindcă pagina spune generic „piatră naturală”; se confirmă cu fișa actuală și cu reprezentantul tehnic, apoi se testează pe o zonă mică.
+
+## Comparația utilă pentru atelier
+
+| Situație | Rută de verificat | Limită importantă |
+|---|---|---|
+| Luciu pierdut, fără zgârieturi relevante | ceară sau lac compatibil | aspect adăugat; nu repară piatra |
+| Mătuire ușoară ori urme fine pe travertin lustruit | Crystal P | cere decerare, mașină, apă și clătire |
+| Pardoseală din marmură matuită de trafic | Crystalux | proces acid chimico-mecanic; compatibilitatea se confirmă |
+| Zgârieturi adânci, denivelări, uzură severă | șlefuire diamantată în pași | necesită evaluarea granulațiilor și a grosimii utile |
+| Suprafață cu tratament vechi necunoscut | identificare și decerare înainte | nu lucrezi peste ceară sau polimer |
 
 ## Ce rezistă mai mult în trafic intens
 
-Diferența de durabilitate vine direct din mecanism, nu dintr-o rețetă secretă.
+Nu există în fișele citate un interval comparabil de durabilitate care să permită verdictul „X ține de două ori mai mult”. Rezistența depinde de suport, trafic, curățare, pregătire și întreținere.
 
-Ceara și lacul stau pe suprafață. Pasul traficului le tocește treptat, iar spălarea repetată accelerează procesul. De asta produsele din familia lor sunt gândite pentru reaplicare periodică, nu pentru un singur tratament definitiv. Nicio fișă Delta Research citată aici nu promite un rezultat permanent, iar Prolux și Silwax cer explicit temperatură peste +10°C și suport uscat la fiecare aplicare, semn că sunt tratamente repetabile, nu unice.
+Comparația sigură este funcțională. Ceara și lacul sunt finisaje de întreținere și se refac atunci când se consumă. Pulberea de lustruire și cristalizarea lucrează asupra suprafeței cu mașină și cer o pregătire mai strictă. Dacă există zgârieturi adânci sau planeitate pierdută, nici ceara, nici cristalizarea nu înlocuiesc automat o șlefuire diamantată completă.
 
-Abraziunea schimbă suprafața propriu-zisă. Odată șlefuită și lustruită mecanic, piatra nu poartă un strat care se poate uza separat de rocă. Asta explică de ce sistemele PAD POLIMASTER și HEX acoperă atât întreținerea ușoară, cât și restaurarea pardoselilor deja uzate, cu zgârieturi majore. Costul apare în altă parte: echipament, timp de lucru și, dacă suprafața are ceară aplicată anterior, un pas suplimentar de îndepărtare cu discuri SAITPOL verde sau negru înainte de a șlefui.
-
-Niciuna dintre cele două rute nu e universal mai bună. Într-un spațiu comercial cu trafic intens și buget de întreținere frecventă, ciclul scurt de reaplicare a cerii poate fi soluția practică. Acolo unde traficul e prea intens pentru reaplicări dese sau unde suprafața are deja zgârieturi vizibile, intervenția mecanică rezolvă problema la rădăcină, chiar dacă cere mai mult timp și echipament per ședință.
-
-## Înainte să alegi ruta
-
-Verifică întâi ce e deja aplicat pe suprafață. O piatră cu ceară sau lac vechi nu se șlefuiește direct: ceara trebuie scoasă mecanic sau chimic înainte, altfel discul abraziv lucrează peste un strat care nu-i aparține pietrei. Testul pe o zonă mică, ascunsă, îți arată dacă suprafața mai poartă un tratament anterior și cum reacționează fiecare rută pe piatra ta exactă.
-
-Spune-ne tipul de piatră, finisajul și nivelul de trafic, iar noi confirmăm ce spun fișele tehnice pentru produsele din gama noastră înainte să alegi.
+Spune-ne dacă este travertin, marmură sau calcar, ce finisaj are și ce tratament există deja. Verificăm ruta și fișa actuală înainte de probă.
 
 ## Surse și referințe
 
-- [Delta Research, Prolux](https://deltaresearch.it/product.php?lb=en&id=27) - lac auto-lustruitor pe bază de solvenți, efect wet look, nu protejează la acid, randament ~30 m²/l în două straturi.
-- [Delta Research, Silwax](https://deltaresearch.it/product.php?lb=en&id=68) - ceară siliconică, penetrare până la 4 mm, permeabilă la vapori, randament 20-50 m²/l.
-- [Delta Research, Reflex](http://deltaresearch.it/product.php?lb=en&id=67) - ceară solidă pentru suprafețe lustruite; producătorul recomandă un tratament anti-pată înainte de aplicare.
-- [SurfacesGalore, mecanismul chimic al cristalizării](https://www.surfacesgalore.com/blogs/news/marble-crystallization-benefits-process-risks) - reacția cu carbonatul de calciu, riscuri de stres mecanic.
-- [Marble Doctors, cristalizarea și frecarea mecanică](https://marbledoctors.net/2023/09/crystallization-marble-floor/) - rolul lânii de oțel și al mașinii în obținerea luciului.
-- [ARDmag, tratamente Delta Research: detergent acid, neutru sau alcalin](/blog/delta-research-detergenti-acid-neutru-alcalin) - sensibilitatea calcaroaselor la acid.
-- [ARDmag, pad-uri Velcro în 7 trepte](/blog/pad-uri-velcro-7-gradatii) - granulația diamantată pentru lustruire mecanică.
+- [Delta Research, Prolux](https://deltaresearch.it/product.php?id=27&lb=en) - aplicații, suport, timp și randament de 30 m²/l pentru două straturi pe absorbție medie.
+- [Delta Research, Silwax](https://deltaresearch.it/product.php?id=68&lb=en) - utilizare, mecanism și randament diferențiat după absorbție.
+- [Delta Research, Crystal P](https://deltaresearch.it/product.php?id=62&lb=en) - pulbere cu oxalați și microabrazivi, compatibilitate, utilaj și randament.
+- [Delta Research, Crystalux](https://deltaresearch.it/product.php?id=57&lb=en) - mecanismul și parametrii procesului de cristalizare.
+- [Natural Stone Institute, îngrijirea pietrei naturale](https://www.naturalstoneinstitute.org/consumers/care/) - sensibilitatea calcaroaselor și avertismentul privind acidul fluorhidric.

@@ -5,6 +5,26 @@ Format: [date] type: description
 
 ---
 
+## 2026-07-21 - Corecții factuale pentru două articole tehnice
+
+### Schimbare livrată
+
+Articolele despre petele verzi pe marmură albă și despre lustruirea travertinului
+au fost rescrise pe baza fișelor oficiale Tenax, Delta Research și a ghidurilor
+Natural Stone Institute. Au fost eliminate diagnosticul absolut după culoare,
+comparația epoxidic-poliesteric nesusținută, regula ambiguă despre acid pe
+„cuarț”, clasificarea cristalizării drept proces exclusiv mecanic și concluziile
+de durabilitate fără interval oficial. Randamentul Silwax este prezentat separat
+pentru absorbție medie și scăzută.
+
+### Verificare
+
+URL-urile și slugurile au rămas neschimbate. Build-ul local compilează, dar
+prerandarea sitemap-ului cere cheia publicabilă Medusa validă din mediul Vercel;
+deploy-ul de producție este verificat separat după push.
+
+---
+
 ## 2026-07-20 - Rollback prioritate imagine principală de produs
 
 ### Schimbare livrată
