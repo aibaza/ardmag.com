@@ -1,0 +1,20 @@
+{
+  "prompt": "Documentary product-in-context photograph on a Romanian stone workshop bench: a horizontal slab of light beige travertine with visible open pores and small natural voids across its polished surface, positioned right of center. A stoneworker's gloved hand is using a small metal spatula to press transparent resin filler into one of the larger pores, a thin trail of wet resin catching the light against the honey-toned stone. Beside the hand, two real Tenax product bottles/tubes are grounded naturally on the bench: one labeled MASTIC LICHID (clear liquid polyester mastic) and one labeled MASTIC SEMISOLID WET (colored semisolid mastic), both with authentic on-disk packaging, no invented labels. Left third of the frame stays open and calm: soft workshop negative space, blurred stone dust and a folded cloth, natural daylight from a side window. No collage, no cutout, no floating product, no halo - one coherent single photograph. No people's faces visible (hand and forearm only). No ARDmag branding on any clothing.",
+  "generatedAt": "2026-07-21",
+  "provider": "codex-imagegen",
+  "referenceAssets": [
+    "backend/static/images/mastic-lichid/db3b5a_e4d15fb0361348d0be47457443e6a42e.jpg",
+    "backend/static/images/mastic-semisolid-wet/db3b5a_e4d15fb0361348d0be47457443e6a42e.jpg"
+  ],
+  "visualQa": {
+    "productPresent": true,
+    "packagingMatchesReference": true,
+    "coherentSingleScene": true,
+    "pastedOrFloating": false,
+    "selectedVariant": 1,
+    "variantsGenerated": 3,
+    "rejectedVariants": [
+      {"variant": 2, "reason": "invented yellow/black Tenax label design, does not match authentic blue/red/white catalog packaging"}
+    ]
+  }
+}
