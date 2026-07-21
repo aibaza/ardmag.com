@@ -27,9 +27,9 @@ Umezeala este calea comună. Dacă apa ajunge repetat la metal, curățarea feț
 
 ## Ce poate face, concret, un epoxidic
 
-Un epoxidic nu este automat „barieră anticoroziune”, iar orice produs trebuie folosit numai în aplicațiile declarate de producător. Fișa oficială Tenax pentru Domo 10 A+B îl descrie ca mastic epoxidic bicomponent pentru lipiri și cuplări multimaterial, inclusiv metal-piatră. Pentru astfel de lipiri cere șlefuirea metalului, suport curat și distribuirea omogenă a produsului, cu acoperire totală a suprafeței.
+Un epoxidic nu este automat „barieră anticoroziune”, iar orice produs trebuie folosit numai în aplicațiile declarate de producător. Fișa oficială Tenax pentru [Domo 10 A+B, disponibil în catalogul ARDmag](https://ardmag.ro/products/domo-10-epoxy-solid), îl descrie ca mastic epoxidic bicomponent pentru lipiri și cuplări multimaterial, inclusiv metal-piatră. Pentru astfel de lipiri cere șlefuirea metalului, suport curat și distribuirea omogenă a produsului, cu acoperire totală a suprafeței.
 
-Aceste instrucțiuni susțin folosirea lui ca adeziv de cuplare, nu afirmația că repară orice armătură corodată sau că impermeabilizează singur placa. Fișa mai cere raport 1:1 în greutate și indică aproximativ 24 de ore până la tăiere sau lustruire la 25°C. Deși produsul este prezentat ca aplicabil și pe suprafețe umede, instrucțiunile din fișa tehnică cer piatra curată și complet uscată înainte de aplicare. În atelier se urmează condiția mai prudentă din instrucțiunile de utilizare.
+Aceste instrucțiuni susțin folosirea lui ca adeziv de cuplare, nu afirmația că repară orice armătură corodată sau că impermeabilizează singur placa. Fișa mai cere raport 1:1 în greutate și indică aproximativ 24 de ore până la tăiere sau lustruire la 25°C. Deși produsul este prezentat ca aplicabil și pe suprafețe umede, instrucțiunile din fișa tehnică cer piatra curată și complet uscată înainte de aplicare. În atelier se urmează condiția mai prudentă din instrucțiunile de utilizare. Pentru diferența dintre familiile de rășini și limitele lor, vezi și ghidul despre [mastici epoxidici și poliesterici pentru piatră](https://ardmag.ro/blog/mastici-epoxidici-poliesterici-piatra).
 
 ## Verificarea înainte de lipire
 
@@ -44,7 +44,7 @@ Aceste instrucțiuni susțin folosirea lui ca adeziv de cuplare, nu afirmația c
 
 Dacă metalul este deja corodat sau umezeala continuă să intre, simpla acoperire a petei nu este o reparație. Se elimină cauza apei și se stabilește dacă piesa poate fi refăcută în siguranță ori trebuie înlocuită.
 
-Spune-ne tipul piesei, zona în care apare pata și ce armare ai găsit. Verificăm împreună aplicația din fișa tehnică înainte să alegi adezivul.
+Spune-ne tipul piesei, zona în care apare pata și ce armare ai găsit. Verificăm împreună aplicația din fișa tehnică înainte să alegi adezivul; pentru alternative, pornește din [categoria de mastici Tenax](https://ardmag.ro/categories/mastici-tenax), nu din culoarea petei.
 
 ## Surse și referințe
 

@@ -5,6 +5,27 @@ Format: [date] type: description
 
 ---
 
+## 2026-07-21 - Închidere BLOCK-uri re-review ARDmag
+
+### Schimbare livrată
+
+Articolul despre travertin separă acum explicit exemplele tehnice Delta
+Crystal P și Crystalux, neconfirmate în catalogul ARDmag, de produsele vândute:
+Prolux, Silwax, PAD POLIMASTER + HEX și SAITPOL 430. Ambele articole au din nou
+linkuri interne către produse, categorii și ghiduri relevante.
+
+Vizualurile Facebook feed/story au fost înlocuite. Marmura este prezentată cu
+Domo 10 închis și probe curate, fără aplicare, șpaclu sau pastă opacă. Vizualul
+travertin leagă factual Prolux de finisare și PAD POLIMASTER de ruta mecanică.
+Gate-ul ARDmag cere acum explicit `checks.no_craft_technique_depiction=true`.
+
+### Verificare
+
+Gate-urile deterministe pentru articol, social și overlay trec. Cele patru
+asset-uri locale și copiile publice au hash-uri SHA-256 identice. Build-ul local
+compilează; prerandarea sitemap-ului rămâne dependentă de secretele Medusa
+redactate local și este verificată în mediul Vercel la deploy.
+
 ## 2026-07-21 - Corecții factuale pentru două articole tehnice
 
 ### Schimbare livrată

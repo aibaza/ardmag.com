@@ -1931,3 +1931,17 @@ ClickUp/time entry:
   cu overlay-urile factuale corectate.
 - Build local: compilare PASS; prerandare sitemap blocată de cheia publicabilă
   Medusa invalidă în snapshot-ul local de env. Gate-ul complet rulează în Vercel.
+
+## 2026-07-21 - Re-review adversarial: BLOCK-uri închise
+
+- Eliminată din feed/story marmură scena greșită cu pastă gri opacă aplicată cu
+  șpaclul; noul concept folosește Domo 10 real, închis, lângă probe curate.
+- Articolul travertin marchează Crystal P și Crystalux drept exemple Delta
+  neconfirmate în catalogul ARDmag și fără rol de CTA comercial.
+- Ruta de catalog este explicită: Prolux/Silwax pentru finisare/întreținere,
+  PAD POLIMASTER + HEX pentru restaurare mecanică, SAITPOL 430 după operație.
+- Restabilite linkuri interne verificate către produse, categorii și articole.
+- Social travertin și brand-asset-context rămân coerente cu Prolux și
+  PAD POLIMASTER, ambele confirmate în catalog.
+- Gate vizual întărit: ARDmag nu poate trece scheduling fără confirmarea
+  explicită `no_craft_technique_depiction=true` în review-ul vizual.
