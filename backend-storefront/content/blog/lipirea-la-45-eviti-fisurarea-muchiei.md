@@ -36,7 +36,7 @@ Pentru oricare dintre acești adezivi, citește TDS și SDS-ul curent al produc�
 
 ## Acoperă toată fața, nu doar centrul
 
-Urmează metoda de acoperire din fișa tehnică a produsului ales - una sau ambele fețe - și pregătește clemele sau sistemul de aliniere înainte să amesteci, conform procedurii din fișa tehnică; proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. La Fast Glaxs, fișa tehnică declară separat o gelificare în vrac de 3-5 minute și un timp de lucru de 45-60 minute la 25°C - sunt două măsurători diferite, iar pregătirea clemelor se face conform procedurii produsului, nu dedusă din aceste cifre. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
+Acoperă toată fața rostului, nu doar centrul, și pregătește clemele sau sistemul de aliniere înainte să amesteci - practică standard de atelier la lipirea în 45°. Proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. La Fast Glaxs, fișa tehnică declară separat o gelificare în vrac de 3-5 minute și un timp de lucru de 45-60 minute la 25°C - sunt două măsurători diferite; pregătirea clemelor ține de experiența montatorului tău, nu se deduce din aceste cifre. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
 
 ## Sprijină rostul, mai ales pe console
 
