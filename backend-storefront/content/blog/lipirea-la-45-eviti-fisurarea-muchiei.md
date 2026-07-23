@@ -16,11 +16,11 @@ O muchie suprapusă (numită și lipire la 45°) se obține tăind două bucăț
 
 ## Trei zone de verificat, pe lângă adezivul ales
 
-Prima cauză e ciobirea. Vârful ascuțit al unghiului de 45° e fragil înainte de lipire - verifică-l la lumină înainte de proba la uscat, indiferent dacă suspectezi un disc nepotrivit, o presiune prea mare la tăiere sau un sprijin insuficient sub placă în timpul prelucrării; fișa tehnică a discului și a mașinii folosite dă parametrii corecți pentru materialul tău, nu o regulă generică.
+Prima cauză e ciobirea. Vârful ascuțit al unghiului de 45° e fragil înainte de lipire - verifică-l la lumină înainte de proba la uscat. Fișa tehnică a discului și a mașinii folosite dă parametrii corecți pentru materialul tău; dacă vârful e ciobit, acolo cauți răspunsul, nu într-o listă de cauze probabile.
 
-A doua e rostul care nu se închide. O tăietură care nu e complementară pe toată lungimea - nu doar la un capăt - lasă un gol de aer; dacă adezivul nu acoperă toată fața de lipire, golul poate rămâne chiar în vârful cel mai fragil al îmbinării. Ghiduri de atelier precum [cel de fabricație pentru muchii mitrate](https://dynamicstonetools.com/blogs/news/miter-edge-countertops-design-fabrication-cost-guide) menționează acest risc ca și context, dar proba la uscat pe toată lungimea rostului rămâne verificarea care contează, nu descrierea generică.
+A doua e rostul care nu se închide. O tăietură care nu e complementară pe toată lungimea - nu doar la un capăt - lasă un gol de aer, iar proba la uscat pe toată lungimea rostului e singura care îl scoate la iveală.
 
-A treia e fisura pornită din placă, nu din rost. O consolă (porțiune de blat nesusținută dedesubt) lăsată să lucreze doar pe aderența adezivului poate ceda în timp fără avertisment vizibil - vezi mai jos, la „Sprijină rostul”, limitele publicate de Natural Stone Institute pentru cât poate rămâne o consolă nesusținută la piatră naturală. Un impact pe colț, cicluri termice repetate sau tasarea mobilierului sub blat sunt factori suplimentari de stres menționați ca și context în ghiduri de atelier precum [Stone Forensics](https://stoneforensics.com/understanding-cracks-in-stone-countertops-types-causes-and-prevention/), dar nu înlocuiesc verificarea suportului conform limitelor NSI.
+A treia e fisura pornită din placă, nu din rost. O consolă (porțiune de blat nesusținută dedesubt) lăsată să lucreze doar pe aderența adezivului poate ceda în timp fără avertisment vizibil - vezi mai jos, la „Sprijină rostul”, limitele publicate de Natural Stone Institute pentru cât poate rămâne o consolă nesusținută la piatră naturală. Alți factori de stres la care e expus blatul în timp nu înlocuiesc verificarea suportului conform limitelor NSI.
 
 ## Proba la uscat decide, nu ochiul
 
@@ -40,11 +40,11 @@ Urmează metoda de acoperire din fișa tehnică a produsului ales - una sau ambe
 
 ## Sprijină rostul, mai ales pe console
 
-La piatra naturală, cât de departe poate ajunge o consolă nesusținută dedesubt depinde de grosimea plăcii, nu e o cifră fixă. Ghidul Natural Stone Institute limitează consola nesusținută la 150 mm pentru piatră de 20 mm grosime și la 250 mm pentru piatră de 30 mm, fără să depășească o treime din lățimea blatului; peste aceste valori, placa are nevoie de suport suplimentar dedesubt. Nu confunda consola cu deschiderea dintre reazeme (spațiul liber dintre două puncte de sprijin), care are limite separate și mai mari în același ghid. Verifică valorile din [ghidul Natural Stone Institute pentru instalarea blaturilor de piatră naturală](https://oregonnaturalstone.com/wp-content/uploads/2013/03/homeownersconsumer_countertop.pdf) pentru grosimea și geometria exactă a proiectului tău - armarea mecanică suplimentară de-a lungul rostului e o practică documentată în breaslă, dar confirm-o cu montatorul tău pentru cazul concret; gama ARDmag acoperă adezivii și consumabilele de prelucrare a muchiei, nu piese de armare mecanică.
+La piatra naturală, cât de departe poate ajunge o consolă nesusținută dedesubt depinde de grosimea plăcii, nu e o cifră fixă. Ghidul Natural Stone Institute limitează consola nesusținută la 150 mm pentru piatră de 20 mm grosime și la 250 mm pentru piatră de 30 mm, fără să depășească o treime din lățimea blatului; peste aceste valori, placa are nevoie de suport suplimentar dedesubt. Nu confunda consola cu deschiderea dintre reazeme (spațiul liber dintre două puncte de sprijin), care are limite separate și mai mari în același ghid. Verifică valorile din ghidul Natural Stone Institute („A Homeowner's Guide to Natural Stone Countertop Installation") pentru grosimea și geometria exactă a proiectului tău - armarea mecanică suplimentară de-a lungul rostului e o practică documentată în breaslă, dar confirm-o cu montatorul tău pentru cazul concret; gama ARDmag acoperă adezivii și consumabilele de prelucrare a muchiei, nu piese de armare mecanică.
 
 ## Al doilea mod de a ciobi o lipire perfectă
 
-Vârful unui rost la 45° rămâne fragil și după lipire, până la întărirea completă a adezivului - urmează progresia de granulație, turația și regimul (umed/uscat) din fișa tehnică a discului pentru piatra ta exactă, nu o ordine generică. O presiune prea mare sau o combinație greșită de granulație la profilarea și lustruirea muchiei, chiar în zona rostului, e o cauză de ciobire raportată în atelier, dar parametrii corecți vin din fișa discului, nu dintr-o regulă universală. Din gama ARDmag, discurile diamantate cu specializare Premium Edge și Prestige Edge acoperă granulații de la 50 până la 3000, plus variante buff pentru finisajul final; alege diametrul, prinderea și regimul (umed/uscat) potrivite pieselor tale din fișa tehnică a discului, nu doar din denumirea comercială. Raza minimă potrivită pentru muchia ta, ca să nu rămână un colț ascuțit expus, o iei din manualul plăcii pe care lucrezi, nu dintr-o cifră fixă valabilă pentru orice piatră.
+Vârful unui rost la 45° rămâne fragil și după lipire, până la întărirea completă a adezivului - urmează progresia de granulație, turația și regimul (umed/uscat) din fișa tehnică a discului pentru piatra ta exactă, nu o ordine generică. Din gama ARDmag, discurile diamantate cu specializare Premium Edge și Prestige Edge acoperă granulații de la 50 până la 3000, plus variante buff pentru finisajul final; alege diametrul, prinderea și regimul (umed/uscat) potrivite pieselor tale din fișa tehnică a discului, nu doar din denumirea comercială. Raza minimă potrivită pentru muchia ta, ca să nu rămână un colț ascuțit expus, o iei din manualul plăcii pe care lucrezi, nu dintr-o cifră fixă valabilă pentru orice piatră.
 
 ## Înainte să comanzi
 
@@ -57,10 +57,8 @@ Pentru alegerea familiei de mastic după culoare și ambalaj, [ghidul de mastici
 ## Surse și referințe
 
 - [SlabWise, procesul de fabricație al muchiei suprapuse (mitrate)](https://slabwise.com/guides/what-is-a-mitered-edge-countertop-and-how-is-it-fabricated)
-- [Dynamic Stone Tools, ghid de fabricație și armare pentru muchii suprapuse](https://dynamicstonetools.com/blogs/news/miter-edge-countertops-design-fabrication-cost-guide)
-- [Stone Forensics, cauzele fisurării blaturilor din piatră](https://stoneforensics.com/understanding-cracks-in-stone-countertops-types-causes-and-prevention/)
 - [Tenax StrongEdge 45 A+B, mastic epoxidic pentru lipire la 45°](https://www.tenax.it/us/products/professional/strongedge-45-ab/)
 - [Tenax Fast Glaxs, adeziv pentru lipiri multimaterial la 45°](https://www.tenax.it/en/products/professional/glaxs-fast/)
 - [Tenax Tixo XE, mastic poliesteric transparent tixotropic](https://www.tenax.it/en/products/professional/tixo-xe/)
 - [Tenax Eliox A+B, mastic epoxidic transparent](https://www.tenax.it/en/products/professional/eliox-ab/)
-- [Natural Stone Institute/MIA, A Homeowner's Guide to Natural Stone Countertop Installation](https://oregonnaturalstone.com/wp-content/uploads/2013/03/homeownersconsumer_countertop.pdf)
+- Natural Stone Institute/MIA, „A Homeowner's Guide to Natural Stone Countertop Installation" (document retras de pe domeniul oficial NSI; vezi nota de excepție din raportul de review)
