@@ -2,6 +2,8 @@
 title: "Cum alegi discul diamantat pentru granit, marmură sau beton"
 description: "Duritatea materialului dictează compoziția segmentului. Un disc de granit pe marmură nu face rău doar marmurei."
 kicker: "Ghid tehnic"
+status: "published"
+review: "PASS"
 publishedAt: "2026-05-04"
 author: "Echipa ardmag"
 tags: ["discuri", "granit", "marmura", "beton", "ghid"]

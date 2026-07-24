@@ -2,6 +2,8 @@
 title: "Lipire invizibilă la marmură: tehnica de colorare a masticilor pe ton de venă"
 description: "Cum aduci un mastic extra-clear la tonul venei ca îmbinarea să se piardă în marmură, cu regula de alegere a bazei și validarea pe mostră."
 kicker: "Ghid practic · Mastici"
+status: "published"
+review: "PASS"
 publishedAt: "2026-07-14"
 author: "Echipa ardmag"
 tags: ["mastici", "Tenax", "marmura", "piatra naturala", "Gravity", "colorare"]

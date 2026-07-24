@@ -2,6 +2,8 @@
 title: "Efectul „burete” la blaturile de cuarț: de ce doar anumite plăci fac pete de apă și cum le previi cu impregnantul corect"
 description: "Nu tot cuarțul trage apă. Cum recunoști plăcile care fac efectul burete, testul cu apă care îți spune dacă ai nevoie de tratare și când folosești un impregnant hidro-oleofob."
 kicker: "Ghid tehnic · Blaturi de cuarț"
+status: "published"
+review: "PASS"
 publishedAt: "2026-07-09"
 updatedAt: "2026-07-10"
 author: "Echipa ardmag"

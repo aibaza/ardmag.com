@@ -2,6 +2,8 @@
 title: "Tratamente Delta Research: când folosești detergent acid, neutru sau alcalin"
 description: "Cum alegi detergentul Delta Research pentru piatră naturală: acid pentru depuneri specifice, neutru pentru întreținere, alcalin pentru murdărie grea și degresare."
 kicker: "Ghid tehnic · Detergenți piatră naturală"
+status: "published"
+review: "PASS"
 publishedAt: "2026-06-04"
 updatedAt: "2026-06-04"
 author: "Echipa ardmag"

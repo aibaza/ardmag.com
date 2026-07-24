@@ -2,6 +2,8 @@
 title: "Mastici Tenax: cum alegi culoarea și cantitatea corectă"
 description: "Cum potrivești culoarea, consistența și ambalajul masticului Tenax cu lucrarea ta, ca să nu comanzi greșit."
 kicker: "Ghid practic · Mastici"
+status: "published"
+review: "PASS"
 publishedAt: "2026-06-16"
 author: "Echipa ardmag"
 tags: ["mastici", "Tenax", "piatra naturala", "atelier", "Solido", "Domo 10"]

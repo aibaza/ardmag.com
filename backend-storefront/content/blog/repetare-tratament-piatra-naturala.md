@@ -2,6 +2,8 @@
 title: "Când trebuie refăcut tratamentul pentru piatră naturală și cum verifici protecția"
 description: "Cum verifici protecția pietrei naturale cu un test simplu cu apă, de ce exteriorul cedează primul și când retratezi suprafața fără să te bazezi pe un calendar fix."
 kicker: "Ghid tehnic · Întreținere piatră naturală"
+status: "published"
+review: "PASS"
 publishedAt: "2026-06-03"
 updatedAt: "2026-06-03"
 author: "Echipa ardmag"

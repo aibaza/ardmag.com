@@ -2,6 +2,8 @@
 title: "Polish chimic vs. cristalizare mecanizată pentru travertin: ce alegi"
 description: "Ceara, pulberea de lustruire și cristalizarea nu sunt aceeași operație. Compară mecanismul, pregătirea și limitele fiecărei rute pentru travertin."
 kicker: "Comparație tehnică · Delta Research"
+status: "published"
+review: "PASS"
 publishedAt: "2026-07-23"
 author: "Echipa ardmag"
 tags: ["delta research", "piatra calcaroasa", "marmura", "travertin", "lustruire", "cristalizare"]

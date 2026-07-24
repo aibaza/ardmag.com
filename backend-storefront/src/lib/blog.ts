@@ -11,6 +11,8 @@ export type BlogFrontmatter = {
   title: string
   description: string
   kicker?: string
+  status: string
+  review: string
   publishedAt: string
   updatedAt?: string
   author?: string
@@ -22,6 +24,16 @@ export type BlogFrontmatter = {
 export type BlogListItem = BlogFrontmatter & { slug: string }
 export type BlogArticle = BlogListItem & { html: string; readingTime: number }
 export type TocItem = { id: string; text: string; level: 2 | 3 }
+
+export function isPublishableArticle(
+  article: Partial<BlogFrontmatter>,
+  now = new Date()
+): article is BlogFrontmatter {
+  if (article.status !== "published" || article.review !== "PASS") return false
+  if (typeof article.publishedAt !== "string") return false
+  const publishedAt = Date.parse(article.publishedAt)
+  return Number.isFinite(publishedAt) && publishedAt <= now.getTime()
+}
 
 function slugify(text: string): string {
   return text
@@ -68,7 +80,8 @@ async function parseFile(filename: string): Promise<BlogListItem | null> {
   try {
     const raw = await fs.readFile(path.join(BLOG_DIR, filename), "utf-8")
     const { data } = matter(raw)
-    return { slug, ...(data as BlogFrontmatter) }
+    const item = { slug, ...(data as BlogFrontmatter) }
+    return isPublishableArticle(item) ? item : null
   } catch {
     return null
   }
@@ -96,6 +109,7 @@ export async function getArticle(slug: string): Promise<BlogArticle | null> {
     return null
   }
   const { data, content } = matter(raw)
+  if (!isPublishableArticle(data)) return null
   const processed = await remark().use(remarkGfm).use(remarkHtml).process(content)
   const html = addHeadingIds(processed.toString())
   return {

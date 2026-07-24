@@ -2,6 +2,8 @@
 title: "Tratamente pentru piatră naturală: cum alegi soluția potrivită"
 description: "Ghid practic Delta Research: alege tratamentul pentru piatră naturală după suport, montaj, trafic, bază apă/solvent și efect natural sau umed."
 kicker: "Ghid tehnic · Delta Research"
+status: "published"
+review: "PASS"
 publishedAt: "2026-05-26"
 author: "Echipa ardmag"
 tags: ["delta research", "tratamente", "impregnare", "piatra naturala", "ghid"]

@@ -2,6 +2,8 @@
 title: "Epoxidic sau poliesteric? Cum alegi masticul potrivit pentru piatră naturală"
 description: "Diferențele reale între cele două familii de mastic, când contează fiecare și ce s-a schimbat în formulele moderne fără mituri."
 kicker: "Ghid tehnic · Mastici"
+status: "published"
+review: "PASS"
 publishedAt: "2026-05-18"
 author: "Echipa ardmag"
 tags: ["mastici", "epoxidic", "poliesteric", "piatra naturala", "Tenax"]

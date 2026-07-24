@@ -2,6 +2,8 @@
 title: "Pad-uri Velcro în 7 trepte: de ce nu e bine să sari granulații"
 description: "Fiecare treaptă reduce urmele lăsate de treapta anterioară. Dacă sari una, crești timpul de lucru la finisare."
 kicker: "Ghid tehnic · Abrazivi"
+status: "published"
+review: "PASS"
 publishedAt: "2026-05-04"
 author: "Echipa ardmag"
 tags: ["pad-uri", "velcro", "polish", "granit", "marmura", "lustruit"]

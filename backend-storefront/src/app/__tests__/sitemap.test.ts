@@ -1,9 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import fs from "node:fs"
-import path from "node:path"
 
 // Regresie incident #32: sitemap fara articole de blog, livrat tacut.
-// Contract: (1) toate articolele din content/blog intra in sitemap;
+// Contract: (1) toate articolele publicabile din content/blog intra in sitemap;
 // (2) generarea e fail-closed - liste goale sau erori arunca, nu livreaza gol.
 
 const { listArticlesMock, listProductsMock, listCategoriesMock } = vi.hoisted(() => ({
@@ -18,11 +16,6 @@ vi.mock("@lib/data/categories", () => ({ listCategories: listCategoriesMock }))
 vi.mock("@lib/util/env", () => ({ getBaseURL: () => "https://ardmag.ro" }))
 
 import sitemap from "../sitemap"
-
-const realSlugs = fs
-  .readdirSync(path.join(process.cwd(), "content", "blog"))
-  .filter((f) => f.endsWith(".md"))
-  .map((f) => f.replace(/\.md$/, ""))
 
 function stubCatalog() {
   listCategoriesMock.mockResolvedValue([{ handle: "mastici-tenax" }])
@@ -41,17 +34,19 @@ beforeEach(() => {
 })
 
 describe("sitemap", () => {
-  it("contine toate articolele reale din content/blog", async () => {
+  it("contine toate articolele publicabile, dar nu un articol cu data viitoare", async () => {
     const { listArticles } = await vi.importActual<typeof import("@lib/blog")>("@lib/blog")
     listArticlesMock.mockImplementation(listArticles)
+    const publishable = await listArticles()
 
     const entries = await sitemap()
     const urls = entries.map((e) => e.url)
 
-    expect(realSlugs.length).toBeGreaterThan(0)
-    for (const slug of realSlugs) {
-      expect(urls).toContain(`https://ardmag.ro/blog/${slug}`)
+    expect(publishable.length).toBeGreaterThan(0)
+    for (const article of publishable) {
+      expect(urls).toContain(`https://ardmag.ro/blog/${article.slug}`)
     }
+    expect(urls).not.toContain("https://ardmag.ro/blog/reumplerea-porilor-travertin-doua-treceri-rasina")
     expect(urls).toContain("https://ardmag.ro/products/mastic-lichid")
     expect(urls).toContain("https://ardmag.ro/categories/mastici-tenax")
   })

@@ -2,6 +2,8 @@
 title: "Cum se aplică tratamentele Delta Research pe piatră naturală fără pete sau aspect neuniform"
 description: "Aplicarea corectă a tratamentelor Delta Research: pregătire, test, straturi, surplus, scule și restricțiile care țin de tehnică, nu de marketing."
 kicker: "Ghid tehnic · Delta Research"
+status: "published"
+review: "PASS"
 publishedAt: "2026-05-28"
 author: "Echipa ardmag"
 tags: ["delta research", "tratamente", "aplicare", "piatra naturala", "ghid"]

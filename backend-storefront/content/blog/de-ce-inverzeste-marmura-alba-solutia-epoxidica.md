@@ -2,6 +2,8 @@
 title: "De ce poate înverzi marmura albă: armătura metalică și lipirea epoxidică"
 description: "O pată verde sau brună pe marmură albă poate indica o sursă metalică și umezeală în spatele pietrei. Diagnosticul corect vine înaintea curățării sau reparației."
 kicker: "Diagnostic de atelier · Piatră naturală"
+status: "published"
+review: "PASS"
 publishedAt: "2026-07-21"
 author: "Echipa ardmag"
 tags: ["marmura", "armare piatra", "coroziune", "epoxidic", "Tenax"]

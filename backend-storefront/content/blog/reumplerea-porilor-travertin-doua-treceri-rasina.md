@@ -2,6 +2,8 @@
 title: "Reumplerea porilor la travertin: tehnica „două treceri” cu rășină transparentă vs. colorată"
 description: "Când un singur strat de rășină nu ajunge la travertin cu pori adânci, o a doua trecere e practică documentată, nu modă. Ce spun fișele despre transparent vs. colorat."
 kicker: "Ghid tehnic · Mastici"
+status: "published"
+review: "PASS"
 publishedAt: "2026-07-28"
 author: "Echipa ardmag"
 tags: ["mastici", "travertin", "rasina", "transparent", "colorat", "Tenax"]

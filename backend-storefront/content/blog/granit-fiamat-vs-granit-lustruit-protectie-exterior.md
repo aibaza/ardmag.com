@@ -2,6 +2,8 @@
 title: "Granit fiamat vs. granit lustruit: ce spun fișele Delta Research despre protecția la exterior"
 description: "Aceeași rocă, două finisaje. Fișa italiană recomandă Idrorep pentru suprafața fiamată, iar Quasar e scris pentru lustruit. Ce declară exact fișele și ce verifici înainte de comandă."
 kicker: "Ghid tehnic · Delta Research"
+status: "published"
+review: "PASS"
 publishedAt: "2026-07-16"
 author: "Echipa ardmag"
 tags: ["delta research", "tratamente", "granit", "fiamat", "exterior", "impregnare"]
