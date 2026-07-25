@@ -1,3 +1,6 @@
+import fs from "node:fs"
+import path from "node:path"
+import matter from "gray-matter"
 import { describe, expect, it } from "vitest"
 import { isPublishableArticle } from "./blog"
 
@@ -22,5 +25,20 @@ describe("isPublishableArticle", () => {
     [{ ...published, review: undefined }, "review lipsă"],
   ])("respinge %s (%s)", (article) => {
     expect(isPublishableArticle(article, now)).toBe(false)
+  })
+
+  it("ține articolul lipirea la 45° privat înainte de publishedAt și îl face publicabil la termen", () => {
+    const articlePath = path.join(
+      process.cwd(),
+      "content/blog/lipirea-la-45-eviti-fisurarea-muchiei.md"
+    )
+    const { data } = matter(fs.readFileSync(articlePath, "utf8"))
+
+    expect(
+      isPublishableArticle(data, new Date("2026-07-29T23:59:59.999Z"))
+    ).toBe(false)
+    expect(
+      isPublishableArticle(data, new Date("2026-07-30T00:00:00.000Z"))
+    ).toBe(true)
   })
 })

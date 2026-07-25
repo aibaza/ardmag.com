@@ -2,6 +2,8 @@
 title: "Lipirea la 45°: cum eviți fisurarea muchiei la blaturile suprapuse"
 description: "La piatra naturală, o muchie la 45° se fisurează cel mai des din trei zone mecanice de verificat, pe lângă alegerea și aplicarea adezivului - fiecare cu cauza și remediul ei."
 kicker: "Ghid tehnic · Lipire"
+status: "published"
+review: "PASS"
 publishedAt: "2026-07-30"
 author: "Echipa ardmag"
 tags: ["mastici", "Tenax", "piatra naturala", "45 grade", "muchie suprapusa", "atelier"]
