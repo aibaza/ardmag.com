@@ -1,8 +1,9 @@
 "use client"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Script from "next/script"
 import { usePathname } from "next/navigation"
 import { getCookieConsent } from "./CookieConsent"
+import { trackingLoadState } from "./consent-loading"
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
@@ -20,18 +21,11 @@ function getContentGroup(pathname: string) {
 export function GoogleAnalytics() {
   const pathname = usePathname() ?? "/"
   const lastTrackedUrl = useRef<string | null>(null)
+  const [consentState, setConsentState] = useState({ analytics: false, marketing: false })
 
   useEffect(() => {
     const check = () => {
-      const consent = getCookieConsent()
-      if (typeof window.gtag !== "undefined") {
-        window.gtag("consent", "update", {
-          analytics_storage: consent?.analytics ? "granted" : "denied",
-          ad_storage: consent?.marketing ? "granted" : "denied",
-          ad_user_data: consent?.marketing ? "granted" : "denied",
-          ad_personalization: consent?.marketing ? "granted" : "denied",
-        })
-      }
+      setConsentState(trackingLoadState(getCookieConsent()))
     }
 
     check()
@@ -40,6 +34,7 @@ export function GoogleAnalytics() {
   }, [])
 
   useEffect(() => {
+    if (!consentState.analytics) return
     if (!GA4_ID && !GTM_ID) return
     if (typeof window === "undefined") return
 
@@ -63,25 +58,23 @@ export function GoogleAnalytics() {
     if (!GTM_ID && typeof window.gtag !== "undefined") {
       window.gtag("event", "page_view", eventPayload)
     }
-  }, [pathname])
+  }, [consentState.analytics, pathname])
 
-  if (!GA4_ID && !GTM_ID) return null
+  if ((!GA4_ID && !GTM_ID) || !consentState.analytics) return null
 
   return (
     <>
-      <Script id="ga-consent-init" strategy="beforeInteractive">
+      <Script id="ga-consent-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('consent', 'default', {
-            analytics_storage: 'denied',
-            ad_storage: 'denied',
-            ad_user_data: 'denied',
-            ad_personalization: 'denied',
-            wait_for_update: 500
+            analytics_storage: 'granted',
+            ad_storage: '${consentState.marketing ? "granted" : "denied"}',
+            ad_user_data: '${consentState.marketing ? "granted" : "denied"}',
+            ad_personalization: '${consentState.marketing ? "granted" : "denied"}'
           });
           gtag('set', 'ads_data_redaction', true);
-          gtag('set', 'url_passthrough', true);
           ${GA4_ID && !GTM_ID ? `gtag('js', new Date()); gtag('config', '${GA4_ID}', { send_page_view: false });` : ""}
         `}
       </Script>

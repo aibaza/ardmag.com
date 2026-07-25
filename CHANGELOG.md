@@ -5,6 +5,21 @@ Format: [date] type: description
 
 ---
 
+## 2026-07-25 - Consent fail-closed și corecție factuală articol 45°
+
+### Schimbare livrată
+
+Google Analytics și Meta Pixel nu mai sunt încărcate înainte de consimțământul
+explicit. Articolul despre lipirea la 45° atribuie intervalul Fast Glaxs de
+45–60 minute paginii oficiale de produs, nu fișei tehnice, și include un hero
+fără reprezentarea unei tehnici de aplicare.
+
+### Verificare
+
+Testele de consent și verificarea TypeScript trec. Gate-ul de limbaj public și
+review-ul independent Claude + Codex trec pe hash-ul canonic
+`c2fc3d8c9346e86930b6c622704cac1b10d56e05d6c29aa6b6822bd909047a0f`.
+
 ## 2026-07-21 - Închidere BLOCK-uri re-review ARDmag
 
 ### Schimbare livrată

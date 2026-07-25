@@ -5,6 +5,26 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-07-25 12:15 UTC -- Consent fail-closed și slot editorial 45° corectat
+
+- Consent: Google Analytics și Meta Pixel nu se mai încarcă înainte de alegerea
+  explicită; după accept sunt activate numai categoriile permise.
+- Editorial: intervalul Fast Glaxs de 45–60 minute este atribuit paginii oficiale
+  Tenax, nu fișei tehnice. Review-ul independent Claude + Codex și gate-ul
+  determinist trec pe hash-ul canonic `c2fc3d8c...`.
+- Teste locale: `test:consent` 3/3 PASS, `tsc --noEmit` PASS,
+  `validate-public-copy` PASS, `pre-publish-article` PASS. Build-ul Next.js
+  compilează, apoi mediul local se oprește la sitemap din cauza valorii URL
+  protejate/invalide, cunoscută și verificată în Vercel.
+- Deploy: preview-ul CLI `dpl_y3TkSWoJom8xBKKcF6tjstp8ECxy` a rămas în starea
+  externă `UNKNOWN`; release-ul continuă prin push pe `master` și auto-build
+  Vercel, conform fallback-ului deja folosit în repo. Confirmarea live se
+  completează după readback.
+- ClickUp/time entry: conectorul și skill-ul local `aibaza-deploy-workflow` nu
+  sunt disponibile în această sesiune.
+
+---
+
 ## 2026-07-20 11:01 UTC -- Rollback experiment prioritate imagine produs
 
 - Motiv: mediana măsurată după experiment a regresat față de baseline; nu lăsăm în

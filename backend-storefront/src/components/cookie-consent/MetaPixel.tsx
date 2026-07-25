@@ -1,18 +1,17 @@
 "use client"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Script from "next/script"
 import { getCookieConsent } from "./CookieConsent"
+import { trackingLoadState } from "./consent-loading"
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
 
 export function MetaPixel() {
+  const [marketingAllowed, setMarketingAllowed] = useState(false)
+
   useEffect(() => {
     const check = () => {
-      const consent = getCookieConsent()
-      if (consent?.marketing && PIXEL_ID && typeof window.fbq !== "undefined") {
-        window.fbq("consent", "grant")
-        window.fbq("track", "PageView")
-      }
+      setMarketingAllowed(trackingLoadState(getCookieConsent()).marketing)
     }
 
     check()
@@ -20,7 +19,14 @@ export function MetaPixel() {
     return () => window.removeEventListener("ardmag-consent-update", check)
   }, [])
 
-  if (!PIXEL_ID) return null
+  useEffect(() => {
+    if (marketingAllowed && PIXEL_ID && typeof window.fbq !== "undefined") {
+      window.fbq("consent", "grant")
+      window.fbq("track", "PageView")
+    }
+  }, [marketingAllowed])
+
+  if (!PIXEL_ID || !marketingAllowed) return null
 
   return (
     <>
@@ -34,7 +40,7 @@ export function MetaPixel() {
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('consent', 'revoke');
+          fbq('consent', 'grant');
           fbq('init', '${PIXEL_ID}');
         `}
       </Script>
