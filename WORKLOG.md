@@ -16,10 +16,12 @@ Format: data + commits + descriere + deploy URL + confirmare user.
   `validate-public-copy` PASS, `pre-publish-article` PASS. Build-ul Next.js
   compilează, apoi mediul local se oprește la sitemap din cauza valorii URL
   protejate/invalide, cunoscută și verificată în Vercel.
-- Deploy: preview-ul CLI `dpl_y3TkSWoJom8xBKKcF6tjstp8ECxy` a rămas în starea
-  externă `UNKNOWN`; release-ul continuă prin push pe `master` și auto-build
-  Vercel, conform fallback-ului deja folosit în repo. Confirmarea live se
-  completează după readback.
+- Deploy: commit `bc65105`, Vercel production
+  `dpl_27YkWMkanCKRdrKyUZhnqPG8okGM`, stare Ready și aliasat pe `ardmag.ro`.
+  Browser Chromium curat la `2026-07-25T12:17:00Z`: banner prezent, zero cereri
+  Google/Meta înainte de accept; după accept s-au încărcat gtag și fbevents și
+  s-a transmis page_view. Articolul și hero-ul sunt în build; slugul răspunde
+  intenționat 404 până la `publishedAt: 2026-07-30`, conform slotului planificat.
 - ClickUp/time entry: conectorul și skill-ul local `aibaza-deploy-workflow` nu
   sunt disponibile în această sesiune.
 
