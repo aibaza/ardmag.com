@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "artifact": "bg-1.webp",
+  "creative_tags": {
+    "hook": "question",
+    "format": "source_background",
+    "angle": "product_selection",
+    "cta": "none",
+    "vibe": "practical"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "lipirea-la-45-eviti-fisurarea-muchiei",
+    "roundDate": "2026-07-26",
+    "template": "source-bg",
+    "applied_learning_ids": [
+      "learn_content_ardmag_angle_product_selection",
+      "learn_content_ardmag_hook_question",
+      "learn_content_ardmag_hook_how_to",
+      "learn_content_ardmag_hook_myth_bust",
+      "learn_ardmag_creative_craft_technique_ban",
+      "learn_ardmag_accessible_price_first",
+      "learn_content_ardmag_hook_checklist",
+      "learn_ardmag_safe_specialist_poses",
+      "learn_content_ardmag_cta_read_article"
+    ],
+    "experiment_bucket": "exploit",
+    "sourceAspectRatio": "16:9"
+  }
+}

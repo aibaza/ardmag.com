@@ -30,15 +30,15 @@ A treia e fisura pornită din placă, nu din rost. O consolă (porțiune de blat
 
 ## Adezivul declarat pentru 45°, nu orice transparent
 
-Două produse din gama ARDmag sunt declarate explicit de producător pentru lipirea la 45°. [StrongEdge 45](https://www.tenax.it/us/products/professional/strongedge-45-ab/) este un mastic epoxidic bicomponent, transparent, tixotropic (pastă), cu raport de amestec 100+50 și gelificare în vrac (bulk gel time) de 8-13 minute la 25°C. [Fast Glaxs](https://www.tenax.it/en/products/professional/glaxs-fast/) este adezivul în cartuș. Pagina oficială Tenax declară separat gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Aceste valori descriu măsurători diferite și nu sunt interschimbabile.
+Două produse din gama ARDmag sunt declarate explicit de producător pentru lipirea la 45°. [StrongEdge 45](https://www.tenax.it/us/products/professional/strongedge-45-ab/) este un mastic epoxidic bicomponent, transparent, tixotropic (pastă), cu raport de amestec 100+50 și gelificare în vrac (bulk gel time) de 8-13 minute la 25°C. [Glaxs Fast](https://www.tenax.it/en/products/professional/glaxs-fast/) este adezivul în cartuș. Pagina oficială Tenax declară separat gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Aceste valori descriu măsurători diferite și nu sunt interschimbabile.
 
-[Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/), poliestericul transparent tixotropic deja folosit pentru muchii și îmbinări verticale, și [Eliox](https://www.tenax.it/en/products/professional/eliox-ab/), mastic epoxidic bicomponent extra transparent din aceeași gamă, sunt ambele recomandate de producător pentru lipire la vedere, dar fișele lor nu numesc explicit unghiul de 45°. Dacă alegi între ele și StrongEdge 45 sau Fast Glaxs pentru un rost la 45°, pornește de la cele două produse numite explicit pentru asta. Tixotropia unui mastic - faptul că stă unde îl pui și nu curge înainte să se întărească - descrie oricum comportamentul la aplicare, nu rezistența finală a îmbinării; aceea o dau aderența, pregătirea suprafeței și suportul mecanic, nu consistența produsului.
+[Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/), poliestericul transparent tixotropic deja folosit pentru muchii și îmbinări verticale, și [Eliox](https://www.tenax.it/en/products/professional/eliox-ab/), mastic epoxidic bicomponent extra transparent din aceeași gamă, sunt ambele recomandate de producător pentru lipire la vedere, dar fișele lor nu numesc explicit unghiul de 45°. Dacă alegi între ele și StrongEdge 45 sau Glaxs Fast pentru un rost la 45°, pornește de la cele două produse numite explicit pentru asta. Tixotropia unui mastic - faptul că stă unde îl pui și nu curge înainte să se întărească - descrie oricum comportamentul la aplicare, nu rezistența finală a îmbinării; aceea o dau aderența, pregătirea suprafeței și suportul mecanic, nu consistența produsului.
 
 Pentru oricare dintre acești adezivi, citește TDS și SDS-ul curent al producătorului înainte de utilizare: raport de amestec, timpi și echipament de protecție diferă între produsul epoxidic și cel poliesteric, iar utilizarea e destinată aplicatorilor profesioniști.
 
 ## Acoperă toată fața, nu doar centrul
 
-Acoperă toată fața rostului, nu doar centrul, și pregătește clemele sau sistemul de aliniere înainte să amesteci - practică standard de atelier la lipirea în 45°. Proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. La Fast Glaxs, pagina oficială declară gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Pregătirea clemelor ține de experiența montatorului tău, nu se deduce din aceste cifre. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
+Acoperă toată fața rostului, nu doar centrul, și pregătește clemele sau sistemul de aliniere înainte să amesteci - practică standard de atelier la lipirea în 45°. Proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. La Glaxs Fast, pagina oficială declară gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Pregătirea clemelor ține de experiența montatorului tău, nu se deduce din aceste cifre. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
 
 ## Sprijină rostul, mai ales pe console
 
@@ -60,7 +60,7 @@ Pentru alegerea familiei de mastic după culoare și ambalaj, [ghidul de mastici
 
 - [SlabWise, procesul de fabricație al muchiei suprapuse (mitrate)](https://slabwise.com/guides/what-is-a-mitered-edge-countertop-and-how-is-it-fabricated)
 - [Tenax StrongEdge 45 A+B, mastic epoxidic pentru lipire la 45°](https://www.tenax.it/us/products/professional/strongedge-45-ab/)
-- [Tenax Fast Glaxs, adeziv pentru lipiri multimaterial la 45°](https://www.tenax.it/en/products/professional/glaxs-fast/)
+- [Tenax Glaxs Fast, adeziv pentru lipiri multimaterial la 45°](https://www.tenax.it/en/products/professional/glaxs-fast/)
 - [Tenax Tixo XE, mastic poliesteric transparent tixotropic](https://www.tenax.it/en/products/professional/tixo-xe/)
 - [Tenax Eliox A+B, mastic epoxidic transparent](https://www.tenax.it/en/products/professional/eliox-ab/)
 - [Natural Stone Institute, Installation Standards (referință Dimension Stone Design Manual, acces prin membership)](https://www.naturalstoneinstitute.org/about/membership-overview/countertop-fabricators-membership-benefits/installation-standards/)
