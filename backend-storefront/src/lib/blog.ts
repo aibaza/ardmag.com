@@ -18,6 +18,8 @@ export type BlogFrontmatter = {
   author?: string
   tags?: string[]
   heroImage?: string
+  heroImageWidth?: number
+  heroImageHeight?: number
   ogImage?: string
 }
 

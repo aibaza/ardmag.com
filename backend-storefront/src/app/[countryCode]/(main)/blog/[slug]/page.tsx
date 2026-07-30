@@ -31,7 +31,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = article.ogImage ?? article.heroImage ?? "/opengraph-image.jpg"
   const ogImageSize = article.ogImage
     ? { width: 1200, height: 630 }
-    : { width: 1376, height: 768 }
+    : {
+        width: article.heroImageWidth ?? 1376,
+        height: article.heroImageHeight ?? 768,
+      }
   const articleUrl = `/blog/${slug}`
   return {
     title: `${article.title} | Ardmag`,
