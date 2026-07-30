@@ -1,6 +1,6 @@
 ---
 title: "Lipirea la 45°: cum eviți fisurarea muchiei la blaturile suprapuse"
-description: "La piatra naturală, o muchie la 45° se fisurează cel mai des din trei zone mecanice de verificat, pe lângă alegerea și aplicarea adezivului - fiecare cu cauza și remediul ei."
+description: "La piatra naturală, o muchie la 45° poate fisura din trei zone mecanice de verificat, pe lângă alegerea și aplicarea adezivului - fiecare cu cauza și remediul ei."
 kicker: "Ghid tehnic · Lipire"
 status: "published"
 review: "PASS"
@@ -38,7 +38,7 @@ Pentru oricare dintre acești adezivi, citește TDS și SDS-ul curent al produc�
 
 ## Acoperă toată fața, nu doar centrul
 
-Acoperă toată fața rostului, nu doar centrul, și pregătește clemele sau sistemul de aliniere înainte să amesteci - practică standard de atelier la lipirea în 45°. Proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. La Glaxs Fast, pagina oficială declară gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Pregătirea clemelor ține de experiența montatorului tău, nu se deduce din aceste cifre. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
+Acoperă toată fața rostului, nu doar centrul, și pregătește clemele sau sistemul de aliniere înainte să amesteci. Proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. La Glaxs Fast, pagina oficială declară gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Pregătirea clemelor ține de experiența montatorului tău, nu se deduce din aceste cifre. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
 
 ## Sprijină rostul, mai ales pe console
 
