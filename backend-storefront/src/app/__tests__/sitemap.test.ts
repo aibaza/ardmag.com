@@ -34,21 +34,32 @@ beforeEach(() => {
 })
 
 describe("sitemap", () => {
-  it("contine toate articolele publicabile, dar nu un articol cu data viitoare", async () => {
-    const { listArticles } = await vi.importActual<typeof import("@lib/blog")>("@lib/blog")
-    listArticlesMock.mockImplementation(listArticles)
-    const publishable = await listArticles()
+  it("contine articolele ajunse la termen, dar nu un articol cu data viitoare", async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date("2026-07-30T12:00:00.000Z"))
+    try {
+      const { listArticles } = await vi.importActual<typeof import("@lib/blog")>("@lib/blog")
+      listArticlesMock.mockImplementation(listArticles)
+      const publishable = await listArticles()
 
-    const entries = await sitemap()
-    const urls = entries.map((e) => e.url)
+      const entries = await sitemap()
+      const urls = entries.map((e) => e.url)
 
-    expect(publishable.length).toBeGreaterThan(0)
-    for (const article of publishable) {
-      expect(urls).toContain(`https://ardmag.ro/blog/${article.slug}`)
+      expect(publishable.length).toBeGreaterThan(0)
+      for (const article of publishable) {
+        expect(urls).toContain(`https://ardmag.ro/blog/${article.slug}`)
+      }
+      expect(urls).toContain(
+        "https://ardmag.ro/blog/reumplerea-porilor-travertin-doua-treceri-rasina"
+      )
+      expect(urls).not.toContain(
+        "https://ardmag.ro/blog/adeziv-ceramica-format-mare-mastice-clasice-cedeaza"
+      )
+      expect(urls).toContain("https://ardmag.ro/products/mastic-lichid")
+      expect(urls).toContain("https://ardmag.ro/categories/mastici-tenax")
+    } finally {
+      vi.useRealTimers()
     }
-    expect(urls).not.toContain("https://ardmag.ro/blog/reumplerea-porilor-travertin-doua-treceri-rasina")
-    expect(urls).toContain("https://ardmag.ro/products/mastic-lichid")
-    expect(urls).toContain("https://ardmag.ro/categories/mastici-tenax")
   })
 
   it("este fail-closed: 0 articole de blog => generarea arunca (nu sitemap gol)", async () => {
