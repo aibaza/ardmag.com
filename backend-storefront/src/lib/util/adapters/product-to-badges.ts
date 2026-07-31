@@ -21,13 +21,11 @@ type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
  *
  * Rules:
  * - Any variant with original_amount > calculated_amount => {type:"promo", label:"-X%"} (real price list discount)
- * - Fallback: metadata.ribbon contains "PROMO" => {type:"promo", label:"-30%"} (legacy decorative)
  * - ALL variants have inventory_quantity = 0 AND manage_inventory = true => {type:"stock-low", label:"Stoc limitat"}
  */
 export function productToBadges(product: HttpTypes.StoreProduct): Badge[] {
   const badges: Badge[] = []
   const variants = (product.variants ?? []) as VariantWithCalcPrice[]
-  const metadata = product.metadata ?? {}
 
   // Detect real price list discount from calculated_price
   let maxDiscountPct = 0
@@ -43,13 +41,6 @@ export function productToBadges(product: HttpTypes.StoreProduct): Badge[] {
 
   if (maxDiscountPct > 0) {
     badges.push({ type: "promo", label: `-${maxDiscountPct}%` })
-  } else {
-    // Legacy fallback: ribbon metadata (cosmetic, no real price difference)
-    const ribbonValue =
-      typeof metadata["ribbon"] === "string" ? metadata["ribbon"] : ""
-    if (ribbonValue.includes("PROMO")) {
-      badges.push({ type: "promo", label: "-30%" })
-    }
   }
 
   // Stock-low badge

@@ -132,7 +132,7 @@ Dacă lipsește copy pentru o secțiune, lasă spațiul gol sau folosește tagli
 - +40 722 155 441
 - office@arcromdiamonds.ro
 - Livrare gratuită peste 500 RON
-- Promoție -30% Mastici Tenax (aplicată la checkout)
+- Promoția -30% Mastici Tenax s-a încheiat la 2026-07-31 23:59:59 Europe/Bucharest
 - Tagline: "Experți în piatră de peste 25 de ani"
 - Furnizori: Tenax, Sait, Woosuk, Diatex, Fox Ironstone, VBT, Delta Research
 - ANPC link prezent pe toate paginile

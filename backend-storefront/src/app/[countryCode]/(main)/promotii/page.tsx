@@ -53,9 +53,7 @@ function hasRealDiscount(product: HttpTypes.StoreProduct): boolean {
       cp.original_amount > cp.calculated_amount
     )
   })
-  if (hasPriceListDiscount) return true
-  const ribbon = (product.metadata as Record<string, unknown> | null | undefined)?.["ribbon"]
-  return typeof ribbon === "string" && ribbon.includes("PROMO")
+  return hasPriceListDiscount
 }
 
 function extractTagSlugs(product: HttpTypes.StoreProduct, prefix: string): string[] {

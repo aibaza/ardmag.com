@@ -116,7 +116,7 @@ describe("productToBadges", () => {
     expect(badges.some((b) => b.type === "promo")).toBe(false)
   })
 
-  it("falls back to metadata.ribbon for legacy decorative promo (no price list active)", () => {
+  it("ignores legacy metadata.ribbon when no real price list is active", () => {
     const product = makeProduct({
       metadata: { ribbon: "PROMO 30%" },
       variants: [
@@ -127,7 +127,7 @@ describe("productToBadges", () => {
       ],
     })
     const badges = productToBadges(product)
-    expect(badges).toContainEqual({ type: "promo", label: "-30%" })
+    expect(badges.some((b) => b.type === "promo")).toBe(false)
   })
 
   it("real price list discount takes priority over ribbon metadata", () => {

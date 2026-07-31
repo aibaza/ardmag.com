@@ -6,10 +6,10 @@ type HeroProps = Parameters<typeof Hero>[0]
 // Extracted verbatim from page.tsx static Hero props - no copy invented here
 export function getHeroFallback(countryCode: string): HeroProps {
   return {
-    kicker: "Promo prelungit · până pe 31 iulie",
-    title: "Mastici Tenax la -30% reducere",
-    description: "Toată gama de mastici poliesterici și epoxidici Tenax la -30%. Stoc complet în Cluj, livrare 24-48h în toată țara.",
-    primaryCta: { label: "Vezi promoția", href: `/promotii` },
+    kicker: "Distribuitor autorizat Tenax România",
+    title: "Scule și consumabile pentru prelucrarea pietrei",
+    description: "Produse pentru granit, marmură, travertin și cuarț, cu suport tehnic din Cluj-Napoca.",
+    primaryCta: { label: "Vezi produsele", href: `/produse` },
     ghostCta: {
       label: "Toate produsele →",
       href: `/categories/solutii-pentru-piatra`,

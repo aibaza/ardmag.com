@@ -1967,3 +1967,9 @@ ClickUp/time entry:
   PAD POLIMASTER, ambele confirmate în catalog.
 - Gate vizual întărit: ARDmag nu poate trece scheduling fără confirmarea
   explicită `no_craft_technique_depiction=true` în review-ul vizual.
+## 2026-08-01 00:35 EEST -- Închidere promoție Tenax -30%
+
+- Campania Meta `120258500810260370` a fost oprită și confirmată `PAUSED/PAUSED` prin read-back.
+- Price list-ul Medusa `plist_01KPKMDRGT1EHY1PYGPMCPV67Q` păstrează termenul final `2026-07-31T20:59:59Z`.
+- Experimentul promoțional din hero a fost închis prin kill-switch, iar fallback-ul homepage este din nou evergreen.
+- Pagina `/promotii` și badge-urile produselor folosesc exclusiv diferența reală dintre prețul calculat și prețul original, fără fallback-ul decorativ `metadata.ribbon`.

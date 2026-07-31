@@ -423,3 +423,8 @@ Headless Playwright pe ardmag.ro live: scroll restaurat 2026 -> 2026 (era 2026 -
 - fix: regiune Romania in middleware (regionMapUpdated: 0 pentru refresh imediat)
 - fix: `lang="ro"` in root layout
 - feat: descrieri produs randate ca HTML cu `dangerouslySetInnerHTML` + `@tailwindcss/typography`
+## 2026-08-01 - Închidere promoție Tenax -30%
+
+- Homepage-ul nu mai afișează experimentul, mesajele și CTA-urile promoției Tenax.
+- Badge-urile și pagina de promoții afișează numai reduceri reale, calculate de Medusa; metadata decorativă veche nu mai poate afirma o reducere inexistentă.
+- Oferta Medusa s-a încheiat la 31 iulie, 23:59:59 Europe/Bucharest.
