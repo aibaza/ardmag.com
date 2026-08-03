@@ -5,6 +5,18 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-03 -- Coș mobil: totalul și acțiunea apar înaintea produselor
+
+- Pe ecrane de maximum 768 px, rezumatul cu totalul și butonul „Finalizează comanda”
+  este afișat înaintea listei de produse. Desktopul păstrează lista în stânga și
+  rezumatul sticky în dreapta.
+- Verificări locale: `npx tsc --noEmit` PASS; compilarea Next.js PASS. Buildul local
+  ajunge la prerandare și se oprește în problema preexistentă a sitemapului cu URL-ul
+  mascat din `.env.production.local`, fără legătură cu pagina coșului.
+- Deploy CLI Vercel a fost refuzat de drepturile contului; release-ul continuă prin
+  push pe `master`, fluxul Git deja configurat al proiectului, urmat de readback live.
+- Nicio componentă backend, comandă existentă sau reclamă nu a fost modificată.
+
 ## 2026-07-25 12:15 UTC -- Consent fail-closed și slot editorial 45° corectat
 
 - Consent: Google Analytics și Meta Pixel nu se mai încarcă înainte de alegerea

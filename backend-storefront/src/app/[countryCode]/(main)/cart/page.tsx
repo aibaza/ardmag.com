@@ -60,13 +60,13 @@ export default async function CartPage({ params }: Props) {
               alignItems: "flex-start",
             }}
           >
-            <div className="panel" style={{ marginBottom: 0 }}>
+            <div className="panel cart-items" style={{ marginBottom: 0 }}>
               {items.map((item) => (
                 <CartLineItem key={item.id} item={item} currencyCode={cart?.currency_code} />
               ))}
             </div>
 
-            <div style={{ position: "sticky", top: 24 }}>
+            <div className="cart-summary" style={{ position: "sticky", top: 24 }}>
               <OrderSummary
                 subtotal={(cart as any)?.item_total ?? ((cart?.subtotal ?? 0) - (cart?.shipping_total ?? 0))}
                 discount_total={cart?.discount_total}
@@ -88,7 +88,15 @@ export default async function CartPage({ params }: Props) {
           </div>
         )}
 
-        <style>{`@media(max-width:768px){.cart-grid{grid-template-columns:1fr!important}}`}</style>
+        <style>{`
+          .cart-items{grid-column:1;grid-row:1}
+          .cart-summary{grid-column:2;grid-row:1}
+          @media(max-width:768px){
+            .cart-grid{grid-template-columns:1fr!important}
+            .cart-summary{grid-column:1;grid-row:1;position:static!important}
+            .cart-items{grid-column:1;grid-row:2}
+          }
+        `}</style>
       </main>
       <SiteFooter />
     </>
