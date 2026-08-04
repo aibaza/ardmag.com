@@ -57,7 +57,7 @@ export const HERO_EXPERIMENT = {
       primaryCta: { label: 'Vezi tratamentele', href: DELTA_HREF },
       ghostCta: { label: 'Toate produsele →', href: TOATE_HREF },
       stats: STATS_GAMA,
-      promoImage: '/design-temp/hero-delta-diagnostic.png',
+      promoImage: '/design-temp/hero-delta-diagnostic.jpg',
     },
     {
       id: 'ph',
@@ -67,7 +67,7 @@ export const HERO_EXPERIMENT = {
       primaryCta: { label: 'Vezi detergenții', href: DELTA_HREF },
       ghostCta: { label: 'Toate produsele →', href: TOATE_HREF },
       stats: STATS_GAMA,
-      promoImage: '/design-temp/hero-delta-ph.png',
+      promoImage: '/design-temp/hero-delta-ph.jpg',
     },
     // ATENTIE, de clarificat inainte de productie: aceasta varianta afirma ca
     // gama Delta e facuta de firma. Sursele se contrazic. In favoarea ei:
@@ -85,7 +85,7 @@ export const HERO_EXPERIMENT = {
       primaryCta: { label: 'Vezi gama Delta Research', href: DELTA_HREF },
       ghostCta: { label: 'Toate produsele →', href: TOATE_HREF },
       stats: STATS_FURNIZOR,
-      promoImage: '/design-temp/hero-delta-productie.png',
+      promoImage: '/design-temp/hero-delta-productie.jpg',
     },
     {
       id: 'spalare',
@@ -95,7 +95,7 @@ export const HERO_EXPERIMENT = {
       primaryCta: { label: 'Detergenți pentru suprafețe tratate', href: DELTA_HREF },
       ghostCta: { label: 'Toate produsele →', href: TOATE_HREF },
       stats: STATS_FURNIZOR,
-      promoImage: '/design-temp/hero-delta-spalare.png',
+      promoImage: '/design-temp/hero-delta-spalare.jpg',
     },
     {
       id: 'absorbtie',
@@ -105,7 +105,7 @@ export const HERO_EXPERIMENT = {
       primaryCta: { label: 'Cum alegi tratamentul', href: DELTA_HREF },
       ghostCta: { label: 'Toate produsele →', href: TOATE_HREF },
       stats: STATS_GAMA,
-      promoImage: '/design-temp/hero-delta-absorbtie.png',
+      promoImage: '/design-temp/hero-delta-absorbtie.jpg',
     },
     {
       id: 'criteriu',
@@ -115,7 +115,7 @@ export const HERO_EXPERIMENT = {
       primaryCta: { label: 'Cere recomandarea', href: '/contact' },
       ghostCta: { label: 'Vezi gama Delta →', href: DELTA_HREF },
       stats: STATS_GAMA,
-      promoImage: '/design-temp/hero-delta-criteriu.png',
+      promoImage: '/design-temp/hero-delta-criteriu.jpg',
     },
   ] as HeroExperimentVariant[],
 }
