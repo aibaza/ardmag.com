@@ -39,13 +39,13 @@ E o distincție importantă pentru cititorul care caută „adeziv flexibil pent
 
 Rășina potrivită pentru format mare depinde de scopul lucrării, nu de un clasament.
 
-[Gravity](https://www.tenax.it/en/products/professional/gravity/) e un adeziv vinilesteric extra-clear, rapid, colorabil, gândit pentru lipire și laminare vizibilă. Raport de amestecare 100+1/3, gelificare în vrac 3:30-4:30 minute, timp de lucru 25-40 minute la 25°C.
+[Gravity](https://www.tenax.it/en/products/professional/gravity/) e un adeziv vinilesteric extra-clear, rapid, colorabil, gândit pentru lipire și laminare vizibilă. Raport de amestecare 100+1/3, gelificare în vrac 3:30-4:30 minute; fișa tehnică declară separat 25-40 minute ca timp minim înainte de șlefuire și tăiere la 25°C, nu ca fereastră de aplicare sau repoziționare.
 
-[Domo 10](https://www.tenax.it/en/products/professional/domo-10-ab/) e opusul ca temperament: un mastic epoxidic solid, gândit pentru rezistență maximă, aplicabil și pe suprafețe ușor umede. Fișa oficială publică gelificarea în vrac (2 ore și 30 de minute) și timpul fără aderență la atingere în strat subțire (4 ore), nu un timp de lucru comparabil cu al lui Gravity. E vândut explicit pe forța îmbinării, nu pe o fereastră de lucru scurtă.
+[Domo 10](https://www.tenax.it/en/products/professional/domo-10-ab/) e opusul ca temperament: un mastic epoxidic solid, gândit pentru rezistență maximă, aplicabil și pe suprafețe ușor umede. Fișa oficială publică aceeași categorie de cifră ca Gravity (timpul minim înainte de șlefuire și tăiere), dar la 24 de ore, nu la minute; gelificarea în vrac e de 2 ore și 30 de minute, iar timpul fără aderență la atingere în strat subțire e de 4 ore. E vândut explicit pe forța îmbinării, nu pe o fereastră de lucru scurtă.
 
-[FixTop](https://www.tenax.it/en/products/professional/fixtop-ab/) și [Rivo](https://www.tenax.it/en/products/professional/rivo-ab/) sunt amândouă mastici epoxidici pentru lipire, cuplare și lipire mixtă, între aceste două extreme; fișele oficiale nu dau un criteriu clar de alegere între ele, așa că pentru o lucrare concretă confirmă varianta cu ARDmag înainte să comanzi. [Eliox](https://www.tenax.it/en/products/professional/eliox-ab/) e recomandat oficial pentru lipirea la vedere, fațade și pardoseli, cu îngălbenire foarte redusă.
+[FixTop](https://www.tenax.it/en/products/professional/fixtop-ab/) și [Rivo](https://www.tenax.it/en/products/professional/rivo-ab/) sunt amândouă mastici epoxidici pentru lipire, cuplare și lipire mixtă, între aceste două extreme, dar în ritmuri diferite: FixTop gelifică în vrac în 30-40 de minute și e descris ca ușor de întins, Rivo gelifică în 15-20 de minute pentru întărire rapidă. Pentru o lucrare concretă, confirmă varianta cu ARDmag înainte să comanzi. [Eliox](https://www.tenax.it/en/products/professional/eliox-ab/) e recomandat oficial pentru lipirea la vedere, fațade și pardoseli, cu îngălbenire foarte redusă.
 
-Gravity publică timp de lucru (25-40 minute); Domo 10 publică doar gelificarea în vrac și timpul fără aderență la atingere, care nu se compară direct cu un timp de lucru. Alege rășina după fereastra reală din fișa tehnică a produsului ales, verificată pe toată suprafața plăcii, nu doar pe colțul pe care ai testat-o.
+Gravity ajunge la timpul minim de șlefuire și tăiere în 25-40 minute; Domo 10 ajunge la același prag abia după 24 de ore. Alege rășina după cifrele reale din fișa tehnică a produsului ales, nu după un clasament general.
 
 ## Ce înseamnă de fapt „cedează”
 
@@ -60,7 +60,7 @@ Fiecare simptom are cauza lui. „Adezivul greșit” e doar una dintre explica�
 - Nu presupune că un produs etichetat „pentru ceramică” e potrivit pentru lipirea ta concretă. Verifică fișa tehnică a produsului, nu doar lista de materiale compatibile.
 - Dacă montezi placa pe suport cu mortar de placare, acoperă toată suprafața de lipit și nu lăsa mortarul să formeze peliculă înainte de a așeza placa, așa cum cere sistemul de montaj.
 - Alege rășina Tenax după scop: lipire vizibilă și laminare (Gravity), rezistență maximă (Domo 10), lipire și cuplare mixtă (FixTop, Rivo), lipire la vedere sau fațadă (Eliox).
-- Verifică fereastra de lucru sau gelificarea publicată pentru rășina aleasă și testeaz-o pe toată suprafața plăcii, nu doar pe o bucată mică.
+- Verifică gelificarea și timpul minim de șlefuire/tăiere publicate pentru rășina aleasă, direct din fișa tehnică, nu dintr-un clasament general.
 
 Spune-ne dimensiunea, grosimea și materialul plăcii, și confirmăm împreună rășina Tenax potrivită din gamă înainte să comanzi.
 
