@@ -8,6 +8,7 @@ publishedAt: "2026-08-06"
 author: "Echipa ardmag"
 tags: ["piatra naturala", "sare de drum", "intretinere", "exterior", "iarna"]
 heroImage: "/blog/intretinerea-sezoniera-piatra-naturala-sare-de-drum/hero.webp"
+ogImage: "/assets/articles/intretinerea-sezoniera-piatra-naturala-sare-de-drum/og.png"
 ---
 
 Pragurile, treptele exterioare și baza fațadelor sunt zonele cele mai expuse la sarea de drum, nu doar pentru că înghețul le lovește oricum iarna, ci pentru că omul o aduce acolo cu el, cărată pe încălțăminte sau scursă de pe carosabilul alăturat. Dacă observi pete albe pe aceste suprafețe, primul pas nu e să cumperi un tratament. E să înțelegi ce vezi de fapt.

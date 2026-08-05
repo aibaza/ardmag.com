@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "artifact": "og.png",
+  "creative_tags": {
+    "hook": "question",
+    "format": "og_image",
+    "angle": "risk_reduction",
+    "cta": "read_article",
+    "vibe": "direct"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "intretinerea-sezoniera-piatra-naturala-sare-de-drum",
+    "roundDate": "2026-08-06",
+    "template": "og-image",
+    "platform": "og",
+    "applied_learning_ids": [
+      "learn_ardmag_creative_craft_technique_ban",
+      "learn_content_ardmag_hook_checklist",
+      "learn_content_ardmag_cta_read_article",
+      "learn_ardmag_safe_specialist_poses",
+      "learn_ardmag_accessible_price_first"
+    ],
+    "experiment_bucket": "exploit"
+  }
+}
