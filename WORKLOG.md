@@ -5,6 +5,22 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-05 -- Imaginile articolului din 6 august sunt în preview
+
+- Hero-ul WebP 1672x941 și imaginea OG PNG 1200x630 au fost adăugate în
+  directoarele publice referite de articolul despre întreținerea sezonieră a
+  pietrei naturale.
+- Verificări locale: poarta de publicare 10/10 PASS și TypeScript PASS. Articolul
+  rămâne ascuns până la `publishedAt: 2026-08-06`.
+- Commit `8008b8c` pe `staging`; deployment Vercel preview
+  `dpl_5fARgCQucmninJD3835XD7zFVDkw` este Ready și aliasat la `test.ardmag.ro`.
+  Verificarea anonimă a bytes-ilor este blocată de Deployment Protection și
+  redirecționează la login, deci nu este raportată drept readback public.
+- Cele șase imagini `public/design-temp/hero-delta-*` aflate în așteptarea
+  aprobării DC nu au fost incluse în commit și nu au fost șterse din remote.
+- ClickUp/time entry: conectorul și skill-ul local `aibaza-deploy-workflow` nu
+  sunt disponibile în această sesiune.
+
 ## 2026-08-03 -- Coș mobil: totalul și acțiunea apar înaintea produselor
 
 - Pe ecrane de maximum 768 px, rezumatul cu totalul și butonul „Finalizează comanda”
