@@ -63,20 +63,17 @@ export const HERO_EXPERIMENT = {
       id: 'ph',
       kicker: 'Detergenți Delta Research',
       title: 'pH-ul potrivit face curățenia să țină.',
-      description: 'Neutru pentru întreținere, acid pentru reziduuri de montaj, alcalin înainte de tratament. Marmura și travertinul cer detergent fără acid.',
+      description: 'Neutru pentru întreținere, acid pentru reziduuri de montaj, alcalin înainte de tratament. Marmura, travertinul și celelalte pietre calcaroase cer detergent fără acid.',
       primaryCta: { label: 'Vezi detergenții', href: DELTA_HREF },
       ghostCta: { label: 'Toate produsele →', href: TOATE_HREF },
       stats: STATS_GAMA,
       promoImage: '/design-temp/hero-delta-ph.jpg',
     },
-    // ATENTIE, de clarificat inainte de productie: aceasta varianta afirma ca
-    // gama Delta e facuta de firma. Sursele se contrazic. In favoarea ei:
-    // clients/arc-rom-diamonds/brands/delta-research/brand.json declara
-    // legal_owner = Arc Rom Diamonds SRL, iar o lectie aprobata cu sursa Andrei
-    // Rinzis (2026-07-10) spune "gama Delta Research, produsa de noi". Impotriva:
-    // CLAUDE.md-ul acestui site listeaza Delta Research printre FURNIZORI, la
-    // datele business confirmate. Una dintre cele doua e stale. Pe test poate
-    // rula; inainte de master cere confirmarea scrisa a lui DC.
+    // Statutul gamei Delta e confirmat: Andrei Rinzis a validat varianta asta pe
+    // 5 august 2026, la revizuirea bannerului, dupa ce o confirmase deja in iulie
+    // ("gama Delta Research, produsa de noi"). CLAUDE.md-ul site-ului, care o
+    // listase gresit printre furnizori, a fost corectat in aceeasi zi.
+    // Formularea publica se opreste la proprietate; NU se afirma unde se produce.
     {
       id: 'productie',
       kicker: 'Delta Research',
@@ -110,7 +107,7 @@ export const HERO_EXPERIMENT = {
     {
       id: 'criteriu',
       kicker: 'Recomandare tehnică',
-      title: 'Spune-ne piatra, îți spunem litrii.',
+      title: 'Spune-ne piatra, îți spunem cantitatea.',
       description: 'Tipul pietrei, locul unde e montată și efectul dorit — de acolo pleacă recomandarea.',
       primaryCta: { label: 'Cere recomandarea', href: '/contact' },
       ghostCta: { label: 'Vezi gama Delta →', href: DELTA_HREF },
