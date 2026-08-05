@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact": "hero.webp",
+  "creative_tags": {
+    "hook": "risk_reduction",
+    "format": "hero_image",
+    "angle": "inspection",
+    "cta": "contact",
+    "vibe": "premium"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "intretinerea-sezoniera-piatra-naturala-sare-de-drum",
+    "roundDate": "2026-08-04",
+    "template": "hero",
+    "aspectRatio": "16:9",
+    "provider": "codex-cli"
+  }
+}

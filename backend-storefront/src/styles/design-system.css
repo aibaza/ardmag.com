@@ -324,23 +324,41 @@
   .hero-main .hero-variant .hv-title{font-size:44px!important;line-height:1.05!important;letter-spacing:-0.025em;font-weight:600;margin:0;max-width:560px}
   @media(max-width:860px){.hero-main .hero-variant .hv-title{font-size:28px!important;line-height:1.1!important}}
   @media(max-width:520px){.hero-main .hero-variant .hv-title{font-size:24px!important}}
+  /* Imaginea ACOPERA blocul, nu sta lipita in colt. Varianta anterioara o
+     pozitiona absolut, cu latime fixa, ceea ce cerea un packshot decupat pe
+     transparent - iar orice fotografie reala iesea dreptunghi taiat peste text.
+     Acum e fundalul propriu-zis al blocului: fotografia isi aduce singura
+     intunericul dinspre stanga-sus, iar scrimul de dedesubt doar il adanceste.
+     Acelasi mecanism pe desktop si pe mobil - un singur comportament de
+     intretinut. object-position tine produsul (dreapta-jos in cadru) vizibil la
+     orice raport de ecran. */
   .hero-promo-img{
-    position:absolute;right:-36px;bottom:-48px;width:420px;height:auto;
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:right bottom;
     pointer-events:none;user-select:none;z-index:0;
     animation:heroImgIn 560ms cubic-bezier(.22,.61,.36,1) 140ms backwards;
     transition:opacity 240ms ease;
   }
-  @media(max-width:1200px){.hero-promo-img{width:320px;opacity:.9}}
-  /* mobil: hero compact, imaginea mare pe fundal in coltul dreapta-jos,
-     SUB texte; textele primesc un dark glow pentru lizibilitate */
+  /* Scrim diagonal peste imagine, sub texte: intareste caderea de lumina din
+     fotografie exact acolo unde stau titlul si statisticile, fara sa atinga
+     coltul dreapta-jos unde e produsul. */
+  .hero-main.has-promo-img::after{
+    content:"";display:block;position:absolute;inset:0;width:auto;height:auto;
+    background:
+      linear-gradient(100deg,rgb(15 13 12/.94) 26%,rgb(15 13 12/.68) 48%,rgb(15 13 12/.18) 72%,transparent 88%),
+      linear-gradient(190deg,rgb(15 13 12/.72) 0%,rgb(15 13 12/.2) 38%,transparent 62%);
+    opacity:1;transform:none;z-index:0;pointer-events:none;
+  }
   @media(max-width:700px){
-    .hero-promo-img{width:600px;left:96px;right:auto;bottom:-86px;opacity:1}
-    /* scrim diagonal peste imagine, sub texte: imaginea devine fundal,
-       textele raman pe zona intunecata */
+    /* Pe ecran ingust cadrul e mult mai inalt decat fotografia, deci cover
+       mareste imaginea de doua ori si jumatate fata de desktop: produsul urca
+       peste statistici. Scrimul se ingroasa exact acolo - coloana din stanga si
+       banda de jos - si lasa liber doar coltul dreapta-jos, unde produsul are
+       voie sa ramana vizibil. */
     .hero-main.has-promo-img::after{
-      content:"";display:block;position:absolute;inset:0;width:auto;height:auto;
-      background:linear-gradient(105deg,rgb(28 25 23/.88) 30%,rgb(28 25 23/.4) 55%,transparent 80%),linear-gradient(0deg,rgb(28 25 23/.35),transparent 38%);
-      opacity:1;transform:none;z-index:0;pointer-events:none;
+      background:
+        linear-gradient(112deg,rgb(15 13 12/.97) 40%,rgb(15 13 12/.86) 60%,rgb(15 13 12/.45) 80%,rgb(15 13 12/.12) 94%),
+        linear-gradient(0deg,rgb(15 13 12/.7) 0%,rgb(15 13 12/.3) 26%,transparent 52%);
     }
     /* butonul ghost primeste fundal translucid ca sa ramana lizibil peste imagine */
     .hero-variant .hactions .hero-ghost{background:rgb(28 25 23/.6)!important;backdrop-filter:blur(3px)}

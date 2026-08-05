@@ -134,7 +134,8 @@ Dacă lipsește copy pentru o secțiune, lasă spațiul gol sau folosește tagli
 - Livrare gratuită peste 500 RON
 - Promoția -30% Mastici Tenax s-a încheiat la 2026-07-31 23:59:59 Europe/Bucharest
 - Tagline: "Experți în piatră de peste 25 de ani"
-- Furnizori: Tenax, Sait, Woosuk, Diatex, Fox Ironstone, VBT, Delta Research
+- Furnizori: Tenax, Sait, Woosuk, Diatex, Fox Ironstone, VBT
+- Delta Research este gama proprie, nu furnizor extern: `legal_owner` = Arc Rom Diamonds SRL (`clients/arc-rom-diamonds/brands/delta-research/brand.json`), confirmat de Andrei Rinzis in iulie 2026 ("gama Delta Research, produsa de noi") si din nou pe 5 august 2026, la validarea bannerului de homepage. Formularea publica permisa: "gama proprie Delta Research". NU se afirma unde se produce - nu exista sursa pentru locatie.
 - ANPC link prezent pe toate paginile
 
 ---
