@@ -318,6 +318,21 @@
       0 0 32px rgb(15 13 12/.6),
       0 0 48px rgb(15 13 12/.45);
   }
+  /* Cand blocul are fotografie pe fundal, etichetele de sub cifre nu mai pot
+     ramane gri: --stone-300 e conceput pentru fundalul plat #stone-900, iar peste
+     zonele luminate din imagine dispare. Trec pe alb, cu halo mai strans si mai
+     opac decat restul textelor - sunt cel mai mic corp de litera din bloc, deci
+     au nevoie de cel mai mult contur, nu de cel mai putin. */
+  .hero-main.has-promo-img .hero-variant:not(.hv-sizer) .stats span{
+    color:#fff;
+    text-shadow:
+      0 0 1px rgb(10 9 8/.98),
+      0 1px 2px rgb(10 9 8/.98),
+      0 0 4px rgb(10 9 8/.95),
+      0 0 8px rgb(10 9 8/.92),
+      0 0 16px rgb(10 9 8/.85),
+      0 0 28px rgb(10 9 8/.7);
+  }
   /* Titlul variantei: metricile h2-ului de design pe toate breakpointurile,
      identice pentru h1-ul real si sizerele div (invinge h1{26px!important}
      din blocul mobil prin specificitate mai mare) */
