@@ -62,6 +62,7 @@
 
     function send(event, props) {
       try {
+        if (!analyticsConsent()) return
         var u = utm()
         var payload = JSON.stringify(Object.assign({
           site: site, event: event, path: location.pathname,
