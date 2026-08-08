@@ -1,6 +1,6 @@
 // Verifica beacon-ul first-party public/a-b.js: click pe a[href^="tel:"]
-// trimite evenimentul tel_click (cookieless, fail-open), pe langa pageview-ul
-// initial. Ruleaza sursa reala din public/ intr-un sandbox vm cu stub-uri
+// trimite evenimentul tel_click (efemer, consent-gated, fail-open), pe langa
+// pageview-ul initial. Ruleaza sursa reala din public/ intr-un sandbox vm cu stub-uri
 // minime de DOM, ca sa nu divergem intre test si fisierul livrat.
 
 import { describe, it, expect, beforeEach } from "vitest"
@@ -79,7 +79,10 @@ describe("a-b.js beacon - tel_click", () => {
   let listeners: Listener[]
 
   beforeEach(() => {
-    ;({ sent, listeners } = bootBeacon())
+    const cookie = `ardmag-consent=${encodeURIComponent(
+      JSON.stringify({ analytics: true, marketing: true })
+    )}`
+    ;({ sent, listeners } = bootBeacon(cookie))
   })
 
   it("trimite pageview la incarcare", () => {
@@ -120,9 +123,9 @@ describe("a-b.js beacon - tel_click", () => {
 })
 
 describe("a-b.js beacon - anon_id efemer, consent-gated", () => {
-  it("fara consimtamant analytics, anon_id ramane gol (nimic PII trimis)", () => {
+  it("fara consimtamant analytics, nu trimite niciun eveniment", () => {
     const { sent } = bootBeacon()
-    expect(sent[0].payload.anon_id).toBe("")
+    expect(sent).toHaveLength(0)
   })
 
   it("cu consimtamant analytics, anon_id e stabil pe aceeasi sesiune (tab)", () => {
@@ -138,11 +141,11 @@ describe("a-b.js beacon - anon_id efemer, consent-gated", () => {
     expect(sent[1].payload.anon_id).toBe(firstId)
   })
 
-  it("cu consimtamant doar marketing (fara analytics), anon_id ramane gol", () => {
+  it("cu consimtamant doar marketing (fara analytics), nu trimite niciun eveniment", () => {
     const cookie = `ardmag-consent=${encodeURIComponent(
       JSON.stringify({ analytics: false, marketing: true })
     )}`
     const { sent } = bootBeacon(cookie)
-    expect(sent[0].payload.anon_id).toBe("")
+    expect(sent).toHaveLength(0)
   })
 })
