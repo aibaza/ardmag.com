@@ -32,6 +32,34 @@
       try { return JSON.parse(sessionStorage.getItem(KEY) || '{}') } catch (e) { return {} }
     }
 
+    // Acelasi consimtamant analytics ca MetaPixel/GA4 (src/components/cookie-consent),
+    // citit din cookie-ul mirror (CONSENT_KEY='ardmag-consent') ca sa functioneze si
+    // inainte de hidratarea React.
+    function analyticsConsent() {
+      try {
+        var m = document.cookie.match(/(?:^|; )ardmag-consent=([^;]*)/)
+        if (!m) return false
+        var consent = JSON.parse(decodeURIComponent(m[1]))
+        return Boolean(consent && consent.analytics === true)
+      } catch (e) { return false }
+    }
+
+    // Identificator anonim efemer (durata tab-session, sessionStorage) - creat DOAR
+    // dupa consimtamant analytics, ca sa lege evenimentele aceleiasi vizite pentru
+    // cohortare agregata (readback), fara sa persiste sau sa identifice o persoana.
+    var ANON_KEY = '_ab_anon'
+    function anonId() {
+      try {
+        if (!analyticsConsent()) return ''
+        var id = sessionStorage.getItem(ANON_KEY)
+        if (!id) {
+          id = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2))
+          sessionStorage.setItem(ANON_KEY, id)
+        }
+        return id
+      } catch (e) { return '' }
+    }
+
     function send(event, props) {
       try {
         var u = utm()
@@ -41,6 +69,7 @@
           utm_source: u.utm_source || '', utm_medium: u.utm_medium || '',
           utm_campaign: u.utm_campaign || '', utm_content: u.utm_content || '',
           utm_term: u.utm_term || '',
+          anon_id: anonId(),
         }, props || {}))
         if (navigator.sendBeacon) navigator.sendBeacon(endpoint, new Blob([payload], { type: 'application/json' }))
         else fetch(endpoint, { method: 'POST', body: payload, keepalive: true, headers: { 'Content-Type': 'application/json' } }).catch(function () {})

@@ -17,7 +17,7 @@ type Sent = { endpoint: string; payload: Record<string, unknown> }
 
 type Listener = { type: string; fn: (e: unknown) => void; capture: boolean }
 
-function bootBeacon() {
+function bootBeacon(cookie = "") {
   const sent: Sent[] = []
   const listeners: Listener[] = []
   const storage = new Map<string, string>()
@@ -36,6 +36,7 @@ function bootBeacon() {
           name === "data-site" ? "ardmag.ro" : null,
       },
       referrer: "",
+      cookie,
     },
     location: { hostname: "ardmag.ro", search: "", pathname: "/contact" },
     sessionStorage: {
@@ -115,5 +116,33 @@ describe("a-b.js beacon - tel_click", () => {
     const click = listeners.find((l) => l.type === "click")!
     expect(() => click.fn({ target: null })).not.toThrow()
     expect(sent).toHaveLength(1)
+  })
+})
+
+describe("a-b.js beacon - anon_id efemer, consent-gated", () => {
+  it("fara consimtamant analytics, anon_id ramane gol (nimic PII trimis)", () => {
+    const { sent } = bootBeacon()
+    expect(sent[0].payload.anon_id).toBe("")
+  })
+
+  it("cu consimtamant analytics, anon_id e stabil pe aceeasi sesiune (tab)", () => {
+    const cookie = `ardmag-consent=${encodeURIComponent(
+      JSON.stringify({ analytics: true, marketing: true })
+    )}`
+    const { sent, listeners } = bootBeacon(cookie)
+    const click = listeners.find((l) => l.type === "click")!
+    click.fn(telClickEvent("tel:+40722155441"))
+    expect(sent).toHaveLength(2)
+    const firstId = sent[0].payload.anon_id as string
+    expect(firstId).not.toBe("")
+    expect(sent[1].payload.anon_id).toBe(firstId)
+  })
+
+  it("cu consimtamant doar marketing (fara analytics), anon_id ramane gol", () => {
+    const cookie = `ardmag-consent=${encodeURIComponent(
+      JSON.stringify({ analytics: false, marketing: true })
+    )}`
+    const { sent } = bootBeacon(cookie)
+    expect(sent[0].payload.anon_id).toBe("")
   })
 })
