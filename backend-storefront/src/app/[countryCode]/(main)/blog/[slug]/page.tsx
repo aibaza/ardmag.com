@@ -93,7 +93,7 @@ export default async function BlogArticlePage({ params }: Props) {
       <header className={`article-head${article.heroImage ? " article-head--hero" : ""}`}>
         {article.heroImage && (
           <>
-            <img className="hero-bg" src={article.heroImage} alt="" aria-hidden="true" />
+            <img className="hero-bg" src={article.heroImage} style={{ objectPosition: article.heroImagePosition ?? "center" }} alt="" aria-hidden="true" />
             <div className="hero-overlay" aria-hidden="true" />
           </>
         )}

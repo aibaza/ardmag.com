@@ -5,6 +5,13 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-12 -- Candidatul made-to-order a fost corectat pentru review pe test
+
+- Titlul, descrierea și corpul nu mai prezintă made-to-order drept serviciu confirmat. Rolul ARDmag este de distribuitor care poate prelua specificația pentru o discuție preliminară; numai furnizorul identificat pentru cererea concretă poate confirma fezabilitatea și condițiile.
+- Hero-ul absent a fost înlocuit cu o compoziție editorială despre verificare și rezultate încă necunoscute, fără produse fizice, tehnică de lucru sau bife de aprobare. Poziția focală este configurabilă pentru crop responsive.
+- CTA-ul mailto și alternativa telefonică sunt clickabile și explică faptul că solicitarea nu este comandă fermă.
+- Review-urile independente Claude și Codex au dat PASS pe hash-ul final `bef76ef4034df0f5f3d120b23426b146eedeb0605e749c0f8301e60a1f104a12`; gate-ul canonic `pre-publish-article` a trecut. Release exclusiv pe `staging`, fără producție și fără social.
+
 ## 2026-08-12 -- Articolul made-to-order este pregătit pentru review pe test
 
 - Draftul existent `comenzi-made-to-order-discuri-fir` a fost copiat în storefront numai pe ramura `staging`, fără asset hero inexistent și fără schimbări în calendarul de producție sau în programarea socială.

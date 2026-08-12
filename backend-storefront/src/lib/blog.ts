@@ -20,6 +20,7 @@ export type BlogFrontmatter = {
   heroImage?: string
   heroImageWidth?: number
   heroImageHeight?: number
+  heroImagePosition?: string
   ogImage?: string
 }
 

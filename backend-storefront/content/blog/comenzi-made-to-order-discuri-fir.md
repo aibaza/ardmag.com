@@ -1,64 +1,88 @@
 ---
-title: "Comenzi B2B: ce înseamnă made-to-order la discuri și elemente de fir peste 600 mm"
-description: "De ce un disc de tăiere peste 600 mm sau un element de fir diamantat nu se comandă ca un produs din stoc, ce specificații pregătești înainte să suni și de ce termenul și costul nu au un răspuns fix."
-kicker: "Ghid practic · Comenzi B2B"
+title: "Ce informații pregătești pentru discuri peste 600 mm și fir diamantat"
+description: "Ghid pentru o discuție preliminară: datele tehnice utile și punctele care rămân neconfirmate până la răspunsul furnizorului."
+kicker: "Ghid practic · Cerere B2B"
 status: "published"
 review: "PASS"
 publishedAt: "2026-08-12"
+updatedAt: "2026-08-12"
 author: "Echipa ardmag"
-tags: ["discuri diamantate", "fir diamantat", "made to order", "B2B", "comenzi speciale"]
+tags: ["discuri diamantate", "fir diamantat", "cerere de ofertă", "B2B", "configurații speciale"]
+heroImage: "/blog/comenzi-made-to-order-discuri-fir/hero.webp"
+heroImageWidth: 1672
+heroImageHeight: 941
+heroImagePosition: "65% center"
 ---
 
-Peste 600 mm diametru, un disc diamantat de tăiere nu mai e un produs pe care îl iei din stoc și pleacă în ziua următoare. La fel elementele de fir diamantat, indiferent de diametru. Ambele intră într-un regim „made-to-order": furnizorul confirmă mai întâi configurația tehnică și fezabilitatea de fabricație, abia apoi vine un preț și un termen. Ordinea asta vine direct din felul în care circulă și se fabrică aceste piese.
+Pentru un disc diamantat de tăiere cu diametrul peste 600 mm sau pentru elemente de fir diamantat, o discuție utilă începe cu specificația tehnică, nu cu promisiunea unei comenzi. Acest ghid te ajută să pregătești datele necesare pentru ca ARDmag, în rol de distribuitor, să poată solicita furnizorului o verificare preliminară.
 
-## De ce pragul de 600 mm, nu altul
+> **Important:** fluxul comercial pentru aceste configurații este încă în curs de confirmare internă. Trimiterea specificației nu confirmă că ARDmag poate furniza produsul și nu garantează fezabilitatea, prețul, cantitatea minimă, transportul sau termenul. Toate acestea depind de răspunsul furnizorului pentru configurația cerută.
 
-600 mm nu vine dintr-un standard tehnic. [EN 13236](https://fepa-abrasives.org/wp-content/uploads/2020/04/fepa-safety-leaflet-diamond-saws-petrol-saws-english.pdf), norma de siguranță pentru scule diamantate, nu fixează o limită de mărime pentru livrare, ci reglementează marcajul obligatoriu: turația maximă, viteza de lucru în m/s, sensul de rotație, restricția umed/uscat. Pragul de 600 mm e o graniță comercială, trasă acolo unde coletăria obișnuită încetează să mai fie o opțiune reală.
+## De ce merită pregătită cererea înainte de discuție
 
-Curierii cu care lucrează majoritatea magazinelor din România au limite clare de colet: [DPD](https://www.dpd.com/ro/ro/faq/care-sunt-dimensiunile-si-greutatea-maxima-admise-pentru-un-colet/) admite maximum 31,5 kg și 175 cm pe cea mai lungă latură, iar [Cargus](https://www.cargus.ro/termeni-conditii-transport) taxează după greutatea volumetrică peste un anumit prag de dimensiune. Un disc mare, ambalat corect, depășește repede aceste limite, iar la mijloc mai e un motiv tehnic: corpul discului e o piesă de precizie, iar o presiune neuniformă în timpul transportului poate voala planul sau ciobi segmentele. De-aici practica din industrie de a ambala discurile mari în lăzi de lemn rigide, cu distanțiere, nu în cutii de carton ([CLSEG](https://www.clseg.com/diamond-saw-blades/segmented-diamond-blades/)). Dincolo de pragul de colet, transportul trece pe marfă paletizată, cu ofertă de curierat separată, nu pe rețeaua de colete obișnuită ([DPD, marfă paletizată](https://www.dpd.com/ro/en/support/tips-and-tricks-dpd-romania/conditii-dpd/termeni-si-conditii-transport-cargo-si-marfa-paletizata/)).
+Pragul de 600 mm folosit aici este un reper comercial intern aflat în clarificare, nu o limită tehnică stabilită de sursa citată. [Pliantul FEPA despre marcajele EN 13236](https://fepa-abrasives.org/wp-content/uploads/2020/04/fepa-safety-leaflet-diamond-saws-petrol-saws-english.pdf) tratează cerințe precum turația maximă, viteza de lucru, sensul de rotație și utilizarea umedă sau uscată; nu confirmă că o anumită dimensiune poate fi furnizată de ARDmag.
 
-Pentru o configurație peste 600 mm sau pentru fir diamantat, transportul se cotează separat de condițiile standard de livrare, tocmai pentru că circulă altfel.
+Dimensiunile și masa ambalajului pot scoate o expediere din regimul coletelor standard. De exemplu, [DPD România](https://www.dpd.com/ro/ro/faq/care-sunt-dimensiunile-si-greutatea-maxima-admise-pentru-un-colet/) publică limite pentru coletele standard și are condiții separate pentru [marfă paletizată](https://www.dpd.com/ro/en/support/tips-and-tricks-dpd-romania/conditii-dpd/termeni-si-conditii-transport-cargo-si-marfa-paletizata/). Aceste informații explică de ce transportul trebuie verificat separat; nu stabilesc metoda sau costul aplicabil unei cereri ARDmag.
 
-## Ce înseamnă, concret, „made-to-order"
+## Ce poate însemna o configurație fabricată la cerere
 
-Un raport al [US International Trade Commission](https://www.usitc.gov/publications/701_731/pub3862.pdf) despre industria discurilor diamantate notează că discurile peste aproximativ 500 mm sunt frecvent fabricate la comandă, fiindcă merg pe mașini mari și aplicații profesionale, nu pe unelte de mână standard. Practic, „made-to-order" nu înseamnă doar „alt diametru": poate schimba alezajul, poziția găurilor de antrenare, corpul discului, formula segmentului diamantat sau chiar parametrii de mașină pe care trebuie să-i respecte piesa finală.
+În industria analizată în Statele Unite, unele discuri de diametru mare sunt fabricate pentru o configurație precisă. Un raport al [US International Trade Commission](https://www.usitc.gov/publications/701_731/pub3862.pdf) din 2006 notează că discurile de peste aproximativ 500 mm sunt frecvent fabricate la comandă. Este un context istoric despre acea piață, nu confirmarea unui serviciu ARDmag, a unui furnizor actual sau a disponibilității unui anumit produs.
 
-Aceleași reguli se aplică elementelor de fir diamantat. Nu contează doar lungimea firului, ci și diametrul perlei, numărul de perle pe metru, tipul de montaj și viteza liniară de lucru a mașinii, pentru că acestea determină compatibilitatea reală cu utilajul clientului.
+În funcție de aplicație, furnizorul poate avea nevoie să verifice diametrul, alezajul, găurile de antrenare, corpul discului, segmentul diamantat și parametrii utilajului. Pentru fir diamantat, pot conta lungimea, diametrul perlei, numărul de perle pe metru, tipul de montaj și parametrii mașinii. Lista exactă rămâne cea cerută de furnizor după analiza preliminară.
 
-## Ce pregătești înainte să ceri o ofertă
+## Ce date să pregătești pentru un disc mare
 
-Un furnizor nu poate da un preț și un termen pe o cerere de tipul „un disc de 800 mm". Are nevoie de configurație completă. Pentru un disc mare:
-
-- materialul de tăiat (marmură, granit, andezit, travertin) și cât de abraziv e
-- diametrul exterior și alezajul
-- modelul mașinii și turația de lucru
+- materialul de tăiat și, dacă este cunoscută, caracteristica sa abrazivă
+- diametrul exterior cerut și alezajul
+- modelul utilajului și datele de pe placa lui
+- turația de lucru și sensul de rotație
 - tăiere umedă sau uscată
-- cantitatea
+- găurile de antrenare ori un desen tehnic, dacă există
+- cantitatea estimată
+- localitatea de livrare și eventualele restricții de recepție
 
-Pentru fir diamantat:
+Aceste date permit formularea unei solicitări mai clare. Ele nu înlocuiesc verificarea de compatibilitate și nu obligă furnizorul să accepte configurația.
 
-- aplicația (mașină staționară, mono-fir, multi-fir)
-- piatra exactă și modelul mașinii
-- lungimea firului și diametrul perlei
-- numărul de perle pe metru și tipul de montaj
-- cantitatea totală, în metri
+## Ce date să pregătești pentru fir diamantat
 
-Un chestionar de calificare folosit în industrie pentru fir diamantat cere aproape exact aceste puncte: material, tip mașină, lungime, diametru perlă, perle pe metru, montaj și viteză liniară ([Miles Supply](https://www.milessupply.com/wp-content/uploads/2019/07/FORM2-Customer-Diamond-Wire-Info-Sheet.pdf)). Cu cât ajunge la furnizor o listă mai completă, cu atât răspunsul vine mai repede, pentru că nu mai e nevoie de un tur de întrebări înainte de ofertă.
+- tipul aplicației și modelul utilajului
+- materialul prelucrat
+- lungimea necesară
+- diametrul perlei
+- numărul de perle pe metru
+- tipul de montaj, dacă este cunoscut
+- viteza liniară și ceilalți parametri indicați de producătorul utilajului
+- cantitatea estimată, în metri
 
-## De ce nu există un termen sau o cantitate minimă universală
+Un [chestionar tehnic Miles Supply](https://www.milessupply.com/wp-content/uploads/2019/07/FORM2-Customer-Diamond-Wire-Info-Sheet.pdf) cere un set apropiat de informații. Este un exemplu de calificare tehnică din industrie, nu formularul ARDmag și nu dovada că furnizorul ARDmag va accepta cererea.
 
-Nu există un răspuns fix la „cât durează" sau „care e cantitatea minimă" la o comandă made-to-order, nici la ARDmag, nici în industrie în general. Depinde de cât de mult se abate configurația de la ce are deja furnizorul pregătit: un alezaj diferit pe un corp de disc existent e altceva decât o formulă nouă de segment, iar la fir, o comandă de câțiva metri e altceva decât o rolă completă. Cantitatea minimă poate fi o singură piesă, la preț de configurație unică, sau un lot care justifică pregătirea fabricației, în funcție de cât de mult se abate specificația de la ce producătorul are deja pregătit.
+## Ce se întâmplă după trimiterea specificației
 
-Din acest motiv, elementele de fir diamantat și discurile peste 600 mm nu au un preț de listă: se cotează după ce ARDmag primește configurația completă.
+ARDmag poate prelua informațiile pentru o discuție preliminară. Dacă fluxul și un furnizor potrivit sunt confirmate intern, ARDmag poate transmite specificația spre analiză. Numai furnizorul identificat pentru cererea respectivă poate confirma dacă configurația poate fi realizată și în ce condiții.
 
-Dacă ai nevoie de un disc peste 600 mm sau de un element de fir diamantat, sună la ARDmag cu specificația pregătită din listele de mai sus. Cu ea în mână, primești o ofertă pe măsura configurației tale, nu o cifră generică.
+Abia după acel răspuns se pot clarifica, după caz:
+
+- fezabilitatea tehnică și compatibilitatea
+- configurația finală acceptată
+- cantitatea minimă
+- prețul
+- ambalarea și transportul
+- termenul estimat
+
+Niciunul dintre aceste puncte nu are o valoare universală și niciunul nu este garantat prin simpla trimitere a cererii. Dacă lipsesc date, furnizorul poate solicita completări sau poate refuza configurația.
+
+## Solicită o verificare preliminară
+
+Pregătește datele de mai sus și folosește legătura de mai jos. Mesajul deschide o discuție de verificare, nu o comandă fermă.
+
+[**Trimite specificația pentru verificare preliminară**](mailto:office@arcromdiamonds.ro?subject=Verificare%20preliminar%C4%83%20configura%C8%9Bie%20disc%20peste%20600%20mm%20sau%20fir%20diamantat)
+
+Poți suna și la [+40 722 155 441](tel:+40722155441). Echipa poate confirma primirea datelor și pașii următori disponibili, dar răspunsul comercial rămâne condiționat de analiza furnizorului și de confirmarea internă a fluxului.
 
 ## Surse și referințe
 
-- FEPA, *Safety Recommendations and EN 13236 Marking* (marcajul obligatoriu pe scule diamantate: turație maximă, viteză de lucru, sens de rotație): [fepa-abrasives.org](https://fepa-abrasives.org/wp-content/uploads/2020/04/fepa-safety-leaflet-diamond-saws-petrol-saws-english.pdf)
-- DPD România, *Dimensiuni și greutate maximă admise pentru un colet* (limita de 31,5 kg și 175 cm pe rețeaua standard de colete): [dpd.com](https://www.dpd.com/ro/ro/faq/care-sunt-dimensiunile-si-greutatea-maxima-admise-pentru-un-colet/)
-- Cargus, *Condiții de transport* (taxarea după greutatea volumetrică peste limitele de dimensiune): [cargus.ro](https://www.cargus.ro/termeni-conditii-transport)
-- DPD România, *Transport cargo și marfă paletizată* (rețeaua separată pentru transport peste limitele de colet standard): [dpd.com](https://www.dpd.com/ro/en/support/tips-and-tricks-dpd-romania/conditii-dpd/termeni-si-conditii-transport-cargo-si-marfa-paletizata/)
-- CLSEG, *Segmented Diamond Blades* (ambalarea în lăzi de lemn rigide pentru discurile de 600 mm și peste): [clseg.com](https://www.clseg.com/diamond-saw-blades/segmented-diamond-blades/)
-- US International Trade Commission, *Diamond Sawblades and Parts Thereof* (discurile peste ~500 mm ca produse fabricate frecvent la comandă): [usitc.gov](https://www.usitc.gov/publications/701_731/pub3862.pdf)
-- Miles Supply, *Diamond Wire Customer Questionnaire* (specificațiile tehnice cerute uzual pentru o comandă de fir diamantat): [milessupply.com](https://www.milessupply.com/wp-content/uploads/2019/07/FORM2-Customer-Diamond-Wire-Info-Sheet.pdf)
+- FEPA, *Safety Recommendations and EN 13236 Marking*: [fepa-abrasives.org](https://fepa-abrasives.org/wp-content/uploads/2020/04/fepa-safety-leaflet-diamond-saws-petrol-saws-english.pdf)
+- DPD România, limite pentru colet standard: [dpd.com](https://www.dpd.com/ro/ro/faq/care-sunt-dimensiunile-si-greutatea-maxima-admise-pentru-un-colet/)
+- DPD România, condiții pentru cargo și marfă paletizată: [dpd.com](https://www.dpd.com/ro/en/support/tips-and-tricks-dpd-romania/conditii-dpd/termeni-si-conditii-transport-cargo-si-marfa-paletizata/)
+- US International Trade Commission, *Diamond Sawblades and Parts Thereof*: [usitc.gov](https://www.usitc.gov/publications/701_731/pub3862.pdf)
+- Miles Supply, *Diamond Wire Customer Questionnaire*: [milessupply.com](https://www.milessupply.com/wp-content/uploads/2019/07/FORM2-Customer-Diamond-Wire-Info-Sheet.pdf)

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-12 — Candidatul made-to-order corectat pe staging
+
+- Hero nou, editorial și fără produse inventate, cu focalizare responsive pentru desktop și mobil.
+- Articolul este acum un ghid de pregătire a unei discuții preliminare: ARDmag nu promite furnizarea, iar fezabilitatea, prețul, cantitatea minimă, transportul și termenul depind de confirmarea furnizorului.
+- CTA-ul deschide o solicitare de verificare preliminară prin email sau telefon, nu o comandă garantată.
+- Schimbarea rămâne exclusiv pe `staging`; producția și social media nu sunt atinse.
+
 ## [Unreleased]
 
 - Staging: adaugă articolul „Comenzi B2B: ce înseamnă made-to-order la discuri și elemente de fir peste 600 mm” pentru review pe `test.ardmag.ro`; producția și promovarea socială rămân neatinse.
