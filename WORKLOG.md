@@ -10,7 +10,7 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 - Draftul existent `comenzi-made-to-order-discuri-fir` a fost copiat în storefront numai pe ramura `staging`, fără asset hero inexistent și fără schimbări în calendarul de producție sau în programarea socială.
 - Data din copia de review este 12 august 2026, astfel încât poarta de randare îl expune pe mediul de test; ramura `master` și `ardmag.ro` nu primesc această modificare.
 - Verificări: validatorul de copy PASS, gate-ul de publicare 10/10 PASS, TypeScript PASS și build Vercel Ready. Build-ul local compilează, dar prerandarea sitemap-ului rămâne blocată de snapshot-ul local de env Medusa, limitare deja cunoscută.
-- Deployment preview Vercel `dpl_B7DjMW6JmV73VZHfNBQPjuREf7ib`: `https://ardmag-storefront-komcapvwd-surcod.vercel.app/blog/comenzi-made-to-order-discuri-fir`. Deployment Protection redirecționează accesul anonim la SSO; contul CLI poate inspecta deployment-ul, dar nu are drept de generare a unui bypass sau de realiasare la `test.ardmag.ro`.
+- Deployment canonic Vercel din commitul final `117b970`: `dpl_FKUmqgDgTdsoFhRisdnHTs9qjfms`, Ready și aliasat automat la `https://test.ardmag.ro`. Deployment Protection redirecționează accesul anonim la SSO; contul CLI poate inspecta deployment-ul și aliasul, dar nu poate genera un bypass pentru citirea anonimă a HTML-ului.
 
 ## 2026-08-05 -- Imaginile articolului din 6 august sunt în preview
 
