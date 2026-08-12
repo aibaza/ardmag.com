@@ -5,6 +5,12 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-12 -- Articolul made-to-order este pregătit pentru review pe test
+
+- Draftul existent `comenzi-made-to-order-discuri-fir` a fost copiat în storefront numai pe ramura `staging`, fără asset hero inexistent și fără schimbări în calendarul de producție sau în programarea socială.
+- Data din copia de review este 12 august 2026, astfel încât poarta de randare îl expune pe mediul de test; ramura `master` și `ardmag.ro` nu primesc această modificare.
+- Verificări și URL-ul deployment-ului sunt consemnate după readback-ul Vercel.
+
 ## 2026-08-05 -- Imaginile articolului din 6 august sunt în preview
 
 - Hero-ul WebP 1672x941 și imaginea OG PNG 1200x630 au fost adăugate în

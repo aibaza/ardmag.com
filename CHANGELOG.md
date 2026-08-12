@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+
+- Staging: adaugă articolul „Comenzi B2B: ce înseamnă made-to-order la discuri și elemente de fir peste 600 mm” pentru review pe `test.ardmag.ro`; producția și promovarea socială rămân neatinse.
+
 All notable changes to this project are documented here.
 Format: [date] type: description
 
