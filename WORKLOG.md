@@ -5,6 +5,15 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-14 -- Actualizarea finală a articolului despre petele pe marmură este live
+
+- Articolul public păstrează titlul exact „De ce se pătează marmura albă”, formularea tehnică aprobată pentru Domo 10 rev.03 și punctul și virgula din introducere.
+- Hero-ul și OG-ul au fost înlocuite cu vizualul Domo 10 A+B aprobat; disclosure-ul AI apare o singură dată în pagina randată. OG-ul live este PNG 1200×630, 643.971 bytes, SHA-256 `5b17c1414ca01ad0178d4057e78a06b67448a70a05304294d1951fc3089a8c2e`.
+- Receipt-ul dual independent Claude + Codex trece gate-ul canonic `pre-publish-article` pe hash-ul `98dc07ecddb1047b00787c8b4c13b7f22e6e87cc1925a294dbe6d33b4065f9d6`; toate check-urile vizuale obligatorii sunt PASS.
+- Validări locale: public-copy PASS, publication gate 10/10 PASS, TypeScript PASS. Deploy Vercel production `dpl_AmK4ABsiYf1gEDwv3riN5rSkskpw` este Ready și aliasat la `ardmag.ro`.
+- Readback live: articol HTTP 200; `<title>` și `og:title` sunt exact titlul aprobat; formularea rev.03 și punctul și virgula sunt prezente; disclosure-ul are o singură instanță în DOM; OG-ul are `content-type: image/png` și hash/bytes identice cu assetul aprobat.
+- Nu a fost creată nicio programare socială și niciun val istoric nu a fost modificat.
+
 ## 2026-08-05 -- Imaginile articolului din 6 august sunt în preview
 
 - Hero-ul WebP 1672x941 și imaginea OG PNG 1200x630 au fost adăugate în
