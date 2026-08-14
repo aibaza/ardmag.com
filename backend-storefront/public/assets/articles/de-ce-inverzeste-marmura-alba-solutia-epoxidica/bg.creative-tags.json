@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "artifact": "bg.webp",
+  "creative_tags": {
+    "hook": "contrast",
+    "format": "source_background",
+    "angle": "maintenance",
+    "cta": "none",
+    "vibe": "practical"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "de-ce-inverzeste-marmura-alba-solutia-epoxidica",
+    "roundDate": "2026-08-14-generation-manifest-r1",
+    "template": "source-bg",
+    "applied_learning_ids": [
+      "learn_content_ardmag_angle_product_selection",
+      "learn_content_ardmag_hook_myth_bust",
+      "learn_ardmag_creative_craft_technique_ban",
+      "learn_ardmag_accessible_price_first",
+      "learn_content_ardmag_hook_checklist",
+      "learn_content_ardmag_cta_read_article",
+      "learn_ardmag_safe_specialist_poses"
+    ],
+    "experiment_bucket": "exploit",
+    "sourceAspectRatio": "16:9"
+  }
+}
