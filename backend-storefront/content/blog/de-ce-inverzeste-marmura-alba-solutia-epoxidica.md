@@ -1,5 +1,5 @@
 ---
-title: "De ce poate înverzi marmura albă: armătura metalică și lipirea epoxidică"
+title: "De ce se pătează marmura albă"
 description: "O pată verde sau brună pe marmură albă poate indica o sursă metalică și umezeală în spatele pietrei. Diagnosticul corect vine înaintea curățării sau reparației."
 kicker: "Diagnostic de atelier · Piatră naturală"
 status: "published"
@@ -13,19 +13,19 @@ ogImage: "/assets/articles/de-ce-inverzeste-marmura-alba-solutia-epoxidica/og.pn
 
 O urmă verde sau brună pe marmură albă nu are o singură explicație. Când apare lângă un decupaj, o muchie ori o prindere, una dintre ipotezele de verificat este coroziunea unei armături sau a unei piese metalice aflate în spatele pietrei. Culoarea singură nu identifică sigur metalul și nici sursa petei.
 
-Pentru atelier, ordinea corectă este simplă: localizezi metalul și traseul umezelii, apoi alegi reparația. Un detergent aplicat pe fața plăcii nu poate opri o sursă activă din spate.
+Pentru atelier, ordinea corectă este simplă; localizezi metalul și traseul umezelii, apoi alegi reparația. Un detergent aplicat pe fața plăcii nu poate opri o sursă activă din spate.
 
 ## Unde poate exista metal în placă
 
 Plăcile fragile pot fi întărite pe spate cu plasă din fibră de sticlă și rășină. În jurul decupajelor, unele lucrări folosesc și tije introduse în șanțuri pentru consolidare. Ghidul pentru blaturi al Natural Stone Institute tratează separat plasa, inserțiile și armarea cu tije; metoda concretă trebuie verificată pe piesa aflată în lucru.
 
-Riscul nu vine de la fibra de sticlă, ci de la o componentă metalică expusă la apă. Zona critică este adesea un capăt de tijă, o tăietură făcută după armare sau o porțiune unde adezivul nu acoperă continuu ansamblul.
+Riscul nu vine de la fibra de sticlă, ci de la o componentă metalică expusă la apă. La inspecție, verifică un capăt de tijă expus, o tăietură care intersectează armarea și orice zonă în care metalul nu mai este complet înglobat în rășină.
 
 ## Ce spune culoarea și ce nu spune
 
 Natural Stone Institute descrie petele de fier sau rugină ca portocalii până la brune și avertizează că petele metalice adânci pot fi foarte greu de scos. O nuanță verde poate fi compatibilă cu produși de coroziune ai cuprului sau ai aliajelor sale, dar poate avea și alte cauze. Fără identificarea piesei din spate, formularea corectă este „posibilă pată metalică”, nu un diagnostic cert după culoare.
 
-Umezeala este calea comună. Dacă apa ajunge repetat la metal, curățarea feței vizibile tratează efectul, nu cauza. Mai întâi se verifică infiltrația, rostul, decupajul și spatele piesei. Pentru o pată deja instalată, Natural Stone Institute recomandă identificarea tipului de pată și arată că tratamentul se alege după cauză; acizii și produsele improvizate pot ataca piatra.
+Umezeala favorizează coroziunea metalului și transportul produșilor de coroziune în piatra poroasă. Dacă apa ajunge repetat la metal, curățarea feței vizibile tratează efectul, nu cauza. Mai întâi se verifică infiltrația, rostul, decupajul și spatele piesei. Pentru o pată deja instalată, Natural Stone Institute recomandă identificarea tipului de pată și arată că tratamentul se alege după cauză. Acizii pot ataca finisajul marmurei; produsul și procedura de curățare trebuie alese după identificarea petei și compatibilitatea cu piatra.
 
 ## Ce poate face, concret, un epoxidic
 
@@ -54,3 +54,4 @@ Spune-ne tipul piesei, zona în care apare pata și ce armare ai găsit. Verific
 - [Tenax, pagina oficială Domo 10 A+B](https://www.tenax.it/en/products/professional/domo-10-ab/) - mastic epoxidic pentru piatră naturală și cuplări multimaterial.
 - [Natural Stone Institute, îngrijirea pietrei naturale](https://www.naturalstoneinstitute.org/consumers/care/) - sensibilitatea pietrei calcaroase la acizi și identificarea petelor de rugină.
 - [Natural Stone Institute, îndepărtarea petelor](https://www.naturalstoneinstitute.org/consumers/stains/) - pete metalice și limitele remedierii petelor adânci.
+- [Natural Stone Institute, Residential Stone Countertop Installation, secțiunea Reinforcement Techniques](https://www.naturalstoneinstitute.org/default/assets/file/consumers/2011_residential_countertop_module.pdf) - plase, inserții și armarea cu tije înglobate în rășină epoxidică.
