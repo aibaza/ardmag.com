@@ -29,9 +29,9 @@ Umezeala favorizează coroziunea metalului și transportul produșilor de corozi
 
 ## Ce poate face, concret, un epoxidic
 
-Un epoxidic nu este automat „barieră anticoroziune”, iar orice produs trebuie folosit numai în aplicațiile declarate de producător. Fișa oficială Tenax pentru [Domo 10 A+B, disponibil în catalogul ARDmag](https://ardmag.ro/products/domo-10-epoxy-solid), îl descrie ca mastic epoxidic bicomponent pentru lipiri și cuplări multimaterial, inclusiv metal-piatră. Pentru astfel de lipiri cere șlefuirea metalului, suport curat și distribuirea omogenă a produsului, cu acoperire totală a suprafeței.
+Un epoxidic nu este automat „barieră anticoroziune”, iar orice produs trebuie folosit numai în aplicațiile declarate de producător. Fișa oficială Tenax pentru [Domo 10 A+B, disponibil în catalogul ARDmag](https://ardmag.ro/products/domo-10-epoxy-solid), îl descrie ca mastic epoxidic bicomponent pentru lipiri și cuplări multimaterial, inclusiv metal-piatră. Pentru astfel de lipiri recomandă șlefuirea metalului, cere ca suportul să nu aibă praf ori substanțe grase sau uleioase și indică distribuirea foarte uniformă a produsului, cu acoperire totală a suprafeței.
 
-Aceste instrucțiuni susțin folosirea lui ca adeziv de cuplare, nu afirmația că repară orice armătură corodată sau că impermeabilizează singur placa. Fișa mai cere raport 1:1 în greutate și indică aproximativ 24 de ore până la tăiere sau lustruire la 25°C. Deși produsul este prezentat ca aplicabil și pe suprafețe umede, instrucțiunile din fișa tehnică cer piatra curată și complet uscată înainte de aplicare. În atelier se urmează condiția mai prudentă din instrucțiunile de utilizare. Pentru diferența dintre familiile de rășini și limitele lor, vezi și ghidul despre [mastici epoxidici și poliesterici pentru piatră](https://ardmag.ro/blog/mastici-epoxidici-poliesterici-piatra).
+Aceste instrucțiuni susțin folosirea lui ca adeziv de cuplare, nu afirmația că repară orice armătură corodată sau că impermeabilizează singur placa. Fișa curentă arată că Domo 10 se poate aplica și pe suprafețe umede, iar pentru suport cere lipsa prafului și a substanțelor grase sau uleioase. Mai cere raport 1:1 în greutate și indică aproximativ 24 de ore până la tăiere sau lustruire la 25°C. Pentru diferența dintre familiile de rășini și limitele lor, vezi și ghidul despre [mastici epoxidici și poliesterici pentru piatră](https://ardmag.ro/blog/mastici-epoxidici-poliesterici-piatra).
 
 ## Verificarea înainte de lipire
 
@@ -40,7 +40,7 @@ Aceste instrucțiuni susțin folosirea lui ca adeziv de cuplare, nu afirmația c
 | Decupaje și muchii | capete de tijă, metal descoperit, rășină întreruptă |
 | Spatele plăcii | plasă desprinsă, goluri, trasee de umezeală |
 | Piesa metalică | coroziune existentă și suprafață care poate fi pregătită corect |
-| Suportul | curat, uscat și fără praf sau grăsime |
+| Suportul | fără praf și fără substanțe grase sau uleioase |
 | Amestecul | raportul și timpii din fișa tehnică a produsului ales |
 | După fasonare | orice tăietură nouă care a redeschis zona armată |
 
@@ -50,7 +50,7 @@ Spune-ne tipul piesei, zona în care apare pata și ce armare ai găsit. Verific
 
 ## Surse și referințe
 
-- [Tenax, fișa tehnică Domo 10 A+B](https://www.tenax.it/wp-content/uploads/2023/06/Technical-sheet-IT_EN-Domo10.pdf) - aplicații metal-piatră, pregătirea suportului, acoperire totală, raport și timpi.
+- [Tenax, fișa tehnică Domo 10 A+B, rev. 03 din 12.09.2025](https://www.tenax.it/wp-content/uploads/2026/04/TENAX_Incollaggio-Domo-10_rev.03_EN.pdf) - aplicare inclusiv pe suprafețe umede, aplicații metal-piatră, pregătirea suportului, acoperire totală, raport și timpi.
 - [Tenax, pagina oficială Domo 10 A+B](https://www.tenax.it/en/products/professional/domo-10-ab/) - mastic epoxidic pentru piatră naturală și cuplări multimaterial.
 - [Natural Stone Institute, îngrijirea pietrei naturale](https://www.naturalstoneinstitute.org/consumers/care/) - sensibilitatea pietrei calcaroase la acizi și identificarea petelor de rugină.
 - [Natural Stone Institute, îndepărtarea petelor](https://www.naturalstoneinstitute.org/consumers/stains/) - pete metalice și limitele remedierii petelor adânci.
