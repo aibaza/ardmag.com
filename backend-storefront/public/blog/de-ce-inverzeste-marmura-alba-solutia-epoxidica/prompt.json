@@ -1,15 +1,20 @@
 {
   "schema_version": 1,
   "promptPath": "tools/social/posts/ardmag.com/de-ce-inverzeste-marmura-alba-solutia-epoxidica/2026-08-14-generation-manifest-r1/generation-prompt.txt",
-  "promptSha256": "e596a695e02f8e8d4717b1ec4578f9704e712bcac0b1f9fca50e8855a35ad211",
+  "promptSha256": "9e9eedd9fc22a04e6d6648171aba32f9b2827b949994fcf8810887c7a23f43d1",
   "generatedAt": "2026-08-14",
   "capability": "openai.imagegen",
   "model": "chatgpt-imagegen-2",
-  "authorRunId": "ardmag-marmura-domo10-2026-08-14-imagegen2-r1",
+  "authorRunId": "ardmag-marmura-domo10-2026-08-14-imagegen2-r2",
   "referenceAssets": [
     "backend/static/images/domo-10-epoxy-solid/db3b5a_900b465c3e4840aaaac3ebc041b6371e/detail-2x.jpg"
   ],
   "productContract": "One commercial Tenax Domo10 A+B product kit, exactly two closed physical containers: A and B.",
   "postProcessing": "Deterministic resize/crop and editorial overlay only; no product compositing and no label repair.",
+  "aiDisclosure": {
+    "required": true,
+    "publicCopy": "Imagine ilustrativă, generată cu AI",
+    "scope": "single-pass generated scene and product packaging"
+  },
   "generationManifest": "tools/social/posts/ardmag.com/de-ce-inverzeste-marmura-alba-solutia-epoxidica/2026-08-14-generation-manifest-r1/generation-manifest.json"
 }

@@ -11,6 +11,8 @@ heroImage: "/blog/de-ce-inverzeste-marmura-alba-solutia-epoxidica/hero.webp"
 ogImage: "/assets/articles/de-ce-inverzeste-marmura-alba-solutia-epoxidica/og.png"
 ---
 
+*Imagine ilustrativă, generată cu AI.*
+
 O urmă verde sau brună pe marmură albă nu are o singură explicație. Când apare lângă un decupaj, o muchie ori o prindere, una dintre ipotezele de verificat este coroziunea unei armături sau a unei piese metalice aflate în spatele pietrei. Culoarea singură nu identifică sigur metalul și nici sursa petei.
 
 Pentru atelier, ordinea corectă este simplă; localizezi metalul și traseul umezelii, apoi alegi reparația. Un detergent aplicat pe fața plăcii nu poate opri o sursă activă din spate.

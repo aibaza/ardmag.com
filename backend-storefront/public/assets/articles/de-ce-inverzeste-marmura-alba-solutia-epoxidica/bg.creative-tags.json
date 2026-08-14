@@ -13,6 +13,7 @@
     "articleSlug": "de-ce-inverzeste-marmura-alba-solutia-epoxidica",
     "roundDate": "2026-08-14-generation-manifest-r1",
     "template": "source-bg",
+    "aiDisclosure": { "applied": true, "text": "Imagine ilustrativă, generată cu AI", "source": "content-policy" },
     "applied_learning_ids": [
       "learn_content_ardmag_angle_product_selection",
       "learn_content_ardmag_hook_myth_bust",
