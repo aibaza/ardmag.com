@@ -2019,3 +2019,12 @@ ClickUp/time entry:
 - Price list-ul Medusa `plist_01KPKMDRGT1EHY1PYGPMCPV67Q` păstrează termenul final `2026-07-31T20:59:59Z`.
 - Experimentul promoțional din hero a fost închis prin kill-switch, iar fallback-ul homepage este din nou evergreen.
 - Pagina `/promotii` și badge-urile produselor folosesc exclusiv diferența reală dintre prețul calculat și prețul original, fără fallback-ul decorativ `metadata.ribbon`.
+
+## 2026-08-17 - Corecție completă articol travertin și PDP Mastic Lichid
+
+- Articolul despre porii travertinului separă Mastic Lichid colorat de varianta transparentă, cu timpii canonici Tenax și raportul clar de 100 de părți mastic la 2-3 părți întăritor.
+- Produsele Bellinzoni și recomandările tehnice neconfirmate au fost eliminate. Tixo XE și Mastic Solid sunt limitate la utilizările documentate.
+- CTA-ul duce la contact și categorie, articolele conexe sunt selectate contextual și folosesc imaginile lor reale, iar bio-ul neverificabil a fost înlocuit.
+- Hero și OG noi folosesc compoziție editorială fără ambalaje prezentate ca produse exacte; proveniența și hash-urile sunt în manifest.
+- PDP-ul live Mastic Lichid a fost actualizat prin Admin API și recitit; build-ul de producție a trecut 753/753 pagini, inclusiv sitemap-ul static.
+- Review determinist și review-urile independente Claude/Codex: PASS pe hash-ul agregat `7da6bf5e9e8232145cc40a2e52cf811acd5a7ae7ed11d263064516de78d493cc`.

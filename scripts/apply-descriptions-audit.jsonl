@@ -102,3 +102,5 @@
 {"handle":"tratamente-specifice","product_id":"prod_01KPH3R91T9XXZGTN2KA0KGQH5","status":"identical","timestamp":"2026-05-18T18:37:54.973Z","dry_run":false}
 {"handle":"dischete-de-slefuit-cu-carbura","product_id":"prod_01KPH3RCJVCAM46HKQWBP24XVT","status":"identical","timestamp":"2026-05-18T18:38:12.757Z","dry_run":false}
 {"handle":"dischete-de-slefuit-diamantate","product_id":"prod_01KPH3QB1MWAWC8Y4S0AKPYS48","status":"identical","timestamp":"2026-05-18T18:38:14.314Z","dry_run":false}
+{"handle":"mastic-lichid","product_id":"prod_01KPH3PX861RZTH2SK5MXMQZXF","status":"updated","reason":"1058 -> 1206 chars","timestamp":"2026-08-17T11:26:06.081Z","dry_run":true}
+{"handle":"mastic-lichid","product_id":"prod_01KPH3PX861RZTH2SK5MXMQZXF","status":"updated","reason":"1058 -> 1206 chars","timestamp":"2026-08-17T11:26:13.422Z","dry_run":false}
