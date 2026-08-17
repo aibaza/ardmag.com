@@ -5,6 +5,27 @@ Format: [date] type: description
 
 ---
 
+## 2026-08-17 - Corecție completă polish chimic vs. polish mecanic
+
+### Schimbare livrată
+
+Articolul despre piatra calcaroasă compară acum polishul chimic cu polishul
+mecanic, păstrând slugul vechi pentru continuitatea URL. Poten este recomandat
+numai pentru marmură și granit, Silwax este încadrat la finisare și protecție,
+iar ruta mecanică folosește exclusiv produse vândute de ARDmag. Exemplele de
+produse care nu se mai vând și formulările de narator extern au fost eliminate.
+
+Hero-ul și OG-ul au fost refăcute cu Poten și PAD POLIMASTER, pornind de la
+fotografiile canonice de catalog și cu proveniență verificată byte-level.
+
+### Verificare
+
+Gate-ul determinist, testele de publicație și review-urile independente Claude
++ Codex trec pe hash-ul canonic
+`a3989b05e73450efe29c7c4b0740256985c16727f4de83bac789b64ec5bfabb0`.
+Build-ul local ajunge la sitemap, dar mediul local are URL-urile sensibile
+redactate; deploy-ul și build-ul complet sunt verificate în Vercel.
+
 ## 2026-07-25 - Consent fail-closed și corecție factuală articol 45°
 
 ### Schimbare livrată
