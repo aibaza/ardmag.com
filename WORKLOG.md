@@ -5,6 +5,15 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-17 -- Articolul despre polish chimic vs. mecanic este corectat live
+
+- Titlul și H1 compară acum polishul chimic cu polishul mecanic pe piatră calcaroasă; slugul vechi a rămas neschimbat pentru continuitatea URL.
+- Poten apare în corp și în grila de răspunsuri numai pentru marmură și granit, cu datele comerciale canonice. Silwax este încadrat la finisare și protecție, iar ruta mecanică trimite la produsele vândute efectiv.
+- Hero-ul și OG-ul au fost refăcute cu fotografiile canonice Poten și PAD POLIMASTER. Bytes live sunt identici cu cei aprobați: OG `38821c1af4134a35fbb28246acd0305dfbaf6133f5de2d2a9fd57f3ca8504660`, hero `e63f0c06c6f797617aebf2419844c4e0ba1f49f0f67f656050c49762d1989e8d`.
+- Gate-ul canonic și review-urile independente Claude + Codex sunt PASS pe hash-ul `a3989b05e73450efe29c7c4b0740256985c16727f4de83bac789b64ec5bfabb0`; testele de publicație sunt 10/10 PASS.
+- Deploy Vercel production `dpl_aWHuREXB55GZk5XMkyrYss4axeks` este Ready și aliasat la `ardmag.ro`. Readback live: articol 200, title/OG/meta corecte, zero apariții ale termenilor interziși, articol prezent în sitemap și toate linkurile comerciale răspund 200.
+- Commit de release: `ca9d343`.
+
 ## 2026-08-14 -- Actualizarea finală a articolului despre petele pe marmură este live
 
 - Articolul public păstrează titlul exact „De ce se pătează marmura albă”, formularea tehnică aprobată pentru Domo 10 rev.03 și punctul și virgula din introducere.
