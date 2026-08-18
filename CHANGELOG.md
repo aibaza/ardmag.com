@@ -5,6 +5,24 @@ Format: [date] type: description
 
 ---
 
+## 2026-08-18 - Corecție expert lipirea la 45°
+
+### Schimbare livrată
+
+Articolul recomandă din primul paragraf StrongEdge 45, Glaxs Fast și Eliox.
+Recomandarea Eliox pentru 45° este atribuită experienței de atelier a lui
+Andrei Rinzis, iar afirmațiile producătorului sunt limitate la fișa oficială
+curentă. Tixo XE, comparațiile de preț, abrevierile englezești și formularea
+„muchie mitrată” au fost eliminate.
+
+### Verificare
+
+Review-urile independente Claude și Codex și gate-ul canonic sunt PASS pe
+hash-ul `7a212360e48b5c04bbd7cc0ae026af0e4aa3353c842d199c9a3ba572ffde7257`.
+Verificarea deterministă a textului public este PASS. Compilarea locală este
+reușită; prerandarea sitemap-ului local rămâne dependentă de credențialele
+Medusa valide din mediul de producție.
+
 ## 2026-08-17 - Corecție completă polish chimic vs. polish mecanic
 
 ### Schimbare livrată

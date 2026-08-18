@@ -12,11 +12,11 @@ heroImageWidth: 1600
 heroImageHeight: 1067
 ---
 
-O muchie suprapusă la 45° la piatră naturală poate ceda din alegerea sau aplicarea greșită a adezivului, dar și din trei zone mecanice care merită verificate separat: un vârf ciobit la tăiere, un rost care nu se închide complet sau o fisură pornită dintr-o zonă fără suport. Fiecare are o cauză și un remediu diferit.
+Pentru lipirile la 45°, recomandările noastre sunt StrongEdge 45, Glaxs Fast și Eliox. O muchie suprapusă la 45° la piatră naturală poate ceda din alegerea sau aplicarea greșită a adezivului, dar și din trei zone mecanice care merită verificate separat: un vârf ciobit la tăiere, un rost care nu se închide complet sau o fisură pornită dintr-o zonă fără suport. Fiecare are o cauză și un remediu diferit.
 
 ## Ce este o muchie suprapusă la 45°
 
-O muchie suprapusă (numită și lipire la 45°) se obține tăind două bucăți de piatră naturală la un unghi de 45° pe fața frontală și lipindu-le astfel încât rostul trece în diagonală prin grosimea plăcii, nu ca o linie plată vizibilă din față. Tehnica face ca un blat subțire de 2-3 cm să arate gros de 5-10 cm, ca efect vizual; greutatea și costul reale față de o placă masivă depind de geometrie, material și piesa verticală folosită, așa cum descrie [procesul de fabricație al muchiei mitrate](https://slabwise.com/guides/what-is-a-mitered-edge-countertop-and-how-is-it-fabricated). Ghidul de față vizează piatra naturală; pentru cuarț compozit sau ceramică, razele, suporturile și limitele de prelucrare se iau din manualul exact al producătorului plăcii, nu din regulile de mai jos.
+O muchie suprapusă la 45° se obține tăind două bucăți de piatră naturală la acest unghi pe fața frontală și lipindu-le astfel încât rostul trece în diagonală prin grosimea plăcii, nu ca o linie plată vizibilă din față. Tehnica face ca un blat subțire de 2-3 cm să arate gros de 5-10 cm, ca efect vizual; greutatea față de o placă masivă depinde de geometrie, material și piesa verticală folosită, așa cum descrie [procesul de fabricație al muchiei adăugate](https://slabwise.com/guides/what-is-a-mitered-edge-countertop-and-how-is-it-fabricated). Ghidul de față vizează piatra naturală; pentru cuarț compozit sau ceramică, razele, suporturile și limitele de prelucrare se iau din manualul exact al producătorului plăcii, nu din regulile de mai jos.
 
 ## Trei zone de verificat, pe lângă adezivul ales
 
@@ -30,21 +30,21 @@ A treia e fisura pornită din placă, nu din rost. O consolă (porțiune de blat
 
 Înainte să amesteci orice adeziv, așază cele două piese la 45° fără lipici și verifică fețele pe toată lungimea rostului. Dacă vezi lumină printre ele în orice punct, corectezi tăietura acum. După ce ai turnat adezivul, corectura nu mai e o opțiune.
 
-## Adezivul declarat pentru 45°, nu orice transparent
+## Trei recomandări pentru lipirea la 45°
 
-Două produse din gama ARDmag sunt declarate explicit de producător pentru lipirea la 45°. [StrongEdge 45](https://www.tenax.it/us/products/professional/strongedge-45-ab/) este un mastic epoxidic bicomponent, transparent, tixotropic (pastă), cu raport de amestec 100+50 și gelificare în vrac (bulk gel time) de 8-13 minute la 25°C. [Glaxs Fast](https://www.tenax.it/en/products/professional/glaxs-fast/) este adezivul în cartuș. Pagina oficială Tenax declară separat gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Aceste valori descriu măsurători diferite și nu sunt interschimbabile.
+Fișele Tenax indică explicit două produse pentru lipirea la 45°. [StrongEdge 45](https://www.tenax.it/us/products/professional/strongedge-45-ab/) este un mastic epoxidic bicomponent, transparent, tixotropic (pastă), cu raport de amestec 100+50 și gelificare în vrac de 8-13 minute la 25°C. [Glaxs Fast](https://www.tenax.it/en/products/professional/glaxs-fast/) este adezivul în cartuș. Pagina oficială Tenax declară separat gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Aceste valori descriu măsurători diferite și nu sunt interschimbabile.
 
-[Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/), poliestericul transparent tixotropic deja folosit pentru muchii și îmbinări verticale, și [Eliox](https://www.tenax.it/en/products/professional/eliox-ab/), mastic epoxidic bicomponent extra transparent din aceeași gamă, sunt ambele recomandate de producător pentru lipire la vedere, dar fișele lor nu numesc explicit unghiul de 45°. Dacă alegi între ele și StrongEdge 45 sau Glaxs Fast pentru un rost la 45°, pornește de la cele două produse numite explicit pentru asta. Tixotropia unui mastic - faptul că stă unde îl pui și nu curge înainte să se întărească - descrie oricum comportamentul la aplicare, nu rezistența finală a îmbinării; aceea o dau aderența, pregătirea suprafeței și suportul mecanic, nu consistența produsului.
+[Eliox](https://www.tenax.it/en/products/professional/eliox-ab/) este un mastic epoxidic bicomponent extra transparent pe care îl recomandăm pentru lipirea la 45° pe baza experienței de atelier a lui Andrei Rinzis. Fișa tehnică Tenax confirmă utilizarea lui pentru lipiri la vedere și aplicații verticale, dar nu menționează explicit unghiul de 45°. Tixotropia unui mastic - faptul că stă unde îl pui și nu curge înainte să se întărească - descrie comportamentul la aplicare, nu rezistența finală a îmbinării; aceea depinde de aderență, pregătirea suprafeței și suportul mecanic, nu de consistența produsului.
 
-Pentru oricare dintre acești adezivi, citește TDS și SDS-ul curent al producătorului înainte de utilizare: raport de amestec, timpi și echipament de protecție diferă între produsul epoxidic și cel poliesteric, iar utilizarea e destinată aplicatorilor profesioniști.
+Pentru oricare dintre acești adezivi, citește fișa tehnică și fișa de securitate curente ale producătorului înainte de utilizare: raportul de amestec, timpii și echipamentul de protecție diferă de la un produs la altul, iar utilizarea este destinată aplicatorilor profesioniști.
 
 ## Acoperă toată fața, nu doar centrul
 
-Acoperă toată fața rostului, nu doar centrul, și pregătește clemele sau sistemul de aliniere înainte să amesteci. Proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. La Glaxs Fast, pagina oficială declară gelificarea în vrac de 3-5 minute și timpul de lucru de 45-60 minute la 25°C. Pregătirea clemelor ține de experiența montatorului tău, nu se deduce din aceste cifre. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
+Acoperă toată fața rostului, nu doar centrul, și pregătește clemele sau sistemul de aliniere înainte să amesteci. Proba la uscat de mai sus, nu metoda de acoperire, e verificarea care confirmă lipsa golurilor de aer. Pregătirea clemelor ține de experiența montatorului tău, nu se deduce din timpii produsului. Respectă raportul de amestec din fișa produsului ales, nu din ochi.
 
 ## Sprijină rostul, mai ales pe console
 
-La piatra naturală, cât de departe poate ajunge o consolă nesusținută dedesubt depinde de grosimea plăcii, nu e o cifră fixă - și crește riscul de fisură exact în zona unei muchii lipite la 45° dacă placa lucrează doar pe aderența adezivului. Nu confunda consola cu deschiderea dintre reazeme (spațiul liber dintre două puncte de sprijin) - cele două au limite separate. [Natural Stone Institute tratează spanurile și consolele admise în Dimension Stone Design Manual](https://www.naturalstoneinstitute.org/about/membership-overview/countertop-fabricators-membership-benefits/installation-standards/), document tehnic disponibil prin membership, nu public; cere-i montatorului tău limita de consolă nesusținută pentru grosimea și geometria exactă a plăcii tale, înainte să confirmi tăietura la 45°. Dacă montatorul recomandă armare mecanică suplimentară de-a lungul rostului, e o decizie a lui pentru cazul concret; gama ARDmag acoperă adezivii și consumabilele de prelucrare a muchiei, nu piese de armare mecanică.
+La piatra naturală, cât de departe poate ajunge o consolă nesusținută dedesubt depinde de grosimea plăcii, nu e o cifră fixă - și crește riscul de fisură exact în zona unei muchii adăugate la 45° dacă placa lucrează doar pe aderența adezivului. Nu confunda consola cu deschiderea dintre reazeme (spațiul liber dintre două puncte de sprijin) - cele două au limite separate. [Natural Stone Institute tratează spanurile și consolele admise în Dimension Stone Design Manual](https://www.naturalstoneinstitute.org/about/membership-overview/countertop-fabricators-membership-benefits/installation-standards/), document tehnic disponibil prin membership, nu public; cere-i montatorului tău limita de consolă nesusținută pentru grosimea și geometria exactă a plăcii tale, înainte să confirmi tăietura la 45°. Dacă montatorul recomandă armare mecanică suplimentară de-a lungul rostului, e o decizie a lui pentru cazul concret; gama ARDmag acoperă adezivii și consumabilele de prelucrare a muchiei, nu piese de armare mecanică.
 
 ## Al doilea mod de a ciobi o lipire perfectă
 
@@ -60,9 +60,8 @@ Pentru alegerea familiei de mastic după culoare și ambalaj, [ghidul de mastici
 
 ## Surse și referințe
 
-- [SlabWise, procesul de fabricație al muchiei suprapuse (mitrate)](https://slabwise.com/guides/what-is-a-mitered-edge-countertop-and-how-is-it-fabricated)
+- [SlabWise, procesul de fabricație al muchiei adăugate](https://slabwise.com/guides/what-is-a-mitered-edge-countertop-and-how-is-it-fabricated)
 - [Tenax StrongEdge 45 A+B, mastic epoxidic pentru lipire la 45°](https://www.tenax.it/us/products/professional/strongedge-45-ab/)
 - [Tenax Glaxs Fast, adeziv pentru lipiri multimaterial la 45°](https://www.tenax.it/en/products/professional/glaxs-fast/)
-- [Tenax Tixo XE, mastic poliesteric transparent tixotropic](https://www.tenax.it/en/products/professional/tixo-xe/)
 - [Tenax Eliox A+B, mastic epoxidic transparent](https://www.tenax.it/en/products/professional/eliox-ab/)
 - [Natural Stone Institute, Installation Standards (referință Dimension Stone Design Manual, acces prin membership)](https://www.naturalstoneinstitute.org/about/membership-overview/countertop-fabricators-membership-benefits/installation-standards/)
