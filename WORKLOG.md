@@ -5,6 +5,15 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-18 -- Corecțiile expert pentru lipirea la 45° sunt live
+
+- Articolul recomandă din primul paragraf StrongEdge 45, Glaxs Fast și Eliox; recomandarea Eliox pentru 45° este atribuită experienței de atelier a lui Andrei Rinzis, separat de afirmațiile confirmate în fișa Tenax.
+- Tixo XE, comparațiile după preț, abrevierile TDS/SDS și formularea „muchie mitrată” au fost eliminate. Valurile sociale deja publicate nu au fost modificate; runda nepublicată 2026-08-27 a fost corectată și are vizual nou fără produs fizic.
+- Review-urile independente Claude și Codex sunt PASS pe același hash de articol `7a212360e48b5c04bbd7cc0ae026af0e4aa3353c842d199c9a3ba572ffde7257`; gate-ul social este PASS pe `e2ec7a3614b0ef91cca50a22d95565098be69439e4ddda7ba81e89e7da8bb675`.
+- Validările public-copy sunt 3/3 PASS, auditul humanizer este `likely_human`, iar suitele relevante au 59/60 teste PASS. Unicul eșec este fixture-ul E2E istoric cu receipt expirat; build-ul compilează, dar prerandarea locală a sitemap-ului cere o cheie Medusa validă din producție.
+- Deploy-ul CLI a fost refuzat de rolul Vercel al sesiunii; push-ul `537ccec` pe `master` a declanșat fluxul Git conectat. Readback live: articolul și cele trei pagini de produs răspund HTTP 200, toate formulările obligatorii sunt prezente, iar termenii eliminați sunt absenți.
+- ClickUp/time entry: conectorul și skill-ul local `aibaza-deploy-workflow` nu sunt disponibile în această sesiune.
+
 ## 2026-08-17 -- Articolul despre polish chimic vs. mecanic este corectat live
 
 - Titlul și H1 compară acum polishul chimic cu polishul mecanic pe piatră calcaroasă; slugul vechi a rămas neschimbat pentru continuitatea URL.
