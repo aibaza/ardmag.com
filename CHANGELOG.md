@@ -5,6 +5,22 @@ Format: [date] type: description
 
 ---
 
+## 2026-08-19 - Corecții editoriale în trei ghiduri tehnice
+
+### Schimbare livrată
+
+Două ghiduri despre mastici recomandă acum StrongEdge 45, Glaxs Fast și Eliox
+pentru lipirea la 45°, iar Tixo XE rămâne încadrat la aplicări verticale și pe
+muchii. Articolul despre ceramica de format mare folosește formulări românești
+corecte pentru montaj, gresie subțire și acordul substantivului „mastic”.
+
+### Verificare
+
+Recomandările de produs au fost confruntate cu exportul canonic local și cu
+feedbackul de atelier al lui Andrei Rinzis. Validarea textului public trece
+pentru toate cele trei articole, testele de publicație sunt 10/10 PASS, iar
+verificarea TypeScript este PASS.
+
 ## 2026-08-18 - Corecție expert lipirea la 45°
 
 ### Schimbare livrată

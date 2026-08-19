@@ -11,7 +11,7 @@ heroImage: "/blog/adeziv-ceramica-format-mare-mastice-clasice-cedeaza/hero.webp"
 ogImage: "/assets/articles/adeziv-ceramica-format-mare-mastice-clasice-cedeaza/og.png"
 ---
 
-Masticul clasic de montaj ceramică nu cedează la o placă mare pentru că ar fi o formulă chimic depășită. Fișa tehnică a producătorului îl exclude explicit peste niște dimensiuni mult mai mici decât presupun majoritatea celor care îl folosesc, mai ales la porțelan. Folosit peste acea limită, iese din domeniul validat de producător și riscă să cedeze; cauza exactă a unei cedări concrete se stabilește separat, la interfața dintre placă, adeziv și suport. Înainte să alegi orice adeziv pentru o placă mare, mai contează un singur lucru: cuvântul „mastic” înseamnă două produse complet diferite, în funcție de cine îl folosește și pentru ce.
+Masticul clasic de montaj pentru ceramică nu cedează la o placă mare pentru că ar fi o formulă depășită chimic. Fișa tehnică a producătorului îl exclude explicit peste niște dimensiuni mult mai mici decât presupun majoritatea celor care îl folosesc, mai ales la porțelan. Folosit peste acea limită, iese din domeniul validat de producător și riscă să cedeze; cauza exactă a unei cedări concrete se stabilește separat, la interfața dintre placă, adeziv și suport. Înainte să alegi orice adeziv pentru o placă mare, mai contează un singur lucru: cuvântul „mastic” înseamnă două produse complet diferite, în funcție de cine îl folosește și pentru ce.
 
 ## Doi mastici, două lucrări diferite
 
@@ -33,7 +33,7 @@ Pe lângă limita de format, mai există un mecanism care nu ține deloc de aleg
 
 ARDmag nu vinde mortar de montaj pentru gresie pe perete sau pardoseală. Vinde rășini Tenax pentru lipire, laminare și chituire tehnică în atelier, pe ceramică, piatră naturală și cuarț.
 
-E o distincție importantă pentru cititorul care caută „adeziv flexibil pentru gres slim”: dacă lucrarea ta e montajul unei plăci pe suport, răspunsul corect ține de sistemul de montaj (adeziv + suport + rosturi), nu de o rășină de atelier. Dacă lucrarea ta e lipirea, laminarea pe suport sau chituirea unei plăci mari și subțiri de ceramică sau porțelan tehnic în atelier, aici intră rășinile din [gama de mastici Tenax](/categories/mastici-tenax).
+E o distincție importantă pentru cititorul care caută „adeziv flexibil pentru gresie subțire”: dacă lucrarea ta e montajul unei plăci pe suport, răspunsul corect ține de sistemul de montaj (adeziv + suport + rosturi), nu de o rășină de atelier. Dacă lucrarea ta e lipirea, laminarea pe suport sau chituirea unei plăci mari și subțiri de ceramică sau porțelan tehnic în atelier, aici intră rășinile din [gama de mastici Tenax](/categories/mastici-tenax).
 
 ## Ce rășină alegi, în funcție de ce faci
 
@@ -43,7 +43,7 @@ Rășina potrivită pentru format mare depinde de scopul lucrării, nu de un cla
 
 [Domo 10](https://www.tenax.it/en/products/professional/domo-10-ab/) e opusul ca temperament: un mastic epoxidic solid, gândit pentru rezistență maximă, aplicabil și pe suprafețe ușor umede. Fișa oficială publică aceeași categorie de cifră ca Gravity (timpul minim înainte de șlefuire și tăiere), dar la 24 de ore, nu la minute; gelificarea în vrac e de 2 ore și 30 de minute, iar timpul fără aderență la atingere în strat subțire e de 4 ore. E vândut explicit pe forța îmbinării, nu pe o fereastră de lucru scurtă.
 
-[FixTop](https://www.tenax.it/en/products/professional/fixtop-ab/) și [Rivo](https://www.tenax.it/en/products/professional/rivo-ab/) sunt amândouă mastici epoxidici pentru lipire, cuplare și lipire mixtă, între aceste două extreme, dar în ritmuri diferite: FixTop gelifică în vrac în 30-40 de minute și e descris ca ușor de întins, Rivo gelifică în 15-20 de minute pentru întărire rapidă. Pentru o lucrare concretă, confirmă varianta cu ARDmag înainte să comanzi. [Eliox](https://www.tenax.it/en/products/professional/eliox-ab/) e recomandat oficial pentru lipirea la vedere, fațade și pardoseli, cu îngălbenire foarte redusă.
+[FixTop](https://www.tenax.it/en/products/professional/fixtop-ab/) și [Rivo](https://www.tenax.it/en/products/professional/rivo-ab/) sunt amândoi mastici epoxidici pentru lipire, cuplare și lipire mixtă, între aceste două extreme, dar în ritmuri diferite: FixTop gelifică în vrac în 30-40 de minute și e descris ca ușor de întins, Rivo gelifică în 15-20 de minute pentru întărire rapidă. Pentru o lucrare concretă, confirmă varianta cu ARDmag înainte să comanzi. [Eliox](https://www.tenax.it/en/products/professional/eliox-ab/) e recomandat oficial pentru lipirea la vedere, fațade și pardoseli, cu îngălbenire foarte redusă.
 
 Gravity ajunge la timpul minim de șlefuire și tăiere în 25-40 minute; Domo 10 ajunge la același prag abia după 24 de ore. Alege rășina după cifrele reale din fișa tehnică a produsului ales, nu după un clasament general.
 
