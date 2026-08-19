@@ -1,0 +1,15 @@
+{
+  "prompt": "Use case: photorealistic-natural\nAsset type: ARDmag editorial hero, 16:9\nPrimary request: an original, premium, technically accurate workshop photograph of a dry-fit mitered stone corner before glue. Exactly two short rigid natural-stone rectangular samples: one horizontal sample ends in a true 45-degree bevel and one vertical sample ends in its complementary true 45-degree bevel. Their full bevel planes touch flush and create exactly one crisp convex 90-degree L-shaped exterior corner. A craftsperson holds the two samples together so the bevel faces make full flush contact and the outer faces form exactly one crisp 90-degree convex L-shaped corner.\nScene/backdrop: credible professional stone workshop in Romania, subdued and softly defocused. Empty workbench occupies the left 45% and lower-left quadrant.\nSubject and hand placement: place the compact L-shaped samples near x=0.55. Show two small complete hands belonging to one worker, both seen from fingertips through wrists. The upper hand is immediately above the joint and holds the short horizontal sample; the lower hand is immediately below the joint and holds the short vertical sample. Hands face inward toward each other and do not overlap the seam.\nStyle/medium: premium documentary editorial photography, realistic natural skin and stone, credible camera optics, not CGI, no staged catalog feel.\nComposition/framing: wide 16:9, slightly wider camera distance, front-left oblique view. Central-right compact action, large clean negative space left and bottom-left. Must remain complete in a central 9:16 crop and shallow 21:9 crop.\nLighting/mood: controlled soft workshop daylight, warm earth tones with subtle terracotta and amber.\nMaterials/textures: honed beige limestone, rigid straight 20 mm pieces, crisp intact edges, dry clean faces, realistic contact shadows.\nConstraints: exactly two rigid pieces and two 45-degree mating faces; true full contact and exact 90-degree corner; dry-fit only; hands merely align; anatomically correct hands, five fingers each, realistic grip; coherent perspective, scale, thickness, shadows. No text, logos, watermark, labels, products, packaging, UI or tools.\nAvoid: adhesive, mastic, glue, paste, liquid, application, clamps, saw, polishing; no gap, black void, overlap, double seam or edge, extra fragment or layer, material bridge, melted, bent or warped stone, floating sample, deformed, extra, fused or cropped fingers.",
+  "generatedAt": "2026-08-19",
+  "provider": "openai-imagegen-built-in",
+  "mode": "generate",
+  "reference": {
+    "path": "/home/dc/.hermes/cache/images/img_444256ab2011.webp",
+    "role": "art-direction/composition only"
+  },
+  "focusPoint": { "x": 0.57, "y": 0.49 },
+  "storyFocusX": 0.7,
+  "subjectBbox": { "x1": 0.52, "y1": 0.11, "x2": 0.88, "y2": 0.85 },
+  "selectedVariant": 5,
+  "generatedVariants": 7
+}
