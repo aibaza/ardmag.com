@@ -109,7 +109,10 @@ export default async function BlogArticlePage({ params }: Props) {
       <SiteHeaderShell countryCode={countryCode} />
 
       {/* ── ARTICLE HEAD ── */}
-      <header className={`article-head${article.heroImage ? " article-head--hero" : ""}`}>
+      <header
+        className={`article-head${article.heroImage ? " article-head--hero" : ""}`}
+        data-article-slug={slug}
+      >
         {article.heroImage && (
           <>
             <img className="hero-bg" src={article.heroImage} alt="" aria-hidden="true" />

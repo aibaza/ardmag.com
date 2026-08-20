@@ -7,7 +7,7 @@ review: "PASS"
 publishedAt: "2026-07-30"
 author: "Echipa ardmag"
 tags: ["mastici", "Tenax", "piatra naturala", "45 grade", "muchie suprapusa", "atelier"]
-heroImage: "/blog/lipirea-la-45-eviti-fisurarea-muchiei/hero.webp"
+heroImage: "/blog/lipirea-la-45-eviti-fisurarea-muchiei/hero-source.png"
 heroImageWidth: 1672
 heroImageHeight: 941
 ogImage: "/assets/articles/lipirea-la-45-eviti-fisurarea-muchiei/og.png"
