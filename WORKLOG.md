@@ -2037,3 +2037,15 @@ ClickUp/time entry:
 - Hero și OG noi folosesc compoziție editorială fără ambalaje prezentate ca produse exacte; proveniența și hash-urile sunt în manifest.
 - PDP-ul live Mastic Lichid a fost actualizat prin Admin API și recitit; build-ul de producție a trecut 753/753 pagini, inclusiv sitemap-ul static.
 - Review determinist și review-urile independente Claude/Codex: PASS pe hash-ul agregat `7da6bf5e9e8232145cc40a2e52cf811acd5a7ae7ed11d263064516de78d493cc`.
+## 2026-08-20 - Hero și OG înlocuite din sursa furnizată pentru lipirea la 45°
+
+- Hero master a fost înlocuit cu imaginea furnizată explicit de DC, fără generare
+  și fără modificarea geometriei sau conținutului scenei.
+- Focusul `(0.52, 0.52)` păstrează piesa din piatră completă în crop-urile 21:9,
+  16:9 și 4:3 și lasă zona stânga-jos liberă pentru titlu.
+- Au fost regenerate toate variantele responsive, fundalul comun și OG-ul din
+  aceeași sursă. Sursa și hash-ul ei sunt consemnate în `hero/prompt.json`.
+- QA vizual: crop-urile desktop, tabletă și mobil și OG-ul au fost verificate.
+  Testele de publicare au trecut (10/10). Compilarea Next.js a trecut, iar build-ul
+  local s-a oprit ulterior la prerandarea sitemap-ului din cauza unui URL invalid
+  din mediul local; aceeași limitare de mediu este verificată din nou în Vercel.
