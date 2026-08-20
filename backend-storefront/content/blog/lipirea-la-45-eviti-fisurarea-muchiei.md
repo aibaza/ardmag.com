@@ -10,7 +10,7 @@ tags: ["mastici", "Tenax", "piatra naturala", "45 grade", "muchie suprapusa", "a
 heroImage: "/blog/lipirea-la-45-eviti-fisurarea-muchiei/hero-source.png"
 heroImageWidth: 1672
 heroImageHeight: 941
-ogImage: "/assets/articles/lipirea-la-45-eviti-fisurarea-muchiei/og.png"
+ogImage: "/assets/articles/lipirea-la-45-eviti-fisurarea-muchiei/og-dc-20260820.png"
 ---
 
 Pentru lipirile la 45°, recomandările noastre sunt StrongEdge 45, Glaxs Fast și Eliox. O muchie suprapusă la 45° la piatră naturală poate ceda din alegerea sau aplicarea greșită a adezivului, dar și din trei zone mecanice care merită verificate separat: un vârf ciobit la tăiere, un rost care nu se închide complet sau o fisură pornită dintr-o zonă fără suport. Fiecare are o cauză și un remediu diferit.

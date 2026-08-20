@@ -9,7 +9,7 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 - Sursa furnizată de DC (`img_713451c4876b.png`, 1672x941, SHA-256 `222f0fdad890507828bf411e28dec8237981b6ef9c78afabead079812d2c25b7`) este servită ca hero fără regenerare sau reinterpretare; assetul public are bytes identici.
 - Cauza aspectului de „două tije” era crop-ul CSS `object-fit: cover`: desktopul elimina aproximativ 41% din înălțimea sursei, iar mobilul păstra aproximativ 42% din lățime. Articolul păstrează acum cadrul complet pe desktop și afișează imaginea integrală deasupra textului pe mobil.
-- OG-ul 1200x630 este derivat din aceeași sursă prin redimensionare proporțională și padding contextual. Singurele adaosuri sunt logo-ul și overlay-ul editorial în spațiul liber din stânga; geometria îmbinării și suprafețele plăcilor nu sunt acoperite sau modificate.
+- OG-ul 1200x630 este derivat din aceeași sursă prin redimensionare proporțională și padding contextual. Singurele adaosuri sunt logo-ul și overlay-ul editorial în spațiul liber din stânga; geometria îmbinării și suprafețele plăcilor nu sunt acoperite sau modificate. URL-ul OG este nou și versionat (`og-dc-20260820.png`), pentru a nu reutiliza cache-ul `immutable` al imaginii vechi.
 - Validări: publication gate 10/10 PASS; build Vercel PASS (753 pagini statice); preview `dpl_EkePf53J1v8BAk7zBea2zN57VmLG` Ready. Build-ul local compilează, apoi cheia publică Medusa locală expirată blochează sitemap-ul; configurația reală Vercel finalizează build-ul.
 - ClickUp/time entry: conectorul și skill-ul local `aibaza-deploy-workflow` nu sunt disponibile în această sesiune.
 
