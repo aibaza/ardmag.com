@@ -5,6 +5,21 @@ Format: [date] type: description
 
 ---
 
+## 2026-08-21 - Ghid pentru discuri peste 600 mm și fir diamantat
+
+### Schimbare livrată
+
+Articolul explică datele necesare pentru analiza preliminară a configurațiilor
+vizate. ARDmag este prezentat în rolul confirmat de producător și interlocutor
+tehnic, iar cantitatea sau debitul de apă este cerut pentru discurile mari
+vizate, fără extrapolare la întregul catalog.
+
+### Verificare
+
+Versiunea articolului și vizualul sunt cele aprobate pe staging. Receipt-ul v2
+separă și validează hash-urile articolului revizuit, asset-urilor și bundle-ului
+public; gate-urile de review și dată sunt PASS.
+
 ## 2026-08-19 - Corecții editoriale în trei ghiduri tehnice
 
 ### Schimbare livrată
