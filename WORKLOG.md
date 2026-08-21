@@ -5,6 +5,14 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-21 -- Ghidul pentru configurații made-to-order este live
+
+- Articolul public este exact versiunea aprobată pe staging la `8588d3c`; nu au fost făcute alte schimbări editoriale și nu a fost programată nicio promovare socială.
+- Receipt-ul v2 este PASS pentru articolul revizuit `6549dd9d99a2ae55bec32c19eb44c9625af85ce769cc6780bf7165b80cece580`, asset-uri `6c20a9f5e8d8d45e9333f9f70f43fb0cc1e0cc1fe2efa96c5a7182c336ee1fde` și bundle-ul public `c4ec51c7e9989602523e8e458701524beb4878736f226fde92431f98c8e6ca40`.
+- Validări locale: public-copy PASS, gate-urile de review/publicare/deploy PASS, 10/10 teste de publicație, 26/26 teste receipt/review-gate și TypeScript PASS. Build-ul local compilează, apoi sitemap-ul se oprește pe URL-ul Medusa mascat; build-ul cu mediul real Vercel este PASS.
+- Deploy production `dpl_5TzKoKQ3mQ7esvKEXe36gmzXytcQ` este Ready și promovat pe `ardmag.ro` din commitul `e319fe7`.
+- Readback live: HTTP 200, title și H1 exacte, rolul ARDmag ca producător, cantitatea/debitul de apă, CTA/mailto și canonical sunt prezente; URL-ul este în sitemap, formulările contradictorii au zero apariții, iar hero-ul live are hash-ul aprobat `8a22732a89119bd800282bb1e0e0dc11e233dcf16409ea74fd198a1bded178ba`.
+
 ## 2026-08-20 -- Cadrul complet al celor două plăci este păstrat în hero și OG
 
 - Sursa furnizată de DC (`img_713451c4876b.png`, 1672x941, SHA-256 `222f0fdad890507828bf411e28dec8237981b6ef9c78afabead079812d2c25b7`) este servită ca hero fără regenerare sau reinterpretare; assetul public are bytes identici.
