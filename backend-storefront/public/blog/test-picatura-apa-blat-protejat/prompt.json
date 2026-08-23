@@ -1,0 +1,17 @@
+{
+  "prompt": "anthracite graphic composition with subtle intersecting diagonals, mineral-grey arc and generous dark negative space. Editorial 16:9 composition; products are heroes inside one coherent abstract design with deliberate overlay space. Premium ARDmag.ro editorial graphic composition: abstract mineral design, not a physical location. Integrate every referenced product coherently with the chosen design through consistent light, perspective, scale, edges and visual relationships; a physical surface or documentary environment is not required. For physical products, default to a three-quarter camera view (10-20 degrees lateral yaw and/or slightly elevated), showing volume, base thickness, perspective and contact shadows. Use restrained navy, anthracite and mineral-grey fields with subtle geometry and one controlled gold accent; reserve intentional space for deterministic title, logo, badge and product-name overlays. ARDmag: packaging follows references; workwear says \"ARC-ROM Diamonds\", never ARDmag on clothes. Avoid every literal workplace, jobsite, storage-space, showroom or room backdrop, no perfectly frontal camera or flat packshot alignment unless explicitly required, no documentary scene, cutout, collage, mockup, white halo, floating product or fake label one continuous generated composition - no montage, no collage, no split panels, no pasted cutouts or scissor edges; no fine text in image; any in-image text: no Romanian diacritics; packaging faithful to reference - full label with all its text rows and badges, never simplified; reference label text is the only permitted fine text; integrated naturally, never pasted.",
+  "references": [
+    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/idrorep/db3b5a_4cfdbef8b6d4480ca73b05b1044ce019/hero.jpg",
+    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/quasar/db3b5a_b972836a1c0f4ff2a7246051a9ab16f2/hero.jpg",
+    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/seal/db3b5a_0f7892d2bbc0476094359882547a2e4b/hero.jpg",
+    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/skudo/db3b5a_4812ffed1d7741cfbf2ba4105e742a2b/hero.jpg"
+  ],
+  "format": "hero",
+  "aspectRatio": "16:9",
+  "technique": "workshop-bench",
+  "generatedAt": "2026-08-23",
+  "provider": "codex-cli",
+  "pipeline": "tools/social/scripts/generate-images.js --hero",
+  "finalWebp": "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend-storefront/public/blog/test-picatura-apa-blat-protejat/hero.webp",
+  "finalDimensions": "1376x768"
+}

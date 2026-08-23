@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "artifact": "og.png",
+  "creative_tags": {
+    "hook": "how_to",
+    "format": "og_image",
+    "angle": "product_selection",
+    "cta": "read_article",
+    "vibe": "practical"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "test-picatura-apa-blat-protejat",
+    "roundDate": "2026-08-23",
+    "template": "og-image",
+    "platform": "og",
+    "aiDisclosure": {
+      "applied": false,
+      "note": "tools/social/templates/ardmag.com/og-image.html and tools/social/templates/og-image.html carry no {{AI_NOTE_DISPLAY}}/{{AI_NOTE_TEXT}} tokens, unlike linkedin/facebook/instagram/story templates. content-policy.json requires ai_disclosure.default=required. Flagged for CTO/CMO, not silently patched here."
+    },
+    "applied_learning_ids": [
+      "learn_content_ardmag_angle_product_selection",
+      "learn_content_ardmag_hook_myth_bust",
+      "learn_ardmag_creative_craft_technique_ban",
+      "learn_ardmag_accessible_price_first",
+      "learn_ardmag_safe_specialist_poses",
+      "learn_content_ardmag_cta_read_article"
+    ],
+    "experiment_bucket": "exploit"
+  }
+}
