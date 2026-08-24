@@ -24,7 +24,10 @@ COMMIT;
 
 export default async function applyStagingShippingMap({ container }: ExecArgs) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
-  if (process.env.RAILWAY_ENVIRONMENT_NAME !== "staging" || process.env.STAGING_SANDBOX !== "true") {
+  if (
+    process.env.RAILWAY_ENVIRONMENT_NAME !== "staging" ||
+    process.env.RAILWAY_ENVIRONMENT_ID !== "c47689f6-eaf2-48ac-8eae-bdcf11e7c27c"
+  ) {
     throw new Error("apply-staging-shipping-map: guard refuzat; numai Railway staging sandbox")
   }
   const client = new Client({ connectionString: process.env.DATABASE_URL })
