@@ -5,6 +5,16 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-24 -- Pagina de 404 a magazinului si imaginile articolului sunt live
+
+- Cele cinci ecrane de 404 mergeau pe implementari divergente, iar cel de la radacina (`src/app/not-found.tsx`) folosea inca clase Tailwind. Directivele `@tailwind` fusesera scoase din `globals.css` la portarea pe design system (`1223cc4`), deci clasele nu mai existau in CSS-ul servit: verificat pe bundle-urile live, `flex-col`, `items-center` si `w-3.5` aveau zero aparitii. Pagina se randa complet nestilizata, cu sageata SVG intinsa pe tot ecranul.
+- Ecranul comun nou (`src/modules/layout/not-found/NotFoundView.tsx`) are antetul si subsolul magazinului plus caile de recuperare: cautare in catalog, categoriile principale, produse, promotii, blog si datele de contact. Categoriile vin din acelasi apel cache-uit ca antetul, cu retragere pe lista goala daca backendul nu raspunde. Stilurile folosesc doar tokeni, deci varianta dark vine automat. Checkout-ul pastreaza o varianta proprie, fara antet si subsol.
+- `getBaseURL()` prefera acum `NEXT_PUBLIC_PREVIEW_BASE_URL`, setata doar de `tools/preview/preview-deploy.sh` din repo-ul de ops. Fara ea, un preview de validare emitea `og:image` si `canonical` cu domeniul de productie, unde articolul nepublicat nu exista, deci previzualizarea linkului trimis clientului iesea rupta. `NEXT_PUBLIC_BASE_URL` nu putea fi folosita: e definita "sensitive" la nivel de proiect in Vercel si valoarea de proiect bate `--build-env`, verificat pe un deploy real. Productia nu primeste variabila.
+- `og.png` (sha256 `c76a3791709f9f11d1c4267959d8a99e87d67ac2efb1cc1a132c4935eb6d59b7`) si `hero.webp` pentru slotul din 24 august sunt comise, conform conventiei din repo: doar imaginile, fara sidecar-urile de generare. Articolul in sine (`content/blog/<slug>.md`) NU este comis - publicarea asteapta validarea lui Andrei si Cristian, decizia D-0112.
+- Validari: TypeScript PASS, ESLint PASS, 5/5 teste `src/lib/util/env.test.ts` (doua noi pentru baza de preview). Verificat pe preview in light, dark si mobil, pe ambele intrari de 404 (fisier lipsa din `/assets` si pagina inexistenta).
+- Deploy production `dpl_AyPDngckTdULc5y3qLjbpYW5yVbh` este Ready din commitul `b71a181`. Readback live: `og.png` 200 (1200x630, 573833 bytes), ambele intrari de 404 raspund 404 cu ecranul nou, articolul ramane 404 pe productie ca inainte.
+- Commits: `e0d8056`, `20adb18`, `b71a181`.
+
 ## 2026-08-21 -- Ghidul pentru configurații made-to-order este live
 
 - Articolul public este exact versiunea aprobată pe staging la `8588d3c`; nu au fost făcute alte schimbări editoriale și nu a fost programată nicio promovare socială.
