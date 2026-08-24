@@ -6,10 +6,10 @@
  *   npx medusa exec ./src/scripts/migrate-shipping-cargus-payment-map.ts
  *   npx medusa exec ./src/scripts/migrate-shipping-cargus-payment-map.ts -- apply
  */
-import type { ExecArgs } from "@medusajs/framework/types"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import type { ExecArgs } from "@medusajs/framework/types";
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
 
-const APPLY = process.argv.includes("apply")
+const APPLY = process.argv.includes("apply");
 
 const SQL = `
 BEGIN;
@@ -34,20 +34,25 @@ WHERE shipping_option_id IN (
 ) AND attribute = 'item_total';
 
 COMMIT;
-`
+`;
 
-export default async function migrateShippingCargusPaymentMap({ container }: ExecArgs) {
-  const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
-  logger.info("migrate-shipping-cargus-payment-map: SQL idempotent generat")
-  console.log(SQL)
+export default async function migrateShippingCargusPaymentMap({
+  container,
+}: ExecArgs) {
+  const logger = container.resolve(ContainerRegistrationKeys.LOGGER);
+  logger.info("migrate-shipping-cargus-payment-map: SQL idempotent generat");
+  console.log(SQL);
 
   if (!APPLY) {
-    logger.info("DRY-RUN: nu s-a modificat baza de date. Foloseste -- apply numai conform rollout-ului aprobat.")
-    return
+    logger.info(
+      "DRY-RUN: nu s-a modificat baza de date. Foloseste -- apply numai conform rollout-ului aprobat."
+    );
+    return;
   }
 
   // Nu ascundem aplicarea in spatele unui client extern: operatorul executa SQL-ul afisat
   // intr-o tranzactie controlata, dupa backup si validarea preflight din documentatie.
-  throw new Error("Aplicare blocata intentionat: executa SQL-ul afisat prin consola SQL aprobata, conform docs/livrare-fan-cargus-rollout.md")
+  throw new Error(
+    "Aplicare blocata intentionat: executa SQL-ul afisat prin consola SQL aprobata, conform docs/livrare-fan-cargus-rollout.md"
+  );
 }
-
