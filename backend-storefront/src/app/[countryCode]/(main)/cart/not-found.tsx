@@ -1,16 +1,18 @@
 import { Metadata } from "next"
+import { NotFoundView } from "@modules/layout/not-found"
 
 export const metadata: Metadata = {
-  title: "404 | ARDmag.ro",
+  title: "Coșul nu a putut fi accesat",
+  robots: { index: false, follow: true },
 }
 
 export default function NotFound() {
   return (
-    <div style={{ padding: "48px 24px", textAlign: "center" }}>
-      <h1>Pagina nu a fost găsită</h1>
-      <p style={{ color: "var(--fg-muted)", margin: "16px 0" }}>
-        Coșul nu a putut fi accesat. <a href="/">Înapoi la pagina principală</a>
-      </p>
-    </div>
+    <NotFoundView
+      title="Coșul nu a putut fi accesat"
+      deck="Sesiunea de coș a expirat sau nu mai există. Produsele adăugate se pot pune din nou în coș din catalog."
+      backHref="/produse"
+      backLabel="Înapoi la produse"
+    />
   )
 }
