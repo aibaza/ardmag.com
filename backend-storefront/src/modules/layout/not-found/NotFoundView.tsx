@@ -1,7 +1,11 @@
 import Link from "next/link"
 import { listCategories } from "@lib/data/categories"
+import { listProducts } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
 import { formatCategoryTitle } from "@lib/util/category-title"
+import { productToCard } from "@lib/util/adapters/product-to-card"
+import { SectionHead } from "@modules/@shared/components/section-head"
+import { ProductGrid } from "@modules/products/product-grid"
 import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 
@@ -21,9 +25,14 @@ interface NotFoundViewProps {
  * plus caile de recuperare pe care le cauta un vizitator ajuns pe o adresa moarta
  * (cautare, categorii, produse, contact).
  *
- * Categoriile vin din acelasi apel cache-uit ca antetul (`staticCache`), cu
+ * Produsele afisate sunt deliberat cele strategice - promotiile active si
+ * intrarile recente - nu o selectie aleatoare. Cine ajunge pe o adresa moarta a
+ * venit cu o intentie comerciala, iar astea sunt singurele doua taieturi din
+ * catalog care raspund la ea fara sa stim ce cauta.
+ *
+ * Categoriile si produsele vin din aceleasi apeluri cache-uite ca homepage-ul, cu
  * fallback pe lista goala: un 404 nu are voie sa depinda de disponibilitatea
- * backendului - se degradeaza la varianta fara categorii si atat.
+ * backendului - se degradeaza la varianta fara ele si atat.
  */
 export async function NotFoundView({
   countryCode = "ro",
@@ -32,9 +41,40 @@ export async function NotFoundView({
   backHref,
   backLabel,
 }: NotFoundViewProps) {
-  const categories = await listCategories(undefined, { staticCache: true }).catch(
-    () => [] as HttpTypes.StoreProductCategory[]
-  )
+  const [categories, productsResult] = await Promise.all([
+    listCategories(undefined, { staticCache: true }).catch(
+      () => [] as HttpTypes.StoreProductCategory[]
+    ),
+    listProducts({
+      pageParam: 1,
+      queryParams: {
+        limit: 100,
+        fields:
+          "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+images",
+      },
+      countryCode,
+      publicFetch: true,
+    }).catch(() => ({ response: { products: [], count: 0 }, nextPage: null })),
+  ])
+
+  const allProducts = productsResult.response.products
+
+  const promoProducts = allProducts
+    .filter((p) =>
+      (p.variants ?? []).some((v: any) => {
+        const cp = v.calculated_price
+        return cp?.original_amount != null && cp.original_amount > cp.calculated_amount
+      })
+    )
+    .slice(0, 4)
+
+  const newProducts = [...allProducts]
+    .sort((a, b) => {
+      const aTime = a.created_at ? new Date(a.created_at).getTime() : 0
+      const bTime = b.created_at ? new Date(b.created_at).getTime() : 0
+      return bTime - aTime
+    })
+    .slice(0, 4)
 
   const topCategories = categories
     .filter((c) => c.handle && c.handle !== "mese-de-taiat" && !c.parent_category)
@@ -110,6 +150,40 @@ export async function NotFoundView({
             dacă îl avem și sub ce denumire.
           </p>
         </div>
+
+        {/* Grilele ies din coloana de text (`.nf-inner`, 760px) si folosesc
+            latimea paginii, ca pe homepage. */}
+        {promoProducts.length > 0 && (
+          <section className="nf-products">
+            <SectionHead
+              eyebrow="Promoții active"
+              title="La reducere"
+              seeAllHref="/promotii"
+              seeAllLabel="Toate promoțiile →"
+            />
+            <ProductGrid
+              variant="mini"
+              products={promoProducts.map((p) => productToCard(p, countryCode))}
+              countryCode={countryCode}
+            />
+          </section>
+        )}
+
+        {newProducts.length > 0 && (
+          <section className="nf-products">
+            <SectionHead
+              eyebrow="Recent adăugate"
+              title="Produse noi în stoc"
+              seeAllHref="/produse"
+              seeAllLabel="Toate produsele →"
+            />
+            <ProductGrid
+              variant="mini"
+              products={newProducts.map((p) => productToCard(p, countryCode))}
+              countryCode={countryCode}
+            />
+          </section>
+        )}
       </main>
 
       <SiteFooter countryCode={countryCode} />

@@ -1809,3 +1809,5 @@ a.badge:hover{transform:translateY(-1px)}
   .nf-search{flex-direction:column;max-width:none}
   .nf-search .btn{width:100%}
 }
+.nf-products{margin-top:40px;padding-top:8px;border-top:1px solid var(--rule)}
+.nf-products .sec-head{margin-top:24px}
