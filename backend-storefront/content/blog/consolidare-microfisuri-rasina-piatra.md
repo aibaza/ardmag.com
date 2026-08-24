@@ -3,10 +3,10 @@ title: "Microfisuri în placă: când se consolidează cu rășină și când pl
 description: "Cum decizi dacă o microfisură în piatră naturală se consolidează cu RES 1001 sau placa trebuie înlocuită: cauza fisurii, zona și rezultatul estetic, în ordinea asta."
 kicker: "Ghid tehnic · Reparații piatră"
 status: "draft"
-review: "PENDING"
+review: "PASS"
 publishedAt: "2026-08-31"
 author: "Echipa ardmag"
-tags: ["res 1001", "microfisuri", "piatra naturala", "consolidare", "rasina"]
+tags: ["RES 1001", "microfisuri", "piatra naturala", "consolidare", "rasina"]
 heroImage: "/blog/consolidare-microfisuri-rasina-piatra/hero.webp"
 ogImage: "/assets/articles/consolidare-microfisuri-rasina-piatra/og.png"
 ---
@@ -56,8 +56,6 @@ După ce fisura e consolidată, placa intră în etapa tratamentelor de protecț
 ## Spune-ne despre placa ta
 
 Spune-ne ce tip de piatră ai, unde e fisura și cât de solicitată e zona respectivă, prin [formularul de contact](/contact). Confirmăm împreună dacă rășina e opțiunea potrivită înainte să decizi.
-
----
 
 ## Surse și referințe
 
