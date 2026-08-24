@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "capability": "openai.imagegen",
+  "model": "chatgpt-imagegen-2",
+  "physical_product_present": true,
+  "created_at": "2026-08-17T13:10:00Z",
+  "prompt_path": "generation-prompt.txt",
+  "product_catalog_mapping": {
+    "commercial_product_name": "Poten",
+    "catalog_source": "clients/ardmag.com/site/docs/catalog_products-2026-05-01.csv:846",
+    "canonical_live_url": "https://ardmag.ro/products/poten",
+    "packaging_identity_visible_in_catalog_photos": "Super Selva - Polishing Powder for Marble",
+    "note": "Super Selva is not a substituted product: it is the label visible in the two canonical product images stored under backend/static/images/poten and shown on the live Poten product page."
+  },
+  "references": [
+    {
+      "role": "canonical_poten_marble_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/poten/db3b5a_890fb5b4b445458881a8ec770b913154/hero.jpg",
+      "sha256": "cd08d5bd28dd74428c0ef5cddb32ee7e8cc2ee801e875bd1cc98b20298025207"
+    },
+    {
+      "role": "canonical_poten_granite_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/poten/db3b5a_ea609cf6d6b347e584dcade49683e1e7/hero.jpg",
+      "sha256": "c4ad603815959af10a4f054128b138b957630fcd723c4e99f348bc5f610896bf"
+    },
+    {
+      "role": "canonical_pad_polimaster_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/pad-polimaster-hex/db3b5a_82e4936dfc004a1482d995bb6ba272ad/hero.png",
+      "sha256": "f5ccf8811bbb8e109dcb2ee33a60cbc34dc9deef69505bc4bd036adcb5cd18d4"
+    }
+  ],
+  "output": {
+    "role": "article_hero",
+    "path": "clients/ardmag.com/site/backend-storefront/public/blog/polish-chimic-vs-cristalizare-mecanica-travertin/hero.webp",
+    "sha256": "e63f0c06c6f797617aebf2419844c4e0ba1f49f0f67f656050c49762d1989e8d"
+  },
+  "derived_outputs": [
+    {
+      "role": "og_with_deterministic_overlay",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/polish-chimic-vs-cristalizare-mecanica-travertin/og.png",
+      "sha256": "38821c1af4134a35fbb28246acd0305dfbaf6133f5de2d2a9fd57f3ca8504660"
+    }
+  ],
+  "checks": {
+    "product_and_scene_generated_together": true,
+    "cutout_or_compositing": false,
+    "no_craft_technique_depiction": true,
+    "deterministic_post_generation_changes": ["format conversion for hero", "ARDmag OG template overlay"]
+  }
+}

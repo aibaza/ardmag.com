@@ -1,4 +1,4 @@
-import { buildPurchasePayload } from "../purchase-payload"
+import { buildPurchasePayload, verifyCollectorPurchaseResponse } from "../purchase-payload"
 
 describe("buildPurchasePayload", () => {
   it("maps order metadata attribution into collector purchase payload", () => {
@@ -30,28 +30,15 @@ describe("buildPurchasePayload", () => {
       site: "ardmag.ro",
       event: "purchase",
       event_id: "order_123",
-      order_id: "order_123",
       value: 349,
-      currency: "ron",
+      currency: "RON",
       utm_source: "facebook",
       utm_medium: "cpc",
       utm_campaign: "summer",
       resolved_via: "fbclid",
-      extra: {
-        order_id: "order_123",
-        currency: "ron",
-        attribution: {
-          resolved_source: "facebook",
-          resolved_medium: "cpc",
-          resolved_campaign: "summer",
-          resolved_via: "fbclid",
-          fbclid: "fb123",
-          gclid: "g123",
-          fbc: "fb.1.1783166400000.fb123",
-          attribution_window_days: 90,
-        },
-      },
     })
+    expect(JSON.stringify(payload)).not.toContain("fb123")
+    expect(JSON.stringify(payload)).not.toContain("first_touch")
   })
 
   it.each([
@@ -70,7 +57,7 @@ describe("buildPurchasePayload", () => {
     })
 
     expect(payload.value).toBe(canonicalTotal)
-    expect(payload.currency).toBe("ron")
+    expect(payload.currency).toBe("RON")
     expect(payload.event_id).toBe("order_anonymized")
   })
 
@@ -82,6 +69,12 @@ describe("buildPurchasePayload", () => {
     })
 
     expect(payload.value).toBe(75)
-    expect(payload.currency).toBe("eur")
+    expect(payload.currency).toBe("EUR")
+  })
+
+  it("verifica acknowledgement-ul exact al collectorului", async () => {
+    await expect(verifyCollectorPurchaseResponse(new Response(JSON.stringify({ ok: true, written: 1 }), { status: 202 }))).resolves.toBeUndefined()
+    await expect(verifyCollectorPurchaseResponse(new Response(JSON.stringify({ ok: true, written: 0 }), { status: 202 }))).rejects.toThrow("collector_write_not_acknowledged")
+    await expect(verifyCollectorPurchaseResponse(new Response("unauthorized", { status: 401 }))).rejects.toThrow("collector_http_401")
   })
 })

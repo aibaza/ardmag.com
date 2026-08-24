@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       }
   const articleUrl = `/blog/${slug}`
   return {
-    title: `${article.title} | Ardmag`,
+    title: { absolute: article.title },
     description: article.description,
     alternates: { canonical: articleUrl },
     openGraph: {
@@ -77,7 +77,26 @@ export default async function BlogArticlePage({ params }: Props) {
   if (!article) notFound()
 
   const toc = extractToc(article.html)
-  const related = allArticles.filter((a) => a.slug !== slug).slice(0, 3)
+  const articleTags = new Set(article.tags ?? [])
+  const related = allArticles
+    .filter((a) => a.slug !== slug)
+    .map((candidate) => ({
+      candidate,
+      sharedTags: (candidate.tags ?? []).filter((tag) => articleTags.has(tag)).length,
+      sameTopic:
+        candidate.kicker?.split("·")[0].trim() === article.kicker?.split("·")[0].trim()
+          ? 1
+          : 0,
+    }))
+    .filter(({ sharedTags, sameTopic }) => sharedTags > 0 || sameTopic > 0)
+    .sort(
+      (a, b) =>
+        b.sharedTags - a.sharedTags ||
+        b.sameTopic - a.sameTopic ||
+        b.candidate.publishedAt.localeCompare(a.candidate.publishedAt)
+    )
+    .slice(0, 3)
+    .map(({ candidate }) => candidate)
   const authorInitials = (article.author ?? "Echipa ardmag")
     .split(" ")
     .map((w: string) => w[0])
@@ -90,10 +109,19 @@ export default async function BlogArticlePage({ params }: Props) {
       <SiteHeaderShell countryCode={countryCode} />
 
       {/* ── ARTICLE HEAD ── */}
-      <header className={`article-head${article.heroImage ? " article-head--hero" : ""}`}>
+      <header
+        className={`article-head${article.heroImage ? " article-head--hero" : ""}`}
+        data-article-slug={slug}
+      >
         {article.heroImage && (
           <>
-            <img className="hero-bg" src={article.heroImage} style={{ objectPosition: article.heroImagePosition ?? "center" }} alt="" aria-hidden="true" />
+            <img
+              className="hero-bg"
+              src={article.heroImage}
+              style={{ objectPosition: article.heroImagePosition ?? "center" }}
+              alt=""
+              aria-hidden="true"
+            />
             <div className="hero-overlay" aria-hidden="true" />
           </>
         )}
@@ -124,7 +152,7 @@ export default async function BlogArticlePage({ params }: Props) {
                 <div className="avatar">{authorInitials}</div>
                 <div className="author-text">
                   <strong>{article.author ?? "Echipa ardmag"}</strong>
-                  <span>Atelier &amp; suport tehnic</span>
+                  <span>Catalog &amp; suport tehnic</span>
                 </div>
               </div>
               <div className="meta-sep" />
@@ -223,13 +251,13 @@ export default async function BlogArticlePage({ params }: Props) {
             <div className="avatar-lg">{authorInitials}</div>
             <div>
               <h4 className="b-name">{article.author ?? "Echipa ardmag"}</h4>
-              <div className="b-role">Atelier &amp; suport tehnic · Cluj-Napoca</div>
+              <div className="b-role">Catalog &amp; suport tehnic · Cluj-Napoca</div>
               <p className="b-text">
-                Distribuim si folosim zilnic scule pentru piatra naturala -- de la disc de 115 pana la freze de profil. Articolele de pe blog sunt scrise de oameni care taie, lustruiesc si consiliaza in atelier.
+                Publicăm ghiduri despre produsele din catalogul nostru și despre utilizările confirmate în documentația tehnică a producătorilor.
               </p>
               <div className="b-links">
                 <Link href="/blog">Toate articolele →</Link>
-                <a href="mailto:office@ardmag.ro">Intreaba tehnic</a>
+                <Link href="/contact">Întreabă-ne</Link>
               </div>
             </div>
           </div>
@@ -255,17 +283,23 @@ export default async function BlogArticlePage({ params }: Props) {
         </div>
       </div>
 
-      {/* Related — arata doar daca sunt cel putin 2 articole disponibile */}
+      {/* Articole editoriale conexe, separate de recomandările comerciale din articol. */}
       {related.length >= 2 && (
         <section className="related-articles">
           <div className="sec-head">
-            <h3>Citeste mai departe</h3>
+            <h3>Articole conexe</h3>
             <Link href="/blog" className="see-all">Toate articolele →</Link>
           </div>
           <div className="article-grid">
             {related.map((a) => (
               <Link key={a.slug} href={`/blog/${a.slug}`} className="acard">
-                <div className="a-img" />
+                <div className="a-img-wrap">
+                  {a.heroImage ? (
+                    <img src={a.heroImage} alt="" loading="lazy" />
+                  ) : (
+                    <div className="a-img-phld" aria-hidden="true" />
+                  )}
+                </div>
                 <div className="a-meta">
                   <span className="cat">{a.kicker?.split("·")[0].trim() ?? "Blog"}</span>
                   <span>· {formatDate(a.publishedAt)}</span>

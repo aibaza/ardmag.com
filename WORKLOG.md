@@ -19,6 +19,68 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 - Verificări: validatorul de copy PASS, gate-ul de publicare 10/10 PASS, TypeScript PASS și build Vercel Ready. Build-ul local compilează, dar prerandarea sitemap-ului rămâne blocată de snapshot-ul local de env Medusa, limitare deja cunoscută.
 - Deployment canonic Vercel din commitul final `117b970`: `dpl_FKUmqgDgTdsoFhRisdnHTs9qjfms`, Ready și aliasat automat la `https://test.ardmag.ro`. Deployment Protection redirecționează accesul anonim la SSO; contul CLI poate inspecta deployment-ul și aliasul, dar nu poate genera un bypass pentru citirea anonimă a HTML-ului.
 
+## 2026-08-24 -- Pagina de 404 arata produse strategice
+
+- Sub blocul de text, pagina lasa coloana din dreapta goala. Adaug doua grile de produse la latimea paginii, cu aceleasi componente ca homepage-ul (`SectionHead` + `ProductGrid` variant `mini` + `productToCard`), deci fara markup paralel.
+- Selectia e strategica, nu aleatoare: promotii active si intrari recente, cate 4. Practica pe magazine online recomanda bestsellers, noutati sau promotii, pentru ca produsele la intamplare nu recupereaza intentia comerciala cu care a venit vizitatorul. Ambele sectiuni sunt conditionate de continut: acum, fara promotii active, se randeaza doar grila de produse noi, iar cea de promotii reapare singura cand exista reduceri.
+- Catalogul vine din acelasi apel public si cache-uit ca homepage-ul, cu retragere pe lista goala daca backendul nu raspunde.
+- Validari: TypeScript PASS, ESLint PASS. Verificat pe preview `preview.ardmag.ro` in desktop si mobil, pe ambele intrari de 404.
+- Deploy production `dpl_GdpprFRN7Cfm6DwQVBhTiujtXQGi` este Ready din commitul `63b6c97`. Readback live: `/pagina-inexistenta` si un fisier lipsa din `/assets` raspund amandoua 404 cu ecranul nou si cu 4 carduri de produs randate.
+- Commit: `63b6c97`.
+
+## 2026-08-24 -- Pagina de 404 a magazinului si imaginile articolului sunt live
+
+- Cele cinci ecrane de 404 mergeau pe implementari divergente, iar cel de la radacina (`src/app/not-found.tsx`) folosea inca clase Tailwind. Directivele `@tailwind` fusesera scoase din `globals.css` la portarea pe design system (`1223cc4`), deci clasele nu mai existau in CSS-ul servit: verificat pe bundle-urile live, `flex-col`, `items-center` si `w-3.5` aveau zero aparitii. Pagina se randa complet nestilizata, cu sageata SVG intinsa pe tot ecranul.
+- Ecranul comun nou (`src/modules/layout/not-found/NotFoundView.tsx`) are antetul si subsolul magazinului plus caile de recuperare: cautare in catalog, categoriile principale, produse, promotii, blog si datele de contact. Categoriile vin din acelasi apel cache-uit ca antetul, cu retragere pe lista goala daca backendul nu raspunde. Stilurile folosesc doar tokeni, deci varianta dark vine automat. Checkout-ul pastreaza o varianta proprie, fara antet si subsol.
+- `getBaseURL()` prefera acum `NEXT_PUBLIC_PREVIEW_BASE_URL`, setata doar de `tools/preview/preview-deploy.sh` din repo-ul de ops. Fara ea, un preview de validare emitea `og:image` si `canonical` cu domeniul de productie, unde articolul nepublicat nu exista, deci previzualizarea linkului trimis clientului iesea rupta. `NEXT_PUBLIC_BASE_URL` nu putea fi folosita: e definita "sensitive" la nivel de proiect in Vercel si valoarea de proiect bate `--build-env`, verificat pe un deploy real. Productia nu primeste variabila.
+- `og.png` (sha256 `c76a3791709f9f11d1c4267959d8a99e87d67ac2efb1cc1a132c4935eb6d59b7`) si `hero.webp` pentru slotul din 24 august sunt comise, conform conventiei din repo: doar imaginile, fara sidecar-urile de generare. Articolul in sine (`content/blog/<slug>.md`) NU este comis - publicarea asteapta validarea lui Andrei si Cristian, decizia D-0112.
+- Validari: TypeScript PASS, ESLint PASS, 5/5 teste `src/lib/util/env.test.ts` (doua noi pentru baza de preview). Verificat pe preview in light, dark si mobil, pe ambele intrari de 404 (fisier lipsa din `/assets` si pagina inexistenta).
+- Deploy production `dpl_AyPDngckTdULc5y3qLjbpYW5yVbh` este Ready din commitul `b71a181`. Readback live: `og.png` 200 (1200x630, 573833 bytes), ambele intrari de 404 raspund 404 cu ecranul nou, articolul ramane 404 pe productie ca inainte.
+- Commits: `e0d8056`, `20adb18`, `b71a181`.
+
+## 2026-08-21 -- Ghidul pentru configurații made-to-order este live
+
+- Articolul public este exact versiunea aprobată pe staging la `8588d3c`; nu au fost făcute alte schimbări editoriale și nu a fost programată nicio promovare socială.
+- Receipt-ul v2 este PASS pentru articolul revizuit `6549dd9d99a2ae55bec32c19eb44c9625af85ce769cc6780bf7165b80cece580`, asset-uri `6c20a9f5e8d8d45e9333f9f70f43fb0cc1e0cc1fe2efa96c5a7182c336ee1fde` și bundle-ul public `c4ec51c7e9989602523e8e458701524beb4878736f226fde92431f98c8e6ca40`.
+- Validări locale: public-copy PASS, gate-urile de review/publicare/deploy PASS, 10/10 teste de publicație, 26/26 teste receipt/review-gate și TypeScript PASS. Build-ul local compilează, apoi sitemap-ul se oprește pe URL-ul Medusa mascat; build-ul cu mediul real Vercel este PASS.
+- Deploy production `dpl_5TzKoKQ3mQ7esvKEXe36gmzXytcQ` este Ready și promovat pe `ardmag.ro` din commitul `e319fe7`.
+- Readback live: HTTP 200, title și H1 exacte, rolul ARDmag ca producător, cantitatea/debitul de apă, CTA/mailto și canonical sunt prezente; URL-ul este în sitemap, formulările contradictorii au zero apariții, iar hero-ul live are hash-ul aprobat `8a22732a89119bd800282bb1e0e0dc11e233dcf16409ea74fd198a1bded178ba`.
+
+## 2026-08-20 -- Cadrul complet al celor două plăci este păstrat în hero și OG
+
+- Sursa furnizată de DC (`img_713451c4876b.png`, 1672x941, SHA-256 `222f0fdad890507828bf411e28dec8237981b6ef9c78afabead079812d2c25b7`) este servită ca hero fără regenerare sau reinterpretare; assetul public are bytes identici.
+- Cauza aspectului de „două tije” era crop-ul CSS `object-fit: cover`: desktopul elimina aproximativ 41% din înălțimea sursei, iar mobilul păstra aproximativ 42% din lățime. Articolul păstrează acum cadrul complet pe desktop și afișează imaginea integrală deasupra textului pe mobil.
+- OG-ul 1200x630 este derivat din aceeași sursă prin redimensionare proporțională și padding contextual. Singurele adaosuri sunt logo-ul și overlay-ul editorial în spațiul liber din stânga; geometria îmbinării și suprafețele plăcilor nu sunt acoperite sau modificate. URL-ul OG este nou și versionat (`og-dc-20260820.png`), pentru a nu reutiliza cache-ul `immutable` al imaginii vechi.
+- Validări: publication gate 10/10 PASS; build Vercel PASS (753 pagini statice); preview `dpl_EkePf53J1v8BAk7zBea2zN57VmLG` Ready. Build-ul local compilează, apoi cheia publică Medusa locală expirată blochează sitemap-ul; configurația reală Vercel finalizează build-ul.
+- ClickUp/time entry: conectorul și skill-ul local `aibaza-deploy-workflow` nu sunt disponibile în această sesiune.
+
+## 2026-08-18 -- Corecțiile expert pentru lipirea la 45° sunt live
+
+- Articolul recomandă din primul paragraf StrongEdge 45, Glaxs Fast și Eliox; recomandarea Eliox pentru 45° este atribuită experienței de atelier a lui Andrei Rinzis, separat de afirmațiile confirmate în fișa Tenax.
+- Tixo XE, comparațiile după preț, abrevierile TDS/SDS și formularea „muchie mitrată” au fost eliminate. Valurile sociale deja publicate nu au fost modificate; runda nepublicată 2026-08-27 a fost corectată și are vizual nou fără produs fizic.
+- Review-urile independente Claude și Codex sunt PASS pe același hash de articol `7a212360e48b5c04bbd7cc0ae026af0e4aa3353c842d199c9a3ba572ffde7257`; gate-ul social este PASS pe `e2ec7a3614b0ef91cca50a22d95565098be69439e4ddda7ba81e89e7da8bb675`.
+- Validările public-copy sunt 3/3 PASS, auditul humanizer este `likely_human`, iar suitele relevante au 59/60 teste PASS. Unicul eșec este fixture-ul E2E istoric cu receipt expirat; build-ul compilează, dar prerandarea locală a sitemap-ului cere o cheie Medusa validă din producție.
+- Deploy-ul CLI a fost refuzat de rolul Vercel al sesiunii; push-ul `537ccec` pe `master` a declanșat fluxul Git conectat. Readback live: articolul și cele trei pagini de produs răspund HTTP 200, toate formulările obligatorii sunt prezente, iar termenii eliminați sunt absenți.
+- ClickUp/time entry: conectorul și skill-ul local `aibaza-deploy-workflow` nu sunt disponibile în această sesiune.
+
+## 2026-08-17 -- Articolul despre polish chimic vs. mecanic este corectat live
+
+- Titlul și H1 compară acum polishul chimic cu polishul mecanic pe piatră calcaroasă; slugul vechi a rămas neschimbat pentru continuitatea URL.
+- Poten apare în corp și în grila de răspunsuri numai pentru marmură și granit, cu datele comerciale canonice. Silwax este încadrat la finisare și protecție, iar ruta mecanică trimite la produsele vândute efectiv.
+- Hero-ul și OG-ul au fost refăcute cu fotografiile canonice Poten și PAD POLIMASTER. Bytes live sunt identici cu cei aprobați: OG `38821c1af4134a35fbb28246acd0305dfbaf6133f5de2d2a9fd57f3ca8504660`, hero `e63f0c06c6f797617aebf2419844c4e0ba1f49f0f67f656050c49762d1989e8d`.
+- Gate-ul canonic și review-urile independente Claude + Codex sunt PASS pe hash-ul `a3989b05e73450efe29c7c4b0740256985c16727f4de83bac789b64ec5bfabb0`; testele de publicație sunt 10/10 PASS.
+- Deploy Vercel production `dpl_aWHuREXB55GZk5XMkyrYss4axeks` este Ready și aliasat la `ardmag.ro`. Readback live: articol 200, title/OG/meta corecte, zero apariții ale termenilor interziși, articol prezent în sitemap și toate linkurile comerciale răspund 200.
+- Commit de release: `ca9d343`.
+
+## 2026-08-14 -- Actualizarea finală a articolului despre petele pe marmură este live
+
+- Articolul public păstrează titlul exact „De ce se pătează marmura albă”, formularea tehnică aprobată pentru Domo 10 rev.03 și punctul și virgula din introducere.
+- Hero-ul și OG-ul au fost înlocuite cu vizualul Domo 10 A+B aprobat; disclosure-ul AI apare o singură dată în pagina randată. OG-ul live este PNG 1200×630, 643.971 bytes, SHA-256 `5b17c1414ca01ad0178d4057e78a06b67448a70a05304294d1951fc3089a8c2e`.
+- Receipt-ul dual independent Claude + Codex trece gate-ul canonic `pre-publish-article` pe hash-ul `98dc07ecddb1047b00787c8b4c13b7f22e6e87cc1925a294dbe6d33b4065f9d6`; toate check-urile vizuale obligatorii sunt PASS.
+- Validări locale: public-copy PASS, publication gate 10/10 PASS, TypeScript PASS. Deploy Vercel production `dpl_AmK4ABsiYf1gEDwv3riN5rSkskpw` este Ready și aliasat la `ardmag.ro`.
+- Readback live: articol HTTP 200; `<title>` și `og:title` sunt exact titlul aprobat; formularea rev.03 și punctul și virgula sunt prezente; disclosure-ul are o singură instanță în DOM; OG-ul are `content-type: image/png` și hash/bytes identice cu assetul aprobat.
+- Nu a fost creată nicio programare socială și niciun val istoric nu a fost modificat.
+
 ## 2026-08-05 -- Imaginile articolului din 6 august sunt în preview
 
 - Hero-ul WebP 1672x941 și imaginea OG PNG 1200x630 au fost adăugate în
@@ -2015,3 +2077,29 @@ ClickUp/time entry:
 - Price list-ul Medusa `plist_01KPKMDRGT1EHY1PYGPMCPV67Q` păstrează termenul final `2026-07-31T20:59:59Z`.
 - Experimentul promoțional din hero a fost închis prin kill-switch, iar fallback-ul homepage este din nou evergreen.
 - Pagina `/promotii` și badge-urile produselor folosesc exclusiv diferența reală dintre prețul calculat și prețul original, fără fallback-ul decorativ `metadata.ribbon`.
+
+## 2026-08-17 - Corecție completă articol travertin și PDP Mastic Lichid
+
+- Articolul despre porii travertinului separă Mastic Lichid colorat de varianta transparentă, cu timpii canonici Tenax și raportul clar de 100 de părți mastic la 2-3 părți întăritor.
+- Produsele Bellinzoni și recomandările tehnice neconfirmate au fost eliminate. Tixo XE și Mastic Solid sunt limitate la utilizările documentate.
+- CTA-ul duce la contact și categorie, articolele conexe sunt selectate contextual și folosesc imaginile lor reale, iar bio-ul neverificabil a fost înlocuit.
+- Hero și OG noi folosesc compoziție editorială fără ambalaje prezentate ca produse exacte; proveniența și hash-urile sunt în manifest.
+- PDP-ul live Mastic Lichid a fost actualizat prin Admin API și recitit; build-ul de producție a trecut 753/753 pagini, inclusiv sitemap-ul static.
+- Review determinist și review-urile independente Claude/Codex: PASS pe hash-ul agregat `7da6bf5e9e8232145cc40a2e52cf811acd5a7ae7ed11d263064516de78d493cc`.
+## 2026-08-20 - Hero și OG înlocuite din sursa furnizată pentru lipirea la 45°
+
+- Hero master a fost înlocuit cu imaginea furnizată explicit de DC, fără generare
+  și fără modificarea geometriei sau conținutului scenei.
+- Focusul `(0.52, 0.52)` păstrează piesa din piatră completă în crop-urile 21:9,
+  16:9 și 4:3 și lasă zona stânga-jos liberă pentru titlu.
+- Au fost regenerate toate variantele responsive, fundalul comun și OG-ul din
+  aceeași sursă. Sursa și hash-ul ei sunt consemnate în `hero/prompt.json`.
+- QA vizual: crop-urile desktop, tabletă și mobil și OG-ul au fost verificate.
+  Testele de publicare au trecut (10/10). Compilarea Next.js a trecut, iar build-ul
+  local s-a oprit ulterior la prerandarea sitemap-ului din cauza unui URL invalid
+  din mediul local; aceeași limitare de mediu este verificată din nou în Vercel.
+- 2026-08-24: incident collector remediat la contract. `edge_landing` folosește
+  schema publică strictă fără `extra`/identificatori; `purchase` merge exclusiv
+  autentificat la `/internal/events`, cu event_id stabil, payload minim și
+  verificare `ok=true, written=1`. Logurile subscriberului nu includ order ID
+  sau PII. Confirmarea finală Purchase rămâne la prima comandă reală.

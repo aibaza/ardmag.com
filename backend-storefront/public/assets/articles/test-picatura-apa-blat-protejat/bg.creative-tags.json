@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact": "bg.webp",
+  "creative_tags": {
+    "hook": "how_to",
+    "format": "source_background",
+    "angle": "product_selection",
+    "cta": "none",
+    "vibe": "practical"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "test-picatura-apa-blat-protejat",
+    "roundDate": "2026-08-23",
+    "template": "source-bg",
+    "source": "cover-resized copy of public/blog/test-picatura-apa-blat-protejat/hero.webp (matches og-image.html's article.hero override behavior for ARDmag); the three Codex-generated candidate backgrounds from the interrupted run (bg-1/2/3.webp) were unused by og.png and removed",
+    "experiment_bucket": "exploit"
+  }
+}

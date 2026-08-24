@@ -16,6 +16,90 @@ Format: [date] type: description
 
 ---
 
+## 2026-08-24 - Contract sigur pentru măsurarea collector
+
+### Schimbare livrată
+
+`edge_landing` nu mai trimite extensii arbitrare, țară sau identificatori brute.
+Subscriberul `order.placed` trimite Purchase numai prin ingestul intern
+autentificat, cu payload minim și deduplicare stabilă pe ID-ul opac al comenzii.
+Răspunsul collectorului este verificat fără logarea ID-ului comenzii sau PII.
+
+### Verificare
+
+Testele de contract acoperă payloadul PII-safe, moneda ISO, acknowledgement-ul
+exact și refuzul răspunsurilor neconfirmate. Nu s-a emis Purchase sintetic.
+
+## 2026-08-21 - Ghid pentru discuri peste 600 mm și fir diamantat
+
+### Schimbare livrată
+
+Articolul explică datele necesare pentru analiza preliminară a configurațiilor
+vizate. ARDmag este prezentat în rolul confirmat de producător și interlocutor
+tehnic, iar cantitatea sau debitul de apă este cerut pentru discurile mari
+vizate, fără extrapolare la întregul catalog.
+
+### Verificare
+
+Versiunea articolului și vizualul sunt cele aprobate pe staging. Receipt-ul v2
+separă și validează hash-urile articolului revizuit, asset-urilor și bundle-ului
+public; gate-urile de review și dată sunt PASS.
+
+## 2026-08-19 - Corecții editoriale în trei ghiduri tehnice
+
+### Schimbare livrată
+
+Două ghiduri despre mastici recomandă acum StrongEdge 45, Glaxs Fast și Eliox
+pentru lipirea la 45°, iar Tixo XE rămâne încadrat la aplicări verticale și pe
+muchii. Articolul despre ceramica de format mare folosește formulări românești
+corecte pentru montaj, gresie subțire și acordul substantivului „mastic”.
+
+### Verificare
+
+Recomandările de produs au fost confruntate cu exportul canonic local și cu
+feedbackul de atelier al lui Andrei Rinzis. Validarea textului public trece
+pentru toate cele trei articole, testele de publicație sunt 10/10 PASS, iar
+verificarea TypeScript este PASS.
+
+## 2026-08-18 - Corecție expert lipirea la 45°
+
+### Schimbare livrată
+
+Articolul recomandă din primul paragraf StrongEdge 45, Glaxs Fast și Eliox.
+Recomandarea Eliox pentru 45° este atribuită experienței de atelier a lui
+Andrei Rinzis, iar afirmațiile producătorului sunt limitate la fișa oficială
+curentă. Tixo XE, comparațiile de preț, abrevierile englezești și formularea
+„muchie mitrată” au fost eliminate.
+
+### Verificare
+
+Review-urile independente Claude și Codex și gate-ul canonic sunt PASS pe
+hash-ul `7a212360e48b5c04bbd7cc0ae026af0e4aa3353c842d199c9a3ba572ffde7257`.
+Verificarea deterministă a textului public este PASS. Compilarea locală este
+reușită; prerandarea sitemap-ului local rămâne dependentă de credențialele
+Medusa valide din mediul de producție.
+
+## 2026-08-17 - Corecție completă polish chimic vs. polish mecanic
+
+### Schimbare livrată
+
+Articolul despre piatra calcaroasă compară acum polishul chimic cu polishul
+mecanic, păstrând slugul vechi pentru continuitatea URL. Poten este recomandat
+numai pentru marmură și granit, Silwax este încadrat la finisare și protecție,
+iar ruta mecanică folosește exclusiv produse vândute de ARDmag. Exemplele de
+produse care nu se mai vând și formulările de narator extern au fost eliminate.
+
+Hero-ul și OG-ul au fost refăcute cu Poten și PAD POLIMASTER, pornind de la
+fotografiile canonice de catalog și cu proveniență verificată byte-level.
+
+### Verificare
+
+Gate-ul determinist, testele de publicație și review-urile independente Claude
++ Codex trec pe hash-ul canonic
+`a3989b05e73450efe29c7c4b0740256985c16727f4de83bac789b64ec5bfabb0`.
+Build-ul local ajunge la sitemap, dar mediul local are URL-urile sensibile
+redactate; deploy-ul și build-ul complet sunt verificate în Vercel.
+
 ## 2026-07-25 - Consent fail-closed și corecție factuală articol 45°
 
 ### Schimbare livrată

@@ -1,77 +1,69 @@
 ---
-title: "Polish chimic vs. cristalizare mecanizată pentru travertin: ce alegi"
-description: "Ceara, pulberea de lustruire și cristalizarea nu sunt aceeași operație. Compară mecanismul, pregătirea și limitele fiecărei rute pentru travertin."
-kicker: "Comparație tehnică · Delta Research"
+title: "Polish chimic vs. polish mecanic pe piatră calcaroasă: ce rezistă mai mult în trafic intens"
+description: "Compară polishul chimic cu polishul mecanic pe marmură, travertin și calcar și vezi ce produse ARDmag corespund fiecărei lucrări."
+kicker: "Comparație tehnică · piatră calcaroasă"
 status: "published"
 review: "PASS"
 publishedAt: "2026-07-23"
 author: "Echipa ardmag"
-tags: ["delta research", "piatra calcaroasa", "marmura", "travertin", "lustruire", "cristalizare"]
+tags: ["delta research", "piatra calcaroasa", "marmura", "travertin", "calcar", "polish mecanic"]
 heroImage: "/blog/polish-chimic-vs-cristalizare-mecanica-travertin/hero.webp"
 ogImage: "/assets/articles/polish-chimic-vs-cristalizare-mecanica-travertin/og.png"
 ---
 
-În atelier, expresia „polish chimic” ajunge să acopere produse și operații diferite. O ceară lasă ingrediente de finisare pe suprafață. O pulbere de lustruire combină chimia cu microabraziunea. Cristalizarea folosește un produs acid împreună cu o monoperie și un pad. Dacă le pui în aceeași categorie, alegerea pentru travertin pornește greșit.
+În atelier, „polish chimic” și „polish mecanic” ajung uneori în aceeași discuție, deși sunt rute diferite. Prima alegere nu pornește de la luciul dorit, ci de la material, starea suprafeței și lucrarea care trebuie făcută. Pe marmură, travertin și calcar, o alegere greșită poate însemna că un finisaj este folosit în locul unei refaceri mecanice sau că o intervenție prea agresivă înlocuiește o simplă întreținere.
 
 ## Mai întâi: ce suprafață ai în față
 
-Travertinul, marmura și calcarul sunt pietre calcaroase, sensibile la produse acide nepotrivite. Asta nu înseamnă că orice produs acid este interzis în orice proces profesional de lustruire; înseamnă că se folosește numai un sistem declarat de producător pentru materialul și finisajul respectiv.
+Marmura, travertinul și calcarul sunt pietre calcaroase, sensibile la produse acide nepotrivite. Asta nu înseamnă că orice produs acid este exclus din orice proces profesional, ci că alegerea se face numai pentru materialul și finisajul declarate în documentația produsului.
 
-Afirmația „un polish acid este sigur pe granit sau cuarț dur” nu este o regulă de atelier. „Cuarț” poate însemna cuarț mineral, cuarțit sau blat compozit cu rășină, materiale cu reacții și instrucțiuni diferite. În plus, Natural Stone Institute avertizează că acidul fluorhidric atacă inclusiv granitele și cuarțitele. Compatibilitatea se citește în fișa produsului, nu se deduce din duritatea aparentă.
+„Cuarț” poate însemna cuarț mineral, cuarțit sau blat compozit cu rășină. Sunt materiale diferite, cu cerințe diferite. Natural Stone Institute avertizează, de exemplu, că acidul fluorhidric atacă inclusiv granitul și cuarțitul. Compatibilitatea nu se deduce din duritatea aparentă a pietrei.
 
-## Ce găsești în oferta ARDmag pentru finisare și întreținere
+## Polishul chimic: recomandarea ARDmag pentru marmură și granit
 
-[Prolux, disponibil în catalogul ARDmag](https://ardmag.ro/products/prolux), este un lac auto-lustruitor pe bază de solvenți, rășini și ceruri. Producătorul îl indică pentru marmură și granit, mai ales pe canturi, muchii, trepte și alte zone greu de lustruit mecanic. Se aplică pe suport curat și uscat, iar timpul indicativ de întărire este de aproximativ 30 de minute de la primul strat. Fișa spune explicit că produsul nu protejează împotriva substanțelor acide.
+[Poten](https://ardmag.ro/products/poten) este recomandarea noastră pentru polish chimic pe marmură și granit. Îl vindem la recipient de 5 kg, cu preț calculat separat pe kilogram pentru fiecare dintre cele două materiale: 108 lei/kg pentru marmură și 83 lei/kg pentru granit.
 
-[Silwax, disponibil în catalogul ARDmag](https://ardmag.ro/products/silwax), este o ceară siliconică pentru întreținerea marmurei, granitului și a blaturilor din piatră naturală, în special a pietrelor închise la culoare. Producătorul declară acțiune de curățare, finisare și protecție, păstrarea permeabilității la vapori și o pătrundere de până la 4 mm.
+Pe pagina noastră comercială nu publicăm mecanismul și pașii tehnici de aplicare. Din acest motiv, nu îi atribuim o reacție, un consum, un utilaj sau o procedură care nu sunt confirmate în documentația disponibilă. Pentru alegerea variantei pornim strict de la material: marmură sau granit.
 
-Randamentul Silwax nu se rezumă corect la „20-50 m²/l”. Fișa îl separă după absorbție: 20-30 m²/l pe suprafețe cu absorbție medie și până la 50 m²/l pe suprafețe slab absorbante. Este un randament orientativ, nu o promisiune pentru orice travertin.
+## Finisarea și protecția nu înlocuiesc polishul
 
-Aceste produse pot reîmprospăta aspectul, dar nu elimină zgârieturi din piatră. Sunt potrivite când suportul este sănătos și urmărești întreținerea ori finisarea unor zone greu accesibile, în limitele fișei tehnice.
+În gama noastră, [Prolux](https://ardmag.ro/products/prolux) este un lac auto-lustruitor pentru marmură și granit, potrivit mai ales pentru canturi, muchii, trepte și alte zone greu de lustruit mecanic. Se aplică pe suport curat și uscat. Timpul indicativ de întărire este de aproximativ 30 de minute de la primul strat, iar produsul nu protejează împotriva substanțelor acide.
 
-## Exemple Delta pentru mecanism, nu produse confirmate în catalogul ARDmag
+[Silwax](https://ardmag.ro/products/silwax) este ceara siliconică lichidă din gama noastră pentru finisare și protecție. Este destinată marmurei, granitului și altor suprafețe din piatră naturală, cu eficiență bună pe pietrele închise la culoare. Păstrează permeabilitatea la vapori și pătrunde până la 4 mm în material.
 
-[Crystal P](https://deltaresearch.it/product.php?id=62&lb=en) este descris de Delta Research ca pulbere pe bază de oxalați și aditivi microabrazivi. Este declarată pentru marmură lustruită, travertin, calcar și terrazzo pe bază de ciment, nu pentru granit sau gnais. **Crystal P nu este confirmat în catalogul actual ARDmag**; apare aici exclusiv pentru a explica mecanismul unei pulberi chimico-microabrazive, nu ca recomandare de cumpărare.
+Prolux și Silwax reîmprospătează și protejează o suprafață sănătoasă, dar nu elimină zgârieturile din piatră.
 
-Procesul cere o monoperie de aproximativ 150 rpm, pad alb, apă și clătire după lucru. Suprafața trebuie să fie curată și fără polimeri, acrilați sau straturi de ceară. Randamentul oficial este aproximativ 50 m²/kg, dar consumul real depinde de starea pietrei și de numărul de treceri.
+## Polishul mecanic: ruta vândută de ARDmag
 
-Aici nu se adaugă pur și simplu o peliculă lucioasă. Produsul lucrează chimic și microabraziv asupra stratului superficial, motiv pentru care poate corecta urme fine și zone ușor mătuite, în limitele declarate de producător.
+Polishul mecanic schimbă suprafața prin abraziune controlată. Alegerea granulației pornește de la starea reală a pietrei, iar treptele succesive reduc urmele lăsate de treapta anterioară.
 
-## Cristalizare: al doilea exemplu tehnic Delta
+[PAD POLIMASTER + HEX](https://ardmag.ro/products/pad-polimaster-hex) este sistemul din catalogul nostru pentru restaurarea și întreținerea mecanică a pardoselilor deja lustruite din marmură, terrazzo și beton lustruit. Discurile flexibile au diamant înglobat în rășină și sunt folosite pentru îndepărtarea zgârieturilor și refacerea luciului fără ceară sau substanțe chimice, cu polizoare, lustruitoare sau mașini planetare. Sistemul se folosește pe umed sau uscat, în granulațiile disponibile pentru varianta aleasă.
 
-[Crystalux](https://deltaresearch.it/product.php?id=57&lb=en) este un tratament de cristalizare pentru suprafețe mate din marmură, aglomerat, piatră naturală și ciment. Producătorul descrie o reacție între componentele acide și suprafața pietrei, executată imediat cu monoperie lentă de 150-175 rpm și pad din lână de oțel nr. 0-3 sau pad gri din nailon. **Nici Crystalux nu este confirmat în catalogul actual ARDmag**; este un exemplu tehnic al procesului, nu un CTA comercial ARDmag.
+Pentru alte lucrări mecanice, avem în catalog [dischetele de șlefuit diamantate](https://ardmag.ro/products/dischete-de-slefuit-diamantate), disponibile în granulații de la 50 la 3000, și [SAITPOL 430](https://ardmag.ro/products/saitpol-430-albnegrurosuverde) pentru lustruire, întreținere, decerare sau curățare, în funcție de culoare. Am grupat produsele pentru această rută în categoria [șlefuire piatră](https://ardmag.ro/categories/slefuire-piatra).
 
-Prin urmare, „cristalizare mecanică” este o prescurtare imprecisă. Mașina, frecarea și padul sunt indispensabile, dar procesul rămâne chimico-mecanic. Pentru travertin, compatibilitatea nu trebuie presupusă doar fiindcă pagina spune generic „piatră naturală”; se confirmă cu fișa actuală și cu reprezentantul tehnic, apoi se testează pe o zonă mică.
-
-## Ruta mecanică vândută de ARDmag
-
-[PAD POLIMASTER + HEX](https://ardmag.ro/products/pad-polimaster-hex) este sistemul din catalogul ARDmag relevant pentru restaurarea și întreținerea mecanică a pardoselilor deja lustruite. Descrierea de catalog îl poziționează pentru îndepărtarea zgârieturilor și refacerea luciului fără ceară sau substanțe chimice, cu echipamente convenționale de întreținere; asta îl face coerent cu vizualul social și cu ruta mecanică din articol. Nu îl confundăm cu un pad suport pentru Crystal P sau Crystalux și nu extindem compatibilitatea dincolo de materialele și pașii declarați pentru varianta aleasă.
-
-Pentru decerare sau întreținere există și [SAITPOL 430](https://ardmag.ro/products/saitpol-430-albnegrurosuverde), ale cărui culori au funcții diferite în catalog; alegerea se face după operație, nu doar după culoarea padului. Gama relevantă este grupată în [șlefuire piatră](https://ardmag.ro/categories/slefuire-piatra).
-
-## Comparația utilă pentru atelier
-
-| Situație | Rută disponibilă / exemplu tehnic | Limită importantă |
-|---|---|---|
-| Luciu pierdut, fără zgârieturi relevante | Prolux sau Silwax, vândute de ARDmag | finisaj/întreținere; nu repară zgârieturi în piatră |
-| Pardoseală deja lustruită cu zgârieturi ori luciu neuniform | PAD POLIMASTER + HEX, vândut de ARDmag | sistem mecanic; urmezi pașii și compatibilitatea variantei |
-| Strat vechi de ceară care trebuie îndepărtat | SAITPOL 430 verde/negru, vândut de ARDmag | funcțiile diferă pe culori; verifici descrierea produsului |
-| Pulbere chimico-microabrazivă | Crystal P, exemplu Delta nevândut/neconfirmat ARDmag | nu este CTA comercial; cere decerare, apă și clătire |
-| Cristalizare chimico-mecanică | Crystalux, exemplu Delta nevândut/neconfirmat ARDmag | nu este CTA comercial; compatibilitatea cu travertinul se confirmă |
-| Zgârieturi adânci, denivelări, uzură severă | evaluare pentru șlefuire diamantată în pași | nici ceara, nici un singur pad nu înlocuiesc automat refacerea completă |
+Cristalizarea este tot o intervenție chimico-mecanică, nu o a treia familie paralelă. În alegerea comercială din acest articol păstrăm însă comparația cerută: Poten pentru ruta de polish chimic pe marmură sau granit, respectiv produsele abrazive din catalog pentru ruta mecanică.
 
 ## Ce rezistă mai mult în trafic intens
 
-Nu există în fișele citate un interval comparabil de durabilitate care să permită verdictul „X ține de două ori mai mult”. Rezistența depinde de suport, trafic, curățare, pregătire și întreținere.
+Nu există în documentația citată un interval comparabil care să susțină o formulă de tipul „ține de două ori mai mult”. Durata depinde de piatră, starea inițială, trafic, curățare și întreținere.
 
-Comparația sigură este funcțională. Ceara și lacul sunt finisaje de întreținere și se refac atunci când se consumă. PAD POLIMASTER este ruta mecanică din oferta ARDmag pentru pardoseli deja lustruite, în limitele descrierii sale. Crystal P și Crystalux explică alte mecanisme Delta, dar nu sunt produse confirmate în catalogul ARDmag. Dacă există zgârieturi adânci sau planeitate pierdută, nici ceara, nici cristalizarea, nici un singur pad nu înlocuiesc automat o șlefuire diamantată completă.
+Un finisaj cu Prolux sau Silwax se întreține și se reface când se consumă. Polishul mecanic intervine direct asupra suprafeței și este ruta relevantă când trebuie corectate zgârieturi ori luciu neuniform, în limitele sistemului ales. Zgârieturile adânci, denivelările și planeitatea pierdută cer evaluarea unei șlefuiri diamantate complete; nu sunt rezolvate automat de o ceară, un lac sau un singur pad.
 
-Spune-ne dacă este travertin, marmură sau calcar, ce finisaj are și ce tratament există deja. Verificăm produsul disponibil în catalog și fișa actuală înainte de probă.
+## Grila de răspunsuri pentru atelier
+
+| Situație | Produs sau rută ARDmag | Limită importantă |
+|---|---|---|
+| Polish chimic pe marmură sau granit | Poten | recomandarea este confirmată doar pentru aceste două materiale; nu publicăm pași tehnici neconfirmați |
+| Finisare și protecție pe o suprafață sănătoasă | Prolux sau Silwax | nu elimină zgârieturi din piatră |
+| Pardoseală deja lustruită, cu zgârieturi ori luciu neuniform | PAD POLIMASTER + HEX | sistem mecanic; granulația se alege după starea suprafeței și varianta disponibilă |
+| Șlefuire și lustruire în trepte | Dischete de șlefuit diamantate, granulații 50-3000 | nu se sare arbitrar peste trepte |
+| Strat vechi de ceară de îndepărtat | SAITPOL 430 verde sau negru | funcțiile diferă în funcție de culoare și lucrare |
+| Zgârieturi adânci, denivelări sau uzură severă | evaluare pentru șlefuire diamantată completă | un finisaj sau un singur pad nu înlocuiește refacerea completă |
+
+Spune-ne ce piatră ai, ce finisaj are, care este starea suprafeței și ce tratament a fost aplicat anterior. Alegem împreună produsul din catalog și varianta potrivită lucrării.
 
 ## Surse și referințe
 
-- [Delta Research, Prolux](https://deltaresearch.it/product.php?id=27&lb=en) - aplicații, suport, timp și randament de 30 m²/l pentru două straturi pe absorbție medie.
-- [Delta Research, Silwax](https://deltaresearch.it/product.php?id=68&lb=en) - utilizare, mecanism și randament diferențiat după absorbție.
-- [Delta Research, Crystal P](https://deltaresearch.it/product.php?id=62&lb=en) - pulbere cu oxalați și microabrazivi, compatibilitate, utilaj și randament.
-- [Delta Research, Crystalux](https://deltaresearch.it/product.php?id=57&lb=en) - mecanismul și parametrii procesului de cristalizare.
-- [Natural Stone Institute, îngrijirea pietrei naturale](https://www.naturalstoneinstitute.org/consumers/care/) - sensibilitatea calcaroaselor și avertismentul privind acidul fluorhidric.
+- [Delta Research, Prolux](https://deltaresearch.it/product.php?id=27&lb=en) - materiale, aplicare, timp de întărire și randament.
+- [Delta Research, Silwax](https://deltaresearch.it/product.php?id=68&lb=en) - rol de finisare și protecție, permeabilitate la vapori și pătrundere.
+- [Natural Stone Institute, îngrijirea pietrei naturale](https://www.naturalstoneinstitute.org/consumers/care/) - sensibilitatea pietrelor calcaroase și avertismentul privind acidul fluorhidric.

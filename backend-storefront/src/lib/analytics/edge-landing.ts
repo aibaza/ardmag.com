@@ -42,7 +42,6 @@ export type EdgeLandingEvent = {
   utm_term: string
   ref: string
   resolved_via: string
-  extra: { marker: LandingMarker; country?: string }
 }
 
 function param(url: URL, name: string): string {
@@ -83,13 +82,15 @@ export function buildEdgeLandingEvent({
   url,
   marker,
   referrer,
-  country,
+  country: _country,
 }: {
   url: URL
   marker: LandingMarker
   referrer?: string | null
   country?: string | null
 }): EdgeLandingEvent {
+  void marker
+  void _country
   let refDomain = ""
   try {
     refDomain = referrer ? new URL(referrer).hostname : ""
@@ -109,9 +110,7 @@ export function buildEdgeLandingEvent({
     utm_term: param(url, "utm_term"),
     ref: refDomain,
     resolved_via: "edge_middleware",
-    // Colectorul deriva country din request.cf al POST-ului, care aici e regiunea
-    // Vercel, nu a omului. Tara reala vine din x-vercel-ip-country si o purtam in
-    // extra ca sa nu ne bazam pe dimensiunea gresita la citire.
-    extra: { marker, ...(country ? { country } : {}) },
+    // Nu trimitem tara ori markerul brut: schema publica este stricta si nu
+    // accepta extensii. Existenta evenimentului dovedeste deja aterizarea.
   }
 }

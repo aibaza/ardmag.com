@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "capability": "openai.imagegen",
+  "model": "chatgpt-imagegen-2",
+  "physical_product_present": false,
+  "register": "editorial_graphic_composition",
+  "references": [
+    {"path": "clients/ardmag.com/site/backend/static/images/mastic-lichid/db3b5a_e4d15fb0361348d0be47457443e6a42e.jpg", "sha256": "cad6ad6e66c3dd8e019f2d59cf249a95a3ff4bcbfe33a46654738d24f990a766", "role": "real catalog category reference; exact product identity intentionally not depicted"},
+    {"path": "clients/ardmag.com/site/backend/static/images/intaritor-mastic/db3b5a_261a183c10f94fb7a1c992f939ab2d77/detail-2x.jpg", "sha256": "10a297a32d7c9395e40c8f0cb6ae7c4700d3c49243b70ee1f712676c754a0fa0", "role": "real hardener reference for hero provenance"},
+    {"path": "clients/ardmag.com/site/backend/static/images/intaritor-mastic/db3b5a_41390d69617f4eebb44b24f6a065fc5e/detail-2x.jpg", "sha256": "ffc5af3577edc8c8d1168a16b485f9cff5512af5b77ac261d91896ee8ac51ba8", "role": "distinct real hardener reference for OG provenance"}
+  ],
+  "output": {"path": "clients/ardmag.com/site/backend-storefront/public/blog/reumplerea-porilor-travertin-doua-treceri-rasina/travertin-masticuri-tenax-hero-20260817.webp", "sha256": "ca4e6e5450b3f7ff4af964592fbece1dddb61038b0450ba85d56751fd01f40ca"},
+  "derived_outputs": [
+    {"path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/reumplerea-porilor-travertin-doua-treceri-rasina/travertin-masticuri-tenax-og-20260817.png", "sha256": "0475ff3850f85ac031a3218898a7745ace910de38a2cd7ca9294134af5179981"}
+  ],
+  "notes": "No physical product packaging is shown. Clear and beige samples are generic consistency cues and are not presented as exact products."
+}

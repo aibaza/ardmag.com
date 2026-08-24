@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "capability": "openai.imagegen",
+  "model": "chatgpt-imagegen-2",
+  "physical_product_present": true,
+  "created_at": "2026-08-23T09:13:00Z",
+  "prompt_path": "../../blog/test-picatura-apa-blat-protejat/prompt.json",
+  "product_catalog_mapping": {
+    "products": [
+      { "commercial_product_name": "Idrorep", "brand_line": "Delta Research" },
+      { "commercial_product_name": "Quasar", "brand_line": "Delta Research" },
+      { "commercial_product_name": "Seal", "brand_line": "Delta Research" },
+      { "commercial_product_name": "Skudo", "brand_line": "Tenax" }
+    ]
+  },
+  "references": [
+    {
+      "role": "canonical_idrorep_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/idrorep/db3b5a_4cfdbef8b6d4480ca73b05b1044ce019/hero.jpg",
+      "sha256": "c4417b490419c9f6d358258dbb60278353cc5c50b2bb4658150b26e9681778ec"
+    },
+    {
+      "role": "canonical_quasar_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/quasar/db3b5a_b972836a1c0f4ff2a7246051a9ab16f2/hero.jpg",
+      "sha256": "7dbf8f4abc68e94ea53b5c1c47c24e3ffbc2585baceb48a4dfcb2e13c4e20216"
+    },
+    {
+      "role": "canonical_seal_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/seal/db3b5a_0f7892d2bbc0476094359882547a2e4b/hero.jpg",
+      "sha256": "b56275c9dd093141a9071b0ca5137e50596faec4b48a9c8314607d8f8963b64c"
+    },
+    {
+      "role": "canonical_skudo_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/skudo/db3b5a_4812ffed1d7741cfbf2ba4105e742a2b/hero.jpg",
+      "sha256": "674d486809e2cf51a6cf70c72f25ff5bcef227152c9670d9bba4d0b82f065b92"
+    }
+  ],
+  "output": {
+    "role": "article_hero",
+    "path": "clients/ardmag.com/site/backend-storefront/public/blog/test-picatura-apa-blat-protejat/hero.webp",
+    "sha256": "3dc2edb9dc983be3d30914de9c6e9c6882c8e7a291fba78079f8834741e134c0"
+  },
+  "derived_outputs": [
+    {
+      "role": "og_with_deterministic_overlay",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/test-picatura-apa-blat-protejat/og.png",
+      "sha256": "09fda8775937741809341dd7ff4d746c1aacc1091b220e9a7b507842166088fe"
+    }
+  ],
+  "checks": {
+    "product_and_scene_generated_together": true,
+    "cutout_or_compositing": false,
+    "no_craft_technique_depiction": true,
+    "deterministic_post_generation_changes": ["format conversion for hero", "ARDmag OG template overlay", "bg.webp derived deterministically from hero for social use"]
+  }
+}

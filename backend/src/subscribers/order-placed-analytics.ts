@@ -1,6 +1,6 @@
 import { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
-import { attributionFromMetadata, buildPurchasePayload } from "../lib/attribution/purchase-payload"
+import { attributionFromMetadata, buildPurchasePayload, verifyCollectorPurchaseResponse } from "../lib/attribution/purchase-payload"
 
 // Server-to-server purchase event into the central portfolio collector
 // (Cloudflare Worker + Analytics Engine). Runs on order.placed in the
@@ -17,7 +17,8 @@ export default async function orderPlacedAnalytics({
   if (!orderId) return
 
   const collectorUrl = (process.env.COLLECTOR_URL || "").replace(/\/$/, "")
-  if (!collectorUrl) return
+  const ingestSecret = process.env.COLLECTOR_INGEST_SECRET || ""
+  if (!collectorUrl || !ingestSecret) return
 
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
 
@@ -44,22 +45,23 @@ export default async function orderPlacedAnalytics({
         await orderService.updateOrders(order.id, { metadata })
       } catch (err) {
         logger.warn(
-          `order-placed-analytics: could not persist cart attribution on order ${orderId} (fail-open): ${err}`
+          `order-placed-analytics: attribution persistence failed (fail-open): ${err instanceof Error ? err.name : "unknown_error"}`
         )
       }
 
       ;(order as any).metadata = metadata
     }
 
-    await fetch(`${collectorUrl}/a`, {
+    const response = await fetch(`${collectorUrl}/internal/events`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${ingestSecret}` },
       body: JSON.stringify(buildPurchasePayload(order as any)),
       signal: AbortSignal.timeout(5000),
     })
+    await verifyCollectorPurchaseResponse(response)
   } catch (err) {
     logger.warn(
-      `order-placed-analytics: failed to record purchase for ${orderId} (fail-open): ${err}`
+      `order-placed-analytics: collector write failed (fail-open): ${err instanceof Error ? err.message : "unknown_error"}`
     )
   }
 }

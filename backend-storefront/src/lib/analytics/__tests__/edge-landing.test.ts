@@ -88,7 +88,7 @@ describe("buildEdgeLandingEvent", () => {
     expect(event.path).toBe("/promotii")
   })
 
-  it("trimite campania si markerul, pe site-ul asteptat", () => {
+  it("trimite numai dimensiunile publice strict permise, pe site-ul asteptat", () => {
     const event = buildEdgeLandingEvent({
       url: url(
         "https://ardmag.ro/?utm_source=facebook&utm_medium=paid&utm_campaign=tenax-30&utm_content=v2"
@@ -105,7 +105,7 @@ describe("buildEdgeLandingEvent", () => {
     expect(event.utm_campaign).toBe("tenax-30")
     expect(event.utm_content).toBe("v2")
     expect(event.resolved_via).toBe("edge_middleware")
-    expect(event.extra).toEqual({ marker: "utm", country: "RO" })
+    expect(event).not.toHaveProperty("extra")
   })
 
   it("reduce referrer-ul la domeniu, fara path sau query", () => {
@@ -138,12 +138,12 @@ describe("buildEdgeLandingEvent", () => {
     expect(event.ref).toBe("")
   })
 
-  it("omite tara cand edge-ul nu o cunoaste", () => {
+  it("nu include tara nici cand edge-ul o cunoaste", () => {
     const event = buildEdgeLandingEvent({
       url: url("https://ardmag.ro/?fbclid=ABC"),
       marker: "fbclid",
       country: null,
     })
-    expect(event.extra).toEqual({ marker: "fbclid" })
+    expect(event).not.toHaveProperty("extra")
   })
 })

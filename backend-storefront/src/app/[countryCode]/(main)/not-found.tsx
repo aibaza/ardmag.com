@@ -1,16 +1,12 @@
 import { Metadata } from "next"
+import { NotFoundView } from "@modules/layout/not-found"
 
 export const metadata: Metadata = {
-  title: "404",
-  description: "A apărut o eroare",
+  title: "Pagina nu a fost găsită",
+  description: "Adresa accesată nu există pe ARDmag.ro.",
+  robots: { index: false, follow: true },
 }
 
 export default function NotFound() {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center", justifyContent: "center", minHeight: "calc(100vh - 64px)" }}>
-      <h1>Pagina nu a fost găsită</h1>
-      <p>Pagina pe care ai încercat să o accesezi nu există.</p>
-      <a href="/">Înapoi la pagina principală</a>
-    </div>
-  )
+  return <NotFoundView />
 }

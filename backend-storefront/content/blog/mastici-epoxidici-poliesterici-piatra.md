@@ -21,7 +21,7 @@ Masticul poliesteric se întărește rapid, se șlefuiește și se lustruiește 
 Familia Tenax acoperă aici trei consistențe distincte:
 
 - [Solido](https://www.tenax.it/en/products/professional/solido/), mastic solid colorat pentru reparare, chituire și lipire orizontală;
-- [Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/), poliesteric transparent tixotropic care nu curge de pe vertical, util la lipiri la 45 de grade și muchii;
+- [Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/), poliesteric transparent tixotropic care nu curge de pe vertical, util la lipiri pe verticală și pe muchii; pentru lipirea la 45° recomandările ARDmag sunt StrongEdge 45, Glaxs Fast și Eliox;
 - [Liquido](https://www.tenax.it/en/products/professional/liquido/), poliesteric lichid cu vâscozitate redusă pentru umpleri fine și pori.
 
 Limitele sunt cunoscute. Poliestericul contractă mai mult la întărire decât epoxidicul, iar multe formule clasice eliberează stiren în timpul lucrului. Stirenul are clasificări de risc și limite de expunere ocupațională documentate de ECHA și NIOSH. Ventilația în atelier nu este opțională, iar pentru aplicații în exterior sau în contact prelungit cu apa, fișa tehnică a produsului concret trebuie verificată.
@@ -44,7 +44,7 @@ Vinilesterul nu „înlocuiește" nici epoxidicul, nici poliestericul. Acoperă 
 
 Chimia masticurilor pentru piatră a evoluat în ultimii ani, dar nu a inversat regula de alegere. Schimbările sunt incrementale și relevante practic.
 
-La poliesterici și vinilesteri, formulele tixotropice țin verticalitatea fără să curgă, util pentru lipiri pe muchii și la 45 de grade fără cofraje suplimentare. Variantele low-styrene și low-VOC reduc emisiile din atelier, dar nu sunt netoxice: clasificările de risc și limitele de expunere ocupațională rămân aplicabile, iar ventilația și echipamentul de protecție la fel. La epoxidici, unele formule moderne urmăresc reducerea mirosului, întărirea mai previzibilă și diminuarea fenomenului de „blush" (filmul ceros care apare uneori la suprafață în condiții de umiditate).
+La poliesterici și vinilesteri, formulele tixotropice țin verticalitatea fără să curgă, lucru util la aplicarea pe muchii. Tixotropia descrie comportamentul la aplicare, nu recomandă singură un produs pentru lipirea la 45°. Variantele low-styrene și low-VOC reduc emisiile din atelier, dar nu sunt netoxice: clasificările de risc și limitele de expunere ocupațională rămân aplicabile, iar ventilația și echipamentul de protecție la fel. La epoxidici, unele formule moderne urmăresc reducerea mirosului, întărirea mai previzibilă și diminuarea fenomenului de „blush" (filmul ceros care apare uneori la suprafață în condiții de umiditate).
 
 Ambalajele bicomponente în cartușe cu mixer static dozează raportul A:B la aplicare, ceea ce reduce greșelile de amestec față de dozarea manuală a întăritorului. Apar formule declarate compatibile cu aglomerate de quartz, ceramică sinterizată sau alte engineered stone, dar compatibilitatea se verifică per produs în fișa tehnică, nu se deduce din familia chimică.
 
@@ -91,6 +91,9 @@ Gama de mastici Tenax o găsești în secțiunea de [Mastici și adezivi](/categ
 - [Tenax Liquido, mastic poliesteric lichid](https://www.tenax.it/en/products/professional/liquido/)
 - [Tenax Domo 10 A+B, mastic epoxidic bicomponent](https://www.tenax.it/en/products/professional/domo-10/)
 - [Tenax Gravity, adeziv vinilester transparent](https://www.tenax.it/en/products/professional/gravity/)
+- [Tenax StrongEdge 45 A+B, mastic epoxidic pentru lipire la 45°](https://www.tenax.it/us/products/professional/strongedge-45-ab/)
+- [Tenax Glaxs Fast, adeziv pentru lipiri la 45°](https://www.tenax.it/en/products/professional/glaxs-fast/)
+- [Tenax Eliox A+B, mastic epoxidic transparent](https://www.tenax.it/en/products/professional/eliox-ab/)
 - [ECHA, fișă substanță stiren](https://echa.europa.eu/substance-information/-/substanceinfo/100.002.592)
 - [NIOSH Pocket Guide, stiren](https://www.cdc.gov/niosh/npg/npgd0571.html)
 - [WEST System, protecția UV a sistemelor epoxidice](https://www.westsystem.com/instruction-2/epoxy-basics/finishing/)

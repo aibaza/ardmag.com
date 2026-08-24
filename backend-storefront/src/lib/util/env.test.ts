@@ -18,6 +18,20 @@ describe("public URL helpers", () => {
     expect(getBaseURL()).toBe("http://localhost:8000")
   })
 
+  it("prefers the preview base URL on validation deployments", () => {
+    vi.stubEnv("NEXT_PUBLIC_BASE_URL", "https://ardmag.ro")
+    vi.stubEnv("NEXT_PUBLIC_PREVIEW_BASE_URL", "https://preview.ardmag.ro")
+
+    expect(getBaseURL()).toBe("https://preview.ardmag.ro")
+  })
+
+  it("falls back to the canonical base URL when no preview base is set", () => {
+    vi.stubEnv("NEXT_PUBLIC_BASE_URL", "https://ardmag.ro")
+    vi.stubEnv("NEXT_PUBLIC_PREVIEW_BASE_URL", "")
+
+    expect(getBaseURL()).toBe("https://ardmag.ro")
+  })
+
   it("rewrites legacy share host and keeps path, query, and hash", () => {
     vi.stubEnv("NEXT_PUBLIC_BASE_URL", "https://ardmag.ro")
 

@@ -29,7 +29,7 @@ Aceeași familie de mastic vine în mai multe consistențe, iar asta schimbă co
 
 [Liquido](https://www.tenax.it/en/products/professional/liquido/) este varianta lichidă, cu vâscozitate redusă. Intră în pori fini și fisuri subțiri unde un mastic solid n-ar pătrunde.
 
-[Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/) este poliestericul transparent tixotropic. Stă unde îl pui: pe o muchie, pe verticală sau într-o îmbinare la 45 de grade, nu curge înainte să se întărească. Rezistența finală a îmbinării o dau produsul, suportul și pregătirea suprafeței, nu consistența.
+[Tixo XE](https://www.tenax.it/en/products/professional/tixo-xe/) este poliestericul transparent tixotropic. Stă unde îl pui: pe o muchie sau pe verticală, nu curge înainte să se întărească. Pentru lipirea la 45° recomandăm StrongEdge 45, Glaxs Fast sau Eliox, nu Tixo XE. Rezistența finală a îmbinării o dau produsul, suportul și pregătirea suprafeței, nu consistența.
 
 Pentru lipiri mai solicitate sau pe materiale moderne ca aglomeratele de cuarț, [Domo 10 A+B](https://www.tenax.it/en/products/professional/domo-10/) este epoxidicul colorat cu raport de amestec 1:1, declarat de producător și pentru suprafețe ușor umede - detaliile și limitele le găsești în fișa tehnică. [Gravity](https://www.tenax.it/en/products/professional/gravity/) este un adeziv vinilester transparent tixotropic, cu stabilitate bună la lumină, pentru lucrări transparente care trebuie să rămână clare în timp.
 
@@ -60,7 +60,8 @@ Poliestericul are termen de valabilitate și, odată catalizat, nu se mai întoa
 | Ai de făcut | Pornește de la | Culoare / ambalaj |
 |:-|:-|:-|
 | Reparație estetică, chituire pori | Solido sau Liquido | nuanță apropiată de piatră, 1L-4L |
-| Lipire pe verticală, muchii, 45° | Tixo XE transparent tixotropic; pentru epoxidic transparent, Glaxs sau Eliox | transparent, 1L-4L |
+| Lipire pe verticală și muchii | Tixo XE transparent tixotropic | transparent, 1L-4L |
+| Lipire la 45° | StrongEdge 45, Glaxs Fast sau Eliox | transparent, A+B |
 | Lipire solicitată mecanic sau aglomerat de cuarț | Domo 10 A+B epoxidic | colorat, ambalaj A+B după volum |
 | Lipire în zonă cu umezeală | Domo 10 A+B, declarat pentru suprafețe ușor umede; confirmă limitele în fișa tehnică | colorat, A+B |
 | Lucrare transparentă stabilă la lumină | Gravity, Glaxs, Eliox | transparent |
@@ -87,5 +88,6 @@ ARDmag.ro este distribuitor autorizat Tenax în România, așa că te putem sfă
 - [Tenax Tixo XE, mastic poliesteric transparent tixotropic](https://www.tenax.it/en/products/professional/tixo-xe/)
 - [Tenax Domo 10 A+B, mastic epoxidic bicomponent](https://www.tenax.it/en/products/professional/domo-10/)
 - [Tenax Gravity, adeziv vinilester transparent tixotropic](https://www.tenax.it/en/products/professional/gravity/)
+- [Tenax StrongEdge 45 A+B, mastic epoxidic pentru lipire la 45°](https://www.tenax.it/us/products/professional/strongedge-45-ab/)
 - [Tenax Glaxs Fast, adeziv pentru lipiri la 45°](https://www.tenax.it/en/products/professional/glaxs-fast/)
 - [Tenax Eliox A+B, mastic epoxidic transparent](https://www.tenax.it/en/products/professional/eliox-ab/)

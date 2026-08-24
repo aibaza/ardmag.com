@@ -1,79 +1,76 @@
 ---
-title: "Reumplerea porilor la travertin: tehnica „două treceri” cu rășină transparentă vs. colorată"
-description: "Când un singur strat de rășină nu ajunge la travertin cu pori adânci, o a doua trecere e practică documentată, nu modă. Ce spun fișele despre transparent vs. colorat."
-kicker: "Ghid tehnic · Mastici"
+title: "Reumplerea porilor la travertin: cum alegi masticul după consistență"
+description: "Mastic lichid sau semisolid pentru travertin? Comparăm utilizările, timpii și raportul de amestec din fișele Tenax."
+kicker: "Ghid tehnic · Masticuri"
 status: "published"
 review: "PASS"
 publishedAt: "2026-07-28"
-author: "Echipa ardmag"
-tags: ["mastici", "travertin", "rasina", "transparent", "colorat", "Tenax"]
-heroImage: "/blog/reumplerea-porilor-travertin-doua-treceri-rasina/travertin-mastici-tenax-hero-approved-v3-20260724.webp"
-ogImage: "/assets/articles/reumplerea-porilor-travertin-doua-treceri-rasina/travertin-mastici-tenax-og-approved-v3-20260724.png"
+updatedAt: "2026-08-17"
+author: "Echipa ARDmag"
+tags: ["masticuri", "travertin", "rasina", "transparent", "colorat", "tenax"]
+heroImage: "/blog/reumplerea-porilor-travertin-doua-treceri-rasina/travertin-masticuri-tenax-hero-20260817.webp"
+ogImage: "/assets/articles/reumplerea-porilor-travertin-doua-treceri-rasina/travertin-masticuri-tenax-og-20260817.png"
 ---
 
-Travertinul are pori naturali, uneori goluri care trec aproape prin toată grosimea plăcii. O singură trecere de rășină nu îi umple mereu până la refuz: se contractă la întărire sau rămâne un mic gol la fund. Când se întâmplă asta, a doua trecere completează exact ce a lăsat neterminat prima aplicare.
+Travertinul nu are goluri identice. Pe aceeași placă poți întâlni pori fini, găuri mai mari, suprafețe orizontale, zone verticale și muchii. De aceea, alegerea nu pornește doar de la culoare, ci și de la consistența masticului și de la locul în care îl aplici.
 
-„Două treceri” e doar felul în care descriem în atelier acest proces în doi pași, nu un nume oficial de tehnică înregistrat undeva. Nu există o rețetă universală care spune că prima trecere trebuie neapărat transparentă și a doua colorată. Alegerea transparent-colorat e o decizie separată, care ține de ce vrei să arate porul, nu de ordinea aplicării.
+O a doua trecere poate fi necesară dacă, după întărirea primei aplicări, umplutura nu ajunge la nivelul suprafeței. Momentul următoarei aplicări nu se stabilește după timpul de gel: urmează instrucțiunile din fișa tehnică a produsului folosit.
 
-## De ce travertinul cere o a doua trecere
+## Mastic transparent sau colorat
 
-Porozitatea travertinului nu e uniformă. O placă poate avea zone dense și zone cu goluri mari, vizibile cu ochiul liber. Pe fișa tehnică a masticelor de acest tip, producătorii tratează separat cazul suprafețelor cu porozitate foarte deschisă.
+Un mastic transparent lasă structura porului vizibilă. Unul colorat apropie umplutura de nuanța pietrei. Culoarea nu stabilește însă consistența, timpul de gel sau timpul de lucru. Aceste date se verifică separat pentru fiecare produs.
 
-Bellinzoni, un producător de referință în domeniu, recomandă explicit o a doua aplicare a masticului pe materiale cu porozitate foarte deschisă, după ce prima a avut timp să se întărească suficient. [Fișa tehnică MASTICE 2000](https://www.bellinzoni.com/file/Home/SCHEDE%20TECNICHE/27/EN_301M.pdf) și [pagina de produs](https://www.bellinzoni.com/it/prodotti/esigenze/mastici-e-siliconi/mastice-2000/) descriu explicit acest pas. Pentru rășina lor transparentă ASTRA 24K, gândită și pentru travertin cu goluri care trebuie să rămână vizibile, [producătorul indică un interval de aproximativ o oră între cele două aplicări](https://www.bellinzoni.com/en/products/needs/adhesives-and-silicones/astra-24k/). Aceste produse Bellinzoni nu sunt confirmate în catalogul ARDmag; apar aici doar ca documentație a practicii de a doua aplicare, nu ca recomandare de cumpărare.
+Testează nuanța și aspectul final pe o zonă mică. Rezultatul întărit poate arăta diferit față de amestecul proaspăt.
 
-Un interval fix de o oră nu se transferă automat la orice mastic. Fiecare produs are propriul timp de gel, timp fără aderență la atingere și timp de prelucrabilitate declarat. Aceste valori nu sunt o fereastră universală de aplicare; a doua trecere se face numai după instrucțiunile fișei produsului folosit.
+## Mastic Lichid pentru chituire și imperfecțiuni
 
-## Transparent sau colorat: două obiective diferite
+[Mastic Lichid](https://ardmag.ro/products/mastic-lichid) este produsul fluid din catalogul nostru. Fișele Tenax îl recomandă pentru repararea imperfecțiunilor, chituire și lipire. Consistența lichidă îl face potrivit pentru suprafețe orizontale și zone în care produsul trebuie să pătrundă ușor.
 
-Rășina transparentă lasă porul vizibil. Nu îl camuflează, îi arată adâncimea și structura, ca o fereastră spre interiorul pietrei. Asta înseamnă și că un por transparent rămâne, în continuare, un detaliu al suprafeței, nu dispare din privire.
+PDP-ul grupează două variante, dar parametrii lor nu sunt identici:
 
-Rășina colorată face invers: maschează vizual golul, apropiind culoarea umpluturii de culoarea dominantă a pietrei din jur. Reușita ei depinde de potrivirea nuanței, testată pe o zonă mică înainte de a acoperi toată suprafața, pentru că rezultatul se vede corect abia după întărire, nu în amestecul umed.
+- **varianta colorată, disponibilă în bej:** timpul de gel în masă este de 3-4 minute la 25°C, iar timpul de lucru este de 60-80 de minute;
+- **varianta transparentă:** timpul de gel în masă este de 5-8 minute la 25°C, iar timpul de lucru este de 60-80 de minute.
 
-Niciuna dintre cele două nu e „mai rezistentă” din cauza culorii. Rezistența ține de chimia produsului (poliester, epoxidic, vinilester), nu de faptul că e transparent sau colorat.
+Pentru fiecare dintre aceste masticuri, raportul indicat de Tenax este de **100 de părți mastic la 2-3 părți întăritor**.
 
-## Ce găsești în gama Tenax din catalogul ARDmag
+## Mastic Semisolid Wet pentru găuri medii și mari
 
-Pentru reumplerea porilor la travertin, gama Tenax din [categoria mastici și adezivi](/categories/mastici-tenax) acoperă ambele direcții, transparent și colorat, cu produse gândite pentru consistențe diferite.
+[Mastic Semisolid Wet](https://ardmag.ro/products/mastic-semisolid-wet) este un mastic poliester semisolid colorat. Fișa Tenax îl indică pentru chituirea găurilor medii și mari, inclusiv în travertin, precum și pentru reparații și lipire. Poate adera și pe suprafețe umede.
 
-[Mastic Lichid](https://ardmag.ro/products/mastic-lichid) este un mastic poliester lichid pentru piatră naturală și cuarț, disponibil în variantele **transparent** și **bej**. Datorită vâscozității reduse, penetrează ușor în imperfecțiuni fine. Raportul de amestec este 100+2/3, cu timp de gel de 3-4 minute și timp de prelucrabilitate declarat de 60-80 minute la 25°C.
+Consistența semisolidă permite aplicarea controlată cu spatula. În catalogul nostru, produsul este confirmat în culoarea **bej**.
 
-Pentru găuri medii și mari, chiar direct numite ca exemplu în fișa produsului, există [Mastic Semisolid Wet](https://ardmag.ro/products/mastic-semisolid-wet): un mastic poliester semisolid colorat, cu aderență și pe suprafețe umede, descris explicit ca „potrivit pentru umplerea găurilor medii și mari (ex. travertin)”. Are întărire mult mai rapidă decât Mastic Lichid: raport 100+2/3, timp de gel 1:30-2:30 minute și timp de prelucrabilitate declarat de 15-20 minute la 25°C. Consistența lui semisolidă se aplică cu spatula, nu se toarnă.
+Raportul de amestec este de **100 de părți mastic la 2-3 părți întăritor**. La 25°C, timpul de gel în masă este de 1 minut și 30 de secunde până la 2 minute și 30 de secunde, iar timpul de lucru este de 15-20 de minute. Prin comparație, ambele variante Mastic Lichid au un timp de lucru de 60-80 de minute. Diferența descrisă aici privește timpul de lucru declarat, nu un timp universal de întărire completă.
 
-Pentru zona transparentă a alegerii, [Tixo XE Transparent](https://ardmag.ro/products/tixo-xe-transparent) este un mastic poliester transparent tixotropic: nu curge pe verticală, ceea ce îl face util și la muchii sau lipiri la 45 de grade, nu doar la pori orizontali. Raport 100+2/3, gel 2-5 minute, timp de prelucrabilitate declarat de 35-50 minute.
+## Ce alegi pentru orizontală, verticală și muchii
 
-Iar dacă porul cere o umplutură colorată solidă, ușor de șlefuit ulterior, [Mastic Solid](https://ardmag.ro/products/mastic-solid) vine în alb, bej, negru și jura, cu raport 100+2/3, gel 4-5 minute și timp de prelucrabilitate declarat de 60-80 minute.
+Pentru porii de travertin documentați în fișele Tenax, alegerea principală este între Mastic Lichid și Mastic Semisolid Wet:
 
-Toate patru sunt colorabile suplimentar cu paste colorante universale, dacă niciuna dintre culorile din fabricație nu se potrivește exact cu piatra ta.
+1. Pe o suprafață orizontală, Mastic Lichid oferă o consistență fluidă pentru chituire și imperfecțiuni.
+2. Pentru găuri medii sau mari, Mastic Semisolid Wet este produsul a cărui fișă menționează explicit travertinul.
+3. Pe verticală sau pe muchii, o consistență tixotropică ori solidă limitează curgerea. [Tixo XE Transparent](https://ardmag.ro/products/tixo-xe-transparent) este documentat pentru lipiri vizibile, laminări și reparații rapide pe suprafețe verticale, iar [Mastic Solid](https://ardmag.ro/products/mastic-solid) pentru lipiri vizibile, laminări și reparații colorate. Nu le prezentăm drept produse dedicate chituirii extinse a porilor de travertin.
 
-## Cum alegi în practică
+Mastic Solid este disponibil în catalogul nostru în **alb, bej, negru și Jura**. Aceste culori aparțin produsului Mastic Solid; nu le extindem la celelalte produse.
 
-Câteva întrebări, în ordinea în care contează:
+## Când faci a doua trecere
 
-1. **Cât de mare e golul?** Pori fini și imperfecțiuni mici merg bine cu Mastic Lichid. Găuri medii sau mari, tipice travertinului, sunt exact ce descrie fișa Mastic Semisolid Wet.
-2. **Vrei porul vizibil sau mascat?** Transparent (Mastic Lichid transparent, Tixo XE) păstrează vizibil detaliul natural. Colorat (Mastic Lichid bej, Mastic Semisolid Wet, Mastic Solid) integrează vizual golul în piatră.
-3. **Lucrezi orizontal sau pe muchie/verticală?** Un mastic lichid se toarnă și se lasă să se niveleze singur pe orizontală. Tixo XE, tixotropic, nu curge de pe verticală.
-4. **Ai nevoie de o a doua trecere?** Dacă după întărirea completă a primei rămâne un mic gol sau o denivelare, se aplică o a doua umplutură, cu același produs sau cu unul potrivit pentru finisajul final, respectând instrucțiunile complete din fișa produsului ales.
+Verifică suprafața după ce prima aplicare s-a întărit conform instrucțiunilor produsului. Dacă umplutura a rămas sub nivelul pietrei, poți completa zona. Timpul de gel în masă și timpul de lucru au sensuri diferite și nu indică singure momentul sigur pentru reaplicare, șlefuire sau lustruire.
 
-## Ce nu funcționează
+Nu transfera timpii de la un produs la altul. Chiar și cele două variante Mastic Lichid au timpi de gel diferiți.
 
-Timpul de gel nu e momentul sigur pentru a doua trecere sau pentru șlefuire. El marchează gelificarea în masă, nu o fereastră de aplicare și nici permisiunea de manipulare. Urmează separat instrucțiunile producătorului pentru aplicare, întărire și prelucrare.
+## Produsele menționate
 
-Un produs epoxidic colorat, cum este Domo 10, sau un vinilester transparent, cum este Gravity, nu e gândit special pentru umplerea extinsă a porilor de travertin, oricât de ușor de aplicat pare. Fișele lor le poziționează în primul rând pentru lipire, laminare și reparații vizibile, nu ca sisteme dedicate de stucatură a suprafeței întregi.
+- [Mastic Lichid](https://ardmag.ro/products/mastic-lichid) - fluid, pentru chituire, imperfecțiuni și lipire;
+- [Mastic Semisolid Wet](https://ardmag.ro/products/mastic-semisolid-wet) - semisolid, pentru găuri medii și mari, inclusiv în travertin;
+- [Tixo XE Transparent](https://ardmag.ro/products/tixo-xe-transparent) - tixotropic, pentru lipiri vizibile, laminări și reparații rapide, inclusiv pe verticală;
+- [Mastic Solid](https://ardmag.ro/products/mastic-solid) - solid și colorat, pentru lipiri vizibile, laminări și reparații.
 
-Culoarea aleasă pe mostră se testează întâi pe o zonă reală a plăcii, nu se extinde direct pe toată suprafața, mai ales pe travertin deschis la culoare, unde diferențele de nuanță se văd ușor după întărire.
+## Ai nevoie de alegerea potrivită pentru lucrarea ta?
 
-## Înainte de aplicare
+Trimite-ne dimensiunea golurilor, poziția suprafeței și efectul dorit prin [formularul de contact](/contact). Poți vedea și [categoria noastră de masticuri și adezivi](/categories/mastici-tenax).
 
-Testează întotdeauna produsul ales pe o zonă mică, discretă, a plăcii tale. Nuanța finală, comportamentul la șlefuire și aspectul porului umplut se confirmă acolo, nu în fișa tehnică generală.
+## Surse tehnice
 
-Spune-ne dimensiunea și adâncimea porilor, dacă vrei efectul vizibil sau mascat, și dacă piatra e montată orizontal sau vertical. Confirmăm produsul din catalog și cantitatea, pe baza fișei tehnice curente.
-
-## Surse și referințe
-
-- [Bellinzoni MASTICE 2000, fișă tehnică](https://www.bellinzoni.com/file/Home/SCHEDE%20TECNICHE/27/EN_301M.pdf) - a doua aplicare recomandată pe materiale cu porozitate foarte deschisă; produs neconfirmat în catalogul ARDmag, citat exclusiv ca documentație a practicii.
-- [Bellinzoni MASTICE 2000, pagina de produs](https://www.bellinzoni.com/it/prodotti/esigenze/mastici-e-siliconi/mastice-2000/) - versiunea lichidă recomandată pentru pătrunderea în pori și cavități.
-- [Bellinzoni ASTRA 24K](https://www.bellinzoni.com/en/products/needs/adhesives-and-silicones/astra-24k/) - interval de aproximativ o oră între aplicări pe porozitate foarte deschisă; recomandat pentru travertin cu goluri vizibile; produs neconfirmat în catalogul ARDmag.
-- Catalog ARDmag - Mastic Lichid (Tenax Liquido / Liquido Trasparente): mastic poliester lichid, variante transparent și bej, raport 100+2/3, gel 3-4 min, timp de prelucrabilitate declarat 60-80 min la 25°C.
-- Catalog ARDmag - Mastic Semisolid Wet (Tenax Semisolido Wet): mastic poliester semisolid colorat, „potrivit pentru umplerea găurilor medii și mari (ex. travertin)”, raport 100+2/3, gel 1:30-2:30 min, timp de prelucrabilitate declarat 15-20 min la 25°C.
-- Catalog ARDmag - Tixo XE Transparent: mastic poliester transparent tixotropic, nu curge pe verticală, raport 100+2/3, gel 2-5 min, timp de prelucrabilitate declarat 35-50 min la 25°C.
-- Catalog ARDmag - Mastic Solid (Tenax Solido): mastic poliester colorat (alb, bej, negru, jura), raport 100+2/3, gel 4-5 min, timp de prelucrabilitate declarat 60-80 min la 25°C.
+- [Tenax Liquido colorat](https://www.tenax.it/prodotti/professional/liquido-trasparente-2/) - utilizări, raport de amestec, timp de gel și timp de lucru pentru varianta colorată.
+- [Tenax Liquido Trasparente](https://www.tenax.it/en/products/professional/liquido-trasparente/) - utilizări, raport de amestec, timp de gel și timp de lucru pentru varianta transparentă.
+- [Tenax Semisolido Wet](https://www.tenax.it/en/products/professional/semisolido-wet/) - utilizări pe suprafețe umede și la găuri medii sau mari, inclusiv travertin, plus parametrii tehnici.
+- [Catalogul profesional Tenax](https://www.tenax.it/wp-content/uploads/2024/10/Tenax-catalogo-professional-LQ.pdf) - utilizările documentate pentru Tixo XE Transparent și Mastic Solid.

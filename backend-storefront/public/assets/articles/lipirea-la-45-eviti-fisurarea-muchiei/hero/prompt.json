@@ -1,0 +1,15 @@
+{
+  "prompt": null,
+  "generatedAt": "2026-08-20",
+  "provider": "user-supplied-exact-source",
+  "mode": "source-replacement-no-generation",
+  "source": {
+    "path": "/home/dc/.hermes/cache/images/img_713451c4876b.png",
+    "sha256": "222f0fdad890507828bf411e28dec8237981b6ef9c78afabead079812d2c25b7",
+    "dimensions": "1672x941",
+    "geometryModified": false
+  },
+  "focusPoint": { "x": 0.52, "y": 0.52 },
+  "storyFocusX": 0.647,
+  "subjectBbox": { "x1": 0.482, "y1": 0.273, "x2": 0.812, "y2": 0.762 }
+}
