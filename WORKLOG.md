@@ -2065,3 +2065,8 @@ ClickUp/time entry:
   Testele de publicare au trecut (10/10). Compilarea Next.js a trecut, iar build-ul
   local s-a oprit ulterior la prerandarea sitemap-ului din cauza unui URL invalid
   din mediul local; aceeași limitare de mediu este verificată din nou în Vercel.
+- 2026-08-24: incident collector remediat la contract. `edge_landing` folosește
+  schema publică strictă fără `extra`/identificatori; `purchase` merge exclusiv
+  autentificat la `/internal/events`, cu event_id stabil, payload minim și
+  verificare `ok=true, written=1`. Logurile subscriberului nu includ order ID
+  sau PII. Confirmarea finală Purchase rămâne la prima comandă reală.

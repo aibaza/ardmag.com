@@ -5,6 +5,20 @@ Format: [date] type: description
 
 ---
 
+## 2026-08-24 - Contract sigur pentru măsurarea collector
+
+### Schimbare livrată
+
+`edge_landing` nu mai trimite extensii arbitrare, țară sau identificatori brute.
+Subscriberul `order.placed` trimite Purchase numai prin ingestul intern
+autentificat, cu payload minim și deduplicare stabilă pe ID-ul opac al comenzii.
+Răspunsul collectorului este verificat fără logarea ID-ului comenzii sau PII.
+
+### Verificare
+
+Testele de contract acoperă payloadul PII-safe, moneda ISO, acknowledgement-ul
+exact și refuzul răspunsurilor neconfirmate. Nu s-a emis Purchase sintetic.
+
 ## 2026-08-21 - Ghid pentru discuri peste 600 mm și fir diamantat
 
 ### Schimbare livrată

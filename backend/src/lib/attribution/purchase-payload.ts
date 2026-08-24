@@ -44,38 +44,23 @@ export function buildPurchasePayload(
     site: "ardmag.ro",
     event: "purchase",
     event_id: order.id,
-    order_id: order.id,
     value: getCanonicalOrderTotal(order),
-    currency: order.currency_code || "ron",
+    currency: (order.currency_code || "ron").toUpperCase(),
     utm_source: resolvedSource,
     utm_medium: resolvedMedium,
     utm_campaign: resolvedCampaign,
-    utm_content: resolvedVia,
     resolved_via: resolvedVia,
-    extra: {
-      order_id: order.id,
-      currency: order.currency_code || "ron",
-      attribution: attribution
-        ? {
-            resolved_source: resolvedSource,
-            resolved_medium: resolvedMedium,
-            resolved_campaign: resolvedCampaign,
-            resolved_via: resolvedVia,
-            first_touch: attribution.first_touch,
-            last_touch: attribution.last_touch,
-            fbclid: attribution.fbclid,
-            gclid: attribution.gclid,
-            fbc: attribution.fbc,
-            fbp: attribution.fbp,
-            attribution_window_days: attribution.attribution_window_days,
-          }
-        : {
-            resolved_source: "direct",
-            resolved_medium: "none",
-            resolved_campaign: "",
-            resolved_via: resolvedVia,
-            attribution_window_days: 90,
-          },
-    },
   }
+}
+
+export async function verifyCollectorPurchaseResponse(response: Response): Promise<void> {
+  if (!response.ok) throw new Error(`collector_http_${response.status}`)
+  let body: unknown
+  try {
+    body = await response.json()
+  } catch {
+    throw new Error("collector_invalid_json")
+  }
+  const result = body as { ok?: unknown; written?: unknown }
+  if (result.ok !== true || result.written !== 1) throw new Error("collector_write_not_acknowledged")
 }
