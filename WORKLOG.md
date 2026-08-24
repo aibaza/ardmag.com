@@ -5,6 +5,15 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-24 -- Pagina de 404 arata produse strategice
+
+- Sub blocul de text, pagina lasa coloana din dreapta goala. Adaug doua grile de produse la latimea paginii, cu aceleasi componente ca homepage-ul (`SectionHead` + `ProductGrid` variant `mini` + `productToCard`), deci fara markup paralel.
+- Selectia e strategica, nu aleatoare: promotii active si intrari recente, cate 4. Practica pe magazine online recomanda bestsellers, noutati sau promotii, pentru ca produsele la intamplare nu recupereaza intentia comerciala cu care a venit vizitatorul. Ambele sectiuni sunt conditionate de continut: acum, fara promotii active, se randeaza doar grila de produse noi, iar cea de promotii reapare singura cand exista reduceri.
+- Catalogul vine din acelasi apel public si cache-uit ca homepage-ul, cu retragere pe lista goala daca backendul nu raspunde.
+- Validari: TypeScript PASS, ESLint PASS. Verificat pe preview `preview.ardmag.ro` in desktop si mobil, pe ambele intrari de 404.
+- Deploy production `dpl_GdpprFRN7Cfm6DwQVBhTiujtXQGi` este Ready din commitul `63b6c97`. Readback live: `/pagina-inexistenta` si un fisier lipsa din `/assets` raspund amandoua 404 cu ecranul nou si cu 4 carduri de produs randate.
+- Commit: `63b6c97`.
+
 ## 2026-08-24 -- Pagina de 404 a magazinului si imaginile articolului sunt live
 
 - Cele cinci ecrane de 404 mergeau pe implementari divergente, iar cel de la radacina (`src/app/not-found.tsx`) folosea inca clase Tailwind. Directivele `@tailwind` fusesera scoase din `globals.css` la portarea pe design system (`1223cc4`), deci clasele nu mai existau in CSS-ul servit: verificat pe bundle-urile live, `flex-col`, `items-center` si `w-3.5` aveau zero aparitii. Pagina se randa complet nestilizata, cu sageata SVG intinsa pe tot ecranul.
