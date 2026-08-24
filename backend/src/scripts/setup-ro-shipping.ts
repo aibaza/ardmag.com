@@ -214,15 +214,21 @@ export default async function setupRoShipping({ container }: ExecArgs) {
     },
   });
 
-  // --- Link stock location <-> fulfillment provider manual ---
-  await link.create({
-    [Modules.STOCK_LOCATION]: {
-      stock_location_id: stockLocation.id,
-    },
-    [Modules.FULFILLMENT]: {
-      fulfillment_provider_id: "manual_manual",
-    },
-  });
+  // --- Link stock location <-> fulfillment providers ---
+  for (const providerId of [
+    "manual_manual",
+    "fan-courier_fan-courier",
+    "cargus_cargus",
+  ]) {
+    await link.create({
+      [Modules.STOCK_LOCATION]: {
+        stock_location_id: stockLocation.id,
+      },
+      [Modules.FULFILLMENT]: {
+        fulfillment_provider_id: providerId,
+      },
+    });
+  }
 
   // --- Link sales channel <-> stock location ---
   if (defaultSalesChannel) {
