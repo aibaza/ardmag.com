@@ -23,7 +23,7 @@ Un por sau o gaură e un gol vizibil, umplut cu spatula, cu un mastic - despre a
 
 O microfisură observată la debitare sau la procesare are alt context decât una apărută după montaj. În primul caz verifici dacă fisura era deja în piatră sau dacă a apărut în timpul prelucrării ori manipulării. În al doilea, cauți o solicitare ulterioară, de exemplu un șoc termic sau mecanic, o problemă de montaj ori efectul repetat al înghețului asupra unei piese expuse.
 
-Diferența contează pentru că spune dacă mai există o cauză activă de rezolvat. Dacă placa încă lucrează - flexează pentru că suportul nu e suficient, sau rămâne probabil expusă unui nou șoc - o rășină aplicată peste fisură nu rezolvă motivul pentru care a apărut. Riști ca aceeași linie, sau una nouă alături, să revină. Rezolvi întâi suportul sau expunerea. Abia apoi consideri fisura închisă.
+Diferența contează pentru că spune dacă mai există o cauză activă de rezolvat. Dacă placa încă lucrează - flexează pentru că suportul nu e suficient sau rămâne probabil expusă unui nou șoc - o rășină aplicată peste fisură nu rezolvă motivul pentru care a apărut. Riști ca aceeași linie sau una nouă alături să revină. Rezolvi întâi suportul sau expunerea. Abia apoi consideri fisura închisă.
 
 ## Zona contează mai mult decât mărimea fisurii
 
