@@ -11,6 +11,7 @@ import { CheckoutTracker } from "@modules/analytics/CheckoutTracker"
 import { redirect } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 import { hasShippingPhone } from "@lib/util/checkout-shipping-phone"
+import { deliveryKind, paymentAllowedForDelivery } from "@lib/util/delivery-payment-policy"
 
 type Props = {
   params: Promise<{ countryCode: string }>
@@ -76,7 +77,8 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
   let paymentProviders: HttpTypes.StorePaymentProvider[] = []
 
   if (step === 'delivery' && cart.id) {
-    shippingOptions = ((await listCartShippingMethods(cart.id)) ?? []) as HttpTypes.StoreCartShippingOption[]
+    shippingOptions = (((await listCartShippingMethods(cart.id)) ?? []) as HttpTypes.StoreCartShippingOption[])
+      .filter((option) => ["fan-courier", "cargus", "pickup-cluj"].includes(deliveryKind(option as any)))
     // Pre-calculeaza pretul pentru optiunile de tip calculated
     await Promise.all(
       shippingOptions
@@ -88,7 +90,9 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
     )
   }
   if (step === 'payment' && cart.region_id) {
-    paymentProviders = (await listCartPaymentMethods(cart.region_id)) ?? []
+    const kind = deliveryKind(cart.shipping_methods?.[0] as any)
+    paymentProviders = ((await listCartPaymentMethods(cart.region_id)) ?? [])
+      .filter((provider) => paymentAllowedForDelivery(kind, provider.id))
   }
 
   return (

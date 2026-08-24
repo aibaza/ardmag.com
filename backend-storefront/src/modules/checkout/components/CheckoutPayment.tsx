@@ -5,6 +5,7 @@ import { HttpTypes } from "@medusajs/types"
 import { useRouter } from "next/navigation"
 import { loadStripe } from "@stripe/stripe-js"
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
+import { deliveryKind } from "@lib/util/delivery-payment-policy"
 
 interface Props {
   cart: HttpTypes.StoreCart
@@ -149,6 +150,7 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+  const selectedDelivery = deliveryKind(cart.shipping_methods?.[0] as any)
 
   const selectedIsStripe = isStripe(selected)
 
@@ -201,6 +203,12 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
       <h3 style={{ fontFamily: "var(--f-sans)", fontWeight: 600, marginBottom: 16 }}>
         Metoda de plata
       </h3>
+
+      {(selectedDelivery === "fan-courier" || selectedDelivery === "cargus") && (
+        <p style={{ color: "var(--fg-muted)", fontSize: 13, marginBottom: 12, fontFamily: "var(--f-sans)" }}>
+          Pentru {selectedDelivery === "fan-courier" ? "Fan Courier" : "Cargus"}, plata disponibilă este {selectedDelivery === "fan-courier" ? "ramburs" : "cu cardul"}.
+        </p>
+      )}
 
       {paymentProviders.length === 0 ? (
         <p style={{ color: "var(--fg-muted)", marginBottom: 16 }}>

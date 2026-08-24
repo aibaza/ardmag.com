@@ -67,7 +67,7 @@ export default async function TermeniPage({
         <p style={pStyle}>
           Termenul standard de livrare este 1-3 zile lucratoare de la confirmarea comenzii, in limita
           stocului disponibil. Costurile de livrare sunt afistate la checkout. Livrare gratuita la comenzi
-          de peste 500 Lei (Fan Courier).
+          de peste 500 Lei (Fan Courier sau Cargus).
         </p>
 
         <h2 style={h2Style}>5. Dreptul de retur</h2>
