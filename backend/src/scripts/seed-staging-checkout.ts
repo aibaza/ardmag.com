@@ -4,9 +4,11 @@ import { ContainerRegistrationKeys, Modules, ProductStatus } from "@medusajs/fra
 import {
   createApiKeysWorkflow,
   createInventoryLevelsWorkflow,
+  createProductCategoriesWorkflow,
   createProductsWorkflow,
   createSalesChannelsWorkflow,
   linkSalesChannelsToApiKeyWorkflow,
+  updateProductsWorkflow,
   updateStoresWorkflow,
 } from "@medusajs/medusa/core-flows"
 
@@ -71,9 +73,23 @@ export default async function seedStagingCheckout({ container }: ExecArgs) {
     return
   }
 
+  const { data: existingCategories } = await query.graph({
+    entity: "product_category",
+    fields: ["id", "name"],
+    filters: { name: "Test staging" },
+  })
+  let category = existingCategories?.[0]
+  if (!category) {
+    const { result } = await createProductCategoriesWorkflow(container).run({
+      input: { product_categories: [{ name: "Test staging", is_active: true }] },
+    })
+    category = result[0]
+    logger.info("seed-staging-checkout: created test category")
+  }
+
   const { data: existingProducts } = await query.graph({
     entity: "product",
-    fields: ["id"],
+    fields: ["id", "categories.id"],
     filters: { handle: HANDLE },
   })
   if (!existingProducts?.length) {
@@ -85,6 +101,7 @@ export default async function seedStagingCheckout({ container }: ExecArgs) {
           description: "Produs exclusiv pentru verificarea checkout-ului de staging.",
           weight: 1000,
           status: ProductStatus.PUBLISHED,
+          category_ids: [category.id],
           shipping_profile_id: shippingProfile.id,
           options: [{ title: "Varianta", values: ["Standard"] }],
           variants: [{
@@ -98,6 +115,11 @@ export default async function seedStagingCheckout({ container }: ExecArgs) {
       },
     })
     logger.info("seed-staging-checkout: created weighted test product")
+  } else if (!(existingProducts[0].categories || []).some((item) => item.id === category.id)) {
+    await updateProductsWorkflow(container).run({
+      input: { products: [{ id: existingProducts[0].id, category_ids: [category.id] }] },
+    })
+    logger.info("seed-staging-checkout: linked test product to category")
   }
 
   const { data: products } = await query.graph({
