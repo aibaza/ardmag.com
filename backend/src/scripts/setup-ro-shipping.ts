@@ -163,6 +163,7 @@ export default async function setupRoShipping({ container }: ExecArgs) {
           default_tax_rate: {
             rate: 21,
             name: "TVA standard",
+            code: "TVA_STANDARD_RO",
           },
         },
       ],
