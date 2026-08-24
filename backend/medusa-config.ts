@@ -73,6 +73,7 @@ modules.push({
     providers: [
       { resolve: "@medusajs/medusa/fulfillment-manual", id: "manual" },
       { resolve: "./src/modules/fulfillment-fan-courier", id: "fan-courier" },
+      { resolve: "./src/modules/fulfillment-cargus", id: "cargus" },
     ],
   },
 })
