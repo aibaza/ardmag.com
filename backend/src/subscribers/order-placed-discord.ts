@@ -44,10 +44,15 @@ export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
     : "direct"
   const from = [place, source, attribution?.resolved_campaign].filter(Boolean).join("\n")
 
-  const isCod = order.payment_collections?.some((pc: any) =>
-    pc.payments?.some((p: any) => p.provider_id?.includes("pp_system_default"))
-  )
-  const payment = isCod ? "ramburs" : "card"
+  const paymentProviderId = order.payment_collections
+    ?.flatMap((collection: any) => collection.payments ?? [])
+    .find((payment: any) => payment.provider_id)?.provider_id
+  const payment = paymentProviderId === "pp_system_default"
+    ? "ramburs"
+    : paymentProviderId?.includes("stripe")
+      ? "card"
+      : "plata necunoscuta"
+  const carrier = order.shipping_methods?.[0]?.name || "livrare necunoscuta"
 
   const mention = process.env.DISCORD_ORDER_MENTION || ""
   const total = getOrderDiscordTotal(order)
@@ -63,6 +68,7 @@ export function buildOrderDiscordMessage(order: any): Record<string, unknown> {
         fields: [
           { name: "Cine", value: who, inline: true },
           { name: "De unde", value: from, inline: true },
+          { name: "Livrare", value: `${carrier} / ${payment}`, inline: false },
         ],
         timestamp: order.created_at ? new Date(order.created_at).toISOString() : undefined,
       },
@@ -100,6 +106,7 @@ export default async function orderPlacedDiscord({
         "shipping_address.*",
         "billing_address.*",
         "payment_collections.payments.provider_id",
+        "shipping_methods.name",
       ],
       filters: { id: orderId },
     })
