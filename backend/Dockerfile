@@ -1,3 +1,11 @@
+FROM node:20-alpine AS builder
+
+WORKDIR /build
+COPY package*.json ./
+RUN npm ci --legacy-peer-deps
+COPY . .
+RUN npm run build
+
 FROM ghcr.io/aibaza/ardmag-backend:latest
 
 WORKDIR /app
@@ -6,21 +14,21 @@ WORKDIR /app
 RUN npm install sharp --no-save --legacy-peer-deps
 
 # Copiaza toate modulele custom compilate
-COPY .medusa/server/src/modules/ ./src/modules/
+COPY --from=builder /build/.medusa/server/src/modules/ ./src/modules/
 
 # Copiaza API routes si middleware custom compilate
-COPY .medusa/server/src/api/ ./src/api/
+COPY --from=builder /build/.medusa/server/src/api/ ./src/api/
 
 # Copiaza subscribers compilate (event handlers pe order.placed, customer.created, etc)
-COPY .medusa/server/src/subscribers/ ./src/subscribers/
+COPY --from=builder /build/.medusa/server/src/subscribers/ ./src/subscribers/
 
 # Copiaza cod partajat compilat (ex. src/lib/attribution folosit de subscribers)
-COPY .medusa/server/src/lib/ ./src/lib/
+COPY --from=builder /build/.medusa/server/src/lib/ ./src/lib/
 
 # Copiaza jobs compilate (cron-uri pentru abandoned-cart-reminder etc)
-COPY .medusa/server/src/jobs/ ./src/jobs/
+COPY --from=builder /build/.medusa/server/src/jobs/ ./src/jobs/
 
 # Copiaza medusa-config.js cu fan-courier inregistrat
-COPY .medusa/server/medusa-config.js ./medusa-config.js
+COPY --from=builder /build/.medusa/server/medusa-config.js ./medusa-config.js
 
 EXPOSE 9000
