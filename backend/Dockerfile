@@ -28,6 +28,9 @@ COPY --from=builder /build/.medusa/server/src/lib/ ./src/lib/
 # Copiaza jobs compilate (cron-uri pentru abandoned-cart-reminder etc)
 COPY --from=builder /build/.medusa/server/src/jobs/ ./src/jobs/
 
+# Copiaza scripturile operator-only folosite pentru seed/configurare pe staging
+COPY --from=builder /build/.medusa/server/src/scripts/ ./src/scripts/
+
 # Copiaza medusa-config.js cu fan-courier inregistrat
 COPY --from=builder /build/.medusa/server/medusa-config.js ./medusa-config.js
 
