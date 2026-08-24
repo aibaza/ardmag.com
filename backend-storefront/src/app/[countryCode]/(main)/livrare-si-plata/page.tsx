@@ -5,7 +5,7 @@ import { SiteFooter } from "@modules/layout/site-footer"
 export const metadata: Metadata = {
   title: "Livrare si plata | ARDmag.ro",
   description:
-    "Livrare in 1-3 zile lucratoare prin Fan Courier, Sameday, Cargus. Livrare gratuita peste 500 Lei. Plata cu card sau ramburs.",
+    "Livrare prin Fan Courier cu ramburs sau Cargus cu plata online. Livrare gratuita peste 500 Lei.",
 }
 
 export default async function LivrareSimPlataPage({
@@ -59,39 +59,33 @@ export default async function LivrareSimPlataPage({
               <th style={thStyle}>Curier</th>
               <th style={thStyle}>Termen</th>
               <th style={thStyle}>Cost</th>
+              <th style={thStyle}>Plata</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td style={tdStyle}>Fan Courier</td>
               <td style={tdStyle}>1-2 zile lucratoare</td>
-              <td style={tdStyle}>19,99 Lei</td>
-            </tr>
-            <tr>
-              <td style={tdStyle}>Sameday</td>
-              <td style={tdStyle}>1-2 zile lucratoare</td>
-              <td style={tdStyle}>21,99 Lei</td>
+              <td style={tdStyle}>Calculat la checkout</td>
+              <td style={tdStyle}>Ramburs</td>
             </tr>
             <tr>
               <td style={tdStyle}>Cargus</td>
               <td style={tdStyle}>2-3 zile lucratoare</td>
-              <td style={tdStyle}>22,99 Lei</td>
-            </tr>
-            <tr>
-              <td style={tdStyle}>Posta Romana</td>
-              <td style={tdStyle}>3-5 zile lucratoare</td>
-              <td style={tdStyle}>14,99 Lei</td>
+              <td style={tdStyle}>De la 22,99 Lei (tarif provizoriu)</td>
+              <td style={tdStyle}>Card bancar</td>
             </tr>
             <tr>
               <td style={tdStyle}>Ridicare din depozit Cluj-Napoca</td>
               <td style={tdStyle}>In aceeasi zi (in program)</td>
               <td style={tdStyle}><strong>Gratuit</strong></td>
+              <td style={tdStyle}>Conform optiunilor afisate la checkout</td>
             </tr>
           </tbody>
         </table>
 
         <div style={{ background: "var(--brand-50, #f0f9ff)", border: "1px solid var(--brand-200, #bae6fd)", borderRadius: "var(--r-md)", padding: "16px 20px", marginBottom: 32 }}>
-          <strong>Livrare gratuita la comenzi de peste 500 Lei</strong> - se aplica automat la checkout pentru Fan Courier.
+          <strong>Livrare gratuita la comenzi de peste 500 Lei</strong> - se aplica automat la checkout pentru Fan Courier si Cargus.
         </div>
 
         <h2 style={h2Style}>Procesare comanda</h2>
@@ -108,11 +102,11 @@ export default async function LivrareSimPlataPage({
           <tbody>
             <tr>
               <td style={tdStyle}><strong>Card bancar (Visa / Mastercard)</strong></td>
-              <td style={tdStyle}>Plata securizata prin Stripe cu 3DSecure. Suma este retinuta la finalizarea comenzii.</td>
+              <td style={tdStyle}>Disponibila pentru livrarea prin Cargus. Plata este securizata prin Stripe cu 3DSecure.</td>
             </tr>
             <tr>
               <td style={tdStyle}><strong>Ramburs la livrare</strong></td>
-              <td style={tdStyle}>Platesti curiervului la primirea coletului, in numerar. Taxa ramburs: inclusa in costul livrarii.</td>
+              <td style={tdStyle}>Disponibila pentru Fan Courier. Platesti curierului la primirea coletului, in numerar.</td>
             </tr>
           </tbody>
         </table>

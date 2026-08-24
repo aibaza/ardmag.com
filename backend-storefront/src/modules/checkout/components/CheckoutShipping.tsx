@@ -6,6 +6,7 @@ import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { formatPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 import { SHIPPING_PHONE_REQUIRED_MESSAGE } from "@lib/util/checkout-shipping-phone"
+import { deliveryKind } from "@lib/util/delivery-payment-policy"
 
 const FREE_SHIPPING_THRESHOLD = 500
 
@@ -64,9 +65,9 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
     if (raw === 0) {
       return <span style={{ color: "#0f766e", fontWeight: 700 }}>Gratuit</span>
     }
-    // Free shipping override pe Fan Courier cand cart depaseste pragul
-    const isCalculated = (opt as any).price_type === "calculated"
-    if (isCalculated && freeShippingActive) {
+    // Politica comerciala aprobata: gratuitate peste prag pentru Fan si Cargus.
+    const kind = deliveryKind(opt as any)
+    if ((kind === "fan-courier" || kind === "cargus") && freeShippingActive) {
       return (
         <span>
           <span style={{ textDecoration: "line-through", color: "var(--fg-muted)", marginRight: 6, fontWeight: 400 }}>
@@ -116,7 +117,7 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
 
       {freeShippingActive && (
         <div style={{ background: "#f0fdf4", color: "#0f766e", padding: "10px 14px", borderRadius: "var(--r-md)", fontSize: 13, marginBottom: 12, fontFamily: "var(--f-sans)" }}>
-          ✓ Comanda ta depaseste 500 Lei -- livrarea cu Fan Courier este <strong>gratuita</strong>.
+          ✓ Comanda ta depaseste 500 Lei -- livrarea cu Fan Courier sau Cargus este <strong>gratuita</strong>.
         </div>
       )}
 
@@ -134,7 +135,11 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
                 onChange={() => selectAndPersist(opt.id)}
                 disabled={isPending}
               />
-              <span style={{ flex: 1 }}>{opt.name}</span>
+              <span style={{ flex: 1 }}>
+                {opt.name}
+                {deliveryKind(opt as any) === "fan-courier" && <small style={{ display: "block", color: "var(--fg-muted)" }}>Plata ramburs</small>}
+                {deliveryKind(opt as any) === "cargus" && <small style={{ display: "block", color: "var(--fg-muted)" }}>Plata cu cardul</small>}
+              </span>
               <span style={{ fontWeight: 600 }}>{renderPrice(opt)}</span>
             </label>
           ))}

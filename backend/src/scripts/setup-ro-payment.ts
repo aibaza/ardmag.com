@@ -26,8 +26,16 @@ export default async function setupRoPayment({ container }: ExecArgs) {
   const availableProviders = await paymentModuleService.listPaymentProviders({}, { take: 50 })
   logger.info(`setup-ro-payment: available providers: ${availableProviders.map((p: { id: string }) => p.id).join(", ")}`)
 
-  const stripeProvider = availableProviders.find((p: { id: string }) => p.id.includes("stripe"))
-  const rambursProvider = availableProviders.find((p: { id: string }) => p.id.includes("pp_system_default") || p.id.includes("manual"))
+  const stripeProvider = availableProviders.find((p: { id: string }) =>
+    p.id.includes("stripe") && !p.id.includes("ideal") && !p.id.includes("oxxo")
+  )
+  const rambursProvider = availableProviders.find(
+    (p: { id: string }) => p.id === "pp_system_default"
+  )
+
+  if (!rambursProvider) {
+    throw new Error("setup-ro-payment: providerul pp_system_default pentru ramburs nu este disponibil")
+  }
 
   const currentProviderIds: string[] = (roRegion.payment_providers || []).map((p: { id: string }) => p.id)
   logger.info(`setup-ro-payment: current providers on Romania: ${currentProviderIds.join(", ") || "none"}`)

@@ -21,6 +21,7 @@ import {
   hasShippingPhone,
   SHIPPING_PHONE_REQUIRED_MESSAGE,
 } from "@lib/util/checkout-shipping-phone"
+import { deliveryKind, deliveryPaymentError } from "@lib/util/delivery-payment-policy"
 
 /**
  * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.
@@ -261,6 +262,10 @@ export async function initiatePaymentSession(
   cart: HttpTypes.StoreCart,
   data: HttpTypes.StoreInitializePaymentSession
 ) {
+  const kind = deliveryKind(cart.shipping_methods?.[0] as any)
+  const policyError = deliveryPaymentError(kind, data.provider_id)
+  if (policyError) throw new Error(policyError)
+
   const headers = {
     ...(await getAuthHeaders()),
   }
@@ -429,10 +434,20 @@ export async function placeOrder(cartId?: string) {
     ...(await getAuthHeaders()),
   }
 
-  const cart = await retrieveCart(id, "id,*shipping_address")
+  const cart = await retrieveCart(
+    id,
+    "id,*shipping_address,+shipping_methods.name,*payment_collection.payment_sessions"
+  )
   if (!hasShippingPhone(cart?.shipping_address)) {
     return SHIPPING_PHONE_REQUIRED_MESSAGE
   }
+
+  const shippingKind = deliveryKind(cart?.shipping_methods?.[0] as any)
+  const paymentProviderId = cart?.payment_collection?.payment_sessions?.find(
+    (session: any) => session.status !== "canceled"
+  )?.provider_id ?? cart?.payment_collection?.payment_sessions?.[0]?.provider_id
+  const policyError = deliveryPaymentError(shippingKind, paymentProviderId)
+  if (policyError) return policyError
 
   const cartRes = await sdk.store.cart
     .complete(id, {}, headers)
