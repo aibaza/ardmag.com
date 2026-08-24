@@ -10,7 +10,7 @@ import {
   updateStoresWorkflow,
 } from "@medusajs/medusa/core-flows"
 
-const HANDLE = "staging-checkout-test"
+const HANDLE = "staging-checkout-test-100"
 
 export default async function seedStagingCheckout({ container }: ExecArgs) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
@@ -89,9 +89,9 @@ export default async function seedStagingCheckout({ container }: ExecArgs) {
           options: [{ title: "Varianta", values: ["Standard"] }],
           variants: [{
             title: "Standard",
-            sku: "STAGING-CHECKOUT-001",
+            sku: "STAGING-CHECKOUT-100",
             options: { Varianta: "Standard" },
-            prices: [{ currency_code: "ron", amount: 10000 }],
+            prices: [{ currency_code: "ron", amount: 100 }],
           }],
           sales_channels: [{ id: salesChannel.id }],
         }],
