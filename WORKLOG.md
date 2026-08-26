@@ -5,6 +5,13 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-08-26 -- Ghidul Solvente Gamma, corectat după feedbackul clientului
+
+- Articolul păstrează exact corecțiile tehnice primite de la Andrei Rînziș: ambalaje de 1 și 5 litri, „elementele metalice” și numai formularea neutră „fișa tehnică”, fără comparații EN/IT.
+- Review-urile independente Codex și Claude au dat PASS pe articolul cu SHA-256 `c98169522b2a70970b87904e48ea6020bacdcf18007da4dafca76c57df0e78ba`; gate-ul canonic de publicare este PASS.
+- Testele de publicație sunt 10/10 PASS. Build-ul curat compilează, apoi prerandarea sitemap-ului local rămâne blocată de URL-ul Medusa lipsă din mediul local; build-ul și deploy-ul Vercel folosesc mediul real al proiectului.
+- Valul social din 24 august nu este recreat sau reprogramat. Orice val viitor cere receipt separat și readback Metricool propriu.
+
 ## 2026-08-12 -- Candidatul made-to-order a fost corectat pentru review pe test
 
 - Titlul, descrierea și corpul nu mai prezintă made-to-order drept serviciu confirmat. Rolul ARDmag este de distribuitor care poate prelua specificația pentru o discuție preliminară; numai furnizorul identificat pentru cererea concretă poate confirma fezabilitatea și condițiile.

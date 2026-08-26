@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-26 — Ghidul Solvente Gamma publicat cu feedbackul tehnic final
+
+- Publică articolul despre îndepărtarea tratamentului vechi și păstrează corecțiile Andrei Rînziș: ambalaje de 1 și 5 litri, „elementele metalice” și formularea neutră „fișa tehnică”, fără comparații între versiuni lingvistice.
+- Actualizează hero-ul și OG-ul cu disclosure-ul AI obligatoriu și proveniență verificabilă pentru Solvente Gamma.
+- Valul social istoric din 24 august rămâne neatins; promovările viitoare rămân supuse review-ului separat pe propriii bytes finali.
+
 ## 2026-08-12 — Candidatul made-to-order corectat pe staging
 
 - Hero nou, editorial și fără produse inventate, cu focalizare responsive pentru desktop și mobil.
