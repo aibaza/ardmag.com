@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "capability": "openai.imagegen",
+  "model": "chatgpt-imagegen-2",
+  "physical_product_present": true,
+  "created_at": "2026-08-21T13:38:10Z",
+  "prompt_path": "../../blog/indepartare-tratament-vechi-inainte-de-retratare/prompt.json",
+  "product_catalog_mapping": {
+    "commercial_product_name": "Solvente Gamma",
+    "canonical_live_url": "https://ardmag.ro/products/solvente-gamma",
+    "packaging_identity_visible_in_catalog_photos": "Solvente Gamma - Decapant Universal pe baza de solvent, Delta Research"
+  },
+  "references": [
+    {
+      "role": "canonical_solvente_gamma_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/solvente-gamma/db3b5a_2b6e1574ad034aa283078bdcec565b88/hero.jpg",
+      "sha256": "6d6eb0f23d4390df0c15676ee3ae2dcf630be0894763a415ab87d0e341759021"
+    }
+  ],
+  "output": {
+    "role": "article_hero",
+    "path": "clients/ardmag.com/site/backend-storefront/public/blog/indepartare-tratament-vechi-inainte-de-retratare/hero.webp",
+    "sha256": "9c1d535fe5cca2415dcd80940e17a28b4aa11d891815facef47e73d7ea5ae67a"
+  },
+  "derived_outputs": [
+    {
+      "role": "og_with_deterministic_overlay",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/indepartare-tratament-vechi-inainte-de-retratare/og.png",
+      "sha256": "9874ed0e50ec9139540e18f5129c1b949819122c36b9241a6d69348c4ae3b3a4"
+    }
+  ],
+  "checks": {
+    "product_and_scene_generated_together": true,
+    "cutout_or_compositing": false,
+    "no_craft_technique_depiction": true,
+    "deterministic_post_generation_changes": ["format conversion for hero", "ARDmag OG template overlay", "AI disclosure overlay"]
+  }
+}

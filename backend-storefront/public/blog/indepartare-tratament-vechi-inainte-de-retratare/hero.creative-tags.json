@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact": "hero.webp",
+  "creative_tags": {
+    "hook": "myth_bust",
+    "format": "hero_image",
+    "angle": "product_selection",
+    "cta": "contact",
+    "vibe": "premium"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "indepartare-tratament-vechi-inainte-de-retratare",
+    "roundDate": "2026-08-21",
+    "template": "hero",
+    "aspectRatio": "16:9",
+    "provider": "codex-cli"
+  }
+}
