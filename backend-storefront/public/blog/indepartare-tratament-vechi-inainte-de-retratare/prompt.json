@@ -1,0 +1,14 @@
+{
+  "prompt": "deep navy composition with subtle paper-like grain, wide diagonal rhythm and a pale graphite wave at the base. Editorial 16:9 composition; products are heroes inside one coherent abstract design with deliberate overlay space. Premium ARDmag.ro editorial graphic composition: abstract mineral design, not a physical location. Integrate every referenced product coherently with the chosen design through consistent light, perspective, scale, edges and visual relationships; a physical surface or documentary environment is not required. For physical products, default to a three-quarter camera view (10-20 degrees lateral yaw and/or slightly elevated), showing volume, base thickness, perspective and contact shadows. Use restrained navy, anthracite and mineral-grey fields with subtle geometry and one controlled gold accent; reserve intentional space for deterministic title, logo, badge and product-name overlays. ARDmag: packaging follows references; workwear says \"ARC-ROM Diamonds\", never ARDmag on clothes. Avoid every literal workplace, jobsite, storage-space, showroom or room backdrop, no perfectly frontal camera or flat packshot alignment unless explicitly required, no documentary scene, cutout, collage, mockup, white halo, floating product or fake label one continuous generated composition - no montage, no collage, no split panels, no pasted cutouts or scissor edges; no fine text in image; any in-image text: no Romanian diacritics; packaging faithful to reference - full label with all its text rows and badges, never simplified; reference label text is the only permitted fine text; integrated naturally, never pasted.",
+  "references": [
+    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/solvente-gamma/db3b5a_2b6e1574ad034aa283078bdcec565b88/hero.jpg"
+  ],
+  "format": "hero",
+  "aspectRatio": "16:9",
+  "technique": "quality-check",
+  "generatedAt": "2026-08-21",
+  "provider": "codex-cli",
+  "pipeline": "tools/social/scripts/generate-images.js --hero",
+  "finalWebp": "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend-storefront/public/blog/indepartare-tratament-vechi-inainte-de-retratare/hero.webp",
+  "finalDimensions": "1376x768"
+}
