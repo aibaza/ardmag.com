@@ -17,7 +17,7 @@ Cineva vine la noi și cere „ceva care să protejeze piatra". Dacă alegerea s
 
 [Prolux](https://ardmag.ro/products/prolux) este produsul de tip lac din gama noastră: un lac protectiv pe bază de rășini, cu aderență ridicată pe piatră, ceramică sau beton, la interior și exterior. Creează un strat protector uniform la suprafață. Îl recomandăm deja pentru [zonele greu de lustruit mecanic](/blog/polish-chimic-vs-cristalizare-mecanica-travertin) - canturi, muchii, trepte - unde e o soluție de nișă, nu produsul de bază pentru o suprafață mare.
 
-Impregnanții din catalogul nostru - [Idrorep](https://ardmag.ro/products/idrorep), [Quasar](https://ardmag.ro/products/quasar), [Ager](https://ardmag.ro/products/ager), [Hydrex](https://ardmag.ro/products/hydrex) sau Proseal din gama Tenax pe care o distribuim - lucrează altfel: pătrund în microporozitatea pietrei și rămân acolo, fără să formeze o peliculă la suprafață. Fișele din gama noastră Delta Research repetă aproape identic aceeași formulare, produs cu produs: „fără a crea peliculă”, „fără efect pelicular”. E mecanismul produsului, documentat identic pe fiecare fișă, nu o formulare de marketing.
+Impregnanții din catalogul nostru - [Idrorep](https://ardmag.ro/products/idrorep), [Quasar](https://ardmag.ro/products/quasar), [Ager](https://ardmag.ro/products/ager), [Hydrex](https://ardmag.ro/products/hydrex) sau Proseal din gama Tenax pe care o distribuim - lucrează altfel: sunt impermeabilizanți/tratamente hidrofuge care pătrund în microporozitatea pietrei și rămân acolo, fără să formeze o peliculă la suprafață. E mecanismul de bază al oricărui impregnant penetrant, confirmat și de restul gamei Delta Research, unde fișele repetă aproape identic aceeași formulare, produs cu produs: „fără a crea peliculă”, „fără efect pelicular”.
 
 Catalogul propriu confirmă exact granița asta: „PROLUX nu este un impermeabilizant - nu protejează împotriva absorbției apei”. Un lac și un impregnant rezolvă probleme diferite, chiar dacă apar amândouă sub eticheta „protecție”.
 
@@ -25,7 +25,7 @@ Catalogul propriu confirmă exact granița asta: „PROLUX nu este un impermeabi
 
 Lacul dă luciu de suprafață, uneori efect vizibil de „ud” pe piatra brută, neșlefuită. E o schimbare de aspect asumată, parte din rezultat.
 
-Impregnantul, ca regulă, nu schimbă aspectul - dar nu toate formulele sunt neutre vizual. [Ager](https://ardmag.ro/products/ager) e chiar impermeabilizant cu efect umed și intensificator de culoare, la fel ca alte câteva produse din gamă. Diferența e mecanismul: Ager intensifică nuanța prin penetrare, nu prin strat de suprafață. „Nu creează peliculă” e adevărat pentru orice impregnant din gama noastră. „Nu schimbă niciodată aspectul” nu e.
+Impregnantul, ca regulă, nu schimbă aspectul - dar nu toate formulele sunt neutre vizual. [Ager](https://ardmag.ro/products/ager) e chiar impermeabilizant cu efect umed și intensificator de culoare, la fel ca alte câteva produse din gamă. Diferența e mecanismul: Ager intensifică nuanța prin penetrare, nu prin strat de suprafață. „Nu creează peliculă” descrie mecanismul de bază al oricărui impregnant penetrant din gamă. „Nu schimbă niciodată aspectul” nu e o regulă - depinde de formulă.
 
 ## Ce se întâmplă la uzură
 
@@ -35,11 +35,11 @@ Un impregnant nu are ce să se dezlipească, pentru că nu formează strat. Se c
 
 ## Ce se poate reface și ce nu
 
-Aici diferența contează practic. Un lac uzat cere [decapare completă](/blog/indepartare-tratament-vechi-inainte-de-retratare) cu Solvente Gamma înainte de o nouă aplicare - nu se toarnă lac peste lac vechi. Un impregnant „consumat” se reaplică direct, fără decapare; verifici dacă mai are efect cu [testul cu apă](/blog/repetare-tratament-piatra-naturala): dacă suprafața se închide la culoare unde stă apa, protecția a scăzut și e momentul retratării.
+Aici diferența contează practic. Un lac uzat cere [decapare completă](/blog/indepartare-tratament-vechi-inainte-de-retratare) cu Solvente Gamma înainte de o nouă aplicare - nu se toarnă lac peste lac vechi. La un impregnant „consumat”, [testul cu apă](/blog/repetare-tratament-piatra-naturala) arată dacă absorbția a revenit: dacă suprafața se închide la culoare unde stă apa, protecția poate fi redusă. Înainte de retratare, identifică produsul existent și verifică în fișa tehnică pregătirea suportului, compatibilitatea și dacă este necesară îndepărtarea tratamentului vechi.
 
 ## Ce nu rezolvă niciunul
 
-Nici lacul, nici impregnanții din gama discutată nu opresc [mătuirea produsă de acid](/blog/pata-sau-matuire-acida-blat-piatra). O felie de lămâie sau un pahar de vin uitat pe blat lasă urmă indiferent ce tratament ai aplicat dedesubt. Fișa oficială Prolux o spune direct: nu protejează la substanțe acide. Fiecare impregnant din gama noastră poartă aceeași limitare.
+Nici lacul, nici impregnanții din gama discutată nu opresc [mătuirea produsă de acid](/blog/pata-sau-matuire-acida-blat-piatra) pe marmură, travertin sau altă piatră calcaroasă sensibilă. Lămâia ori vinul pot modifica finisajul prin reacție acidă; aceasta nu este aceeași problemă cu o pată absorbită. Fișa oficială Prolux spune direct că produsul nu protejează la substanțe acide. Impregnanții din gama discutată poartă aceeași limitare.
 
 ## Cum alegi
 
@@ -48,7 +48,8 @@ Nici lacul, nici impregnanții din gama discutată nu opresc [mătuirea produsă
 | Vrei | Alegi | Limită |
 |---|---|---|
 | Luciu vizibil pe canturi, muchii, trepte greu de lustruit mecanic | Prolux | nu impermeabilizează, nu protejează la acizi |
-| Piatra neschimbată la vedere, dar protejată la absorbția de apă și ulei | Idrorep sau Quasar, cu echivalentul Proseal din gama Tenax alături | nu oprește acidul |
+| Piatra neschimbată la vedere, protejată la absorbția de apă | Idrorep | nu este prezentat drept protecție la ulei și nu oprește acidul |
+| Protecție la absorbția de apă și ulei pe marmură sau granit lustruit | Quasar (Delta Research) sau Proseal (Tenax) - verifică fișa tehnică pentru compatibilitatea exactă | nu oprește acidul |
 | Nuanță intensificată, efect de ud, fără peliculă | Ager | schimbă aspectul prin penetrare, nu prin strat |
 | Suprafață mare, aplicare simplă | Hydrex | verifică fișa tehnică pentru utilizarea exactă |
 

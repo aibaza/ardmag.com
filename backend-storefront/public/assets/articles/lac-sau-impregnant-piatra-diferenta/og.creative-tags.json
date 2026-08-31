@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "artifact": "og.png",
+  "creative_tags": {
+    "hook": "question",
+    "format": "og_image",
+    "angle": "product_selection",
+    "cta": "read_article",
+    "vibe": "direct"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "lac-sau-impregnant-piatra-diferenta",
+    "roundDate": "2026-09-07",
+    "template": "og-image",
+    "platform": "og",
+    "applied_learning_ids": [
+      "learn_ardmag_creative_craft_technique_ban",
+      "learn_content_ardmag_vibe_direct",
+      "learn_content_ardmag_angle_product_selection",
+      "learn_content_ardmag_cta_read_article",
+      "learn_ardmag_safe_specialist_poses"
+    ],
+    "experiment_bucket": "exploit"
+  }
+}
