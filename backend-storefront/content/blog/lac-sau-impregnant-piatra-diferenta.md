@@ -3,6 +3,7 @@ title: "Lac sau impregnant: două produse care par la fel și fac lucruri opuse"
 description: "Prolux dă luciu de suprafață, impregnanții din gama noastră pătrund în porozitate. Vezi mecanismul, ce se vede, ce se întâmplă la uzură și cum alegi corect."
 kicker: "Comparație tehnică · Tratamente piatră naturală"
 status: "draft"
+review: "PASS"
 publishedAt: "2026-09-07"
 author: "Echipa ardmag"
 tags: ["delta research", "prolux", "impregnant piatra", "lac piatra", "tratamente piatra naturala"]
