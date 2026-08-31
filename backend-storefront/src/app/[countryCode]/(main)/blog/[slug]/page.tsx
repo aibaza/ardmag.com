@@ -40,6 +40,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { absolute: article.title },
     description: article.description,
     alternates: { canonical: articleUrl },
+    // Un draft vazut in previzualizare nu are ce cauta in indexuri, chiar daca
+    // domeniul de preview e oricum inchis pentru crawlere.
+    ...(article.isDraftPreview
+      ? { robots: { index: false, follow: false } }
+      : {}),
     openGraph: {
       title: article.title,
       description: article.description,
@@ -107,6 +112,26 @@ export default async function BlogArticlePage({ params }: Props) {
   return (
     <>
       <SiteHeaderShell countryCode={countryCode} />
+
+      {/* Cine primeste linkul de validare trebuie sa vada din prima ca articolul
+          nu e publicat, ca sa nu-l confunde cu pagina live. */}
+      {article.isDraftPreview && (
+        <div
+          role="status"
+          style={{
+            background: "#FEF3C7",
+            color: "#78350F",
+            borderBottom: "1px solid #FCD34D",
+            padding: "12px 20px",
+            textAlign: "center",
+            fontSize: "14px",
+            lineHeight: 1.5,
+          }}
+        >
+          <strong>Previzualizare.</strong> Articolul nu este publicat pe site si
+          nu apare in blog sau in cautari. Il vezi asa cum ar arata dupa publicare.
+        </div>
+      )}
 
       {/* ── ARTICLE HEAD ── */}
       <header

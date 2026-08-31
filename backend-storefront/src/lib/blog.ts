@@ -25,7 +25,11 @@ export type BlogFrontmatter = {
 }
 
 export type BlogListItem = BlogFrontmatter & { slug: string }
-export type BlogArticle = BlogListItem & { html: string; readingTime: number }
+export type BlogArticle = BlogListItem & {
+  html: string
+  readingTime: number
+  isDraftPreview: boolean
+}
 export type TocItem = { id: string; text: string; level: 2 | 3 }
 
 export function isPublishableArticle(
@@ -36,6 +40,34 @@ export function isPublishableArticle(
   if (typeof article.publishedAt !== "string") return false
   const publishedAt = Date.parse(article.publishedAt)
   return Number.isFinite(publishedAt) && publishedAt <= now.getTime()
+}
+
+// Previzualizare de draft pentru validarea cu clientul-expert
+// (`tools/preview/preview-deploy.sh --drafts`). Un expert trebuie sa citeasca
+// articolul ca pagina, nu ca fisier .md, INAINTE de publicare - dar gate-ul de
+// publicare de mai sus ramane fail-closed si neatins.
+//
+// Portita e dublu-blocata intentionat: cere flagul explicit
+// PREVIEW_INCLUDE_DRAFTS=1 SI un mediu Vercel care nu e productie. Chiar daca
+// flagul ajunge din greseala in env-ul de productie, nu deschide nimic acolo.
+// In plus, drafturile NU intra niciodata in liste (index blog, sitemap,
+// articole conexe, navigare anterior/urmator): se ajunge la ele doar pe URL exact.
+export function isDraftPreviewEnabled(
+  env: NodeJS.ProcessEnv = process.env
+): boolean {
+  return env.PREVIEW_INCLUDE_DRAFTS === "1" && env.VERCEL_ENV !== "production"
+}
+
+export function isPreviewableDraft(
+  article: Partial<BlogFrontmatter>,
+  env: NodeJS.ProcessEnv = process.env
+): boolean {
+  if (!isDraftPreviewEnabled(env)) return false
+  if (typeof article.title !== "string" || article.title.trim() === "") return false
+  if (typeof article.description !== "string" || article.description.trim() === "")
+    return false
+  if (typeof article.publishedAt !== "string") return false
+  return Number.isFinite(Date.parse(article.publishedAt))
 }
 
 function slugify(text: string): string {
@@ -112,7 +144,8 @@ export async function getArticle(slug: string): Promise<BlogArticle | null> {
     return null
   }
   const { data, content } = matter(raw)
-  if (!isPublishableArticle(data)) return null
+  const publishable = isPublishableArticle(data)
+  if (!publishable && !isPreviewableDraft(data)) return null
   const processed = await remark().use(remarkGfm).use(remarkHtml).process(content)
   const html = addHeadingIds(processed.toString())
   return {
@@ -120,6 +153,7 @@ export async function getArticle(slug: string): Promise<BlogArticle | null> {
     ...(data as BlogFrontmatter),
     html,
     readingTime: readingTime(html),
+    isDraftPreview: !publishable,
   }
 }
 
