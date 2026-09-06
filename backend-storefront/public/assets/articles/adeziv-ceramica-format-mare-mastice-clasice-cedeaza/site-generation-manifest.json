@@ -1,0 +1,16 @@
+{
+  "schema_version": 2,
+  "client": "ardmag.com",
+  "slug": "adeziv-ceramica-format-mare-mastice-clasice-cedeaza",
+  "owner": "codex:auto-publish",
+  "artifacts": [
+    {
+      "path": "backend-storefront/public/assets/articles/adeziv-ceramica-format-mare-mastice-clasice-cedeaza/2026-09-01/facebook.jpg",
+      "sha256": "74d39b478faa37a38f6738144c40436391a05d1d99095a7faf5a7cec0191a060"
+    },
+    {
+      "path": "backend-storefront/public/assets/articles/adeziv-ceramica-format-mare-mastice-clasice-cedeaza/2026-09-01/story.jpg",
+      "sha256": "8fe61414fea233357af88cdf5a741d33bd3f2eba21ad42df59fef0c5a0830929"
+    }
+  ]
+}
