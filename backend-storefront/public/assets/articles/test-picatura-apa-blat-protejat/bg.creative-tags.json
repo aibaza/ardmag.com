@@ -2,18 +2,28 @@
   "schema_version": 1,
   "artifact": "bg.webp",
   "creative_tags": {
-    "hook": "how_to",
+    "hook": "proof",
     "format": "source_background",
-    "angle": "product_selection",
+    "angle": "measurement",
     "cta": "none",
-    "vibe": "practical"
+    "vibe": "technical"
   },
   "context": {
     "clientSlug": "ardmag.com",
     "articleSlug": "test-picatura-apa-blat-protejat",
-    "roundDate": "2026-08-23",
+    "roundDate": "2026-09-03",
+    "register": "photorealistic_scene",
+    "physical_product_present": false,
+    "subject": "test practic cu apă pe blat din piatră naturală, cu picături și absorbție locală vizibilă",
+    "checks": {
+      "subject_and_angle_match": true,
+      "single_coherent_frame": true,
+      "no_catalog_showroom": true,
+      "no_ai_slop": true,
+      "no_craft_technique_depiction": true
+    },
     "template": "source-bg",
-    "source": "cover-resized copy of public/blog/test-picatura-apa-blat-protejat/hero.webp (matches og-image.html's article.hero override behavior for ARDmag); the three Codex-generated candidate backgrounds from the interrupted run (bg-1/2/3.webp) were unused by og.png and removed",
-    "experiment_bucket": "exploit"
+    "aspectRatio": "16:9",
+    "source": "deterministic 1920x1080 derivative of the same approved generated frame used by hero.webp"
   }
 }

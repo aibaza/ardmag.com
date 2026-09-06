@@ -2,16 +2,26 @@
   "schema_version": 1,
   "artifact": "hero.webp",
   "creative_tags": {
-    "hook": "myth_bust",
+    "hook": "proof",
     "format": "hero_image",
-    "angle": "product_selection",
-    "cta": "contact",
-    "vibe": "premium"
+    "angle": "measurement",
+    "cta": "none",
+    "vibe": "technical"
   },
   "context": {
     "clientSlug": "ardmag.com",
     "articleSlug": "test-picatura-apa-blat-protejat",
-    "roundDate": "2026-08-23",
+    "roundDate": "2026-09-03",
+    "register": "photorealistic_scene",
+    "physical_product_present": false,
+    "subject": "test practic cu apă pe blat din piatră naturală, cu picături și absorbție locală vizibilă",
+    "checks": {
+      "subject_and_angle_match": true,
+      "single_coherent_frame": true,
+      "no_catalog_showroom": true,
+      "no_ai_slop": true,
+      "no_craft_technique_depiction": true
+    },
     "template": "hero",
     "aspectRatio": "16:9",
     "provider": "codex-cli"

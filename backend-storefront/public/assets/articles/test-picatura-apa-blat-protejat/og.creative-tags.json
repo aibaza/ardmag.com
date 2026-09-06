@@ -4,28 +4,38 @@
   "creative_tags": {
     "hook": "how_to",
     "format": "og_image",
-    "angle": "product_selection",
+    "angle": "measurement",
     "cta": "read_article",
     "vibe": "practical"
   },
   "context": {
     "clientSlug": "ardmag.com",
     "articleSlug": "test-picatura-apa-blat-protejat",
-    "roundDate": "2026-08-23",
+    "roundDate": "2026-09-03",
+    "register": "photorealistic_scene",
+    "physical_product_present": false,
+    "subject": "test practic cu apă pe blat din piatră naturală, cu picături și absorbție locală vizibilă",
+    "checks": {
+      "subject_and_angle_match": true,
+      "single_coherent_frame": true,
+      "no_catalog_showroom": true,
+      "no_ai_slop": true,
+      "no_craft_technique_depiction": true
+    },
     "template": "og-image",
     "platform": "og",
+    "overlayText": {
+      "title": "Testul de 15 minute care-ți spune dacă blatul mai e protejat",
+      "subtitle": "Torni apă, aștepți, te uiți: atât spune dacă protecția mai ține.",
+      "certainty_matches_article": true
+    },
+    "accessibility": {
+      "readable_high_contrast_panel": true,
+      "brand_logo_present": true
+    },
     "aiDisclosure": {
       "applied": false,
-      "note": "tools/social/templates/ardmag.com/og-image.html and tools/social/templates/og-image.html carry no {{AI_NOTE_DISPLAY}}/{{AI_NOTE_TEXT}} tokens, unlike linkedin/facebook/instagram/story templates. content-policy.json requires ai_disclosure.default=required. Flagged for CTO/CMO, not silently patched here."
-    },
-    "applied_learning_ids": [
-      "learn_content_ardmag_angle_product_selection",
-      "learn_content_ardmag_hook_myth_bust",
-      "learn_ardmag_creative_craft_technique_ban",
-      "learn_ardmag_accessible_price_first",
-      "learn_ardmag_safe_specialist_poses",
-      "learn_content_ardmag_cta_read_article"
-    ],
-    "experiment_bucket": "exploit"
+      "note": "OG metadata only; no external effect is performed by this task."
+    }
   }
 }

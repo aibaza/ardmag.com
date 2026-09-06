@@ -1,17 +1,17 @@
 {
-  "prompt": "anthracite graphic composition with subtle intersecting diagonals, mineral-grey arc and generous dark negative space. Editorial 16:9 composition; products are heroes inside one coherent abstract design with deliberate overlay space. Premium ARDmag.ro editorial graphic composition: abstract mineral design, not a physical location. Integrate every referenced product coherently with the chosen design through consistent light, perspective, scale, edges and visual relationships; a physical surface or documentary environment is not required. For physical products, default to a three-quarter camera view (10-20 degrees lateral yaw and/or slightly elevated), showing volume, base thickness, perspective and contact shadows. Use restrained navy, anthracite and mineral-grey fields with subtle geometry and one controlled gold accent; reserve intentional space for deterministic title, logo, badge and product-name overlays. ARDmag: packaging follows references; workwear says \"ARC-ROM Diamonds\", never ARDmag on clothes. Avoid every literal workplace, jobsite, storage-space, showroom or room backdrop, no perfectly frontal camera or flat packshot alignment unless explicitly required, no documentary scene, cutout, collage, mockup, white halo, floating product or fake label one continuous generated composition - no montage, no collage, no split panels, no pasted cutouts or scissor edges; no fine text in image; any in-image text: no Romanian diacritics; packaging faithful to reference - full label with all its text rows and badges, never simplified; reference label text is the only permitted fine text; integrated naturally, never pasted.",
-  "references": [
-    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/idrorep/db3b5a_4cfdbef8b6d4480ca73b05b1044ce019/hero.jpg",
-    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/quasar/db3b5a_b972836a1c0f4ff2a7246051a9ab16f2/hero.jpg",
-    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/seal/db3b5a_0f7892d2bbc0476094359882547a2e4b/hero.jpg",
-    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/skudo/db3b5a_4812ffed1d7741cfbf2ba4105e742a2b/hero.jpg"
-  ],
+  "prompt": "Use case: photorealistic-natural. Asset type: ARDmag.ro editorial article hero background, no text overlay. Primary request: create one coherent close-up editorial photograph that clearly shows the practical water test on a natural-stone countertop. Scene: a single continuous slab of warm grey natural stone with credible mineral grain and pores, viewed from a gently elevated oblique angle. Visible water must be the unmistakable subject: a small cluster of clear water drops resting on the stone and, nearby on the same uninterrupted slab, one subtle irregular local area slightly darker from absorbed moisture. The contrast should be natural and restrained, not a dramatic before/after. Composition: widescreen 16:9, macro-to-close detail, useful negative space toward upper-left for website title treatment while both the drops and darkened absorption area remain legible in a 1200x630 center crop. Lighting: soft directional daylight with realistic reflections in the water, technically credible material texture, premium restrained ARDmag register using slate, anthracite, mineral grey and warm beige with one subtle warm-gold highlight. Single coherent frame, photographic realism, no split panel, no before/after divider, no collage, no montage, no laboratory, no showroom, no catalog arrangement, no packaging, no bottle, no physical product, no hands, no people, no tools, no cloth, no treatment or sealant being applied, no craft technique, no pouring action, no faucet, no text, no logo, no watermark, no UI, no floating objects, no surreal geometry, no excessive glossy CGI, no AI-slop. Preserve a believable natural-stone surface and restrained editorial mood.",
+  "references": [],
   "format": "hero",
   "aspectRatio": "16:9",
-  "technique": "workshop-bench",
-  "generatedAt": "2026-08-23",
+  "register": "photorealistic_scene",
+  "technique": "natural-stone-water-absorption-closeup",
+  "generatedAt": "2026-09-03",
   "provider": "codex-cli",
-  "pipeline": "tools/social/scripts/generate-images.js --hero",
+  "capability": "openai.imagegen",
+  "model": "chatgpt-imagegen-2",
+  "pipeline": "Codex CLI $imagegen built-in generation followed by deterministic crop, rotation and format conversion",
+  "deterministicTransform": "rotate 180; centered crop 1616x909; resize to 1376x768",
+  "physicalProductPresent": false,
   "finalWebp": "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend-storefront/public/blog/test-picatura-apa-blat-protejat/hero.webp",
   "finalDimensions": "1376x768"
 }
