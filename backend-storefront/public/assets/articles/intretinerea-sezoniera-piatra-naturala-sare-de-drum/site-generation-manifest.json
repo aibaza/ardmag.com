@@ -1,0 +1,16 @@
+{
+  "schema_version": 2,
+  "client": "ardmag.com",
+  "slug": "intretinerea-sezoniera-piatra-naturala-sare-de-drum",
+  "owner": "codex:auto-publish",
+  "artifacts": [
+    {
+      "path": "backend-storefront/public/assets/articles/intretinerea-sezoniera-piatra-naturala-sare-de-drum/2026-08-21/facebook.jpg",
+      "sha256": "fefce5e05e7570161e59c642fae468fbc5189f63a2a262c416c9975ae5bffa6f"
+    },
+    {
+      "path": "backend-storefront/public/assets/articles/intretinerea-sezoniera-piatra-naturala-sare-de-drum/2026-08-21/story.jpg",
+      "sha256": "06d317cbf76e8839a2d679d8604f87b4e533fca71f4871075d0aefca189ecf10"
+    }
+  ]
+}
