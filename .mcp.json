@@ -7,6 +7,19 @@
         "./tools/medusa-mcp-launcher.sh"
       ],
       "env": {}
+    },
+    "metricool": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@metricool/mcp-server"
+      ],
+      "env": {
+        "METRICOOL_USER_TOKEN": "op://aiBaza Ops/Metricool API/credential",
+        "METRICOOL_USER_ID": "4524727",
+        "BLOG_ID": "6168124"
+      }
     }
   }
 }
