@@ -154,6 +154,11 @@ export default async function ProductPage(props: Props) {
 
   const rawPrice = (selectedVariant as any)?.calculated_price?.calculated_amount ?? undefined
   const contactToOrder = (selectedVariant?.metadata as any)?.contact_to_order === true
+  const canAddToCart = selectedVariant
+    ? selectedVariant.manage_inventory !== true ||
+      selectedVariant.allow_backorder === true ||
+      (selectedVariant.inventory_quantity ?? 0) > 0
+    : false
 
   const viewCurrency = ((selectedVariant as any)?.calculated_price?.currency_code ?? "ron").toUpperCase()
 
@@ -201,6 +206,7 @@ export default async function ProductPage(props: Props) {
             addToCartLabel="Adaugă în coș"
             variantId={selectedVariant?.id ?? null}
             countryCode={countryCode}
+            canAddToCart={canAddToCart}
             perks={PDP_PERKS}
             contactToOrder={contactToOrder}
           />

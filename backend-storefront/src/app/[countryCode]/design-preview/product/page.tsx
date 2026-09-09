@@ -74,6 +74,7 @@ export default function ProductPage() {
           stockLabel="În stoc - 24 bucăți"
           stockLocation="Cluj · 24h"
           addToCartLabel="Adaugă în coș · 38,40 RON"
+          canAddToCart
           perks={[
             { icon: <svg viewBox="0 0 20 20"><path d="M3 7h11v7H3z"/><path d="M14 9h3l1 3v2h-4z"/><circle cx="7" cy="15" r="1.3"/><circle cx="15" cy="15" r="1.3"/></svg>, label: 'Livrare 24–48h', sub: 'Cluj gratuit 500+ RON' },
             { icon: <svg viewBox="0 0 20 20"><path d="M4 7h12v10H4z"/><path d="M8 7V5a2 2 0 0 1 4 0v2"/></svg>, label: '14 zile retur', sub: 'produs neutilizat' },

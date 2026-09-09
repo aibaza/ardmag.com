@@ -9,15 +9,16 @@ interface Props {
   variantId: string | null
   countryCode: string
   label: string
+  canAddToCart: boolean
 }
 
-export function PDPAddToCartButton({ variantId, countryCode, label }: Props) {
+export function PDPAddToCartButton({ variantId, countryCode, label, canAddToCart }: Props) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
   const [error, setError] = useState<string | null>(null)
 
-  const disabled = !variantId || isPending
+  const disabled = !variantId || !canAddToCart || isPending
 
   const handleClick = () => {
     if (!variantId) return
@@ -40,7 +41,9 @@ export function PDPAddToCartButton({ variantId, countryCode, label }: Props) {
     })
   }
 
-  const buttonLabel = isPending
+  const buttonLabel = !canAddToCart
+    ? "Stoc epuizat"
+    : isPending
     ? "Se adaugă..."
     : status === "success"
       ? "Adăugat în coș"

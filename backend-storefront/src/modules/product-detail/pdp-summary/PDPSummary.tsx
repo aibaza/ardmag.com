@@ -46,11 +46,12 @@ interface PDPSummaryProps {
   addToCartLabel: string
   variantId: string | null
   countryCode: string
+  canAddToCart: boolean
   perks: PDPPerk[]
   contactToOrder?: boolean
 }
 
-export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, perks, contactToOrder }: PDPSummaryProps) {
+export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, canAddToCart, perks, contactToOrder }: PDPSummaryProps) {
   return (
     <aside className="pdp-summary">
 
@@ -86,7 +87,7 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
       ) : (
         <div className="pdp-buy">
           <QuantityStepper />
-          <PDPAddToCartButton variantId={variantId} countryCode={countryCode} label={addToCartLabel} />
+          <PDPAddToCartButton variantId={variantId} countryCode={countryCode} label={addToCartLabel} canAddToCart={canAddToCart} />
         </div>
       )}
 

@@ -21,7 +21,8 @@ type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
  *
  * Rules:
  * - Any variant with original_amount > calculated_amount => {type:"promo", label:"-X%"} (real price list discount)
- * - ALL variants have inventory_quantity = 0 AND manage_inventory = true => {type:"stock-low", label:"Stoc limitat"}
+ * - An out-of-stock product does not receive a low-stock badge; its PDP stock
+ *   status is the authoritative availability message.
  */
 export function productToBadges(product: HttpTypes.StoreProduct): Badge[] {
   const badges: Badge[] = []
@@ -41,16 +42,6 @@ export function productToBadges(product: HttpTypes.StoreProduct): Badge[] {
 
   if (maxDiscountPct > 0) {
     badges.push({ type: "promo", label: `-${maxDiscountPct}%` })
-  }
-
-  // Stock-low badge
-  if (variants.length > 0) {
-    const allOutOfStock = variants.every((v) => {
-      return v.manage_inventory === true && v.inventory_quantity === 0
-    })
-    if (allOutOfStock) {
-      badges.push({ type: "stock-low", label: "Stoc limitat" })
-    }
   }
 
   return badges

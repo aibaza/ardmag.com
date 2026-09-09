@@ -146,7 +146,7 @@ describe("productToBadges", () => {
     expect(badges.filter((b) => b.type === "promo")).toHaveLength(1)
   })
 
-  it("returns stock-low badge when ALL variants have inventory_quantity=0 and manage_inventory=true", () => {
+  it("does NOT show a low-stock badge when every tracked variant is out of stock", () => {
     const product = makeProduct({
       variants: [
         { id: "v1", manage_inventory: true, inventory_quantity: 0 },
@@ -154,7 +154,7 @@ describe("productToBadges", () => {
       ],
     })
     const badges = productToBadges(product)
-    expect(badges).toContainEqual({ type: "stock-low", label: "Stoc limitat" })
+    expect(badges.some((b) => b.type === "stock-low")).toBe(false)
   })
 
   it("does NOT return stock-low when at least one variant has stock", () => {
@@ -194,7 +194,7 @@ describe("productToBadges", () => {
     expect(badges).toHaveLength(0)
   })
 
-  it("can return both promo and stock-low badges simultaneously", () => {
+  it("keeps a promo badge but never mislabels an out-of-stock product as low stock", () => {
     const product = makeProduct({
       variants: [
         {
@@ -207,7 +207,7 @@ describe("productToBadges", () => {
     })
     const badges = productToBadges(product)
     expect(badges.some((b) => b.type === "promo")).toBe(true)
-    expect(badges.some((b) => b.type === "stock-low")).toBe(true)
+    expect(badges.some((b) => b.type === "stock-low")).toBe(false)
   })
 
   it("does NOT return stock-low when variants array is empty", () => {
