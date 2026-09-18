@@ -5,84 +5,12 @@
   "owner": "codex:auto-publish",
   "artifacts": [
     {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-09-17/facebook.jpg",
-      "sha256": "48864a2454dd7b9300acc64892d91d9fb477ae6fe323cb3cbaff8c7205f21091"
+      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-10-02/facebook.jpg",
+      "sha256": "b06c05c1bccf280bae9d2a1eb822528d30378c2ca62218c9da86f0dae760dcab"
     },
     {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-09-17/story.jpg",
-      "sha256": "2d3091bbfc1b2f1a49984b926d55d15d71ee29cbcf72373ed56a8c88ea3ad62d"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-1.creative-tags.json",
-      "sha256": "eeb39bf497d3972d4235764e6641f400e6e148e088735782b22b4f083de1fd04"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-1.webp",
-      "sha256": "bc9c95ca35c14bbc6e08e0f40142e13a7a78b2f868b53269647501bde4428352"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-2.creative-tags.json",
-      "sha256": "be2bbf25c8324a1616b47b0a5fe1d6fb1b2b4cbaac157ec5add7693d88273491"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-2.webp",
-      "sha256": "bb620653ee7e4cf8aea5bbbf553c938b3256a1168cf079e408377cffd2b56f8d"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-3.creative-tags.json",
-      "sha256": "9e468cc6b0574e5b83b2d458cd16138071d653ece746d3c2e597dfaae159a085"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-3.webp",
-      "sha256": "9be90e3c521ca43fc8d257f88b99740a5aecb06c82259dd44fb1a104d5191b6f"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/generation-manifest.json",
-      "sha256": "91bac62f41fe7591450d8efc2cab601f4f4a70ee2aad97d014ae73369ceb3361"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/desktop-1440.webp",
-      "sha256": "d07fb562c16a1df4aaafa8ba8e902d94f3f77e4e75ba519e365ca165a5adb15a"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/desktop-1920.webp",
-      "sha256": "367fbc415f742c1e125e2d4745209b3a82a9ed8d8ca0a9cda55f6087fa00411e"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/master.creative-tags.json",
-      "sha256": "6fa8fd8d2061c5fdfe1653f435bf820bcef627ef042f815ed91e0f01fdd41da5"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/master.webp",
-      "sha256": "acbd8dadf3edaa2f1ddfa72f83a68efb2e5034886b392ce443212bd419927dee"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/mobile-480.webp",
-      "sha256": "e8d1df0c376888f9bf8307060fefa6ad26c020b90adf0a98bf4943a0c46acef0"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/mobile-768.webp",
-      "sha256": "fd3811058cecbf035b43bb52917642c7a8839ab1a41cfb18b1ccd633a36254db"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/prompt.json",
-      "sha256": "b617ea66009576c2a56e37829de0b37e4e5e50f68e5f181545a7afd22d7c7b6d"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/story-1080x1920.webp",
-      "sha256": "286b0fce6a283a2f8bfe685ab7c5a97773971de59f2d7270a3095e28aacac2f4"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/tablet-1024.webp",
-      "sha256": "ed02cda8bfe554f36853749e3e4d237a720ce55f3eecf1c17ce2e69c8462fb51"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/og.creative-tags.json",
-      "sha256": "946b9df707d664a3747e6566b24ce049c6e2095fc330ee89f878550dad9feba5"
-    },
-    {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/og.png",
-      "sha256": "bc786855b75671bd470061abc3128ad977f37cc4c1bb935dcf0fc1cf2a4a584a"
+      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-10-02/story.jpg",
+      "sha256": "a9e68d87fd3e8ded7a59dff0e944b02662528bc3bbb1bb20c480b2fe6125193f"
     }
   ]
 }
