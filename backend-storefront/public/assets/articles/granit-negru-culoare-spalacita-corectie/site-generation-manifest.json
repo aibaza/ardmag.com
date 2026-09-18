@@ -5,12 +5,12 @@
   "owner": "codex:auto-publish",
   "artifacts": [
     {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-10-02/facebook.jpg",
-      "sha256": "b06c05c1bccf280bae9d2a1eb822528d30378c2ca62218c9da86f0dae760dcab"
+      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-10-17/facebook.jpg",
+      "sha256": "9a5cf008de11d93a4743330a1ff40d360470a5f00450051695e246124734cc40"
     },
     {
-      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-10-02/story.jpg",
-      "sha256": "a9e68d87fd3e8ded7a59dff0e944b02662528bc3bbb1bb20c480b2fe6125193f"
+      "path": "backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/2026-10-17/story.jpg",
+      "sha256": "da47ea3efe6df4e65f0e0fc1e30ccf57972e9aee2821681a52e7af531ac3fbdf"
     }
   ]
 }
