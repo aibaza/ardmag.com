@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "capability": "openai.imagegen",
+  "model": "chatgpt-imagegen-2",
+  "physical_product_present": true,
+  "register": "editorial_graphic_composition",
+  "prompt_path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/prompt.json",
+  "references": [
+    {
+      "role": "canonical_toner_black_reference",
+      "path": "clients/ardmag.com/site/backend/static/images/toner-black/db3b5a_e303be7947044fc7bdc6cb2d0fe2f871/hero.jpg",
+      "sha256": "876298f48de4c86d2523c39eaaef415c276fdcf25db5e22fe7dc3143ac849317"
+    }
+  ],
+  "output": {
+    "role": "article_hero_master",
+    "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/master.webp",
+    "sha256": "acbd8dadf3edaa2f1ddfa72f83a68efb2e5034886b392ce443212bd419927dee"
+  },
+  "derived_outputs": [
+    {
+      "role": "generated_background_candidate_1",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-1.webp",
+      "sha256": "bc9c95ca35c14bbc6e08e0f40142e13a7a78b2f868b53269647501bde4428352"
+    },
+    {
+      "role": "generated_background_candidate_2",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-2.webp",
+      "sha256": "bb620653ee7e4cf8aea5bbbf553c938b3256a1168cf079e408377cffd2b56f8d"
+    },
+    {
+      "role": "generated_background_candidate_3",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/bg-3.webp",
+      "sha256": "9be90e3c521ca43fc8d257f88b99740a5aecb06c82259dd44fb1a104d5191b6f"
+    },
+    {
+      "role": "responsive_desktop_1440",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/desktop-1440.webp",
+      "sha256": "d07fb562c16a1df4aaafa8ba8e902d94f3f77e4e75ba519e365ca165a5adb15a"
+    },
+    {
+      "role": "responsive_desktop_1920",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/desktop-1920.webp",
+      "sha256": "367fbc415f742c1e125e2d4745209b3a82a9ed8d8ca0a9cda55f6087fa00411e"
+    },
+    {
+      "role": "responsive_mobile_480",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/mobile-480.webp",
+      "sha256": "e8d1df0c376888f9bf8307060fefa6ad26c020b90adf0a98bf4943a0c46acef0"
+    },
+    {
+      "role": "responsive_mobile_768",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/mobile-768.webp",
+      "sha256": "fd3811058cecbf035b43bb52917642c7a8839ab1a41cfb18b1ccd633a36254db"
+    },
+    {
+      "role": "responsive_story_1080x1920",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/story-1080x1920.webp",
+      "sha256": "286b0fce6a283a2f8bfe685ab7c5a97773971de59f2d7270a3095e28aacac2f4"
+    },
+    {
+      "role": "responsive_tablet_1024",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/tablet-1024.webp",
+      "sha256": "ed02cda8bfe554f36853749e3e4d237a720ce55f3eecf1c17ce2e69c8462fb51"
+    },
+    {
+      "role": "og_with_deterministic_overlay",
+      "path": "clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/og.png",
+      "sha256": "bc786855b75671bd470061abc3128ad977f37cc4c1bb935dcf0fc1cf2a4a584a"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "prompt": "Mandatory article subject: piatra naturala; visibly central; never substitute a generic brand scene or other subject. Viewpoint: material-detail. a close. Editorial 16:9 composition; products are heroes inside one coherent abstract design with deliberate overlay space. Premium ARDmag.ro editorial graphic composition: abstract mineral design, not a physical location. Integrate every referenced product coherently with the chosen design through consistent light, perspective, scale, edges and visual relationships; a physical surface or documentary environment is not required. For physical products, default to a three-quarter camera view (10-20 degrees lateral yaw and/or slightly elevated), showing volume, base thickness, perspective and contact shadows. Use restrained navy, anthracite and mineral-grey fields with subtle geometry and one controlled gold accent; reserve intentional space for deterministic title, logo, badge and product-name overlays. ARDmag: packaging follows references; workwear says \"ARC-ROM Diamonds\", never ARDmag on clothes. Avoid every literal workplace, jobsite, storage-space, showroom or room backdrop, no perfectly frontal camera or flat packshot alignment unless explicitly required, no documentary scene, cutout, collage, mockup, white halo, floating product or fake label one continuous generated composition - no montage, no collage, no split panels, no pasted cutouts or scissor edges; no fine text in image; any in-image text: no Romanian diacritics; packaging faithful to reference - full label with all its text rows and badges, never simplified; reference label text is the only permitted fine text; integrated naturally, never pasted.\n\nLAW L1 (binding): Nicio fata generata cu AI a unei persoane care face parte din story-ul imaginii, daca persoana nu e in catalogul de persoane aprobate al brandului. Persoanele neaprobate care fac parte din story se anonimizeaza prin metode inteligente, fara blur. Figurantii (persoane care nu fac parte din story, indiferent de plan) pot aparea normal.",
+  "references": [
+    "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend/static/images/toner-black/db3b5a_e303be7947044fc7bdc6cb2d0fe2f871/hero.jpg"
+  ],
+  "format": "hero",
+  "aspectRatio": "16:9",
+  "technique": "material-detail",
+  "visual_theme": "material-detail",
+  "generatedAt": "2026-09-18",
+  "provider": "codex-cli",
+  "pipeline": "tools/social/legacy/generate-images.js --mode=template --hero",
+  "finalWebp": "/home/dc/Work/aiBaza/clients/ardmag.com/site/backend-storefront/public/assets/articles/granit-negru-culoare-spalacita-corectie/hero/master.webp",
+  "finalDimensions": "1376x768"
+}

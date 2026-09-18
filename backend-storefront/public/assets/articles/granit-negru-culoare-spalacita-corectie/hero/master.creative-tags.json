@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "artifact": "master.webp",
+  "creative_tags": {
+    "hook": "myth_bust",
+    "format": "hero_image",
+    "angle": "process",
+    "cta": "contact",
+    "vibe": "premium"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "granit-negru-culoare-spalacita-corectie",
+    "roundDate": "2026-09-18",
+    "template": "hero",
+    "aspectRatio": "16:9",
+    "provider": "codex-cli"
+  }
+}

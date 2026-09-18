@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "artifact": "bg-2.webp",
+  "creative_tags": {
+    "hook": "proof",
+    "format": "source_background",
+    "angle": "process",
+    "cta": "none",
+    "vibe": "practical"
+  },
+  "context": {
+    "clientSlug": "ardmag.com",
+    "articleSlug": "granit-negru-culoare-spalacita-corectie",
+    "roundDate": "2026-09-18",
+    "template": "source-bg",
+    "applied_learning_ids": [
+      "learn_dc_f21_ardmag_composition_repetition_20260903",
+      "learn_ardmag_creative_craft_technique_ban",
+      "learn_content_ardmag_vibe_direct",
+      "learn_content_ardmag_angle_product_selection",
+      "learn_content_ardmag_cta_read_article",
+      "learn_ardmag_safe_specialist_poses"
+    ],
+    "experiment_bucket": "exploit",
+    "sourceAspectRatio": "16:9"
+  }
+}
