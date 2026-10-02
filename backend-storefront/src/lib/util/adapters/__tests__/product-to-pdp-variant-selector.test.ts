@@ -180,6 +180,18 @@ describe("productToPdpVariantSelector", () => {
     expect(transpOpt?.unavailable).toBeUndefined()
   })
 
+  it("keeps zero-stock phone-order volumes selectable for price inspection", () => {
+    const product = makeProduct({ variants: [{
+      id: "v5", options: [makeOpt("5 LITRI", "CANTITATE", "o2")],
+      manage_inventory: true, inventory_quantity: 0,
+      metadata: { contact_to_order: true },
+    }] })
+    const option = productToPdpVariantSelector(product)[0].options[0]
+    expect(option.label).toBe("5 LITRI")
+    expect(option.contactToOrder).toBe(true)
+    expect(option.unavailable).toBeUndefined()
+  })
+
   it("does NOT mark unavailable when manage_inventory=false", () => {
     const product = makeProduct({
       variants: [

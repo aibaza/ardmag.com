@@ -1,5 +1,6 @@
 import type { HttpTypes } from "@medusajs/types"
 import { formatPrice, getProductMinPriceWithOriginal } from "./format-price"
+import { tenaxPromoNotice } from "./tenax-promo-notice"
 import { productToBadges } from "./product-to-badges"
 import { imageVariant } from "@lib/util/image-variant"
 
@@ -17,6 +18,7 @@ interface ProductCardProduct {
   href: string
   price: { now: string; was?: string }
   badges?: Array<{ type: BadgeType; label: string; dotVariant?: boolean }>
+  promoNote?: string
   specs?: string[]
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
@@ -165,6 +167,7 @@ export function productToCard(
     href,
     price: { now: priceNow, was: priceWas },
     badges: productToBadges(product),
+    promoNote: tenaxPromoNotice(product),
     specs: specs.length > 0 ? specs : undefined,
     defaultVariantId,
     hasMultipleRealVariants,

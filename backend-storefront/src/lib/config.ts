@@ -1,24 +1,19 @@
 import { getLocaleHeader } from "@lib/util/get-locale-header"
 import Medusa, { FetchArgs, FetchInput } from "@medusajs/js-sdk"
 
-// Defaults to standard port for Medusa server
-let MEDUSA_BACKEND_URL = "http://localhost:9000"
-
-if (process.env.MEDUSA_BACKEND_URL) {
-  MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL
-}
+import { medusaBackendUrl, medusaPublishableKey } from "@lib/util/medusa-env"
 
 export const sdk = new Medusa({
-  baseUrl: MEDUSA_BACKEND_URL,
+  baseUrl: medusaBackendUrl,
   debug: process.env.NODE_ENV === "development",
-  publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+  publishableKey: medusaPublishableKey,
 })
 
 /** Static SDK - no locale header, no cookies() read. Use for ISR/static pages. */
 export const staticSdk = new Medusa({
-  baseUrl: MEDUSA_BACKEND_URL,
+  baseUrl: medusaBackendUrl,
   debug: false,
-  publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+  publishableKey: medusaPublishableKey,
 })
 
 const originalFetch = sdk.client.fetch.bind(sdk.client)

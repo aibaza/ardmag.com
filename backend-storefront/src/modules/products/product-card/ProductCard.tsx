@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Badge } from '@modules/@shared/components/badge'
+import { Badge, NewProductRibbon } from '@modules/@shared/components/badge'
 import { ProductCardSpecTag } from '@modules/@shared/components/product-card-spec-tag'
 import { FormattedPrice } from '@modules/@shared/components/formatted-price'
 import { ProductCardAddButton } from './ProductCardAddButton'
@@ -19,6 +19,7 @@ interface ProductCardProps {
     href: string
     price: { now: string; was?: string }
     badges?: Array<{ type: BadgeType; label: string; dotVariant?: boolean }>
+    promoNote?: string
     specs?: string[]
     defaultVariantId: string | null
     hasMultipleRealVariants: boolean
@@ -32,10 +33,11 @@ interface ProductCardProps {
 export function ProductCard({ product, countryCode, imagePriority = false }: ProductCardProps) {
   return (
     <article className="pcard">
-      <a href={product.href} className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><Image className="pimg" src={product.image} alt={product.imageAlt} width={400} height={400} sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 300px" priority={imagePriority} loading={imagePriority ? 'eager' : 'lazy'} /><div className="top-tags">{product.badges?.map((b, i) => <Badge key={i} type={b.type} label={b.label} dotVariant={b.dotVariant} />)}</div>{product.brandLogo && <img className="pcard-brand-logo" src={product.brandLogo} alt={product.brand} loading="lazy" />}</a>
+      <a href={product.href} className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><Image className="pimg" src={product.image} alt={product.imageAlt} width={400} height={400} sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 300px" priority={imagePriority} loading={imagePriority ? 'eager' : 'lazy'} /><div className="top-tags">{product.badges?.filter(b => b.type !== "new").map((b, i) => <Badge key={i} type={b.type} label={b.label} dotVariant={b.dotVariant} />)}</div>{product.badges?.some(b => b.type === "new") && <NewProductRibbon />}{product.brandLogo && <img className="pcard-brand-logo" src={product.brandLogo} alt={product.brand} loading="lazy" />}</a>
       <div className="pcard-body">
         <a className="pcard-brand" href={product.brandHref}>{product.brand}</a>
         <h4 className="pcard-title"><a href={product.href}>{product.title}</a></h4>
+        {product.promoNote && <p className="tenax-promo-note">{product.promoNote}</p>}
         <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap', minHeight: '28px' }}>
           {product.specs?.map((s, i) => <ProductCardSpecTag key={i} label={s} />)}
         </div>

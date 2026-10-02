@@ -28,6 +28,11 @@ export function productToBadges(product: HttpTypes.StoreProduct): Badge[] {
   const badges: Badge[] = []
   const variants = (product.variants ?? []) as VariantWithCalcPrice[]
 
+  // Explicit catalog metadata distinguishes newly listed products from promotions.
+  if (product.metadata?.is_new === true) {
+    badges.push({ type: "new", label: "Nou" })
+  }
+
   // Detect real price list discount from calculated_price
   let maxDiscountPct = 0
   for (const v of variants) {

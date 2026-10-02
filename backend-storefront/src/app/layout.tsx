@@ -1,21 +1,25 @@
 import Script from "next/script"
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
+import localFont from "next/font/local"
 import "styles/globals.css"
 
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+const plexSans = localFont({
+  src: [
+    { path: "./fonts/plex-sans-normal.woff2", weight: "300 700", style: "normal" },
+    { path: "./fonts/plex-sans-italic.woff2", weight: "300 700", style: "italic" },
+  ],
   display: "swap",
   variable: "--font-plex-sans",
   preload: true,
 })
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const plexMono = localFont({
+  src: [
+    { path: "./fonts/plex-mono-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/plex-mono-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/plex-mono-600.woff2", weight: "600", style: "normal" },
+  ],
   display: "swap",
   variable: "--font-plex-mono",
   preload: false,

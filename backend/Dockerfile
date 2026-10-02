@@ -11,7 +11,7 @@ FROM ghcr.io/aibaza/ardmag-backend:latest
 WORKDIR /app
 
 # Instaleaza sharp (necesar pentru file-r2-variants/variants.js, nu era in baza imaginii vechi)
-RUN npm install sharp --no-save --legacy-peer-deps
+RUN npm install sharp @medusajs/promotion@2.13.6 --no-save --legacy-peer-deps
 
 # Copiaza toate modulele custom compilate
 COPY --from=builder /build/.medusa/server/src/modules/ ./src/modules/

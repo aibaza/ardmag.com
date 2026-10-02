@@ -1,6 +1,10 @@
+import { getDisplayTotals } from "@lib/order/display-totals"
 import { retrieveCart } from "@lib/data/cart"
 import { retrieveCustomer } from "@lib/data/customer"
-import { listCartShippingMethods, calculatePriceForShippingOption } from "@lib/data/fulfillment"
+import {
+  listCartShippingMethods,
+  calculatePriceForShippingOption,
+} from "@lib/data/fulfillment"
 import { listCartPaymentMethods } from "@lib/data/payment"
 import { OrderSummary } from "@modules/order/components/OrderSummary"
 import { CheckoutAddressForm } from "@modules/checkout/components/CheckoutAddressForm"
@@ -17,24 +21,60 @@ type Props = {
   searchParams: Promise<{ step?: string }>
 }
 
-const STEPS = ['address', 'delivery', 'payment', 'review'] as const
-type Step = typeof STEPS[number]
+const STEPS = ["address", "delivery", "payment", "review"] as const
+type Step = (typeof STEPS)[number]
 
 function StepIndicator({ current }: { current: Step }) {
-  const labels: Record<Step, string> = { address: 'Adresa', delivery: 'Livrare', payment: 'Plata', review: 'Confirmare' }
+  const labels: Record<Step, string> = {
+    address: "Adresa",
+    delivery: "Livrare",
+    payment: "Plata",
+    review: "Confirmare",
+  }
   const currentIdx = STEPS.indexOf(current)
   return (
-    <div style={{ display: 'flex', alignItems: 'center', marginBottom: 32, fontFamily: 'var(--f-sans)', fontSize: 13 }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        marginBottom: 32,
+        fontFamily: "var(--f-sans)",
+        fontSize: 13,
+      }}
+    >
       {STEPS.flatMap((step, i) => {
         const done = i <= currentIdx
         const active = i === currentIdx
         const pill = (
-          <span key={step} style={{ whiteSpace: 'nowrap', padding: '4px 12px', borderRadius: 'var(--r-full)', background: done ? 'var(--brand-600)' : 'var(--stone-100)', color: done ? '#fff' : 'var(--fg-muted)', fontWeight: active ? 600 : 400 }}>
+          <span
+            key={step}
+            style={{
+              whiteSpace: "nowrap",
+              padding: "4px 12px",
+              borderRadius: "var(--r-full)",
+              background: done ? "var(--brand-600)" : "var(--stone-100)",
+              color: done ? "#fff" : "var(--fg-muted)",
+              fontWeight: active ? 600 : 400,
+            }}
+          >
             {i + 1}. {labels[step]}
           </span>
         )
         return i < STEPS.length - 1
-          ? [pill, <div key={`sep-${i}`} style={{ flex: 1, height: 1, background: 'var(--rule)', minWidth: 8, maxWidth: 32, margin: '0 2px' }} />]
+          ? [
+              pill,
+              <div
+                key={`sep-${i}`}
+                style={{
+                  flex: 1,
+                  height: 1,
+                  background: "var(--rule)",
+                  minWidth: 8,
+                  maxWidth: 32,
+                  margin: "0 2px",
+                }}
+              />,
+            ]
           : [pill]
       })}
     </div>
@@ -44,7 +84,9 @@ function StepIndicator({ current }: { current: Step }) {
 export default async function CheckoutPage({ params, searchParams }: Props) {
   const { countryCode } = await params
   const { step: stepParam } = await searchParams
-  const step: Step = (STEPS.includes(stepParam as Step) ? stepParam : 'address') as Step
+  const step: Step = (
+    STEPS.includes(stepParam as Step) ? stepParam : "address"
+  ) as Step
 
   const cart = await retrieveCart()
 
@@ -55,19 +97,32 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
   const customer = await retrieveCustomer()
 
   // Step guards -- redirect to earliest incomplete step
-  if (step === 'delivery' && (!cart.shipping_address?.address_1 || !hasShippingPhone(cart.shipping_address))) {
+  if (
+    step === "delivery" &&
+    (!cart.shipping_address?.address_1 ||
+      !hasShippingPhone(cart.shipping_address))
+  ) {
     redirect(`/checkout?step=address`)
   }
-  if (step === 'payment' && !hasShippingPhone(cart.shipping_address)) {
+  if (step === "payment" && !hasShippingPhone(cart.shipping_address)) {
     redirect(`/checkout?step=address`)
   }
-  if (step === 'payment' && !(cart.shipping_methods && cart.shipping_methods.length > 0)) {
+  if (
+    step === "payment" &&
+    !(cart.shipping_methods && cart.shipping_methods.length > 0)
+  ) {
     redirect(`/checkout?step=delivery`)
   }
-  if (step === 'review' && !hasShippingPhone(cart.shipping_address)) {
+  if (step === "review" && !hasShippingPhone(cart.shipping_address)) {
     redirect(`/checkout?step=address`)
   }
-  if (step === 'review' && !(cart.payment_collection?.payment_sessions && cart.payment_collection.payment_sessions.length > 0)) {
+  if (
+    step === "review" &&
+    !(
+      cart.payment_collection?.payment_sessions &&
+      cart.payment_collection.payment_sessions.length > 0
+    )
+  ) {
     redirect(`/checkout?step=payment`)
   }
 
@@ -75,35 +130,53 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
   let calculatedShippingPrices: Record<string, number> = {}
   let paymentProviders: HttpTypes.StorePaymentProvider[] = []
 
-  if (step === 'delivery' && cart.id) {
-    shippingOptions = ((await listCartShippingMethods(cart.id)) ?? []) as HttpTypes.StoreCartShippingOption[]
+  if (step === "delivery" && cart.id) {
+    shippingOptions = ((await listCartShippingMethods(cart.id)) ??
+      []) as HttpTypes.StoreCartShippingOption[]
     // Pre-calculeaza pretul pentru optiunile de tip calculated
     await Promise.all(
       shippingOptions
         .filter((o) => (o as any).price_type === "calculated")
         .map(async (o) => {
-          const result = await calculatePriceForShippingOption(o.id, cart.id).catch(() => null)
-          if (result?.amount != null) calculatedShippingPrices[o.id] = result.amount
+          const result = await calculatePriceForShippingOption(
+            o.id,
+            cart.id
+          ).catch(() => null)
+          if (result?.amount != null)
+            calculatedShippingPrices[o.id] = result.amount
         })
     )
   }
-  if (step === 'payment' && cart.region_id) {
+  if (step === "payment" && cart.region_id) {
     paymentProviders = (await listCartPaymentMethods(cart.region_id)) ?? []
   }
 
   return (
-    <div className="checkout-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 320px', gap: 40, alignItems: 'flex-start' }}>
+    <div
+      className="checkout-grid"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 1fr) 320px",
+        gap: 40,
+        alignItems: "flex-start",
+      }}
+    >
       <CheckoutTracker
         cartId={cart.id}
         value={cart.total ?? 0}
-        currency={(cart.currency_code ?? 'ron').toUpperCase()}
-        numItems={(cart.items ?? []).reduce((s, it) => s + (it.quantity ?? 0), 0)}
-        contentIds={(cart.items ?? []).map((it) => String(it.product_id ?? (it as any).variant_id ?? it.id))}
+        currency={(cart.currency_code ?? "ron").toUpperCase()}
+        numItems={(cart.items ?? []).reduce(
+          (s, it) => s + (it.quantity ?? 0),
+          0
+        )}
+        contentIds={(cart.items ?? []).map((it) =>
+          String(it.product_id ?? (it as any).variant_id ?? it.id)
+        )}
       />
       <div style={{ minWidth: 0 }}>
         <StepIndicator current={step} />
 
-        {step === 'address' && (
+        {step === "address" && (
           <CheckoutAddressForm
             countryCode={countryCode}
             customerEmail={customer?.email}
@@ -114,18 +187,23 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
           />
         )}
 
-        {step === 'delivery' && (
+        {step === "delivery" && (
           <CheckoutShipping
             cartId={cart.id}
             countryCode={countryCode}
             shippingOptions={shippingOptions}
             calculatedPrices={calculatedShippingPrices}
-            itemTotal={(cart as any).item_total ?? ((cart.subtotal ?? 0) - (cart.shipping_total ?? 0))}
-            currentShippingMethodId={cart.shipping_methods?.[0]?.shipping_option_id ?? null}
+            itemTotal={
+              (cart as any).item_total ??
+              (cart.subtotal ?? 0) - (cart.shipping_total ?? 0)
+            }
+            currentShippingMethodId={
+              cart.shipping_methods?.[0]?.shipping_option_id ?? null
+            }
           />
         )}
 
-        {step === 'payment' && (
+        {step === "payment" && (
           <CheckoutPayment
             cart={cart as HttpTypes.StoreCart}
             countryCode={countryCode}
@@ -133,18 +211,12 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
           />
         )}
 
-        {step === 'review' && (
-          <CheckoutReview cartId={cart.id} />
-        )}
+        {step === "review" && <CheckoutReview cartId={cart.id} />}
       </div>
 
-      <div style={{ position: 'sticky', top: 24 }}>
+      <div style={{ position: "sticky", top: 24 }}>
         <OrderSummary
-          subtotal={(cart as any).item_total ?? ((cart.subtotal ?? 0) - (cart.shipping_total ?? 0))}
-          discount_total={cart.discount_total}
-          shipping_total={cart.shipping_total}
-          tax_total={cart.tax_total}
-          total={cart.total ?? 0}
+          {...getDisplayTotals(cart ?? {})}
           currency_code={cart.currency_code}
         />
       </div>

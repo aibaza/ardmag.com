@@ -1,8 +1,15 @@
 import { loadEnv, defineConfig, Modules } from '@medusajs/framework/utils'
+import { assertTenaxEnvironment } from './src/modules/tenax-promotion/policy'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
 const modules: Record<string, unknown>[] = []
+if (process.env.TENAX_PROMO_ENABLED === "true") {
+  const environment = process.env.RAILWAY_ENVIRONMENT_ID || process.env.ARDMAG_STAGING_ENVIRONMENT_ID
+  assertTenaxEnvironment(environment)
+  modules.push({key: Modules.PROMOTION, resolve:"./src/modules/tenax-promotion"})
+}
+
 
 // Redis event bus (productie) sau in-memory (dev fara REDIS_URL)
 if (process.env.REDIS_URL) {
@@ -73,6 +80,7 @@ modules.push({
     providers: [
       { resolve: "@medusajs/medusa/fulfillment-manual", id: "manual" },
       { resolve: "./src/modules/fulfillment-fan-courier", id: "fan-courier" },
+      ...(process.env.CARGUS_CHECKOUT_ENABLED === "true" ? [{ resolve: "./src/modules/fulfillment-cargus", id: "cargus" }] : []),
     ],
   },
 })

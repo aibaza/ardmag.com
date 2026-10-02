@@ -3,6 +3,7 @@
 import { sdk } from "@lib/config"
 import { getAuthHeaders, getCacheOptions } from "./cookies"
 import { HttpTypes } from "@medusajs/types"
+import { availablePaymentProviders } from "@lib/util/available-payment-providers"
 
 export const listCartPaymentMethods = async (regionId: string) => {
   const headers = {
@@ -25,9 +26,7 @@ export const listCartPaymentMethods = async (regionId: string) => {
       }
     )
     .then(({ payment_providers }) =>
-      payment_providers.sort((a, b) => {
-        return a.id > b.id ? 1 : -1
-      })
+      availablePaymentProviders(payment_providers)
     )
     .catch(() => {
       return null

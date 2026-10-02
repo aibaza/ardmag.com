@@ -1,3 +1,4 @@
+import { getDisplayTotals } from "@lib/order/display-totals"
 import { retrieveCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { PlaceOrderButton } from "./PlaceOrderButton"
@@ -48,6 +49,7 @@ export async function CheckoutReview({ cartId }: Props) {
     )
   }
 
+  const totals = getDisplayTotals(cart)
   const currency = cart.currency_code ?? "ron"
   const shippingMethod = cart.shipping_methods?.[0]
   const paymentSession = cart.payment_collection?.payment_sessions?.[0]
@@ -169,7 +171,9 @@ export async function CheckoutReview({ cartId }: Props) {
                   flexShrink: 0,
                 }}
               >
-                <FormattedPrice value={fmt(item.unit_price * item.quantity, currency)} />
+                <FormattedPrice
+                  value={fmt(item.unit_price * item.quantity, currency)}
+                />
               </div>
             </li>
           ))}
@@ -205,10 +209,10 @@ export async function CheckoutReview({ cartId }: Props) {
                 Subtotal
               </td>
               <td style={{ padding: "4px 0", textAlign: "right" }}>
-                <FormattedPrice value={fmt((cart as any).item_total ?? ((cart.subtotal ?? 0) - (cart.shipping_total ?? 0)), currency)} />
+                <FormattedPrice value={fmt(totals.subtotal, currency)} />
               </td>
             </tr>
-            {(cart.discount_total ?? 0) > 0 && (
+            {totals.discount_total > 0 && (
               <tr>
                 <td style={{ padding: "4px 0", color: "var(--fg-muted)" }}>
                   Reducere
@@ -220,7 +224,9 @@ export async function CheckoutReview({ cartId }: Props) {
                     color: "var(--brand-600)",
                   }}
                 >
-                  <FormattedPrice value={`-${fmt(cart.discount_total, currency)}`} />
+                  <FormattedPrice
+                    value={`-${fmt(totals.discount_total, currency)}`}
+                  />
                 </td>
               </tr>
             )}
@@ -229,15 +235,17 @@ export async function CheckoutReview({ cartId }: Props) {
                 Transport
               </td>
               <td style={{ padding: "4px 0", textAlign: "right" }}>
-                {cart.shipping_total != null && cart.shipping_total > 0
-                  ? <FormattedPrice value={fmt(cart.shipping_total, currency)} />
-                  : "Gratuit"}
+                {cart.shipping_total != null && cart.shipping_total > 0 ? (
+                  <FormattedPrice value={fmt(cart.shipping_total, currency)} />
+                ) : (
+                  "Gratuit"
+                )}
               </td>
             </tr>
             {(cart.tax_total ?? 0) > 0 && (
               <tr>
                 <td style={{ padding: "4px 0", color: "var(--fg-muted)" }}>
-                  TVA
+                  TVA inclus
                 </td>
                 <td style={{ padding: "4px 0", textAlign: "right" }}>
                   <FormattedPrice value={fmt(cart.tax_total, currency)} />

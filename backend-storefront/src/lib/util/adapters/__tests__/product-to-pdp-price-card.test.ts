@@ -81,10 +81,10 @@ function makeVariant(overrides: TestVariant): HttpTypes.StoreProductVariant {
 describe("productToPdpPriceCard", () => {
   it("formats price from calculated_amount", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 103200 },
+      calculated_price: { calculated_amount: 1032 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
-    expect(result.price).toBe("1.032,00 RON")
+    expect(result.price).toBe("1.032,00 Lei")
   })
 
   it("returns Preț la cerere when calculated_price is null", () => {
@@ -103,30 +103,30 @@ describe("productToPdpPriceCard", () => {
     expect(result.price).toBe("Preț la cerere")
   })
 
-  it("sets priceNoTax without 19% VAT", () => {
+  it("sets priceNoTax without 21% VAT", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 11900 },
+      calculated_price: { calculated_amount: 121 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
-    // 11900 / 1.19 = 10000 => "100,00 RON"
-    expect(result.priceNoTax).toBe("100,00 RON")
+    // Catalog and Medusa amounts use major units: 121 / 1.21 = 100.
+    expect(result.priceNoTax).toBe("100,00 Lei")
   })
 
   it("sets was, save, promoLabel when original_amount > calculated_amount (real Price List discount)", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 7000, original_amount: 10000 },
+      calculated_price: { calculated_amount: 70, original_amount: 100 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
 
-    expect(result.price).toBe("70,00 RON")
-    expect(result.was).toBe("100,00 RON")
-    expect(result.save).toBe("Economisești 30,00 RON")
+    expect(result.price).toBe("70,00 Lei")
+    expect(result.was).toBe("100,00 Lei")
+    expect(result.save).toBe("Economisești 30,00 Lei")
     expect(result.promoLabel).toBe("Promotie activa -30%")
   })
 
   it("computes correct discount percentage in promoLabel", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 8000, original_amount: 10000 },
+      calculated_price: { calculated_amount: 80, original_amount: 100 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.promoLabel).toBe("Promotie activa -20%")
@@ -134,7 +134,7 @@ describe("productToPdpPriceCard", () => {
 
   it("does NOT set was/save when original_amount equals calculated_amount", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 15000, original_amount: 15000 },
+      calculated_price: { calculated_amount: 150, original_amount: 150 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.was).toBeUndefined()
@@ -144,7 +144,7 @@ describe("productToPdpPriceCard", () => {
 
   it("does NOT set was/save when original_amount is null", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 15000, original_amount: null },
+      calculated_price: { calculated_amount: 150, original_amount: null },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.was).toBeUndefined()
@@ -153,7 +153,7 @@ describe("productToPdpPriceCard", () => {
 
   it("does NOT set was/save when no original_amount field", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 15000 },
+      calculated_price: { calculated_amount: 150 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.was).toBeUndefined()
@@ -161,10 +161,18 @@ describe("productToPdpPriceCard", () => {
 
   it("includes priceNoTax for discounted product too", () => {
     const variant = makeVariant({
-      calculated_price: { calculated_amount: 11900, original_amount: 17000 },
+      calculated_price: { calculated_amount: 121, original_amount: 170 },
     })
     const result = productToPdpPriceCard(variant, makeProduct({}))
     expect(result.priceNoTax).toBeDefined()
-    expect(result.priceNoTax).toBe("100,00 RON")
+    expect(result.priceNoTax).toBe("100,00 Lei")
+  })
+})
+
+describe("confirmed Total Wet gross and net prices", () => {
+  it.each([[140, "140,00 Lei", "115,70 Lei"], [622, "622,00 Lei", "514,05 Lei"]])("preserves gross %s and computes net to cents", (gross, expectedGross, expectedNet) => {
+    const result = productToPdpPriceCard(makeVariant({ calculated_price: { calculated_amount: gross as number } }), makeProduct({}))
+    expect(result.price).toBe(expectedGross)
+    expect(result.priceNoTax).toBe(expectedNet)
   })
 })

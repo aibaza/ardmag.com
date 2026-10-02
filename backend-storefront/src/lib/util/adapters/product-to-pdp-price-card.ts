@@ -17,14 +17,15 @@ type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
   } | null
 }
 
-const VAT_RATE = 0.19
+// Romanian standard VAT since 2025-08-01; catalog amounts already include VAT.
+const VAT_RATE = 0.21
 
 /**
  * Converts a single variant into PDPPriceCard props.
  *
  * - price: formatPrice(calculated_amount)
  * - was/save/promoLabel: populated when original_amount > calculated_amount (real Price List discount)
- * - priceNoTax: price without 19% TVA
+ * - priceNoTax: price without 21% TVA
  */
 export function productToPdpPriceCard(
   variant: HttpTypes.StoreProductVariant,
@@ -40,7 +41,7 @@ export function productToPdpPriceCard(
 
   const currencyCode = cp?.currency_code ?? "ron"
   const price = formatPrice(amount, currencyCode)
-  const amountWithoutTax = Math.round(amount / (1 + VAT_RATE))
+  const amountWithoutTax = Math.round((amount / (1 + VAT_RATE)) * 100) / 100
   const priceNoTax = formatPrice(amountWithoutTax, currencyCode)
 
   const originalAmount = cp?.original_amount ?? null

@@ -1,3 +1,4 @@
+import { medusaBackendUrl, medusaPublishableKey } from "./lib/util/medusa-env"
 import { HttpTypes } from "@medusajs/types"
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server"
 import {
@@ -14,8 +15,8 @@ import {
   isCountableLanding,
 } from "./lib/analytics/edge-landing"
 
-const BACKEND_URL = process.env.MEDUSA_BACKEND_URL
-const PUBLISHABLE_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
+const BACKEND_URL = medusaBackendUrl
+const PUBLISHABLE_API_KEY = medusaPublishableKey
 const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "ro"
 
 const regionMapCache = {

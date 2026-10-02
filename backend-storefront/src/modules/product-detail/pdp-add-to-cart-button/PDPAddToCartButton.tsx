@@ -10,9 +10,10 @@ interface Props {
   countryCode: string
   label: string
   canAddToCart: boolean
+  quantity: number
 }
 
-export function PDPAddToCartButton({ variantId, countryCode, label, canAddToCart }: Props) {
+export function PDPAddToCartButton({ variantId, countryCode, label, canAddToCart, quantity }: Props) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
@@ -26,9 +27,9 @@ export function PDPAddToCartButton({ variantId, countryCode, label, canAddToCart
     setStatus("idle")
     startTransition(async () => {
       try {
-        await addToCart({ variantId, quantity: 1, countryCode })
+        await addToCart({ variantId, quantity, countryCode })
         setStatus("success")
-        trackAddToCart({ id: variantId, quantity: 1 })
+        trackAddToCart({ id: variantId, quantity })
         window.dispatchEvent(new CustomEvent("cartupdate"))
         window.dispatchEvent(new CustomEvent("cartadded"))
         router.refresh()
@@ -67,7 +68,7 @@ export function PDPAddToCartButton({ variantId, countryCode, label, canAddToCart
         {buttonLabel}
       </button>
       {error && (
-        <div role="alert" style={{ color: "var(--danger-600, #b91c1c)", fontSize: 13, marginTop: 8 }}>
+        <div role="alert" style={{ gridColumn: "1 / -1", color: "var(--danger-600, #b91c1c)", fontSize: 13, marginTop: 8 }}>
           {error}
         </div>
       )}

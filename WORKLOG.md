@@ -2089,3 +2089,19 @@ ClickUp/time entry:
   autentificat la `/internal/events`, cu event_id stabil, payload minim și
   verificare `ok=true, written=1`. Logurile subscriberului nu includ order ID
   sau PII. Confirmarea finală Purchase rămâne la prima comandă reală.
+
+
+## 2026-10-02 -- Release productie: catalog, Tenax, checkout si contact
+
+- Publicare aprobata de user prin GO si instructiunea explicita de deployment, migrari si activare a campaniilor in intervalul confirmat de Andrei. Articolul nevalidat ramane exclus; Cargus ramane dezactivat pana la configurarea si validarea accesului API.
+- Catalog productie: 354 variante reconciliate cu sursele aprobate, 97 preturi de baza RON actualizate. Readback verifica toate cele 890 intrari de pret existente: celelalte monede, praguri si liste istorice sunt pastrate. Lista veche Tenax, expirata in iulie, nu a fost modificata.
+- TOTAL WET publicat cu o imagine principala aprobata, 1 L la 140 lei/stoc 48 si 5 L la 622 lei/stoc 60. Produsul tehnic de checkout staging nu a fost transferat in productie.
+- Tenax 1 octombrie - 31 decembrie 2026: 27 variante de mastici cu reducere directa de 20%; Solido 1 L alb, bej/Paglierino, negru si Jura beneficiaza de 20% doar de la 12 bucati cumulate. Intaritorii si accesoriile raman excluse.
+- Livrate ajustarile de cantitate PDP/cos, subtotalul brut si reducerea distincta, tratarea erorilor de finalizare si filtrarea providerilor de plata indisponibili/null. Fan Courier si plata ramburs sunt disponibile; Cargus nu este activat.
+- Contact: validare stricta, limita de body, honeypot, verificare origin si rate limiting durabil PostgreSQL. Productia foloseste rol dedicat numai pentru tabelul limiterului, secret server si CA verificata a bazei; credentialele raman in afara Git.
+- Migrarile native Medusa au trecut cu extensia Tenax dezactivata, inainte de activarea guard-ului pentru mediul de productie verificat. Backend Railway `c269c014-0609-45a4-a1b2-a5e85e97c859` este SUCCESS; storefront Vercel `dpl_9bdjeWCKddw3TnN7HqMn6PJTepGY` este READY si serveste domeniile de productie. Aliasul test.ardmag.ro a fost pastrat.
+- Fonturile IBM Plex Sans/Mono sunt acum livrate local, cu aceleasi familii, greutati si stiluri, pentru a elimina eroarea next/font Google din build. Asset-uri WOFF2 cu licente OFL, 290512 bytes cumulat; caracterele romanesti au fost verificate.
+- Validari: TypeScript backend/storefront PASS, build Medusa PASS, 14 teste Tenax si 29 teste storefront PASS; 7 scenarii de cos real pentru pragul Solido si tranzitii 11/12 PASS; reducere directa, intaritor exclus, provider ramburs si optiuni Fan Courier/pickup PASS. Readiness si readback HTTP pe produsul TOTAL WET cu ID-ul distinct de productie, Solido, apex/www si redirect legacy PASS; contact invalid 400/honeypot 200 fara email. Nicio comanda, plata, AWB sau trimitere email de test.
+- Protocolul canonic source lease + Git transaction a fost recuperat pe noul VM, cu 64 teste de regresie si 6 teste pentru relocare PASS. Arhiva istorica de handoff nu a fost reaplicata; lucrarile transferate au fost pastrate si adoptate controlat.
+- Dovezi private si backup: /srv/paperclip/backup/ardmag-release-2026-10-02. ClickUp/time entry raman de consemnat cand este disponibil accesul; nu au fost inventate inregistrari. Notificarea NTFY este ceruta de user dupa inchiderea release-ului.
+- URL live: https://ardmag.ro

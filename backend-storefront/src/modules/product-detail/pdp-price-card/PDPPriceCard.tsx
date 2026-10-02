@@ -6,11 +6,12 @@ interface PDPPriceCardProps {
   save?: string
   priceNoTax?: string
   unitLabel?: string
+  promotionNotice?: string
   promoLabel?: string
   promoDate?: string
 }
 
-export function PDPPriceCard({ price, was, save, priceNoTax, unitLabel, promoLabel, promoDate }: PDPPriceCardProps) {
+export function PDPPriceCard({ price, was, save, priceNoTax, unitLabel, promotionNotice, promoLabel, promoDate }: PDPPriceCardProps) {
   return (
     <div className="pdp-price-card">
       <div className="pdp-price-row">
@@ -24,6 +25,7 @@ export function PDPPriceCard({ price, was, save, priceNoTax, unitLabel, promoLab
           {unitLabel && <><span>·</span><span>{unitLabel}</span></>}
         </div>
       )}
+      {promotionNotice && <p className="tenax-promo-note">{promotionNotice}</p>}
       {promoLabel && promoDate && (
         <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 12px", background: "var(--brand-50)", borderRadius: "var(--r-sm)", fontSize: "12.5px", color: "var(--brand-800)", lineHeight: "1.3" }}>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ flexShrink: 0 }}><circle cx="8" cy="8" r="6"/><path d="M5 8l2 2 4-4"/></svg>

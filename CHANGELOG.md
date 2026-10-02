@@ -1,9 +1,24 @@
 # Changelog
 
+## 2026-10-02 - Catalog si fluxuri validate, publicate in productie
+
+- Catalog: 97 preturi RON corectate din 354 variante verificate; TOTAL WET 1 L/5 L publicat cu imaginea si stocurile confirmate.
+- Tenax Q4: reducere directa -20% pentru 27 variante; cele patru culori Solido 1 L, inclusiv Jura, au -20% de la 12 bucati cumulate. Intaritorii sunt exclusi.
+- Cantitatile PDP/cos, afisarea subtotalului/reducerii, erorile de checkout si providerii de plata au fost corectate.
+- Contact validat si protejat cu rate limiting PostgreSQL; fonturile IBM Plex sunt locale pentru build determinist.
+- Migrari si configuratie productie verificate. Cargus si articolul nevalidat raman in afara acestui release.
+
+
 All notable changes to this project are documented here.
 Format: [date] type: description
 
 ---
+
+## 2026-10-01 - Feedback Total Wet pe mediul de test
+
+Stocuri confirmate 48 x 1 L / 60 x 5 L, eliminarea fotografiei etichetei din spate si panglica rosie Nou pe card/pagina. Afisarea informativa fara TVA foloseste cota standard 21% si doua zecimale. Preturile de 140/622 lei sunt pastrate, cosurile au fost verificate fara finalizare de comenzi. Promo Tenax pregatita si neactivata pana la clarificarea eligibilitatii si pragului. Cod Cargus recuperat cu autentificare si contract API corectate, dezactivat pana la verificarea accesului real. Productia ramane in asteptarea validarii.
+
+Detalii si limitari: `docs/plans/2026-10-01-feedback-andrei-test.md`.
 
 ## 2026-08-24 - Contract sigur pentru măsurarea collector
 

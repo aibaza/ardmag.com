@@ -1,3 +1,4 @@
+import { getDisplayTotals } from "@lib/order/display-totals"
 import { retrieveCart } from "@lib/data/cart"
 import { Metadata } from "next"
 import { SiteHeaderShell } from "@modules/layout/site-header"
@@ -18,7 +19,11 @@ export default async function CartPage({ params }: Props) {
 
   return (
     <>
-      <SiteHeaderShell countryCode={countryCode} drawerId="cartDrawer" drawerClosedAttr />
+      <SiteHeaderShell
+        countryCode={countryCode}
+        drawerId="cartDrawer"
+        drawerClosedAttr
+      />
       <main className="page-inner">
         <Breadcrumb
           items={[{ label: "Acasa", href: `/${countryCode}` }]}
@@ -35,14 +40,23 @@ export default async function CartPage({ params }: Props) {
         >
           Cosul meu{" "}
           {itemCount > 0 && (
-            <span style={{ fontWeight: 400, fontSize: 16, color: "var(--fg-muted)" }}>
+            <span
+              style={{
+                fontWeight: 400,
+                fontSize: 16,
+                color: "var(--fg-muted)",
+              }}
+            >
               ({itemCount} {itemCount === 1 ? "produs" : "produse"})
             </span>
           )}
         </h1>
 
         {items.length === 0 ? (
-          <div className="panel" style={{ textAlign: "center", padding: "48px 24px" }}>
+          <div
+            className="panel"
+            style={{ textAlign: "center", padding: "48px 24px" }}
+          >
             <p style={{ color: "var(--fg-muted)", marginBottom: 16 }}>
               Cosul tau este gol.
             </p>
@@ -62,17 +76,20 @@ export default async function CartPage({ params }: Props) {
           >
             <div className="panel cart-items" style={{ marginBottom: 0 }}>
               {items.map((item) => (
-                <CartLineItem key={item.id} item={item} currencyCode={cart?.currency_code} />
+                <CartLineItem
+                  key={item.id}
+                  item={item}
+                  currencyCode={cart?.currency_code}
+                />
               ))}
             </div>
 
-            <div className="cart-summary" style={{ position: "sticky", top: 24 }}>
+            <div
+              className="cart-summary"
+              style={{ position: "sticky", top: 24 }}
+            >
               <OrderSummary
-                subtotal={(cart as any)?.item_total ?? ((cart?.subtotal ?? 0) - (cart?.shipping_total ?? 0))}
-                discount_total={cart?.discount_total}
-                shipping_total={undefined}
-                tax_total={cart?.tax_total}
-                total={(cart as any)?.item_total ?? ((cart?.subtotal ?? 0) - (cart?.shipping_total ?? 0))}
+                {...getDisplayTotals(cart ?? {})}
                 currency_code={cart?.currency_code}
               />
               <div style={{ marginTop: 12 }}>

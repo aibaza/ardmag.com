@@ -1,3 +1,4 @@
+import { getDisplayTotals } from "@lib/order/display-totals"
 import { retrieveOrder } from "@lib/data/orders"
 import { retrieveCustomer } from "@lib/data/customer"
 import { OrderSummary } from "@modules/order/components/OrderSummary"
@@ -39,7 +40,13 @@ function fmt(amount: number, currency: string): string {
 
 type OrderAddress = HttpTypes.StoreOrder["shipping_address"]
 
-function AddressBlock({ address, label }: { address: OrderAddress; label: string }) {
+function AddressBlock({
+  address,
+  label,
+}: {
+  address: OrderAddress
+  label: string
+}) {
   if (!address) return null
   return (
     <div>
@@ -69,7 +76,9 @@ function AddressBlock({ address, label }: { address: OrderAddress; label: string
         {address.phone && (
           <>
             <br />
-            <span style={{ fontFamily: "var(--f-mono)", fontSize: 13 }}>{address.phone}</span>
+            <span style={{ fontFamily: "var(--f-mono)", fontSize: 13 }}>
+              {address.phone}
+            </span>
           </>
         )}
       </div>
@@ -96,7 +105,16 @@ export default async function OrderDetailPage({ params }: Props) {
         className="btn ghost sm"
         style={{ marginBottom: 20, display: "inline-flex" }}
       >
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
+        <svg
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          width="14"
+          height="14"
+        >
           <path d="M10 3L5 8l5 5" />
         </svg>
         Inapoi la comenzi
@@ -124,7 +142,13 @@ export default async function OrderDetailPage({ params }: Props) {
           >
             Comanda #{order.display_id}
           </h2>
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 12, color: "var(--fg-muted)" }}>
+          <div
+            style={{
+              fontFamily: "var(--f-mono)",
+              fontSize: 12,
+              color: "var(--fg-muted)",
+            }}
+          >
             {new Date(order.created_at).toLocaleDateString("ro-RO", {
               year: "numeric",
               month: "long",
@@ -147,7 +171,6 @@ export default async function OrderDetailPage({ params }: Props) {
       >
         {/* Left: items + addresses */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-
           {/* Items panel */}
           <div className="panel" style={{ marginBottom: 0 }}>
             <div className="panel-head">
@@ -182,20 +205,21 @@ export default async function OrderDetailPage({ params }: Props) {
                     <div style={{ fontWeight: 500, fontSize: 14 }}>
                       {item.product_title ?? item.title}
                     </div>
-                    {item.variant?.title && item.variant.title !== "Default Title" && (
-                      <div
-                        style={{
-                          fontFamily: "var(--f-mono)",
-                          fontSize: 11,
-                          color: "var(--fg-muted)",
-                          marginTop: 3,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        {item.variant.title}
-                      </div>
-                    )}
+                    {item.variant?.title &&
+                      item.variant.title !== "Default Title" && (
+                        <div
+                          style={{
+                            fontFamily: "var(--f-mono)",
+                            fontSize: 11,
+                            color: "var(--fg-muted)",
+                            marginTop: 3,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.04em",
+                          }}
+                        >
+                          {item.variant.title}
+                        </div>
+                      )}
                     <div
                       style={{
                         fontFamily: "var(--f-mono)",
@@ -207,8 +231,18 @@ export default async function OrderDetailPage({ params }: Props) {
                       Cant: {item.quantity}
                     </div>
                   </div>
-                  <div style={{ fontFamily: "var(--f-mono)", fontWeight: 600, fontSize: 13, flexShrink: 0, textAlign: "right" }}>
-                    <FormattedPrice value={fmt(item.unit_price * item.quantity, currency)} />
+                  <div
+                    style={{
+                      fontFamily: "var(--f-mono)",
+                      fontWeight: 600,
+                      fontSize: 13,
+                      flexShrink: 0,
+                      textAlign: "right",
+                    }}
+                  >
+                    <FormattedPrice
+                      value={fmt(item.unit_price * item.quantity, currency)}
+                    />
                   </div>
                 </div>
               ))}
@@ -220,8 +254,14 @@ export default async function OrderDetailPage({ params }: Props) {
             <div className="panel" style={{ marginBottom: 0 }}>
               <div className="panel-body padded">
                 <div className="form-row-2">
-                  <AddressBlock address={order.shipping_address} label="Adresa de livrare" />
-                  <AddressBlock address={order.billing_address} label="Adresa de facturare" />
+                  <AddressBlock
+                    address={order.shipping_address}
+                    label="Adresa de livrare"
+                  />
+                  <AddressBlock
+                    address={order.billing_address}
+                    label="Adresa de facturare"
+                  />
                 </div>
               </div>
             </div>
@@ -231,11 +271,7 @@ export default async function OrderDetailPage({ params }: Props) {
         {/* Right: summary */}
         <div style={{ position: "sticky", top: 24 }}>
           <OrderSummary
-            subtotal={(order as any).item_total ?? ((order.subtotal ?? 0) - (order.shipping_total ?? 0))}
-            discount_total={order.discount_total}
-            shipping_total={order.shipping_total}
-            tax_total={order.tax_total}
-            total={order.total ?? 0}
+            {...getDisplayTotals(order ?? {})}
             currency_code={order.currency_code}
           />
         </div>

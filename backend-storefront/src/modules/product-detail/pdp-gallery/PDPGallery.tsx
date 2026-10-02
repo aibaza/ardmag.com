@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react'
-import { Badge } from '@modules/@shared/components/badge'
+import { Badge, NewProductRibbon } from '@modules/@shared/components/badge'
 import { imageVariant } from '@lib/util/image-variant'
 
 type BadgeType = 'promo' | 'new' | 'stock-low' | 'custom'
@@ -49,8 +49,9 @@ export function PDPGallery({ thumbs, mainImage, badges }: PDPGalleryProps) {
         <div className="pdp-main-img with-real">
           <img className="main" src={currentLarge} alt={currentAlt} width={1200} height={1200} />
           <div className="badges">
-            {badges.map((b, i) => <Badge key={i} type={b.type} label={b.label} />)}
+            {badges.filter(b => b.type !== "new").map((b, i) => <Badge key={i} type={b.type} label={b.label} />)}
           </div>
+          {badges.some(b => b.type === "new") && <NewProductRibbon />}
           <button className="zoom" aria-label="Mărește imaginea" onClick={() => setLightboxOpen(true)}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="7" cy="7" r="5"/><path d="M7 4v6M4 7h6M14 14l-3.5-3.5"/></svg>
           </button>

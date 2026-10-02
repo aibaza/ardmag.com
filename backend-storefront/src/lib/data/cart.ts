@@ -416,7 +416,7 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
 /**
  * Places an order for a cart. If no cart ID is provided, it will use the cart ID from the cookies.
  * @param cartId - optional - The ID of the cart to place an order for.
- * @returns The cart object if the order was successful, or null if not.
+ * Redirects to the confirmation on success; returns a customer-facing error on failure.
  */
 export async function placeOrder(cartId?: string) {
   const id = cartId || (await getCartId())
@@ -434,14 +434,14 @@ export async function placeOrder(cartId?: string) {
     return SHIPPING_PHONE_REQUIRED_MESSAGE
   }
 
-  const cartRes = await sdk.store.cart
-    .complete(id, {}, headers)
-    .then(async (cartRes) => {
-      const cartCacheTag = await getCacheTag("carts")
-      revalidateTag(cartCacheTag)
-      return cartRes
-    })
-    .catch(medusaError)
+  let cartRes: HttpTypes.StoreCompleteCartResponse
+  try {
+    cartRes = await sdk.store.cart.complete(id, {}, headers)
+  } catch {
+    return "Comanda nu a putut fi plasată. Verifică stocul și metoda de plată, apoi încearcă din nou."
+  }
+  const cartCacheTag = await getCacheTag("carts")
+  revalidateTag(cartCacheTag)
 
   if (cartRes?.type === "order") {
     const countryCode =
@@ -450,11 +450,11 @@ export async function placeOrder(cartId?: string) {
     const orderCacheTag = await getCacheTag("orders")
     revalidateTag(orderCacheTag)
 
-    removeCartId()
+    await removeCartId()
     redirect(`/order/${cartRes?.order.id}/confirmed`)
   }
 
-  return cartRes.cart
+  return cartRes.error?.message || "Comanda nu a putut fi plasată. Încearcă din nou."
 }
 
 /**

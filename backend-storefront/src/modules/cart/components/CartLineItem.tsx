@@ -1,6 +1,6 @@
 "use client"
 
-import { useTransition } from "react"
+import { useRef, useState } from "react"
 import { updateLineItem, deleteLineItem } from "@lib/data/cart"
 import { QuantityStepper } from "@modules/@shared/components/quantity-stepper/QuantityStepper"
 import { formatPrice } from "@lib/util/adapters/format-price"
@@ -13,7 +13,26 @@ interface CartLineItemProps {
 }
 
 export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
-  const [isPending, startTransition] = useTransition()
+  const [isPending, setPending] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const busy = useRef(false)
+
+  async function mutate(action: () => Promise<void>) {
+    if (busy.current) return
+    busy.current = true
+    setPending(true)
+    setError(null)
+    try {
+      await action()
+    } catch {
+      setError(
+        "Coșul nu a putut fi actualizat. Verifică stocul și încearcă din nou."
+      )
+    } finally {
+      busy.current = false
+      setPending(false)
+    }
+  }
 
   const productHandle =
     (item as any).product_handle ?? item.variant?.product?.handle ?? null
@@ -32,15 +51,27 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
       <div className="cli-grid">
         {/* Thumb */}
         {productHref ? (
-          <a href={productHref} className="cli-thumb-link" aria-label={item.product_title ?? "Vezi produs"}>
+          <a
+            href={productHref}
+            className="cli-thumb-link"
+            aria-label={item.product_title ?? "Vezi produs"}
+          >
             {item.thumbnail ? (
-              <img className="cli-thumb" src={item.thumbnail} alt={item.title ?? ""} />
+              <img
+                className="cli-thumb"
+                src={item.thumbnail}
+                alt={item.title ?? ""}
+              />
             ) : (
               <div className="cli-thumb cli-thumb-placeholder" />
             )}
           </a>
         ) : item.thumbnail ? (
-          <img className="cli-thumb" src={item.thumbnail} alt={item.title ?? ""} />
+          <img
+            className="cli-thumb"
+            src={item.thumbnail}
+            alt={item.title ?? ""}
+          />
         ) : (
           <div className="cli-thumb cli-thumb-placeholder" />
         )}
@@ -75,20 +106,28 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
         {/* Quantity */}
         <div className="cli-qty">
           <QuantityStepper
+            key={`${item.quantity}-${error ?? ""}`}
             defaultValue={item.quantity}
             min={1}
-            max={99}
+            max={Math.max(999, item.quantity)}
+            commitOnBlur
+            disabled={isPending}
             onChange={(qty) => {
-              startTransition(() => {
+              void mutate(() =>
                 updateLineItem({ lineId: item.id, quantity: qty })
-              })
+              )
             }}
           />
         </div>
 
         {/* Price */}
         <div className="cli-price">
-          <FormattedPrice value={formatPrice(item.unit_price * item.quantity, currencyCode ?? "ron")} />
+          <FormattedPrice
+            value={formatPrice(
+              item.unit_price * item.quantity,
+              currencyCode ?? "ron"
+            )}
+          />
         </div>
 
         {/* Remove */}
@@ -97,13 +136,20 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
           className="btn ghost sm cli-remove"
           aria-label="Șterge produsul din coș"
           title="Șterge din coș"
+          disabled={isPending}
           onClick={() => {
-            startTransition(() => {
-              deleteLineItem(item.id)
-            })
+            void mutate(() => deleteLineItem(item.id))
           }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <path d="M3 6h18" />
             <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
             <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
@@ -113,6 +159,12 @@ export function CartLineItem({ item, currencyCode }: CartLineItemProps) {
           <span className="cli-remove-label">Șterge</span>
         </button>
       </div>
+
+      {error && (
+        <p role="alert" style={{ color: "var(--error)", fontSize: 13 }}>
+          {error}
+        </p>
+      )}
 
       <style>{`
         .cart-line-item .cli-grid {

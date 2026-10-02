@@ -1,3 +1,4 @@
+import { medusaBackendUrl, medusaPublishableKey } from "@lib/util/medusa-env"
 import { Metadata } from "next"
 import Link from "next/link"
 
@@ -11,8 +12,8 @@ type Props = {
 }
 
 async function confirmNewsletter(token: string): Promise<boolean> {
-  const backendUrl = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
-  const key = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
+  const backendUrl = medusaBackendUrl
+  const key = medusaPublishableKey || ""
   try {
     const res = await fetch(`${backendUrl}/store/newsletter/confirm?token=${encodeURIComponent(token)}`, {
       headers: { "x-publishable-api-key": key },

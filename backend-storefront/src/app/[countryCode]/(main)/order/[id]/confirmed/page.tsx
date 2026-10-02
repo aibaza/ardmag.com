@@ -1,3 +1,4 @@
+import { getDisplayTotals } from "@lib/order/display-totals"
 import { retrieveOrder } from "@lib/data/orders"
 import { Metadata } from "next"
 import { SiteHeaderShell } from "@modules/layout/site-header/SiteHeaderShell"
@@ -56,7 +57,11 @@ export default async function OrderConfirmedPage({ params }: Props) {
         currency={currency}
         contents={purchaseContents}
       />
-      <SiteHeaderShell countryCode={countryCode} drawerId="confDrawer" drawerClosedAttr />
+      <SiteHeaderShell
+        countryCode={countryCode}
+        drawerId="confDrawer"
+        drawerClosedAttr
+      />
       <main className="page-inner">
         <Breadcrumb
           items={[{ label: "Acasa", href: `/${countryCode}` }]}
@@ -103,8 +108,8 @@ export default async function OrderConfirmedPage({ params }: Props) {
               margin: 0,
             }}
           >
-            Comanda #{order.display_id} a fost inregistrata. Vei primi un email de confirmare la{" "}
-            {order.email}.
+            Comanda #{order.display_id} a fost inregistrata. Vei primi un email
+            de confirmare la {order.email}.
           </p>
         </div>
 
@@ -159,20 +164,21 @@ export default async function OrderConfirmedPage({ params }: Props) {
                       >
                         {item.product_title ?? item.title}
                       </div>
-                      {item.variant?.title && item.variant.title !== "Default Title" && (
-                        <div
-                          style={{
-                            fontFamily: "var(--f-mono)",
-                            fontSize: 11,
-                            color: "var(--fg-muted)",
-                            marginTop: 2,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.04em",
-                          }}
-                        >
-                          {item.variant.title}
-                        </div>
-                      )}
+                      {item.variant?.title &&
+                        item.variant.title !== "Default Title" && (
+                          <div
+                            style={{
+                              fontFamily: "var(--f-mono)",
+                              fontSize: 11,
+                              color: "var(--fg-muted)",
+                              marginTop: 2,
+                              textTransform: "uppercase",
+                              letterSpacing: "0.04em",
+                            }}
+                          >
+                            {item.variant.title}
+                          </div>
+                        )}
                       <div
                         style={{
                           fontFamily: "var(--f-mono)",
@@ -194,7 +200,10 @@ export default async function OrderConfirmedPage({ params }: Props) {
                       }}
                     >
                       <FormattedPrice
-                        value={formatPrice(item.unit_price * item.quantity, currency)}
+                        value={formatPrice(
+                          item.unit_price * item.quantity,
+                          currency
+                        )}
                       />
                     </div>
                   </div>
@@ -203,11 +212,14 @@ export default async function OrderConfirmedPage({ params }: Props) {
             </div>
 
             {/* Delivery details panel */}
-            {(order.shipping_address || (order.shipping_methods?.length ?? 0) > 0) && (
+            {(order.shipping_address ||
+              (order.shipping_methods?.length ?? 0) > 0) && (
               <div className="panel" style={{ marginBottom: 0 }}>
                 <div className="panel-head">
                   <h3>Detalii livrare</h3>
-                  <span className="note">Plasată pe {formatRoDateTime(order.created_at)}</span>
+                  <span className="note">
+                    Plasată pe {formatRoDateTime(order.created_at)}
+                  </span>
                 </div>
                 <div className="panel-body padded">
                   <div className="form-row-2">
@@ -217,14 +229,16 @@ export default async function OrderConfirmedPage({ params }: Props) {
                           Adresă
                         </div>
                         <div style={{ fontSize: 14, lineHeight: 1.7 }}>
-                          {order.shipping_address.first_name} {order.shipping_address.last_name}
+                          {order.shipping_address.first_name}{" "}
+                          {order.shipping_address.last_name}
                           <br />
                           {order.shipping_address.address_1}
                           {order.shipping_address.address_2
                             ? `, ${order.shipping_address.address_2}`
                             : ""}
                           <br />
-                          {order.shipping_address.postal_code} {order.shipping_address.city}
+                          {order.shipping_address.postal_code}{" "}
+                          {order.shipping_address.city}
                           <br />
                           {order.shipping_address.province
                             ? `${order.shipping_address.province}, `
@@ -264,7 +278,9 @@ export default async function OrderConfirmedPage({ params }: Props) {
                                   marginTop: 2,
                                 }}
                               >
-                                <FormattedPrice value={formatPrice(sm.amount ?? 0, currency)} />
+                                <FormattedPrice
+                                  value={formatPrice(sm.amount ?? 0, currency)}
+                                />
                               </div>
                             </div>
                           ))}
@@ -279,13 +295,7 @@ export default async function OrderConfirmedPage({ params }: Props) {
 
           <div style={{ position: "sticky", top: 24 }}>
             <OrderSummary
-              subtotal={
-                (order as any).item_total ?? (order.subtotal ?? 0) - (order.shipping_total ?? 0)
-              }
-              discount_total={order.discount_total}
-              shipping_total={order.shipping_total}
-              tax_total={order.tax_total}
-              total={order.total ?? 0}
+              {...getDisplayTotals(order ?? {})}
               currency_code={order.currency_code}
             />
             <div

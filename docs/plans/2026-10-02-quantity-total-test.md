@@ -1,0 +1,5 @@
+# Total langa cantitate pe pagina produsului - 2 octombrie 2026
+
+Cerere explicita DC: totalul cantitate x pret in dreapta selectorului, ca in cos. Se reutilizeaza pretul numeric calculated_amount al variantei selectate, moneda, formatPrice si FormattedPrice; nu se parseaza pretul deja formatat. Selector compact in stanga, total in dreapta, CTA dedesubt, pe mobil si desktop. Pret absent: totalul nu este inventat. Schimbarea variantei reinitializeaza cantitatea la 1 si actualizeaza pretul. Reducerea conditionata de cos ramane explicata si calculata in cos, totalul local reprezinta cantitate x pretul afisat.
+
+Continuare test-only a aceleiasi conversatii. Scope brand:ardmag.com, sesiune source cu backup/hash pentru toate caile preexistente in /home/dc/.codex/task-artifacts/ardmag-quantity-total-2026-10-02/provenance.json. Contract explicit de handoff downstream: fara commit/push/productie in acest lifecycle, release-ul final ramane pentru validarea autorizata ulterior. Modificarile din 30 septembrie si 1/2 octombrie sunt pastrate.

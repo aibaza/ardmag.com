@@ -47,6 +47,21 @@ function makeProduct(
 }
 
 describe("productToBadges", () => {
+  it("marks only explicitly newly listed products and keeps their real promotion", () => {
+    const product = makeProduct({
+      metadata: { is_new: true },
+      variants: [{ id: "v1", calculated_price: { calculated_amount: 80, original_amount: 100 } }],
+    })
+    expect(productToBadges(product)).toEqual([
+      { type: "new", label: "Nou" },
+      { type: "promo", label: "-20%" },
+    ])
+  })
+
+  it.each([false, "true", "Nou", null])("does not infer novelty from metadata value %s", (is_new) => {
+    expect(productToBadges(makeProduct({ metadata: { is_new } }))).toEqual([])
+  })
+
   it("returns promo badge when calculated_amount < original_amount (real Price List discount)", () => {
     const product = makeProduct({
       variants: [

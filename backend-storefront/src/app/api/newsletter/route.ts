@@ -1,7 +1,8 @@
+import { medusaBackendUrl, medusaPublishableKey } from "@lib/util/medusa-env"
 import { NextRequest, NextResponse } from "next/server"
 
-const MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
-const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
+const MEDUSA_BACKEND_URL = medusaBackendUrl
+const PUBLISHABLE_KEY = medusaPublishableKey || ""
 
 export async function POST(req: NextRequest) {
   let body: { email?: string }

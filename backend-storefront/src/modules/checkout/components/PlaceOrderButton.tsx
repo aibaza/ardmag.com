@@ -1,6 +1,7 @@
 "use client"
 import { useState, useTransition } from "react"
 import { placeOrder } from "@lib/data/cart"
+import { isRedirectError } from "next/dist/client/components/redirect-error"
 
 interface Props {
   cartId: string
@@ -13,9 +14,12 @@ export function PlaceOrderButton({ cartId }: Props) {
   function handlePlace() {
     setError(null)
     startTransition(async () => {
-      const result = await placeOrder(cartId)
-      if (typeof result === "string") {
-        setError(result)
+      try {
+        const result = await placeOrder(cartId)
+        if (typeof result === "string") setError(result)
+      } catch (error) {
+        if (isRedirectError(error)) throw error
+        setError("Comanda nu a putut fi plasată. Încearcă din nou.")
       }
     })
   }
@@ -23,7 +27,15 @@ export function PlaceOrderButton({ cartId }: Props) {
   return (
     <>
       {error && (
-        <p style={{ color: "var(--brand-600)", fontSize: 13, marginBottom: 12, fontFamily: "var(--f-sans)" }}>
+        <p
+          role="alert"
+          style={{
+            color: "var(--brand-600)",
+            fontSize: 13,
+            marginBottom: 12,
+            fontFamily: "var(--f-sans)",
+          }}
+        >
           {error}
         </p>
       )}

@@ -47,7 +47,10 @@ function bestMatchingVariant(
   return best
 }
 
-function isOutOfStock(variant: VariantWithCalcPrice): boolean {
+function isUnavailableForSelection(variant: VariantWithCalcPrice): boolean {
+  // Phone-order variants remain selectable so their price can be inspected;
+  // inventory still controls purchasing on the PDP and in the backend.
+  if (variant.metadata?.contact_to_order === true) return false
   return variant.manage_inventory === true && variant.inventory_quantity === 0
 }
 
@@ -133,7 +136,7 @@ export function productToPdpVariantSelector(
 
       const unavailable =
         variantsWithValue.length > 0 &&
-        variantsWithValue.every((v) => isOutOfStock(v))
+        variantsWithValue.every((v) => isUnavailableForSelection(v))
 
       const firstMatchingVariant = variantsWithValue.length > 0
         ? bestMatchingVariant(variantsWithValue, activeVariant, dimensionTitle)

@@ -1,9 +1,8 @@
 import { ReactNode } from 'react'
 import { StarRating } from '@modules/@shared/components/star-rating'
-import { QuantityStepper } from '@modules/@shared/components/quantity-stepper'
+import { PDPBuyActions } from '@modules/product-detail/pdp-buy-actions/PDPBuyActions'
 import { PDPPriceCard } from '@modules/product-detail/pdp-price-card'
 import { PDPVariantSelector } from '@modules/product-detail/pdp-variant-selector'
-import { PDPAddToCartButton } from '@modules/product-detail/pdp-add-to-cart-button'
 import { PDPContactOrderButton } from '@modules/product-detail/pdp-contact-order'
 
 interface PDPPerk {
@@ -34,10 +33,13 @@ interface PDPSummaryProps {
   ean: string
   rating: { score: number; reviewCount: number }
   price: string
+  unitPrice?: number
+  currencyCode?: string
   was?: string
   save?: string
   priceNoTax?: string
   unitLabel?: string
+  promotionNotice?: string
   promoLabel?: string
   promoDate?: string
   variantGroups: VariantGroup[]
@@ -51,7 +53,7 @@ interface PDPSummaryProps {
   contactToOrder?: boolean
 }
 
-export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, was, save, priceNoTax, unitLabel, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, canAddToCart, perks, contactToOrder }: PDPSummaryProps) {
+export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, unitPrice, currencyCode, was, save, priceNoTax, unitLabel, promotionNotice, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, canAddToCart, perks, contactToOrder }: PDPSummaryProps) {
   return (
     <aside className="pdp-summary">
 
@@ -66,7 +68,7 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
       <StarRating score={rating.score} reviewCount={rating.reviewCount} />
 
       {/* Price card */}
-      <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} />
+      <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} promotionNotice={promotionNotice} />
 
       {/* Variants */}
       <PDPVariantSelector groups={variantGroups} />
@@ -85,10 +87,7 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
           variantLabel={variantGroups.map(g => `${g.title} ${g.selectedValue}`).join(', ')}
         />
       ) : (
-        <div className="pdp-buy">
-          <QuantityStepper />
-          <PDPAddToCartButton variantId={variantId} countryCode={countryCode} label={addToCartLabel} canAddToCart={canAddToCart} />
-        </div>
+        <PDPBuyActions key={variantId} unitPrice={unitPrice} currencyCode={currencyCode} variantId={variantId} countryCode={countryCode} label={addToCartLabel} canAddToCart={canAddToCart} />
       )}
 
       {/* Extras */}

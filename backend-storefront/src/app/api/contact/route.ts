@@ -1,4 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
+import { admitContact } from "@lib/contact/rate-limit"
+import { readContactBody, validateContact } from "@lib/contact/validation"
+
+export const runtime = "nodejs"
 import { wrapEmail, escapeHtml } from "@lib/email/layout"
 
 const SMTP2GO_API_KEY = process.env.SMTP2GO_API_KEY
@@ -7,68 +11,88 @@ const SMTP_PORT = parseInt(process.env.SMTP_PORT ?? "587")
 const SMTP_USER = process.env.SMTP_USERNAME
 const SMTP_PASS = process.env.SMTP_PASSWORD
 const FROM_CONTACT = process.env.SMTP_FROM_CONTACT || "contact@ardmag.ro"
-const FROM_NOREPLY = process.env.SMTP_FROM_NOREPLY || "no-reply@ardmag.ro"
-const REPLY_TO = process.env.SMTP_REPLY_TO || "office@ardmag.ro"
 const ADMIN_EMAIL = process.env.CONTACT_NOTIFY_EMAIL || "office@ardmag.ro"
 
 const isConfigured = !!(SMTP2GO_API_KEY || SMTP_HOST)
 
 export async function POST(req: NextRequest) {
-  if (!isConfigured) {
-    return NextResponse.json({ error: "Email not configured" }, { status: 503 })
+  const origin = req.headers.get("origin")
+  if (origin && origin !== req.nextUrl.origin) {
+    return NextResponse.json({ error: "Invalid origin" }, { status: 403 })
   }
-
-  let body: { name?: string; email?: string; phone?: string; message?: string }
+  let body: unknown
   try {
-    body = await req.json()
+    body = await readContactBody(req)
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 })
   }
-
-  const { name, email, phone, message } = body
-  if (!name || !email || !message) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+  if (body && typeof body === "object" && "website" in body && body.website) {
+    return NextResponse.json({ ok: true })
   }
+  const messageData = validateContact(body)
+  if (!messageData)
+    return NextResponse.json(
+      { error: "Date de contact invalide" },
+      { status: 400 }
+    )
+  const { name, email, phone, message } = messageData
+  try {
+    // Vercel overwrites this header; ignore client-supplied proxy headers elsewhere.
+    const ip =
+      process.env.VERCEL === "1"
+        ? req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown"
+        : "local"
+    if (!(await admitContact(ip, email))) {
+      return NextResponse.json(
+        { error: "Prea multe mesaje. Încearcă mai târziu." },
+        { status: 429, headers: { "Retry-After": "3600" } }
+      )
+    }
+  } catch {
+    return NextResponse.json(
+      { error: "Formularul este temporar indisponibil." },
+      { status: 503 }
+    )
+  }
+  if (!isConfigured)
+    return NextResponse.json({ error: "Email not configured" }, { status: 503 })
 
   const adminHtml = wrapEmail(`
     <h2 style="margin:0 0 20px;font-size:18px">Mesaj nou de pe ardmag.ro</h2>
     <table cellpadding="0" cellspacing="0" style="margin-bottom:20px">
-      <tr><td style="padding:4px 16px 4px 0;color:#64748b">Nume:</td><td><strong>${escapeHtml(name)}</strong></td></tr>
-      <tr><td style="padding:4px 16px 4px 0;color:#64748b">Email:</td><td><a href="mailto:${escapeHtml(email)}" style="color:#0f766e">${escapeHtml(email)}</a></td></tr>
-      ${phone ? `<tr><td style="padding:4px 16px 4px 0;color:#64748b">Telefon:</td><td>${escapeHtml(phone)}</td></tr>` : ""}
+      <tr><td style="padding:4px 16px 4px 0;color:#64748b">Nume:</td><td><strong>${escapeHtml(
+        name
+      )}</strong></td></tr>
+      <tr><td style="padding:4px 16px 4px 0;color:#64748b">Email:</td><td><a href="mailto:${escapeHtml(
+        email
+      )}" style="color:#0f766e">${escapeHtml(email)}</a></td></tr>
+      ${
+        phone
+          ? `<tr><td style="padding:4px 16px 4px 0;color:#64748b">Telefon:</td><td>${escapeHtml(
+              phone
+            )}</td></tr>`
+          : ""
+      }
     </table>
     <p style="color:#64748b;font-size:13px;margin:0 0 8px">Mesaj:</p>
-    <div style="background:#f8fafc;border-radius:6px;padding:16px;white-space:pre-wrap;font-size:15px">${escapeHtml(message)}</div>
+    <div style="background:#f8fafc;border-radius:6px;padding:16px;white-space:pre-wrap;font-size:15px">${escapeHtml(
+      message
+    )}</div>
   `)
 
-  const autoReplyHtml = wrapEmail(`
-    <h2 style="margin:0 0 16px;font-size:18px">Am primit mesajul tău</h2>
-    <p style="margin:0 0 16px">Bună ziua, <strong>${escapeHtml(name)}</strong>,</p>
-    <p style="margin:0 0 16px">Am înregistrat mesajul tău și îți vom răspunde în cel mai scurt timp (Luni-Vineri, 08:00-16:00).</p>
-    <p style="margin:0 0 24px">Dacă ai nevoie urgent, ne poți contacta direct la <strong>+40 722 155 441</strong>.</p>
-    <p style="margin:0;font-size:13px;color:#64748b">Echipa ardmag.ro</p>
-  `)
-
-  // Trimite email catre admin
-  await sendEmail({
-    to: ADMIN_EMAIL,
-    from: `ardmag.ro contact <${FROM_CONTACT}>`,
-    replyTo: email,
-    subject: `Mesaj de contact de la ${name}`,
-    html: adminHtml,
-  })
-
-  // Auto-reply catre vizitator (best-effort)
   try {
     await sendEmail({
-      to: email,
-      from: `ardmag.ro <${FROM_NOREPLY}>`,
-      replyTo: REPLY_TO,
-      subject: "Am primit mesajul tău — ardmag.ro",
-      html: autoReplyHtml,
+      to: ADMIN_EMAIL,
+      from: `ardmag.ro contact <${FROM_CONTACT}>`,
+      replyTo: email,
+      subject: `Mesaj de contact de la ${name}`,
+      html: adminHtml,
     })
   } catch {
-    // nu blocam daca auto-reply esueaza
+    return NextResponse.json(
+      { error: "Mesajul nu a putut fi trimis." },
+      { status: 502 }
+    )
   }
 
   return NextResponse.json({ ok: true })
@@ -107,11 +131,16 @@ async function sendEmail(mail: MailPayload): Promise<void> {
 
   const nodemailer = await import("nodemailer")
   const transporter = nodemailer.createTransport({
-    host: SMTP_HOST, port: SMTP_PORT, secure: false,
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: false,
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   })
   await transporter.sendMail({
-    from: mail.from, to: mail.to, replyTo: mail.replyTo,
-    subject: mail.subject, html: mail.html,
+    from: mail.from,
+    to: mail.to,
+    replyTo: mail.replyTo,
+    subject: mail.subject,
+    html: mail.html,
   })
 }

@@ -32,14 +32,14 @@ export async function GET() {
         thumbnail: last.thumbnail ?? null,
         quantity: last.quantity ?? 0,
         subtotal:
-          last.subtotal ?? (last.unit_price ?? 0) * (last.quantity ?? 0),
+          last.total ?? last.subtotal ?? (last.unit_price ?? 0) * (last.quantity ?? 0),
       }
     : null
 
   return NextResponse.json(
     {
       itemCount,
-      totalAmount: cart.subtotal ?? cart.total ?? 0,
+      totalAmount: cart.item_total ?? Math.max(0, (cart.total ?? 0) - (cart.shipping_total ?? 0)),
       currencyCode: cart.currency_code ?? "ron",
       lastItem,
     },
