@@ -1,16 +1,18 @@
 "use client"
-import { useState, useTransition } from "react"
+import { useRef, useState, useTransition } from "react"
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
   const [isPending, startTransition] = useTransition()
+  const requestId = useRef<string | null>(null)
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError("")
     const form = e.currentTarget
     const data = new FormData(form)
+    requestId.current ??= crypto.randomUUID()
 
     startTransition(async () => {
       try {
@@ -23,6 +25,8 @@ export function ContactForm() {
             email: data.get("email"),
             phone: data.get("phone"),
             message: data.get("message"),
+            consent: data.get("consent") === "on",
+            request_id: requestId.current,
           }),
         })
         if (res.ok) {
@@ -124,6 +128,30 @@ export function ContactForm() {
           rows={5}
           style={{ ...inputStyle, resize: "vertical" }}
         />
+        <label
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 9,
+            fontSize: 13,
+            lineHeight: 1.5,
+          }}
+        >
+          <input
+            name="consent"
+            type="checkbox"
+            required
+            style={{ marginTop: 3, accentColor: "var(--brand-600)" }}
+          />
+          <span>
+            Sunt de acord ca datele trimise să fie folosite pentru a răspunde
+            solicitării mele. Am citit{" "}
+            <a href="/confidentialitate" style={{ color: "var(--brand-600)" }}>
+              Politica de confidențialitate
+            </a>
+            .
+          </span>
+        </label>
         {error && (
           <p style={{ color: "var(--error)", fontSize: 13, margin: 0 }}>
             {error}

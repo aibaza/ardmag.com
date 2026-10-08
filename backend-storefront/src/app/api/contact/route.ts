@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { createHmac } from "node:crypto"
 import { admitContact } from "@lib/contact/rate-limit"
 import { readContactBody, validateContact } from "@lib/contact/validation"
 
@@ -36,6 +37,19 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     )
   const { name, email, phone, message } = messageData
+  const workerEnabled = process.env.CONTACT_WORKER_ENABLED === "1"
+  const sourceClientIp =
+    workerEnabled && process.env.VERCEL === "1"
+      ? req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || undefined
+      : undefined
+  const requestBody = body as Record<string, unknown>
+  const requestId = requestBody.request_id
+  if (workerEnabled && (requestBody.consent !== true || !isUuidV4(requestId))) {
+    return NextResponse.json(
+      { error: "Este necesar acordul și o identificare validă a cererii." },
+      { status: 400 }
+    )
+  }
   try {
     // Vercel overwrites this header; ignore client-supplied proxy headers elsewhere.
     const ip =
@@ -54,6 +68,17 @@ export async function POST(req: NextRequest) {
       { status: 503 }
     )
   }
+  if (workerEnabled) {
+    return submitToLeadsWorker({
+      name,
+      email,
+      phone,
+      message,
+      requestId: requestId as string,
+      sourceClientIp,
+    })
+  }
+
   if (!isConfigured)
     return NextResponse.json({ error: "Email not configured" }, { status: 503 })
 
@@ -96,6 +121,96 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ ok: true })
+}
+
+function isUuidV4(value: unknown): value is string {
+  return (
+    typeof value === "string" &&
+    /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+      value
+    )
+  )
+}
+
+async function submitToLeadsWorker(input: {
+  name: string
+  email: string
+  phone: string
+  message: string
+  requestId: string
+  sourceClientIp?: string
+}) {
+  const workerUrl = process.env.LEADS_WORKER_URL
+  const siteKey = process.env.SITE_KEY_ARDMAG
+  if (!workerUrl || !siteKey) {
+    return NextResponse.json(
+      { error: "Formularul este temporar indisponibil." },
+      { status: 503 }
+    )
+  }
+
+  let endpoint: URL
+  try {
+    endpoint = new URL(workerUrl)
+    if (endpoint.protocol !== "https:") throw new Error("HTTPS required")
+    endpoint.pathname = `${endpoint.pathname
+      .replace(/\/$/, "")
+      .replace(/\/submit$/i, "")}/submit`
+    endpoint.search = ""
+    endpoint.hash = ""
+  } catch {
+    return NextResponse.json(
+      { error: "Formularul este temporar indisponibil." },
+      { status: 503 }
+    )
+  }
+
+  const payload = {
+    submission_id: `ardmag-contact-${input.requestId.toLowerCase()}`,
+    client_code: "ardmag",
+    form_type: "contact",
+    gdpr: true,
+    ...(input.sourceClientIp ? { source_client_ip: input.sourceClientIp } : {}),
+    name: input.name,
+    email: input.email,
+    phone: input.phone,
+    message: input.message,
+  }
+  const bodyText = JSON.stringify(payload)
+  const signature = createHmac("sha256", siteKey)
+    .update(bodyText, "utf8")
+    .digest("hex")
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      redirect: "error",
+      signal: AbortSignal.timeout(8000),
+      headers: {
+        "Content-Type": "application/json",
+        "X-Site-Sig": signature,
+      },
+      body: bodyText,
+    })
+    if (!response.ok) throw new Error("Worker rejected submission")
+    const result = (await response.json()) as {
+      ok?: unknown
+      submission_id?: unknown
+    }
+    if (result.ok !== true || result.submission_id !== payload.submission_id) {
+      throw new Error("Worker response did not confirm submission")
+    }
+    return NextResponse.json({ ok: true })
+  } catch {
+    // The Worker may have accepted the request before a timeout or lost response.
+    // Never send the same contact through SMTP after that ambiguous outcome.
+    return NextResponse.json(
+      {
+        error: "Mesajul nu a putut fi confirmat. Încearcă din nou mai târziu.",
+      },
+      { status: 502 }
+    )
+  }
 }
 
 interface MailPayload {
