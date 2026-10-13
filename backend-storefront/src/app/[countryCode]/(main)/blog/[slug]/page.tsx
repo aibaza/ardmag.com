@@ -1,5 +1,6 @@
 // DESIGN PENDING: cover image reala (21:9) per articol — R2 upload pattern
 import type { Metadata } from "next"
+import type { CSSProperties } from "react"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { SiteHeaderShell } from "@modules/layout/site-header"
@@ -118,7 +119,11 @@ export default async function BlogArticlePage({ params }: Props) {
             <img
               className="hero-bg"
               src={article.heroImage}
-              style={{ objectPosition: article.heroImagePosition ?? "center" }}
+              style={
+                article.heroImagePosition
+                  ? ({ "--article-hero-position": article.heroImagePosition } as CSSProperties)
+                  : undefined
+              }
               alt=""
               aria-hidden="true"
             />
