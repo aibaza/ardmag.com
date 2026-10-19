@@ -4,6 +4,7 @@ import matter from "gray-matter"
 import { remark } from "remark"
 import remarkGfm from "remark-gfm"
 import remarkHtml from "remark-html"
+import { defaultSchema } from "hast-util-sanitize"
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog")
 
@@ -103,6 +104,23 @@ export async function listArticles(): Promise<BlogListItem[]> {
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
 }
 
+// Extend only link protocols; preserve the sanitizer's remaining defaults.
+export async function renderArticleMarkdown(content: string): Promise<string> {
+  const processed = await remark()
+    .use(remarkGfm)
+    .use(remarkHtml, {
+      sanitize: {
+        ...defaultSchema,
+        protocols: {
+          ...defaultSchema.protocols,
+          href: [...(defaultSchema.protocols?.href ?? []), "tel"],
+        },
+      },
+    })
+    .process(content)
+  return addHeadingIds(processed.toString())
+}
+
 export async function getArticle(slug: string): Promise<BlogArticle | null> {
   const filePath = path.join(BLOG_DIR, `${slug}.md`)
   let raw: string
@@ -113,8 +131,7 @@ export async function getArticle(slug: string): Promise<BlogArticle | null> {
   }
   const { data, content } = matter(raw)
   if (!isPublishableArticle(data)) return null
-  const processed = await remark().use(remarkGfm).use(remarkHtml).process(content)
-  const html = addHeadingIds(processed.toString())
+  const html = await renderArticleMarkdown(content)
   return {
     slug,
     ...(data as BlogFrontmatter),

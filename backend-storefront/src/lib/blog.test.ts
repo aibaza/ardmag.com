@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import matter from "gray-matter"
 import { describe, expect, it } from "vitest"
-import { isPublishableArticle } from "./blog"
+import { isPublishableArticle, renderArticleMarkdown } from "./blog"
 
 const now = new Date("2026-07-24T12:00:00Z")
 const published = {
@@ -40,5 +40,34 @@ describe("isPublishableArticle", () => {
     expect(
       isPublishableArticle(data, new Date("2026-07-30T00:00:00.000Z"))
     ).toBe(true)
+  })
+})
+
+
+describe("article contact links", () => {
+  it("keeps telephone and email links actionable", async () => {
+    const html = await renderArticleMarkdown(
+      "[+40 722 155 441](tel:+40722155441) [Email](mailto:office@example.com)"
+    )
+    expect(html).toContain('href="tel:+40722155441"')
+    expect(html).toContain('href="mailto:office@example.com"')
+  })
+
+  it.each(["javascript:alert(1)", "data:text/html,test", "vbscript:test"])(
+    "still removes an unsafe link: %s",
+    async (url) => {
+      const html = await renderArticleMarkdown(`[unsafe](${url})`)
+      expect(html).not.toContain("href=")
+    }
+  )
+
+  it("still removes raw HTML and preserves normal links and headings", async () => {
+    const html = await renderArticleMarkdown(
+      '<script>alert(1)</script>\n\n## Contact\n\n[Web](https://example.com) [Local](/contact)'
+    )
+    expect(html).not.toContain("<script")
+    expect(html).toContain('href="https://example.com"')
+    expect(html).toContain('href="/contact"')
+    expect(html).toContain('<h2 id="contact">Contact</h2>')
   })
 })
