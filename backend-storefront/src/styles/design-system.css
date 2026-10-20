@@ -1433,12 +1433,15 @@ a.badge:hover{transform:translateY(-1px)}
 .article-head.article-head--hero .inner{max-width:600px}
 .article-head--hero[data-article-slug="lipirea-la-45-eviti-fisurarea-muchiei"]{background:#c9c3bb}
 .article-head--hero[data-article-slug="lipirea-la-45-eviti-fisurarea-muchiei"] .hero-bg{object-fit:contain;object-position:right center}
-/* Desktop: înălțime după conținut, fotografie întreagă în dreapta. */
+/* Desktop: înălțimea după conținut. Fotografia întreagă stă în dreapta, cu marginea stângă topită
+   într-un fundal făcut din aceeași fotografie, estompată, pe toată lățimea: fără margini și fără tăieturi. */
+.article-head--hero .hero-blur{display:none}
 @media (width > 720px){
-  .article-head--hero{background:#c9c3bb}
+  .article-head--hero .hero-blur{display:block;position:absolute;inset:-80px;width:calc(100% + 160px);height:calc(100% + 160px);object-fit:cover;filter:blur(64px) saturate(.55) brightness(.92);z-index:0}
   .article-head--hero .hero-bg,
   .article-head--hero[data-article-slug="lipirea-la-45-eviti-fisurarea-muchiei"] .hero-bg{
-    position:absolute;inset:0;height:100%;object-fit:contain;object-position:right center!important;
+    position:absolute;inset:auto 0 0 auto;top:0;right:0;height:100%;width:auto;max-width:72%;object-fit:contain;object-position:right center!important;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 45%);mask-image:linear-gradient(to right,transparent 0,#000 45%);z-index:0
   }
 }
 /* Pe telefon: imaginea ocupă partea de sus, cu breadcrumb-ul, eticheta și H1 peste ea (stânga sus);

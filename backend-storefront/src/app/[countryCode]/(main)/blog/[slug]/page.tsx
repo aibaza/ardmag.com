@@ -116,6 +116,12 @@ export default async function BlogArticlePage({ params }: Props) {
         {article.heroImage && (
           <>
             <img
+              className="hero-blur"
+              src={article.heroImage}
+              alt=""
+              aria-hidden="true"
+            />
+            <img
               className="hero-bg"
               src={article.heroImage}
               style={{ objectPosition: article.heroImagePosition ?? "center" }}
