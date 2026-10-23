@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-23 - Promotia Tenax -20% extinsa la Aplicator Fast Glaxs si Set pigmenti
+
+- La cererea lui Andrei (23.10), Aplicator Fast Glaxs (357 -> 285,60 lei) si Set pigmenti (296 -> 236,80 lei) au intrat in lista de preturi existenta „TENAX mastici -20% 2026Q4”, cu aceeasi inchidere la 31.12.2026 (01.01.2027 00:00, ora Romaniei). Lista are acum 29 de variante.
+- Backup complet al productiei inainte de schimbare: `/srv/paperclip/backup/ardmag-tenax-extindere-20261023/production-before.dump` (vm-aibaza). Preturile de baza si intaritorii raman neschimbati; paginile live verificate.
+
 ## 2026-10-02 - Catalog si fluxuri validate, publicate in productie
 
 - Catalog: 97 preturi RON corectate din 354 variante verificate; TOTAL WET 1 L/5 L publicat cu imaginea si stocurile confirmate.
