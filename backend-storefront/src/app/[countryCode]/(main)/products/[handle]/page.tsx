@@ -29,7 +29,10 @@ type Props = {
 export async function generateStaticParams() {
   try {
     const regions = await listRegions().catch(() => [] as HttpTypes.StoreRegion[])
-    const countryCodes = regions.flatMap((r) => (r.countries ?? []).map((c) => c.iso_2).filter(Boolean))
+    const toateTarile = regions.flatMap((r) => (r.countries ?? []).map((c) => c.iso_2).filter(Boolean))
+    // Previzualizările Vercel (VERCEL_ENV=preview, ex. articolele pregătite de aiBaza) pregenerează numai România:
+    // build-ul scade de la ~11 min la câteva minute, iar paginile rămân complete pe /ro. Producția rămâne la fel.
+    const countryCodes = process.env.VERCEL_ENV === "preview" && toateTarile.includes("ro") ? ["ro"] : toateTarile
 
     const { response } = await listProducts({
       countryCode: countryCodes[0] ?? "ro",
