@@ -13,8 +13,6 @@ ogImage: "/assets/articles/clean-stone-dilutie-curatare-rutina/og.webp"
 
 Pentru curățarea de rutină cu **Clean Stone**, detergentul nostru concentrat din gama proprie Delta Research, folosești **o parte de Clean Stone la 30 de părți de apă**, conform fișei produsului. [Diluția Clean Stone pentru rutină][ref:1]
 
-Această proporție contează și la comandă: litrii din bidon sunt concentrat, iar soluția pregătită de echipă include și apa. Ține cont de această diferență înainte să alegi ambalajul.
-
 ## Ce înseamnă o parte la 30 de părți de apă
 
 Proporția leagă **produsul de apa adăugată**: la fiecare parte de Clean Stone pui 30 de părți de apă. Fișa produsului, în engleză și în italiană, dă aceeași proporție pentru rutină. [Fișa Clean Stone, versiunea italiană][ref:2]
@@ -23,13 +21,11 @@ Măsoară produsul și apa în aceeași unitate, cu același tip de recipient gr
 
 ## Cum treci de la folosire la comandă
 
-Începe cu ce folosește efectiv echipa pentru rutină, nu cu suprafața clădirii. În pașii de mai jos intră numai Clean Stone preparat cu o parte de produs la 30 de părți de apă.
+Începe cu ce folosește efectiv echipa de curățenie pentru rutină, nu cu suprafața clădirii. În pașii de mai jos intră numai Clean Stone preparat cu o parte de produs la 30 de părți de apă.
 
 1. **Alege intervalul de aprovizionare.** Notează în jurnal cât Clean Stone concentrat a folosit echipa în acel interval la prepararea soluției de rutină, ca următoarea comandă să pornească de la aceeași evidență.
 2. **Verifică ce concentrat utilizabil ai deja.** Comanda acoperă ce lipsește pentru intervalul următor.
 3. **Alege ambalajele.** Pe [pagina noastră de detergenți][ref:3], selectează denumirea **CLEAN STONE**, apoi cantitatea de **1 sau 5 litri**. Alege suficiente ambalaje pentru necesarul echipei; proporția din fiecare preparare rămâne aceeași.
-
-Ține separat loturile preparate la altă diluție, ca evidența soluției de rutină să rămână clară.
 
 ## Păstrează aceeași doză la fiecare preparare
 
