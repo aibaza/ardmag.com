@@ -1,5 +1,7 @@
 import { colors, font, formatPrice } from "./tokens"
 import { wrapEmail } from "./layout"
+import { getOrderShippingSummary } from "./shipping-summary"
+import { getCanonicalOrderTotal } from "../../../lib/order-total"
 
 function renderItemCell(item: Record<string, unknown>): string {
   const title = item.product_title ?? item.title ?? ""
@@ -11,18 +13,20 @@ function renderItemCell(item: Record<string, unknown>): string {
   `
 }
 
-function getPaymentLabel(order: Record<string, unknown>): { label: string; instructions: string } {
+function getPaymentLabel(order: Record<string, unknown>, isPickup = false): { label: string; instructions: string } {
   // Citim provider-ul din pc.payments (snapshot-at pe order), NU din pc.payment_sessions
   // (ephemeral checkout state, nu este in query).
   const providers = (order?.payment_collections as Array<Record<string, unknown>>)
     ?.flatMap((pc) => (pc.payments as Array<Record<string, unknown>>)?.map((p) => p.provider_id) ?? []) ?? []
   const providerId = (providers[0] ?? "").toString().toLowerCase()
   if (providerId.includes("pp_system_default") || providerId.includes("manual")) {
-    const total = Number(order?.total ?? 0)
+    const total = getCanonicalOrderTotal(order)
     const freeShipping = total >= 500
     return {
       label: "Ramburs",
-      instructions: `Pregătiți suma de <strong>${total.toFixed(2)} RON</strong> la primirea coletului.${freeShipping ? " Livrare gratuită (comandă peste 500 RON)." : ""}`,
+      instructions: isPickup
+        ? `Pregătiți suma de <strong>${total.toFixed(2)} RON</strong> la ridicarea comenzii.`
+        : `Pregătiți suma de <strong>${total.toFixed(2)} RON</strong> la primirea coletului.${freeShipping ? " Livrare gratuită (comandă peste 500 RON)." : ""}`,
     }
   }
   if (providerId.includes("stripe")) {
@@ -41,9 +45,24 @@ export function renderOrderCustomer(order: Record<string, unknown> | undefined, 
   if (!order) return "<p>Detalii comandă indisponibile.</p>"
 
   const displayId = order.display_id ?? ""
-  const total = formatPrice(order.total)
+  const total = formatPrice(getCanonicalOrderTotal(order))
   const items = (order.items as Array<Record<string, unknown>>) ?? []
-  const payment = getPaymentLabel(order)
+  const shipping = getOrderShippingSummary(order)
+  const payment = getPaymentLabel(order, shipping?.isPickup === true)
+  const breakdownHtml = shipping && shipping.itemsTotal !== null && shipping.amount !== null && shipping.amount > 0
+    ? `<p style="text-align:right;margin:0 0 4px;color:${colors.mutedText}">Produse: ${formatPrice(shipping.itemsTotal)} RON</p>
+    <p style="text-align:right;margin:0 0 8px;color:${colors.mutedText}">Transport: ${formatPrice(shipping.amount)} RON</p>`
+    : ""
+  const shippingHtml = shipping
+    ? `<table width="100%" cellpadding="0" cellspacing="0" style="background:${colors.surface};border-radius:6px;margin-bottom:16px">
+      <tr>
+        <td style="padding:16px">
+          <p style="margin:0 0 6px;font-size:${font.sizeSmall};color:${colors.mutedText}">METODĂ DE LIVRARE</p>
+          <p style="margin:0;font-weight:600">${shipping.name} - ${shipping.costLabel}</p>
+        </td>
+      </tr>
+    </table>`
+    : ""
 
   const itemsHtml = items.map((item) => `
     <tr>
@@ -67,9 +86,12 @@ export function renderOrderCustomer(order: Record<string, unknown> | undefined, 
       <tbody>${itemsHtml}</tbody>
     </table>
 
+    ${breakdownHtml}
     <p style="text-align:right;font-size:18px;font-weight:700;margin:0 0 24px">
       Total: <span style="color:${colors.brand}">${total} RON</span>
     </p>
+
+    ${shippingHtml}
 
     <table width="100%" cellpadding="0" cellspacing="0" style="background:${colors.surface};border-radius:6px;margin-bottom:24px">
       <tr>

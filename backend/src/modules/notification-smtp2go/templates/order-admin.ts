@@ -1,4 +1,6 @@
 import { colors, font, formatPrice } from "./tokens"
+import { getOrderShippingSummary } from "./shipping-summary"
+import { getCanonicalOrderTotal } from "../../../lib/order-total"
 
 function renderItemCell(item: Record<string, unknown>): string {
   const title = item.product_title ?? item.title ?? ""
@@ -17,7 +19,7 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
   if (!order) return "<p>Detalii comandă indisponibile.</p>"
 
   const displayId = order.display_id ?? ""
-  const total = formatPrice(order.total)
+  const total = formatPrice(getCanonicalOrderTotal(order))
   const email = order.email ?? ""
   const items = (order.items as Array<Record<string, unknown>>) ?? []
   const addr = order.shipping_address as Record<string, unknown> | undefined
@@ -31,11 +33,18 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
   const providers = (order?.payment_collections as Array<Record<string, unknown>>)
     ?.flatMap((pc) => (pc.payments as Array<Record<string, unknown>>)?.map((p) => p.provider_id) ?? []) ?? []
   const providerId = (providers[0] ?? "").toString().toLowerCase()
+  const shipping = getOrderShippingSummary(order)
   const paymentMethod = providerId.includes("pp_system_default") || providerId.includes("manual")
-    ? "Ramburs (la curier)"
+    ? shipping?.isPickup ? "Ramburs (la ridicare)" : "Ramburs (la curier)"
     : providerId.includes("stripe")
       ? "Card (Stripe)"
       : providerId || "Necunoscut"
+
+  const shippingRow = `<tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Livrare:</td><td><strong>${shipping ? `${shipping.name} - ${shipping.costLabel}` : "Nespecificată"}</strong></td></tr>`
+  const breakdownHtml = shipping && shipping.itemsTotal !== null && shipping.amount !== null && shipping.amount > 0
+    ? `<p style="margin:0 0 4px">Produse: ${formatPrice(shipping.itemsTotal)} RON</p>
+  <p style="margin:0 0 8px">Transport: ${formatPrice(shipping.amount)} RON</p>`
+    : ""
 
   const itemsHtml = items.map((item) => `
     <tr>
@@ -54,6 +63,7 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
     <tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Adresă:</td><td>${address}</td></tr>
     <tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Telefon livrare:</td><td><strong>${shippingPhone || "N/A"}</strong></td></tr>
     <tr><td style="padding:3px 8px 3px 0;color:${colors.mutedText}">Plată:</td><td><strong>${paymentMethod}</strong></td></tr>
+    ${shippingRow}
   </table>
 
   <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-bottom:16px">
@@ -66,6 +76,7 @@ export function renderOrderAdmin(order: Record<string, unknown> | undefined): st
     </thead>
     <tbody>${itemsHtml}</tbody>
   </table>
+  ${breakdownHtml}
   <p style="font-size:18px;font-weight:700">Total: ${total} RON</p>
 </body>
 </html>`

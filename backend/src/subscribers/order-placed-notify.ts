@@ -38,6 +38,7 @@ export default async function orderPlacedNotify({
         "tax_total",
         "shipping_total",
         "discount_total",
+        "summary.*",
         "currency_code",
         "created_at",
         "items.*",
