@@ -208,6 +208,27 @@ describe("productToPdpVariantSelector", () => {
     expect(bejOpt?.unavailable).toBeUndefined()
   })
 
+  it("keeps backorder variants selectable even with zero tracked stock", () => {
+    const product = makeProduct({
+      variants: [
+        {
+          id: "v1",
+          options: [makeOpt("BEJ", "CULOARE", "o1")],
+          manage_inventory: true,
+          allow_backorder: true,
+          inventory_quantity: 0,
+        },
+        {
+          id: "v2",
+          options: [makeOpt("TRANSPARENT", "CULOARE", "o1")],
+          manage_inventory: false,
+        },
+      ],
+    })
+    const groups = productToPdpVariantSelector(product)
+    expect(groups[0].options.every((o) => o.unavailable === undefined)).toBe(true)
+  })
+
   it("shows discount on options when variant has real Price List discount", () => {
     const product = makeProduct({
       variants: [
