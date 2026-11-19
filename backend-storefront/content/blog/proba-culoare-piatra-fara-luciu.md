@@ -1,6 +1,6 @@
 ---
-title: "Culoare mai vie, fără luciu: ce arăți beneficiarului înainte să tratezi piatra"
-description: "Culoarea, luciul și protecția sunt trei cereri diferite. Cum le separi, ce tratament Delta Research alegi și pe ce cere beneficiarul acordul."
+title: "Culoare mai vie, fără luciu: ce arăți clientului înainte să tratezi piatra"
+description: "Culoarea, luciul și protecția sunt trei cereri diferite. Cum le separi, ce tratament Delta Research alegi și care este cerința clientului."
 publishedAt: "2026-11-19"
 status: "published"
 review: "PASS"
@@ -25,7 +25,7 @@ Aceeași cerere ajunge și la montator. Dacă o tratezi ca pe o singură dorinț
 
 1. **Culoarea.** Delta Research separă efectul natural, fără schimbare de ton, de efectul intensificat al culorii, numit „umed”. „Umed” descrie culoarea, nu luciul.
 2. **Luciul.** Spune-l în cuvinte: mat, ca acum, sau mai lucios. [Nano Wet][ref:2], intensificatorul nostru de culoare, dă un aspect mat sau lucios în funcție de gradul de aplicare. Aspectul acceptat ține deci și de cât aplici.
-3. **Protecția.** Ce trebuie să suporte piatra: apă, pete, ulei. Tratamentele noastre cu efect umed pentru pardoseli protejează la apă și pete, dar niciunul nu protejează împotriva acizilor. După tratare, întreține piatra cu un detergent neutru, ca [Clean Stone][ref:5]; detergenții acizi sau alcalini pot reduce în timp eficiența tratamentului.
+3. **Protecția.** Ce trebuie să suporte piatra: apă, pete, ulei. Tratamentele noastre cu efect umed pentru pardoseli protejează la apă și pete, dar niciunul nu protejează împotriva acizilor. După tratare, întreține piatra cu un detergent neutru, ca și [Clean Stone][ref:5]; detergenții acizi sau alcalini pot reduce în timp eficiența tratamentului.
 
 ## Ce alegi pentru o pardoseală cu efect umed
 
@@ -37,9 +37,9 @@ Pe suprafețele orizontale recomandăm tratamente cu protecție împotriva apei 
 
 Produsele pe bază de apă le recomandăm în spațiile slab ventilate. În majoritatea situațiilor, cele pe bază de solvent pătrund mai adânc și protejează mai eficient.
 
-## Acordul se dă pe placa tratată
+## Confirmarea se dă pe placa tratată
 
-Apa îi arată beneficiarului direcția, nu rezultatul: apa se usucă, tratamentul rămâne. [Testul dinaintea aplicării](/blog/aplicare-tratamente-piatra-naturala) îl faci oricum, ca să știi dacă pui unul sau două straturi. Folosește-l și pentru acord:
+Apa îi arată beneficiarului direcția, nu rezultatul: apa se usucă, tratamentul rămâne. [Testul dinaintea aplicării](/blog/aplicare-tratamente-piatra-naturala) îl faci oricum, ca să știi dacă pui un strat sau două. Folosește-l și pentru confirmare:
 
 - tratează o placă rămasă de la montaj, cum vei lucra pe pardoseală;
 - las-o să se usuce complet;
