@@ -1,6 +1,6 @@
 import { colors, font, formatPrice } from "./tokens"
 import { wrapEmail } from "./layout"
-import { getOrderShippingSummary } from "./shipping-summary"
+import { getOrderShippingSummary, type OrderShippingSummary } from "./shipping-summary"
 import { getCanonicalOrderTotal } from "../../../lib/order-total"
 
 function renderItemCell(item: Record<string, unknown>): string {
@@ -13,7 +13,11 @@ function renderItemCell(item: Record<string, unknown>): string {
   `
 }
 
-function getPaymentLabel(order: Record<string, unknown>, isPickup = false): { label: string; instructions: string } {
+function getPaymentLabel(
+  order: Record<string, unknown>,
+  shipping: OrderShippingSummary | null
+): { label: string; instructions: string } {
+  const isPickup = shipping?.isPickup === true
   // Citim provider-ul din pc.payments (snapshot-at pe order), NU din pc.payment_sessions
   // (ephemeral checkout state, nu este in query).
   const providers = (order?.payment_collections as Array<Record<string, unknown>>)
@@ -21,7 +25,8 @@ function getPaymentLabel(order: Record<string, unknown>, isPickup = false): { la
   const providerId = (providers[0] ?? "").toString().toLowerCase()
   if (providerId.includes("pp_system_default") || providerId.includes("manual")) {
     const total = getCanonicalOrderTotal(order)
-    const freeShipping = total >= 500
+    // Pragul de 500 RON e pe valoarea produselor; cand stim livrarea, ne luam dupa costul ei real.
+    const freeShipping = shipping ? shipping.amount === 0 : total >= 500
     return {
       label: "Ramburs",
       instructions: isPickup
@@ -48,7 +53,7 @@ export function renderOrderCustomer(order: Record<string, unknown> | undefined, 
   const total = formatPrice(getCanonicalOrderTotal(order))
   const items = (order.items as Array<Record<string, unknown>>) ?? []
   const shipping = getOrderShippingSummary(order)
-  const payment = getPaymentLabel(order, shipping?.isPickup === true)
+  const payment = getPaymentLabel(order, shipping)
   const breakdownHtml = shipping && shipping.itemsTotal !== null && shipping.amount !== null && shipping.amount > 0
     ? `<p style="text-align:right;margin:0 0 4px;color:${colors.mutedText}">Produse: ${formatPrice(shipping.itemsTotal)} RON</p>
     <p style="text-align:right;margin:0 0 8px;color:${colors.mutedText}">Transport: ${formatPrice(shipping.amount)} RON</p>`

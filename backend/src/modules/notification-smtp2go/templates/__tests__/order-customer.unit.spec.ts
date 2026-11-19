@@ -30,4 +30,22 @@ describe("renderOrderCustomer - metoda de livrare", () => {
     expect(html).not.toContain("la primirea coletului")
     expect(html).not.toContain("Transport:")
   })
+
+  it("nu promite livrare gratuita cand transportul s-a platit, chiar daca totalul trece de 500", () => {
+    const html = renderOrderCustomer(
+      { ...baseOrder, total: 512, shipping_methods: [{ name: "Fan Courier", amount: 22 }] } as any,
+      "https://ardmag.ro"
+    )
+    expect(html).toContain("Fan Courier - 22.00 RON")
+    expect(html).not.toContain("Livrare gratuită")
+  })
+
+  it("livrare Fan Courier gratuita peste prag -> mentiunea de livrare gratuita", () => {
+    const html = renderOrderCustomer(
+      { ...baseOrder, total: 620, shipping_methods: [{ name: "Fan Courier", amount: 0 }] } as any,
+      "https://ardmag.ro"
+    )
+    expect(html).toContain("Fan Courier - Gratuit")
+    expect(html).toContain("Livrare gratuită")
+  })
 })
