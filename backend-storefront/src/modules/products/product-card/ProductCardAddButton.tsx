@@ -10,6 +10,7 @@ interface Props {
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
   countryCode: string
+  soldOut?: boolean
 }
 
 export function ProductCardAddButton({
@@ -17,6 +18,7 @@ export function ProductCardAddButton({
   defaultVariantId,
   hasMultipleRealVariants,
   countryCode,
+  soldOut = false,
 }: Props) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
@@ -44,6 +46,19 @@ export function ProductCardAddButton({
         style={{ opacity: 0.6, cursor: "not-allowed" }}
       >
         Indisponibil
+      </button>
+    )
+  }
+
+  if (soldOut) {
+    return (
+      <button
+        type="button"
+        className="btn primary sm"
+        disabled
+        style={{ opacity: 0.6, cursor: "not-allowed" }}
+      >
+        Stoc epuizat
       </button>
     )
   }

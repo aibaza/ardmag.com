@@ -74,3 +74,52 @@ describe("renderOrderAdmin - metoda de plata", () => {
     expect(html).toContain("0722155441")
   })
 })
+
+describe("renderOrderAdmin - metoda de livrare", () => {
+  const cod = { payment_collections: [{ payments: [{ provider_id: "pp_system_default" }] }] }
+
+  it("afiseaza curierul si costul, cu produse/transport separat", () => {
+    const html = renderOrderAdmin({
+      ...mockBaseOrder,
+      ...cod,
+      total: 102,
+      summary: { current_order_total: 102 },
+      shipping_methods: [{ name: "Fan Courier", amount: 22 }],
+    } as any)
+    expect(html).toContain("Livrare:")
+    expect(html).toContain("Fan Courier - 22.00 RON")
+    expect(html).toContain("Produse: 80.00 RON")
+    expect(html).toContain("Transport: 22.00 RON")
+    expect(html).toContain("Total: 102.00 RON")
+    expect(html).toContain("Ramburs (la curier)")
+  })
+
+  it("ridicarea personala e vizibila si gratuita, fara rand de transport", () => {
+    const html = renderOrderAdmin({
+      ...mockBaseOrder,
+      ...cod,
+      total: 80,
+      shipping_methods: [{ name: "Ridicare personală de la sediul ARDmag", amount: 0 }],
+    } as any)
+    expect(html).toContain("Ridicare personală de la sediul ARDmag - Gratuit")
+    expect(html).toContain("Ramburs (la ridicare)")
+    expect(html).not.toContain("Transport:")
+  })
+
+  it("foloseste totalul canonic cand proiectia intoarce total = transport (cazul #14)", () => {
+    const html = renderOrderAdmin({
+      ...mockBaseOrder,
+      ...cod,
+      total: 22,
+      summary: { current_order_total: 102 },
+      shipping_methods: [{ name: "Fan Courier", amount: 22 }],
+    } as any)
+    expect(html).toContain("Total: 102.00 RON")
+    expect(html).toContain("Produse: 80.00 RON")
+  })
+
+  it("fara metoda de livrare pe comanda afiseaza Nespecificata", () => {
+    const html = renderOrderAdmin(mockBaseOrder as any)
+    expect(html).toContain("Nespecificată")
+  })
+})

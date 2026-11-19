@@ -23,6 +23,7 @@ interface ProductCardProps {
     specs?: string[]
     defaultVariantId: string | null
     hasMultipleRealVariants: boolean
+    defaultVariantSoldOut?: boolean
   }
   countryCode: string
   // true pentru cardurile above-the-fold (primul rand din grila): imaginea devine
@@ -48,6 +49,7 @@ export function ProductCard({ product, countryCode, imagePriority = false }: Pro
           href={product.href}
           defaultVariantId={product.defaultVariantId}
           hasMultipleRealVariants={product.hasMultipleRealVariants}
+          soldOut={product.defaultVariantSoldOut === true}
           countryCode={countryCode}
         />
       </div>

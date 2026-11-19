@@ -1,4 +1,5 @@
 import type { HttpTypes } from "@medusajs/types"
+import { isVariantInStock } from "@lib/util/product"
 
 interface VariantOption {
   label: string
@@ -51,7 +52,7 @@ function isUnavailableForSelection(variant: VariantWithCalcPrice): boolean {
   // Phone-order variants remain selectable so their price can be inspected;
   // inventory still controls purchasing on the PDP and in the backend.
   if (variant.metadata?.contact_to_order === true) return false
-  return variant.manage_inventory === true && variant.inventory_quantity === 0
+  return !isVariantInStock(variant)
 }
 
 function variantDiscountLabel(variant: VariantWithCalcPrice): string | undefined {

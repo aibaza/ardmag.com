@@ -18,6 +18,7 @@ import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
 import { ProductJsonLd } from "@lib/util/json-ld"
 import { ViewContentTracker } from "@modules/analytics/ViewContentTracker"
+import { getPdpStockLabel, isProductOutOfStock, isVariantInStock, pickPdpVariant } from "@lib/util/product"
 
 export const revalidate = 300
 
@@ -94,16 +95,6 @@ const PDP_PERKS = [
   { icon: <SecureIcon fill="none" strokeLinecap="round" style={{width:16,height:16}} />, label: "Distribuitor autorizat", sub: "Tenax · Sait · Delta" },
 ]
 
-function getStockLabel(product: HttpTypes.StoreProduct): { label: string; location: string } {
-  const variants = product.variants ?? []
-  const hasTracked = variants.some((v) => v.manage_inventory === true)
-  if (!hasTracked) return { label: "Disponibil", location: "Cluj-Napoca" }
-
-  const inStock = variants.some((v) => (v.inventory_quantity ?? 0) > 0)
-  if (inStock) return { label: "In stoc", location: "Cluj-Napoca" }
-  return { label: "Stoc epuizat", location: "" }
-}
-
 function extractBrand(product: HttpTypes.StoreProduct): { brand: string; brandHref: string } {
   const brandTag = (product.tags ?? []).find((t) => t.value?.startsWith("brand:"))
   if (!brandTag) return { brand: "", brandHref: "#" }
@@ -131,9 +122,7 @@ export default async function ProductPage(props: Props) {
 
   // Pick selected variant or first variant
   const variants = product.variants ?? []
-  const selectedVariant = selectedVariantId
-    ? variants.find((v) => v.id === selectedVariantId) ?? variants[0]
-    : variants[0]
+  const selectedVariant = pickPdpVariant(variants, selectedVariantId)
 
   const galleryProps = productToPdpGallery(product)
   const variantGroups = productToPdpVariantSelector(product, selectedVariant?.id)
@@ -142,7 +131,7 @@ export default async function ProductPage(props: Props) {
     : { price: "Pret la cerere" }
 
   const { brand, brandHref } = extractBrand(product)
-  const { label: stockLabel, location: stockLocation } = getStockLabel(product)
+  const { label: stockLabel, location: stockLocation } = getPdpStockLabel(variants, selectedVariant)
 
   const firstCategory = (product.categories ?? [])[0]
   const categoryName = firstCategory?.name ?? "Toate produsele"
@@ -158,11 +147,7 @@ export default async function ProductPage(props: Props) {
 
   const rawPrice = (selectedVariant as any)?.calculated_price?.calculated_amount ?? undefined
   const contactToOrder = (selectedVariant?.metadata as any)?.contact_to_order === true
-  const canAddToCart = selectedVariant
-    ? selectedVariant.manage_inventory !== true ||
-      selectedVariant.allow_backorder === true ||
-      (selectedVariant.inventory_quantity ?? 0) > 0
-    : false
+  const canAddToCart = isVariantInStock(selectedVariant)
 
   const viewCurrency = ((selectedVariant as any)?.calculated_price?.currency_code ?? "ron").toUpperCase()
 
@@ -180,7 +165,7 @@ export default async function ProductPage(props: Props) {
         image={product.thumbnail ?? undefined}
         brand={brand || undefined}
         price={rawPrice}
-        inStock={stockLabel !== "Stoc epuizat"}
+        inStock={!isProductOutOfStock(product)}
         url={`/products/${handle}`}
       />
       <SiteHeaderShell
