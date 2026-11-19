@@ -13,7 +13,7 @@ heroImage: "/assets/articles/proba-culoare-piatra-fara-luciu/hero.webp"
 ogImage: "/assets/articles/proba-culoare-piatra-fara-luciu/og.webp"
 ---
 
-„Culorile mai vii, ca atunci când piatra e udă, dar fără să lucească.” În cererea asta sunt trei lucruri: culoarea, luciul și protecția. **Lămurește-le separat cu beneficiarul și cere-i acordul pe o placă tratată și uscată, nu pe piatra udă.** Un efect neacceptat nu se repară cu alt produs aplicat peste: tratamentul se scoate complet înainte.
+„Culorile mai vii, ca atunci când piatra e udă, dar fără să lucească.” În cererea asta sunt trei lucruri: culoarea, luciul și protecția. **Lămurește-le separat cu clientul și cere-i confirmarea pe o placă tratată și uscată, nu pe piatra udă.** Un efect neacceptat nu se repară cu alt produs aplicat peste: tratamentul se scoate complet înainte.
 
 ## Cererea, în cuvintele unui proprietar
 
@@ -39,17 +39,17 @@ Produsele pe bază de apă le recomandăm în spațiile slab ventilate. În majo
 
 ## Confirmarea se dă pe placa tratată
 
-Apa îi arată beneficiarului direcția, nu rezultatul: apa se usucă, tratamentul rămâne. [Testul dinaintea aplicării](/blog/aplicare-tratamente-piatra-naturala) îl faci oricum, ca să știi dacă pui un strat sau două. Folosește-l și pentru confirmare:
+Apa îi arată clientului direcția, nu rezultatul: apa se usucă, tratamentul rămâne. [Testul dinaintea aplicării](/blog/aplicare-tratamente-piatra-naturala) îl faci oricum, ca să știi dacă pui un strat sau două. Folosește-l și pentru confirmare:
 
 - tratează o placă rămasă de la montaj, cum vei lucra pe pardoseală;
 - las-o să se usuce complet;
-- pune-o lângă o placă netratată, în locul unde se montează, și arat-o beneficiarului.
+- pune-o lângă o placă netratată, în locul unde se montează, și arat-o clientului.
 
 Dacă spune „da”, extinzi pe pardoseală. Dacă spune „nu”, încerci alt produs pe altă placă, nu pe pardoseală. Pe aceeași suprafață nu se aplică două produse diferite, iar un efect neacceptat cere [îndepărtarea completă a tratamentului](/blog/indepartare-tratament-vechi-inainte-de-retratare) înainte de altul.
 
 ## Cere-ne recomandarea
 
-Scrie-ne la [office@ardmag.ro](mailto:office@ardmag.ro) sau sună la [+40 722 155 441](tel:+40722155441), luni–vineri, 08:00–16:00, cu piatra, finisajul, locul de montaj și aspectul dorit. De exemplu: „Am o pardoseală de duș din travertin mat, într-o baie mică. Beneficiarul vrea culorile mai vii, fără luciu, și protecție la apă și pete. Ce tratament ne recomandați?”
+Scrie-ne la [office@ardmag.ro](mailto:office@ardmag.ro) sau sună la [+40 722 155 441](tel:+40722155441), luni–vineri, 08:00–16:00, cu piatra, finisajul, locul de montaj și aspectul dorit. De exemplu: „Am o pardoseală de duș din travertin mat, într-o baie mică. Clientul vrea culorile mai vii, fără luciu, și protecție la apă și pete. Ce tratament ne recomandați?”
 
 Îți recomandăm tratamentul Delta Research potrivit lucrării. Toată familia de tratamente este în [ghidul nostru de alegere](/blog/delta-tratamente-piatra-naturala).
 
