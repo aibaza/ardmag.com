@@ -2105,3 +2105,11 @@ ClickUp/time entry:
 - Protocolul canonic source lease + Git transaction a fost recuperat pe noul VM, cu 64 teste de regresie si 6 teste pentru relocare PASS. Arhiva istorica de handoff nu a fost reaplicata; lucrarile transferate au fost pastrate si adoptate controlat.
 - Dovezi private si backup: /srv/paperclip/backup/ardmag-release-2026-10-02. ClickUp/time entry raman de consemnat cand este disponibil accesul; nu au fost inventate inregistrari. Notificarea NTFY este ceruta de user dupa inchiderea release-ului.
 - URL live: https://ardmag.ro
+
+## 2026-11-19 ~17:20 RO -- Deploy: stoc epuizat pe card/PDP, curier preselectat, livrarea în emailuri
+- Merge `fix/stoc-variante-livrare-20261119` în master (a3b2f76), cu „da” DC pentru cele trei schimbări (19.11) și mandatul DC „ai aprobările necesare” (preview bc154c8 = capul ramurii).
+- Storefront Vercel Production a3b2f76 la 17:19 RO; ABRAZIVI OALĂ arată din nou „în stoc” (stocul fals vine din bugul reparat în b35387a).
+- Backend Railway 2b175932 SUCCESS (17:22 RO), `npm run build` local + `railway up --service medusa` **din rădăcina repo-ului** (serviciul are root dir `backend`; din `backend/` build-ul pică: `lstat .../backend: no such file`). Rădăcina are un symlink rupt în `backend-storefront/public/static/images`; upload-ul a mers cu un `.railwayignore` temporar (backend-storefront/, resources/, reports/), șters după.
+- Minioala 60 (`abrazivi-oala-6`): manage_inventory=true, stoc 0, după deploy; pagina produsului rămâne „în stoc” pentru celelalte variante.
+- Teste rulate individual: product-stock 15/15, default-shipping-option 7/7, pdp-variant-selector 15/15, order-admin 8/8, order-customer 4/4; product-to-card 20/24 (cele 4 eșecuri vechi: format preț „Lei” și specs, neatinse de schimbare).
+- Neverificat: emailurile de comandă cu livrarea, până la prima comandă reală; selectarea variantei 60 în browser.
