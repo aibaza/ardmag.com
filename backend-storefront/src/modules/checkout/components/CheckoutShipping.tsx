@@ -6,6 +6,7 @@ import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 import { formatPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 import { SHIPPING_PHONE_REQUIRED_MESSAGE } from "@lib/util/checkout-shipping-phone"
+import { pickDefaultShippingOptionId } from "@lib/util/default-shipping-option"
 
 const FREE_SHIPPING_THRESHOLD = 500
 
@@ -19,7 +20,7 @@ interface Props {
 }
 
 export function CheckoutShipping({ cartId, countryCode, shippingOptions, calculatedPrices = {}, itemTotal = 0, currentShippingMethodId = null }: Props) {
-  const [selected, setSelected] = useState<string | null>(currentShippingMethodId ?? shippingOptions[0]?.id ?? null)
+  const [selected, setSelected] = useState<string | null>(() => pickDefaultShippingOptionId(shippingOptions, currentShippingMethodId))
   const [isPending, startTransition] = useTransition()
   const [updatingId, setUpdatingId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
