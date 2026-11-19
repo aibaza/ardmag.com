@@ -4,6 +4,7 @@ import { initiatePaymentSession } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { useRouter } from "next/navigation"
 import { loadStripe } from "@stripe/stripe-js"
+import { codLabel } from "@lib/util/cod-label"
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 
 interface Props {
@@ -31,8 +32,8 @@ const labelStyle: React.CSSProperties = {
   marginBottom: 8, cursor: "pointer", fontFamily: "var(--f-sans)",
 }
 
-function providerLabel(id: string) {
-  if (id.includes("pp_system_default")) return "Ramburs la livrare"
+function providerLabel(id: string, cart?: HttpTypes.StoreCart) {
+  if (id.includes("pp_system_default")) return codLabel(cart)
   if (isStripe(id)) return "Card bancar (Stripe)"
   return id
 }
@@ -223,7 +224,7 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
                 checked={selected === prov.id}
                 onChange={() => handleSelect(prov.id)}
               />
-              <span>{providerLabel(prov.id)}</span>
+              <span>{providerLabel(prov.id, cart)}</span>
             </label>
           ))}
         </div>
@@ -241,7 +242,7 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
           color: "#713f12",
           lineHeight: 1.5,
         }}>
-          <strong>Plata cu cardul este in modul TEST.</strong> Cardurile reale nu sunt procesate momentan. Pentru o comanda reala, alege <strong>Ramburs la livrare</strong>.
+          <strong>Plata cu cardul este in modul TEST.</strong> Cardurile reale nu sunt procesate momentan. Pentru o comanda reala, alege <strong>{codLabel(cart)}</strong>.
         </div>
       )}
 

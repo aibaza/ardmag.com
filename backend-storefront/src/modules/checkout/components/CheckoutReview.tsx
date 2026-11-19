@@ -2,6 +2,7 @@ import { getDisplayTotals } from "@lib/order/display-totals"
 import { retrieveCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { PlaceOrderButton } from "./PlaceOrderButton"
+import { codLabel } from "@lib/util/cod-label"
 import { formatPrice } from "@lib/util/adapters/format-price"
 import { FormattedPrice } from "@modules/@shared/components/formatted-price"
 
@@ -14,8 +15,8 @@ function fmt(amount: number | null | undefined, currency: string): string {
   return formatPrice(amount, currency)
 }
 
-function providerLabel(id: string): string {
-  if (id.includes("pp_system_default")) return "Ramburs la livrare"
+function providerLabel(id: string, cart?: HttpTypes.StoreCart): string {
+  if (id.includes("pp_system_default")) return codLabel(cart)
   if (id.includes("stripe")) return "Card bancar (Stripe)"
   if (id.includes("manual")) return "Plata manuala"
   return id
@@ -345,7 +346,7 @@ export async function CheckoutReview({ cartId }: Props) {
             <div>
               <span style={{ color: "var(--fg-muted)" }}>Plata: </span>
               {paymentSession
-                ? providerLabel(paymentSession.provider_id)
+                ? providerLabel(paymentSession.provider_id, cart)
                 : "--"}
             </div>
           </div>
