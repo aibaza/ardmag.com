@@ -22,6 +22,7 @@ interface ProductGridItem {
   specs?: string[]
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
+  defaultVariantSoldOut?: boolean
 }
 
 export interface CatalogItem {

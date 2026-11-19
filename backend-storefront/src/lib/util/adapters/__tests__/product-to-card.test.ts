@@ -231,3 +231,43 @@ describe("productToCard", () => {
     expect(card.badges?.some((b) => b.type === "promo")).toBe(false)
   })
 })
+
+describe("productToCard - stoc pentru adaugarea directa", () => {
+  it("single tracked variant fara stoc si fara backorder -> defaultVariantSoldOut", () => {
+    const card = productToCard(
+      makeProduct({
+        variants: [{ id: "v1", manage_inventory: true, allow_backorder: false, inventory_quantity: 0 }],
+      })
+    )
+    expect(card.defaultVariantSoldOut).toBe(true)
+  })
+
+  it("single variant neurmarita (inventory_quantity lipsa) ramane disponibila", () => {
+    const card = productToCard(
+      makeProduct({ variants: [{ id: "v1", manage_inventory: false }] })
+    )
+    expect(card.defaultVariantSoldOut).toBe(false)
+  })
+
+  it("single tracked variant cu backorder ramane disponibila", () => {
+    const card = productToCard(
+      makeProduct({
+        variants: [{ id: "v1", manage_inventory: true, allow_backorder: true, inventory_quantity: 0 }],
+      })
+    )
+    expect(card.defaultVariantSoldOut).toBe(false)
+  })
+
+  it("produs cu mai multe variante nu e marcat epuizat pe card (duce la PDP)", () => {
+    const card = productToCard(
+      makeProduct({
+        variants: [
+          { id: "v1", manage_inventory: true, inventory_quantity: 0 },
+          { id: "v2", manage_inventory: false },
+        ],
+      })
+    )
+    expect(card.hasMultipleRealVariants).toBe(true)
+    expect(card.defaultVariantSoldOut).toBe(false)
+  })
+})
