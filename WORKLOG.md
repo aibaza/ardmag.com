@@ -5,6 +5,14 @@ Format: data + commits + descriere + deploy URL + confirmare user.
 
 ---
 
+## 2026-11-24 -- Cargus cu card si ramburs, verificat pe staging (nu e live)
+
+- Ramura `fix/cargus-cotatie-20261124`. Backend deploy pe staging (`5b7785fd`, SUCCESS), variabile `CARGUS_PRICE_TABLE_ID=293764` si `CARGUS_CHECKOUT_ENABLED=true`. Optiunea veche Cargus de pe staging (din aprilie) a fost stearsa soft; scriptul nou a creat `so_01M86XJXS27WGS4M9W8V0F536H`, iar a doua rulare nu a facut nimic.
+- Store API staging: Bucuresti 128 lei -> Cargus card 45,54 / ramburs 64,72, Fan 23,45; Borsa (km suplimentari) 78,27 / 96,67; 500 lei -> 0 la ambii; localitate inexistenta -> rezerva 79 / 98. Toate celelalte cotatii au `source=cargus-api`. Sesiunea ramburs pe Cargus cotat card este refuzata cu mesajul pentru client; pe Cargus cotat ramburs si pe Fan trece.
+- Neverificat: plata cu cardul (staging nu are Stripe), checkout-ul in browser, `next build` local si build-ul admin local (memorie insuficienta; build-ul Railway trece).
+- Lectie de deploy: `.railwayignore` cu `scripts/` neancorat exclude si `backend/src/scripts`, iar build-ul Docker pica la COPY. Tiparele trebuie ancorate cu `/`.
+- Runbook productie: `docs/plans/2026-11-24-cargus-productie.md`. Confirmare user: in asteptare.
+
 ## 2026-08-24 -- Pagina de 404 arata produse strategice
 
 - Sub blocul de text, pagina lasa coloana din dreapta goala. Adaug doua grile de produse la latimea paginii, cu aceleasi componente ca homepage-ul (`SectionHead` + `ProductGrid` variant `mini` + `productToCard`), deci fara markup paralel.

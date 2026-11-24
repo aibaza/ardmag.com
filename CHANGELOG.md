@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-24 - Cargus cu card si ramburs, cotatie reala, pregatit pentru productie
+
+- Fan Courier si Cargus accepta amandoua cardul si rambursul (decizia DC din 24.11). La Cargus, cotatia cu ramburs include comisionul curierului, calculat pe suma incasata reala; pagina de plata recoteaza, iar serverul refuza plata care nu se potriveste cu cotatia.
+- Cotatie live pe grila contractului 293764, cu greutate in kilograme intregi. Pauza de 60 s pana la 10 min dupa erori de API, in bugetul de 6 s. Tarif de rezerva pe greutate, provizoriu, masurat din API si rotunjit in sus.
+- Adrese normalizate la Cargus si Fan: judet obligatoriu, fara Cluj implicit, diacritice, spatii si prefixe administrative. Fan pentru Bucuresti cota pana acum rezerva de 18 lei; acum da tariful real.
+- Livrarea gratuita de la 500 lei ramane neschimbata. Pagina „Livrare si plata” arata numai Fan, Cargus si ridicarea personala, cu preturile calculate in cos.
+- Verificat pe staging, fara comenzi. Productia nu este activata; pasii sunt in `docs/plans/2026-11-24-cargus-productie.md`.
+
 ## 2026-10-23 - Promotia Tenax -20% extinsa la Aplicator Fast Glaxs si Set pigmenti
 
 - La cererea lui Andrei (23.10), Aplicator Fast Glaxs (357 -> 285,60 lei) si Set pigmenti (296 -> 236,80 lei) au intrat in lista de preturi existenta „TENAX mastici -20% 2026Q4”, cu aceeasi inchidere la 31.12.2026 (01.01.2027 00:00, ora Romaniei). Lista are acum 29 de variante.
