@@ -15,6 +15,8 @@ import { CheckoutTracker } from "@modules/analytics/CheckoutTracker"
 import { redirect } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 import { hasShippingPhone } from "@lib/util/checkout-shipping-phone"
+import { deliveryKind } from "@lib/util/delivery-payment-policy"
+import type { CargusQuotes } from "@modules/checkout/components/CheckoutPayment"
 
 type Props = {
   params: Promise<{ countryCode: string }>
@@ -128,6 +130,8 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
 
   let shippingOptions: HttpTypes.StoreCartShippingOption[] = []
   let calculatedShippingPrices: Record<string, number> = {}
+  const codShippingPrices: Record<string, number> = {}
+  let cargusQuotes: CargusQuotes | null = null
   let paymentProviders: HttpTypes.StorePaymentProvider[] = []
 
   if (step === "delivery" && cart.id) {
@@ -144,8 +148,32 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
           ).catch(() => null)
           if (result?.amount != null)
             calculatedShippingPrices[o.id] = result.amount
+          // Cargus: costul cu ramburs include comisionul curierului.
+          if (deliveryKind(o as any) === "cargus") {
+            const cod = await calculatePriceForShippingOption(o.id, cart.id, {
+              payment: "cod",
+            }).catch(() => null)
+            if (cod?.amount != null) codShippingPrices[o.id] = cod.amount
+          }
         })
     )
+  }
+  const currentMethod = cart.shipping_methods?.[0] as any
+  if (
+    step === "payment" &&
+    currentMethod?.shipping_option_id &&
+    deliveryKind(currentMethod) === "cargus"
+  ) {
+    const optionId = currentMethod.shipping_option_id as string
+    const [card, cod] = await Promise.all([
+      calculatePriceForShippingOption(optionId, cart.id, { payment: "card" }).catch(() => null),
+      calculatePriceForShippingOption(optionId, cart.id, { payment: "cod" }).catch(() => null),
+    ])
+    cargusQuotes = {
+      optionId,
+      card: card?.amount ?? null,
+      cod: cod?.amount ?? null,
+    }
   }
   if (step === "payment" && cart.region_id) {
     paymentProviders = (await listCartPaymentMethods(cart.region_id)) ?? []
@@ -193,6 +221,7 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
             countryCode={countryCode}
             shippingOptions={shippingOptions}
             calculatedPrices={calculatedShippingPrices}
+            codPrices={codShippingPrices}
             itemTotal={
               (cart as any).item_total ??
               (cart.subtotal ?? 0) - (cart.shipping_total ?? 0)
@@ -208,6 +237,7 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
             cart={cart as HttpTypes.StoreCart}
             countryCode={countryCode}
             paymentProviders={paymentProviders}
+            cargusQuotes={cargusQuotes}
           />
         )}
 

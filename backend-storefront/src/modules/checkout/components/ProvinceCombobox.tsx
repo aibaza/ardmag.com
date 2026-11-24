@@ -1,6 +1,7 @@
 "use client"
 import { useState, useRef, useEffect } from "react"
 import { JUDETE_RO } from "@lib/data/romania"
+import { canonicalProvince } from "@lib/util/address-province"
 
 interface Props {
   name: string
@@ -45,7 +46,13 @@ export function ProvinceCombobox({ name, defaultValue = "" }: Props) {
           value={query}
           autoComplete="address-level1"
           placeholder="Cauta judetul..."
-          onChange={(e) => { setQuery(e.target.value); setOpen(true) }}
+          onChange={(e) => {
+            setQuery(e.target.value)
+            setOpen(true)
+            // Judetul scris complet (si fara diacritice) se alege singur; altfel campul ascuns ramanea gol.
+            const match = canonicalProvince(e.target.value)
+            if (match) setSelected(match)
+          }}
           onFocus={() => setOpen(true)}
           onKeyDown={(e) => {
             if (e.key === "Escape") { setOpen(false); setQuery(selected) }

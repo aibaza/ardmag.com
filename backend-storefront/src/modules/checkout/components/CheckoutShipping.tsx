@@ -7,6 +7,7 @@ import { formatPrice } from "@lib/util/adapters/format-price"
 import { HttpTypes } from "@medusajs/types"
 import { SHIPPING_PHONE_REQUIRED_MESSAGE } from "@lib/util/checkout-shipping-phone"
 import { pickDefaultShippingOptionId } from "@lib/util/default-shipping-option"
+import { deliveryKind } from "@lib/util/delivery-payment-policy"
 
 const FREE_SHIPPING_THRESHOLD = 500
 
@@ -15,11 +16,13 @@ interface Props {
   countryCode: string
   shippingOptions: HttpTypes.StoreCartShippingOption[]
   calculatedPrices?: Record<string, number>
+  // Pretul Cargus cu plata ramburs (include comisionul de ramburs), pe optiune.
+  codPrices?: Record<string, number>
   itemTotal?: number
   currentShippingMethodId?: string | null
 }
 
-export function CheckoutShipping({ cartId, countryCode, shippingOptions, calculatedPrices = {}, itemTotal = 0, currentShippingMethodId = null }: Props) {
+export function CheckoutShipping({ cartId, countryCode, shippingOptions, calculatedPrices = {}, codPrices = {}, itemTotal = 0, currentShippingMethodId = null }: Props) {
   const [selected, setSelected] = useState<string | null>(() => pickDefaultShippingOptionId(shippingOptions, currentShippingMethodId))
   const [isPending, startTransition] = useTransition()
   const [updatingId, setUpdatingId] = useState<string | null>(null)
@@ -117,7 +120,7 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
 
       {freeShippingActive && (
         <div style={{ background: "#f0fdf4", color: "#0f766e", padding: "10px 14px", borderRadius: "var(--r-md)", fontSize: 13, marginBottom: 12, fontFamily: "var(--f-sans)" }}>
-          ✓ Comanda ta depaseste 500 Lei -- livrarea cu Fan Courier este <strong>gratuita</strong>.
+          ✓ Comanda ta depaseste 500 Lei -- livrarea cu Fan Courier sau Cargus este <strong>gratuita</strong>.
         </div>
       )}
 
@@ -135,7 +138,14 @@ export function CheckoutShipping({ cartId, countryCode, shippingOptions, calcula
                 onChange={() => selectAndPersist(opt.id)}
                 disabled={isPending}
               />
-              <span style={{ flex: 1 }}>{opt.name}</span>
+              <span style={{ flex: 1 }}>
+                {opt.name}
+                {deliveryKind(opt as any) === "cargus" && typeof calc[opt.id] === "number" && codPrices[opt.id] != null && codPrices[opt.id] > (calc[opt.id] as number) && (
+                  <small style={{ display: "block", color: "var(--fg-muted)", fontSize: 12 }}>
+                    Prețul este pentru plata cu cardul. Cu plata ramburs: <FormattedPrice value={formatPrice(codPrices[opt.id])} /> (include comisionul de ramburs)
+                  </small>
+                )}
+              </span>
               <span style={{ fontWeight: 600 }}>{renderPrice(opt)}</span>
             </label>
           ))}

@@ -21,6 +21,15 @@ import {
   hasShippingPhone,
   SHIPPING_PHONE_REQUIRED_MESSAGE,
 } from "@lib/util/checkout-shipping-phone"
+import {
+  canonicalProvince,
+  cleanCity,
+  PROVINCE_REQUIRED_MESSAGE,
+} from "@lib/util/address-province"
+import {
+  CARGUS_PAYMENT_DATA_KEY,
+  type CargusPaymentMode,
+} from "@lib/util/delivery-payment-policy"
 
 /**
  * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.
@@ -30,7 +39,7 @@ import {
 export async function retrieveCart(cartId?: string, fields?: string) {
   const id = cartId || (await getCartId())
   fields ??=
-    "*items, *region, *items.product, *items.variant, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.name"
+    "*items, *region, *items.product, *items.variant, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.name, +shipping_methods.data"
 
   if (!id) {
     return null
@@ -257,6 +266,39 @@ export async function setShippingMethod({
   redirect("/checkout?step=payment")
 }
 
+/**
+ * Recoteaza metoda de livrare Cargus pentru plata aleasa (rambursul are comision la Cargus).
+ * Nu redirectioneaza: pasul de plata continua cu sesiunea de plata pe totalul nou.
+ * Intoarce mesajul de eroare sau null.
+ */
+export async function setCargusPaymentMode({
+  cartId,
+  shippingOptionId,
+  mode,
+}: {
+  cartId: string
+  shippingOptionId: string
+  mode: CargusPaymentMode
+}): Promise<string | null> {
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+  try {
+    await sdk.store.cart.addShippingMethod(
+      cartId,
+      { option_id: shippingOptionId, data: { [CARGUS_PAYMENT_DATA_KEY]: mode } },
+      {},
+      headers
+    )
+    const cartCacheTag = await getCacheTag("carts")
+    revalidateTag(cartCacheTag)
+    return null
+  } catch (e: any) {
+    console.error("[checkout] Cargus requote failed:", e?.message ?? e)
+    return "Nu am putut recalcula livrarea Cargus. Încearcă din nou."
+  }
+}
+
 export async function initiatePaymentSession(
   cart: HttpTypes.StoreCart,
   data: HttpTypes.StoreInitializePaymentSession
@@ -385,6 +427,13 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
 
     const shippingAddr = addressFromFormData(formData, "shipping_address")
     assertShippingPhone(shippingAddr)
+    // Judetul lipsa trimitea curierii pe tariful de rezerva (si Fan pe "Cluj").
+    if ((shippingAddr.country_code || "ro").toLowerCase() === "ro") {
+      const province = canonicalProvince(shippingAddr.province)
+      if (!province) throw new Error(PROVINCE_REQUIRED_MESSAGE)
+      shippingAddr.province = province
+    }
+    shippingAddr.city = cleanCity(shippingAddr.city)
 
     const billingAddr =
       sameAsBilling === "on" ? shippingAddr : addressFromFormData(formData, "billing_address")

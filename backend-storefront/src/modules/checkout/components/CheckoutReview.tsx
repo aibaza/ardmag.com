@@ -5,6 +5,7 @@ import { PlaceOrderButton } from "./PlaceOrderButton"
 import { codLabel } from "@lib/util/cod-label"
 import { formatPrice } from "@lib/util/adapters/format-price"
 import { FormattedPrice } from "@modules/@shared/components/formatted-price"
+import { deliveryPaymentError } from "@lib/util/delivery-payment-policy"
 
 interface Props {
   cartId: string
@@ -54,6 +55,11 @@ export async function CheckoutReview({ cartId }: Props) {
   const currency = cart.currency_code ?? "ron"
   const shippingMethod = cart.shipping_methods?.[0]
   const paymentSession = cart.payment_collection?.payment_sessions?.[0]
+  // Aceeasi verificare ca pe server: Cargus trebuie cotat pentru plata aleasa.
+  const policyError = deliveryPaymentError(
+    shippingMethod as any,
+    paymentSession?.provider_id
+  )
 
   return (
     <div>
@@ -353,7 +359,23 @@ export async function CheckoutReview({ cartId }: Props) {
         </div>
       </section>
 
-      <PlaceOrderButton cartId={cartId} />
+      {policyError && (
+        <p
+          role="alert"
+          style={{
+            color: "var(--brand-600)",
+            fontSize: 13,
+            marginBottom: 12,
+            fontFamily: "var(--f-sans)",
+          }}
+        >
+          {policyError}{" "}
+          <a href="?step=payment" style={{ color: "inherit" }}>
+            Înapoi la plată
+          </a>
+        </p>
+      )}
+      <PlaceOrderButton cartId={cartId} disabled={Boolean(policyError)} />
     </div>
   )
 }

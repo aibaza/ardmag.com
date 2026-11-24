@@ -5,7 +5,7 @@ import { SiteFooter } from "@modules/layout/site-footer"
 export const metadata: Metadata = {
   title: "Livrare si plata | ARDmag.ro",
   description:
-    "Livrare in 1-3 zile lucratoare prin Fan Courier, Sameday, Cargus. Livrare gratuita peste 500 Lei. Plata cu card sau ramburs.",
+    "Livrare în toată România prin Fan Courier sau Cargus, ori ridicare din Cluj-Napoca. Livrare gratuită peste 500 lei. Plata cu cardul sau ramburs.",
 }
 
 export default async function LivrareSimPlataPage({
@@ -56,43 +56,35 @@ export default async function LivrareSimPlataPage({
         <table style={tableStyle}>
           <thead>
             <tr>
-              <th style={thStyle}>Curier</th>
-              <th style={thStyle}>Termen</th>
+              <th style={thStyle}>Livrare</th>
               <th style={thStyle}>Cost</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td style={tdStyle}>Fan Courier</td>
-              <td style={tdStyle}>1-2 zile lucratoare</td>
-              <td style={tdStyle}>19,99 Lei</td>
-            </tr>
-            <tr>
-              <td style={tdStyle}>Sameday</td>
-              <td style={tdStyle}>1-2 zile lucratoare</td>
-              <td style={tdStyle}>21,99 Lei</td>
+              <td style={tdStyle}>Calculat în coș, după greutatea coletului și adresa de livrare</td>
             </tr>
             <tr>
               <td style={tdStyle}>Cargus</td>
-              <td style={tdStyle}>2-3 zile lucratoare</td>
-              <td style={tdStyle}>22,99 Lei</td>
+              <td style={tdStyle}>Calculat în coș, după greutatea coletului, adresa de livrare și metoda de plată</td>
             </tr>
             <tr>
-              <td style={tdStyle}>Posta Romana</td>
-              <td style={tdStyle}>3-5 zile lucratoare</td>
-              <td style={tdStyle}>14,99 Lei</td>
-            </tr>
-            <tr>
-              <td style={tdStyle}>Ridicare din depozit Cluj-Napoca</td>
-              <td style={tdStyle}>In aceeasi zi (in program)</td>
+              <td style={tdStyle}>Ridicare personală din depozitul Cluj-Napoca</td>
               <td style={tdStyle}><strong>Gratuit</strong></td>
             </tr>
           </tbody>
         </table>
 
         <div style={{ background: "var(--brand-50, #f0f9ff)", border: "1px solid var(--brand-200, #bae6fd)", borderRadius: "var(--r-md)", padding: "16px 20px", marginBottom: 32 }}>
-          <strong>Livrare gratuita la comenzi de peste 500 Lei</strong> - se aplica automat la checkout pentru Fan Courier.
+          <strong>Livrare gratuită la comenzi de peste 500 lei</strong> (valoarea produselor), cu Fan Courier sau Cargus. Se aplică automat în coș.
         </div>
+
+        <p style={{ lineHeight: 1.7, marginBottom: 16 }}>
+          Costul exact apare în coș, la pasul Livrare, înainte să plasezi comanda. Pentru localitățile
+          din afara orașelor, curierii pot adăuga un cost pentru kilometrii suplimentari; și acesta
+          este inclus în prețul afișat în coș.
+        </p>
 
         <h2 style={h2Style}>Procesare comanda</h2>
         <p style={{ lineHeight: 1.7, marginBottom: 16 }}>
@@ -112,7 +104,15 @@ export default async function LivrareSimPlataPage({
             </tr>
             <tr>
               <td style={tdStyle}><strong>Ramburs la livrare</strong></td>
-              <td style={tdStyle}>Platesti curiervului la primirea coletului, in numerar. Taxa ramburs: inclusa in costul livrarii.</td>
+              <td style={tdStyle}>
+                Plătești curierului la primirea coletului. Ramburs se poate plăti la Fan Courier și la Cargus.
+                La Cargus, costul livrării cu ramburs include comisionul curierului pentru suma încasată;
+                îl vezi în coș când alegi plata ramburs.
+              </td>
+            </tr>
+            <tr>
+              <td style={tdStyle}><strong>Plata la ridicare</strong></td>
+              <td style={tdStyle}>La ridicarea personală din depozitul Cluj-Napoca poți plăti online cu cardul sau la sediu, când ridici comanda.</td>
             </tr>
           </tbody>
         </table>

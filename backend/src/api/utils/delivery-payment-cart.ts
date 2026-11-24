@@ -34,6 +34,7 @@ export async function getCartPolicyState(
     fields: [
       "id",
       "shipping_methods.shipping_option_id",
+      "shipping_methods.data",
       "payment_collection.payment_sessions.provider_id",
       "payment_collection.payment_sessions.status",
     ],
@@ -54,6 +55,7 @@ export async function getCartPolicyState(
       code: option?.type?.code,
       providerId: option?.provider_id,
       name: option?.name,
+      data: shippingMethod?.data ?? null,
     },
     paymentProviderId: session?.provider_id,
   };

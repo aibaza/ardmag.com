@@ -1,16 +1,30 @@
 "use client"
 import { useState, useTransition } from "react"
-import { initiatePaymentSession } from "@lib/data/cart"
+import { initiatePaymentSession, setCargusPaymentMode } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { useRouter } from "next/navigation"
 import { loadStripe } from "@stripe/stripe-js"
 import { codLabel } from "@lib/util/cod-label"
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
+import {
+  cargusNeedsRequote,
+  deliveryKind,
+  paymentModeForProvider,
+} from "@lib/util/delivery-payment-policy"
+import { formatPrice } from "@lib/util/adapters/format-price"
+
+export type CargusQuotes = {
+  optionId: string
+  card: number | null
+  cod: number | null
+}
 
 interface Props {
   cart: HttpTypes.StoreCart
   countryCode: string
   paymentProviders: HttpTypes.StorePaymentProvider[]
+  // Costul livrarii Cargus pentru fiecare plata, cand livrarea aleasa este Cargus.
+  cargusQuotes?: CargusQuotes | null
 }
 
 const stripePromise = process.env.NEXT_PUBLIC_STRIPE_KEY
@@ -144,7 +158,16 @@ function StripeCardForm({
 
 // ─── Main component ────────────────────────────────────────────────────────────
 
-export function CheckoutPayment({ cart, paymentProviders }: Props) {
+function cargusHint(providerId: string, quotes?: CargusQuotes | null): string | null {
+  if (!quotes) return null
+  const mode = paymentModeForProvider(providerId)
+  const value = mode === "cod" ? quotes.cod : mode === "card" ? quotes.card : null
+  if (value == null) return null
+  if (value === 0) return "Livrare Cargus gratuită"
+  return `Livrare Cargus: ${formatPrice(value)}${mode === "cod" ? " (include comisionul de ramburs)" : ""}`
+}
+
+export function CheckoutPayment({ cart, paymentProviders, cargusQuotes = null }: Props) {
   const [selected, setSelected] = useState<string>(paymentProviders[0]?.id ?? "")
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
@@ -152,6 +175,8 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
   const router = useRouter()
 
   const selectedIsStripe = isStripe(selected)
+  const shippingMethod = cart.shipping_methods?.[0] as any
+  const isCargus = deliveryKind(shippingMethod) === "cargus"
 
   async function handleSelect(id: string) {
     setSelected(id)
@@ -165,6 +190,21 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
 
     startTransition(async () => {
       try {
+        // Cargus: costul livrarii depinde de plata. Recotam inainte de sesiunea de plata,
+        // ca suma platita cu cardul sau incasata ramburs sa fie cea calculata de Cargus.
+        const mode = paymentModeForProvider(selected)
+        if (isCargus && mode && cargusNeedsRequote(shippingMethod, selected)) {
+          const optionId = shippingMethod?.shipping_option_id ?? cargusQuotes?.optionId
+          if (!optionId) {
+            setError("Alege din nou livrarea Cargus.")
+            return
+          }
+          const requoteError = await setCargusPaymentMode({ cartId: cart.id, shippingOptionId: optionId, mode })
+          if (requoteError) {
+            setError(requoteError)
+            return
+          }
+        }
         const resp = await initiatePaymentSession(cart, { provider_id: selected }) as any
 
         if (selectedIsStripe) {
@@ -203,6 +243,12 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
         Metoda de plata
       </h3>
 
+      {isCargus && cargusQuotes?.cod != null && cargusQuotes?.card != null && cargusQuotes.cod > cargusQuotes.card && (
+        <p style={{ color: "var(--fg-muted)", fontSize: 13, marginBottom: 12, fontFamily: "var(--f-sans)" }}>
+          La Cargus, plata ramburs costă mai mult: curierul percepe un comision pentru suma încasată.
+        </p>
+      )}
+
       {paymentProviders.length === 0 ? (
         <p style={{ color: "var(--fg-muted)", marginBottom: 16 }}>
           Nu sunt disponibile metode de plata.
@@ -224,7 +270,14 @@ export function CheckoutPayment({ cart, paymentProviders }: Props) {
                 checked={selected === prov.id}
                 onChange={() => handleSelect(prov.id)}
               />
-              <span>{providerLabel(prov.id, cart)}</span>
+              <span>
+                {providerLabel(prov.id, cart)}
+                {isCargus && cargusHint(prov.id, cargusQuotes) && (
+                  <small style={{ display: "block", color: "var(--fg-muted)", fontSize: 12 }}>
+                    {cargusHint(prov.id, cargusQuotes)}
+                  </small>
+                )}
+              </span>
             </label>
           ))}
         </div>

@@ -5,9 +5,10 @@ import { isRedirectError } from "next/dist/client/components/redirect-error"
 
 interface Props {
   cartId: string
+  disabled?: boolean
 }
 
-export function PlaceOrderButton({ cartId }: Props) {
+export function PlaceOrderButton({ cartId, disabled = false }: Props) {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
 
@@ -44,7 +45,7 @@ export function PlaceOrderButton({ cartId }: Props) {
         className="btn primary lg"
         style={{ width: "100%" }}
         onClick={handlePlace}
-        disabled={isPending}
+        disabled={isPending || disabled}
       >
         {isPending ? "Se proceseaza..." : "Plaseaza comanda"}
       </button>

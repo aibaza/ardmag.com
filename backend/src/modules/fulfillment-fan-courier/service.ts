@@ -4,6 +4,7 @@ import { fallbackTariff } from "./lib/fallback-tariff"
 import { getToken } from "./lib/token-cache"
 import { getInternalTariff } from "./lib/api"
 import { fetchVariantWeights } from "./lib/variant-weights"
+import { normalizeCourierDestination } from "../fulfillment-shared/address"
 
 type InjectedDeps = { logger: Logger }
 
@@ -80,8 +81,8 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
     const addr = context.shipping_address as { province?: string; city?: string } | undefined
 
     const totalKg = await this.computeTotalKg(items)
-    const county = addr?.province || "Cluj"
-    const locality = addr?.city || "Cluj-Napoca"
+    // Fara judet sau localitate nu mai presupunem Cluj: cotatia ar fi pentru alta adresa.
+    const destination = normalizeCourierDestination(addr)
 
     // Free shipping policy: comenzi peste 500 RON valoare produse -> gratuit.
     const itemTotal = items.reduce((sum, it) => {
@@ -99,14 +100,15 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
       }
     }
 
-    this.logger.info(`[FanCourier] calc: ${items.length} items, ${totalKg}kg, item_total=${itemTotal} RON -> ${county}/${locality}`)
+    this.logger.info(`[FanCourier] calc: ${items.length} items, ${totalKg}kg, item_total=${itemTotal} RON -> ${destination ? `${destination.county}/${destination.locality}` : "adresa incompleta"}`)
 
     const hasCredentials =
       process.env.FAN_COURIER_USERNAME &&
       process.env.FAN_COURIER_PASSWORD &&
       process.env.FAN_COURIER_CLIENT_ID
 
-    if (!hasCredentials) {
+    if (!hasCredentials || !destination) {
+      if (!destination) this.logger.warn("[FanCourier] calculatePrice failed, using fallback: judet sau localitate lipsa")
       return {
         calculated_amount: fallbackTariff(totalKg),
         is_calculated_price_tax_inclusive: true,
@@ -115,7 +117,7 @@ export class FanCourierProviderService extends AbstractFulfillmentProviderServic
 
     try {
       const token = await getToken()
-      const total = await getInternalTariff({ token, weight: Math.max(totalKg, 0.1), county, locality })
+      const total = await getInternalTariff({ token, weight: Math.max(totalKg, 0.1), county: destination.county, locality: destination.locality })
       return {
         calculated_amount: Math.round(total * 100) / 100,
         is_calculated_price_tax_inclusive: true,
