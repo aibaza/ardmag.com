@@ -13,7 +13,7 @@ function replies(total: unknown = 31.25, tables = [{ PriceTableId: 7 }]) {
 it("authenticates and quotes contract/locality IDs with numeric payer and VAT-inclusive total", async () => {
   replies(); const { quoteCargus } = require("../api"); await expect(quoteCargus(input)).resolves.toBe(31.25)
   const login = fetchMock.mock.calls.find(([url]) => url.endsWith("/LoginUser"))[1]; expect(JSON.parse(login.body)).toEqual({ UserName: "unit-user", Password: "unit-pass" }); expect(login.headers.Authorization).toBeUndefined()
-  const request = fetchMock.mock.calls.find(([url]) => url.endsWith("/ShippingCalculation"))[1]; expect(request.headers.Authorization).toBe("Bearer unit-token"); expect(request.redirect).toBe("error"); expect(JSON.parse(request.body)).toMatchObject({ FromLocalityId: 10, ToLocalityId: 20, PriceTableId: 7, ShipmentPayer: 1, TotalWeight: 1.5, CashRepayment: 0, ServiceId: 34 })
+  const request = fetchMock.mock.calls.find(([url]) => url.endsWith("/ShippingCalculation"))[1]; expect(request.headers.Authorization).toBe("Bearer unit-token"); expect(request.redirect).toBe("error"); expect(JSON.parse(request.body)).toMatchObject({ FromLocalityId: 10, ToLocalityId: 20, PriceTableId: 7, ShipmentPayer: 1, TotalWeight: 1.5, CashRepayment: 0, ServiceId: 34, SaturdayDelivery: false, MorningDelivery: false })
   await quoteCargus(input); expect(fetchMock.mock.calls.filter(([url]) => url.endsWith("/LoginUser"))).toHaveLength(1)
 })
 it.each([null, "", "invalid", -1])("rejects invalid GrandTotal %p", async total => { replies(total); const { quoteCargus } = require("../api"); await expect(quoteCargus(input)).rejects.toThrow("total") })

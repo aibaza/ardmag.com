@@ -86,7 +86,8 @@ export async function quoteCargus(input: CargusQuoteRequest): Promise<number> {
     FromLocalityId: from, ToLocalityId: to, Parcels: input.parcels, Envelopes: 0,
     TotalWeight: input.totalWeightKg, ServiceId: input.totalWeightKg <= 31 ? 34 : input.totalWeightKg <= 50 ? 35 : 36,
     DeclaredValue: input.declaredValueRon, CashRepayment: 0, BankRepayment: 0,
-    OtherRepayment: "", OpenPackage: false, PriceTableId: priceTableId, ShipmentPayer: 1,
+    OtherRepayment: "", OpenPackage: false, SaturdayDelivery: false, MorningDelivery: false,
+    PriceTableId: priceTableId, ShipmentPayer: 1,
   })
   const value = (result as Record<string, unknown> | null)?.GrandTotal
   if ((typeof value !== "number" && typeof value !== "string") || String(value).trim() === "") throw new Error("Cargus quote total missing")
