@@ -79,7 +79,8 @@ Fan și ridicarea personală nu depind de acești pași.
 ## Ce trebuie de la client sau de la DC
 
 - **Grila din contractul Cargus.** Tariful de rezervă e provizoriu, măsurat din API. Când vine grila, se înlocuiesc treptele din `fallback-tariff.ts`.
-- **Adresa de ridicare înregistrată la Cargus.** Cotația pleacă din Cluj-Napoca; dacă punctul de ridicare e în altă localitate, se schimbă `ORIGIN` în `service.ts`.
+- **Adresa de ridicare: rezolvat 25.11.** DC: ridicarea e la adresa firmei ARC ROM DIAMONDS SRL, Calea Baciului 1-3, Cluj-Napoca. `ORIGIN` (Cluj, Cluj-Napoca) rămâne neschimbat.
+- **Fan rămâne permanent** lângă Cargus (Andrei, 25.11: „mai bine să aibă oamenii opțiuni”). Nu se mai scoate Fan după cele două săptămâni.
 - **AWB-urile rămân manuale.** Providerul nu creează expedieri; comenzile Cargus se emit din app.cargus.ro, ca acum la Fan.
 - **Peste 50 kg** Cargus cotează palet (serviciul 36, 397,49 lei). De confirmat dacă ARDmag vrea să ofere Cargus la asemenea greutăți.
 - **Livrare gratuită cu ramburs.** De la 500 lei clientul plătește 0 la transport, dar Cargus facturează transportul și comisionul de ramburs (de exemplu, la 600 lei încasați ramburs, până la 15 kg: circa 44 lei transport + 7 lei asigurare + 29 lei comision, cu TVA, deci aproximativ 80 lei). Regula „gratuit de la 500” a rămas cum era, prin decizie; costul îl suportă ARDmag. De confirmat de DC dacă e acceptat.
