@@ -65,7 +65,8 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
       </div>
 
       {/* Rating */}
-      <StarRating score={rating.score} reviewCount={rating.reviewCount} />
+      {/* 25.11.2026: fără recenzii reale, nu afișăm cinci stele cu „0 recenzii” */}
+      {rating.reviewCount > 0 ? <StarRating score={rating.score} reviewCount={rating.reviewCount} /> : null}
 
       {/* Price card */}
       <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} promotionNotice={promotionNotice} />
