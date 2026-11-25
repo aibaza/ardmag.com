@@ -37,6 +37,12 @@ Cotații Store API, toate `source=cargus-api` în loguri, cu excepția localită
 
 **Neverificat pe staging:** plata cu cardul. Staging nu are `STRIPE_API_KEY`, deci calea card e acoperită numai de testele unitare. Interfața de checkout nu a fost văzută într-un browser. TypeScript trece, iar build-ul Vercel al ramurii (preview `dpl_5fvgpGFkKLU1zZdNo2CEce2NEiLw`, commit `f0a723b`) este READY.
 
+## Decizia lui Ciprian, 25.11, 09:32 EET
+
+- Livrarea gratuită de la 500 lei rămâne la ambii curieri, și cu ramburs (comportamentul de acum).
+- Producția pornește după două lucruri: răspunsul lui Andrei despre adresa de ridicare înregistrată la Cargus și proba plății cu cardul.
+- Itemul vechi „cargus api key” din 1Password îl șterge Ciprian, numai după ce Cargus merge în producție cu cheile noi.
+
 ## Pașii pentru producție
 
 Fiecare pas se verifică înainte de următorul. Nimic nu se face pe producție fără acordul DC.
