@@ -2121,3 +2121,14 @@ ClickUp/time entry:
 - Minioala 60 (`abrazivi-oala-6`): manage_inventory=true, stoc 0, după deploy; pagina produsului rămâne „în stoc” pentru celelalte variante.
 - Teste rulate individual: product-stock 15/15, default-shipping-option 7/7, pdp-variant-selector 15/15, order-admin 8/8, order-customer 4/4; product-to-card 20/24 (cele 4 eșecuri vechi: format preț „Lei” și specs, neatinse de schimbare).
 - Neverificat: emailurile de comandă cu livrarea, până la prima comandă reală; selectarea variantei 60 în browser.
+
+## 2026-11-25 ~15:25 RO -- Cargus în producție
+- Andrei (25.11): Cargus nu apărea pe site (nu era pus pe live); Fan rămâne permanent lângă Cargus. Adresa de ridicare = sediul (Calea Baciului 1-3, 400230 Cluj-Napoca), `ORIGIN` neschimbat. DC: „da” pentru cheile Cargus în Railway și scrierea opțiunii în DB; proba card = comandă reală mică după activare.
+- Review independent înainte de merge: fără blocante pentru Fan/ridicare (observațiile de backlog în raport). Adresele salvate din producție au toate județul.
+- Backup DB înainte: `/srv/paperclip/backups/ardmag-prod-inainte-cargus-20261125.dump` (pg_dump 18, 136 tabele).
+- Master ff la ee34b3e (include harta din Contact: „Arc Rom Diamonds Calea Baciului, Cluj-Napoca”). Vercel Production READY ee34b3e. Backend: build local + `railway up` din rădăcină (`.railwayignore` temporar), deploy 05bd2bd9 SUCCESS.
+- Variabilele CARGUS_* copiate din staging în producție (aceleași valori, utilizator ardmag.api), redeploy 87fe03f7 SUCCESS; `cargus_cargus` activ în DB la 13:23 UTC.
+- Script opțiune: pe uscat apoi apply → `so_01M89E17JP3GT56XBR9VQ70ZG8`, depozitul Cluj legat de cargus_cargus. Regulile Fan sunt șterse soft în producție, deci opțiunea nouă nu are reguli, la fel ca Fan.
+- Verificat pe live (Store API, coșuri de probă fără comandă): Cluj 50 lei → Fan 19,11, Cargus card 44,60, Cargus ramburs 61,83, `source=cargus-api`; sesiune Stripe pentru Fan și Cargus card = 200; Cargus cotat card + ramburs → 400 cu mesajul pentru client; coș 550 lei → 0 la ambii curieri.
+- Neverificat: checkout-ul în browser, plata reală cu cardul (urmează comanda mică), pinul hărții din Contact. Fan a căzut o dată pe rezervă (18 lei) la o cotație lentă, comportament vechi.
+- Revenire: vezi runbook (întâi opțiunea, apoi flagul).
