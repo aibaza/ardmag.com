@@ -58,7 +58,7 @@ export default async function ContactPage({
         <div style={{ borderRadius: "var(--r-lg)", overflow: "hidden", height: 350 }}>
           <iframe
             title="Locatie ARC ROM DIAMONDS Cluj-Napoca"
-            src="https://maps.google.com/maps?q=Calea+Baciului+1-3+Cluj-Napoca&output=embed"
+            src="https://maps.google.com/maps?q=Arc+Rom+Diamonds+Calea+Baciului,+Cluj-Napoca&output=embed"
             width="100%"
             height="350"
             style={{ border: 0, display: "block" }}
