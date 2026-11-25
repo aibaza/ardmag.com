@@ -483,6 +483,18 @@
   .pcard-price .now{font-family:var(--f-mono);font-size:15px;font-weight:500}
   .pcard-price .was{font-family:var(--f-mono);font-size:11px;color:var(--stone-500);text-decoration:line-through;margin-top:1px}
 
+  /* Recenzii Google Maps (componenta oficială Google, la cerere) */
+  .google-reviews{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-sm);padding:20px 24px;margin:32px 0}
+  .google-reviews__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .google-reviews__eyebrow{font-size:11px;font-weight:500;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:0.08em;color:var(--fg-muted)}
+  .google-reviews__title{font-size:20px;margin:6px 0 4px}
+  .google-reviews__note{font-size:13px;color:var(--fg-muted);margin:0;max-width:620px}
+  .google-reviews__link{color:var(--brand-700);text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap}
+  .google-reviews__btn{margin-top:16px;padding:10px 16px;border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--stone-50);font:inherit;font-size:14px;cursor:pointer}
+  .google-reviews__btn:disabled{opacity:.6;cursor:progress}
+  .google-reviews__widget{display:block;width:100%;max-width:640px;height:560px;margin-top:16px;--gmp-mat-font-family:inherit;--gmp-star-rating-color:var(--brand-500)}
+  @media(max-width:520px){.google-reviews{padding:16px}.google-reviews__widget{height:520px}}
+
   /* Supplier strip in page */
   .supplier-strip{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-sm);padding:20px 24px;margin:32px 0}
   .supplier-strip header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;gap:12px;flex-wrap:wrap}

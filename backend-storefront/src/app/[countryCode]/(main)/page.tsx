@@ -7,6 +7,7 @@ import { getHeroFallback } from '@modules/sections/hero/hero-fallback'
 import { productToHero } from '@modules/sections/hero/product-to-hero'
 import { QuickCategories } from '@modules/sections/quick-categories'
 import { SupplierStrip } from '@modules/sections/supplier-strip'
+import { GoogleReviews } from '@modules/sections/google-reviews'
 import { ProductGrid } from '@modules/products/product-grid'
 import { SiteHeaderShell } from '@modules/layout/site-header'
 import { SiteFooter } from '@modules/layout/site-footer'
@@ -171,6 +172,9 @@ export default async function HomePage({ params }: Props) {
           { icon: <SecureIcon fill="none" strokeLinecap="round" />, title: "Distribuitor autorizat", subtitle: "Tenax · Sait · Delta" },
           { icon: <SupportIcon fill="none" strokeLinecap="round" />, title: "Suport tehnic", subtitle: "L-V 08-16 · RO" },
         ]} />
+
+        {/* Recenzii Google Maps */}
+        <GoogleReviews />
 
         {/* Supplier strip */}
         <SupplierStrip

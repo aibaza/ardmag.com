@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useTransition, useRef, useState } from 'react'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
+import { googleMapsProfileUrl } from '@modules/sections/google-reviews/google-maps-link'
 
 interface SiteFooterProps {
   countryCode?: string
@@ -70,7 +71,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
         <div className="brand-col">
           <a className="logo" href="/"><Image src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} loading="lazy" sizes="200px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
           <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
-          <div className="contact"><div className="phone">Tel. <a href="tel:+40722155441"><strong>+40 722 155 441</strong></a></div><div><a href="mailto:office@ardmag.ro">office@ardmag.ro</a></div><div>Calea Baciului 1-3 · Cluj-Napoca</div></div>
+          <div className="contact"><div className="phone">Tel. <a href="tel:+40722155441"><strong>+40 722 155 441</strong></a></div><div><a href="mailto:office@ardmag.ro">office@ardmag.ro</a></div><div>Calea Baciului 1-3 · Cluj-Napoca</div><div><a href={googleMapsProfileUrl(process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID)} target="_blank" rel="noopener noreferrer">Recenzii pe Google Maps</a></div></div>
         </div>
         <div><h3>Magazin</h3><ul><li><a href={allHref}>Toate produsele</a></li><li><a href="/promotii">Promoții</a></li></ul></div>
         <div><h3>Cont &amp; comenzi</h3><ul><li><a href="/account">Contul meu</a></li><li><a href="/account/orders">Comenzi &amp; facturi</a></li></ul></div>
