@@ -2070,7 +2070,10 @@ a.badge:hover{transform:translateY(-1px)}
 }
 @media(min-width:901px){
   .home-top .hero{padding:24px 0 20px}
-  .home-top .hero-main{min-height:424px;padding:40px 44px}
+  /* 440px: articolul de sus ramane cu 189px, destul pentru titlu pe 2 randuri +
+     descrierea pe 2 randuri la hover, fara sa taie textul */
+  .home-top .hero-main{min-height:440px;padding:40px 44px}
+  .home-top .hero-side .hero-card{padding:18px 22px}
   /* cardul de recenzii pastreaza inaltimea de dinainte (235px); articolul ia restul */
   .home-top .hero-side--reviews{grid-template-rows:minmax(0,1fr) 235px}
 }
@@ -2087,6 +2090,7 @@ a.badge:hover{transform:translateY(-1px)}
   .home-top{display:flex;flex-direction:column}
   .home-top .quick-cats{order:-2;padding:16px 0 4px}
   .home-top .home-all-link{order:-1;display:block;align-self:flex-end;margin:6px 0 0;font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--stone-700);text-decoration:none}
+  [data-theme="dark"] .home-top .home-all-link{color:var(--stone-300)}
   .home-top .home-all-link:hover{color:var(--brand-700)}
   .home-top .hero{padding-top:16px}
 }
@@ -2101,9 +2105,15 @@ a.badge:hover{transform:translateY(-1px)}
 @media(max-width:900px){
   .home-top .qc{flex-direction:row;align-items:center;text-align:left;gap:8px;padding:8px 8px 8px 6px;min-height:60px}
   .home-top .qc .real{width:44px;height:44px;flex:none;padding:0;margin:0;overflow:visible}
-  .home-top .qc .label{font-size:14px;line-height:1.25;min-width:0}
+  .home-top .qc .label{font-size:16px;line-height:1.25;min-width:0}
   .home-top .qc .count{top:3px;left:34px;right:auto;font-size:10px;padding:1px 5px}
 }
+/* acelasi corp de titlu (16px); 14px numai unde „Promoționale” nu ar incapea
+   fara rupere in cuvant (masurat: sub 375px si 720–739px) */
+@media(max-width:374px),(min-width:720px) and (max-width:739px){
+  .home-top .qc .label{font-size:14px}
+}
+@media(max-width:340px){.home-top .qc .label{font-size:13px}.home-top .qc .real{width:36px;height:36px}.home-top .qc .count{left:26px}}
 @media(max-width:720px){
   .home-promo .mini-grid>:nth-child(n+5){display:none}
 }
