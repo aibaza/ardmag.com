@@ -111,7 +111,9 @@ export function HeroReviewCard({ date }: { date: RecenziiHero }) {
   const n = date.recenzii.length
   const r = date.recenzii[i % n]
   const nota = date.nota.toLocaleString("ro-RO", { minimumFractionDigits: 1, maximumFractionDigits: 1 })
-  const recenziiText = date.total === 1 ? "recenzie" : "recenzii"
+  // română: 1 recenzie, 2–19 recenzii, 20+ (și 101–119 nu) „de recenzii”
+  const r100 = date.total % 100
+  const recenziiText = date.total === 1 ? "recenzie" : (date.total >= 20 && (r100 === 0 || r100 >= 20)) ? "de recenzii" : "recenzii"
 
   return (
     <section className="hrc" aria-label="Recenzii Google">
