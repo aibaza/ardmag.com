@@ -6,16 +6,17 @@ interface PDPPriceCardProps {
   save?: string
   priceNoTax?: string
   unitLabel?: string
+  priceUnit?: string
   promotionNotice?: string
   promoLabel?: string
   promoDate?: string
 }
 
-export function PDPPriceCard({ price, was, save, priceNoTax, unitLabel, promotionNotice, promoLabel, promoDate }: PDPPriceCardProps) {
+export function PDPPriceCard({ price, was, save, priceNoTax, unitLabel, priceUnit, promotionNotice, promoLabel, promoDate }: PDPPriceCardProps) {
   return (
     <div className="pdp-price-card">
       <div className="pdp-price-row">
-        <span className="pdp-price"><FormattedPrice value={price} /></span>
+        <span className="pdp-price"><FormattedPrice value={price} />{priceUnit && <span className="pdp-price-unit"> / {priceUnit}</span>}</span>
         {was && <span className="pdp-was"><FormattedPrice value={was} /></span>}
         {save && <span className="pdp-save">{save}</span>}
       </div>

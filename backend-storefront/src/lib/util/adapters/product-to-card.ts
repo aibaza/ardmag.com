@@ -3,7 +3,7 @@ import { formatPrice, getProductMinPriceWithOriginal } from "./format-price"
 import { tenaxPromoNotice } from "./tenax-promo-notice"
 import { productToBadges } from "./product-to-badges"
 import { imageVariant } from "@lib/util/image-variant"
-import { isVariantInStock } from "@lib/util/product"
+import { isContactToOrderVariant, isVariantInStock, productUnitLabel } from "@lib/util/product"
 
 type BadgeType = "promo" | "new" | "stock-low" | "custom"
 
@@ -24,6 +24,10 @@ interface ProductCardProduct {
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
   defaultVariantSoldOut: boolean
+  // Varianta implicita se comanda numai telefonic: cardul nu adauga in cos.
+  contactToOrder: boolean
+  // Unitatea pretului afisat (ex. "kg"), doar cand exista pret.
+  priceUnit?: string
 }
 
 // Plural in romana pentru axele de varianta cunoscute (din DB).
@@ -159,6 +163,8 @@ export function productToCard(
   // Relevant doar cand cardul adauga direct in cos (o singura varianta).
   const defaultVariantSoldOut =
     !hasMultipleRealVariants && firstVariant != null && !isVariantInStock(firstVariant)
+  const contactToOrder = !hasMultipleRealVariants && isContactToOrderVariant(firstVariant)
+  const priceUnit = priceInfo === null ? undefined : productUnitLabel(product)
 
   return {
     id: product.id,
@@ -177,5 +183,7 @@ export function productToCard(
     defaultVariantId,
     hasMultipleRealVariants,
     defaultVariantSoldOut,
+    contactToOrder,
+    priceUnit,
   }
 }

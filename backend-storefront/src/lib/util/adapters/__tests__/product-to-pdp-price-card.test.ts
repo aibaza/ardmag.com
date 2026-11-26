@@ -176,3 +176,41 @@ describe("confirmed Total Wet gross and net prices", () => {
     expect(result.priceNoTax).toBe(expectedNet)
   })
 })
+
+describe("unitatea pretului din product.metadata.unit_label", () => {
+  it("unit_label kg -> priceUnit si unitLabel", () => {
+    const result = productToPdpPriceCard(
+      makeVariant({ calculated_price: { calculated_amount: 38 } }),
+      makeProduct({ metadata: { unit_label: "kg" } })
+    )
+    expect(result.price).toBe("38,00 Lei")
+    expect(result.priceUnit).toBe("kg")
+    expect(result.unitLabel).toBe("preț pe kg")
+  })
+
+  it("unitatea ramane si la pret promotional", () => {
+    const result = productToPdpPriceCard(
+      makeVariant({ calculated_price: { calculated_amount: 30, original_amount: 38 } }),
+      makeProduct({ metadata: { unit_label: "kg" } })
+    )
+    expect(result.was).toBe("38,00 Lei")
+    expect(result.priceUnit).toBe("kg")
+  })
+
+  it("fara unit_label -> fara unitate", () => {
+    const result = productToPdpPriceCard(
+      makeVariant({ calculated_price: { calculated_amount: 38 } }),
+      makeProduct({})
+    )
+    expect(result.priceUnit).toBeUndefined()
+    expect(result.unitLabel).toBeUndefined()
+  })
+
+  it("Preț la cerere nu primeste unitate", () => {
+    const result = productToPdpPriceCard(
+      makeVariant({ calculated_price: null }),
+      makeProduct({ metadata: { unit_label: "kg" } })
+    )
+    expect(result.priceUnit).toBeUndefined()
+  })
+})

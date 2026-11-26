@@ -271,3 +271,71 @@ describe("productToCard - stoc pentru adaugarea directa", () => {
     expect(card.defaultVariantSoldOut).toBe(false)
   })
 })
+
+describe("productToCard - comanda telefonica si unitate de pret", () => {
+  it("varianta unica cu contact_to_order -> contactToOrder, chiar fara stoc", () => {
+    const card = productToCard(
+      makeProduct({
+        variants: [
+          {
+            id: "variant_01KPH3QWQYSG5KQZCSCA8603KB",
+            manage_inventory: true,
+            allow_backorder: false,
+            inventory_quantity: 0,
+            metadata: { contact_to_order: true },
+            calculated_price: { calculated_amount: 38, original_amount: null },
+          },
+        ],
+      })
+    )
+    expect(card.contactToOrder).toBe(true)
+  })
+
+  it("fara flag sau cu flag false -> contactToOrder false", () => {
+    expect(productToCard(makeProduct({})).contactToOrder).toBe(false)
+    const card = productToCard(
+      makeProduct({ variants: [{ id: "v1", metadata: { contact_to_order: false } }] })
+    )
+    expect(card.contactToOrder).toBe(false)
+  })
+
+  it("produs cu mai multe variante nu e contactToOrder pe card (Alege duce la PDP)", () => {
+    const card = productToCard(
+      makeProduct({
+        variants: [
+          { id: "v1", metadata: { contact_to_order: true } },
+          { id: "v2", metadata: null },
+        ],
+      })
+    )
+    expect(card.contactToOrder).toBe(false)
+  })
+
+  it("metadata.unit_label -> priceUnit langa pret", () => {
+    const card = productToCard(
+      makeProduct({
+        metadata: { unit_label: "kg" },
+        variants: [{ id: "v1", calculated_price: { calculated_amount: 38, original_amount: null } }],
+      })
+    )
+    expect(card.price.now).toBe("38,00 Lei")
+    expect(card.priceUnit).toBe("kg")
+  })
+
+  it("fara unit_label sau cu unit_label gol -> fara priceUnit", () => {
+    expect(productToCard(makeProduct({})).priceUnit).toBeUndefined()
+    const card = productToCard(makeProduct({ metadata: { unit_label: "  " } }))
+    expect(card.priceUnit).toBeUndefined()
+  })
+
+  it("Preț la cerere nu primeste unitate", () => {
+    const card = productToCard(
+      makeProduct({
+        metadata: { unit_label: "kg" },
+        variants: [{ id: "v1", calculated_price: null }],
+      })
+    )
+    expect(card.price.now).toBe("Preț la cerere")
+    expect(card.priceUnit).toBeUndefined()
+  })
+})

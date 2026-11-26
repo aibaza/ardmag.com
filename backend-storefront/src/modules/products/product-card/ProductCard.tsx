@@ -24,6 +24,8 @@ interface ProductCardProps {
     defaultVariantId: string | null
     hasMultipleRealVariants: boolean
     defaultVariantSoldOut?: boolean
+    contactToOrder?: boolean
+    priceUnit?: string
   }
   countryCode: string
   // true pentru cardurile above-the-fold (primul rand din grila): imaginea devine
@@ -44,12 +46,13 @@ export function ProductCard({ product, countryCode, imagePriority = false }: Pro
         </div>
       </div>
       <div className="pcard-foot">
-        <div className="pcard-price"><span className="now"><FormattedPrice value={product.price.now} /></span>{product.price.was && <span className="was"><FormattedPrice value={product.price.was} /></span>}</div>
+        <div className="pcard-price"><span className="now"><FormattedPrice value={product.price.now} />{product.priceUnit && <span className="unit"> / {product.priceUnit}</span>}</span>{product.price.was && <span className="was"><FormattedPrice value={product.price.was} /></span>}</div>
         <ProductCardAddButton
           href={product.href}
           defaultVariantId={product.defaultVariantId}
           hasMultipleRealVariants={product.hasMultipleRealVariants}
           soldOut={product.defaultVariantSoldOut === true}
+          contactToOrder={product.contactToOrder === true}
           countryCode={countryCode}
         />
       </div>
