@@ -480,6 +480,8 @@
   .pcard-sku{font-family:var(--f-mono);font-size:11px;color:var(--stone-500)}
   .pcard-foot{margin-top:auto;padding:10px 16px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--stone-50)}
   .pcard-price{display:flex;flex-direction:column;line-height:1.1}
+  .pcard-foot.is-phone-order{flex-wrap:wrap}
+  .pcard-foot.is-phone-order .btn{flex:1 1 auto;justify-content:center;white-space:nowrap}
   .pcard-price .now{font-family:var(--f-mono);font-size:15px;font-weight:500}
   .pcard-price .now .unit{font-size:11px;font-weight:400;color:var(--stone-500)}
   .pcard-price .was{font-family:var(--f-mono);font-size:11px;color:var(--stone-500);text-decoration:line-through;margin-top:1px}

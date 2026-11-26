@@ -45,7 +45,7 @@ export function ProductCard({ product, countryCode, imagePriority = false }: Pro
           {product.specs?.map((s, i) => <ProductCardSpecTag key={i} label={s} />)}
         </div>
       </div>
-      <div className="pcard-foot">
+      <div className={product.contactToOrder ? "pcard-foot is-phone-order" : "pcard-foot"}>
         <div className="pcard-price"><span className="now"><FormattedPrice value={product.price.now} />{product.priceUnit && <span className="unit"> / {product.priceUnit}</span>}</span>{product.price.was && <span className="was"><FormattedPrice value={product.price.was} /></span>}</div>
         <ProductCardAddButton
           href={product.href}
