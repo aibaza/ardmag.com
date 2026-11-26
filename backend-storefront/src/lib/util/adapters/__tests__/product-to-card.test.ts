@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { productToCard } from "../product-to-card"
+import { productToCard, formatOptionValue } from "../product-to-card"
 import { imageVariant } from "../../image-variant"
 import type { HttpTypes } from "@medusajs/types"
 
@@ -165,29 +165,54 @@ describe("productToCard", () => {
     expect(card.price.was).toBeUndefined()
   })
 
-  it("extracts specs from first variant options", () => {
+  function variant(id: string, opts: Array<[string, string]>): TestVariant {
+    return {
+      id,
+      sku: id,
+      calculated_price: { calculated_amount: 5000, original_amount: null },
+      options: opts.map(([title, value], i) => ({
+        id: `${id}-ov${i}`,
+        value,
+        option: { id: `o-${title}`, title, product_id: "prod_1" },
+      })),
+    } as TestVariant
+  }
+
+  it("builds variant specs with readable values for the tooltip (Solido)", () => {
+    const colors = ["ALB", "BEJ", "NEGRU", "JURA"]
+    const sizes = ["4 LITRI", "1 LITRU", "18 LITRI"]
+    const variants = colors.flatMap((c) => sizes.map((q) => variant(`${c}-${q}`, [["CULOARE", c], ["CANTITATE", q]])))
+    const card = productToCard(makeProduct({ variants }))
+    expect(card.specs).toEqual([
+      { label: "4 culori", values: ["Alb", "Bej", "Negru", "Jura"] },
+      { label: "3 ambalaje", values: ["1 L", "4 L", "18 L"] },
+    ])
+  })
+
+  it("skips axes with a single value", () => {
     const card = productToCard(makeProduct({}))
-    expect(card.specs).toEqual(["CULOARE", "CANTITATE"])
+    expect(card.specs).toBeUndefined()
   })
 
   it("limits specs to max 3", () => {
     const product = makeProduct({
-      variants: [
-        {
-          id: "v1",
-          sku: "SKU1",
-          calculated_price: { calculated_amount: 5000, original_amount: null },
-          options: [
-            { id: "ov1", value: "A", option: { id: "o1", title: "OPT1", product_id: "prod_1" } },
-            { id: "ov2", value: "B", option: { id: "o2", title: "OPT2", product_id: "prod_1" } },
-            { id: "ov3", value: "C", option: { id: "o3", title: "OPT3", product_id: "prod_1" } },
-            { id: "ov4", value: "D", option: { id: "o4", title: "OPT4", product_id: "prod_1" } },
-          ],
-        },
-      ],
+      variants: ["A", "B"].map((v) => variant(v, [["OPT1", v], ["OPT2", v], ["OPT3", v], ["OPT4", v]])),
     })
     const card = productToCard(product)
     expect(card.specs).toHaveLength(3)
+  })
+
+  it.each([
+    ["BUCATĂ (1 BUC.)", "Bucată (1 buc.)"],
+    ["CUTIE (10 BUC.)", "Cutie (10 buc.)"],
+    ["A (1 L) + B (1 L)", "A (1 L) + B (1 L)"],
+    ["700 GRAME", "700 g"],
+    ["5 KG", "5 kg"],
+    ["CERAMICĂ CC", "Ceramică CC"],
+    ["6 mm", "6 mm"],
+    ["SILENȚIOS TLS", "Silențios TLS"],
+  ])("formats option value %s -> %s", (raw, expected) => {
+    expect(formatOptionValue(raw)).toBe(expected)
   })
 
   it("sets empty string brand when no brand tag", () => {

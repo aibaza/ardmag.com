@@ -1,11 +1,17 @@
 import type { HttpTypes } from "@medusajs/types"
 import { formatPrice, getProductMinPriceWithOriginal } from "./format-price"
-import { tenaxPromoNotice } from "./tenax-promo-notice"
+import { tenaxPromoOffer, type TenaxPromoOffer } from "./tenax-promo-notice"
 import { productToBadges } from "./product-to-badges"
 import { imageVariant } from "@lib/util/image-variant"
 import { isVariantInStock } from "@lib/util/product"
 
 type BadgeType = "promo" | "new" | "stock-low" | "custom"
+
+/** Eticheta de pe card ("4 culori") si valorile ei, afisate in tooltip. */
+export interface CardSpec {
+  label: string
+  values: string[]
+}
 
 interface ProductCardProduct {
   id: string
@@ -19,8 +25,8 @@ interface ProductCardProduct {
   href: string
   price: { now: string; was?: string }
   badges?: Array<{ type: BadgeType; label: string; dotVariant?: boolean }>
-  promoNote?: string
-  specs?: string[]
+  promoOffer?: TenaxPromoOffer
+  specs?: CardSpec[]
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
   defaultVariantSoldOut: boolean
@@ -29,7 +35,8 @@ interface ProductCardProduct {
 // Plural in romana pentru axele de varianta cunoscute (din DB).
 // Folosit pentru "{count} {plural}" in specs.
 const AXIS_PLURAL: Record<string, string> = {
-  "CANTITATE": "cantități",
+  // Valorile reale: litri, kg, grame, bucată/cutie/bax, kituri A+B -> toate sunt ambalaje.
+  "CANTITATE": "ambalaje",
   "DIAMETRU": "diametre",
   "GRANULAȚIE": "granulații",
   "DENUMIRE": "denumiri",
@@ -53,6 +60,35 @@ const AXIS_PLURAL: Record<string, string> = {
   "TIP PAD": "tipuri pad",
   "TIP POMPĂ": "tipuri pompă",
   "TIP TANGENȚIAL": "tipuri tangențial",
+}
+
+// Unitati scrise lizibil in tooltip ("1 LITRU" -> "1 L").
+const UNIT_TOKENS: Record<string, string> = {
+  "LITRU": "L", "LITRI": "L", "KG": "kg", "GRAME": "g", "GRAM": "g", "BUC.": "buc.", "BUC": "buc",
+}
+// Acronime de 3+ litere care raman majuscule.
+const KEEP_UPPER = new Set(["TLS"])
+
+/** "ALB" -> "Alb", "5 LITRI" -> "5 L", "CERAMICĂ CC" -> "Ceramică CC". */
+export function formatOptionValue(raw: string): string {
+  const out = raw.trim().split(/\s+/).map((tok) => {
+    const m = tok.match(/^(\(?)(.*?)(\)?,?)$/)
+    const [, pre, core, post] = m ?? ["", "", tok, ""]
+    const upper = core.toUpperCase()
+    let w: string
+    if (UNIT_TOKENS[upper] !== undefined) w = UNIT_TOKENS[upper]
+    else if (/\d/.test(core) || core.replace(/[^A-Za-z\u00C0-\u024F]/g, "").length <= 2 || KEEP_UPPER.has(upper)) w = core
+    else w = core.toLocaleLowerCase("ro-RO")
+    return pre + w + post
+  }).join(" ")
+  return out.charAt(0).toLocaleUpperCase("ro-RO") + out.slice(1)
+}
+
+/** Valorile care incep cu un numar se ordoneaza crescator; celelalte pastreaza ordinea din catalog, dupa ele. */
+function orderValues(values: string[]): string[] {
+  const num = (v: string) => { const m = v.match(/^\s*(\d+(?:[.,]\d+)?)/); return m ? parseFloat(m[1].replace(",", ".")) : null }
+  const numeric = values.filter((v) => num(v) !== null).sort((a, b) => num(a)! - num(b)!)
+  return [...numeric, ...values.filter((v) => num(v) === null)]
 }
 
 function axisLabel(axis: string, count: number): string {
@@ -146,11 +182,14 @@ export function productToCard(
       axisValues.get(title)!.add(String(value))
     }
   }
-  const specs: string[] = []
+  const specs: CardSpec[] = []
   for (const [title, values] of Array.from(axisValues.entries())) {
     if (values.size <= 1) continue
     if (specs.length >= 3) break
-    specs.push(axisLabel(title, values.size))
+    specs.push({
+      label: axisLabel(title, values.size),
+      values: orderValues(Array.from(values)).map(formatOptionValue),
+    })
   }
 
   const defaultVariantId = product.variants?.[0]?.id ?? null
@@ -172,7 +211,7 @@ export function productToCard(
     href,
     price: { now: priceNow, was: priceWas },
     badges: productToBadges(product),
-    promoNote: tenaxPromoNotice(product),
+    promoOffer: tenaxPromoOffer(product),
     specs: specs.length > 0 ? specs : undefined,
     defaultVariantId,
     hasMultipleRealVariants,

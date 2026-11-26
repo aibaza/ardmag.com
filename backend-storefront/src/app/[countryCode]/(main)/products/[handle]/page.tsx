@@ -12,7 +12,7 @@ import { listProducts } from "@lib/data/products"
 import { listRegions } from "@lib/data/regions"
 import { productToPdpGallery } from "@lib/util/adapters/product-to-pdp-gallery"
 import { productToPdpVariantSelector } from "@lib/util/adapters/product-to-pdp-variant-selector"
-import { tenaxPromoNotice } from "@lib/util/adapters/tenax-promo-notice"
+import { tenaxPromoOffer } from "@lib/util/adapters/tenax-promo-notice"
 import { productToPdpPriceCard } from "@lib/util/adapters/product-to-pdp-price-card"
 import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
@@ -191,7 +191,7 @@ export default async function ProductPage(props: Props) {
             {...priceCardProps}
             unitPrice={rawPrice}
             currencyCode={viewCurrency}
-            promotionNotice={tenaxPromoNotice(product, selectedVariant?.id)}
+            promotionOffer={tenaxPromoOffer(product, selectedVariant?.id)}
             variantGroups={variantGroups}
             stockLabel={stockLabel}
             stockLocation={stockLocation}

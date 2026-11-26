@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Badge, NewProductRibbon } from '@modules/@shared/components/badge'
-import { ProductCardSpecTag } from '@modules/@shared/components/product-card-spec-tag'
+import { ProductCardSpecTag, type ProductCardSpec } from '@modules/@shared/components/product-card-spec-tag'
+import { PromoOfferNote } from '@modules/@shared/components/promo-offer-note'
 import { FormattedPrice } from '@modules/@shared/components/formatted-price'
 import { ProductCardAddButton } from './ProductCardAddButton'
 
@@ -19,8 +20,8 @@ interface ProductCardProps {
     href: string
     price: { now: string; was?: string }
     badges?: Array<{ type: BadgeType; label: string; dotVariant?: boolean }>
-    promoNote?: string
-    specs?: string[]
+    promoOffer?: { headline: string; detail: string }
+    specs?: Array<string | ProductCardSpec>
     defaultVariantId: string | null
     hasMultipleRealVariants: boolean
     defaultVariantSoldOut?: boolean
@@ -38,9 +39,11 @@ export function ProductCard({ product, countryCode, imagePriority = false }: Pro
       <div className="pcard-body">
         <a className="pcard-brand" href={product.brandHref}>{product.brand}</a>
         <h4 className="pcard-title"><a href={product.href}>{product.title}</a></h4>
-        {product.promoNote && <p className="tenax-promo-note">{product.promoNote}</p>}
-        <div style={{ display: 'flex', gap: '6px', marginTop: '6px', flexWrap: 'wrap', minHeight: '28px' }}>
-          {product.specs?.map((s, i) => <ProductCardSpecTag key={i} label={s} />)}
+        {product.promoOffer && <PromoOfferNote offer={product.promoOffer} />}
+        <div className="pcard-specs">
+          {product.specs?.map((s, i) => typeof s === 'string'
+            ? <ProductCardSpecTag key={i} label={s} />
+            : <ProductCardSpecTag key={i} label={s.label} values={s.values} />)}
         </div>
       </div>
       <div className="pcard-foot">

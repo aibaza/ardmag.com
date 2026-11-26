@@ -39,7 +39,7 @@ interface PDPSummaryProps {
   save?: string
   priceNoTax?: string
   unitLabel?: string
-  promotionNotice?: string
+  promotionOffer?: { headline: string; detail: string }
   promoLabel?: string
   promoDate?: string
   variantGroups: VariantGroup[]
@@ -53,7 +53,7 @@ interface PDPSummaryProps {
   contactToOrder?: boolean
 }
 
-export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, unitPrice, currencyCode, was, save, priceNoTax, unitLabel, promotionNotice, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, canAddToCart, perks, contactToOrder }: PDPSummaryProps) {
+export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, unitPrice, currencyCode, was, save, priceNoTax, unitLabel, promotionOffer, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, canAddToCart, perks, contactToOrder }: PDPSummaryProps) {
   return (
     <aside className="pdp-summary">
 
@@ -69,7 +69,7 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
       {rating.reviewCount > 0 ? <StarRating score={rating.score} reviewCount={rating.reviewCount} /> : null}
 
       {/* Price card */}
-      <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} promotionNotice={promotionNotice} />
+      <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} promotionOffer={promotionOffer} />
 
       {/* Variants */}
       <PDPVariantSelector groups={variantGroups} />
