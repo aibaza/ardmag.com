@@ -9,6 +9,8 @@
 // DOM, deci resetarea e invizibila. Pauza la hover si tab ascuns;
 // prefers-reduced-motion dezactiveaza total glisarea. Sub 3 carduri se
 // randeaza gridul static clasic (HeroSide ramane fallback-ul server-side).
+// slots=1: un singur card vizibil (randul de sus al coloanei, cand jos sta
+// cardul de recenzii Google); track-ul tine 2 carduri, rotatia e aceeasi.
 
 import { useEffect, useRef, useState } from 'react'
 import { abTrack } from '@lib/util/ab-track'
@@ -27,12 +29,14 @@ interface HeroSideCard {
 interface HeroSideTickerProps {
   cards: HeroSideCard[]
   tickMs?: number
+  /** carduri vizibile simultan: 2 (coloana intreaga) sau 1 (randul de sus) */
+  slots?: 1 | 2
 }
 
 const GAP = 16
 const SLIDE_MS = 650
 
-export function HeroSideTicker({ cards, tickMs = 10000 }: HeroSideTickerProps) {
+export function HeroSideTicker({ cards, tickMs = 10000, slots = 2 }: HeroSideTickerProps) {
   const [start, setStart] = useState(0)
   const [sliding, setSliding] = useState(false)
   const [cardH, setCardH] = useState<number | null>(null)
@@ -44,22 +48,23 @@ export function HeroSideTicker({ cards, tickMs = 10000 }: HeroSideTickerProps) {
     reducedMotionRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const el = wrapRef.current
     if (!el) return
-    const measure = () => setCardH((el.clientHeight - GAP) / 2)
+    const measure = () => setCardH((el.clientHeight - GAP * (slots - 1)) / slots)
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(el)
     return () => ro.disconnect()
-  }, [])
+  }, [slots])
 
   // programat pe grila ceasului cu offset de JUMATATE de perioada: comuta
   // exact in contratimp cu rotatia variantelor de hero (offset 0)
+  const rotates = cards.length > slots
   useEffect(() => {
-    if (cards.length < 3 || reducedMotionRef.current) return
+    if (!rotates || reducedMotionRef.current) return
     return scheduleOnWallClockGrid(tickMs, tickMs / 2, () => {
       if (pausedRef.current || document.hidden) return
       setSliding(true)
     })
-  }, [cards.length, tickMs])
+  }, [rotates, tickMs])
 
   const onSlideEnd = () => {
     if (!sliding) return
@@ -67,12 +72,14 @@ export function HeroSideTicker({ cards, tickMs = 10000 }: HeroSideTickerProps) {
     setSliding(false)
   }
 
-  const visible = [0, 1, 2].map((i) => cards[(start + i) % cards.length])
+  // slots+1 carduri (ultimul ascuns sub margine); fara rotatie, doar cele vizibile
+  const count = rotates ? slots + 1 : Math.min(slots, cards.length)
+  const visible = Array.from({ length: count }, (_, i) => cards[(start + i) % cards.length])
 
   return (
     <div
       ref={wrapRef}
-      className="hero-side hero-side-ticker"
+      className={slots === 1 ? 'hero-side-ticker hero-side-ticker--one' : 'hero-side hero-side-ticker'}
       onMouseEnter={() => { pausedRef.current = true }}
       onMouseLeave={() => { pausedRef.current = false }}
     >
@@ -90,8 +97,8 @@ export function HeroSideTicker({ cards, tickMs = 10000 }: HeroSideTickerProps) {
             className="hero-card with-img"
             href={card.ctaHref}
             aria-label={`${card.kicker}: ${card.title}`}
-            aria-hidden={i === 2 ? true : undefined}
-            tabIndex={i === 2 ? -1 : undefined}
+            aria-hidden={i >= slots ? true : undefined}
+            tabIndex={i >= slots ? -1 : undefined}
             onClick={() => abTrack('hero_side_click', { slug: card.ctaHref.slice(0, 80), pos: i })}
           >
             <img className="hcard-bg" src={card.image} alt="" aria-hidden="true" width={800} height={450} loading="lazy" />

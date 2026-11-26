@@ -12,13 +12,14 @@ import { listProducts } from "@lib/data/products"
 import { listRegions } from "@lib/data/regions"
 import { productToPdpGallery } from "@lib/util/adapters/product-to-pdp-gallery"
 import { productToPdpVariantSelector } from "@lib/util/adapters/product-to-pdp-variant-selector"
-import { tenaxPromoNotice } from "@lib/util/adapters/tenax-promo-notice"
+import { tenaxPromoOffer } from "@lib/util/adapters/tenax-promo-notice"
 import { productToPdpPriceCard } from "@lib/util/adapters/product-to-pdp-price-card"
 import { productToCard } from "@lib/util/adapters/product-to-card"
 import { HttpTypes } from "@medusajs/types"
 import { ProductJsonLd } from "@lib/util/json-ld"
 import { ViewContentTracker } from "@modules/analytics/ViewContentTracker"
 import { getPdpStockLabel, isProductOutOfStock, isVariantInStock, pickPdpVariant } from "@lib/util/product"
+import { splitTechSpecs } from "@lib/util/tech-specs"
 
 export const revalidate = 300
 
@@ -142,6 +143,9 @@ export default async function ProductPage(props: Props) {
   ]
 
   const description = product.description ?? ""
+  // „Caracteristici tehnice” devine tabel langa descriere numai cand lista e curata (cheie: valoare);
+  // altfel descrierea ramane exact cum e.
+  const techSpecs = splitTechSpecs(description)
 
   const firstVariant = variants[0] ?? { sku: null, ean: null }
 
@@ -191,7 +195,7 @@ export default async function ProductPage(props: Props) {
             {...priceCardProps}
             unitPrice={rawPrice}
             currencyCode={viewCurrency}
-            promotionNotice={tenaxPromoNotice(product, selectedVariant?.id)}
+            promotionOffer={tenaxPromoOffer(product, selectedVariant?.id)}
             variantGroups={variantGroups}
             stockLabel={stockLabel}
             stockLocation={stockLocation}
@@ -208,7 +212,27 @@ export default async function ProductPage(props: Props) {
           tabs={[
             {
               label: "Descriere",
-              content: description ? (
+              content: techSpecs ? (
+                <div className="pdp-desc-specs">
+                  <div
+                    className="pdp-description"
+                    dangerouslySetInnerHTML={{ __html: techSpecs.rest }}
+                  />
+                  <aside className="pdp-specs">
+                    <h2 className="pdp-specs__title">{techSpecs.heading}</h2>
+                    <table>
+                      <tbody>
+                        {techSpecs.rows.map(([key, value], i) => (
+                          <tr key={i}>
+                            <th scope="row">{key}</th>
+                            <td>{value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </aside>
+                </div>
+              ) : description ? (
                 <div
                   className="pdp-description"
                   dangerouslySetInnerHTML={{ __html: description }}

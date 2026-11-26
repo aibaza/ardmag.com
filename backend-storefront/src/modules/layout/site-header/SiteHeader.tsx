@@ -124,10 +124,7 @@ export function SiteHeader({
           <a href="tel:+40722155441">Tel. +40 722 155 441</a>
           <span className="divider">·</span>
           <span>L-V 08:00-16:00</span>
-          <div className="right">
-            <a href="/blog">Blog</a>
-            <ThemeToggle />
-          </div>
+          {/* V2: Blog si comutatorul de tema stau in subsol (si in meniul mobil) */}
         </div></div>
 
         {/* Desktop: main bar */}

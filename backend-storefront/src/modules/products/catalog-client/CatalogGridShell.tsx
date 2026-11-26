@@ -13,10 +13,12 @@ interface ProductGridItem {
   href: string
   price: { now: string; was?: string }
   badges?: Array<{ type: BadgeType; label: string; dotVariant?: boolean }>
-  specs?: string[]
+  specs?: Array<string | { label: string; values?: string[] }>
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
   defaultVariantSoldOut?: boolean
+  contactToOrder?: boolean
+  priceUnit?: string
 }
 
 // Aceeasi forma ca CatalogItem din CatalogClient (doar campul "card" ne intereseaza aici).

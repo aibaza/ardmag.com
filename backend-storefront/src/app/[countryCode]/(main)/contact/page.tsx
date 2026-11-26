@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { SiteHeaderShell } from "@modules/layout/site-header"
 import { SiteFooter } from "@modules/layout/site-footer"
 import { ContactForm } from "./ContactForm"
+import { googleMapsProfileUrl } from '@modules/sections/google-reviews/google-maps-link'
 
 export const metadata: Metadata = {
   title: "Contact | ARDmag.ro",
@@ -42,6 +43,11 @@ export default async function ContactPage({
               </li>
               <li><strong>Adresa:</strong> Calea Baciului 1-3, Cluj-Napoca 400230</li>
               <li><strong>Program:</strong> Luni-Vineri, 08:00-16:00</li>
+              <li><strong>Recenzii:</strong>{" "}
+                <a href={googleMapsProfileUrl(process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID)} target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-600)" }}>
+                  pe Google Maps
+                </a>
+              </li>
             </ul>
 
             <div style={{ marginTop: 24, background: "var(--surface-raised)", borderRadius: "var(--r-md)", padding: "16px 20px" }}>

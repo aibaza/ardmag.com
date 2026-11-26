@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { productToCard } from "../product-to-card"
+import { productToCard, formatOptionValue } from "../product-to-card"
 import { imageVariant } from "../../image-variant"
 import type { HttpTypes } from "@medusajs/types"
 
@@ -165,29 +165,54 @@ describe("productToCard", () => {
     expect(card.price.was).toBeUndefined()
   })
 
-  it("extracts specs from first variant options", () => {
+  function variant(id: string, opts: Array<[string, string]>): TestVariant {
+    return {
+      id,
+      sku: id,
+      calculated_price: { calculated_amount: 5000, original_amount: null },
+      options: opts.map(([title, value], i) => ({
+        id: `${id}-ov${i}`,
+        value,
+        option: { id: `o-${title}`, title, product_id: "prod_1" },
+      })),
+    } as TestVariant
+  }
+
+  it("builds variant specs with readable values for the tooltip (Solido)", () => {
+    const colors = ["ALB", "BEJ", "NEGRU", "JURA"]
+    const sizes = ["4 LITRI", "1 LITRU", "18 LITRI"]
+    const variants = colors.flatMap((c) => sizes.map((q) => variant(`${c}-${q}`, [["CULOARE", c], ["CANTITATE", q]])))
+    const card = productToCard(makeProduct({ variants }))
+    expect(card.specs).toEqual([
+      { label: "4 culori", values: ["Alb", "Bej", "Negru", "Jura"] },
+      { label: "3 ambalaje", values: ["1 L", "4 L", "18 L"] },
+    ])
+  })
+
+  it("skips axes with a single value", () => {
     const card = productToCard(makeProduct({}))
-    expect(card.specs).toEqual(["CULOARE", "CANTITATE"])
+    expect(card.specs).toBeUndefined()
   })
 
   it("limits specs to max 3", () => {
     const product = makeProduct({
-      variants: [
-        {
-          id: "v1",
-          sku: "SKU1",
-          calculated_price: { calculated_amount: 5000, original_amount: null },
-          options: [
-            { id: "ov1", value: "A", option: { id: "o1", title: "OPT1", product_id: "prod_1" } },
-            { id: "ov2", value: "B", option: { id: "o2", title: "OPT2", product_id: "prod_1" } },
-            { id: "ov3", value: "C", option: { id: "o3", title: "OPT3", product_id: "prod_1" } },
-            { id: "ov4", value: "D", option: { id: "o4", title: "OPT4", product_id: "prod_1" } },
-          ],
-        },
-      ],
+      variants: ["A", "B"].map((v) => variant(v, [["OPT1", v], ["OPT2", v], ["OPT3", v], ["OPT4", v]])),
     })
     const card = productToCard(product)
     expect(card.specs).toHaveLength(3)
+  })
+
+  it.each([
+    ["BUCATĂ (1 BUC.)", "Bucată (1 buc.)"],
+    ["CUTIE (10 BUC.)", "Cutie (10 buc.)"],
+    ["A (1 L) + B (1 L)", "A (1 L) + B (1 L)"],
+    ["700 GRAME", "700 g"],
+    ["5 KG", "5 kg"],
+    ["CERAMICĂ CC", "Ceramică CC"],
+    ["6 mm", "6 mm"],
+    ["SILENȚIOS TLS", "Silențios TLS"],
+  ])("formats option value %s -> %s", (raw, expected) => {
+    expect(formatOptionValue(raw)).toBe(expected)
   })
 
   it("sets empty string brand when no brand tag", () => {
@@ -224,6 +249,32 @@ describe("productToCard", () => {
     })
     const card = productToCard(product)
     expect(card.badges?.some((b) => b.type === "promo")).toBe(true)
+  })
+
+  it("promo badge uses the discount of the displayed (cheapest) variant", () => {
+    const product = makeProduct({
+      variants: [
+        { id: "v1", sku: "S1", calculated_price: { calculated_amount: 64, original_amount: 80 } },
+        { id: "v2", sku: "S2", calculated_price: { calculated_amount: 69, original_amount: 115 } },
+      ],
+    })
+    const card = productToCard(product)
+    expect(card.price.now).toBe("64,00 Lei")
+    expect(card.price.was).toBe("80,00 Lei")
+    expect(card.badges?.filter((b) => b.type === "promo")).toEqual([{ type: "promo", label: "-20%" }])
+  })
+
+  it("no promo badge when only a non-displayed variant is discounted (Mastic Solid)", () => {
+    const product = makeProduct({
+      variants: [
+        { id: "v1", sku: "S1", calculated_price: { calculated_amount: 76, original_amount: 76 } },
+        { id: "v2", sku: "S2", calculated_price: { calculated_amount: 241.6, original_amount: 302 } },
+      ],
+    })
+    const card = productToCard(product)
+    expect(card.price.now).toBe("76,00 Lei")
+    expect(card.price.was).toBeUndefined()
+    expect(card.badges?.some((b) => b.type === "promo")).toBe(false)
   })
 
   it("does NOT include promo badge when no price discount", () => {
@@ -269,5 +320,73 @@ describe("productToCard - stoc pentru adaugarea directa", () => {
     )
     expect(card.hasMultipleRealVariants).toBe(true)
     expect(card.defaultVariantSoldOut).toBe(false)
+  })
+})
+
+describe("productToCard - comanda telefonica si unitate de pret", () => {
+  it("varianta unica cu contact_to_order -> contactToOrder, chiar fara stoc", () => {
+    const card = productToCard(
+      makeProduct({
+        variants: [
+          {
+            id: "variant_01KPH3QWQYSG5KQZCSCA8603KB",
+            manage_inventory: true,
+            allow_backorder: false,
+            inventory_quantity: 0,
+            metadata: { contact_to_order: true },
+            calculated_price: { calculated_amount: 38, original_amount: null },
+          },
+        ],
+      })
+    )
+    expect(card.contactToOrder).toBe(true)
+  })
+
+  it("fara flag sau cu flag false -> contactToOrder false", () => {
+    expect(productToCard(makeProduct({})).contactToOrder).toBe(false)
+    const card = productToCard(
+      makeProduct({ variants: [{ id: "v1", metadata: { contact_to_order: false } }] })
+    )
+    expect(card.contactToOrder).toBe(false)
+  })
+
+  it("produs cu mai multe variante nu e contactToOrder pe card (Alege duce la PDP)", () => {
+    const card = productToCard(
+      makeProduct({
+        variants: [
+          { id: "v1", metadata: { contact_to_order: true } },
+          { id: "v2", metadata: null },
+        ],
+      })
+    )
+    expect(card.contactToOrder).toBe(false)
+  })
+
+  it("metadata.unit_label -> priceUnit langa pret", () => {
+    const card = productToCard(
+      makeProduct({
+        metadata: { unit_label: "kg" },
+        variants: [{ id: "v1", calculated_price: { calculated_amount: 38, original_amount: null } }],
+      })
+    )
+    expect(card.price.now).toBe("38,00 Lei")
+    expect(card.priceUnit).toBe("kg")
+  })
+
+  it("fara unit_label sau cu unit_label gol -> fara priceUnit", () => {
+    expect(productToCard(makeProduct({})).priceUnit).toBeUndefined()
+    const card = productToCard(makeProduct({ metadata: { unit_label: "  " } }))
+    expect(card.priceUnit).toBeUndefined()
+  })
+
+  it("Preț la cerere nu primeste unitate", () => {
+    const card = productToCard(
+      makeProduct({
+        metadata: { unit_label: "kg" },
+        variants: [{ id: "v1", calculated_price: null }],
+      })
+    )
+    expect(card.price.now).toBe("Preț la cerere")
+    expect(card.priceUnit).toBeUndefined()
   })
 })

@@ -22,8 +22,6 @@ export const metadata: Metadata = {
   openGraph: { title: "Produse la reducere", url: "/promotii" },
 }
 
-const VALID_PAGE_SIZES = [20, 40, 60]
-const DEFAULT_PAGE_SIZE = 20
 const SORT_OPTIONS = ["Relevanță", "Preț ascendent", "Preț descendent", "Cele mai noi"]
 
 const HELP_CARD = {
@@ -132,8 +130,6 @@ export default async function PromotiiPage({ params }: Props) {
               baseUrl="/promotii"
               countryCode={countryCode}
               sortOptions={SORT_OPTIONS}
-              perPageOptions={VALID_PAGE_SIZES}
-              defaultPerPage={DEFAULT_PAGE_SIZE}
             />
           </Suspense>
         )}

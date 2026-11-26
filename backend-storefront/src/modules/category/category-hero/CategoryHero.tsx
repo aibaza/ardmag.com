@@ -9,9 +9,11 @@ interface CategoryHeroProps {
   title: string
   description?: string
   meta?: MetaItem[]
+  // Numarul de produse afisat langa titlu (o singura data pe pagina).
+  count?: number
 }
 
-export function CategoryHero({ eyebrow, title, description, meta }: CategoryHeroProps) {
+export function CategoryHero({ eyebrow, title, description, meta, count }: CategoryHeroProps) {
   return (
     <header className="cat-hero">
       <div>
@@ -20,7 +22,14 @@ export function CategoryHero({ eyebrow, title, description, meta }: CategoryHero
             {eyebrow}
           </div>
         )}
-        <h1>{title}</h1>
+        {count !== undefined ? (
+          <div className="cat-hero-title">
+            <h1>{title}</h1>
+            <span className="cat-hero-count">{count} {count === 1 ? "produs" : "produse"}</span>
+          </div>
+        ) : (
+          <h1>{title}</h1>
+        )}
         {description && <p>{description}</p>}
         {meta && meta.length > 0 && (
           <div className="meta">

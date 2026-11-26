@@ -137,7 +137,7 @@ test("3. category listing incarca cu produse si toolbar", async ({ page }) => {
   const isMobile = (page.viewportSize()?.width ?? 1440) < 1024
   if (!isMobile) {
     await expect(page.locator(".filters")).toBeVisible()
-    await expect(page.locator("#sort")).toBeVisible()
+    await expect(page.locator("#sort:visible, .mobile-filter-bar select:visible")).toBeVisible()
   }
 
   reportAndAssert(getDiag(), "category-listing")
@@ -170,8 +170,8 @@ test("4. filter brand actualizeaza URL si grila", async ({ page }) => {
 // ─────────────────────────────────────────────
 test("5. sort actualizeaza URL", async ({ page }) => {
   await page.goto(CAT_WITH_FILTERS)
-  await page.locator("#sort").waitFor({ state: "visible" })
-  await page.selectOption("#sort", "Preț ascendent")
+  await page.locator("#sort:visible, .mobile-filter-bar select:visible").waitFor({ state: "visible" })
+  await page.selectOption("#sort:visible, .mobile-filter-bar select:visible", "Preț ascendent")
   await page.waitForURL(/sortBy=/)
   expect(page.url()).toContain("sortBy=")
 })

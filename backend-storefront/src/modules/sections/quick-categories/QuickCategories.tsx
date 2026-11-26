@@ -28,7 +28,7 @@ export function QuickCategories({ items }: QuickCategoriesProps) {
             />
           </div>
           <div className="label">{item.label}</div>
-          <div className="count">{item.count}</div>
+          <div className="count" aria-label={`${item.count} ${item.count === 1 ? "produs" : item.count >= 20 ? "de produse" : "produse"}`} title={`${item.count} ${item.count === 1 ? "produs" : item.count >= 20 ? "de produse" : "produse"}`}>{item.count}</div>
         </a>
       ))}
     </div>

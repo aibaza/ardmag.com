@@ -116,6 +116,9 @@ export function FilterSidebar({ groups, applyCount, helpCard, baseUrl, isOpen, o
       <div className="filter-card">
         {groups.map((group, i) => {
           if (group.type === 'checkboxes') {
+            // Un grup cu o singura valoare nu filtreaza nimic (ex. Brand: Tenax intr-o categorie mono-brand).
+            // Ramane vizibil numai daca valoarea e bifata din URL, ca sa poata fi debifata.
+            if (group.options.length < 2 && !group.options.some((o) => o.checked)) return null
             return (
               <details key={i} open={group.open}>
                 <summary>{group.title}{group.badge !== undefined && <> <span className="fcount">{group.badge}</span></>}</summary>

@@ -4,10 +4,14 @@ import Image from 'next/image'
 import { useTransition, useRef, useState } from 'react'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
+import { googleMapsProfileUrl } from '@modules/sections/google-reviews/google-maps-link'
+import { ThemeToggle } from '@modules/@shared/components/theme-toggle/ThemeToggle'
 
 interface SiteFooterProps {
   countryCode?: string
   categoriesHref?: string
+  /** homepage: garantiile apar deja in pagina, banda din subsol nu se repeta */
+  hideTrustStrip?: boolean
 }
 
 function NewsletterForm({ privacyHref }: { privacyHref: string }) {
@@ -62,7 +66,7 @@ function NewsletterForm({ privacyHref }: { privacyHref: string }) {
   )
 }
 
-export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterProps) {
+export function SiteFooter({ countryCode = "ro", categoriesHref, hideTrustStrip = false }: SiteFooterProps) {
   const allHref = categoriesHref ?? `/produse`
   return (
     <footer className="site-footer">
@@ -70,7 +74,7 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
         <div className="brand-col">
           <a className="logo" href="/"><Image src="/logo-white.png" alt="ardmag" className="logo-img" width={1367} height={208} loading="lazy" sizes="200px" /><div className="tag">Experți în piatră de peste 25 de ani</div></a>
           <p>Distribuitor autorizat Tenax, Sait, Woosuk. Scule profesionale pentru prelucrarea pietrei naturale, marmură și granit.</p>
-          <div className="contact"><div className="phone">Tel. <a href="tel:+40722155441"><strong>+40 722 155 441</strong></a></div><div><a href="mailto:office@ardmag.ro">office@ardmag.ro</a></div><div>Calea Baciului 1-3 · Cluj-Napoca</div></div>
+          <div className="contact"><div className="phone">Tel. <a href="tel:+40722155441"><strong>+40 722 155 441</strong></a></div><div><a href="mailto:office@ardmag.ro">office@ardmag.ro</a></div><div>Calea Baciului 1-3 · Cluj-Napoca</div><div><a href={googleMapsProfileUrl(process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID)} target="_blank" rel="noopener noreferrer">Recenzii pe Google Maps</a></div></div>
         </div>
         <div><h3>Magazin</h3><ul><li><a href={allHref}>Toate produsele</a></li><li><a href="/promotii">Promoții</a></li></ul></div>
         <div><h3>Cont &amp; comenzi</h3><ul><li><a href="/account">Contul meu</a></li><li><a href="/account/orders">Comenzi &amp; facturi</a></li></ul></div>
@@ -81,16 +85,16 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
           <NewsletterForm privacyHref={`/confidentialitate`} />
         </div>
       </div>
-      <div className="footer-mid">
-        <TrustBanner variant="strip" items={[
+      <div className={`footer-mid${hideTrustStrip ? " footer-mid--pay" : ""}`}>
+        {!hideTrustStrip && <TrustBanner variant="strip" items={[
           { icon: <ReturnIcon />, title: "14 zile retur", subtitle: "fără întrebări" },
           { icon: <TruckIcon />, title: "Livrare 24-48h", subtitle: "țara întreagă" },
           { icon: <SecureIcon />, title: "Plată securizată", subtitle: "3DSecure · SSL" },
           { icon: <SupportIcon />, title: "Suport tehnic", subtitle: "L–V 08–16 · RO" },
-        ]} />
+        ]} />}
         <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
       </div>
-      <div className="footer-bot"><div className="wrap"><div className="legal"><a href={`/termeni`}>Termeni &amp; condiții</a><a href={`/confidentialitate`}>Politică confidențialitate</a><a href={`/cookie-policy`}>Politică cookies</a><a href="https://anpc.ro" target="_blank" rel="noopener noreferrer">ANPC</a><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">Soluționare litigii</a></div><span className="cr">© 2001–2026 Arcrom Diamonds SRL</span></div></div>
+      <div className="footer-bot"><div className="wrap"><div className="legal"><a href={`/termeni`}>Termeni &amp; condiții</a><a href={`/confidentialitate`}>Politică confidențialitate</a><a href={`/cookie-policy`}>Politică cookies</a><a href="https://anpc.ro" target="_blank" rel="noopener noreferrer">ANPC</a><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">Soluționare litigii</a></div><span className="cr">© 2001–2026 Arcrom Diamonds SRL</span><span className="footer-theme">Temă <ThemeToggle /></span></div></div>
     </footer>
   )
 }
