@@ -124,41 +124,49 @@ export default async function HomePage({ params }: Props) {
 
       <main className="page-inner">
 
-        {/* HERO -- experiment A/B hero_tenax30_v1 (rotatie client-side, 4 variante);
-            kill-switch: goleste HERO_EXPERIMENT.variants pentru a reveni la Hero clasic */}
-        {HERO_EXPERIMENT.variants.length > 0 ? (
-          <div className="hero">
-            <HeroRotator
-              experiment={HERO_EXPERIMENT.name}
-              rotateMs={HERO_EXPERIMENT.rotateMs}
-              variants={HERO_EXPERIMENT.variants}
-            />
-            {/* dreapta: sus articolul in rotatie, jos recenziile Google;
-                fara recenzii revine la 2 articole (ticker la 3+, altfel static) */}
-            <HeroSideReviews cards={articleCards.length >= 2 ? articleCards : heroProps.sideCards} />
-          </div>
-        ) : (
-          <Hero {...heroProps} headingLevel="h1" />
-        )}
+        {/* V2: pe telefon categoriile (si linkul spre catalog) urca inaintea
+            hero-ului prin `order` in CSS; in DOM raman dupa hero, o singura data */}
+        <div className="home-top">
+          {/* HERO -- experiment A/B hero_tenax30_v1 (rotatie client-side, 4 variante);
+              kill-switch: goleste HERO_EXPERIMENT.variants pentru a reveni la Hero clasic.
+              V2: cifrele si al doilea buton sunt ascunse din CSS (.home-top), nu scoase din date */}
+          {HERO_EXPERIMENT.variants.length > 0 ? (
+            <div className="hero">
+              <HeroRotator
+                experiment={HERO_EXPERIMENT.name}
+                rotateMs={HERO_EXPERIMENT.rotateMs}
+                variants={HERO_EXPERIMENT.variants}
+              />
+              {/* dreapta: sus articolul in rotatie, jos recenziile Google;
+                  fara recenzii revine la 2 articole (ticker la 3+, altfel static) */}
+              <HeroSideReviews cards={articleCards.length >= 2 ? articleCards : heroProps.sideCards} />
+            </div>
+          ) : (
+            <Hero {...heroProps} headingLevel="h1" />
+          )}
 
-        {/* Quick categories -- real Medusa categories, ordered by admin rank */}
-        <QuickCategories items={quickCatItems} />
+          {/* Quick categories -- real Medusa categories, ordered by admin rank */}
+          <QuickCategories items={quickCatItems} />
+          <a className="home-all-link" href="/produse">Toate produsele →</a>
+        </div>
 
         {/* Promo products -- real data with promo:30 tag */}
         {promoProducts.length > 0 && (
           <>
             <SectionHead
-              eyebrow={`Promoții active · ${promoProducts.length} produse`}
               title="La reducere"
               seeAllHref={`/promotii`}
               seeAllLabel="Toate promoțiile →"
             />
+            {/* pe telefon se vad numai primele 4 (CSS .home-promo) */}
+            <div className="home-promo">
             <ProductGrid
               variant="mini"
               products={promoProducts.map((p) => productToCard(p, countryCode))}
               countryCode={countryCode}
               priorityCount={2}
             />
+            </div>
           </>
         )}
 
@@ -190,9 +198,8 @@ export default async function HomePage({ params }: Props) {
         {newProducts.length > 0 && (
           <>
             <SectionHead
-              eyebrow="Recent adăugate"
               title="Produse noi în stoc"
-              seeAllHref={`/categories/diverse`}
+              seeAllHref="/produse"
               seeAllLabel="Toate produsele →"
             />
             <ProductGrid
@@ -206,7 +213,8 @@ export default async function HomePage({ params }: Props) {
         <div style={{height:"48px"}}></div>
       </main>
 
-      <SiteFooter />
+      {/* pe homepage garantiile apar deja in banda de deasupra furnizorilor */}
+      <SiteFooter hideTrustStrip />
     </>
   )
 }

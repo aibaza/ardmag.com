@@ -5,10 +5,13 @@ import { useTransition, useRef, useState } from 'react'
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { googleMapsProfileUrl } from '@modules/sections/google-reviews/google-maps-link'
+import { ThemeToggle } from '@modules/@shared/components/theme-toggle/ThemeToggle'
 
 interface SiteFooterProps {
   countryCode?: string
   categoriesHref?: string
+  /** homepage: garantiile apar deja in pagina, banda din subsol nu se repeta */
+  hideTrustStrip?: boolean
 }
 
 function NewsletterForm({ privacyHref }: { privacyHref: string }) {
@@ -63,7 +66,7 @@ function NewsletterForm({ privacyHref }: { privacyHref: string }) {
   )
 }
 
-export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterProps) {
+export function SiteFooter({ countryCode = "ro", categoriesHref, hideTrustStrip = false }: SiteFooterProps) {
   const allHref = categoriesHref ?? `/produse`
   return (
     <footer className="site-footer">
@@ -82,16 +85,16 @@ export function SiteFooter({ countryCode = "ro", categoriesHref }: SiteFooterPro
           <NewsletterForm privacyHref={`/confidentialitate`} />
         </div>
       </div>
-      <div className="footer-mid">
-        <TrustBanner variant="strip" items={[
+      <div className={`footer-mid${hideTrustStrip ? " footer-mid--pay" : ""}`}>
+        {!hideTrustStrip && <TrustBanner variant="strip" items={[
           { icon: <ReturnIcon />, title: "14 zile retur", subtitle: "fără întrebări" },
           { icon: <TruckIcon />, title: "Livrare 24-48h", subtitle: "țara întreagă" },
           { icon: <SecureIcon />, title: "Plată securizată", subtitle: "3DSecure · SSL" },
           { icon: <SupportIcon />, title: "Suport tehnic", subtitle: "L–V 08–16 · RO" },
-        ]} />
+        ]} />}
         <div className="pay-strip"><span className="pay-chip">Visa</span><span className="pay-chip">Mastercard</span><span className="pay-chip">Netopia</span><span className="pay-chip">Ramburs</span><span className="pay-chip">OP B2B</span></div>
       </div>
-      <div className="footer-bot"><div className="wrap"><div className="legal"><a href={`/termeni`}>Termeni &amp; condiții</a><a href={`/confidentialitate`}>Politică confidențialitate</a><a href={`/cookie-policy`}>Politică cookies</a><a href="https://anpc.ro" target="_blank" rel="noopener noreferrer">ANPC</a><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">Soluționare litigii</a></div><span className="cr">© 2001–2026 Arcrom Diamonds SRL</span></div></div>
+      <div className="footer-bot"><div className="wrap"><div className="legal"><a href={`/termeni`}>Termeni &amp; condiții</a><a href={`/confidentialitate`}>Politică confidențialitate</a><a href={`/cookie-policy`}>Politică cookies</a><a href="https://anpc.ro" target="_blank" rel="noopener noreferrer">ANPC</a><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">Soluționare litigii</a></div><span className="cr">© 2001–2026 Arcrom Diamonds SRL</span><span className="footer-theme">Temă <ThemeToggle /></span></div></div>
     </footer>
   )
 }

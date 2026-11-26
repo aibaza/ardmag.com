@@ -2051,3 +2051,62 @@ a.badge:hover{transform:translateY(-1px)}
 .pcard-price .now{font-size:18px;font-weight:600}
 .pcard-price.is-sale .now{font-size:18px;font-weight:700}
 .pcard-price .now .price{font-size:inherit}
+
+/* ============================================================
+   V2 homepage (docs/design-v2): hero mai scund, categorii in primul ecran.
+   Totul e scopat pe .home-top / .home-promo, ca sa nu atinga alte pagini.
+   ============================================================ */
+/* cifrele si al doilea buton raman in datele experimentului; ascunse si in
+   sizere, ca inaltimea blocului sa scada */
+.home-top .hero-main .stats,
+.home-top .hero-main .hero-ghost{display:none}
+.home-all-link{display:none}
+/* descrierea articolului din dreapta: numai la hover/focus pe desktop; cardul
+   are inaltime fixa, deci aparitia ei nu misca hero-ul */
+.home-top .hero-side .hero-card p{display:none}
+@media(hover:hover) and (min-width:901px){
+  .home-top .hero-side .hero-card:hover p,
+  .home-top .hero-side .hero-card:focus-visible p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+}
+@media(min-width:901px){
+  .home-top .hero{padding:24px 0 20px}
+  .home-top .hero-main{min-height:424px;padding:40px 44px}
+  /* cardul de recenzii pastreaza inaltimea de dinainte (235px); articolul ia restul */
+  .home-top .hero-side--reviews{grid-template-rows:minmax(0,1fr) 235px}
+}
+/* dale mai scunde (desktop si tableta): aceeasi pastila si acelasi corp de titlu */
+.home-top .qc{padding:12px 10px 14px;gap:6px}
+.home-top .qc .real{height:88px;padding:6px;margin-bottom:2px}
+/* 8 dale pe rand numai unde titlurile incap pe cel mult 2 randuri, rupte intre cuvinte
+   (masurat la 1280, 1366, 1440: „Soluții Pentru / Piatră”, „Pachete / Promoționale”) */
+@media(min-width:1280px){
+  .home-top .quick-cats{grid-template-columns:repeat(8,minmax(0,1fr))}
+}
+/* telefon si tableta ingusta: categoriile si linkul spre catalog urca inaintea hero-ului */
+@media(max-width:900px){
+  .home-top{display:flex;flex-direction:column}
+  .home-top .quick-cats{order:-2;padding:16px 0 4px}
+  .home-top .home-all-link{order:-1;display:block;align-self:flex-end;margin:6px 0 0;font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--stone-700);text-decoration:none}
+  .home-top .home-all-link:hover{color:var(--brand-700)}
+  .home-top .hero{padding-top:16px}
+}
+/* telefon si tableta: lista compacta, poza mica + titlu, pastila pe coltul pozei;
+   2 coloane sub 720px, 4 pe tableta (titlurile incap fara rupere in cuvant) */
+@media(min-width:720px) and (max-width:900px){
+  .home-top .quick-cats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px}
+}
+@media(max-width:719px){
+  .home-top .quick-cats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+}
+@media(max-width:900px){
+  .home-top .qc{flex-direction:row;align-items:center;text-align:left;gap:8px;padding:8px 8px 8px 6px;min-height:60px}
+  .home-top .qc .real{width:44px;height:44px;flex:none;padding:0;margin:0;overflow:visible}
+  .home-top .qc .label{font-size:14px;line-height:1.25;min-width:0}
+  .home-top .qc .count{top:3px;left:34px;right:auto;font-size:10px;padding:1px 5px}
+}
+@media(max-width:720px){
+  .home-promo .mini-grid>:nth-child(n+5){display:none}
+}
+/* subsolul fara banda de garantii (homepage): raman numai metodele de plata */
+.footer-mid--pay{grid-template-columns:1fr}
+.footer-bot .footer-theme{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em}
