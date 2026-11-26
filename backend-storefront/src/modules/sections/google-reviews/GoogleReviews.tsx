@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { googleMapsProfileUrl } from "./google-maps-link"
+import { incarcaPlaces } from "./places"
 
 // Recenziile Google Maps ale locației din Cluj, cerute de la Google (Places, Maps JS API)
 // la fiecare afișare și desenate în stilul site-ului. Nu se stochează și nu se filtrează:
@@ -24,27 +25,6 @@ type Recenzie = {
 }
 type Date = { nota?: number; total?: number; url?: string; recenzii: Recenzie[] }
 type Stare = "asteapta" | "incarcare" | "afisat" | "eroare"
-
-let scriptPromise: Promise<any> | null = null
-
-function incarcaPlaces(key: string): Promise<any> {
-  const w = window as any
-  if (w.google?.maps?.importLibrary) return w.google.maps.importLibrary("places")
-  if (!scriptPromise) {
-    scriptPromise = new Promise<void>((resolve, reject) => {
-      const cb = "__ardmagPlacesReady"
-      w[cb] = () => resolve()
-      const s = document.createElement("script")
-      s.src = `https://maps.googleapis.com/maps/api/js?${new URLSearchParams({
-        key, v: "weekly", libraries: "places", language: "ro", region: "RO", loading: "async", callback: cb,
-      }).toString()}`
-      s.async = true
-      s.onerror = () => { scriptPromise = null; reject(new Error("scriptul Google nu s-a încărcat")) }
-      document.head.appendChild(s)
-    }).then(() => w.google.maps.importLibrary("places"))
-  }
-  return scriptPromise
-}
 
 async function cereRecenzii(): Promise<Date> {
   const { Place } = await incarcaPlaces(API_KEY!)

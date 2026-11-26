@@ -2,12 +2,11 @@ import { Metadata } from "next"
 import { TruckIcon, ReturnIcon, SecureIcon, SupportIcon } from '@modules/@shared/icons/TrustIcons'
 import { TrustBanner } from '@modules/@shared/components/trust-banner'
 import { SectionHead } from '@modules/@shared/components/section-head'
-import { Hero, HeroRotator, HeroSide, HeroSideTicker, HERO_EXPERIMENT } from '@modules/sections/hero'
+import { Hero, HeroRotator, HeroSideReviews, HERO_EXPERIMENT } from '@modules/sections/hero'
 import { getHeroFallback } from '@modules/sections/hero/hero-fallback'
 import { productToHero } from '@modules/sections/hero/product-to-hero'
 import { QuickCategories } from '@modules/sections/quick-categories'
 import { SupplierStrip } from '@modules/sections/supplier-strip'
-import { GoogleReviews } from '@modules/sections/google-reviews'
 import { ProductGrid } from '@modules/products/product-grid'
 import { SiteHeaderShell } from '@modules/layout/site-header'
 import { SiteFooter } from '@modules/layout/site-footer'
@@ -134,11 +133,9 @@ export default async function HomePage({ params }: Props) {
               rotateMs={HERO_EXPERIMENT.rotateMs}
               variants={HERO_EXPERIMENT.variants}
             />
-            {articleCards.length >= 3 ? (
-              <HeroSideTicker cards={articleCards} />
-            ) : (
-              <HeroSide cards={heroProps.sideCards} />
-            )}
+            {/* dreapta: sus articolul in rotatie, jos recenziile Google;
+                fara recenzii revine la 2 articole (ticker la 3+, altfel static) */}
+            <HeroSideReviews cards={articleCards.length >= 2 ? articleCards : heroProps.sideCards} />
           </div>
         ) : (
           <Hero {...heroProps} headingLevel="h1" />
@@ -172,9 +169,6 @@ export default async function HomePage({ params }: Props) {
           { icon: <SecureIcon fill="none" strokeLinecap="round" />, title: "Distribuitor autorizat", subtitle: "Tenax · Sait · Delta" },
           { icon: <SupportIcon fill="none" strokeLinecap="round" />, title: "Suport tehnic", subtitle: "L-V 08-16 · RO" },
         ]} />
-
-        {/* Recenzii Google Maps */}
-        <GoogleReviews />
 
         {/* Supplier strip */}
         <SupplierStrip
