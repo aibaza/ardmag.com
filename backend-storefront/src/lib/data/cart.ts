@@ -2,6 +2,7 @@
 
 import { sdk } from "@lib/config"
 import medusaError from "@lib/util/medusa-error"
+import { isContactToOrderVariant } from "@lib/util/product"
 import { HttpTypes } from "@medusajs/types"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
@@ -134,6 +135,25 @@ export async function updateCart(data: HttpTypes.StoreUpdateCart) {
     .catch(medusaError)
 }
 
+// Garda pentru variantele marcate contact_to_order: cardurile si PDP-ul nu
+// ofera adaugarea, dar cererea poate veni direct. Citire fara cache, ca o
+// schimbare din admin sa se aplice imediat. Daca citirea esueaza nu blocam:
+// Medusa decide mai departe ca inainte.
+async function isPhoneOrderOnlyVariant(variantId: string): Promise<boolean> {
+  try {
+    const { variant } = await sdk.client.fetch<{
+      variant: HttpTypes.StoreProductVariant
+    }>(`/store/product-variants/${encodeURIComponent(variantId)}`, {
+      method: "GET",
+      query: { fields: "id,metadata" },
+      cache: "no-store",
+    })
+    return isContactToOrderVariant(variant)
+  } catch {
+    return false
+  }
+}
+
 export async function addToCart({
   variantId,
   quantity,
@@ -145,6 +165,12 @@ export async function addToCart({
 }) {
   if (!variantId) {
     throw new Error("Missing variant ID when adding to cart")
+  }
+
+  if (await isPhoneOrderOnlyVariant(variantId)) {
+    throw new Error(
+      "Acest produs se comandă numai telefonic. Sunați la +40 722 155 441."
+    )
   }
 
   const cart = await getOrSetCart(countryCode)

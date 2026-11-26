@@ -78,3 +78,21 @@ export function getProductSpecsPreview(
       return `${o.title?.toUpperCase() ?? ""}: ${display}`
     })
 }
+// Varianta se comanda numai telefonic (metadata.contact_to_order setat din admin):
+// fara adaugare in cos pe card, pe PDP si in addToCart.
+export function isContactToOrderVariant(
+  variant: { metadata?: Record<string, unknown> | null } | null | undefined
+): boolean {
+  return variant?.metadata?.contact_to_order === true
+}
+
+// Unitatea la care se refera pretul (product.metadata.unit_label, ex. "kg").
+// undefined cand produsul se vinde la bucata.
+export function productUnitLabel(
+  product: { metadata?: Record<string, unknown> | null } | null | undefined
+): string | undefined {
+  const raw = product?.metadata?.unit_label
+  if (typeof raw !== "string") return undefined
+  const unit = raw.trim()
+  return unit.length > 0 ? unit : undefined
+}

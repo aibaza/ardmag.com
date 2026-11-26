@@ -16,6 +16,8 @@ interface Props {
   // Bara fixa de pe telefon: pretul variantei alese si valorile ei („1 litru · alb”).
   stickyPrice?: string
   stickyVariantLabel?: string
+  // product.metadata.unit_label (ex. "kg"): pretul e pe unitate, cantitatea in unitati
+  priceUnit?: string
 }
 
 /**
@@ -40,7 +42,7 @@ function useStickyBarVisible(): boolean {
   return visible
 }
 
-export function PDPBuyActions({ unitPrice, currencyCode = "ron", stickyPrice, stickyVariantLabel, ...props }: Props) {
+export function PDPBuyActions({ unitPrice, currencyCode = "ron", stickyPrice, stickyVariantLabel, priceUnit, ...props }: Props) {
   const [quantity, setQuantity] = useState(1)
   const stickyVisible = useStickyBarVisible()
   const hasUnitPrice = typeof unitPrice === "number" && Number.isFinite(unitPrice)
@@ -60,9 +62,12 @@ export function PDPBuyActions({ unitPrice, currencyCode = "ron", stickyPrice, st
       {barPrice && (
         <div className={`pdp-sticky-bar${stickyVisible ? " is-visible" : ""}`} aria-hidden={!stickyVisible} inert={!stickyVisible}>
           <div className="pdp-sticky-bar__price">
-            <FormattedPrice value={barPrice} />
+            <span>
+              <FormattedPrice value={barPrice} />
+              {priceUnit && quantity <= 1 && <span className="pdp-sticky-bar__unit"> / {priceUnit}</span>}
+            </span>
             {(stickyVariantLabel || quantity > 1) && (
-              <small>{[stickyVariantLabel, quantity > 1 ? `${quantity} buc.` : ""].filter(Boolean).join(" · ")}</small>
+              <small>{[stickyVariantLabel, quantity > 1 ? `${quantity} ${priceUnit ?? "buc."}` : ""].filter(Boolean).join(" · ")}</small>
             )}
           </div>
           <PDPAddToCartButton {...props} quantity={quantity} />

@@ -1,5 +1,6 @@
 import type { HttpTypes } from "@medusajs/types"
 import { formatPrice } from "./format-price"
+import { productUnitLabel } from "@lib/util/product"
 
 interface PDPPriceCardProps {
   price: string
@@ -7,6 +8,9 @@ interface PDPPriceCardProps {
   save?: string
   priceNoTax?: string
   promoLabel?: string
+  // product.metadata.unit_label: "/ kg" langa pret si "preț pe kg" in randul fara TVA
+  priceUnit?: string
+  unitLabel?: string
 }
 
 type VariantWithCalcPrice = HttpTypes.StoreProductVariant & {
@@ -29,7 +33,7 @@ const VAT_RATE = 0.21
  */
 export function productToPdpPriceCard(
   variant: HttpTypes.StoreProductVariant,
-  _product: HttpTypes.StoreProduct
+  product: HttpTypes.StoreProduct
 ): PDPPriceCardProps {
   const typedVariant = variant as VariantWithCalcPrice
   const cp = typedVariant.calculated_price
@@ -43,10 +47,12 @@ export function productToPdpPriceCard(
   const price = formatPrice(amount, currencyCode)
   const amountWithoutTax = Math.round((amount / (1 + VAT_RATE)) * 100) / 100
   const priceNoTax = formatPrice(amountWithoutTax, currencyCode)
+  const unit = productUnitLabel(product)
+  const unitProps = unit ? { priceUnit: unit, unitLabel: `preț pe ${unit}` } : {}
 
   const originalAmount = cp?.original_amount ?? null
   if (originalAmount == null || originalAmount <= amount) {
-    return { price, priceNoTax }
+    return { price, priceNoTax, ...unitProps }
   }
 
   const was = formatPrice(originalAmount, currencyCode)
@@ -60,5 +66,6 @@ export function productToPdpPriceCard(
     save,
     priceNoTax,
     promoLabel: `Promotie activa -${discountPct}%`,
+    ...unitProps,
   }
 }

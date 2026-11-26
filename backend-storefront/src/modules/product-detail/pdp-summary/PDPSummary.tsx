@@ -39,6 +39,7 @@ interface PDPSummaryProps {
   save?: string
   priceNoTax?: string
   unitLabel?: string
+  priceUnit?: string
   promotionOffer?: { headline: string; detail: string }
   promoLabel?: string
   promoDate?: string
@@ -53,7 +54,7 @@ interface PDPSummaryProps {
   contactToOrder?: boolean
 }
 
-export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, unitPrice, currencyCode, was, save, priceNoTax, unitLabel, promotionOffer, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, canAddToCart, perks, contactToOrder }: PDPSummaryProps) {
+export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, price, unitPrice, currencyCode, was, save, priceNoTax, unitLabel, priceUnit, promotionOffer, promoLabel, promoDate, variantGroups, stockLabel, stockLocation, addToCartLabel, variantId, countryCode, canAddToCart, perks, contactToOrder }: PDPSummaryProps) {
   return (
     <aside className="pdp-summary">
 
@@ -75,7 +76,7 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
         {rating.reviewCount > 0 ? <StarRating score={rating.score} reviewCount={rating.reviewCount} /> : null}
 
         {/* Price card */}
-        <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} promotionOffer={promotionOffer} />
+        <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} priceUnit={priceUnit} promoLabel={promoLabel} promoDate={promoDate} promotionOffer={promotionOffer} />
 
         {/* Variante, stoc si cumparare: bara fixa de pe telefon se ascunde cat timp zona asta se vede. */}
         <div className="pdp-purchase">
@@ -104,6 +105,7 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
               label={addToCartLabel}
               canAddToCart={canAddToCart}
               stickyPrice={price}
+              priceUnit={priceUnit}
               stickyVariantLabel={variantGroups.map(g => g.selectedValue).filter(Boolean).join(' · ')}
             />
           )}

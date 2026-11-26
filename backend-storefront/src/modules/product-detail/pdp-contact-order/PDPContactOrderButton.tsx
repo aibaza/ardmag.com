@@ -24,7 +24,14 @@ export function PDPContactOrderButton({ productTitle, variantLabel }: PDPContact
 
   const phoneHref = "tel:+40722155441"
   const phoneLabel = "+40 722 155 441"
-  const emailHref = `mailto:office@arcromdiamonds.ro?subject=${encodeURIComponent(`Comanda dimensiune mare: ${productTitle} ${variantLabel}`)}&body=${encodeURIComponent(`Buna ziua,\n\nAs dori sa comand:\n- Produs: ${productTitle}\n- Dimensiune: ${variantLabel}\n- Cantitate: \n\nVa rog sa-mi confirmati disponibilitatea si termenul de livrare.\n\nMultumesc.`)}`
+  // Fara eticheta de varianta (produs cu o singura varianta): mesaj general,
+  // fara randul "Dimensiune". Discurile mari pastreaza textul pe dimensiune.
+  const hasVariantLabel = variantLabel.trim().length > 0 && variantLabel.trim().toLowerCase() !== "default"
+  const emailSubject = hasVariantLabel
+    ? `Comanda dimensiune mare: ${productTitle} ${variantLabel}`
+    : `Comanda: ${productTitle}`
+  const emailBody = `Buna ziua,\n\nAs dori sa comand:\n- Produs: ${productTitle}\n${hasVariantLabel ? `- Dimensiune: ${variantLabel}\n` : ""}- Cantitate: \n\nVa rog sa-mi confirmati disponibilitatea si termenul de livrare.\n\nMultumesc.`
+  const emailHref = `mailto:office@arcromdiamonds.ro?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`
   const emailLabel = "office@arcromdiamonds.ro"
 
   return (
@@ -74,7 +81,9 @@ export function PDPContactOrderButton({ productTitle, variantLabel }: PDPContact
               Comandă telefonică sau pe email
             </h2>
             <p style={{ margin: "0 0 16px", fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.5 }}>
-              Această dimensiune are specificații care necesită coordonare logistică. Contactați-ne telefonic sau pe email pentru comandă.
+              {hasVariantLabel
+                ? "Această dimensiune are specificații care necesită coordonare logistică. Contactați-ne telefonic sau pe email pentru comandă."
+                : "Acest produs se comandă telefonic sau pe email. Contactați-ne și vă confirmăm disponibilitatea și livrarea."}
             </p>
 
             <div style={{
@@ -87,7 +96,9 @@ export function PDPContactOrderButton({ productTitle, variantLabel }: PDPContact
             }}>
               <div style={{ color: "var(--fg-muted)", marginBottom: 2 }}>Produs solicitat:</div>
               <div style={{ fontWeight: 600, color: "var(--fg)" }}>{productTitle}</div>
-              <div style={{ fontFamily: "var(--f-mono)", color: "var(--fg)", marginTop: 4 }}>Dimensiune: {variantLabel}</div>
+              {hasVariantLabel && (
+                <div style={{ fontFamily: "var(--f-mono)", color: "var(--fg)", marginTop: 4 }}>Dimensiune: {variantLabel}</div>
+              )}
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>

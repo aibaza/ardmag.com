@@ -523,6 +523,7 @@
   .pcard-foot{margin-top:auto;padding:10px 16px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--stone-50)}
   .pcard-price{display:flex;flex-direction:column;line-height:1.1}
   .pcard-price .now{font-family:var(--f-mono);font-size:15px;font-weight:500}
+  .pcard-price .now .unit{font-size:11px;font-weight:400;color:var(--stone-500)}
   .pcard-price .was{font-family:var(--f-mono);font-size:11px;color:var(--stone-500);text-decoration:line-through;margin-top:1px}
 
   /* Recenzii Google Maps (componenta oficială Google, la cerere) */
@@ -770,6 +771,7 @@
 .pdp-price-card{background:var(--stone-50);border:1px solid var(--rule);border-radius:var(--r-sm);padding:18px 20px;display:flex;flex-direction:column;gap:14px;text-align:right}
 .pdp-price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;justify-content:flex-end}
 .pdp-price{font-family:var(--f-mono);font-size:32px;font-weight:500;letter-spacing:-0.01em;line-height:1}
+.pdp-price-unit{font-size:16px;font-weight:400;color:var(--fg-muted)}
 .pdp-was{font-family:var(--f-mono);font-size:14px;color:var(--fg-muted);text-decoration:line-through}
 .pdp-vat{font-family:var(--f-mono);font-size:11px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:0.06em;margin-left:auto}
 .pdp-save{font-family:var(--f-mono);font-size:12px;color:var(--success-fg);background:var(--success-bg);padding:4px 8px;border-radius:var(--r-sm);font-weight:500}
@@ -2038,6 +2040,7 @@ a.badge:hover{transform:translateY(-1px)}
   .pdp-sticky-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:90;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--rule-strong);box-shadow:0 -4px 16px oklch(16% 0.006 75 / 0.08);transform:translateY(110%);visibility:hidden;transition:transform 160ms ease,visibility 0s linear 160ms}
   .pdp-sticky-bar.is-visible{transform:none;visibility:visible;transition:transform 160ms ease,visibility 0s}
   .pdp-sticky-bar__price{display:flex;flex-direction:column;min-width:0;font-family:var(--f-mono);font-size:18px;font-weight:600;line-height:1.15}
+  .pdp-sticky-bar__unit{font-size:12px;font-weight:400;color:var(--fg-muted)}
   .pdp-sticky-bar__price small{font-size:11px;font-weight:400;color:var(--fg-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .pdp-sticky-bar .btn{flex:1;max-width:240px;height:44px;justify-content:center}
 }

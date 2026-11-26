@@ -22,6 +22,8 @@ interface ProductGridItem {
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
   defaultVariantSoldOut?: boolean
+  contactToOrder?: boolean
+  priceUnit?: string
 }
 
 interface InfiniteProductGridProps {

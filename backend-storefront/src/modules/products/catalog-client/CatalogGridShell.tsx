@@ -17,6 +17,8 @@ interface ProductGridItem {
   defaultVariantId: string | null
   hasMultipleRealVariants: boolean
   defaultVariantSoldOut?: boolean
+  contactToOrder?: boolean
+  priceUnit?: string
 }
 
 // Aceeasi forma ca CatalogItem din CatalogClient (doar campul "card" ne intereseaza aici).
