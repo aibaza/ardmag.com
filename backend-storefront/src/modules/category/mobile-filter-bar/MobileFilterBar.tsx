@@ -71,6 +71,7 @@ export function MobileFilterBar({
         </button>
         <select
           className="btn secondary md"
+          aria-label="Sortare"
           style={{ appearance: 'auto', padding: '0 12px' }}
           value={currentSort}
           onChange={handleSortChange}

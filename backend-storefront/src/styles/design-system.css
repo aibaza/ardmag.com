@@ -1963,7 +1963,8 @@ a.badge:hover{transform:translateY(-1px)}
 .cat-hero-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 12px}
 .cat-hero-count{font-size:14px;color:var(--fg-muted);white-space:nowrap}
 .cat-toolbar{background:transparent;border:0;padding:0;margin-bottom:12px}
-@media(min-width:1280px){.cat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* 4 coloane numai de la 1400px: la 1280, pe /produse pretul + butonul ieseau din card */
+@media(min-width:1400px){.cat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 /* Lista pe desktop: banderola trece peste tot randul, deci randul coboara sub ea. */
 .cat-grid--list .pcard.has-promo{padding-top:var(--pcard-band-h)}
 .cat-grid--list .pcard.has-promo .pcard-img .top-tags{top:10px}
