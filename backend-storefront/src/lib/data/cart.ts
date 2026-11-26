@@ -11,6 +11,7 @@ import {
   getAttributionSnapshot,
   getCacheOptions,
   getCacheTag,
+  getRevalidateTag,
   getCartId,
   removeCartId,
   setCartId,
@@ -97,13 +98,13 @@ export async function getOrSetCart(countryCode: string) {
 
     await setCartId(cart.id)
 
-    const cartCacheTag = await getCacheTag("carts")
+    const cartCacheTag = await getRevalidateTag("carts")
     revalidateTag(cartCacheTag)
   }
 
   if (cart && cart?.region_id !== region.id) {
     await sdk.store.cart.update(cart.id, { region_id: region.id }, {}, headers)
-    const cartCacheTag = await getCacheTag("carts")
+    const cartCacheTag = await getRevalidateTag("carts")
     revalidateTag(cartCacheTag)
   }
 
@@ -124,10 +125,10 @@ export async function updateCart(data: HttpTypes.StoreUpdateCart) {
   return sdk.store.cart
     .update(cartId, data, {}, headers)
     .then(async ({ cart }: { cart: HttpTypes.StoreCart }) => {
-      const cartCacheTag = await getCacheTag("carts")
+      const cartCacheTag = await getRevalidateTag("carts")
       revalidateTag(cartCacheTag)
 
-      const fulfillmentCacheTag = await getCacheTag("fulfillment")
+      const fulfillmentCacheTag = await getRevalidateTag("fulfillment")
       revalidateTag(fulfillmentCacheTag)
 
       return cart
@@ -194,10 +195,10 @@ export async function addToCart({
       headers
     )
     .then(async () => {
-      const cartCacheTag = await getCacheTag("carts")
+      const cartCacheTag = await getRevalidateTag("carts")
       revalidateTag(cartCacheTag)
 
-      const fulfillmentCacheTag = await getCacheTag("fulfillment")
+      const fulfillmentCacheTag = await getRevalidateTag("fulfillment")
       revalidateTag(fulfillmentCacheTag)
     })
     .catch(medusaError)
@@ -227,10 +228,10 @@ export async function updateLineItem({
   await sdk.store.cart
     .updateLineItem(cartId, lineId, { quantity }, {}, headers)
     .then(async () => {
-      const cartCacheTag = await getCacheTag("carts")
+      const cartCacheTag = await getRevalidateTag("carts")
       revalidateTag(cartCacheTag)
 
-      const fulfillmentCacheTag = await getCacheTag("fulfillment")
+      const fulfillmentCacheTag = await getRevalidateTag("fulfillment")
       revalidateTag(fulfillmentCacheTag)
     })
     .catch(medusaError)
@@ -254,10 +255,10 @@ export async function deleteLineItem(lineId: string) {
   await sdk.store.cart
     .deleteLineItem(cartId, lineId, {}, headers)
     .then(async () => {
-      const cartCacheTag = await getCacheTag("carts")
+      const cartCacheTag = await getRevalidateTag("carts")
       revalidateTag(cartCacheTag)
 
-      const fulfillmentCacheTag = await getCacheTag("fulfillment")
+      const fulfillmentCacheTag = await getRevalidateTag("fulfillment")
       revalidateTag(fulfillmentCacheTag)
     })
     .catch(medusaError)
@@ -279,7 +280,7 @@ export async function setShippingMethod({
     assertShippingPhone(cart?.shipping_address)
 
     await sdk.store.cart.addShippingMethod(cartId, { option_id: shippingMethodId }, {}, headers)
-    const cartCacheTag = await getCacheTag("carts")
+    const cartCacheTag = await getRevalidateTag("carts")
     revalidateTag(cartCacheTag)
   } catch (e: any) {
     if (e?.message === SHIPPING_PHONE_REQUIRED_MESSAGE) {
@@ -316,7 +317,7 @@ export async function setCargusPaymentMode({
       {},
       headers
     )
-    const cartCacheTag = await getCacheTag("carts")
+    const cartCacheTag = await getRevalidateTag("carts")
     revalidateTag(cartCacheTag)
     return null
   } catch (e: any) {
@@ -336,7 +337,7 @@ export async function initiatePaymentSession(
   return sdk.store.payment
     .initiatePaymentSession(cart, data, {}, headers)
     .then(async (resp) => {
-      const cartCacheTag = await getCacheTag("carts")
+      const cartCacheTag = await getRevalidateTag("carts")
       revalidateTag(cartCacheTag)
       return resp
     })
@@ -357,10 +358,10 @@ export async function applyPromotions(codes: string[]) {
   return sdk.store.cart
     .update(cartId, { promo_codes: codes }, {}, headers)
     .then(async () => {
-      const cartCacheTag = await getCacheTag("carts")
+      const cartCacheTag = await getRevalidateTag("carts")
       revalidateTag(cartCacheTag)
 
-      const fulfillmentCacheTag = await getCacheTag("fulfillment")
+      const fulfillmentCacheTag = await getRevalidateTag("fulfillment")
       revalidateTag(fulfillmentCacheTag)
     })
     .catch(medusaError)
@@ -515,7 +516,7 @@ export async function placeOrder(cartId?: string) {
   } catch {
     return "Comanda nu a putut fi plasată. Verifică stocul și metoda de plată, apoi încearcă din nou."
   }
-  const cartCacheTag = await getCacheTag("carts")
+  const cartCacheTag = await getRevalidateTag("carts")
   revalidateTag(cartCacheTag)
 
   if (cartRes?.type === "order") {
@@ -547,7 +548,7 @@ export async function updateRegion(countryCode: string, currentPath: string) {
 
   if (cartId) {
     await updateCart({ region_id: region.id })
-    const cartCacheTag = await getCacheTag("carts")
+    const cartCacheTag = await getRevalidateTag("carts")
     revalidateTag(cartCacheTag)
   }
 
