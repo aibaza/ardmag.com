@@ -16,3 +16,13 @@ export function Badge({ type, label, dotVariant }: BadgeProps) {
 export function NewProductRibbon({ label = "Nou" }: { label?: string }) {
   return <span className="product-new-ribbon">{label}</span>;
 }
+
+/** Banderola de reducere pe toata latimea imaginii cardului: „-20% PREȚ REDUS”. */
+export function PromoBand({ label }: { label: string }) {
+  return (
+    <span className="pcard-promo-band">
+      <b>{label}</b>
+      <span>Preț redus</span>
+    </span>
+  );
+}

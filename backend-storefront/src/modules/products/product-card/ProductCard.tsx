@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Badge, NewProductRibbon } from '@modules/@shared/components/badge'
+import { Badge, NewProductRibbon, PromoBand } from '@modules/@shared/components/badge'
 import { ProductCardSpecTag, type ProductCardSpec } from '@modules/@shared/components/product-card-spec-tag'
 import { PromoOfferNote } from '@modules/@shared/components/promo-offer-note'
 import { FormattedPrice } from '@modules/@shared/components/formatted-price'
@@ -33,9 +33,12 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, countryCode, imagePriority = false }: ProductCardProps) {
+  // Reducerea (procentul calculat in adaptor din varianta afisata) devine banderola
+  // pe toata latimea imaginii; celelalte insigne raman in colt, sub banderola.
+  const promo = product.badges?.find(b => b.type === "promo")
   return (
-    <article className="pcard">
-      <a href={product.href} className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><Image className="pimg" src={product.image} alt={product.imageAlt} width={400} height={400} sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 300px" priority={imagePriority} loading={imagePriority ? 'eager' : 'lazy'} /><div className="top-tags">{product.badges?.filter(b => b.type !== "new").map((b, i) => <Badge key={i} type={b.type} label={b.label} dotVariant={b.dotVariant} />)}</div>{product.badges?.some(b => b.type === "new") && <NewProductRibbon />}{product.brandLogo && <img className="pcard-brand-logo" src={product.brandLogo} alt={product.brand} loading="lazy" />}</a>
+    <article className={promo ? "pcard has-promo" : "pcard"}>
+      <a href={product.href} className="pcard-img-link pcard-img with-real" aria-label="Vezi produs"><Image className="pimg" src={product.image} alt={product.imageAlt} width={400} height={400} sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 300px" priority={imagePriority} loading={imagePriority ? 'eager' : 'lazy'} />{promo && <PromoBand label={promo.label} />}<div className="top-tags">{product.badges?.filter(b => b.type !== "new" && b.type !== "promo").map((b, i) => <Badge key={i} type={b.type} label={b.label} dotVariant={b.dotVariant} />)}</div>{product.badges?.some(b => b.type === "new") && <NewProductRibbon />}{product.brandLogo && <img className="pcard-brand-logo" src={product.brandLogo} alt={product.brand} loading="lazy" />}</a>
       <div className="pcard-body">
         <a className="pcard-brand" href={product.brandHref}>{product.brand}</a>
         <h4 className="pcard-title"><a href={product.href}>{product.title}</a></h4>
@@ -47,7 +50,7 @@ export function ProductCard({ product, countryCode, imagePriority = false }: Pro
         </div>
       </div>
       <div className="pcard-foot">
-        <div className="pcard-price"><span className="now"><FormattedPrice value={product.price.now} /></span>{product.price.was && <span className="was"><FormattedPrice value={product.price.was} /></span>}</div>
+        <div className={product.price.was ? "pcard-price is-sale" : "pcard-price"}><span className="now"><FormattedPrice value={product.price.now} /></span>{product.price.was && <span className="was"><FormattedPrice value={product.price.was} /></span>}</div>
         <ProductCardAddButton
           href={product.href}
           defaultVariantId={product.defaultVariantId}

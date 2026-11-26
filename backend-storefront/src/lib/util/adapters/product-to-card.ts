@@ -159,6 +159,11 @@ export function productToCard(
 
   let priceNow: string
   let priceWas: string | undefined
+  // Procentul de reducere al cardului vine din ACEEASI varianta ca pretul afisat
+  // (cea mai ieftina), ca banderola, pretul nou si cel taiat sa fie coerente.
+  // Daca reducerea exista doar pe alte variante (ex. Mastic Solid: 1 L la pret
+  // intreg, 4 L/18 L cu -20%), cardul nu afiseaza reducere.
+  let discountPct = 0
 
   if (priceInfo === null) {
     priceNow = "Preț la cerere"
@@ -166,6 +171,7 @@ export function productToCard(
     priceNow = formatPrice(priceInfo.calculated)
     if (priceInfo.original > priceInfo.calculated) {
       priceWas = formatPrice(priceInfo.original)
+      discountPct = Math.round((1 - priceInfo.calculated / priceInfo.original) * 100)
     }
   }
 
@@ -210,7 +216,10 @@ export function productToCard(
     imageAlt: product.title ?? "",
     href,
     price: { now: priceNow, was: priceWas },
-    badges: productToBadges(product),
+    badges: [
+      ...productToBadges(product).filter((b) => b.type !== "promo"),
+      ...(discountPct > 0 ? [{ type: "promo" as const, label: `-${discountPct}%` }] : []),
+    ],
     promoOffer: tenaxPromoOffer(product),
     specs: specs.length > 0 ? specs : undefined,
     defaultVariantId,

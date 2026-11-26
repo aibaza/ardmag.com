@@ -251,6 +251,32 @@ describe("productToCard", () => {
     expect(card.badges?.some((b) => b.type === "promo")).toBe(true)
   })
 
+  it("promo badge uses the discount of the displayed (cheapest) variant", () => {
+    const product = makeProduct({
+      variants: [
+        { id: "v1", sku: "S1", calculated_price: { calculated_amount: 64, original_amount: 80 } },
+        { id: "v2", sku: "S2", calculated_price: { calculated_amount: 69, original_amount: 115 } },
+      ],
+    })
+    const card = productToCard(product)
+    expect(card.price.now).toBe("64,00 Lei")
+    expect(card.price.was).toBe("80,00 Lei")
+    expect(card.badges?.filter((b) => b.type === "promo")).toEqual([{ type: "promo", label: "-20%" }])
+  })
+
+  it("no promo badge when only a non-displayed variant is discounted (Mastic Solid)", () => {
+    const product = makeProduct({
+      variants: [
+        { id: "v1", sku: "S1", calculated_price: { calculated_amount: 76, original_amount: 76 } },
+        { id: "v2", sku: "S2", calculated_price: { calculated_amount: 241.6, original_amount: 302 } },
+      ],
+    })
+    const card = productToCard(product)
+    expect(card.price.now).toBe("76,00 Lei")
+    expect(card.price.was).toBeUndefined()
+    expect(card.badges?.some((b) => b.type === "promo")).toBe(false)
+  })
+
   it("does NOT include promo badge when no price discount", () => {
     const card = productToCard(makeProduct({}))
     expect(card.badges?.some((b) => b.type === "promo")).toBe(false)
