@@ -8,4 +8,4 @@ Mockupuri pe cardul real (Mastic Lichid, preturi reale din catalog: 64,00 Lei, i
 
 Cercetarea a fost scurta (cautari web si rezumatele lor, fara analiza pe magazine anume); sursele folosite: [Baymard — discounturi pe pagina de produs](https://baymard.com/blog/product-page-price-discounts), [Baymard — 10 practici UX pentru reduceri](https://baymard.com/blog/10-sales-ux-best-practices), [Baymard — badge-uri UI](https://baymard.com/blog/badge-ui), [ecommerceguide — tiparul price promo](https://ecommerceguide.com/patterns/price-promo/), [Google Merchant — adnotari de pret redus](https://support.google.com/merchants/answer/9017019).
 
-Observatie: la Mastic Solid insigna arata -20% fara pret vechi taiat (reducerea e pe alta varianta decat cea cu pretul minim afisat); de decis odata cu insigna.
+Observatie: la Mastic Solid insigna arata -20% fara pret vechi taiat (cauza neverificata; probabil reducerea e pe alta varianta decat pretul minim afisat); de decis odata cu insigna.
