@@ -7,6 +7,7 @@ vi.mock("next/cache", () => ({ revalidateTag: mock.revalidateTag }))
 vi.mock("next/navigation", () => ({ redirect: mock.redirect }))
 vi.mock("./cookies", () => ({ getAuthHeaders: async () => ({}),
   getCacheOptions: async () => ({}), getCacheTag: async (tag: string) => tag,
+  getRevalidateTag: async (tag: string) => tag,
   getCartId: async () => "cart_mock", removeCartId: mock.removeCartId }))
 vi.mock("./regions", () => ({}))
 vi.mock("@lib/data/locale-actions", () => ({}))

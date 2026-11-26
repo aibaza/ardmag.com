@@ -38,6 +38,15 @@ export const getCacheTag = async (tag: string): Promise<string> => {
   }
 }
 
+// Tagul de invalidat dupa o modificare a cosului. Fara _medusa_cache_id (cookie-ul
+// se pune numai pe /cart, /checkout, /account, /order) cererile sunt etichetate doar
+// cu tagul global, deci il invalidam pe acela. getCacheTag intoarce atunci "", iar
+// revalidateTag("") nu goleste nimic: al doilea produs adaugat din lista sau de pe
+// pagina produsului intra in cosul din Medusa, dar cosul afisat ramane cel vechi.
+export const getRevalidateTag = async (tag: string): Promise<string> => {
+  return (await getCacheTag(tag)) || tag
+}
+
 export const getCacheOptions = async (
   tag: string
 ): Promise<{ tags: string[]; revalidate: number } | {}> => {
