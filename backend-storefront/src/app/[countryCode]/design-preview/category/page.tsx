@@ -103,9 +103,7 @@ export default function CategoryPage() {
           />
 
           <CategoryToolbar
-            count={142}
             sortOptions={["Popularitate","Nou intrat","Preț crescător","Preț descrescător","Brand A–Z"]}
-            perPageOptions={[24,48,96]}
           />
 
           <ProductGrid variant="cat" countryCode="ro" products={[

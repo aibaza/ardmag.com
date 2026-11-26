@@ -56,8 +56,6 @@ interface Props {
   baseUrl: string
   countryCode: string
   sortOptions: string[]
-  perPageOptions: number[]
-  defaultPerPage: number
   emptyMessage?: string
 }
 
@@ -74,15 +72,11 @@ export function CatalogClient({
   baseUrl,
   countryCode,
   sortOptions,
-  perPageOptions,
-  defaultPerPage,
   emptyMessage = "Niciun produs nu corespunde filtrelor selectate.",
 }: Props) {
   const searchParams = useSearchParams()
 
   const sortLabel = searchParams.get("sortBy") ?? "Relevanță"
-  const perPageParam = parseInt(searchParams.get("perPage") ?? "", 10)
-  const perPage = perPageOptions.includes(perPageParam) ? perPageParam : defaultPerPage
   const activeBrands = (searchParams.get("brand") ?? "").split(",").filter(Boolean)
   const activeMaterials = (searchParams.get("material") ?? "").split(",").filter(Boolean)
   const activePriceMin = parseInt(searchParams.get("priceMin") ?? "", 10)
@@ -128,8 +122,6 @@ export function CatalogClient({
     activePriceMax,
     sortLabel,
   ])
-
-  const totalFiltered = filteredCards.length
 
   const filterGroupsWithChecked = useMemo(() => {
     return filterGroups.map((g: any) => {
@@ -187,12 +179,9 @@ export function CatalogClient({
     >
       <Suspense fallback={<div className="cat-toolbar" />}>
         <CategoryToolbar
-          count={totalFiltered}
           sortOptions={sortOptions}
-          perPageOptions={perPageOptions}
           baseUrl={baseUrl}
           currentSort={sortLabel}
-          currentPerPage={perPage}
         />
       </Suspense>
       {filteredCards.length === 0 ? (

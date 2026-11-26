@@ -3,34 +3,26 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 
 const DEFAULT_SORT = "Relevanță"
-const DEFAULT_PER_PAGE = 20
 
+// Numarul de produse sta langa titlul paginii, iar lista se incarca la derulare (fara „Pe pagina”).
+// Bara apare numai pe desktop; pe telefon sortarea sta langa „Filtre”, in MobileFilterBar.
 interface CategoryToolbarProps {
-  count: number
   sortOptions: string[]
-  perPageOptions: number[]
   baseUrl?: string
   currentSort?: string
-  currentPerPage?: number
 }
 
 export function CategoryToolbar({
-  count,
   sortOptions,
-  perPageOptions,
   baseUrl,
   currentSort = DEFAULT_SORT,
-  currentPerPage = DEFAULT_PER_PAGE,
 }: CategoryToolbarProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
   function buildUrl(key: string, value: string): string {
     const params = new URLSearchParams(searchParams.toString())
-    if (
-      (key === "sortBy" && value === DEFAULT_SORT) ||
-      (key === "perPage" && value === String(DEFAULT_PER_PAGE))
-    ) {
+    if (key === "sortBy" && value === DEFAULT_SORT) {
       params.delete(key)
     } else {
       params.set(key, value)
@@ -43,11 +35,6 @@ export function CategoryToolbar({
   function handleSortChange(value: string) {
     if (!baseUrl) return
     router.replace(buildUrl("sortBy", value))
-  }
-
-  function handlePerPageChange(value: string) {
-    if (!baseUrl) return
-    router.replace(buildUrl("perPage", value))
   }
 
   const isListView = searchParams.get("view") === "list"
@@ -66,7 +53,6 @@ export function CategoryToolbar({
 
   return (
     <div className="cat-toolbar">
-      <div className="count"><strong>{count}</strong> produse</div>
       <div className="spacer"></div>
       <div className="tbl"><label htmlFor="sort">Sortare:</label>
         <select
@@ -75,15 +61,6 @@ export function CategoryToolbar({
           onChange={(e) => handleSortChange(e.target.value)}
         >
           {sortOptions.map((o, i) => <option key={i} value={o}>{o}</option>)}
-        </select>
-      </div>
-      <div className="tbl"><label htmlFor="per-page">Pe pagină:</label>
-        <select
-          id="per-page"
-          value={String(currentPerPage)}
-          onChange={(e) => handlePerPageChange(e.target.value)}
-        >
-          {perPageOptions.map((o, i) => <option key={i} value={String(o)}>{o}</option>)}
         </select>
       </div>
       <div className="view-toggle" role="group" aria-label="Mod afișare produse">

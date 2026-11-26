@@ -22,8 +22,6 @@ import { HttpTypes, StoreRegion } from "@medusajs/types"
 export const maxDuration = 60
 export const revalidate = 3600
 
-const VALID_PAGE_SIZES = [20, 40, 60]
-const DEFAULT_PAGE_SIZE = 20
 const SORT_OPTIONS = ["Relevanță", "Preț ascendent", "Preț descendent", "Cele mai noi"]
 const SORT_MAP: Record<string, SortOptions> = {
   "Preț ascendent": "price_asc",
@@ -81,8 +79,6 @@ export default async function CategoryPage(props: Props) {
   const { category: categoryHandle, countryCode } = params
 
   const sortLabel = (searchParams.sortBy as string | undefined) ?? "Relevanță"
-  const perPageParam = parseInt((searchParams.perPage as string) ?? "", 10)
-  const perPage = VALID_PAGE_SIZES.includes(perPageParam) ? perPageParam : DEFAULT_PAGE_SIZE
   const viewMode = (searchParams.view as string | undefined) === "list" ? "list" : "grid"
   const activeBrands = (searchParams.brand as string | undefined)?.split(",").filter(Boolean) ?? []
   const activeMaterials = (searchParams.material as string | undefined)?.split(",").filter(Boolean) ?? []
@@ -176,8 +172,8 @@ export default async function CategoryPage(props: Props) {
       />
 
       <main className="page-inner">
-        <Breadcrumb items={breadcrumbItems} current={breadcrumbCurrent} meta={heroProps.meta} />
-        <CategoryHero title={heroProps.title} description={heroProps.description} />
+        <Breadcrumb items={breadcrumbItems} current={breadcrumbCurrent} />
+        <CategoryHero title={heroProps.title} description={heroProps.description} count={totalFiltered} />
         <CategoryLayoutClient
           filterGroups={filterGroups}
           applyCount={filterActiveCount}
@@ -190,12 +186,9 @@ export default async function CategoryPage(props: Props) {
         >
           <Suspense fallback={<div className="cat-toolbar" />}>
             <CategoryToolbar
-              count={totalFiltered}
               sortOptions={SORT_OPTIONS}
-              perPageOptions={VALID_PAGE_SIZES}
               baseUrl={baseUrl}
               currentSort={sortLabel}
-              currentPerPage={perPage}
             />
           </Suspense>
           {sortedProducts.length === 0 ? (
