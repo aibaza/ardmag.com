@@ -31,9 +31,10 @@ export function PDPGallery({ thumbs, mainImage, badges }: PDPGalleryProps) {
 
   return (
     <>
-      <div className="pdp-gallery">
+      {/* O singura poza nu are nevoie de selector: miniatura apare numai de la doua poze in sus. */}
+      <div className={images.length > 1 ? "pdp-gallery" : "pdp-gallery pdp-gallery--single"}>
 
-        <div className="pdp-thumbs">
+        {images.length > 1 && <div className="pdp-thumbs">
           {images.map((thumb, i) => (
             <button
               key={i}
@@ -44,7 +45,7 @@ export function PDPGallery({ thumbs, mainImage, badges }: PDPGalleryProps) {
               <img src={imageVariant(thumb.src!, "tiny")} alt={thumb.alt} width={80} height={80} loading="lazy" />
             </button>
           ))}
-        </div>
+        </div>}
 
         <div className="pdp-main-img with-real">
           <img className="main" src={currentLarge} alt={currentAlt} width={1200} height={1200} />

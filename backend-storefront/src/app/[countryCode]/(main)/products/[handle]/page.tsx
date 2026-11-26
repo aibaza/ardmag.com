@@ -19,6 +19,7 @@ import { HttpTypes } from "@medusajs/types"
 import { ProductJsonLd } from "@lib/util/json-ld"
 import { ViewContentTracker } from "@modules/analytics/ViewContentTracker"
 import { getPdpStockLabel, isProductOutOfStock, isVariantInStock, pickPdpVariant } from "@lib/util/product"
+import { splitTechSpecs } from "@lib/util/tech-specs"
 
 export const revalidate = 300
 
@@ -142,6 +143,9 @@ export default async function ProductPage(props: Props) {
   ]
 
   const description = product.description ?? ""
+  // „Caracteristici tehnice” devine tabel langa descriere numai cand lista e curata (cheie: valoare);
+  // altfel descrierea ramane exact cum e.
+  const techSpecs = splitTechSpecs(description)
 
   const firstVariant = variants[0] ?? { sku: null, ean: null }
 
@@ -208,7 +212,27 @@ export default async function ProductPage(props: Props) {
           tabs={[
             {
               label: "Descriere",
-              content: description ? (
+              content: techSpecs ? (
+                <div className="pdp-desc-specs">
+                  <div
+                    className="pdp-description"
+                    dangerouslySetInnerHTML={{ __html: techSpecs.rest }}
+                  />
+                  <aside className="pdp-specs">
+                    <h2 className="pdp-specs__title">{techSpecs.heading}</h2>
+                    <table>
+                      <tbody>
+                        {techSpecs.rows.map(([key, value], i) => (
+                          <tr key={i}>
+                            <th scope="row">{key}</th>
+                            <td>{value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </aside>
+                </div>
+              ) : description ? (
                 <div
                   className="pdp-description"
                   dangerouslySetInnerHTML={{ __html: description }}

@@ -21,7 +21,7 @@ export function PDPPriceCard({ price, was, save, priceNoTax, unitLabel, promotio
         {save && <span className="pdp-save">{save}</span>}
       </div>
       {priceNoTax && (
-        <div style={{ display: "flex", gap: "14px", alignItems: "center", justifyContent: "flex-end", fontSize: "12px", color: "var(--fg-muted)", fontFamily: "var(--f-mono)" }}>
+        <div style={{ display: "flex", gap: "14px", alignItems: "center", justifyContent: "flex-start", fontSize: "12px", color: "var(--fg-muted)", fontFamily: "var(--f-mono)" }}>
           <span>Fără TVA: <strong style={{ color: "var(--fg)" }}><FormattedPrice value={priceNoTax} /></strong></span>
           {unitLabel && <><span>·</span><span>{unitLabel}</span></>}
         </div>

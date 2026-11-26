@@ -8,7 +8,7 @@ import { PDPContactOrderButton } from '@modules/product-detail/pdp-contact-order
 interface PDPPerk {
   icon: ReactNode
   label: string
-  sub: string
+  sub?: string
 }
 
 interface VariantOption {
@@ -57,60 +57,67 @@ export function PDPSummary({ brand, brandHref, title, subtitle, ean, rating, pri
   return (
     <aside className="pdp-summary">
 
-      <div className="pdp-brand"><a href={brandHref} style={{ color: "inherit", textDecoration: "none" }}>{brand}</a></div>
-      <h1 className="pdp-title">{title}</h1>
-      {subtitle ? <p className="pdp-subtitle">{subtitle}</p> : null}
-      <div className="pdp-sku">
-        <span>EAN <strong>{ean}</strong></span>
-      </div>
-
-      {/* Rating */}
-      {/* 25.11.2026: fără recenzii reale, nu afișăm cinci stele cu „0 recenzii” */}
-      {rating.reviewCount > 0 ? <StarRating score={rating.score} reviewCount={rating.reviewCount} /> : null}
-
-      {/* Price card */}
-      <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} promotionOffer={promotionOffer} />
-
-      {/* Variants */}
-      <PDPVariantSelector groups={variantGroups} />
-
-      {/* Stock */}
-      <div className="pdp-stock">
-        <span className="dot"></span>
-        <strong>{stockLabel}</strong>
-        <span className="loc">{stockLocation}</span>
-      </div>
-
-      {/* Buy / Contact */}
-      {contactToOrder ? (
-        <PDPContactOrderButton
-          productTitle={title}
-          variantLabel={variantGroups.map(g => `${g.title} ${g.selectedValue}`).join(', ')}
-        />
-      ) : (
-        <PDPBuyActions key={variantId} unitPrice={unitPrice} currencyCode={currencyCode} variantId={variantId} countryCode={countryCode} label={addToCartLabel} canAddToCart={canAddToCart} />
-      )}
-
-      {/* Extras */}
-      <div className="pdp-extras">
-        <button className="btn ghost md">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M8 14s-5-3-5-7a3 3 0 0 1 5-2 3 3 0 0 1 5 2c0 4-5 7-5 7z"/></svg>
-          Favorite
-        </button>
-        <button className="btn ghost md">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 3h10v10H3zM6 7h4M6 10h4"/></svg>
-          Cere ofertă
-        </button>
-      </div>
-
-      {/* Perks */}
-      <div className="pdp-perks">
-        {perks.map((perk, i) => (
-          <div key={i} className="row">
-            {perk.icon}
-            <div><strong>{perk.label}</strong> · <span className="sub">{perk.sub}</span></div>
+      {/* Pe telefon blocul acesta urca deasupra pozei (vezi .pdp-head in CSS). */}
+      <div className="pdp-head">
+        <div className="pdp-brand"><a href={brandHref} style={{ color: "inherit", textDecoration: "none" }}>{brand}</a></div>
+        <h1 className="pdp-title">{title}</h1>
+        {subtitle ? <p className="pdp-subtitle">{subtitle}</p> : null}
+        {ean ? (
+          <div className="pdp-sku">
+            <span>EAN <strong>{ean}</strong></span>
           </div>
-        ))}
+        ) : null}
+      </div>
+
+      <div className="pdp-summary-body">
+        {/* Rating */}
+        {/* 25.11.2026: fără recenzii reale, nu afișăm cinci stele cu „0 recenzii” */}
+        {rating.reviewCount > 0 ? <StarRating score={rating.score} reviewCount={rating.reviewCount} /> : null}
+
+        {/* Price card */}
+        <PDPPriceCard price={price} was={was} save={save} priceNoTax={priceNoTax} unitLabel={unitLabel} promoLabel={promoLabel} promoDate={promoDate} promotionOffer={promotionOffer} />
+
+        {/* Variante, stoc si cumparare: bara fixa de pe telefon se ascunde cat timp zona asta se vede. */}
+        <div className="pdp-purchase">
+          <PDPVariantSelector groups={variantGroups} />
+
+          {/* Stock */}
+          <div className="pdp-stock">
+            <span className="dot"></span>
+            <strong>{stockLabel}</strong>
+            <span className="loc">{stockLocation}</span>
+          </div>
+
+          {/* Buy / Contact */}
+          {contactToOrder ? (
+            <PDPContactOrderButton
+              productTitle={title}
+              variantLabel={variantGroups.map(g => `${g.title} ${g.selectedValue}`).join(', ')}
+            />
+          ) : (
+            <PDPBuyActions
+              key={variantId}
+              unitPrice={unitPrice}
+              currencyCode={currencyCode}
+              variantId={variantId}
+              countryCode={countryCode}
+              label={addToCartLabel}
+              canAddToCart={canAddToCart}
+              stickyPrice={price}
+              stickyVariantLabel={variantGroups.map(g => g.selectedValue).filter(Boolean).join(' · ')}
+            />
+          )}
+        </div>
+
+        {/* Garantiile, pe un rand (fara subtexte). „Favorite” si „Cere oferta” au fost scoase: nu aveau nicio actiune. */}
+        <div className="pdp-perks">
+          {perks.map((perk, i) => (
+            <div key={i} className="row">
+              {perk.icon}
+              <strong>{perk.label}</strong>
+            </div>
+          ))}
+        </div>
       </div>
 
     </aside>
