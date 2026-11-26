@@ -950,7 +950,7 @@ a.badge:hover{transform:translateY(-1px)}
 /* Banderola de reducere (propunerea C, aleasa de DC 26.11): sus pe imagine, pe toata latimea.
    Insignele din colt si panglica „Nou” coboara sub ea, ca sa nu se suprapuna. */
 .pcard{--pcard-band-h:38px}
-.pcard-promo-band{position:absolute;left:0;right:0;top:0;z-index:4;height:var(--pcard-band-h);box-sizing:border-box;display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--brand-500);color:#fff;pointer-events:none}
+.pcard-promo-band{position:absolute;left:0;right:0;top:0;z-index:4;height:var(--pcard-band-h);box-sizing:border-box;display:flex;white-space:nowrap;overflow:hidden;align-items:center;gap:10px;padding:8px 14px;background:var(--brand-500);color:#fff;pointer-events:none}
 .pcard-promo-band b{font-family:var(--f-mono);font-size:22px;font-weight:700;line-height:1}
 .pcard-promo-band span{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;line-height:1}
 .pcard.has-promo .pcard-img .top-tags{top:calc(var(--pcard-band-h) + 10px)}
