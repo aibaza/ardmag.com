@@ -1983,7 +1983,7 @@ a.badge:hover{transform:translateY(-1px)}
   .cat-grid .pcard .pcard-title{font-size:14px}
   .cat-grid .pcard .pcard-foot{grid-column:2;grid-row:2;min-width:0;flex-direction:row;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:6px 8px;padding:4px 12px 10px;margin-top:0;border:0;background:transparent}
   .cat-grid .pcard .pcard-price{align-items:flex-start;margin-bottom:0;min-width:0}
-  .cat-grid .pcard .pcard-price .now{font-size:16px}
+  .cat-grid .pcard .pcard-price .now,
   .cat-grid .pcard .pcard-price.is-sale .now{font-size:17px}
   .cat-grid .pcard .pcard-foot .btn{flex:none;padding:0 12px}
   .cat-grid .pcard .pcard-foot .btn svg{display:none}
@@ -2041,3 +2041,13 @@ a.badge:hover{transform:translateY(-1px)}
   .pdp-sticky-bar .btn{flex:1;max-width:240px;height:44px;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){.pdp-sticky-bar,.pdp-sticky-bar.is-visible{transition:none}}
+
+/* ============================================================
+   V2 (mandat DC 26.11) - cardul de produs
+   Fara banda gri si linia din jurul pretului; pretul 18px/600. Pretul redus ramane
+   in culoarea de brand si 700, la aceeasi marime (nu mai mic decat pretul obisnuit).
+   ============================================================ */
+.pcard-foot,[data-theme="dark"] .pcard-foot{background:transparent;border-top:0;padding:4px 16px 14px}
+.pcard-price .now{font-size:18px;font-weight:600}
+.pcard-price.is-sale .now{font-size:18px;font-weight:700}
+.pcard-price .now .price{font-size:inherit}
